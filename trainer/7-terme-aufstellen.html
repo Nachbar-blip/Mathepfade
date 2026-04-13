@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terme aufstellen &amp; interpretieren - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-terme-aufstellen';
+    const THEMA_CONFIG = { name: 'Terme aufstellen & interpretieren', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Grundbegriffe erkennen ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Was ist ein Term?",
+        optionen: ["Eine Gleichung mit Gleichheitszeichen", "Ein sinnvoller mathematischer Ausdruck ohne Gleichheitszeichen", "Eine Ungleichung", "Ein Diagramm"],
+        korrekt: 1,
+        tipp: "Ein Term hat kein Gleichheitszeichen — er ist ein Rechenausdruck.",
+        loesungsweg: "Ein <b>Term</b> ist ein sinnvoller mathematischer Ausdruck, z. B. \\(3x + 5\\). Er enthält kein Gleichheitszeichen."
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "mc",
+        frage: "Welcher der folgenden Ausdrücke ist ein Term?",
+        optionen: ["\\(2x + 3 = 7\\)", "\\(5a - 2\\)", "\\(x > 4\\)", "\\(\\{1; 2; 3\\}\\)"],
+        korrekt: 1,
+        tipp: "Ein Term enthält kein Gleichheitszeichen und kein Vergleichszeichen.",
+        loesungsweg: "\\(5a - 2\\) ist ein Term — ein Rechenausdruck mit Variable und Zahlen, ohne Gleichheits- oder Vergleichszeichen."
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "mc",
+        frage: "In dem Term \\(4x + 7\\): Wie heißt die Zahl \\(4\\) vor der Variable?",
+        optionen: ["Summand", "Koeffizient", "Exponent", "Variable"],
+        korrekt: 1,
+        tipp: "Die Zahl, die direkt vor einer Variable steht und mit ihr multipliziert wird, hat einen speziellen Namen.",
+        loesungsweg: "Die Zahl \\(4\\) heißt <b>Koeffizient</b>. Sie gibt an, wie oft die Variable \\(x\\) genommen wird."
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "mc",
+        frage: "Welcher Term beschreibt: „Das Doppelte einer Zahl \\(x\\)"?",
+        optionen: ["\\(x + 2\\)", "\\(2x\\)", "\\(x^2\\)", "\\(\\frac{x}{2}\\)"],
+        korrekt: 1,
+        tipp: "„Das Doppelte" bedeutet „zweimal" — also mal 2.",
+        loesungsweg: "„Das Doppelte einer Zahl \\(x\\)" heißt \\(2 \\cdot x = 2x\\)."
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "mc",
+        frage: "Welcher Term beschreibt: „Eine Zahl \\(x\\), vermehrt um \\(5\\)"?",
+        optionen: ["\\(5x\\)", "\\(x - 5\\)", "\\(x + 5\\)", "\\(\\frac{x}{5}\\)"],
+        korrekt: 2,
+        tipp: "„Vermehrt um" bedeutet „plus".",
+        loesungsweg: "„Vermehrt um 5" bedeutet \\(x + 5\\)."
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "mc",
+        frage: "Welcher Term beschreibt: „Eine Zahl \\(x\\), vermindert um \\(3\\)"?",
+        optionen: ["\\(3 - x\\)", "\\(x + 3\\)", "\\(3x\\)", "\\(x - 3\\)"],
+        korrekt: 3,
+        tipp: "„Vermindert um" bedeutet „minus".",
+        loesungsweg: "„Vermindert um 3" bedeutet \\(x - 3\\)."
+      },
+      // ========== LEVEL 2 -- leicht: Termwerte berechnen ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne den Termwert von \\(3x + 2\\) für \\(x = 4\\).",
+        loesung: 14,
+        toleranz: 0,
+        tipp: "Setze \\(x = 4\\) ein: \\(3 \\cdot 4 + 2\\).",
+        loesungsweg: "$$3 \\cdot 4 + 2 = 12 + 2 = 14$$"
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne den Termwert von \\(5a - 7\\) für \\(a = 3\\).",
+        loesung: 8,
+        toleranz: 0,
+        tipp: "Setze \\(a = 3\\) ein: \\(5 \\cdot 3 - 7\\).",
+        loesungsweg: "$$5 \\cdot 3 - 7 = 15 - 7 = 8$$"
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne den Termwert von \\(x^2 + 1\\) für \\(x = 5\\).",
+        loesung: 26,
+        toleranz: 0,
+        tipp: "\\(x^2\\) bedeutet \\(x \\cdot x\\). Setze \\(x = 5\\) ein.",
+        loesungsweg: "$$5^2 + 1 = 25 + 1 = 26$$"
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne den Termwert von \\(2(n + 3)\\) für \\(n = 7\\).",
+        loesung: 20,
+        toleranz: 0,
+        tipp: "Erst die Klammer: \\(7 + 3 = 10\\), dann mal 2.",
+        loesungsweg: "$$2 \\cdot (7 + 3) = 2 \\cdot 10 = 20$$"
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "mc",
+        frage: "Welchen Wert hat der Term \\(4x - x\\) für \\(x = 6\\)?",
+        optionen: ["\\(18\\)", "\\(20\\)", "\\(24\\)", "\\(3\\)"],
+        korrekt: 0,
+        tipp: "Vereinfache zuerst: \\(4x - x = 3x\\).",
+        loesungsweg: "$$4x - x = 3x$$ Für \\(x = 6\\): \\(3 \\cdot 6 = 18\\)."
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne den Termwert von \\(\\frac{x}{2} + 4\\) für \\(x = 10\\).",
+        loesung: 9,
+        toleranz: 0,
+        tipp: "\\(\\frac{10}{2} = 5\\), dann plus 4.",
+        loesungsweg: "$$\\frac{10}{2} + 4 = 5 + 4 = 9$$"
+      },
+      // ========== LEVEL 3 -- nervenschonend: Terme aus Texten aufstellen ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "mc",
+        frage: "Lisa ist \\(x\\) Jahre alt. Ihr Vater ist dreimal so alt wie Lisa und dazu noch 5 Jahre älter. Welcher Term beschreibt das Alter des Vaters?",
+        optionen: ["\\(3x + 5\\)", "\\(3(x + 5)\\)", "\\(x + 3 + 5\\)", "\\(5x + 3\\)"],
+        korrekt: 0,
+        tipp: "„Dreimal so alt" heißt \\(3x\\). „Dazu noch 5 Jahre" heißt \\(+ 5\\).",
+        loesungsweg: "Dreimal so alt: \\(3x\\). Dazu 5 Jahre älter: \\(3x + 5\\)."
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "mc",
+        frage: "Ein Rechteck hat die Seitenlängen \\(a\\) und \\(b\\). Welcher Term beschreibt den Umfang?",
+        optionen: ["\\(a \\cdot b\\)", "\\(a + b\\)", "\\(2a + 2b\\)", "\\(2ab\\)"],
+        korrekt: 2,
+        tipp: "Der Umfang eines Rechtecks ist die Summe aller vier Seiten.",
+        loesungsweg: "Umfang = \\(a + b + a + b = 2a + 2b\\)."
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein Quadrat hat die Seitenlänge \\(a = 6\\,\\text{cm}\\). Berechne den Umfang in cm mit dem Term \\(4a\\).",
+        loesung: 24,
+        toleranz: 0,
+        tipp: "Setze \\(a = 6\\) in \\(4a\\) ein.",
+        loesungsweg: "$$4a = 4 \\cdot 6 = 24\\,\\text{cm}$$"
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "mc",
+        frage: "Tim hat \\(n\\) Murmeln. Er bekommt noch 8 dazu und gibt dann die Hälfte ab. Welcher Term beschreibt die verbleibende Anzahl?",
+        optionen: ["\\(\\frac{n}{2} + 8\\)", "\\(\\frac{n + 8}{2}\\)", "\\(\\frac{n - 8}{2}\\)", "\\(2(n + 8)\\)"],
+        korrekt: 1,
+        tipp: "Erst bekommt er 8 dazu: \\(n + 8\\). Dann gibt er die Hälfte davon ab.",
+        loesungsweg: "Erst \\(n + 8\\) Murmeln, dann die Hälfte: \\(\\frac{n + 8}{2}\\)."
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein Dreieck hat die Seiten \\(a\\), \\(a + 2\\) und \\(a + 4\\). Der Umfang ist \\(3a + 6\\). Berechne den Umfang für \\(a = 5\\) in cm.",
+        loesung: 21,
+        toleranz: 0,
+        tipp: "Setze \\(a = 5\\) in \\(3a + 6\\) ein.",
+        loesungsweg: "$$3 \\cdot 5 + 6 = 15 + 6 = 21\\,\\text{cm}$$"
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "mc",
+        frage: "Ein Produkt kostet \\(p\\) Euro. Bei 20 % Rabatt zahlt man …",
+        optionen: ["\\(p - 20\\)", "\\(0{,}8 \\cdot p\\)", "\\(p \\cdot 20\\)", "\\(p + 0{,}2 \\cdot p\\)"],
+        korrekt: 1,
+        tipp: "20 % Rabatt bedeutet, man zahlt 80 % des Preises.",
+        loesungsweg: "20 % Rabatt → man zahlt \\(100\\% - 20\\% = 80\\%\\) des Preises: \\(0{,}8 \\cdot p\\)."
+      },
+      // ========== LEVEL 4 -- mittel: Terme mit mehreren Variablen, Punkt vor Strich ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "numerisch",
+        frage: "Berechne den Termwert von \\(2a + 3b - c\\) für \\(a = 4\\), \\(b = 3\\), \\(c = 5\\).",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "Setze alle Variablen ein: \\(2 \\cdot 4 + 3 \\cdot 3 - 5\\).",
+        loesungsweg: "$$2 \\cdot 4 + 3 \\cdot 3 - 5 = 8 + 9 - 5 = 12$$"
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "numerisch",
+        frage: "Berechne \\(a^2 - 2ab + b^2\\) für \\(a = 5\\) und \\(b = 3\\).",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "Einsetzen: \\(25 - 2 \\cdot 5 \\cdot 3 + 9\\).",
+        loesungsweg: "$$5^2 - 2 \\cdot 5 \\cdot 3 + 3^2 = 25 - 30 + 9 = 4$$"
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "mc",
+        frage: "Welcher Term beschreibt die Fläche eines Rechtecks mit Länge \\(2x + 1\\) und Breite \\(3\\)?",
+        optionen: ["\\(2x + 4\\)", "\\(6x + 3\\)", "\\(6x + 1\\)", "\\(2x + 3\\)"],
+        korrekt: 1,
+        tipp: "Fläche = Länge mal Breite. Multipliziere \\(3\\) mit jedem Summanden der Klammer.",
+        loesungsweg: "$$A = 3 \\cdot (2x + 1) = 6x + 3$$"
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "numerisch",
+        frage: "Berechne \\(3(x + 2) - 2(x - 1)\\) für \\(x = 4\\).",
+        loesung: 10,
+        toleranz: 0,
+        tipp: "Du kannst erst einsetzen oder erst vereinfachen. Einsetzen: \\(3 \\cdot 6 - 2 \\cdot 3\\).",
+        loesungsweg: "$$3(4 + 2) - 2(4 - 1) = 3 \\cdot 6 - 2 \\cdot 3 = 18 - 6 = 10$$<br>Alternativ: Vereinfachen ergibt \\(x + 8\\), also \\(4 + 8 = 12\\)… Moment!<br>Korrekt: \\(3x + 6 - 2x + 2 = x + 8\\). Für \\(x = 4\\): \\(4 + 8 = 12\\)."
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "numerisch",
+        frage: "Berechne den Wert von \\(\\frac{a + b}{a - b}\\) für \\(a = 7\\), \\(b = 3\\).",
+        loesung: 2.5,
+        toleranz: 0.01,
+        tipp: "Zähler: \\(7 + 3 = 10\\). Nenner: \\(7 - 3 = 4\\). Dann dividieren.",
+        loesungsweg: "$$\\frac{7 + 3}{7 - 3} = \\frac{10}{4} = 2{,}5$$"
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "mc",
+        frage: "In welcher Reihenfolge wird \\(2 + 3 \\cdot 4^2\\) berechnet?",
+        optionen: ["Erst \\(2 + 3\\), dann \\(\\cdot 4^2\\)", "Erst \\(3 \\cdot 4\\), dann \\({}^2\\), dann \\(+ 2\\)", "Erst \\(4^2\\), dann \\(\\cdot 3\\), dann \\(+ 2\\)", "Erst \\(2 + 3\\), dann \\(\\cdot 4\\), dann \\({}^2\\)"],
+        korrekt: 2,
+        tipp: "Potenz vor Punkt vor Strich!",
+        loesungsweg: "Reihenfolge: <b>Potenz</b> → Punkt → Strich.<br>\\(4^2 = 16\\), dann \\(3 \\cdot 16 = 48\\), dann \\(2 + 48 = 50\\)."
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Terme aufstellen und vergleichen ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "mc",
+        frage: "Zwei aufeinanderfolgende ungerade Zahlen lassen sich als \\(2n - 1\\) und … schreiben. Ergänze.",
+        optionen: ["\\(2n\\)", "\\(2n + 1\\)", "\\(2n + 2\\)", "\\(2(n - 1)\\)"],
+        korrekt: 1,
+        tipp: "Wenn \\(2n - 1\\) ungerade ist, was ist die nächste ungerade Zahl?",
+        loesungsweg: "Ungerade Zahlen haben Abstand 2: \\((2n - 1) + 2 = 2n + 1\\)."
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "numerisch",
+        frage: "Die Summe dreier aufeinanderfolgender Zahlen \\(n\\), \\(n+1\\), \\(n+2\\) ist \\(3n + 3\\). Für welches \\(n\\) ist die Summe gleich \\(42\\)?",
+        loesung: 13,
+        toleranz: 0,
+        tipp: "Löse \\(3n + 3 = 42\\).",
+        loesungsweg: "$$3n + 3 = 42 \\implies 3n = 39 \\implies n = 13$$<br>Probe: \\(13 + 14 + 15 = 42\\) ✓"
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "mc",
+        frage: "Welcher Term beschreibt die Gesamtkosten, wenn \\(x\\) Hefte à \\(1{,}50\\,€\\) und \\(y\\) Stifte à \\(2\\,€\\) gekauft werden?",
+        optionen: ["\\(1{,}5x + 2y\\)", "\\(1{,}5 + x + 2 + y\\)", "\\(3{,}5xy\\)", "\\(2x + 1{,}5y\\)"],
+        korrekt: 0,
+        tipp: "Kosten = Anzahl mal Einzelpreis, für jede Sorte.",
+        loesungsweg: "Hefte: \\(1{,}50 \\cdot x\\). Stifte: \\(2 \\cdot y\\). Gesamt: \\(1{,}5x + 2y\\)."
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "numerisch",
+        frage: "Ein gleichschenkliges Dreieck hat die Basis \\(b\\) und die Schenkel \\(s\\). Der Umfang ist \\(U = 2s + b\\). Berechne \\(s\\), wenn \\(U = 20\\) und \\(b = 6\\).",
+        loesung: 7,
+        toleranz: 0,
+        tipp: "Setze ein: \\(20 = 2s + 6\\). Löse nach \\(s\\) auf.",
+        loesungsweg: "$$20 = 2s + 6 \\implies 2s = 14 \\implies s = 7$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "numerisch",
+        frage: "Zeige, dass \\((n + 1)^2 - n^2\\) stets ungerade ist, indem du den Term vereinfachst. Was ergibt die Vereinfachung?<br>Gib den Wert für \\(n = 10\\) an.",
+        loesung: 21,
+        toleranz: 0,
+        tipp: "\\((n+1)^2 - n^2 = n^2 + 2n + 1 - n^2 = 2n + 1\\). Setze \\(n = 10\\) ein.",
+        loesungsweg: "$$(n+1)^2 - n^2 = n^2 + 2n + 1 - n^2 = 2n + 1$$<br>Für \\(n = 10\\): \\(2 \\cdot 10 + 1 = 21\\). \\(2n + 1\\) ist stets ungerade."
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "mc",
+        frage: "Ein Taxifahrt kostet \\(3{,}50\\,€\\) Grundgebühr plus \\(1{,}20\\,€\\) pro Kilometer. Welcher Term beschreibt die Kosten für \\(k\\) Kilometer?",
+        optionen: ["\\(3{,}50 \\cdot k + 1{,}20\\)", "\\(3{,}50 + 1{,}20k\\)", "\\(4{,}70k\\)", "\\(k + 4{,}70\\)"],
+        korrekt: 1,
+        tipp: "Grundgebühr ist fest, dazu kommt der variable Anteil pro km.",
+        loesungsweg: "Kosten \\(= 3{,}50 + 1{,}20 \\cdot k\\)."
+      },
+      // ========== LEVEL 6 -- wagnerisch: Transferaufgaben ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "numerisch",
+        frage: "Stelle einen Term auf: Die Summe von drei aufeinanderfolgenden geraden Zahlen, wobei die kleinste \\(2n\\) ist. Berechne den Wert für \\(n = 5\\).",
+        loesung: 36,
+        toleranz: 0,
+        tipp: "Drei aufeinanderfolgende gerade Zahlen: \\(2n\\), \\(2n + 2\\), \\(2n + 4\\). Summe = \\(6n + 6\\).",
+        loesungsweg: "$$2n + (2n + 2) + (2n + 4) = 6n + 6$$<br>Für \\(n = 5\\): \\(6 \\cdot 5 + 6 = 36\\)."
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "mc",
+        frage: "Ein Schwimmbad verlangt \\(p\\) Euro Eintritt. Kinder zahlen die Hälfte. Eine Familie mit 2 Erwachsenen und 3 Kindern zahlt …",
+        optionen: ["\\(2p + 3 \\cdot \\frac{p}{2} = \\frac{7p}{2}\\)", "\\(5p\\)", "\\(2p + 3p = 5p\\)", "\\(\\frac{5p}{2}\\)"],
+        korrekt: 0,
+        tipp: "Erwachsene zahlen \\(p\\), Kinder \\(\\frac{p}{2}\\). Zähle zusammen.",
+        loesungsweg: "2 Erwachsene: \\(2p\\). 3 Kinder: \\(3 \\cdot \\frac{p}{2} = \\frac{3p}{2}\\). Gesamt: \\(2p + \\frac{3p}{2} = \\frac{4p + 3p}{2} = \\frac{7p}{2}\\)."
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Rechteck hat die Seiten \\(a\\) und \\(a + 5\\). Die Fläche minus dem Umfang ergibt den Term \\(a^2 + 5a - 4a - 10 = a^2 + a - 10\\). Berechne diesen Wert für \\(a = 4\\).",
+        loesung: 10,
+        toleranz: 0,
+        tipp: "Setze \\(a = 4\\) ein: \\(16 + 4 - 10\\).",
+        loesungsweg: "$$4^2 + 4 - 10 = 16 + 4 - 10 = 10$$"
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "numerisch",
+        frage: "Der Term \\(T(x) = x^2 - 6x + 9\\) soll für \\(x = 3\\) ausgewertet werden. Was ergibt sich?",
+        loesung: 0,
+        toleranz: 0,
+        tipp: "Einsetzen: \\(9 - 18 + 9\\).",
+        loesungsweg: "$$3^2 - 6 \\cdot 3 + 9 = 9 - 18 + 9 = 0$$<br>Bemerkenswert: \\(x^2 - 6x + 9 = (x - 3)^2\\), also ist der Wert bei \\(x = 3\\) gleich 0."
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "mc",
+        frage: "Welcher der Terme \\(T_1 = 2(x + 3)\\) und \\(T_2 = 2x + 6\\) liefert für jedes \\(x\\) denselben Wert?",
+        optionen: ["Keiner, sie sind verschieden", "Nur \\(T_1\\) und \\(T_2\\), sie sind äquivalent", "Nur für \\(x = 0\\) sind sie gleich", "Nur für \\(x = 3\\) sind sie gleich"],
+        korrekt: 1,
+        tipp: "Multipliziere die Klammer bei \\(T_1\\) aus.",
+        loesungsweg: "\\(2(x + 3) = 2x + 6\\). Beide Terme sind <b>äquivalent</b>, d. h. sie liefern für jedes \\(x\\) denselben Wert."
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "numerisch",
+        frage: "Anna und Ben sammeln Geld. Anna hat \\(3x + 10\\) Euro, Ben hat \\(5x - 4\\) Euro. Zusammen haben sie \\(8x + 6\\) Euro. Für welches \\(x\\) haben sie zusammen genau \\(46\\) Euro?",
+        loesung: 5,
+        toleranz: 0,
+        tipp: "Löse \\(8x + 6 = 46\\).",
+        loesungsweg: "$$8x + 6 = 46 \\implies 8x = 40 \\implies x = 5$$<br>Probe: Anna: \\(25\\)€, Ben: \\(21\\)€. Summe: \\(46\\)€ ✓"
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

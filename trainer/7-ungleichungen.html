@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ungleichungen &amp; Intervalle - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-ungleichungen';
+    const THEMA_CONFIG = { name: 'Ungleichungen & Intervalle', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Vergleichszeichen verstehen ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Was bedeutet das Zeichen \\(<\\)?",
+        optionen: ["Größer als", "Kleiner als", "Gleich", "Kleiner oder gleich"],
+        korrekt: 1,
+        tipp: "Die Spitze zeigt zur kleineren Zahl.",
+        loesungsweg: "\\(<\\) bedeutet <b>kleiner als</b>. Beispiel: \\(3 < 5\\) — „3 ist kleiner als 5"."
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "mc",
+        frage: "Was bedeutet \\(\\leq\\)?",
+        optionen: ["Kleiner als", "Größer als", "Kleiner oder gleich", "Ungleich"],
+        korrekt: 2,
+        tipp: "Der Strich unter dem Zeichen bedeutet „oder gleich".",
+        loesungsweg: "\\(\\leq\\) bedeutet <b>kleiner oder gleich</b>."
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "mc",
+        frage: "Welche Aussage ist wahr?",
+        optionen: ["\\(7 < 3\\)", "\\(5 > 8\\)", "\\(4 \\leq 4\\)", "\\(6 < 6\\)"],
+        korrekt: 2,
+        tipp: "\\(\\leq\\) schließt die Gleichheit ein.",
+        loesungsweg: "\\(4 \\leq 4\\) ist wahr, denn \\(4 = 4\\) und \\(\\leq\\) erlaubt die Gleichheit."
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "mc",
+        frage: "Welche Zahl erfüllt \\(x > 5\\)?",
+        optionen: ["\\(x = 3\\)", "\\(x = 5\\)", "\\(x = 6\\)", "\\(x = 4\\)"],
+        korrekt: 2,
+        tipp: "\\(x\\) muss echt größer als 5 sein.",
+        loesungsweg: "\\(6 > 5\\) ist wahr. \\(5 > 5\\) ist falsch (nicht echt größer)."
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "mc",
+        frage: "Ordne richtig: \\(-3\\), \\(0\\), \\(2\\), \\(-1\\) vom kleinsten zum größten.",
+        optionen: ["\\(-3 < -1 < 0 < 2\\)", "\\(-1 < -3 < 0 < 2\\)", "\\(0 < -1 < -3 < 2\\)", "\\(2 < 0 < -1 < -3\\)"],
+        korrekt: 0,
+        tipp: "Auf dem Zahlenstrahl: je weiter links, desto kleiner.",
+        loesungsweg: "Vom Kleinsten zum Größten: \\(-3 < -1 < 0 < 2\\)."
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "mc",
+        frage: "Was ist eine Ungleichung?",
+        optionen: ["Eine Gleichung ohne Variable", "Eine Aussage mit Vergleichszeichen (\\(<, >, \\leq, \\geq\\))", "Ein Term", "Eine Zahl"],
+        korrekt: 1,
+        tipp: "Statt „=" steht ein Vergleichszeichen.",
+        loesungsweg: "Eine <b>Ungleichung</b> vergleicht zwei Terme mit \\(<, >, \\leq\\) oder \\(\\geq\\)."
+      },
+      // ========== LEVEL 2 -- leicht: Einfache Ungleichungen lösen ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "mc",
+        frage: "Löse: \\(x + 3 > 7\\). Was ist die Lösungsmenge?",
+        optionen: ["\\(x > 4\\)", "\\(x > 10\\)", "\\(x < 4\\)", "\\(x > 3\\)"],
+        korrekt: 0,
+        tipp: "Subtrahiere 3 auf beiden Seiten.",
+        loesungsweg: "$$x + 3 > 7 \\implies x > 4$$"
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "mc",
+        frage: "Löse: \\(x - 5 \\leq 2\\).",
+        optionen: ["\\(x \\leq -3\\)", "\\(x \\leq 7\\)", "\\(x \\geq 7\\)", "\\(x < 7\\)"],
+        korrekt: 1,
+        tipp: "Addiere 5 auf beiden Seiten.",
+        loesungsweg: "$$x - 5 \\leq 2 \\implies x \\leq 7$$"
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "mc",
+        frage: "Löse: \\(2x < 10\\).",
+        optionen: ["\\(x < 20\\)", "\\(x < 5\\)", "\\(x > 5\\)", "\\(x < 8\\)"],
+        korrekt: 1,
+        tipp: "Dividiere beide Seiten durch 2.",
+        loesungsweg: "$$2x < 10 \\implies x < 5$$"
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "mc",
+        frage: "Löse: \\(3x \\geq 12\\).",
+        optionen: ["\\(x \\geq 4\\)", "\\(x > 4\\)", "\\(x \\geq 9\\)", "\\(x \\leq 4\\)"],
+        korrekt: 0,
+        tipp: "Teile durch 3. Das Zeichen bleibt gleich.",
+        loesungsweg: "$$3x \\geq 12 \\implies x \\geq 4$$"
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "mc",
+        frage: "Was passiert mit dem Ungleichungszeichen, wenn man beide Seiten mit einer negativen Zahl multipliziert?",
+        optionen: ["Es bleibt gleich", "Es dreht sich um", "Es wird zu \\(=\\)", "Es verschwindet"],
+        korrekt: 1,
+        tipp: "Beispiel: \\(2 < 3\\), aber \\(-2 > -3\\)!",
+        loesungsweg: "Beim Multiplizieren oder Dividieren mit einer <b>negativen</b> Zahl dreht sich das Ungleichungszeichen um!"
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "mc",
+        frage: "Löse: \\(-x > 3\\).",
+        optionen: ["\\(x > -3\\)", "\\(x < -3\\)", "\\(x > 3\\)", "\\(x < 3\\)"],
+        korrekt: 1,
+        tipp: "Multipliziere mit \\(-1\\) — Zeichen dreht sich um!",
+        loesungsweg: "$$-x > 3 \\implies x < -3$$ (Zeichen umgedreht!)"
+      },
+      // ========== LEVEL 3 -- nervenschonend: Intervallschreibweise ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "mc",
+        frage: "Wie schreibt man \\(x > 3\\) in Intervallschreibweise?",
+        optionen: ["\\([3; \\infty)\\)", "\\((3; \\infty)\\)", "\\((-\\infty; 3)\\)", "\\((3; \\infty]\\)"],
+        korrekt: 1,
+        tipp: "\\(x > 3\\) bedeutet: 3 gehört nicht dazu (offene Klammer), nach oben unbeschränkt.",
+        loesungsweg: "\\(x > 3\\) als Intervall: \\((3; \\infty)\\). Runde Klammer bei 3 (nicht enthalten) und bei \\(\\infty\\) (immer offen)."
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "mc",
+        frage: "Wie schreibt man \\(x \\leq 5\\) in Intervallschreibweise?",
+        optionen: ["\\((-\\infty; 5)\\)", "\\((-\\infty; 5]\\)", "\\([5; \\infty)\\)", "\\([-\\infty; 5]\\)"],
+        korrekt: 1,
+        tipp: "\\(\\leq\\) bedeutet: 5 gehört dazu (eckige Klammer).",
+        loesungsweg: "\\(x \\leq 5\\) als Intervall: \\((-\\infty; 5]\\). Eckige Klammer bei 5 (enthalten)."
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "mc",
+        frage: "Was beschreibt das Intervall \\([2; 7)\\)?",
+        optionen: ["\\(2 < x < 7\\)", "\\(2 \\leq x < 7\\)", "\\(2 \\leq x \\leq 7\\)", "\\(2 < x \\leq 7\\)"],
+        korrekt: 1,
+        tipp: "Eckige Klammer = enthalten, runde Klammer = nicht enthalten.",
+        loesungsweg: "\\([2; 7)\\) bedeutet: \\(2 \\leq x < 7\\). 2 ist enthalten (\\([\\)), 7 nicht (\\()\\))."
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "mc",
+        frage: "Welches Intervall beschreibt alle Zahlen zwischen \\(-1\\) und \\(4\\), beide eingeschlossen?",
+        optionen: ["\\((-1; 4)\\)", "\\([-1; 4]\\)", "\\((-1; 4]\\)", "\\([-1; 4)\\)"],
+        korrekt: 1,
+        tipp: "Beide eingeschlossen = beide eckige Klammern.",
+        loesungsweg: "Beide Grenzen eingeschlossen: \\([-1; 4]\\)."
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "mc",
+        frage: "Löse \\(2x + 1 > 5\\) und gib die Lösung als Intervall an.",
+        optionen: ["\\((2; \\infty)\\)", "\\([2; \\infty)\\)", "\\((3; \\infty)\\)", "\\((-\\infty; 2)\\)"],
+        korrekt: 0,
+        tipp: "\\(2x > 4 \\implies x > 2\\). Wie sieht das als Intervall aus?",
+        loesungsweg: "$$2x + 1 > 5 \\implies 2x > 4 \\implies x > 2$$<br>Intervall: \\((2; \\infty)\\)."
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "mc",
+        frage: "Was bedeutet \\(\\infty\\) in der Intervallschreibweise?",
+        optionen: ["Eine sehr große Zahl", "Es gibt keine obere (bzw. untere) Grenze", "Die größte natürliche Zahl", "Null"],
+        korrekt: 1,
+        tipp: "\\(\\infty\\) ist keine Zahl, sondern bedeutet „unbeschränkt".",
+        loesungsweg: "\\(\\infty\\) (Unendlich) bedeutet, dass es <b>keine Grenze</b> gibt. Deshalb steht bei \\(\\infty\\) immer eine runde Klammer."
+      },
+      // ========== LEVEL 4 -- mittel: Ungleichungen mit Umformungen ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "mc",
+        frage: "Löse: \\(3x - 7 \\leq 2x + 5\\).",
+        optionen: ["\\(x \\leq 12\\)", "\\(x \\geq 12\\)", "\\(x \\leq -12\\)", "\\(x \\leq 2\\)"],
+        korrekt: 0,
+        tipp: "\\(-2x\\) auf beiden Seiten, dann \\(+7\\).",
+        loesungsweg: "$$3x - 2x \\leq 5 + 7 \\implies x \\leq 12$$"
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "mc",
+        frage: "Löse: \\(-2x + 6 > 0\\).",
+        optionen: ["\\(x > 3\\)", "\\(x < 3\\)", "\\(x > -3\\)", "\\(x < -3\\)"],
+        korrekt: 1,
+        tipp: "\\(-2x > -6\\). Division durch \\(-2\\) — Zeichen dreht sich!",
+        loesungsweg: "$$-2x > -6 \\implies x < 3$$ (Zeichen umgedreht!)"
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "mc",
+        frage: "Löse: \\(5 - 3x \\geq -1\\). Gib das Intervall an.",
+        optionen: ["\\((-\\infty; 2]\\)", "\\([2; \\infty)\\)", "\\((-\\infty; -2]\\)", "\\([-2; \\infty)\\)"],
+        korrekt: 0,
+        tipp: "\\(-3x \\geq -6 \\implies x \\leq 2\\).",
+        loesungsweg: "$$-3x \\geq -6 \\implies x \\leq 2$$<br>Intervall: \\((-\\infty; 2]\\)."
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "mc",
+        frage: "Löse die Doppelungleichung: \\(-1 < 2x + 3 \\leq 9\\).",
+        optionen: ["\\(-2 < x \\leq 3\\)", "\\(-2 \\leq x < 3\\)", "\\(-1 < x \\leq 9\\)", "\\(1 < x \\leq 3\\)"],
+        korrekt: 0,
+        tipp: "Subtrahiere 3 überall: \\(-4 < 2x \\leq 6\\). Dann durch 2.",
+        loesungsweg: "$$-1 < 2x + 3 \\leq 9 \\implies -4 < 2x \\leq 6 \\implies -2 < x \\leq 3$$"
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "numerisch",
+        frage: "Wie viele ganze Zahlen erfüllen \\(-3 \\leq x < 4\\)?",
+        loesung: 7,
+        toleranz: 0,
+        tipp: "Zähle: \\(-3, -2, -1, 0, 1, 2, 3\\). Beachte: 4 gehört nicht dazu!",
+        loesungsweg: "Die ganzen Zahlen sind: \\(-3, -2, -1, 0, 1, 2, 3\\) — das sind <b>7 Zahlen</b>."
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "mc",
+        frage: "Löse: \\(4(x - 1) < 2(x + 3)\\).",
+        optionen: ["\\(x < 5\\)", "\\(x < 2\\)", "\\(x > 5\\)", "\\(x < -1\\)"],
+        korrekt: 0,
+        tipp: "\\(4x - 4 < 2x + 6 \\implies 2x < 10\\).",
+        loesungsweg: "$$4x - 4 < 2x + 6 \\implies 2x < 10 \\implies x < 5$$"
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Komplexere Ungleichungen ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "mc",
+        frage: "Löse: \\(\\frac{x}{3} + 1 > \\frac{x}{2}\\).",
+        optionen: ["\\(x < 6\\)", "\\(x > 6\\)", "\\(x < -6\\)", "\\(x > -6\\)"],
+        korrekt: 0,
+        tipp: "Hauptnenner 6: \\(2x + 6 > 3x \\implies 6 > x\\).",
+        loesungsweg: "$$2x + 6 > 3x \\implies 6 > x \\implies x < 6$$"
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "mc",
+        frage: "Löse die Doppelungleichung: \\(1 \\leq \\frac{x + 3}{2} < 5\\). Gib das Intervall an.",
+        optionen: ["\\([-1; 7)\\)", "\\((-1; 7]\\)", "\\([1; 5)\\)", "\\([-1; 7]\\)"],
+        korrekt: 0,
+        tipp: "Alles mal 2: \\(2 \\leq x + 3 < 10\\). Dann \\(-3\\).",
+        loesungsweg: "$$2 \\leq x + 3 < 10 \\implies -1 \\leq x < 7$$<br>Intervall: \\([-1; 7)\\)."
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "numerisch",
+        frage: "Für welchen größten ganzzahligen Wert von \\(x\\) gilt \\(3x - 5 < 2x + 4\\)?",
+        loesung: 8,
+        toleranz: 0,
+        tipp: "\\(x < 9\\). Die größte ganze Zahl kleiner als 9 ist …",
+        loesungsweg: "$$3x - 5 < 2x + 4 \\implies x < 9$$<br>Größte ganze Zahl: \\(x = 8\\)."
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "mc",
+        frage: "Löse: \\(-3(x + 2) \\geq 2(1 - x)\\).",
+        optionen: ["\\(x \\leq -8\\)", "\\(x \\geq -8\\)", "\\(x \\leq 8\\)", "\\(x \\geq 8\\)"],
+        korrekt: 0,
+        tipp: "\\(-3x - 6 \\geq 2 - 2x \\implies -x \\geq 8 \\implies x \\leq -8\\).",
+        loesungsweg: "$$-3x - 6 \\geq 2 - 2x \\implies -x \\geq 8 \\implies x \\leq -8$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "numerisch",
+        frage: "Wie viele natürliche Zahlen erfüllen \\(2x + 1 \\leq 15\\) und \\(x > 0\\)?",
+        loesung: 7,
+        toleranz: 0,
+        tipp: "\\(2x \\leq 14 \\implies x \\leq 7\\). Natürliche Zahlen mit \\(x > 0\\): \\(1, 2, \\ldots, 7\\).",
+        loesungsweg: "$$x \\leq 7 \\text{ und } x > 0$$<br>Natürliche Zahlen: \\(1, 2, 3, 4, 5, 6, 7\\) — das sind <b>7</b>."
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "mc",
+        frage: "Welche Lösungsmenge hat \\(|x| < 3\\)?",
+        optionen: ["\\(x < 3\\)", "\\(-3 < x < 3\\)", "\\(x > -3\\)", "\\(x < -3\\) oder \\(x > 3\\)"],
+        korrekt: 1,
+        tipp: "Der Betrag von \\(x\\) muss kleiner als 3 sein — das gilt für Zahlen zwischen \\(-3\\) und \\(3\\).",
+        loesungsweg: "\\(|x| < 3\\) bedeutet: \\(-3 < x < 3\\). Intervall: \\((-3; 3)\\)."
+      },
+      // ========== LEVEL 6 -- wagnerisch: Textaufgaben und Transfer ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Taxi kostet 3 € Grundgebühr plus 1,50 € pro km. Du hast höchstens 18 €. Wie viele volle Kilometer kannst du maximal fahren?",
+        loesung: 10,
+        toleranz: 0,
+        tipp: "\\(3 + 1{,}5k \\leq 18 \\implies 1{,}5k \\leq 15\\).",
+        loesungsweg: "$$1{,}5k \\leq 15 \\implies k \\leq 10$$<br>Du kannst maximal <b>10 km</b> fahren."
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "mc",
+        frage: "Für welche Werte von \\(x\\) gilt gleichzeitig \\(x + 2 > 0\\) und \\(3x - 6 < 0\\)?",
+        optionen: ["\\(-2 < x < 2\\)", "\\(x > 2\\)", "\\(x < -2\\)", "\\(-2 < x < 0\\)"],
+        korrekt: 0,
+        tipp: "Löse jede Ungleichung einzeln: \\(x > -2\\) und \\(x < 2\\). Schnittmenge!",
+        loesungsweg: "\\(x > -2\\) und \\(x < 2\\). Schnittmenge: \\(-2 < x < 2\\)."
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Rechteck hat den Umfang höchstens 40 cm. Die Länge ist doppelt so groß wie die Breite \\(b\\). Wie groß darf \\(b\\) maximal sein (in cm, ganze Zahl)?",
+        loesung: 6,
+        toleranz: 0,
+        tipp: "\\(U = 2(2b + b) = 6b \\leq 40 \\implies b \\leq 6{,}\\overline{6}\\).",
+        loesungsweg: "$$6b \\leq 40 \\implies b \\leq 6{,}\\overline{6}$$<br>Größte ganze Zahl: \\(b = 6\\) cm."
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "mc",
+        frage: "Welche der folgenden Mengen ist die Lösungsmenge von \\(|2x - 4| \\leq 6\\)?",
+        optionen: ["\\([-1; 5]\\)", "\\((-1; 5)\\)", "\\([-5; 1]\\)", "\\([1; 5]\\)"],
+        korrekt: 0,
+        tipp: "\\(|2x - 4| \\leq 6\\) bedeutet \\(-6 \\leq 2x - 4 \\leq 6\\). Löse die Doppelungleichung.",
+        loesungsweg: "$$-6 \\leq 2x - 4 \\leq 6 \\implies -2 \\leq 2x \\leq 10 \\implies -1 \\leq x \\leq 5$$<br>Intervall: \\([-1; 5]\\)."
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "numerisch",
+        frage: "Finde die größte ganze Zahl \\(n\\), für die \\(n^2 < 50\\) gilt.",
+        loesung: 7,
+        toleranz: 0,
+        tipp: "\\(7^2 = 49 < 50\\), aber \\(8^2 = 64 > 50\\).",
+        loesungsweg: "$$7^2 = 49 < 50 \\quad \\checkmark$$ $$8^2 = 64 > 50 \\quad \\times$$<br>Größte ganze Zahl: \\(n = 7\\)."
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "mc",
+        frage: "Tim schreibt einen Mathetest. Die Note errechnet sich aus \\(N = 7 - 0{,}1P\\) (\\(P\\) = Punkte). Für eine Note besser als 3 muss \\(N < 3\\) gelten. Wie viele Punkte braucht Tim mindestens?",
+        optionen: ["Mehr als 40 Punkte", "Mehr als 30 Punkte", "Mindestens 40 Punkte", "Genau 40 Punkte"],
+        korrekt: 0,
+        tipp: "\\(7 - 0{,}1P < 3 \\implies -0{,}1P < -4 \\implies P > 40\\).",
+        loesungsweg: "$$7 - 0{,}1P < 3 \\implies -0{,}1P < -4 \\implies P > 40$$<br>Tim braucht <b>mehr als 40 Punkte</b>."
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

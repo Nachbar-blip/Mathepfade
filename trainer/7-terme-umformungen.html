@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termumformungen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-terme-umformungen';
+    const THEMA_CONFIG = { name: 'Termumformungen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Gleichartige Terme erkennen ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Welche Terme sind gleichartig und dürfen zusammengefasst werden?",
+        optionen: ["\\(3x\\) und \\(5y\\)", "\\(4a\\) und \\(7a\\)", "\\(2x\\) und \\(3x^2\\)", "\\(6\\) und \\(2a\\)"],
+        korrekt: 1,
+        tipp: "Gleichartige Terme haben dieselbe Variable mit demselben Exponenten.",
+        loesungsweg: "\\(4a\\) und \\(7a\\) sind gleichartig (gleiche Variable \\(a\\), gleicher Exponent 1). Zusammengefasst: \\(4a + 7a = 11a\\)."
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "mc",
+        frage: "Was ergibt \\(5x + 3x\\)?",
+        optionen: ["\\(8x\\)", "\\(15x\\)", "\\(8x^2\\)", "\\(53x\\)"],
+        korrekt: 0,
+        tipp: "Addiere die Koeffizienten: \\(5 + 3\\).",
+        loesungsweg: "$$5x + 3x = (5 + 3)x = 8x$$"
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "mc",
+        frage: "Was ergibt \\(7a - 2a\\)?",
+        optionen: ["\\(5a^2\\)", "\\(5a\\)", "\\(9a\\)", "\\(5\\)"],
+        korrekt: 1,
+        tipp: "Subtrahiere die Koeffizienten: \\(7 - 2\\).",
+        loesungsweg: "$$7a - 2a = (7 - 2)a = 5a$$"
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "mc",
+        frage: "Vereinfache: \\(3x + 4 + 2x + 1\\)",
+        optionen: ["\\(5x + 5\\)", "\\(10x\\)", "\\(3x + 2x + 5\\)", "\\(9x + 1\\)"],
+        korrekt: 0,
+        tipp: "Fasse gleichartige Terme zusammen: \\(x\\)-Terme und Zahlen getrennt.",
+        loesungsweg: "$$3x + 2x + 4 + 1 = 5x + 5$$"
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "mc",
+        frage: "Was ergibt \\(6y + 3 - 2y + 7\\)?",
+        optionen: ["\\(4y + 10\\)", "\\(8y + 10\\)", "\\(4y - 4\\)", "\\(14y\\)"],
+        korrekt: 0,
+        tipp: "\\(y\\)-Terme: \\(6y - 2y\\). Zahlen: \\(3 + 7\\).",
+        loesungsweg: "$$6y - 2y + 3 + 7 = 4y + 10$$"
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "mc",
+        frage: "Welcher Term ist vereinfacht: \\(3a + 5b - a + 2b\\)?",
+        optionen: ["\\(2a + 7b\\)", "\\(4a + 3b\\)", "\\(3a + 7b\\)", "\\(10ab\\)"],
+        korrekt: 0,
+        tipp: "\\(a\\)-Terme: \\(3a - a = 2a\\). \\(b\\)-Terme: \\(5b + 2b = 7b\\).",
+        loesungsweg: "$$3a - a + 5b + 2b = 2a + 7b$$"
+      },
+      // ========== LEVEL 2 -- leicht: Klammern auflösen mit Plus und Minus ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "mc",
+        frage: "Löse die Klammer auf: \\(-(3x - 5)\\)",
+        optionen: ["\\(-3x - 5\\)", "\\(-3x + 5\\)", "\\(3x + 5\\)", "\\(3x - 5\\)"],
+        korrekt: 1,
+        tipp: "Minus vor der Klammer dreht alle Vorzeichen um.",
+        loesungsweg: "$$-(3x - 5) = -3x + 5$$"
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "mc",
+        frage: "Löse auf und vereinfache: \\(4x + (2x - 3)\\)",
+        optionen: ["\\(6x - 3\\)", "\\(2x - 3\\)", "\\(6x + 3\\)", "\\(4x + 2x - 3x\\)"],
+        korrekt: 0,
+        tipp: "Plus vor der Klammer: Vorzeichen bleiben. Dann zusammenfassen.",
+        loesungsweg: "$$4x + 2x - 3 = 6x - 3$$"
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "mc",
+        frage: "Löse auf und vereinfache: \\(7a - (2a + 4)\\)",
+        optionen: ["\\(5a + 4\\)", "\\(5a - 4\\)", "\\(9a - 4\\)", "\\(9a + 4\\)"],
+        korrekt: 1,
+        tipp: "Minus vor der Klammer: \\(-(2a + 4) = -2a - 4\\).",
+        loesungsweg: "$$7a - 2a - 4 = 5a - 4$$"
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "numerisch",
+        frage: "Vereinfache \\(3(x + 4)\\) und berechne den Wert für \\(x = 2\\).",
+        loesung: 18,
+        toleranz: 0,
+        tipp: "\\(3(x + 4) = 3x + 12\\). Setze \\(x = 2\\) ein.",
+        loesungsweg: "$$3(x + 4) = 3x + 12$$<br>Für \\(x = 2\\): \\(6 + 12 = 18\\)."
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "mc",
+        frage: "Was ergibt \\(2(a + b)\\)?",
+        optionen: ["\\(2a + b\\)", "\\(2a + 2b\\)", "\\(a + 2b\\)", "\\(2ab\\)"],
+        korrekt: 1,
+        tipp: "Multipliziere den Faktor mit jedem Term in der Klammer.",
+        loesungsweg: "$$2(a + b) = 2a + 2b$$"
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "numerisch",
+        frage: "Vereinfache \\(5(2x - 1)\\) und berechne den Wert für \\(x = 3\\).",
+        loesung: 25,
+        toleranz: 0,
+        tipp: "\\(5 \\cdot 2x - 5 \\cdot 1 = 10x - 5\\). Dann \\(x = 3\\) einsetzen.",
+        loesungsweg: "$$5(2x - 1) = 10x - 5$$<br>Für \\(x = 3\\): \\(30 - 5 = 25\\)."
+      },
+      // ========== LEVEL 3 -- nervenschonend: Ausmultiplizieren ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "mc",
+        frage: "Multipliziere aus: \\(3(2a - 4b + 1)\\)",
+        optionen: ["\\(6a - 12b + 3\\)", "\\(6a - 4b + 3\\)", "\\(6a - 12b + 1\\)", "\\(5a - 7b + 4\\)"],
+        korrekt: 0,
+        tipp: "Jeden Summanden in der Klammer mit 3 multiplizieren.",
+        loesungsweg: "$$3 \\cdot 2a - 3 \\cdot 4b + 3 \\cdot 1 = 6a - 12b + 3$$"
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "mc",
+        frage: "Multipliziere aus: \\(-2(3x - 5)\\)",
+        optionen: ["\\(-6x + 10\\)", "\\(-6x - 10\\)", "\\(6x - 10\\)", "\\(6x + 10\\)"],
+        korrekt: 0,
+        tipp: "Beachte das Minuszeichen: \\(-2 \\cdot 3x\\) und \\(-2 \\cdot (-5)\\).",
+        loesungsweg: "$$-2 \\cdot 3x + (-2) \\cdot (-5) = -6x + 10$$"
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "numerisch",
+        frage: "Vereinfache: \\(2(3x + 1) + 4(x - 2)\\). Berechne für \\(x = 3\\).",
+        loesung: 24,
+        toleranz: 0,
+        tipp: "Erst ausmultiplizieren: \\(6x + 2 + 4x - 8 = 10x - 6\\). Dann einsetzen.",
+        loesungsweg: "$$6x + 2 + 4x - 8 = 10x - 6$$<br>Für \\(x = 3\\): \\(30 - 6 = 24\\)."
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "mc",
+        frage: "Vereinfache: \\(5(a + 2) - 3(a - 4)\\)",
+        optionen: ["\\(2a - 2\\)", "\\(2a + 22\\)", "\\(8a + 22\\)", "\\(2a + 6\\)"],
+        korrekt: 1,
+        tipp: "\\(5a + 10 - 3a + 12\\). Fasse zusammen.",
+        loesungsweg: "$$5a + 10 - 3a + 12 = 2a + 22$$"
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "numerisch",
+        frage: "Vereinfache: \\(4(2x - 3) - 2(3x + 1)\\). Gib den vereinfachten Term für \\(x = 5\\) an.",
+        loesung: -4,
+        toleranz: 0,
+        tipp: "\\(8x - 12 - 6x - 2 = 2x - 14\\). Einsetzen: \\(2 \\cdot 5 - 14\\).",
+        loesungsweg: "$$8x - 12 - 6x - 2 = 2x - 14$$<br>Für \\(x = 5\\): \\(10 - 14 = -4\\)."
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "mc",
+        frage: "Klammere aus: \\(6x + 12\\)",
+        optionen: ["\\(6(x + 2)\\)", "\\(3(2x + 6)\\)", "\\(2(3x + 12)\\)", "\\(6(x + 12)\\)"],
+        korrekt: 0,
+        tipp: "Was ist der größte gemeinsame Faktor von 6 und 12?",
+        loesungsweg: "GGT von 6 und 12 ist 6: $$6x + 12 = 6(x + 2)$$"
+      },
+      // ========== LEVEL 4 -- mittel: Ausklammern und Produkte von Summen ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "mc",
+        frage: "Klammere aus: \\(4a^2 + 8a\\)",
+        optionen: ["\\(4(a^2 + 8a)\\)", "\\(4a(a + 2)\\)", "\\(2a(2a + 8)\\)", "\\(8a(a + 1)\\)"],
+        korrekt: 1,
+        tipp: "GGT der Koeffizienten: 4. Gemeinsame Variable: \\(a\\). Also \\(4a\\) ausklammern.",
+        loesungsweg: "$$4a^2 + 8a = 4a(a + 2)$$"
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "mc",
+        frage: "Multipliziere aus: \\((x + 3)(x + 2)\\)",
+        optionen: ["\\(x^2 + 5x + 6\\)", "\\(x^2 + 6x + 5\\)", "\\(x^2 + 5x + 5\\)", "\\(2x + 5\\)"],
+        korrekt: 0,
+        tipp: "Jeder Summand der ersten Klammer wird mit jedem Summanden der zweiten multipliziert.",
+        loesungsweg: "$$x \\cdot x + x \\cdot 2 + 3 \\cdot x + 3 \\cdot 2 = x^2 + 2x + 3x + 6 = x^2 + 5x + 6$$"
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "mc",
+        frage: "Multipliziere aus: \\((a - 4)(a + 1)\\)",
+        optionen: ["\\(a^2 + 3a - 4\\)", "\\(a^2 - 3a - 4\\)", "\\(a^2 - 4a + 1\\)", "\\(a^2 - 5a + 4\\)"],
+        korrekt: 1,
+        tipp: "\\(a \\cdot a + a \\cdot 1 + (-4) \\cdot a + (-4) \\cdot 1\\).",
+        loesungsweg: "$$a^2 + a - 4a - 4 = a^2 - 3a - 4$$"
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "numerisch",
+        frage: "Berechne \\((x + 5)(x - 2)\\) für \\(x = 3\\).",
+        loesung: 8,
+        toleranz: 0,
+        tipp: "Direkt einsetzen: \\((3 + 5)(3 - 2) = 8 \\cdot 1\\).",
+        loesungsweg: "$$(3 + 5)(3 - 2) = 8 \\cdot 1 = 8$$"
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "mc",
+        frage: "Klammere aus: \\(3x^2 - 9x\\)",
+        optionen: ["\\(3(x^2 - 9x)\\)", "\\(3x(x - 3)\\)", "\\(9x(x - 1)\\)", "\\(x(3x - 9)\\)"],
+        korrekt: 1,
+        tipp: "GGT: \\(3x\\). Teile jeden Summanden durch \\(3x\\).",
+        loesungsweg: "$$3x^2 - 9x = 3x(x - 3)$$"
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "numerisch",
+        frage: "Multipliziere aus und vereinfache: \\((2x + 1)(x + 3)\\). Berechne für \\(x = 2\\).",
+        loesung: 25,
+        toleranz: 0,
+        tipp: "\\(2x^2 + 6x + x + 3 = 2x^2 + 7x + 3\\). Einsetzen: \\(8 + 14 + 3\\).",
+        loesungsweg: "$$2x^2 + 7x + 3$$<br>Für \\(x = 2\\): \\(8 + 14 + 3 = 25\\)."
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Komplexere Umformungen ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "mc",
+        frage: "Vereinfache: \\(2x(x + 3) - x(2x - 1)\\)",
+        optionen: ["\\(4x^2 + 5x\\)", "\\(7x\\)", "\\(4x^2 + 7x\\)", "\\(x\\)"],
+        korrekt: 1,
+        tipp: "Erst ausmultiplizieren: \\(2x^2 + 6x - 2x^2 + x\\).",
+        loesungsweg: "$$2x^2 + 6x - 2x^2 + x = 7x$$"
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "numerisch",
+        frage: "Vereinfache \\((x + 4)^2 - (x + 2)(x + 6)\\) und gib das Ergebnis an.",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "Multipliziere beide Ausdrücke aus und subtrahiere.",
+        loesungsweg: "$$(x + 4)^2 = x^2 + 8x + 16$$<br>$$(x + 2)(x + 6) = x^2 + 8x + 12$$<br>$$x^2 + 8x + 16 - x^2 - 8x - 12 = 4$$"
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "mc",
+        frage: "Klammere vollständig aus: \\(12a^2b - 8ab^2\\)",
+        optionen: ["\\(4ab(3a - 2b)\\)", "\\(4a(3ab - 2b^2)\\)", "\\(2ab(6a - 4b)\\)", "\\(12ab(a - b)\\)"],
+        korrekt: 0,
+        tipp: "GGT der Koeffizienten: 4. Gemeinsame Variablen: \\(a\\) und \\(b\\).",
+        loesungsweg: "$$12a^2b - 8ab^2 = 4ab(3a - 2b)$$"
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "numerisch",
+        frage: "Vereinfache: \\(3(2a - 1)^2 - 3(4a^2 - 4a + 1)\\). Was ergibt sich?",
+        loesung: 0,
+        toleranz: 0,
+        tipp: "\\((2a - 1)^2 = 4a^2 - 4a + 1\\). Also: \\(3(4a^2 - 4a + 1) - 3(4a^2 - 4a + 1)\\).",
+        loesungsweg: "$$(2a - 1)^2 = 4a^2 - 4a + 1$$<br>$$3(4a^2 - 4a + 1) - 3(4a^2 - 4a + 1) = 0$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "mc",
+        frage: "Multipliziere aus: \\((2x - 3)(x + 4)\\)",
+        optionen: ["\\(2x^2 + 5x - 12\\)", "\\(2x^2 + 11x - 12\\)", "\\(2x^2 - x - 12\\)", "\\(2x^2 + x + 12\\)"],
+        korrekt: 0,
+        tipp: "\\(2x \\cdot x + 2x \\cdot 4 + (-3) \\cdot x + (-3) \\cdot 4\\).",
+        loesungsweg: "$$2x^2 + 8x - 3x - 12 = 2x^2 + 5x - 12$$"
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "numerisch",
+        frage: "Vereinfache: \\((a + b)(a - b) + b^2\\). Berechne für \\(a = 5\\), \\(b = 3\\).",
+        loesung: 25,
+        toleranz: 0,
+        tipp: "\\((a + b)(a - b) = a^2 - b^2\\). Dann \\(+ b^2\\).",
+        loesungsweg: "$$a^2 - b^2 + b^2 = a^2$$<br>Für \\(a = 5\\): \\(5^2 = 25\\)."
+      },
+      // ========== LEVEL 6 -- wagnerisch: Transferaufgaben ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "numerisch",
+        frage: "Zeige, dass \\((n + 1)^2 - (n - 1)^2\\) stets durch 4 teilbar ist. Berechne den vereinfachten Term für \\(n = 7\\).",
+        loesung: 28,
+        toleranz: 0,
+        tipp: "Ausmultiplizieren: \\(n^2 + 2n + 1 - (n^2 - 2n + 1) = 4n\\).",
+        loesungsweg: "$$(n+1)^2 - (n-1)^2 = n^2 + 2n + 1 - n^2 + 2n - 1 = 4n$$<br>Für \\(n = 7\\): \\(4 \\cdot 7 = 28\\). Stets durch 4 teilbar ✓."
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "mc",
+        frage: "Welcher Term ist äquivalent zu \\((x + y)^2 - 2xy\\)?",
+        optionen: ["\\(x^2 + y^2\\)", "\\(x^2 - y^2\\)", "\\((x - y)^2\\)", "\\(x^2 + 2xy + y^2\\)"],
+        korrekt: 0,
+        tipp: "\\((x + y)^2 = x^2 + 2xy + y^2\\). Davon \\(2xy\\) abziehen.",
+        loesungsweg: "$$(x + y)^2 - 2xy = x^2 + 2xy + y^2 - 2xy = x^2 + y^2$$"
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "numerisch",
+        frage: "Vereinfache \\((3x + 2)(3x - 2) - (3x - 1)^2\\) und berechne für \\(x = 1\\).",
+        loesung: -1,
+        toleranz: 0,
+        tipp: "\\((3x+2)(3x-2) = 9x^2 - 4\\). \\((3x-1)^2 = 9x^2 - 6x + 1\\). Subtrahieren.",
+        loesungsweg: "$$9x^2 - 4 - (9x^2 - 6x + 1) = 6x - 5$$<br>Für \\(x = 1\\): \\(6 - 5 = 1\\)."
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "mc",
+        frage: "Welche Aussage ist richtig? \\((a + b)^2\\) ist …",
+        optionen: ["… gleich \\(a^2 + b^2\\)", "… gleich \\(a^2 + 2ab + b^2\\)", "… gleich \\(a^2 - 2ab + b^2\\)", "… gleich \\(2a + 2b\\)"],
+        korrekt: 1,
+        tipp: "Multipliziere \\((a + b)(a + b)\\) aus.",
+        loesungsweg: "$$(a + b)^2 = (a + b)(a + b) = a^2 + ab + ba + b^2 = a^2 + 2ab + b^2$$"
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "numerisch",
+        frage: "Berechne ohne Taschenrechner: \\(47 \\cdot 53\\). Nutze die 3. binomische Formel mit \\(a = 50\\).",
+        loesung: 2491,
+        toleranz: 0,
+        tipp: "\\(47 \\cdot 53 = (50 - 3)(50 + 3) = 50^2 - 3^2\\).",
+        loesungsweg: "$$47 \\cdot 53 = (50 - 3)(50 + 3) = 2500 - 9 = 2491$$"
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "numerisch",
+        frage: "Klammere aus und vereinfache: \\(x(x + 1)(x + 2) - x(x^2 + 3x + 2)\\). Was ergibt sich?",
+        loesung: 0,
+        toleranz: 0,
+        tipp: "Multipliziere \\((x+1)(x+2) = x^2 + 3x + 2\\) aus. Was fällt auf?",
+        loesungsweg: "$$(x+1)(x+2) = x^2 + 3x + 2$$<br>Also: \\(x(x^2 + 3x + 2) - x(x^2 + 3x + 2) = 0\\)."
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

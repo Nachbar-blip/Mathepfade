@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lineare Gleichungen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-gleichungen-linear';
+    const THEMA_CONFIG = { name: 'Lineare Gleichungen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Grundbegriffe ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Was ist eine Gleichung?",
+        optionen: ["Ein Term ohne Variable", "Eine Aussage mit Gleichheitszeichen", "Ein Term mit Klammern", "Eine Zahl"],
+        korrekt: 1,
+        tipp: "Eine Gleichung hat immer ein „=" — zwei Seiten, die gleich sind.",
+        loesungsweg: "Eine <b>Gleichung</b> ist eine Aussage, bei der zwei Terme durch ein Gleichheitszeichen verbunden sind, z. B. \\(2x + 3 = 11\\)."
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "mc",
+        frage: "Was bedeutet „eine Gleichung lösen"?",
+        optionen: ["Die Gleichung umschreiben", "Den Wert der Variable finden, der die Gleichung wahr macht", "Beide Seiten addieren", "Die Variable entfernen"],
+        korrekt: 1,
+        tipp: "Man sucht den Wert, für den links = rechts gilt.",
+        loesungsweg: "„Lösen" bedeutet, den <b>Wert der Variable</b> zu finden, für den die Gleichung eine wahre Aussage wird."
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "mc",
+        frage: "Welche Zahl löst die Gleichung \\(x + 3 = 7\\)?",
+        optionen: ["\\(x = 3\\)", "\\(x = 4\\)", "\\(x = 7\\)", "\\(x = 10\\)"],
+        korrekt: 1,
+        tipp: "Welche Zahl plus 3 ergibt 7?",
+        loesungsweg: "$$x + 3 = 7 \\implies x = 7 - 3 = 4$$"
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "numerisch",
+        frage: "Löse: \\(x - 5 = 8\\).",
+        loesung: 13,
+        toleranz: 0,
+        tipp: "Addiere auf beiden Seiten 5.",
+        loesungsweg: "$$x - 5 = 8 \\implies x = 8 + 5 = 13$$"
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "numerisch",
+        frage: "Löse: \\(2x = 10\\).",
+        loesung: 5,
+        toleranz: 0,
+        tipp: "Dividiere beide Seiten durch 2.",
+        loesungsweg: "$$2x = 10 \\implies x = \\frac{10}{2} = 5$$"
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "numerisch",
+        frage: "Löse: \\(\\frac{x}{3} = 4\\).",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "Multipliziere beide Seiten mit 3.",
+        loesungsweg: "$$\\frac{x}{3} = 4 \\implies x = 4 \\cdot 3 = 12$$"
+      },
+      // ========== LEVEL 2 -- leicht: Einfache Äquivalenzumformungen ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "numerisch",
+        frage: "Löse: \\(3x + 2 = 14\\).",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "Erst \\(-2\\) auf beiden Seiten, dann durch 3 teilen.",
+        loesungsweg: "$$3x + 2 = 14 \\implies 3x = 12 \\implies x = 4$$"
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "numerisch",
+        frage: "Löse: \\(5x - 7 = 18\\).",
+        loesung: 5,
+        toleranz: 0,
+        tipp: "\\(+7\\) auf beiden Seiten, dann durch 5.",
+        loesungsweg: "$$5x - 7 = 18 \\implies 5x = 25 \\implies x = 5$$"
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "numerisch",
+        frage: "Löse: \\(4x + 1 = 21\\).",
+        loesung: 5,
+        toleranz: 0,
+        tipp: "\\(-1\\), dann durch 4.",
+        loesungsweg: "$$4x + 1 = 21 \\implies 4x = 20 \\implies x = 5$$"
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "numerisch",
+        frage: "Löse: \\(7 - 2x = 1\\).",
+        loesung: 3,
+        toleranz: 0,
+        tipp: "\\(-7\\) auf beiden Seiten: \\(-2x = -6\\). Dann durch \\(-2\\).",
+        loesungsweg: "$$7 - 2x = 1 \\implies -2x = -6 \\implies x = 3$$"
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "mc",
+        frage: "Welche Äquivalenzumformung ist erlaubt?",
+        optionen: ["Auf einer Seite addieren", "Auf beiden Seiten dieselbe Zahl addieren", "Beide Seiten mit 0 multiplizieren", "Die Variable löschen"],
+        korrekt: 1,
+        tipp: "Die Waage muss im Gleichgewicht bleiben.",
+        loesungsweg: "Man darf auf <b>beiden Seiten dieselbe Zahl addieren, subtrahieren, multiplizieren oder dividieren</b> (nicht durch 0!)."
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "numerisch",
+        frage: "Löse: \\(\\frac{x}{4} + 3 = 5\\).",
+        loesung: 8,
+        toleranz: 0,
+        tipp: "\\(-3\\), dann \\(\\cdot 4\\).",
+        loesungsweg: "$$\\frac{x}{4} = 2 \\implies x = 8$$"
+      },
+      // ========== LEVEL 3 -- nervenschonend: Variable auf beiden Seiten ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "numerisch",
+        frage: "Löse: \\(5x + 3 = 2x + 12\\).",
+        loesung: 3,
+        toleranz: 0,
+        tipp: "Bringe alle \\(x\\)-Terme auf eine Seite: \\(-2x\\) auf beiden Seiten.",
+        loesungsweg: "$$5x - 2x = 12 - 3 \\implies 3x = 9 \\implies x = 3$$"
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "numerisch",
+        frage: "Löse: \\(8x - 4 = 3x + 16\\).",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "\\(-3x\\) und \\(+4\\) auf beiden Seiten.",
+        loesungsweg: "$$5x = 20 \\implies x = 4$$"
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "numerisch",
+        frage: "Löse: \\(6x + 1 = 4x + 9\\).",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "\\(-4x\\) und \\(-1\\) auf beiden Seiten.",
+        loesungsweg: "$$2x = 8 \\implies x = 4$$"
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "numerisch",
+        frage: "Löse: \\(3x - 7 = x + 5\\).",
+        loesung: 6,
+        toleranz: 0,
+        tipp: "\\(-x\\) und \\(+7\\) auf beiden Seiten.",
+        loesungsweg: "$$2x = 12 \\implies x = 6$$"
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "mc",
+        frage: "Löse: \\(9 - 2x = 3x - 6\\). Was ist \\(x\\)?",
+        optionen: ["\\(x = 1\\)", "\\(x = 3\\)", "\\(x = -3\\)", "\\(x = 5\\)"],
+        korrekt: 1,
+        tipp: "\\(+2x\\) und \\(+6\\) auf beiden Seiten: \\(15 = 5x\\).",
+        loesungsweg: "$$9 + 6 = 3x + 2x \\implies 15 = 5x \\implies x = 3$$"
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "numerisch",
+        frage: "Löse: \\(4(x + 1) = 20\\).",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "Erst durch 4 teilen: \\(x + 1 = 5\\).",
+        loesungsweg: "$$x + 1 = 5 \\implies x = 4$$"
+      },
+      // ========== LEVEL 4 -- mittel: Gleichungen mit Klammern ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "numerisch",
+        frage: "Löse: \\(3(x - 2) = 2(x + 5)\\).",
+        loesung: 16,
+        toleranz: 0,
+        tipp: "Klammern auflösen: \\(3x - 6 = 2x + 10\\).",
+        loesungsweg: "$$3x - 6 = 2x + 10 \\implies x = 16$$"
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "numerisch",
+        frage: "Löse: \\(2(3x + 4) - 5 = 4x + 11\\).",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "Klammer: \\(6x + 8 - 5 = 4x + 11\\), also \\(6x + 3 = 4x + 11\\).",
+        loesungsweg: "$$6x + 3 = 4x + 11 \\implies 2x = 8 \\implies x = 4$$"
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "numerisch",
+        frage: "Löse: \\(5(x - 1) - 3(x + 2) = 1\\).",
+        loesung: 6,
+        toleranz: 0,
+        tipp: "\\(5x - 5 - 3x - 6 = 1 \\implies 2x - 11 = 1\\).",
+        loesungsweg: "$$2x - 11 = 1 \\implies 2x = 12 \\implies x = 6$$"
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "mc",
+        frage: "Löse: \\(-(x - 8) = 2x + 2\\). Was ist \\(x\\)?",
+        optionen: ["\\(x = 2\\)", "\\(x = -2\\)", "\\(x = 10\\)", "\\(x = 3\\)"],
+        korrekt: 0,
+        tipp: "\\(-x + 8 = 2x + 2\\). Dann umstellen.",
+        loesungsweg: "$$-x + 8 = 2x + 2 \\implies 6 = 3x \\implies x = 2$$"
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "numerisch",
+        frage: "Löse: \\(4(2x - 3) = 3(x + 1) + 2\\).",
+        loesung: 3,
+        toleranz: 0,
+        tipp: "\\(8x - 12 = 3x + 3 + 2 = 3x + 5\\).",
+        loesungsweg: "$$8x - 12 = 3x + 5 \\implies 5x = 17 \\implies x = 3{,}4$$"
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "numerisch",
+        frage: "Löse: \\(7 - 3(2x - 1) = -2(x - 5)\\).",
+        loesung: 0,
+        toleranz: 0,
+        tipp: "\\(7 - 6x + 3 = -2x + 10 \\implies 10 - 6x = -2x + 10\\).",
+        loesungsweg: "$$10 - 6x = -2x + 10 \\implies -4x = 0 \\implies x = 0$$"
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Bruchgleichungen einfach ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "numerisch",
+        frage: "Löse: \\(\\frac{x}{2} + \\frac{x}{3} = 5\\).",
+        loesung: 6,
+        toleranz: 0,
+        tipp: "Hauptnenner ist 6. Multipliziere alles mit 6: \\(3x + 2x = 30\\).",
+        loesungsweg: "$$3x + 2x = 30 \\implies 5x = 30 \\implies x = 6$$"
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "numerisch",
+        frage: "Löse: \\(\\frac{2x + 1}{3} = 5\\).",
+        loesung: 7,
+        toleranz: 0,
+        tipp: "Multipliziere mit 3: \\(2x + 1 = 15\\).",
+        loesungsweg: "$$2x + 1 = 15 \\implies 2x = 14 \\implies x = 7$$"
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "numerisch",
+        frage: "Löse: \\(\\frac{x - 2}{4} = \\frac{x + 1}{3}\\).",
+        loesung: 10,
+        toleranz: 0,
+        tipp: "Hauptnenner 12: \\(3(x - 2) = 4(x + 1)\\).",
+        loesungsweg: "$$3x - 6 = 4x + 4 \\implies -10 = x \\implies x = -10$$"
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "numerisch",
+        frage: "Löse: \\(\\frac{3x}{4} - 1 = \\frac{x}{2} + 2\\).",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "Hauptnenner 4: \\(3x - 4 = 2x + 8\\).",
+        loesungsweg: "$$3x - 4 = 2x + 8 \\implies x = 12$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "mc",
+        frage: "Löse: \\(\\frac{x + 3}{5} = \\frac{x - 1}{2}\\). Was ist \\(x\\)?",
+        optionen: ["\\(x = \\frac{11}{3}\\)", "\\(x = \\frac{-11}{3}\\)", "\\(x = 11\\)", "\\(x = -1\\)"],
+        korrekt: 0,
+        tipp: "Hauptnenner 10: \\(2(x + 3) = 5(x - 1)\\).",
+        loesungsweg: "$$2x + 6 = 5x - 5 \\implies 11 = 3x \\implies x = \\frac{11}{3}$$"
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "numerisch",
+        frage: "Löse: \\(\\frac{5x - 3}{2} = \\frac{3x + 7}{2}\\).",
+        loesung: 5,
+        toleranz: 0,
+        tipp: "Gleicher Nenner! Also: \\(5x - 3 = 3x + 7\\).",
+        loesungsweg: "$$5x - 3 = 3x + 7 \\implies 2x = 10 \\implies x = 5$$"
+      },
+      // ========== LEVEL 6 -- wagnerisch: Textaufgaben und komplexe Gleichungen ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "numerisch",
+        frage: "Anna ist 4 Jahre älter als Ben. Zusammen sind sie 28 Jahre alt. Wie alt ist Ben?",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "Ben: \\(x\\), Anna: \\(x + 4\\). Gleichung: \\(x + (x + 4) = 28\\).",
+        loesungsweg: "$$2x + 4 = 28 \\implies 2x = 24 \\implies x = 12$$<br>Ben ist 12, Anna ist 16. Probe: \\(12 + 16 = 28\\) ✓"
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "numerisch",
+        frage: "Drei aufeinanderfolgende Zahlen ergeben zusammen 96. Wie lautet die kleinste?",
+        loesung: 31,
+        toleranz: 0,
+        tipp: "\\(x + (x+1) + (x+2) = 96\\).",
+        loesungsweg: "$$3x + 3 = 96 \\implies 3x = 93 \\implies x = 31$$<br>Probe: \\(31 + 32 + 33 = 96\\) ✓"
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Rechteck hat den Umfang 34 cm. Die Länge ist 3 cm mehr als die Breite. Wie breit ist das Rechteck in cm?",
+        loesung: 7,
+        toleranz: 0,
+        tipp: "Breite \\(b\\), Länge \\(b + 3\\). Umfang: \\(2(b + b + 3) = 34\\).",
+        loesungsweg: "$$2(2b + 3) = 34 \\implies 4b + 6 = 34 \\implies 4b = 28 \\implies b = 7$$"
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "mc",
+        frage: "Löse: \\(2(x + 3) - 3(x - 1) = x + 1\\). Was ist \\(x\\)?",
+        optionen: ["\\(x = 4\\)", "\\(x = 2\\)", "\\(x = -4\\)", "\\(x = 0\\)"],
+        korrekt: 0,
+        tipp: "Klammern auflösen: \\(2x + 6 - 3x + 3 = x + 1\\), also \\(-x + 9 = x + 1\\).",
+        loesungsweg: "$$-x + 9 = x + 1 \\implies 8 = 2x \\implies x = 4$$"
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Vater ist dreimal so alt wie sein Sohn. In 12 Jahren wird er nur noch doppelt so alt sein. Wie alt ist der Sohn jetzt?",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "Sohn: \\(x\\), Vater: \\(3x\\). In 12 Jahren: \\(3x + 12 = 2(x + 12)\\).",
+        loesungsweg: "$$3x + 12 = 2x + 24 \\implies x = 12$$<br>Sohn: 12, Vater: 36. In 12 Jahren: 24 und 48 → \\(48 = 2 \\cdot 24\\) ✓"
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "numerisch",
+        frage: "Löse: \\(\\frac{x + 1}{2} + \\frac{x - 1}{3} = \\frac{5x - 1}{6}\\).",
+        loesung: 2,
+        toleranz: 0,
+        tipp: "Hauptnenner 6: \\(3(x + 1) + 2(x - 1) = 5x - 1\\).",
+        loesungsweg: "$$3x + 3 + 2x - 2 = 5x - 1 \\implies 5x + 1 = 5x - 1 \\implies 1 = -1$$<br>Das ist ein Widerspruch — die Gleichung hat <b>keine Lösung</b>."
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

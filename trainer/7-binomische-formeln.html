@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binomische Formeln - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-binomische-formeln';
+    const THEMA_CONFIG = { name: 'Binomische Formeln', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Formeln erkennen ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Wie lautet die 1. binomische Formel?",
+        optionen: ["\\((a + b)^2 = a^2 + 2ab + b^2\\)", "\\((a - b)^2 = a^2 - 2ab + b^2\\)", "\\((a + b)(a - b) = a^2 - b^2\\)", "\\((a + b)^2 = a^2 + b^2\\)"],
+        korrekt: 0,
+        tipp: "Die 1. binomische Formel hat ein Pluszeichen in der Klammer.",
+        loesungsweg: "Die <b>1. binomische Formel</b> lautet: $$(a + b)^2 = a^2 + 2ab + b^2$$"
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "mc",
+        frage: "Wie lautet die 2. binomische Formel?",
+        optionen: ["\\((a + b)^2 = a^2 + 2ab + b^2\\)", "\\((a - b)^2 = a^2 + 2ab + b^2\\)", "\\((a - b)^2 = a^2 - 2ab + b^2\\)", "\\((a + b)(a - b) = a^2 - b^2\\)"],
+        korrekt: 2,
+        tipp: "Die 2. binomische Formel hat ein Minuszeichen in der Klammer.",
+        loesungsweg: "Die <b>2. binomische Formel</b> lautet: $$(a - b)^2 = a^2 - 2ab + b^2$$"
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "mc",
+        frage: "Wie lautet die 3. binomische Formel?",
+        optionen: ["\\((a + b)^2 = a^2 + 2ab + b^2\\)", "\\((a - b)^2 = a^2 - 2ab + b^2\\)", "\\((a + b)(a - b) = a^2 - b^2\\)", "\\((a + b)(a + b) = a^2 + b^2\\)"],
+        korrekt: 2,
+        tipp: "Bei der 3. binomischen Formel steht ein Plus und ein Minus.",
+        loesungsweg: "Die <b>3. binomische Formel</b> lautet: $$(a + b)(a - b) = a^2 - b^2$$"
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "mc",
+        frage: "Welche binomische Formel steckt in \\((x + 5)^2\\)?",
+        optionen: ["1. binomische Formel", "2. binomische Formel", "3. binomische Formel", "Keine davon"],
+        korrekt: 0,
+        tipp: "Es ist eine Summe zum Quadrat: \\((a + b)^2\\).",
+        loesungsweg: "\\((x + 5)^2\\) hat die Form \\((a + b)^2\\) — das ist die <b>1. binomische Formel</b>."
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "mc",
+        frage: "Welche binomische Formel steckt in \\((x - 3)(x + 3)\\)?",
+        optionen: ["1. binomische Formel", "2. binomische Formel", "3. binomische Formel", "Keine davon"],
+        korrekt: 2,
+        tipp: "Einmal Plus, einmal Minus — das ist die Formel für …",
+        loesungsweg: "\\((x - 3)(x + 3)\\) hat die Form \\((a - b)(a + b)\\) — das ist die <b>3. binomische Formel</b>."
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "mc",
+        frage: "Ist die Aussage \\((a + b)^2 = a^2 + b^2\\) richtig?",
+        optionen: ["Ja, das stimmt immer", "Nein, es fehlt der Term \\(2ab\\)", "Nur für \\(a = 0\\)", "Nur für \\(b = 0\\)"],
+        korrekt: 1,
+        tipp: "Ein häufiger Fehler! Was fehlt?",
+        loesungsweg: "<b>Nein!</b> Es gilt \\((a + b)^2 = a^2 + \\boldsymbol{2ab} + b^2\\). Der gemischte Term \\(2ab\\) darf nicht vergessen werden."
+      },
+      // ========== LEVEL 2 -- leicht: 1. binomische Formel anwenden ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "mc",
+        frage: "Berechne \\((x + 3)^2\\).",
+        optionen: ["\\(x^2 + 9\\)", "\\(x^2 + 3x + 9\\)", "\\(x^2 + 6x + 9\\)", "\\(x^2 + 6x + 3\\)"],
+        korrekt: 2,
+        tipp: "\\(a = x\\), \\(b = 3\\). Also \\(a^2 + 2ab + b^2\\).",
+        loesungsweg: "$$(x + 3)^2 = x^2 + 2 \\cdot x \\cdot 3 + 3^2 = x^2 + 6x + 9$$"
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "mc",
+        frage: "Berechne \\((a + 7)^2\\).",
+        optionen: ["\\(a^2 + 49\\)", "\\(a^2 + 7a + 49\\)", "\\(a^2 + 14a + 49\\)", "\\(a^2 + 14a + 7\\)"],
+        korrekt: 2,
+        tipp: "\\(2 \\cdot a \\cdot 7 = 14a\\) und \\(7^2 = 49\\).",
+        loesungsweg: "$$(a + 7)^2 = a^2 + 14a + 49$$"
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne \\((10 + 2)^2\\) mit der 1. binomischen Formel.",
+        loesung: 144,
+        toleranz: 0,
+        tipp: "\\(10^2 + 2 \\cdot 10 \\cdot 2 + 2^2 = 100 + 40 + 4\\).",
+        loesungsweg: "$$(10 + 2)^2 = 100 + 40 + 4 = 144$$"
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "mc",
+        frage: "Berechne \\((2x + 1)^2\\).",
+        optionen: ["\\(2x^2 + 2x + 1\\)", "\\(4x^2 + 4x + 1\\)", "\\(4x^2 + 2x + 1\\)", "\\(4x^2 + 1\\)"],
+        korrekt: 1,
+        tipp: "\\(a = 2x\\), \\(b = 1\\). Also \\((2x)^2 + 2 \\cdot 2x \\cdot 1 + 1^2\\).",
+        loesungsweg: "$$(2x + 1)^2 = 4x^2 + 4x + 1$$"
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne \\(51^2\\) mit der 1. binomischen Formel: \\((50 + 1)^2\\).",
+        loesung: 2601,
+        toleranz: 0,
+        tipp: "\\(50^2 + 2 \\cdot 50 \\cdot 1 + 1^2 = 2500 + 100 + 1\\).",
+        loesungsweg: "$$51^2 = (50 + 1)^2 = 2500 + 100 + 1 = 2601$$"
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne \\((x + 4)^2\\) für \\(x = 6\\).",
+        loesung: 100,
+        toleranz: 0,
+        tipp: "\\((6 + 4)^2 = 10^2\\).",
+        loesungsweg: "$$(6 + 4)^2 = 10^2 = 100$$"
+      },
+      // ========== LEVEL 3 -- nervenschonend: 2. binomische Formel ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "mc",
+        frage: "Berechne \\((x - 4)^2\\).",
+        optionen: ["\\(x^2 - 4x + 16\\)", "\\(x^2 - 8x + 16\\)", "\\(x^2 + 8x + 16\\)", "\\(x^2 - 16\\)"],
+        korrekt: 1,
+        tipp: "2. binomische Formel: \\(a^2 - 2ab + b^2\\) mit \\(b = 4\\).",
+        loesungsweg: "$$(x - 4)^2 = x^2 - 2 \\cdot x \\cdot 4 + 4^2 = x^2 - 8x + 16$$"
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "mc",
+        frage: "Berechne \\((3a - 2)^2\\).",
+        optionen: ["\\(9a^2 - 12a + 4\\)", "\\(9a^2 - 6a + 4\\)", "\\(3a^2 - 12a + 4\\)", "\\(9a^2 + 12a + 4\\)"],
+        korrekt: 0,
+        tipp: "\\(a = 3a\\), \\(b = 2\\). Also \\((3a)^2 - 2 \\cdot 3a \\cdot 2 + 2^2\\).",
+        loesungsweg: "$$(3a - 2)^2 = 9a^2 - 12a + 4$$"
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "numerisch",
+        frage: "Berechne \\(49^2\\) mit der 2. binomischen Formel: \\((50 - 1)^2\\).",
+        loesung: 2401,
+        toleranz: 0,
+        tipp: "\\(50^2 - 2 \\cdot 50 \\cdot 1 + 1^2 = 2500 - 100 + 1\\).",
+        loesungsweg: "$$49^2 = (50 - 1)^2 = 2500 - 100 + 1 = 2401$$"
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "numerisch",
+        frage: "Berechne \\((y - 5)^2\\) für \\(y = 8\\).",
+        loesung: 9,
+        toleranz: 0,
+        tipp: "\\((8 - 5)^2 = 3^2\\).",
+        loesungsweg: "$$(8 - 5)^2 = 3^2 = 9$$"
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "mc",
+        frage: "Berechne \\((5 - x)^2\\).",
+        optionen: ["\\(25 - 10x + x^2\\)", "\\(25 + 10x + x^2\\)", "\\(25 - x^2\\)", "\\(25 - 5x + x^2\\)"],
+        korrekt: 0,
+        tipp: "\\(a = 5\\), \\(b = x\\). Dann \\(a^2 - 2ab + b^2\\).",
+        loesungsweg: "$$(5 - x)^2 = 25 - 10x + x^2$$"
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "numerisch",
+        frage: "Berechne \\(98^2\\) mit der 2. binomischen Formel: \\((100 - 2)^2\\).",
+        loesung: 9604,
+        toleranz: 0,
+        tipp: "\\(100^2 - 2 \\cdot 100 \\cdot 2 + 2^2 = 10000 - 400 + 4\\).",
+        loesungsweg: "$$98^2 = (100 - 2)^2 = 10000 - 400 + 4 = 9604$$"
+      },
+      // ========== LEVEL 4 -- mittel: 3. binomische Formel ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "mc",
+        frage: "Berechne \\((x + 6)(x - 6)\\).",
+        optionen: ["\\(x^2 + 36\\)", "\\(x^2 - 36\\)", "\\(x^2 - 12x + 36\\)", "\\(x^2 + 12x - 36\\)"],
+        korrekt: 1,
+        tipp: "3. binomische Formel: \\((a + b)(a - b) = a^2 - b^2\\).",
+        loesungsweg: "$$(x + 6)(x - 6) = x^2 - 36$$"
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "numerisch",
+        frage: "Berechne \\(27 \\cdot 33\\) mit der 3. binomischen Formel: \\((30 - 3)(30 + 3)\\).",
+        loesung: 891,
+        toleranz: 0,
+        tipp: "\\(30^2 - 3^2 = 900 - 9\\).",
+        loesungsweg: "$$27 \\cdot 33 = (30 - 3)(30 + 3) = 900 - 9 = 891$$"
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "mc",
+        frage: "Berechne \\((2a + 5)(2a - 5)\\).",
+        optionen: ["\\(4a^2 + 25\\)", "\\(4a^2 - 25\\)", "\\(2a^2 - 25\\)", "\\(4a^2 - 10a + 25\\)"],
+        korrekt: 1,
+        tipp: "\\(a = 2a\\), \\(b = 5\\). Also \\((2a)^2 - 5^2\\).",
+        loesungsweg: "$$(2a + 5)(2a - 5) = 4a^2 - 25$$"
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "numerisch",
+        frage: "Berechne \\(48 \\cdot 52\\) mit der 3. binomischen Formel.",
+        loesung: 2496,
+        toleranz: 0,
+        tipp: "\\(48 \\cdot 52 = (50 - 2)(50 + 2) = 50^2 - 2^2\\).",
+        loesungsweg: "$$48 \\cdot 52 = (50 - 2)(50 + 2) = 2500 - 4 = 2496$$"
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "mc",
+        frage: "Welches Produkt passt zur 3. binomischen Formel für \\(x^2 - 9\\)?",
+        optionen: ["\\((x + 9)(x - 9)\\)", "\\((x + 3)(x - 3)\\)", "\\((x - 3)^2\\)", "\\((x + 3)^2\\)"],
+        korrekt: 1,
+        tipp: "\\(9 = 3^2\\). Also \\(x^2 - 3^2\\).",
+        loesungsweg: "$$x^2 - 9 = x^2 - 3^2 = (x + 3)(x - 3)$$"
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "numerisch",
+        frage: "Berechne \\((3x + 4)(3x - 4)\\) für \\(x = 2\\).",
+        loesung: 20,
+        toleranz: 0,
+        tipp: "\\(9x^2 - 16\\). Für \\(x = 2\\): \\(36 - 16\\).",
+        loesungsweg: "$$(3x + 4)(3x - 4) = 9x^2 - 16$$<br>Für \\(x = 2\\): \\(36 - 16 = 20\\)."
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Rückwärts anwenden (Faktorisieren) ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "mc",
+        frage: "Faktorisiere: \\(x^2 + 10x + 25\\)",
+        optionen: ["\\((x + 5)^2\\)", "\\((x - 5)^2\\)", "\\((x + 5)(x - 5)\\)", "\\((x + 25)(x + 1)\\)"],
+        korrekt: 0,
+        tipp: "Ist \\(25 = 5^2\\) und \\(10x = 2 \\cdot x \\cdot 5\\)? Dann 1. binomische Formel rückwärts.",
+        loesungsweg: "$$x^2 + 10x + 25 = x^2 + 2 \\cdot x \\cdot 5 + 5^2 = (x + 5)^2$$"
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "mc",
+        frage: "Faktorisiere: \\(a^2 - 14a + 49\\)",
+        optionen: ["\\((a + 7)^2\\)", "\\((a - 7)^2\\)", "\\((a + 7)(a - 7)\\)", "\\((a - 49)(a + 1)\\)"],
+        korrekt: 1,
+        tipp: "\\(49 = 7^2\\) und \\(14a = 2 \\cdot a \\cdot 7\\). Welche Formel mit Minus?",
+        loesungsweg: "$$a^2 - 14a + 49 = a^2 - 2 \\cdot a \\cdot 7 + 7^2 = (a - 7)^2$$"
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "mc",
+        frage: "Faktorisiere: \\(4x^2 - 9\\)",
+        optionen: ["\\((2x - 3)^2\\)", "\\((2x + 3)^2\\)", "\\((2x + 3)(2x - 3)\\)", "\\((4x + 9)(4x - 9)\\)"],
+        korrekt: 2,
+        tipp: "\\(4x^2 = (2x)^2\\) und \\(9 = 3^2\\). Differenz zweier Quadrate → 3. binomische Formel.",
+        loesungsweg: "$$4x^2 - 9 = (2x)^2 - 3^2 = (2x + 3)(2x - 3)$$"
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "mc",
+        frage: "Faktorisiere: \\(9a^2 + 12a + 4\\)",
+        optionen: ["\\((3a + 2)^2\\)", "\\((9a + 4)^2\\)", "\\((3a - 2)^2\\)", "\\((3a + 4)(3a + 1)\\)"],
+        korrekt: 0,
+        tipp: "\\(9a^2 = (3a)^2\\), \\(4 = 2^2\\), \\(12a = 2 \\cdot 3a \\cdot 2\\).",
+        loesungsweg: "$$9a^2 + 12a + 4 = (3a)^2 + 2 \\cdot 3a \\cdot 2 + 2^2 = (3a + 2)^2$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "numerisch",
+        frage: "Faktorisiere \\(x^2 - 16\\) und berechne den Wert für \\(x = 5\\).",
+        loesung: 9,
+        toleranz: 0,
+        tipp: "\\(x^2 - 16 = (x + 4)(x - 4)\\). Einsetzen.",
+        loesungsweg: "$$x^2 - 16 = (x + 4)(x - 4)$$<br>Für \\(x = 5\\): \\(9 \\cdot 1 = 9\\)."
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "numerisch",
+        frage: "Berechne \\(103^2 - 97^2\\) mithilfe der 3. binomischen Formel.",
+        loesung: 1200,
+        toleranz: 0,
+        tipp: "\\(a^2 - b^2 = (a + b)(a - b)\\) mit \\(a = 103\\), \\(b = 97\\).",
+        loesungsweg: "$$103^2 - 97^2 = (103 + 97)(103 - 97) = 200 \\cdot 6 = 1200$$"
+      },
+      // ========== LEVEL 6 -- wagnerisch: Transferaufgaben ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "numerisch",
+        frage: "Vereinfache: \\((x + 3)^2 - (x - 3)^2\\). Was ergibt der Term?",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "Nutze die 3. binomische Formel: \\(A^2 - B^2 = (A + B)(A - B)\\) mit \\(A = x+3\\), \\(B = x-3\\).",
+        loesungsweg: "$$((x+3) + (x-3))((x+3) - (x-3)) = 2x \\cdot 6 = 12x$$<br>Achtung: Das Ergebnis ist \\(12x\\), nicht eine Zahl! Alternativ direkt: \\(x^2 + 6x + 9 - x^2 + 6x - 9 = 12x\\).<br>Die Aufgabe fragt nach dem <b>Koeffizienten</b>: \\(12\\)."
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "mc",
+        frage: "Welche binomische Formel steckt in \\(a^2 - 2a + 1\\)?",
+        optionen: ["1. binomische Formel: \\((a + 1)^2\\)", "2. binomische Formel: \\((a - 1)^2\\)", "3. binomische Formel: \\((a + 1)(a - 1)\\)", "Keine binomische Formel"],
+        korrekt: 1,
+        tipp: "\\(1 = 1^2\\) und \\(2a = 2 \\cdot a \\cdot 1\\). Das Minuszeichen deutet auf die 2. Formel.",
+        loesungsweg: "$$a^2 - 2a + 1 = a^2 - 2 \\cdot a \\cdot 1 + 1^2 = (a - 1)^2$$"
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "numerisch",
+        frage: "Berechne \\(99^2\\) im Kopf mithilfe der 2. binomischen Formel.",
+        loesung: 9801,
+        toleranz: 0,
+        tipp: "\\(99 = 100 - 1\\). Also \\((100 - 1)^2 = 10000 - 200 + 1\\).",
+        loesungsweg: "$$99^2 = (100 - 1)^2 = 10000 - 200 + 1 = 9801$$"
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "numerisch",
+        frage: "Faktorisiere \\(x^4 - 1\\) vollständig. Wie viele Faktoren (Klammern) ergeben sich?",
+        loesung: 3,
+        toleranz: 0,
+        tipp: "Erst 3. binomische Formel: \\((x^2 + 1)(x^2 - 1)\\). Dann \\(x^2 - 1\\) weiter faktorisieren.",
+        loesungsweg: "$$x^4 - 1 = (x^2 + 1)(x^2 - 1) = (x^2 + 1)(x + 1)(x - 1)$$<br>Das sind <b>3 Faktoren</b>."
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "mc",
+        frage: "Vereinfache: \\((a + b)^2 + (a - b)^2\\)",
+        optionen: ["\\(2a^2 + 2b^2\\)", "\\(4ab\\)", "\\(2(a + b)^2\\)", "\\(a^2 + b^2\\)"],
+        korrekt: 0,
+        tipp: "Beide Formeln anwenden und addieren.",
+        loesungsweg: "$$(a+b)^2 = a^2 + 2ab + b^2$$<br>$$(a-b)^2 = a^2 - 2ab + b^2$$<br>Summe: \\(2a^2 + 2b^2\\)."
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "numerisch",
+        frage: "Berechne \\(\\frac{(a + b)^2 - (a - b)^2}{4}\\) für \\(a = 7\\), \\(b = 3\\).",
+        loesung: 21,
+        toleranz: 0,
+        tipp: "Vereinfache allgemein: Zähler \\(= 4ab\\). Dann durch 4 teilen.",
+        loesungsweg: "$$(a+b)^2 - (a-b)^2 = 4ab$$<br>$$\\frac{4ab}{4} = ab = 7 \\cdot 3 = 21$$"
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>
