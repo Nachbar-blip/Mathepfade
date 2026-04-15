@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lineare Funktionen - Grundlagen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-lineare-funktionen-grund';
+    const THEMA_CONFIG = { name: 'Lineare Funktionen - Grundlagen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id: 1, level: 1, typ: "mc", frage: "Die allgemeine Form einer linearen Funktion lautet …", optionen: ["\\(y = mx^2 + n\\)", "\\(y = mx + n\\)", "\\(y = \\frac{m}{x}\\)", "\\(y = m \\cdot n\\)"], korrekt: 1, tipp: "Geradengleichung.", loesungsweg: "Lineare Funktion: \\(y = mx + n\\) mit Anstieg \\(m\\) und absolutem Glied \\(n\\)." },
+      { id: 2, level: 1, typ: "mc", frage: "Was bedeutet \\(m\\) in \\(y = mx + n\\)?", optionen: ["y-Achsenabschnitt", "Anstieg (Steigung)", "Nullstelle", "x-Achsenabschnitt"], korrekt: 1, tipp: "Steilheit der Geraden.", loesungsweg: "\\(m\\) ist der <b>Anstieg</b> - wie stark die Gerade pro Schritt nach rechts steigt (oder fällt)." },
+      { id: 3, level: 1, typ: "mc", frage: "Was bedeutet \\(n\\) in \\(y = mx + n\\)?", optionen: ["Anstieg", "Nullstelle", "Absolutes Glied / y-Achsenabschnitt", "Definitionsbereich"], korrekt: 2, tipp: "Wert bei \\(x = 0\\).", loesungsweg: "\\(n\\) ist das absolute Glied: Schnittpunkt mit der y-Achse, also \\(f(0) = n\\)." },
+      { id: 4, level: 1, typ: "numerisch", frage: "Berechne \\(f(3)\\) für \\(f(x) = 2x + 1\\).", loesung: 7, toleranz: 0, tipp: "Einsetzen.", loesungsweg: "$$f(3) = 2 \\cdot 3 + 1 = 7$$" },
+      { id: 5, level: 1, typ: "numerisch", frage: "Berechne \\(f(0)\\) für \\(f(x) = -3x + 5\\).", loesung: 5, toleranz: 0, tipp: "Bei \\(x = 0\\).", loesungsweg: "$$f(0) = -3 \\cdot 0 + 5 = 5$$" },
+      { id: 6, level: 1, typ: "numerisch", frage: "Berechne \\(f(-2)\\) für \\(f(x) = x + 4\\).", loesung: 2, toleranz: 0, tipp: "\\(-2 + 4\\).", loesungsweg: "$$f(-2) = -2 + 4 = 2$$" },
+      // LEVEL 2
+      { id: 7, level: 2, typ: "mc", frage: "Welcher Anstieg gehört zu \\(y = 4x - 7\\)?", optionen: ["\\(m = -7\\)", "\\(m = 4\\)", "\\(m = 7\\)", "\\(m = -4\\)"], korrekt: 1, tipp: "Zahl vor \\(x\\).", loesungsweg: "Der Anstieg ist \\(m = 4\\)." },
+      { id: 8, level: 2, typ: "mc", frage: "Welches absolute Glied hat \\(y = -2x + 3\\)?", optionen: ["\\(n = -2\\)", "\\(n = 3\\)", "\\(n = -3\\)", "\\(n = 2\\)"], korrekt: 1, tipp: "Summand ohne \\(x\\).", loesungsweg: "\\(n = 3\\), Schnittpunkt mit der y-Achse: \\((0; 3)\\)." },
+      { id: 9, level: 2, typ: "mc", frage: "Welche Funktion verläuft durch den Ursprung?", optionen: ["\\(y = 2x + 1\\)", "\\(y = 3x\\)", "\\(y = -x + 2\\)", "\\(y = 5\\)"], korrekt: 1, tipp: "\\(n = 0\\).", loesungsweg: "Ursprungsgeraden haben \\(n = 0\\): \\(y = 3x\\)." },
+      { id: 10, level: 2, typ: "numerisch", frage: "Gib den Anstieg von \\(y = \\frac{1}{2}x + 3\\) an.", loesung: 0.5, toleranz: 0.01, tipp: "Vorfaktor von \\(x\\).", loesungsweg: "$$m = \\frac{1}{2} = 0{,}5$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "Gib den y-Achsenabschnitt von \\(y = 3x - 8\\) an.", loesung: -8, toleranz: 0, tipp: "Konstantes Glied.", loesungsweg: "$$n = -8$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "Für \\(f(x) = 5x - 3\\): Welchen Wert liefert \\(f(2)\\)?", loesung: 7, toleranz: 0, tipp: "Einsetzen.", loesungsweg: "$$5 \\cdot 2 - 3 = 7$$" },
+      // LEVEL 3
+      { id: 13, level: 3, typ: "mc", frage: "Welche Gerade ist fallend?", optionen: ["\\(y = 2x + 1\\)", "\\(y = -3x + 4\\)", "\\(y = x\\)", "\\(y = 5\\)"], korrekt: 1, tipp: "Negativer Anstieg.", loesungsweg: "Bei \\(m < 0\\) fällt die Gerade: \\(y = -3x + 4\\) hat \\(m = -3\\)." },
+      { id: 14, level: 3, typ: "mc", frage: "Welche Gerade ist parallel zur x-Achse?", optionen: ["\\(y = 2x\\)", "\\(y = 4\\)", "\\(x = 3\\)", "\\(y = x + 1\\)"], korrekt: 1, tipp: "\\(m = 0\\).", loesungsweg: "\\(y = 4\\) ist eine konstante Funktion - Parallele zur x-Achse." },
+      { id: 15, level: 3, typ: "mc", frage: "Die Nullstelle einer linearen Funktion ist …", optionen: ["Der Wert \\(y = 0\\) gesetzt und nach \\(x\\) aufgelöst", "Der y-Achsenabschnitt", "Der Anstieg", "Der Wendepunkt"], korrekt: 0, tipp: "Schnitt mit x-Achse.", loesungsweg: "Nullstelle: \\(f(x) = 0\\), d. h. \\(mx + n = 0 \\Rightarrow x = -\\frac{n}{m}\\)." },
+      { id: 16, level: 3, typ: "numerisch", frage: "Berechne die Nullstelle von \\(f(x) = 2x - 6\\).", loesung: 3, toleranz: 0, tipp: "\\(2x - 6 = 0\\).", loesungsweg: "$$2x - 6 = 0 \\implies x = 3$$" },
+      { id: 17, level: 3, typ: "numerisch", frage: "Berechne die Nullstelle von \\(f(x) = -\\frac{1}{2}x + 4\\).", loesung: 8, toleranz: 0, tipp: "Gleich 0 setzen.", loesungsweg: "$$-\\frac{1}{2}x + 4 = 0 \\implies x = 8$$" },
+      { id: 18, level: 3, typ: "numerisch", frage: "Berechne die Nullstelle von \\(f(x) = 5x + 10\\).", loesung: -2, toleranz: 0, tipp: "\\(5x = -10\\).", loesungsweg: "$$5x + 10 = 0 \\implies x = -2$$" },
+      // LEVEL 4
+      { id: 19, level: 4, typ: "mc", frage: "Welche Gerade ist steiler?", optionen: ["\\(y = 2x\\)", "\\(y = 3x\\)", "\\(y = \\frac{1}{2}x\\)", "\\(y = -x\\)"], korrekt: 1, tipp: "Betrag des Anstiegs.", loesungsweg: "Je größer \\(|m|\\), desto steiler. \\(|3| > |2| > |1| > |\\frac{1}{2}|\\)." },
+      { id: 20, level: 4, typ: "mc", frage: "Anstieg durch \\(P_1(1;2)\\) und \\(P_2(4;8)\\)?", optionen: ["\\(m = 2\\)", "\\(m = 3\\)", "\\(m = 6\\)", "\\(m = \\frac{1}{2}\\)"], korrekt: 0, tipp: "\\(m = \\frac{y_2-y_1}{x_2-x_1}\\).", loesungsweg: "$$m = \\frac{8-2}{4-1} = \\frac{6}{3} = 2$$" },
+      { id: 21, level: 4, typ: "mc", frage: "Welcher Punkt liegt auf \\(y = 3x - 1\\)?", optionen: ["\\((2; 4)\\)", "\\((1; 2)\\)", "\\((0; 0)\\)", "\\((3; 9)\\)"], korrekt: 1, tipp: "Einsetzen und prüfen.", loesungsweg: "\\(f(1) = 3 \\cdot 1 - 1 = 2\\) ✓. Also liegt \\((1; 2)\\) auf der Geraden." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Berechne den Anstieg durch \\(A(2;3)\\) und \\(B(5;12)\\).", loesung: 3, toleranz: 0, tipp: "\\(\\frac{\\Delta y}{\\Delta x}\\).", loesungsweg: "$$m = \\frac{12 - 3}{5 - 2} = \\frac{9}{3} = 3$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Berechne den Anstieg durch \\(A(-1;2)\\) und \\(B(3;10)\\).", loesung: 2, toleranz: 0, tipp: "\\(\\frac{10-2}{3-(-1)}\\).", loesungsweg: "$$m = \\frac{8}{4} = 2$$" },
+      { id: 24, level: 4, typ: "numerisch", frage: "Liegt \\(P(3; 7)\\) auf \\(y = 2x + 1\\)? Antwort: 1 für Ja, 0 für Nein.", loesung: 1, toleranz: 0, tipp: "\\(f(3) = ?\\).", loesungsweg: "\\(f(3) = 2 \\cdot 3 + 1 = 7\\) ✓. Ja, Antwort: 1." },
+      // LEVEL 5
+      { id: 25, level: 5, typ: "mc", frage: "Gerade durch \\((0;2)\\) mit Anstieg \\(m = 3\\) hat die Gleichung …", optionen: ["\\(y = 3x + 2\\)", "\\(y = 2x + 3\\)", "\\(y = 3x - 2\\)", "\\(y = 5x\\)"], korrekt: 0, tipp: "\\(n = 2\\).", loesungsweg: "\\(y = mx + n = 3x + 2\\)." },
+      { id: 26, level: 5, typ: "mc", frage: "Gerade durch \\(A(1;5)\\) mit Anstieg \\(m = 2\\)?", optionen: ["\\(y = 2x + 5\\)", "\\(y = 2x + 3\\)", "\\(y = 2x - 3\\)", "\\(y = x + 4\\)"], korrekt: 1, tipp: "\\(5 = 2 \\cdot 1 + n\\).", loesungsweg: "$$5 = 2 + n \\implies n = 3$$ Also \\(y = 2x + 3\\)." },
+      { id: 27, level: 5, typ: "mc", frage: "Welcher Differenzenquotient gehört zu \\(f(x)=2x+1\\) zwischen \\(x=1\\) und \\(x=4\\)?", optionen: ["\\(2\\)", "\\(3\\)", "\\(6\\)", "\\(\\frac{1}{2}\\)"], korrekt: 0, tipp: "\\(\\frac{f(4)-f(1)}{4-1}\\).", loesungsweg: "\\(\\frac{9-3}{3} = 2\\). Bei linearen Funktionen = Anstieg." },
+      { id: 28, level: 5, typ: "numerisch", frage: "Die Gerade verläuft durch \\((0;-1)\\) und \\((4;7)\\). Gib den Anstieg \\(m\\) an.", loesung: 2, toleranz: 0, tipp: "\\(\\frac{7-(-1)}{4-0}\\).", loesungsweg: "$$m = \\frac{8}{4} = 2$$" },
+      { id: 29, level: 5, typ: "numerisch", frage: "Gerade \\(y = 2x + 3\\). Für welches \\(x\\) gilt \\(y = 11\\)?", loesung: 4, toleranz: 0, tipp: "\\(2x + 3 = 11\\).", loesungsweg: "$$2x = 8 \\implies x = 4$$" },
+      { id: 30, level: 5, typ: "numerisch", frage: "Bei \\(f(x) = -\\frac{3}{4}x + 6\\): Gib die Nullstelle an.", loesung: 8, toleranz: 0, tipp: "\\(-\\frac{3}{4}x = -6\\).", loesungsweg: "$$-\\frac{3}{4}x = -6 \\implies x = 8$$" },
+      // LEVEL 6
+      { id: 31, level: 6, typ: "mc", frage: "Parallele zu \\(y = 3x + 5\\) durch \\((0;-2)\\)?", optionen: ["\\(y = 3x - 2\\)", "\\(y = -3x + 5\\)", "\\(y = -2x + 3\\)", "\\(y = 3x + 2\\)"], korrekt: 0, tipp: "Gleicher Anstieg.", loesungsweg: "Parallele haben gleichen Anstieg: \\(m = 3\\), neues \\(n = -2\\). \\(y = 3x - 2\\)." },
+      { id: 32, level: 6, typ: "mc", frage: "Welche Aussage ist RICHTIG?", optionen: ["Eine Gerade hat immer eine Nullstelle", "Eine waagerechte Gerade hat den Anstieg 1", "Eine Gerade \\(y = c\\) (konstant, \\(c \\neq 0\\)) hat keine Nullstelle", "Eine Gerade hat zwei y-Achsenabschnitte"], korrekt: 2, tipp: "Waagerecht über x-Achse schneidet nicht.", loesungsweg: "Eine konstante Funktion \\(y = c \\neq 0\\) schneidet die x-Achse nicht - keine Nullstelle." },
+      { id: 33, level: 6, typ: "mc", frage: "Gerade durch \\(A(2;1)\\) und \\(B(4;7)\\)?", optionen: ["\\(y = 3x - 5\\)", "\\(y = 2x + 1\\)", "\\(y = 3x + 1\\)", "\\(y = x + 3\\)"], korrekt: 0, tipp: "Erst \\(m\\), dann \\(n\\) durch Einsetzen.", loesungsweg: "$$m = \\frac{7-1}{4-2} = 3$$ \\(1 = 3 \\cdot 2 + n \\Rightarrow n = -5\\). Also \\(y = 3x - 5\\)." },
+      { id: 34, level: 6, typ: "numerisch", frage: "Gerade durch \\(A(1;2)\\) und \\(B(3;8)\\). Berechne \\(f(5)\\).", loesung: 14, toleranz: 0, tipp: "Erst \\(m = 3\\), \\(n = -1\\).", loesungsweg: "\\(m = 3\\), \\(n = -1\\), \\(f(x) = 3x - 1\\). \\(f(5) = 14\\)." },
+      { id: 35, level: 6, typ: "numerisch", frage: "Bei welcher Zahl \\(a\\) hat \\(y = (a-1)x + 3\\) den Anstieg \\(m = 5\\)?", loesung: 6, toleranz: 0, tipp: "\\(a - 1 = 5\\).", loesungsweg: "$$a - 1 = 5 \\implies a = 6$$" },
+      { id: 36, level: 6, typ: "numerisch", frage: "Gerade \\(y = mx + 4\\) geht durch \\(P(2; 10)\\). Bestimme \\(m\\).", loesung: 3, toleranz: 0, tipp: "\\(10 = 2m + 4\\).", loesungsweg: "$$10 = 2m + 4 \\implies 2m = 6 \\implies m = 3$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

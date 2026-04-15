@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winkel und Winkelsumme - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-winkel-winkelsumme';
+    const THEMA_CONFIG = { name: 'Winkel und Winkelsumme', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Winkelarten ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Wie heißt ein Winkel von genau \\(90°\\)?",
+        optionen: ["spitzer Winkel", "rechter Winkel", "stumpfer Winkel", "gestreckter Winkel"],
+        korrekt: 1,
+        tipp: "Er entsteht zwischen zwei senkrechten Linien.",
+        loesungsweg: "Ein Winkel von \\(90°\\) heißt <b>rechter Winkel</b>."
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "mc",
+        frage: "Ein Winkel zwischen \\(0°\\) und \\(90°\\) heißt …",
+        optionen: ["spitzer Winkel", "rechter Winkel", "stumpfer Winkel", "überstumpfer Winkel"],
+        korrekt: 0,
+        tipp: "„Spitz\" wie eine Nadel.",
+        loesungsweg: "Ein Winkel zwischen \\(0°\\) und \\(90°\\) heißt <b>spitzer Winkel</b>."
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "mc",
+        frage: "Wie heißt ein Winkel zwischen \\(90°\\) und \\(180°\\)?",
+        optionen: ["spitz", "recht", "stumpf", "gestreckt"],
+        korrekt: 2,
+        tipp: "Nicht spitz, nicht gerade.",
+        loesungsweg: "Ein Winkel zwischen \\(90°\\) und \\(180°\\) heißt <b>stumpfer Winkel</b>."
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "numerisch",
+        frage: "Wie viele Grad hat ein gestreckter Winkel?",
+        loesung: 180,
+        toleranz: 0,
+        tipp: "Eine gerade Linie.",
+        loesungsweg: "Ein <b>gestreckter Winkel</b> hat \\(180°\\)."
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "numerisch",
+        frage: "Wie viele Grad hat ein Vollwinkel (volle Drehung)?",
+        loesung: 360,
+        toleranz: 0,
+        tipp: "Eine komplette Umdrehung.",
+        loesungsweg: "Ein <b>Vollwinkel</b> hat \\(360°\\)."
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "mc",
+        frage: "Ein Winkel zwischen \\(180°\\) und \\(360°\\) heißt …",
+        optionen: ["spitz", "stumpf", "gestreckt", "überstumpfer Winkel"],
+        korrekt: 3,
+        tipp: "Größer als gestreckt.",
+        loesungsweg: "Ein Winkel zwischen \\(180°\\) und \\(360°\\) heißt <b>überstumpfer Winkel</b>."
+      },
+      // ========== LEVEL 2 -- leicht: Nebenwinkel, Scheitelwinkel ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "numerisch",
+        frage: "Zwei Nebenwinkel ergänzen sich zu \\(180°\\). Ein Winkel ist \\(70°\\). Wie groß ist sein Nebenwinkel (in Grad)?",
+        loesung: 110,
+        toleranz: 0,
+        tipp: "\\(180° - 70°\\).",
+        loesungsweg: "$$\\beta = 180° - 70° = 110°$$"
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "numerisch",
+        frage: "Scheitelwinkel sind gleich groß. Ein Winkel hat \\(55°\\). Wie groß ist der Scheitelwinkel (in Grad)?",
+        loesung: 55,
+        toleranz: 0,
+        tipp: "Scheitelwinkel sind gleich.",
+        loesungsweg: "<b>Scheitelwinkel</b> sind gleich groß: \\(55°\\)."
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "mc",
+        frage: "An einem Geradenschnitt entstehen vier Winkel. Wie verhalten sich zwei Nebenwinkel?",
+        optionen: ["Sie sind gleich", "Sie ergänzen sich zu \\(90°\\)", "Sie ergänzen sich zu \\(180°\\)", "Sie ergänzen sich zu \\(360°\\)"],
+        korrekt: 2,
+        tipp: "Zusammen liegen sie auf einer Geraden.",
+        loesungsweg: "<b>Nebenwinkel</b> ergänzen sich zu \\(180°\\)."
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "numerisch",
+        frage: "Zwei Geraden schneiden sich. Ein Winkel ist \\(40°\\). Wie groß ist der Nebenwinkel (in Grad)?",
+        loesung: 140,
+        toleranz: 0,
+        tipp: "\\(180° - 40°\\).",
+        loesungsweg: "$$180° - 40° = 140°$$"
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "mc",
+        frage: "Zwei Winkel, die sich zu \\(90°\\) ergänzen, heißen …",
+        optionen: ["Nebenwinkel", "Scheitelwinkel", "Komplementwinkel", "Stufenwinkel"],
+        korrekt: 2,
+        tipp: "\\(90°\\) = komplett.",
+        loesungsweg: "Zwei Winkel, die sich zu \\(90°\\) ergänzen, heißen <b>Komplementwinkel</b>."
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "numerisch",
+        frage: "Ein Winkel ist \\(32°\\). Wie groß ist sein Komplementwinkel (in Grad)?",
+        loesung: 58,
+        toleranz: 0,
+        tipp: "\\(90° - 32°\\).",
+        loesungsweg: "$$90° - 32° = 58°$$"
+      },
+      // ========== LEVEL 3 -- nervenschonend: Stufen- und Wechselwinkel ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "mc",
+        frage: "An parallelen Geraden, die von einer dritten geschnitten werden, sind Stufenwinkel …",
+        optionen: ["gleich groß", "ergänzen sich zu \\(90°\\)", "ergänzen sich zu \\(180°\\)", "gar nicht definiert"],
+        korrekt: 0,
+        tipp: "„Stufen\" wie auf gleicher Höhe.",
+        loesungsweg: "<b>Stufenwinkel</b> an Parallelen sind <b>gleich groß</b>."
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "mc",
+        frage: "Wechselwinkel an geschnittenen Parallelen sind …",
+        optionen: ["gleich groß", "ergänzen sich zu \\(90°\\)", "ergänzen sich zu \\(180°\\)", "doppelt so groß"],
+        korrekt: 0,
+        tipp: "Auch sie sind gleich, liegen aber diagonal.",
+        loesungsweg: "<b>Wechselwinkel</b> an Parallelen sind <b>gleich groß</b>."
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "numerisch",
+        frage: "Zwei parallele Geraden werden von einer dritten geschnitten. Ein Stufenwinkel ist \\(65°\\). Wie groß ist der zugehörige Stufenwinkel an der zweiten Geraden (in Grad)?",
+        loesung: 65,
+        toleranz: 0,
+        tipp: "Stufenwinkel sind gleich.",
+        loesungsweg: "Stufenwinkel an Parallelen sind gleich: \\(65°\\)."
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "mc",
+        frage: "Was sind entgegengesetzte Winkel (Nachbarwinkel auf gleicher Seite der Schnittgeraden) an Parallelen?",
+        optionen: ["gleich groß", "ergänzen sich zu \\(90°\\)", "ergänzen sich zu \\(180°\\)", "immer rechte Winkel"],
+        korrekt: 2,
+        tipp: "Sie liegen auf gleicher Seite und bilden eine Geradenfortsetzung.",
+        loesungsweg: "Nachbarwinkel (auch: entgegengesetzte Winkel) an Parallelen ergänzen sich zu \\(180°\\)."
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein Wechselwinkel zu einem \\(48°\\)-Winkel an Parallelen ist wie groß (in Grad)?",
+        loesung: 48,
+        toleranz: 0,
+        tipp: "Wechselwinkel sind gleich.",
+        loesungsweg: "Wechselwinkel sind gleich groß: \\(48°\\)."
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "numerisch",
+        frage: "An Parallelen ist ein Stufenwinkel \\(120°\\). Wie groß ist der Nebenwinkel dieses Stufenwinkels (in Grad)?",
+        loesung: 60,
+        toleranz: 0,
+        tipp: "\\(180° - 120°\\).",
+        loesungsweg: "$$180° - 120° = 60°$$"
+      },
+      // ========== LEVEL 4 -- mittel: Winkelsumme im Dreieck ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "numerisch",
+        frage: "Winkelsumme im Dreieck: \\(180°\\). Wenn zwei Winkel \\(65°\\) und \\(75°\\) sind, wie groß ist der dritte (in Grad)?",
+        loesung: 40,
+        toleranz: 0,
+        tipp: "\\(180° - 65° - 75°\\).",
+        loesungsweg: "$$180° - 65° - 75° = 40°$$"
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "numerisch",
+        frage: "In einem gleichschenkligen Dreieck ist der Winkel an der Spitze \\(50°\\). Wie groß ist je ein Basiswinkel (in Grad)?",
+        loesung: 65,
+        toleranz: 0,
+        tipp: "\\((180° - 50°) : 2\\).",
+        loesungsweg: "$$\\frac{180° - 50°}{2} = 65°$$"
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "numerisch",
+        frage: "Ein rechtwinkliges Dreieck hat einen Winkel von \\(25°\\). Wie groß ist der dritte Winkel (in Grad)?",
+        loesung: 65,
+        toleranz: 0,
+        tipp: "\\(180° - 90° - 25°\\).",
+        loesungsweg: "$$180° - 90° - 25° = 65°$$"
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "mc",
+        frage: "Der Außenwinkel eines Dreiecks ist so groß wie …",
+        optionen: ["die Summe der beiden nicht anliegenden Innenwinkel", "der anliegende Innenwinkel", "\\(90°\\) minus der Innenwinkel", "immer \\(180°\\)"],
+        korrekt: 0,
+        tipp: "Außenwinkelsatz.",
+        loesungsweg: "<b>Außenwinkelsatz</b>: Der Außenwinkel ist gleich der Summe der beiden nicht anliegenden Innenwinkel."
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "numerisch",
+        frage: "Die Winkelsumme im Viereck beträgt wie viele Grad?",
+        loesung: 360,
+        toleranz: 0,
+        tipp: "Viereck = zwei Dreiecke.",
+        loesungsweg: "Winkelsumme im Viereck: \\(2 \\cdot 180° = 360°\\)."
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "numerisch",
+        frage: "In einem Viereck sind drei Winkel \\(80°, 95°, 105°\\). Wie groß ist der vierte (in Grad)?",
+        loesung: 80,
+        toleranz: 0,
+        tipp: "\\(360° - 80° - 95° - 105°\\).",
+        loesungsweg: "$$360° - 80° - 95° - 105° = 80°$$"
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Gleichungen mit Winkeln ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "numerisch",
+        frage: "Die Winkel eines Dreiecks verhalten sich wie \\(1:2:3\\). Wie groß ist der größte Winkel (in Grad)?",
+        loesung: 90,
+        toleranz: 0,
+        tipp: "\\(1 + 2 + 3 = 6\\) Teile, \\(180° : 6 = 30°\\).",
+        loesungsweg: "$$180° : 6 = 30°$$ Größter Winkel: \\(3 \\cdot 30° = 90°\\). Das Dreieck ist rechtwinklig."
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "numerisch",
+        frage: "In einem Dreieck gilt \\(\\alpha = 2\\beta\\) und \\(\\gamma = 3\\beta\\). Bestimme \\(\\beta\\) in Grad.",
+        loesung: 30,
+        toleranz: 0,
+        tipp: "\\(2\\beta + \\beta + 3\\beta = 180°\\).",
+        loesungsweg: "$$6\\beta = 180° \\implies \\beta = 30°$$"
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "numerisch",
+        frage: "Ein Winkel und sein Nebenwinkel unterscheiden sich um \\(40°\\). Wie groß ist der kleinere (in Grad)?",
+        loesung: 70,
+        toleranz: 0,
+        tipp: "\\(x + (x + 40°) = 180°\\).",
+        loesungsweg: "$$2x + 40° = 180° \\implies x = 70°$$"
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "numerisch",
+        frage: "Zwei Winkel sind Stufenwinkel an Parallelen. Ein Winkel ist \\(3x\\), der andere \\(x + 40°\\). Bestimme \\(x\\) in Grad.",
+        loesung: 20,
+        toleranz: 0,
+        tipp: "Stufenwinkel sind gleich: \\(3x = x + 40°\\).",
+        loesungsweg: "$$3x = x + 40° \\implies 2x = 40° \\implies x = 20°$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "numerisch",
+        frage: "In einem gleichschenkligen Dreieck ist ein Basiswinkel \\(3\\) mal so groß wie der Winkel an der Spitze. Wie groß ist der Spitzenwinkel (in Grad)?",
+        loesung: 25.71,
+        toleranz: 0.1,
+        tipp: "\\(\\gamma + 2 \\cdot 3\\gamma = 180°\\), also \\(7\\gamma = 180°\\).",
+        loesungsweg: "$$\\gamma + 6\\gamma = 180° \\implies \\gamma = \\frac{180°}{7} \\approx 25{,}71°$$"
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "mc",
+        frage: "An Parallelen bilden Wechsel-, Stufen- und Nachbarwinkel bestimmte Beziehungen. Welche Aussage ist FALSCH?",
+        optionen: ["Stufenwinkel sind gleich groß", "Wechselwinkel sind gleich groß", "Nachbarwinkel sind gleich groß", "Nachbarwinkel ergänzen sich zu \\(180°\\)"],
+        korrekt: 2,
+        tipp: "Nachbarwinkel ergänzen sich — sie sind nicht gleich.",
+        loesungsweg: "Nachbarwinkel ergänzen sich zu \\(180°\\) — sie sind nicht gleich (falsch!)."
+      },
+      // ========== LEVEL 6 -- wagnerisch: Vielecke und Transfer ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "numerisch",
+        frage: "Winkelsumme im \\(n\\)-Eck: \\((n-2) \\cdot 180°\\). Berechne die Winkelsumme im Fünfeck (in Grad).",
+        loesung: 540,
+        toleranz: 0,
+        tipp: "\\((5-2) \\cdot 180°\\).",
+        loesungsweg: "$$(5-2) \\cdot 180° = 3 \\cdot 180° = 540°$$"
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "numerisch",
+        frage: "Wie groß ist jeder Innenwinkel eines regelmäßigen Sechsecks (in Grad)?",
+        loesung: 120,
+        toleranz: 0,
+        tipp: "\\((6-2) \\cdot 180° = 720°\\), dann durch 6 teilen.",
+        loesungsweg: "$$\\frac{(6-2) \\cdot 180°}{6} = \\frac{720°}{6} = 120°$$"
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "mc",
+        frage: "Zwei Winkel sind komplementär und verhalten sich wie \\(2:7\\). Wie groß ist der kleinere?",
+        optionen: ["\\(10°\\)", "\\(20°\\)", "\\(30°\\)", "\\(40°\\)"],
+        korrekt: 1,
+        tipp: "\\(2x + 7x = 90°\\).",
+        loesungsweg: "$$9x = 90° \\implies x = 10°$$ Kleinerer: \\(2 \\cdot 10° = 20°\\)."
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "numerisch",
+        frage: "Außenwinkelsumme in jedem konvexen Vieleck beträgt wie viele Grad?",
+        loesung: 360,
+        toleranz: 0,
+        tipp: "Unabhängig von der Eckenzahl!",
+        loesungsweg: "Die Summe der Außenwinkel in jedem konvexen Vieleck beträgt stets \\(360°\\)."
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Dreieck hat Außenwinkel \\(100°, 130°\\). Wie groß ist der dritte Außenwinkel (in Grad)?",
+        loesung: 130,
+        toleranz: 0,
+        tipp: "Außenwinkelsumme = \\(360°\\).",
+        loesungsweg: "$$360° - 100° - 130° = 130°$$"
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "numerisch",
+        frage: "In einem regelmäßigen \\(n\\)-Eck ist jeder Innenwinkel \\(150°\\). Bestimme \\(n\\).",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "\\(\\frac{(n-2) \\cdot 180°}{n} = 150°\\).",
+        loesungsweg: "$$(n-2) \\cdot 180 = 150n \\implies 180n - 360 = 150n \\implies 30n = 360 \\implies n = 12$$"
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

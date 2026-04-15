@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raumgeometrie Grundlagen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-raumgeometrie-grund';
+    const THEMA_CONFIG = { name: 'Raumgeometrie - Prismen & Zylinder', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id: 1, level: 1, typ: "mc", frage: "Ein Prisma hat ...", optionen: ["eine runde Grundflaeche", "zwei kongruente, parallele Grundflaechen", "nur eine Spitze", "keine Ecken"], korrekt: 1, tipp: "Boden und Deckel sind gleich.", loesungsweg: "Ein Prisma hat zwei <b>kongruente, parallele</b> Grundflaechen." },
+      { id: 2, level: 1, typ: "mc", frage: "Formel fuer das Volumen eines Prismas?", optionen: ["\\(V = G \\cdot h\\)", "\\(V = \\frac{1}{3} G h\\)", "\\(V = G + h\\)", "\\(V = 2Gh\\)"], korrekt: 0, tipp: "Grundflaeche mal Hoehe.", loesungsweg: "$$V = G \\cdot h$$" },
+      { id: 3, level: 1, typ: "mc", frage: "Formel Zylindervolumen?", optionen: ["\\(V = \\pi r h\\)", "\\(V = \\pi r^2 h\\)", "\\(V = 2\\pi r h\\)", "\\(V = \\pi d h\\)"], korrekt: 1, tipp: "Grundflaeche ist Kreis.", loesungsweg: "$$V = \\pi r^2 h$$" },
+      { id: 4, level: 1, typ: "mc", frage: "Einheit eines Volumens?", optionen: ["\\(\\text{cm}\\)", "\\(\\text{cm}^2\\)", "\\(\\text{cm}^3\\)", "\\(\\text{cm}^4\\)"], korrekt: 2, tipp: "3-dimensional.", loesungsweg: "Volumen hat die Einheit \\(\\text{cm}^3\\)." },
+      { id: 5, level: 1, typ: "numerisch", frage: "Wuerfel mit Kante \\(5\\,\\text{cm}\\). Volumen in cm\\(^3\\)?", loesung: 125, toleranz: 0, tipp: "\\(V = a^3\\).", loesungsweg: "$$V = 5^3 = 125\\,\\text{cm}^3$$" },
+      { id: 6, level: 1, typ: "numerisch", frage: "Quader \\(2 \\times 3 \\times 4\\). Volumen in cm\\(^3\\)?", loesung: 24, toleranz: 0, tipp: "\\(V = a \\cdot b \\cdot c\\).", loesungsweg: "$$V = 2 \\cdot 3 \\cdot 4 = 24\\,\\text{cm}^3$$" },
+      // LEVEL 2
+      { id: 7, level: 2, typ: "numerisch", frage: "Dreieckiges Prisma: \\(G = 10\\,\\text{cm}^2\\), Hoehe \\(h = 6\\,\\text{cm}\\). Volumen in cm\\(^3\\)?", loesung: 60, toleranz: 0, tipp: "\\(V = Gh\\).", loesungsweg: "$$V = 10 \\cdot 6 = 60\\,\\text{cm}^3$$" },
+      { id: 8, level: 2, typ: "numerisch", frage: "Zylinder \\(r = 2\\,\\text{cm}\\), \\(h = 5\\,\\text{cm}\\). Volumen in cm\\(^3\\) (\\(\\pi = 3{,}14\\))?", loesung: 62.8, toleranz: 0.2, tipp: "\\(\\pi r^2 h\\).", loesungsweg: "$$V = 3{,}14 \\cdot 4 \\cdot 5 = 62{,}8$$" },
+      { id: 9, level: 2, typ: "numerisch", frage: "Wuerfel mit Oberflaeche \\(96\\,\\text{cm}^2\\). Kantenlaenge in cm?", loesung: 4, toleranz: 0, tipp: "\\(6a^2 = 96\\).", loesungsweg: "$$a^2 = 16 \\implies a = 4$$" },
+      { id: 10, level: 2, typ: "numerisch", frage: "Zylinder \\(r = 3\\), \\(h = 10\\). Volumen in cm\\(^3\\) (\\(\\pi = 3{,}14\\))?", loesung: 282.6, toleranz: 1, tipp: "\\(\\pi \\cdot 9 \\cdot 10\\).", loesungsweg: "$$V = 3{,}14 \\cdot 90 = 282{,}6$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "Quader \\(5 \\times 4 \\times 10\\). Oberflaeche in cm\\(^2\\)?", loesung: 220, toleranz: 0, tipp: "\\(2(ab + ac + bc)\\).", loesungsweg: "$$2(20 + 50 + 40) = 220$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "Dreiecksprisma, Grundflaeche 15, Hoehe 8. Volumen?", loesung: 120, toleranz: 0, tipp: "\\(Gh\\).", loesungsweg: "$$15 \\cdot 8 = 120$$" },
+      // LEVEL 3
+      { id: 13, level: 3, typ: "numerisch", frage: "Zylinder Mantelflaeche bei \\(r = 4\\), \\(h = 10\\) (\\(\\pi = 3{,}14\\))?", loesung: 251.2, toleranz: 1, tipp: "\\(M = 2\\pi r h\\).", loesungsweg: "$$M = 2 \\cdot 3{,}14 \\cdot 4 \\cdot 10 = 251{,}2$$" },
+      { id: 14, level: 3, typ: "numerisch", frage: "Zylinder Oberflaeche gesamt bei \\(r = 4\\), \\(h = 10\\) (\\(\\pi = 3{,}14\\))?", loesung: 351.68, toleranz: 1, tipp: "\\(O = 2\\pi r^2 + 2\\pi r h\\).", loesungsweg: "$$O = 2 \\cdot 3{,}14 \\cdot 16 + 251{,}2 = 100{,}48 + 251{,}2 = 351{,}68$$" },
+      { id: 15, level: 3, typ: "numerisch", frage: "Quader mit Volumen \\(240\\,\\text{cm}^3\\), Grundflaeche \\(a = 5\\), \\(b = 6\\). Hoehe in cm?", loesung: 8, toleranz: 0, tipp: "\\(h = V/(ab)\\).", loesungsweg: "$$h = 240/30 = 8$$" },
+      { id: 16, level: 3, typ: "numerisch", frage: "Zylinder \\(V = 628\\,\\text{cm}^3\\), \\(r = 5\\) (\\(\\pi = 3{,}14\\)). Hoehe in cm?", loesung: 8, toleranz: 0.1, tipp: "\\(h = V/(\\pi r^2)\\).", loesungsweg: "$$h = 628/(3{,}14 \\cdot 25) = 628/78{,}5 = 8$$" },
+      { id: 17, level: 3, typ: "mc", frage: "Ein Wuerfel hat Volumen \\(64\\,\\text{cm}^3\\). Kantenlaenge?", optionen: ["\\(2\\)", "\\(4\\)", "\\(6\\)", "\\(8\\)"], korrekt: 1, tipp: "\\(\\sqrt[3]{64}\\).", loesungsweg: "$$a = \\sqrt[3]{64} = 4\\,\\text{cm}$$" },
+      { id: 18, level: 3, typ: "numerisch", frage: "Quadratisches Prisma, Grundseite \\(a = 6\\), Hoehe 10. Volumen?", loesung: 360, toleranz: 0, tipp: "\\(G = 36\\).", loesungsweg: "$$V = 36 \\cdot 10 = 360$$" },
+      // LEVEL 4
+      { id: 19, level: 4, typ: "numerisch", frage: "Wassertank zylindrisch, \\(r = 50\\,\\text{cm}\\), \\(h = 100\\,\\text{cm}\\). Wie viele Liter (\\(\\pi = 3{,}14\\), 1 L = 1000 cm\\(^3\\))?", loesung: 785, toleranz: 2, tipp: "\\(V\\) in cm\\(^3\\), dann /1000.", loesungsweg: "$$V = 3{,}14 \\cdot 2500 \\cdot 100 = 785\\,000\\,\\text{cm}^3 = 785\\,\\text{L}$$" },
+      { id: 20, level: 4, typ: "numerisch", frage: "Dreiecksprisma: gleichschenkliges Dreieck Basis 6, Hoehe 4, Prismenhoehe 10. Volumen?", loesung: 120, toleranz: 0, tipp: "\\(G = 0{,}5 \\cdot 6 \\cdot 4 = 12\\).", loesungsweg: "$$V = 12 \\cdot 10 = 120$$" },
+      { id: 21, level: 4, typ: "numerisch", frage: "Zylinder, \\(d = 10\\), \\(h = 20\\). Volumen (\\(\\pi = 3{,}14\\))?", loesung: 1570, toleranz: 5, tipp: "\\(r = 5\\).", loesungsweg: "$$V = 3{,}14 \\cdot 25 \\cdot 20 = 1570$$" },
+      { id: 22, level: 4, typ: "numerisch", frage: "Quader-Aquarium \\(60 \\times 30 \\times 40\\,\\text{cm}\\). Volumen in Liter?", loesung: 72, toleranz: 0, tipp: "72\\,000 cm\\(^3\\).", loesungsweg: "$$V = 72\\,000\\,\\text{cm}^3 = 72\\,\\text{L}$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Rohr: Aussenradius \\(5\\), Innenradius \\(3\\), Laenge \\(20\\). Materialvolumen (\\(\\pi = 3{,}14\\))?", loesung: 1004.8, toleranz: 2, tipp: "\\(\\pi (R^2 - r^2) h\\).", loesungsweg: "$$V = 3{,}14 \\cdot 16 \\cdot 20 = 1004{,}8$$" },
+      { id: 24, level: 4, typ: "mc", frage: "Bei Verdopplung des Zylinderradius, gleichbleibender Hoehe, vervielfacht sich \\(V\\) um ...", optionen: ["\\(2\\)", "\\(3\\)", "\\(4\\)", "\\(8\\)"], korrekt: 2, tipp: "\\(V \\propto r^2\\).", loesungsweg: "$$r \\to 2r \\implies r^2 \\to 4r^2$$" },
+      // LEVEL 5
+      { id: 25, level: 5, typ: "numerisch", frage: "Zylinder \\(V = 1000\\,\\text{cm}^3\\), \\(h = 10\\) (\\(\\pi = 3{,}14\\)). Radius?", loesung: 5.64, toleranz: 0.1, tipp: "\\(r = \\sqrt{V/(\\pi h)}\\).", loesungsweg: "$$r = \\sqrt{1000/31{,}4} \\approx 5{,}64$$" },
+      { id: 26, level: 5, typ: "numerisch", frage: "Wuerfeloberflaeche eines Wuerfels mit \\(V = 216\\,\\text{cm}^3\\)?", loesung: 216, toleranz: 0, tipp: "\\(a = 6\\), \\(O = 6a^2\\).", loesungsweg: "$$a = 6, O = 6 \\cdot 36 = 216\\,\\text{cm}^2$$" },
+      { id: 27, level: 5, typ: "numerisch", frage: "Ein Quader mit quadratischer Grundflaeche hat Volumen 500 und Grundkante 10. Hoehe?", loesung: 5, toleranz: 0, tipp: "\\(h = 500/100\\).", loesungsweg: "$$h = 5$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "Zylinder Mantelflaeche \\(M = 125{,}6\\) bei \\(h = 10\\) (\\(\\pi = 3{,}14\\)). Radius?", loesung: 2, toleranz: 0.05, tipp: "\\(r = M/(2\\pi h)\\).", loesungsweg: "$$r = 125{,}6/(2 \\cdot 3{,}14 \\cdot 10) = 2$$" },
+      { id: 29, level: 5, typ: "numerisch", frage: "Dose: \\(r = 4\\,\\text{cm}\\), \\(h = 12\\,\\text{cm}\\). Wie viel Blech fuer Mantel + Boden + Deckel (\\(\\pi = 3{,}14\\))?", loesung: 401.92, toleranz: 2, tipp: "\\(O = 2\\pi r^2 + 2\\pi r h\\).", loesungsweg: "$$O = 2 \\cdot 3{,}14 \\cdot 16 + 2 \\cdot 3{,}14 \\cdot 48 = 100{,}48 + 301{,}44 = 401{,}92$$" },
+      { id: 30, level: 5, typ: "mc", frage: "Wie viele Liter sind \\(1\\,\\text{m}^3\\)?", optionen: ["\\(10\\)", "\\(100\\)", "\\(1000\\)", "\\(10\\,000\\)"], korrekt: 2, tipp: "1 L = 1 dm\\(^3\\), 1 m\\(^3\\) = 1000 dm\\(^3\\).", loesungsweg: "$$1\\,\\text{m}^3 = 1000\\,\\text{L}$$" },
+      // LEVEL 6
+      { id: 31, level: 6, typ: "numerisch", frage: "Schwimmbad \\(10\\,\\text{m} \\times 5\\,\\text{m} \\times 2\\,\\text{m}\\). Wie viele Kubikmeter fehlen, wenn nur \\(90\\,\\text{m}^3\\) eingefuellt sind?", loesung: 10, toleranz: 0, tipp: "Gesamtvolumen 100.", loesungsweg: "$$V = 100, \\text{fehlen} = 10\\,\\text{m}^3$$" },
+      { id: 32, level: 6, typ: "numerisch", frage: "Zylindrisches Fass \\(r = 30\\,\\text{cm}\\), \\(h = 80\\,\\text{cm}\\). Wasser bis 60 cm Hoehe, wie viele Liter (\\(\\pi = 3{,}14\\))?", loesung: 169.56, toleranz: 0.5, tipp: "\\(V = \\pi \\cdot 900 \\cdot 60\\).", loesungsweg: "$$V = 3{,}14 \\cdot 900 \\cdot 60 = 169\\,560\\,\\text{cm}^3 = 169{,}56\\,\\text{L}$$" },
+      { id: 33, level: 6, typ: "numerisch", frage: "Ein Wuerfel und ein Zylinder haben gleiches Volumen \\(V = 1000\\). Der Zylinder hat \\(h = 10\\). Wuerfelkante minus Zylinderradius (\\(\\pi = 3{,}14\\), auf Ganze runden)?", loesung: 4, toleranz: 0.3, tipp: "Wuerfel \\(a = 10\\), Zylinder \\(r = \\sqrt{100/\\pi} \\approx 5{,}64\\).", loesungsweg: "$$10 - 5{,}64 \\approx 4{,}36 \\approx 4$$" },
+      { id: 34, level: 6, typ: "numerisch", frage: "Haus mit Prismendach: Grundflaeche des Dachs Dreieck (Basis 8, Hoehe 3), Laenge 10. Dachvolumen?", loesung: 120, toleranz: 0, tipp: "\\(G = 12\\).", loesungsweg: "$$V = 12 \\cdot 10 = 120$$" },
+      { id: 35, level: 6, typ: "mc", frage: "Zwei Zylinder: Zylinder B hat doppelten Radius und halbe Hoehe von A. Verhaeltnis \\(V_A : V_B\\)?", optionen: ["\\(1:1\\)", "\\(1:2\\)", "\\(2:1\\)", "\\(1:4\\)"], korrekt: 1, tipp: "\\(V_B = \\pi (2r)^2 (h/2) = 2 \\pi r^2 h\\).", loesungsweg: "$$V_B = 2 V_A$$" },
+      { id: 36, level: 6, typ: "numerisch", frage: "Zylindrische Vase mit \\(r = 5\\,\\text{cm}\\), in die \\(314\\,\\text{cm}^3\\) Wasser fliessen. Wasserhoehe in cm (\\(\\pi = 3{,}14\\))?", loesung: 4, toleranz: 0, tipp: "\\(h = V/(\\pi r^2)\\).", loesungsweg: "$$h = 314/(3{,}14 \\cdot 25) = 4$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

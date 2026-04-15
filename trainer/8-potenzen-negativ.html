@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potenzen mit negativen Exponenten - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-potenzen-negativ';
+    const THEMA_CONFIG = { name: 'Potenzen mit negativen Exponenten', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id: 1, level: 1, typ: "mc", frage: "Was bedeutet \\(a^{-1}\\)?", optionen: ["\\(-a\\)", "\\(\\frac{1}{a}\\)", "\\(0\\)", "\\(a\\)"], korrekt: 1, tipp: "Kehrwert.", loesungsweg: "\\(a^{-1} = \\frac{1}{a}\\) (für \\(a \\neq 0\\))." },
+      { id: 2, level: 1, typ: "mc", frage: "Was ist \\(a^{-n}\\)?", optionen: ["\\(-a^n\\)", "\\(\\frac{1}{a^n}\\)", "\\(a^n\\)", "\\(0\\)"], korrekt: 1, tipp: "Kehrwert der Potenz.", loesungsweg: "\\(a^{-n} = \\frac{1}{a^n}\\)." },
+      { id: 3, level: 1, typ: "mc", frage: "Was ist \\(a^0\\) (für \\(a \\neq 0\\))?", optionen: ["\\(0\\)", "\\(1\\)", "\\(a\\)", "unbestimmt"], korrekt: 1, tipp: "Potenzgesetz.", loesungsweg: "\\(a^0 = 1\\) für jede Zahl \\(a \\neq 0\\)." },
+      { id: 4, level: 1, typ: "numerisch", frage: "Berechne \\(2^{-1}\\) als Dezimalzahl.", loesung: 0.5, toleranz: 0.01, tipp: "\\(\\frac{1}{2}\\).", loesungsweg: "$$2^{-1} = \\frac{1}{2} = 0{,}5$$" },
+      { id: 5, level: 1, typ: "numerisch", frage: "Berechne \\(5^0\\).", loesung: 1, toleranz: 0, tipp: "\\(a^0 = 1\\).", loesungsweg: "$$5^0 = 1$$" },
+      { id: 6, level: 1, typ: "numerisch", frage: "Berechne \\(10^{-1}\\) als Dezimalzahl.", loesung: 0.1, toleranz: 0.001, tipp: "Kehrwert von 10.", loesungsweg: "$$10^{-1} = \\frac{1}{10} = 0{,}1$$" },
+      // LEVEL 2
+      { id: 7, level: 2, typ: "mc", frage: "\\(3^{-2}\\) ist gleich …", optionen: ["\\(-9\\)", "\\(\\frac{1}{9}\\)", "\\(-6\\)", "\\(9\\)"], korrekt: 1, tipp: "\\(\\frac{1}{3^2}\\).", loesungsweg: "\\(3^{-2} = \\frac{1}{3^2} = \\frac{1}{9}\\)." },
+      { id: 8, level: 2, typ: "mc", frage: "\\(4^{-2}\\) ist gleich …", optionen: ["\\(\\frac{1}{16}\\)", "\\(-16\\)", "\\(-8\\)", "\\(\\frac{1}{8}\\)"], korrekt: 0, tipp: "\\(\\frac{1}{16}\\).", loesungsweg: "\\(4^{-2} = \\frac{1}{16}\\)." },
+      { id: 9, level: 2, typ: "mc", frage: "\\((\\frac{1}{2})^{-1}\\) ist gleich …", optionen: ["\\(\\frac{1}{2}\\)", "\\(-\\frac{1}{2}\\)", "\\(2\\)", "\\(-2\\)"], korrekt: 2, tipp: "Kehrwert des Bruchs.", loesungsweg: "\\((\\frac{1}{2})^{-1} = 2\\)." },
+      { id: 10, level: 2, typ: "numerisch", frage: "Berechne \\(2^{-3}\\) als Dezimalzahl.", loesung: 0.125, toleranz: 0.001, tipp: "\\(\\frac{1}{8}\\).", loesungsweg: "$$2^{-3} = \\frac{1}{8} = 0{,}125$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "Berechne \\(10^{-3}\\) als Dezimalzahl.", loesung: 0.001, toleranz: 0.0001, tipp: "\\(\\frac{1}{1000}\\).", loesungsweg: "$$10^{-3} = \\frac{1}{1000} = 0{,}001$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "Berechne \\(5^{-2}\\) als Dezimalzahl.", loesung: 0.04, toleranz: 0.001, tipp: "\\(\\frac{1}{25}\\).", loesungsweg: "$$5^{-2} = \\frac{1}{25} = 0{,}04$$" },
+      // LEVEL 3 (Potenzgesetze)
+      { id: 13, level: 3, typ: "mc", frage: "\\(a^3 \\cdot a^{-1}\\) ergibt …", optionen: ["\\(a^{-3}\\)", "\\(a^2\\)", "\\(a^4\\)", "\\(a^{-2}\\)"], korrekt: 1, tipp: "Exponenten addieren.", loesungsweg: "\\(a^3 \\cdot a^{-1} = a^{3+(-1)} = a^2\\)." },
+      { id: 14, level: 3, typ: "mc", frage: "\\(\\frac{a^5}{a^7}\\) ergibt …", optionen: ["\\(a^{12}\\)", "\\(a^{-2}\\)", "\\(a^2\\)", "\\(\\frac{1}{a^{12}}\\)"], korrekt: 1, tipp: "Exponenten subtrahieren.", loesungsweg: "\\(\\frac{a^5}{a^7} = a^{5-7} = a^{-2}\\)." },
+      { id: 15, level: 3, typ: "mc", frage: "\\((a^{-2})^3\\) ergibt …", optionen: ["\\(a^{-6}\\)", "\\(a^6\\)", "\\(a\\)", "\\(a^{-5}\\)"], korrekt: 0, tipp: "Exponenten multiplizieren.", loesungsweg: "\\((a^{-2})^3 = a^{-6}\\)." },
+      { id: 16, level: 3, typ: "numerisch", frage: "Berechne \\(2^4 \\cdot 2^{-2}\\).", loesung: 4, toleranz: 0, tipp: "\\(2^{4-2} = 2^2\\).", loesungsweg: "\\(2^{4-2} = 2^2 = 4\\)." },
+      { id: 17, level: 3, typ: "numerisch", frage: "Berechne \\(\\frac{3^5}{3^3}\\).", loesung: 9, toleranz: 0, tipp: "\\(3^{5-3}\\).", loesungsweg: "\\(3^2 = 9\\)." },
+      { id: 18, level: 3, typ: "numerisch", frage: "Berechne \\((2^{-2})^{-2}\\).", loesung: 16, toleranz: 0, tipp: "\\(2^4\\).", loesungsweg: "\\((2^{-2})^{-2} = 2^4 = 16\\)." },
+      // LEVEL 4 (wissenschaftliche Schreibweise)
+      { id: 19, level: 4, typ: "mc", frage: "\\(0{,}001\\) in Zehnerpotenz ist …", optionen: ["\\(10^{-2}\\)", "\\(10^{-3}\\)", "\\(10^{3}\\)", "\\(10^{-4}\\)"], korrekt: 1, tipp: "3 Nullen nach Komma.", loesungsweg: "\\(0{,}001 = 10^{-3}\\)." },
+      { id: 20, level: 4, typ: "mc", frage: "\\(2 \\cdot 10^{-4}\\) ausgeschrieben ist …", optionen: ["\\(0{,}0002\\)", "\\(0{,}002\\)", "\\(0{,}00002\\)", "\\(2000\\)"], korrekt: 0, tipp: "4 Stellen nach dem Komma.", loesungsweg: "\\(2 \\cdot 10^{-4} = 0{,}0002\\)." },
+      { id: 21, level: 4, typ: "mc", frage: "\\(0{,}00045\\) in wissenschaftlicher Schreibweise ist …", optionen: ["\\(4{,}5 \\cdot 10^{-4}\\)", "\\(45 \\cdot 10^{-5}\\)", "\\(4{,}5 \\cdot 10^{-5}\\)", "\\(0{,}45 \\cdot 10^{-3}\\)"], korrekt: 0, tipp: "Komma so setzen, dass Mantisse in [1;10[.", loesungsweg: "\\(0{,}00045 = 4{,}5 \\cdot 10^{-4}\\)." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Schreibe \\(3 \\cdot 10^{-2}\\) als Dezimalzahl.", loesung: 0.03, toleranz: 0.001, tipp: "\\(\\frac{3}{100}\\).", loesungsweg: "\\(3 \\cdot 10^{-2} = 0{,}03\\)." },
+      { id: 23, level: 4, typ: "numerisch", frage: "Schreibe \\(7 \\cdot 10^{-3}\\) als Dezimalzahl.", loesung: 0.007, toleranz: 0.0001, tipp: "3 Stellen.", loesungsweg: "\\(7 \\cdot 10^{-3} = 0{,}007\\)." },
+      { id: 24, level: 4, typ: "numerisch", frage: "Berechne \\(2 \\cdot 10^3 \\cdot 4 \\cdot 10^{-1}\\).", loesung: 800, toleranz: 0, tipp: "\\(8 \\cdot 10^2\\).", loesungsweg: "\\(8 \\cdot 10^{3+(-1)} = 8 \\cdot 10^2 = 800\\)." },
+      // LEVEL 5
+      { id: 25, level: 5, typ: "mc", frage: "\\(2^{-3} \\cdot 2^5\\) ergibt …", optionen: ["\\(2^{-8}\\)", "\\(2^2 = 4\\)", "\\(2^8\\)", "\\(-4\\)"], korrekt: 1, tipp: "Exponenten addieren.", loesungsweg: "\\(2^{-3+5} = 2^2 = 4\\)." },
+      { id: 26, level: 5, typ: "mc", frage: "\\(\\frac{10^2}{10^{-3}}\\) ergibt …", optionen: ["\\(10^{-1}\\)", "\\(10^5\\)", "\\(10^{-5}\\)", "\\(10\\)"], korrekt: 1, tipp: "\\(2 - (-3) = 5\\).", loesungsweg: "\\(\\frac{10^2}{10^{-3}} = 10^{2-(-3)} = 10^5\\)." },
+      { id: 27, level: 5, typ: "mc", frage: "Welche Größe ist am kleinsten?", optionen: ["\\(10^{-2}\\)", "\\(10^{-4}\\)", "\\(10^{-1}\\)", "\\(10^0\\)"], korrekt: 1, tipp: "Je kleiner der Exponent, desto kleiner.", loesungsweg: "\\(10^{-4} = 0{,}0001\\) ist die kleinste Zahl." },
+      { id: 28, level: 5, typ: "numerisch", frage: "Berechne \\(5^{-2} \\cdot 5^3\\).", loesung: 5, toleranz: 0, tipp: "\\(5^1\\).", loesungsweg: "\\(5^{-2+3} = 5^1 = 5\\)." },
+      { id: 29, level: 5, typ: "numerisch", frage: "Berechne \\((2 \\cdot 10^{-1})^2\\).", loesung: 0.04, toleranz: 0.001, tipp: "Jeden Faktor quadrieren.", loesungsweg: "\\((2)^2 \\cdot (10^{-1})^2 = 4 \\cdot 10^{-2} = 0{,}04\\)." },
+      { id: 30, level: 5, typ: "numerisch", frage: "Berechne \\(\\frac{6 \\cdot 10^{-2}}{3 \\cdot 10^{-4}}\\).", loesung: 200, toleranz: 0, tipp: "Zahlen & Potenzen getrennt.", loesungsweg: "\\(2 \\cdot 10^{-2-(-4)} = 2 \\cdot 10^2 = 200\\)." },
+      // LEVEL 6
+      { id: 31, level: 6, typ: "mc", frage: "Ein Bakterium ist \\(2 \\cdot 10^{-6}\\) m groß. In mm ist das …", optionen: ["\\(2 \\cdot 10^{-3}\\) mm", "\\(2\\) mm", "\\(0{,}2\\) mm", "\\(2 \\cdot 10^{-9}\\) mm"], korrekt: 0, tipp: "1 m = 1000 mm, also \\(\\cdot 10^3\\).", loesungsweg: "\\(2 \\cdot 10^{-6}\\,m = 2 \\cdot 10^{-6+3}\\,mm = 2 \\cdot 10^{-3}\\,mm\\)." },
+      { id: 32, level: 6, typ: "mc", frage: "Welcher Ausdruck ist gleich \\(\\frac{1}{a^{-3}}\\)?", optionen: ["\\(-a^3\\)", "\\(a^{-3}\\)", "\\(a^3\\)", "\\(\\frac{1}{a^3}\\)"], korrekt: 2, tipp: "Doppelter Kehrwert.", loesungsweg: "\\(\\frac{1}{a^{-3}} = a^3\\)." },
+      { id: 33, level: 6, typ: "mc", frage: "\\(\\left(\\frac{2}{3}\\right)^{-2}\\) ist gleich …", optionen: ["\\(\\frac{4}{9}\\)", "\\(\\frac{9}{4}\\)", "\\(-\\frac{4}{9}\\)", "\\(\\frac{3}{2}\\)"], korrekt: 1, tipp: "Kehrwert und quadrieren.", loesungsweg: "\\(\\left(\\frac{2}{3}\\right)^{-2} = \\left(\\frac{3}{2}\\right)^2 = \\frac{9}{4}\\)." },
+      { id: 34, level: 6, typ: "numerisch", frage: "Masse eines Elektrons: \\(9 \\cdot 10^{-31}\\) kg. In Gramm ist das \\(9 \\cdot 10^{n}\\). Gib \\(n\\) an.", loesung: -28, toleranz: 0, tipp: "1 kg = 1000 g → \\(\\cdot 10^3\\).", loesungsweg: "\\(9 \\cdot 10^{-31}\\,kg = 9 \\cdot 10^{-31+3}\\,g = 9 \\cdot 10^{-28}\\,g\\)." },
+      { id: 35, level: 6, typ: "numerisch", frage: "Vereinfache \\(\\frac{a^3 \\cdot a^{-5}}{a^{-4}}\\) zu \\(a^k\\). Gib \\(k\\) an.", loesung: 2, toleranz: 0, tipp: "Exponenten-Arithmetik.", loesungsweg: "\\(a^{3 + (-5) - (-4)} = a^2\\), also \\(k = 2\\)." },
+      { id: 36, level: 6, typ: "numerisch", frage: "Berechne \\(\\left(\\frac{1}{2}\\right)^{-3}\\).", loesung: 8, toleranz: 0, tipp: "\\(2^3\\).", loesungsweg: "\\(\\left(\\frac{1}{2}\\right)^{-3} = 2^3 = 8\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

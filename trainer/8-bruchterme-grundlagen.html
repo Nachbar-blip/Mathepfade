@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruchterme - Grundlagen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-bruchterme-grundlagen';
+    const THEMA_CONFIG = { name: 'Bruchterme - Grundlagen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 ==========
+      { id: 1, level: 1, typ: "mc", frage: "Was ist ein Bruchterm?", optionen: ["Ein Term ohne Variable", "Ein Term, in dessen Nenner eine Variable vorkommt", "Eine Gleichung mit Bruch", "Ein Dezimalbruch"], korrekt: 1, tipp: "Entscheidend ist, wo die Variable steht.", loesungsweg: "Ein <b>Bruchterm</b> ist ein Term, bei dem im Nenner (mindestens) eine Variable vorkommt, z. B. \\(\\frac{3}{x}\\)." },
+      { id: 2, level: 1, typ: "mc", frage: "Welcher Ausdruck ist ein Bruchterm?", optionen: ["\\(\\frac{x}{3}\\)", "\\(\\frac{5}{x+1}\\)", "\\(\\frac{2}{7}\\)", "\\(x^2 + 1\\)"], korrekt: 1, tipp: "Variable muss im Nenner stehen.", loesungsweg: "\\(\\frac{5}{x+1}\\) hat die Variable \\(x\\) im Nenner - das ist ein Bruchterm." },
+      { id: 3, level: 1, typ: "mc", frage: "Für welchen Wert von \\(x\\) ist \\(\\frac{1}{x}\\) nicht definiert?", optionen: ["\\(x = 1\\)", "\\(x = -1\\)", "\\(x = 0\\)", "Für alle \\(x\\)"], korrekt: 2, tipp: "Durch null darf man nicht teilen.", loesungsweg: "Der Nenner darf nicht 0 sein. Also ist \\(\\frac{1}{x}\\) für \\(x = 0\\) nicht definiert." },
+      { id: 4, level: 1, typ: "numerisch", frage: "Berechne den Wert von \\(\\frac{12}{x}\\) für \\(x = 3\\).", loesung: 4, toleranz: 0, tipp: "\\(\\frac{12}{3}\\) ausrechnen.", loesungsweg: "$$\\frac{12}{3} = 4$$" },
+      { id: 5, level: 1, typ: "numerisch", frage: "Berechne den Wert von \\(\\frac{x+2}{x}\\) für \\(x = 2\\).", loesung: 2, toleranz: 0, tipp: "\\(\\frac{2+2}{2}\\).", loesungsweg: "$$\\frac{2+2}{2} = \\frac{4}{2} = 2$$" },
+      { id: 6, level: 1, typ: "numerisch", frage: "Berechne den Wert von \\(\\frac{10}{x-1}\\) für \\(x = 6\\).", loesung: 2, toleranz: 0, tipp: "Nenner: \\(6-1=5\\).", loesungsweg: "$$\\frac{10}{6-1} = \\frac{10}{5} = 2$$" },
+      // ========== LEVEL 2 ==========
+      { id: 7, level: 2, typ: "mc", frage: "Für welche \\(x\\) ist \\(\\frac{3}{x-5}\\) nicht definiert?", optionen: ["\\(x = 0\\)", "\\(x = 3\\)", "\\(x = 5\\)", "\\(x = -5\\)"], korrekt: 2, tipp: "Nenner gleich 0 setzen.", loesungsweg: "\\(x - 5 = 0 \\Rightarrow x = 5\\). Der Definitionsbereich ist \\(D = \\mathbb{Q} \\setminus \\{5\\}\\)." },
+      { id: 8, level: 2, typ: "mc", frage: "Welcher Definitionsbereich gilt für \\(\\frac{x}{x+2}\\)?", optionen: ["\\(D = \\mathbb{Q}\\)", "\\(D = \\mathbb{Q} \\setminus \\{0\\}\\)", "\\(D = \\mathbb{Q} \\setminus \\{2\\}\\)", "\\(D = \\mathbb{Q} \\setminus \\{-2\\}\\)"], korrekt: 3, tipp: "Nenner \\(x+2=0\\).", loesungsweg: "\\(x + 2 = 0 \\Rightarrow x = -2\\). Also \\(D = \\mathbb{Q} \\setminus \\{-2\\}\\)." },
+      { id: 9, level: 2, typ: "mc", frage: "Welche Werte schließt \\(\\frac{1}{x(x-3)}\\) aus?", optionen: ["\\(x = 0\\) und \\(x = 3\\)", "Nur \\(x = 0\\)", "Nur \\(x = 3\\)", "\\(x = -3\\) und \\(x = 0\\)"], korrekt: 0, tipp: "Beide Faktoren im Nenner prüfen.", loesungsweg: "\\(x = 0\\) oder \\(x - 3 = 0\\). Also \\(x \\neq 0\\) und \\(x \\neq 3\\)." },
+      { id: 10, level: 2, typ: "numerisch", frage: "Für welchen Wert ist \\(\\frac{4}{x-7}\\) nicht definiert?", loesung: 7, toleranz: 0, tipp: "Nenner = 0.", loesungsweg: "$$x - 7 = 0 \\implies x = 7$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "Für welchen Wert ist \\(\\frac{x}{2x-6}\\) nicht definiert?", loesung: 3, toleranz: 0, tipp: "\\(2x - 6 = 0\\).", loesungsweg: "$$2x - 6 = 0 \\implies x = 3$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "Berechne \\(\\frac{x^2+1}{x}\\) für \\(x = 4\\).", loesung: 4.25, toleranz: 0.01, tipp: "\\(\\frac{16+1}{4}\\).", loesungsweg: "$$\\frac{17}{4} = 4{,}25$$" },
+      // ========== LEVEL 3 ==========
+      { id: 13, level: 3, typ: "mc", frage: "Kürze: \\(\\frac{6x}{9}\\) ergibt …", optionen: ["\\(\\frac{2x}{3}\\)", "\\(\\frac{3x}{2}\\)", "\\(\\frac{x}{3}\\)", "\\(\\frac{6}{9}\\)"], korrekt: 0, tipp: "ggT von 6 und 9 ist 3.", loesungsweg: "$$\\frac{6x}{9} = \\frac{2x}{3}$$" },
+      { id: 14, level: 3, typ: "mc", frage: "Kürze: \\(\\frac{4x^2}{2x}\\) ergibt …", optionen: ["\\(2x^2\\)", "\\(2x\\)", "\\(x\\)", "\\(\\frac{2}{x}\\)"], korrekt: 1, tipp: "Zahl und Variable getrennt kürzen.", loesungsweg: "$$\\frac{4x^2}{2x} = \\frac{4}{2} \\cdot \\frac{x^2}{x} = 2x$$" },
+      { id: 15, level: 3, typ: "mc", frage: "Kürze: \\(\\frac{3(x+1)}{6(x+1)}\\) ergibt …", optionen: ["\\(\\frac{1}{2}\\)", "\\(\\frac{1}{2x}\\)", "\\(\\frac{x+1}{2}\\)", "\\(2\\)"], korrekt: 0, tipp: "\\((x+1)\\) kürzen.", loesungsweg: "$$\\frac{3(x+1)}{6(x+1)} = \\frac{3}{6} = \\frac{1}{2}$$" },
+      { id: 16, level: 3, typ: "numerisch", frage: "Welche Zahl ergibt \\(\\frac{8x}{12}\\) nach dem Kürzen im Zähler (ohne \\(x\\)), wenn die Form \\(\\frac{a \\cdot x}{b}\\) mit kleinstem \\(b\\) gewählt wird? Gib \\(b\\) an.", loesung: 3, toleranz: 0, tipp: "ggT(8,12) = 4.", loesungsweg: "$$\\frac{8x}{12} = \\frac{2x}{3}, \\quad b = 3$$" },
+      { id: 17, level: 3, typ: "numerisch", frage: "Berechne \\(\\frac{5x-10}{5}\\) für \\(x = 4\\) nach dem Kürzen (\\(=x-2\\)).", loesung: 2, toleranz: 0, tipp: "\\(\\frac{5x-10}{5} = x-2\\).", loesungsweg: "$$\\frac{5x-10}{5} = x - 2 = 4 - 2 = 2$$" },
+      { id: 18, level: 3, typ: "numerisch", frage: "Berechne \\(\\frac{x^2}{x}\\) für \\(x = 9\\).", loesung: 9, toleranz: 0, tipp: "Kürzen: \\(\\frac{x^2}{x} = x\\).", loesungsweg: "$$\\frac{x^2}{x} = x = 9$$" },
+      // ========== LEVEL 4 ==========
+      { id: 19, level: 4, typ: "mc", frage: "Addiere: \\(\\frac{2}{x} + \\frac{3}{x}\\).", optionen: ["\\(\\frac{5}{2x}\\)", "\\(\\frac{5}{x}\\)", "\\(\\frac{6}{x^2}\\)", "\\(\\frac{5}{x^2}\\)"], korrekt: 1, tipp: "Gleicher Nenner: Zähler addieren.", loesungsweg: "$$\\frac{2}{x} + \\frac{3}{x} = \\frac{5}{x}$$" },
+      { id: 20, level: 4, typ: "mc", frage: "Multipliziere: \\(\\frac{2}{x} \\cdot \\frac{x}{5}\\).", optionen: ["\\(\\frac{2}{5}\\)", "\\(\\frac{2x}{5x}\\)", "\\(\\frac{2}{5x^2}\\)", "\\(\\frac{2x^2}{5}\\)"], korrekt: 0, tipp: "\\(x\\) kürzt sich.", loesungsweg: "$$\\frac{2}{x} \\cdot \\frac{x}{5} = \\frac{2x}{5x} = \\frac{2}{5}$$" },
+      { id: 21, level: 4, typ: "mc", frage: "Dividiere: \\(\\frac{a}{3} : \\frac{a}{6}\\).", optionen: ["\\(\\frac{a^2}{18}\\)", "\\(2\\)", "\\(\\frac{1}{2}\\)", "\\(\\frac{a}{2}\\)"], korrekt: 1, tipp: "Kehrwert multiplizieren.", loesungsweg: "$$\\frac{a}{3} \\cdot \\frac{6}{a} = \\frac{6a}{3a} = 2$$" },
+      { id: 22, level: 4, typ: "numerisch", frage: "Berechne \\(\\frac{1}{x} + \\frac{1}{x}\\) für \\(x = 4\\).", loesung: 0.5, toleranz: 0.01, tipp: "\\(\\frac{2}{x} = \\frac{2}{4}\\).", loesungsweg: "$$\\frac{2}{x} = \\frac{2}{4} = 0{,}5$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Berechne \\(\\frac{6}{x} - \\frac{2}{x}\\) für \\(x = 2\\).", loesung: 2, toleranz: 0, tipp: "\\(\\frac{4}{x}\\), dann \\(x=2\\).", loesungsweg: "$$\\frac{4}{x} = \\frac{4}{2} = 2$$" },
+      { id: 24, level: 4, typ: "numerisch", frage: "Berechne \\(\\frac{x}{3} \\cdot \\frac{9}{x}\\) für \\(x = 7\\).", loesung: 3, toleranz: 0, tipp: "\\(x\\) kürzt sich: Ergebnis ist \\(3\\) unabhängig von \\(x\\).", loesungsweg: "$$\\frac{x}{3} \\cdot \\frac{9}{x} = \\frac{9x}{3x} = 3$$" },
+      // ========== LEVEL 5 ==========
+      { id: 25, level: 5, typ: "mc", frage: "Addiere: \\(\\frac{1}{x} + \\frac{1}{2x}\\).", optionen: ["\\(\\frac{2}{3x}\\)", "\\(\\frac{3}{2x}\\)", "\\(\\frac{1}{2x^2}\\)", "\\(\\frac{2}{x}\\)"], korrekt: 1, tipp: "Hauptnenner \\(2x\\).", loesungsweg: "$$\\frac{1}{x} + \\frac{1}{2x} = \\frac{2}{2x} + \\frac{1}{2x} = \\frac{3}{2x}$$" },
+      { id: 26, level: 5, typ: "mc", frage: "Addiere: \\(\\frac{1}{x} + \\frac{1}{y}\\).", optionen: ["\\(\\frac{2}{xy}\\)", "\\(\\frac{x+y}{xy}\\)", "\\(\\frac{1}{x+y}\\)", "\\(\\frac{xy}{x+y}\\)"], korrekt: 1, tipp: "Hauptnenner \\(xy\\).", loesungsweg: "$$\\frac{1}{x} + \\frac{1}{y} = \\frac{y}{xy} + \\frac{x}{xy} = \\frac{x+y}{xy}$$" },
+      { id: 27, level: 5, typ: "mc", frage: "Kürze: \\(\\frac{x^2 - 4}{x - 2}\\).", optionen: ["\\(x - 2\\)", "\\(x + 2\\)", "\\(x^2 - 2\\)", "\\(4\\)"], korrekt: 1, tipp: "Dritte binomische Formel.", loesungsweg: "$$\\frac{x^2 - 4}{x-2} = \\frac{(x-2)(x+2)}{x-2} = x+2$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "Berechne \\(\\frac{1}{x} + \\frac{1}{y}\\) für \\(x = 2\\), \\(y = 3\\) als Dezimalzahl.", loesung: 0.833, toleranz: 0.01, tipp: "\\(\\frac{1}{2} + \\frac{1}{3} = \\frac{5}{6}\\).", loesungsweg: "$$\\frac{1}{2} + \\frac{1}{3} = \\frac{3+2}{6} = \\frac{5}{6} \\approx 0{,}833$$" },
+      { id: 29, level: 5, typ: "numerisch", frage: "Berechne \\(\\frac{x^2 - 9}{x - 3}\\) für \\(x = 10\\) (erst kürzen!).", loesung: 13, toleranz: 0, tipp: "Ergibt \\(x + 3\\).", loesungsweg: "$$\\frac{(x-3)(x+3)}{x-3} = x + 3 = 13$$" },
+      { id: 30, level: 5, typ: "numerisch", frage: "Berechne \\(\\frac{2}{x} + \\frac{3}{2x}\\) für \\(x = 2\\).", loesung: 1.75, toleranz: 0.01, tipp: "Hauptnenner \\(2x\\): \\(\\frac{7}{2x}\\).", loesungsweg: "$$\\frac{4}{2x} + \\frac{3}{2x} = \\frac{7}{2x} = \\frac{7}{4} = 1{,}75$$" },
+      // ========== LEVEL 6 ==========
+      { id: 31, level: 6, typ: "mc", frage: "Welcher Bruchterm ist äquivalent zu \\(\\frac{x+3}{x^2 - 9}\\)?", optionen: ["\\(\\frac{1}{x-3}\\)", "\\(\\frac{1}{x+3}\\)", "\\(x - 3\\)", "\\(\\frac{x+3}{x-3}\\)"], korrekt: 0, tipp: "Nenner faktorisieren: \\(x^2-9 = (x-3)(x+3)\\).", loesungsweg: "$$\\frac{x+3}{(x-3)(x+3)} = \\frac{1}{x-3}$$" },
+      { id: 32, level: 6, typ: "mc", frage: "Welcher Definitionsbereich gehört zu \\(\\frac{5}{x^2 - 1}\\)?", optionen: ["\\(\\mathbb{Q} \\setminus \\{1\\}\\)", "\\(\\mathbb{Q} \\setminus \\{-1\\}\\)", "\\(\\mathbb{Q} \\setminus \\{1; -1\\}\\)", "\\(\\mathbb{Q}\\)"], korrekt: 2, tipp: "\\(x^2 - 1 = (x-1)(x+1)\\).", loesungsweg: "Beide Faktoren null: \\(x = 1\\) oder \\(x = -1\\). \\(D = \\mathbb{Q} \\setminus \\{1; -1\\}\\)." },
+      { id: 33, level: 6, typ: "mc", frage: "Fasse zusammen: \\(\\frac{x}{x+1} + \\frac{1}{x+1}\\).", optionen: ["\\(\\frac{x+1}{x+1} = 1\\)", "\\(\\frac{x}{x+1}\\)", "\\(x\\)", "\\(\\frac{2x}{x+1}\\)"], korrekt: 0, tipp: "Gleicher Nenner - Zähler addieren.", loesungsweg: "$$\\frac{x}{x+1} + \\frac{1}{x+1} = \\frac{x+1}{x+1} = 1$$" },
+      { id: 34, level: 6, typ: "numerisch", frage: "Berechne \\(\\frac{x^2-25}{x-5}\\) für \\(x = 12\\) (kürzen zu \\(x+5\\)).", loesung: 17, toleranz: 0, tipp: "Binomi: \\((x-5)(x+5)\\).", loesungsweg: "$$\\frac{(x-5)(x+5)}{x-5} = x+5 = 17$$" },
+      { id: 35, level: 6, typ: "numerisch", frage: "Für welchen Wert von \\(x\\) wird der Bruchterm \\(\\frac{x-4}{x+2}\\) gleich 0?", loesung: 4, toleranz: 0, tipp: "Zähler = 0 (und Nenner ≠ 0).", loesungsweg: "$$x - 4 = 0 \\implies x = 4$$ (Nenner \\(4+2=6 \\neq 0\\) ✓)" },
+      { id: 36, level: 6, typ: "numerisch", frage: "Berechne \\(\\frac{1}{x} - \\frac{1}{x+1}\\) für \\(x = 2\\) als Bruch \\(\\frac{1}{n}\\). Gib \\(n\\) an.", loesung: 6, toleranz: 0, tipp: "Hauptnenner \\(x(x+1)\\): Ergibt \\(\\frac{1}{x(x+1)}\\).", loesungsweg: "$$\\frac{x+1 - x}{x(x+1)} = \\frac{1}{x(x+1)} = \\frac{1}{2 \\cdot 3} = \\frac{1}{6}$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

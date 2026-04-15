@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Differenzialgleichungen (LK) - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-lk-dgl';
+    const THEMA_CONFIG = { name: 'Differenzialgleichungen (LK)', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 — Grundbegriff ==========
+      { id:1, level:1, typ:"mc", frage:"Was ist eine Differenzialgleichung (DGL)?", optionen:["Eine Gleichung mit Ableitung(en) der gesuchten Funktion","Eine Gleichung ohne Ableitung","Eine Ungleichung","Eine Summe"], korrekt:0, tipp:"Enthält Ableitung.", loesungsweg:"Eine DGL verknüpft \\(y\\), \\(y'\\), ggf. \\(y''\\) usw." },
+      { id:2, level:1, typ:"mc", frage:"Welche DGL beschreibt exponentielles Wachstum?", optionen:["\\(y'=k\\)","\\(y'=k\\cdot y\\)","\\(y=ky\\)","\\(y'=y^2\\)"], korrekt:1, tipp:"Wachstumsrate proportional zum Bestand.", loesungsweg:"\\(y'=ky\\) ist die Grundgleichung exp. Wachstums/Zerfalls." },
+      { id:3, level:1, typ:"mc", frage:"Welche Funktion löst \\(y'=y\\)?", optionen:["\\(y=x\\)","\\(y=e^x\\)","\\(y=x^2\\)","\\(y=\\sin x\\)"], korrekt:1, tipp:"Ableitung = Funktion.", loesungsweg:"\\((e^x)' = e^x\\)." },
+      { id:4, level:1, typ:"mc", frage:"Allgemeine Lösung von \\(y'=ky\\)?", optionen:["\\(y=kx+c\\)","\\(y=Ce^{kx}\\)","\\(y=kx^2\\)","\\(y=\\tfrac{1}{kx}\\)"], korrekt:1, tipp:"Trennbare Variablen.", loesungsweg:"\\(y=Ce^{kx}\\) mit \\(C\\in\\mathbb{R}\\)." },
+      { id:5, level:1, typ:"mc", frage:"Was ist ein Anfangswertproblem?", optionen:["DGL + Anfangsbedingung \\(y(x_0)=y_0\\)","Eine spezielle DGL","Ein Grenzwert","Eine Reihe"], korrekt:0, tipp:"DGL + Zusatzbedingung.", loesungsweg:"AWP: DGL mit \\(y(x_0)=y_0\\)." },
+      { id:6, level:1, typ:"numerisch", frage:"\\(y'=2y\\) mit \\(y(0)=3\\). Welcher Wert hat \\(C\\)?", loesung:3, toleranz:0, tipp:"\\(y=Ce^{2x}\\).", loesungsweg:"\\(y(0)=C=3\\)." },
+      // ========== LEVEL 2 — y'=ky lösen ==========
+      { id:7, level:2, typ:"numerisch", frage:"\\(y'=3y, y(0)=5\\). Bestimme \\(y(1)\\) auf 3 Dez.", loesung:100.428, toleranz:0.5, tipp:"\\(y=5e^{3x}\\).", loesungsweg:"\\(5\\cdot e^3 \\approx 100{,}428\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"\\(y'=-0{,}5y, y(0)=100\\). \\(y(2)\\) (2 Dez.)?", loesung:36.79, toleranz:0.1, tipp:"\\(100\\cdot e^{-1}\\).", loesungsweg:"\\(100\\cdot 0{,}3679 = 36{,}79\\)." },
+      { id:9, level:2, typ:"mc", frage:"Welche Funktion löst \\(y'=-y\\)?", optionen:["\\(y=e^x\\)","\\(y=e^{-x}\\)","\\(y=x\\)","\\(y=-x\\)"], korrekt:1, tipp:"Negative Rate.", loesungsweg:"\\((e^{-x})' = -e^{-x}\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"Bakterien verdoppeln sich stündlich. \\(k=?\\) in \\(y'=ky\\)? (3 Dez.)", loesung:0.693, toleranz:0.01, tipp:"\\(e^k = 2\\).", loesungsweg:"\\(k=\\ln 2\\approx 0{,}693\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"Radioaktiver Zerfall: Halbwertszeit 5h. \\(k\\) auf 3 Dez. (negativ)?", loesung:-0.139, toleranz:0.005, tipp:"\\(e^{5k} = 0{,}5\\).", loesungsweg:"\\(k = \\tfrac{\\ln 0{,}5}{5}\\approx -0{,}1386\\)." },
+      { id:12, level:2, typ:"numerisch", frage:"\\(y'=0{,}1y, y(0)=200\\). \\(y(10)\\) (ganzzahlig)?", loesung:544, toleranz:2, tipp:"\\(200\\cdot e^1\\).", loesungsweg:"\\(200\\cdot 2{,}7183 \\approx 543{,}66\\)." },
+      // ========== LEVEL 3 — Trennbare Variablen ==========
+      { id:13, level:3, typ:"mc", frage:"Was bedeutet „trennbare DGL\"?", optionen:["\\(y' = f(x)g(y)\\)","\\(y' = ax+b\\)","\\(y' = y^2\\)","\\(y' = 0\\)"], korrekt:0, tipp:"Produkt aus \\(x\\)- und \\(y\\)-Teil.", loesungsweg:"Form \\(y' = f(x)\\cdot g(y)\\) erlaubt Trennung \\(\\tfrac{dy}{g(y)} = f(x)\\,dx\\)." },
+      { id:14, level:3, typ:"mc", frage:"Allgemeine Lösung von \\(y'=x\\)?", optionen:["\\(y=\\tfrac{x^2}{2}+C\\)","\\(y=x+C\\)","\\(y=Ce^x\\)","\\(y=x^2\\)"], korrekt:0, tipp:"Integrieren.", loesungsweg:"\\(y=\\tfrac{x^2}{2}+C\\)." },
+      { id:15, level:3, typ:"mc", frage:"Allgemeine Lösung von \\(y'=xy\\)?", optionen:["\\(y=Ce^{x^2/2}\\)","\\(y=Ce^x\\)","\\(y=\\tfrac{x^2}{2}\\)","\\(y=Cx\\)"], korrekt:0, tipp:"Trennen: \\(\\tfrac{dy}{y}=x\\,dx\\).", loesungsweg:"\\(\\ln|y| = \\tfrac{x^2}{2}+c \\Rightarrow y=Ce^{x^2/2}\\)." },
+      { id:16, level:3, typ:"mc", frage:"Allgemeine Lösung von \\(y'=y^2\\)?", optionen:["\\(y=\\tfrac{-1}{x+C}\\)","\\(y=Ce^x\\)","\\(y=x^2\\)","\\(y=\\tfrac{1}{x}\\)"], korrekt:0, tipp:"\\(-\\tfrac{1}{y} = x+c\\).", loesungsweg:"\\(\\int y^{-2}\\,dy = \\int dx \\Rightarrow -\\tfrac{1}{y}=x+c \\Rightarrow y=-\\tfrac{1}{x+C}\\)." },
+      { id:17, level:3, typ:"numerisch", frage:"\\(y'=x, y(0)=1\\). \\(y(2)\\)?", loesung:3, toleranz:0, tipp:"\\(y=\\tfrac{x^2}{2}+1\\).", loesungsweg:"\\(y(2)=2+1=3\\)." },
+      { id:18, level:3, typ:"numerisch", frage:"\\(y'=\\tfrac{1}{y}, y(0)=1\\). \\(y(4)\\) (2 Dez.)", loesung:3, toleranz:0.02, tipp:"\\(y^2/2 = x+C\\).", loesungsweg:"\\(y^2 = 2x+1 \\Rightarrow y(4)=\\sqrt{9}=3\\)." },
+      // ========== LEVEL 4 — Anwendungen ==========
+      { id:19, level:4, typ:"numerisch", frage:"Abkühlung (Newton): \\(T'(t)=-k(T-T_u)\\). \\(T_u=20, T(0)=80, k=0{,}1\\). \\(T(10)\\)? (1 Dez.)", loesung:42.1, toleranz:0.5, tipp:"\\(T=T_u+(T_0-T_u)e^{-kt}\\).", loesungsweg:"\\(T(10)=20+60\\cdot e^{-1}\\approx 42{,}07\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"Bakterienpopulation verdreifacht sich in 2h. Nach 4h: Faktor?", loesung:9, toleranz:0.1, tipp:"\\(3^2\\).", loesungsweg:"\\(e^{2k}=3 \\Rightarrow e^{4k}=9\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"\\(N(t)\\) radioaktiv, Halbwertszeit 10 Jahre. Nach 30 Jahren: Faktor des Restes?", loesung:0.125, toleranz:0.005, tipp:"\\(0{,}5^3\\).", loesungsweg:"\\(\\tfrac{1}{8}=0{,}125\\)." },
+      { id:22, level:4, typ:"mc", frage:"Welche DGL beschreibt beschränktes Wachstum?", optionen:["\\(y'=k(S-y)\\)","\\(y'=ky\\)","\\(y'=k\\)","\\(y'=-ky\\)"], korrekt:0, tipp:"Schranke \\(S\\).", loesungsweg:"\\(y'=k(S-y)\\): Wachstum nimmt ab, je näher \\(y\\) an \\(S\\)." },
+      { id:23, level:4, typ:"mc", frage:"Lösung von \\(y'=k(S-y), y(0)=y_0\\)?", optionen:["\\(y=S-(S-y_0)e^{-kt}\\)","\\(y=Ce^{kt}\\)","\\(y=kt+y_0\\)","\\(y=S+y_0 e^{kt}\\)"], korrekt:0, tipp:"Grenzwert \\(S\\).", loesungsweg:"\\(y(t) = S - (S-y_0)e^{-kt}\\)." },
+      { id:24, level:4, typ:"numerisch", frage:"\\(y'=0{,}2(100-y), y(0)=10\\). \\(y(5)\\) (1 Dez.)", loesung:66.9, toleranz:1, tipp:"\\(y=100-90\\cdot e^{-1}\\).", loesungsweg:"\\(100-90\\cdot 0{,}3679 \\approx 66{,}89\\)." },
+      // ========== LEVEL 5 — Logistisches Wachstum ==========
+      { id:25, level:5, typ:"mc", frage:"Welche DGL beschreibt logistisches Wachstum?", optionen:["\\(y'=ky(S-y)\\)","\\(y'=ky\\)","\\(y'=kS\\)","\\(y'=y\\)"], korrekt:0, tipp:"Produkt aus Bestand und freier Kapazität.", loesungsweg:"\\(y'=ky(S-y)\\)." },
+      { id:26, level:5, typ:"mc", frage:"Grenzwert \\(\\lim_{t\\to\\infty} y(t)\\) bei logistischem Wachstum?", optionen:["\\(0\\)","\\(\\infty\\)","\\(S\\)","\\(y_0\\)"], korrekt:2, tipp:"Kapazität.", loesungsweg:"\\(y \\to S\\)." },
+      { id:27, level:5, typ:"mc", frage:"Wendepunkt des logistischen Wachstums?", optionen:["Bei \\(y = 0\\)","Bei \\(y = \\tfrac{S}{2}\\)","Bei \\(y = S\\)","Bei \\(y = y_0\\)"], korrekt:1, tipp:"\\(y''=0\\).", loesungsweg:"Wendepunkt bei \\(y=\\tfrac{S}{2}\\) (maximale Wachstumsrate)." },
+      { id:28, level:5, typ:"numerisch", frage:"Logistisch: \\(S=1000, k=0{,}002, y_0=100\\). Max. Wachstumsrate bei \\(y=?\\)", loesung:500, toleranz:0, tipp:"\\(S/2\\).", loesungsweg:"\\(y=500\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"Logistisch: Maximale Rate \\(y'=kS^2/4\\). Für \\(k=0{,}01, S=200\\): max. Rate?", loesung:100, toleranz:0.1, tipp:"\\(0{,}01\\cdot 40000/4\\).", loesungsweg:"\\(0{,}01\\cdot 10000 = 100\\)." },
+      { id:30, level:5, typ:"mc", frage:"Allgemeine Lösung logistisch (mit \\(A = (S-y_0)/y_0\\))?", optionen:["\\(y=\\tfrac{S}{1+Ae^{-kSt}}\\)","\\(y=Se^{-kt}\\)","\\(y=Ae^{kt}\\)","\\(y=S-Ae^{kt}\\)"], korrekt:0, tipp:"Standardform.", loesungsweg:"\\(y(t) = \\tfrac{S}{1+Ae^{-kSt}}\\)." },
+      // ========== LEVEL 6 — Transfer ==========
+      { id:31, level:6, typ:"numerisch", frage:"\\(y'=y, y(0)=1\\). \\(y(\\ln 5)\\)?", loesung:5, toleranz:0.01, tipp:"\\(y=e^x\\).", loesungsweg:"\\(e^{\\ln 5} = 5\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"\\(y'=-2y, y(0)=10\\). Nach welcher Zeit gilt \\(y=5\\)? (3 Dez.)", loesung:0.347, toleranz:0.01, tipp:"\\(e^{-2t}=0{,}5\\).", loesungsweg:"\\(t=\\tfrac{\\ln 2}{2}\\approx 0{,}3466\\)." },
+      { id:33, level:6, typ:"mc", frage:"Was ist die Ordnung von \\(y''+3y'+2y=0\\)?", optionen:["1","2","3","0"], korrekt:1, tipp:"Höchste Ableitung.", loesungsweg:"Höchste Ableitung ist \\(y''\\), also Ordnung 2." },
+      { id:34, level:6, typ:"numerisch", frage:"\\(y'=ky\\) mit \\(y(0)=8, y(3)=1\\). \\(k\\) (3 Dez.)?", loesung:-0.693, toleranz:0.005, tipp:"\\(e^{3k}=1/8\\).", loesungsweg:"\\(k=\\tfrac{\\ln(1/8)}{3} = -\\ln 2 \\approx -0{,}693\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"Beschränktes Wachstum: \\(y'=0{,}5(40-y), y(0)=0\\). \\(y(2)\\) (2 Dez.)", loesung:25.28, toleranz:0.5, tipp:"\\(40(1-e^{-1})\\).", loesungsweg:"\\(40(1-0{,}3679)=25{,}28\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"\\(y'=2xy, y(0)=1\\). \\(y(1)\\) (3 Dez.)", loesung:2.718, toleranz:0.02, tipp:"Trennen: \\(y=Ce^{x^2}\\).", loesungsweg:"\\(y=e^{x^2}, y(1)=e\\approx 2{,}718\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

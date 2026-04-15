@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Funktion ableiten - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '11-e-funktion-ableitung';
+    const THEMA_CONFIG = { name: 'e-Funktion ableiten', bereich: 'analysis' };
+    const AUFGABEN = [
+      // L1 -- Grundregel
+      { id:1, level:1, typ:"mc", frage:"Ableitung von \\(e^x\\):", optionen:["\\(x\\cdot e^{x-1}\\)","\\(e^x\\)","\\(e^{x+1}\\)","\\(\\ln x\\)"], korrekt:1, tipp:"Die e-Funktion ist ihre eigene Ableitung.", loesungsweg:"\\((e^x)'=e^x\\)." },
+      { id:2, level:1, typ:"mc", frage:"Stammfunktion von \\(e^x\\):", optionen:["\\(e^x\\)","\\(e^x+C\\)","\\(\\ln x\\)","\\(\\frac{e^x}{x}\\)"], korrekt:1, tipp:"Selber, plus C.", loesungsweg:"\\(F(x)=e^x+C\\)." },
+      { id:3, level:1, typ:"numerisch", frage:"\\(f(x)=e^x\\), \\(f'(0)=?\\)", loesung:1, toleranz:0, tipp:"\\(e^0=1\\).", loesungsweg:"\\(=1\\)." },
+      { id:4, level:1, typ:"numerisch", frage:"\\(f(x)=3e^x\\), \\(f'(x)\\) bei \\(x=0\\)?", loesung:3, toleranz:0, tipp:"Faktor bleibt.", loesungsweg:"\\(f'(x)=3e^x\\), also 3." },
+      { id:5, level:1, typ:"mc", frage:"\\((5e^x)'=?\\)", optionen:["\\(5e^x\\)","\\(5xe^{x-1}\\)","\\(e^{5x}\\)","\\(5\\)"], korrekt:0, tipp:"Konstanter Faktor.", loesungsweg:"\\(5e^x\\)." },
+      { id:6, level:1, typ:"mc", frage:"\\((e^x+x)'=?\\)", optionen:["\\(e^x\\)","\\(e^x+1\\)","\\(e^{x+1}\\)","\\(x e^x\\)"], korrekt:1, tipp:"Summenregel.", loesungsweg:"\\(e^x+1\\)." },
+      // L2 -- Kettenregel
+      { id:7, level:2, typ:"mc", frage:"\\((e^{2x})'=?\\)", optionen:["\\(e^{2x}\\)","\\(2e^{2x}\\)","\\(2xe^{2x-1}\\)","\\(e^2\\)"], korrekt:1, tipp:"Kettenregel: innere Abl. mal e-fkt.", loesungsweg:"\\(2e^{2x}\\)." },
+      { id:8, level:2, typ:"mc", frage:"\\((e^{-x})'=?\\)", optionen:["\\(e^{-x}\\)","\\(-e^{-x}\\)","\\(-xe^{-x}\\)","\\(e^x\\)"], korrekt:1, tipp:"Innere Abl. \\(=-1\\).", loesungsweg:"\\(-e^{-x}\\)." },
+      { id:9, level:2, typ:"mc", frage:"\\((e^{3x+1})'=?\\)", optionen:["\\(3e^{3x+1}\\)","\\(e^{3x+1}\\)","\\(e^3\\)","\\((3x+1)e^{3x}\\)"], korrekt:0, tipp:"Innere Abl. 3.", loesungsweg:"\\(3e^{3x+1}\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"\\(f(x)=e^{2x}\\), \\(f'(0)=?\\)", loesung:2, toleranz:0, tipp:"\\(2\\cdot1\\).", loesungsweg:"\\(=2\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"\\(f(x)=e^{-2x}\\), \\(f'(0)=?\\)", loesung:-2, toleranz:0, tipp:"Innere Abl. \\(-2\\).", loesungsweg:"\\(=-2\\)." },
+      { id:12, level:2, typ:"mc", frage:"\\((e^{x^2})'=?\\)", optionen:["\\(e^{x^2}\\)","\\(2xe^{x^2}\\)","\\(x^2 e^{x^2-1}\\)","\\(2e^{2x}\\)"], korrekt:1, tipp:"Innere Abl. \\(2x\\).", loesungsweg:"\\(2xe^{x^2}\\)." },
+      // L3 -- Produktregel
+      { id:13, level:3, typ:"mc", frage:"\\((xe^x)'=?\\)", optionen:["\\(e^x\\)","\\(xe^x\\)","\\((1+x)e^x\\)","\\(xe^{x-1}\\)"], korrekt:2, tipp:"Produktregel.", loesungsweg:"\\(1\\cdot e^x+x\\cdot e^x=(1+x)e^x\\)." },
+      { id:14, level:3, typ:"mc", frage:"\\((x^2 e^x)'=?\\)", optionen:["\\(2xe^x\\)","\\(x^2 e^x\\)","\\((2x+x^2)e^x\\)","\\(x(x+2)\\)"], korrekt:2, tipp:"Produkt.", loesungsweg:"\\(2xe^x+x^2 e^x=(x^2+2x)e^x\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"\\(f(x)=xe^x\\), \\(f'(0)=?\\)", loesung:1, toleranz:0, tipp:"\\((1+0)\\cdot 1\\).", loesungsweg:"\\(=1\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"\\(f(x)=xe^x\\), \\(f'(1)\\) (gerundet)?", loesung:5.44, toleranz:0.1, tipp:"\\(2e\\).", loesungsweg:"\\(2e\\approx 5{,}44\\)." },
+      { id:17, level:3, typ:"mc", frage:"\\(((x-1)e^x)'=?\\)", optionen:["\\(e^x\\)","\\(xe^x\\)","\\((x-1)e^x\\)","\\((x-2)e^x\\)"], korrekt:1, tipp:"\\(1\\cdot e^x+(x-1)e^x\\).", loesungsweg:"\\(=xe^x\\)." },
+      { id:18, level:3, typ:"numerisch", frage:"\\(f(x)=(x-1)e^x\\): Nullstelle von \\(f'\\)?", loesung:0, toleranz:0, tipp:"\\(xe^x=0\\).", loesungsweg:"\\(x=0\\)." },
+      // L4 -- Extrema
+      { id:19, level:4, typ:"numerisch", frage:"\\(f(x)=xe^{-x}\\): Extremstelle?", loesung:1, toleranz:0, tipp:"\\(f'(x)=(1-x)e^{-x}\\).", loesungsweg:"\\(x=1\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"\\(f(x)=xe^{-x}\\), \\(f(1)\\) (gerundet)?", loesung:0.37, toleranz:0.02, tipp:"\\(1/e\\).", loesungsweg:"\\(\\approx 0{,}368\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"\\(f(x)=x^2 e^{-x}\\): positive Extremstelle?", loesung:2, toleranz:0, tipp:"\\(f'=(2x-x^2)e^{-x}=0\\).", loesungsweg:"\\(x=0\\) oder \\(x=2\\); positiv: \\(x=2\\)." },
+      { id:22, level:4, typ:"numerisch", frage:"\\(f(x)=e^x-x\\): Extremstelle?", loesung:0, toleranz:0, tipp:"\\(e^x-1=0\\).", loesungsweg:"\\(x=0\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"\\(f(x)=e^x-x\\), Wert im Extremum?", loesung:1, toleranz:0, tipp:"\\(f(0)=1-0\\).", loesungsweg:"\\(=1\\)." },
+      { id:24, level:4, typ:"mc", frage:"\\(f(x)=e^{-x^2}\\): zweite Ableitung bei \\(x=0\\) Vorzeichen?", optionen:["positiv","negativ","null","unklar"], korrekt:1, tipp:"Hochpunkt bei 0.", loesungsweg:"\\(f''(0)=-2<0\\), Hochpunkt." },
+      // L5 -- Wendepunkte
+      { id:25, level:5, typ:"numerisch", frage:"\\(f(x)=xe^{-x}\\): Wendestelle?", loesung:2, toleranz:0, tipp:"\\(f''(x)=(x-2)e^{-x}=0\\).", loesungsweg:"\\(x=2\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"\\(f(x)=e^{-x^2}\\): positive Wendestelle (gerundet)?", loesung:0.707, toleranz:0.05, tipp:"\\(x=1/\\sqrt{2}\\).", loesungsweg:"\\(\\approx 0{,}707\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"\\(f(x)=(x+1)e^x\\), \\(f'(x)=?\\) bei \\(x=0\\)", loesung:2, toleranz:0, tipp:"\\(f'=(x+2)e^x\\).", loesungsweg:"\\(=2\\)." },
+      { id:28, level:5, typ:"numerisch", frage:"\\(f(x)=\\frac{e^x}{x}\\), \\(x>0\\): Extremstelle?", loesung:1, toleranz:0, tipp:"Quotientenregel: \\(\\frac{(x-1)e^x}{x^2}=0\\).", loesungsweg:"\\(x=1\\)." },
+      { id:29, level:5, typ:"mc", frage:"Tangente an \\(f(x)=e^x\\) in \\(x=0\\):", optionen:["\\(y=x\\)","\\(y=x+1\\)","\\(y=e^x\\)","\\(y=1\\)"], korrekt:1, tipp:"\\(f(0)=1, f'(0)=1\\).", loesungsweg:"\\(t(x)=1+x\\)." },
+      { id:30, level:5, typ:"numerisch", frage:"\\(f(x)=e^x\\): Tangente in \\(x_0=1\\), Steigung?", loesung:2.72, toleranz:0.05, tipp:"\\(f'(1)=e\\).", loesungsweg:"\\(\\approx e\\)." },
+      // L6 -- Transfer
+      { id:31, level:6, typ:"numerisch", frage:"\\(f(x)=e^{2x}-e^x\\): Nullstelle?", loesung:0, toleranz:0, tipp:"\\(e^x(e^x-1)=0\\).", loesungsweg:"\\(x=0\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"\\(f(x)=e^{2x}-e^x\\): \\(f'(x)=0\\) für \\(x=?\\) (gerundet)", loesung:-0.69, toleranz:0.05, tipp:"\\(2e^{2x}=e^x \\Rightarrow e^x=1/2\\).", loesungsweg:"\\(x=\\ln(1/2)\\approx -0{,}69\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"\\(f(x)=\\ln x\\), \\(f'(2)\\) (gerundet)?", loesung:0.5, toleranz:0.01, tipp:"\\(f'=1/x\\).", loesungsweg:"\\(=0{,}5\\)." },
+      { id:34, level:6, typ:"numerisch", frage:"\\(\\int_0^1 e^x dx\\) (gerundet)?", loesung:1.72, toleranz:0.05, tipp:"\\(e-1\\).", loesungsweg:"\\(\\approx 1{,}718\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"\\(\\int e^{2x} dx=?\\) Koeffizient bei \\(e^{2x}\\)?", loesung:0.5, toleranz:0.01, tipp:"\\(\\frac{1}{2}e^{2x}+C\\).", loesungsweg:"\\(\\frac{1}{2}\\)." },
+      { id:36, level:6, typ:"mc", frage:"\\((e^x \\sin x)'=?\\)", optionen:["\\(e^x\\sin x\\)","\\(e^x(\\sin x+\\cos x)\\)","\\(e^x\\cos x\\)","\\(-e^x\\sin x\\)"], korrekt:1, tipp:"Produktregel.", loesungsweg:"\\(e^x\\sin x+e^x\\cos x\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

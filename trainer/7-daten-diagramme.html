@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daten und Diagramme - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-daten-diagramme';
+    const THEMA_CONFIG = { name: 'Daten und Diagramme', bereich: 'stochastik' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Grundbegriffe ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Was ist eine „Urliste\" in der Statistik?",
+        optionen: ["Die sortierten Daten", "Die Rohdaten in der Reihenfolge der Erfassung", "Ein Diagramm", "Der Durchschnitt"],
+        korrekt: 1,
+        tipp: "Die Liste vor der Sortierung.",
+        loesungsweg: "Die <b>Urliste</b> enthält die Daten in der Reihenfolge der Erhebung, unsortiert."
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "numerisch",
+        frage: "Berechne den Mittelwert (arithmetisches Mittel) von \\(2, 4, 6\\).",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "\\(\\frac{2+4+6}{3}\\).",
+        loesungsweg: "$$\\bar{x} = \\frac{2+4+6}{3} = \\frac{12}{3} = 4$$"
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "numerisch",
+        frage: "Was ist der Median von \\(3, 7, 5, 9, 1\\) (nach Sortierung)?",
+        loesung: 5,
+        toleranz: 0,
+        tipp: "Sortieren: \\(1, 3, 5, 7, 9\\). Mittlerer Wert.",
+        loesungsweg: "Sortiert: \\(1, 3, 5, 7, 9\\). <b>Median</b> = mittlerer Wert = \\(5\\)."
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "mc",
+        frage: "Welcher Wert ist der Modus (häufigster Wert) in \\(2, 3, 3, 5, 7, 3\\)?",
+        optionen: ["\\(2\\)", "\\(3\\)", "\\(5\\)", "\\(7\\)"],
+        korrekt: 1,
+        tipp: "Welcher Wert kommt am häufigsten vor?",
+        loesungsweg: "Der <b>Modus</b> ist der häufigste Wert: \\(3\\) kommt 3-mal vor."
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "numerisch",
+        frage: "Spannweite von \\(2, 9, 5, 7\\) berechnen: max \\(-\\) min.",
+        loesung: 7,
+        toleranz: 0,
+        tipp: "\\(9 - 2\\).",
+        loesungsweg: "Spannweite = max \\(-\\) min = \\(9 - 2 = 7\\)."
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "mc",
+        frage: "Welches Diagramm eignet sich am besten für Anteile am Ganzen?",
+        optionen: ["Säulendiagramm", "Kreisdiagramm", "Liniendiagramm", "Streudiagramm"],
+        korrekt: 1,
+        tipp: "Ein Kreis = 100 %.",
+        loesungsweg: "Das <b>Kreisdiagramm</b> zeigt Anteile am Ganzen (100 %) besonders anschaulich."
+      },
+      // ========== LEVEL 2 -- leicht: Mittelwert und Median ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne den Mittelwert von \\(5, 7, 9, 11\\).",
+        loesung: 8,
+        toleranz: 0,
+        tipp: "Summe durch Anzahl.",
+        loesungsweg: "$$\\bar{x} = \\frac{5+7+9+11}{4} = \\frac{32}{4} = 8$$"
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "numerisch",
+        frage: "Median von \\(4, 2, 8, 6\\) (gerade Anzahl, Mittel der beiden mittleren).",
+        loesung: 5,
+        toleranz: 0,
+        tipp: "Sortiert: \\(2, 4, 6, 8\\). Mittel aus 4 und 6.",
+        loesungsweg: "Sortiert: \\(2, 4, 6, 8\\). Median = \\(\\frac{4+6}{2} = 5\\)."
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "numerisch",
+        frage: "In einer Klasse schreiben 5 Schüler Noten \\(2, 3, 1, 4, 2\\). Berechne den Notendurchschnitt.",
+        loesung: 2.4,
+        toleranz: 0.01,
+        tipp: "Summe \\(= 12\\), \\(\\div 5\\).",
+        loesungsweg: "$$\\bar{x} = \\frac{2+3+1+4+2}{5} = \\frac{12}{5} = 2{,}4$$"
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "numerisch",
+        frage: "Die Temperaturen einer Woche sind \\(20, 22, 21, 23, 24, 22, 20\\). Berechne die mittlere Temperatur in °C.",
+        loesung: 21.71,
+        toleranz: 0.1,
+        tipp: "Summe \\(= 152\\), \\(\\div 7\\).",
+        loesungsweg: "$$\\bar{x} = \\frac{152}{7} \\approx 21{,}71\\,°C$$"
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "mc",
+        frage: "Welche Aussage stimmt über den Median?",
+        optionen: ["Er ist immer größer als der Mittelwert", "Er ist nicht beeinflusst von Ausreißern", "Er ist der häufigste Wert", "Er ist die Summe der Werte"],
+        korrekt: 1,
+        tipp: "Einzelne extreme Werte verändern den Median kaum.",
+        loesungsweg: "Der <b>Median</b> ist robust gegenüber Ausreißern — Extremwerte verändern ihn kaum."
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "numerisch",
+        frage: "Bestimme den Modus (Wert mit höchster Häufigkeit) von \\(7, 8, 8, 9, 10, 8, 7\\).",
+        loesung: 8,
+        toleranz: 0,
+        tipp: "Welcher Wert kommt am öftesten?",
+        loesungsweg: "Der Wert \\(8\\) kommt 3-mal vor — am häufigsten. Modus = \\(8\\)."
+      },
+      // ========== LEVEL 3 -- nervenschonend: Häufigkeitstabellen ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "numerisch",
+        frage: "Eine Umfrage ergibt: Rot 8, Blau 12, Grün 5, Gelb 5. Wie viele wurden insgesamt befragt?",
+        loesung: 30,
+        toleranz: 0,
+        tipp: "Alle addieren.",
+        loesungsweg: "$$8 + 12 + 5 + 5 = 30$$"
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "numerisch",
+        frage: "Relative Häufigkeit = Anzahl / Gesamtzahl. 12 von 30 wählen Blau. Gib die relative Häufigkeit als Dezimalzahl an.",
+        loesung: 0.4,
+        toleranz: 0.01,
+        tipp: "\\(12/30\\).",
+        loesungsweg: "$$h = \\frac{12}{30} = 0{,}4 = 40\\,\\%$$"
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "numerisch",
+        frage: "Im Kreisdiagramm: Wie viele Grad entsprechen \\(25\\,\\%\\)?",
+        loesung: 90,
+        toleranz: 0,
+        tipp: "\\(0{,}25 \\cdot 360°\\).",
+        loesungsweg: "$$25\\,\\% \\text{ von } 360° = 0{,}25 \\cdot 360° = 90°$$"
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "numerisch",
+        frage: "Im Kreisdiagramm soll ein Anteil von \\(40\\,\\%\\) dargestellt werden. Wie groß ist der Kreissektor in Grad?",
+        loesung: 144,
+        toleranz: 0,
+        tipp: "\\(0{,}4 \\cdot 360°\\).",
+        loesungsweg: "$$0{,}4 \\cdot 360° = 144°$$"
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "mc",
+        frage: "Welches Diagramm ist am besten für den Verlauf einer Temperatur über eine Woche?",
+        optionen: ["Kreisdiagramm", "Säulendiagramm", "Liniendiagramm", "Piktogramm"],
+        korrekt: 2,
+        tipp: "Zeitliche Entwicklung zeigt eine Linie.",
+        loesungsweg: "Ein <b>Liniendiagramm</b> zeigt zeitliche Entwicklungen am besten."
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "numerisch",
+        frage: "Von 50 Schülern gehen 20 zu Fuß zur Schule. Wie viel Prozent ist das?",
+        loesung: 40,
+        toleranz: 0,
+        tipp: "\\(\\frac{20}{50} \\cdot 100\\).",
+        loesungsweg: "$$\\frac{20}{50} = 0{,}4 = 40\\,\\%$$"
+      },
+      // ========== LEVEL 4 -- mittel: Datenanalyse ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "numerisch",
+        frage: "Ein Schüler hat Noten \\(2, 3, 2, 4, 1, 3\\). Berechne den Notendurchschnitt.",
+        loesung: 2.5,
+        toleranz: 0.01,
+        tipp: "Summe \\(= 15\\), \\(\\div 6\\).",
+        loesungsweg: "$$\\bar{x} = \\frac{15}{6} = 2{,}5$$"
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "numerisch",
+        frage: "Die Spannweite ist \\(14\\) und das Minimum \\(8\\). Wie groß ist das Maximum?",
+        loesung: 22,
+        toleranz: 0,
+        tipp: "Max = Min + Spannweite.",
+        loesungsweg: "$$\\text{Max} = 8 + 14 = 22$$"
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "numerisch",
+        frage: "Bestimme den Median von \\(4, 7, 2, 9, 5, 8\\) (6 Werte).",
+        loesung: 6,
+        toleranz: 0,
+        tipp: "Sortieren, dann Mittel der beiden mittleren.",
+        loesungsweg: "Sortiert: \\(2, 4, 5, 7, 8, 9\\). Median = \\(\\frac{5+7}{2} = 6\\)."
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "mc",
+        frage: "Was zeigt ein Säulendiagramm am besten?",
+        optionen: ["Zeitlichen Verlauf", "Vergleich von Werten verschiedener Kategorien", "Anteil am Ganzen", "Korrelation"],
+        korrekt: 1,
+        tipp: "Gleich breite Säulen für verschiedene Kategorien.",
+        loesungsweg: "Ein <b>Säulendiagramm</b> eignet sich am besten, um Werte verschiedener Kategorien zu vergleichen."
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "numerisch",
+        frage: "In einer Klasse gibt es 12 Jungen und 18 Mädchen. Wie viel Prozent sind Mädchen?",
+        loesung: 60,
+        toleranz: 0,
+        tipp: "\\(\\frac{18}{30}\\).",
+        loesungsweg: "$$\\frac{18}{30} = 0{,}6 = 60\\,\\%$$"
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "numerisch",
+        frage: "Ein Kreisdiagramm zeigt einen Sektor von \\(108°\\). Welchen Prozentsatz entspricht das?",
+        loesung: 30,
+        toleranz: 0.1,
+        tipp: "\\(\\frac{108}{360} \\cdot 100\\).",
+        loesungsweg: "$$\\frac{108°}{360°} = 0{,}3 = 30\\,\\%$$"
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Kombinierte Berechnungen ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "numerisch",
+        frage: "Der Mittelwert von 5 Zahlen ist \\(12\\). Vier der Zahlen sind \\(10, 11, 13, 14\\). Wie groß ist die fünfte?",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "Summe aller 5 = \\(5 \\cdot 12 = 60\\). Summe der 4 = \\(48\\).",
+        loesungsweg: "$$\\text{Summe} = 5 \\cdot 12 = 60; \\quad 60 - 48 = 12$$"
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "numerisch",
+        frage: "In einer Klasse schreiben 20 Schüler eine Arbeit. Mittelwert ist \\(3{,}0\\). Ein Schüler mit Note \\(1\\) kommt dazu (21 Schüler). Neuer Mittelwert?",
+        loesung: 2.9,
+        toleranz: 0.01,
+        tipp: "Neue Summe = \\(60 + 1 = 61\\), \\(\\div 21\\).",
+        loesungsweg: "$$\\text{alte Summe} = 20 \\cdot 3 = 60; \\quad \\text{neu} = \\frac{61}{21} \\approx 2{,}9$$"
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "numerisch",
+        frage: "Eine Klasse hat Noten: \\(1 (\\times 3), 2 (\\times 8), 3 (\\times 6), 4 (\\times 3)\\). Berechne den Notendurchschnitt.",
+        loesung: 2.45,
+        toleranz: 0.01,
+        tipp: "Summe \\(= 3 + 16 + 18 + 12 = 49\\). Gesamtschüler \\(= 20\\).",
+        loesungsweg: "$$\\bar{x} = \\frac{3 \\cdot 1 + 8 \\cdot 2 + 6 \\cdot 3 + 3 \\cdot 4}{20} = \\frac{49}{20} = 2{,}45$$"
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "numerisch",
+        frage: "Boxplot: Eine Datenreihe hat Minimum \\(2\\), unteres Quartil \\(5\\), Median \\(7\\), oberes Quartil \\(9\\), Maximum \\(12\\). Wie groß ist der Interquartilsabstand (IQR)?",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "IQR = oberes Q − unteres Q.",
+        loesungsweg: "$$\\text{IQR} = 9 - 5 = 4$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "mc",
+        frage: "Welcher Wert ist am stärksten von Ausreißern beeinflusst?",
+        optionen: ["Modus", "Median", "Arithmetisches Mittel", "Spannweite"],
+        korrekt: 2,
+        tipp: "Die Summe ändert sich bei einem Ausreißer stark.",
+        loesungsweg: "Das <b>arithmetische Mittel</b> ist stark von Ausreißern beeinflusst — jeder Wert zählt mit seiner Größe."
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "numerisch",
+        frage: "Eine Klasse hat 25 Schüler. Der Mittelwert einer Arbeit ist \\(2{,}8\\). Wie hoch ist die Gesamtsumme der Noten?",
+        loesung: 70,
+        toleranz: 0,
+        tipp: "Summe = \\(n \\cdot \\bar{x}\\).",
+        loesungsweg: "$$\\text{Summe} = 25 \\cdot 2{,}8 = 70$$"
+      },
+      // ========== LEVEL 6 -- wagnerisch: Transferaufgaben ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "numerisch",
+        frage: "Eine Firma hat 10 Angestellte mit Gehältern, Mittelwert \\(3000\\,€\\). Der Chef hat \\(20{\\,}000\\,€\\). Wie groß ist der Mittelwert der 11 Personen?",
+        loesung: 4545.45,
+        toleranz: 1,
+        tipp: "Gesamtsumme: \\(10 \\cdot 3000 + 20000 = 50000\\). \\(\\div 11\\).",
+        loesungsweg: "$$\\bar{x} = \\frac{30000 + 20000}{11} = \\frac{50000}{11} \\approx 4545{,}45\\,€$$"
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "mc",
+        frage: "In einem Kreisdiagramm haben zwei Sektoren \\(90°\\) und \\(120°\\). Wie viele Grad entfallen auf die übrigen Sektoren zusammen?",
+        optionen: ["\\(100°\\)", "\\(120°\\)", "\\(150°\\)", "\\(180°\\)"],
+        korrekt: 2,
+        tipp: "\\(360° - 90° - 120°\\).",
+        loesungsweg: "$$360° - 90° - 120° = 150°$$"
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "numerisch",
+        frage: "Die Summe von 7 Zahlen ist \\(56\\). Eine Zahl \\(8\\) wird durch \\(15\\) ersetzt. Wie groß ist der neue Mittelwert?",
+        loesung: 9,
+        toleranz: 0.01,
+        tipp: "Neue Summe = \\(56 - 8 + 15 = 63\\). \\(\\div 7\\).",
+        loesungsweg: "$$\\bar{x}_{\\text{neu}} = \\frac{63}{7} = 9$$"
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Würfel wird 60-mal geworfen, die \\(6\\) kommt 12-mal. Wie groß ist die relative Häufigkeit der Sechs als Prozent?",
+        loesung: 20,
+        toleranz: 0.1,
+        tipp: "\\(\\frac{12}{60} \\cdot 100\\).",
+        loesungsweg: "$$\\frac{12}{60} = 0{,}2 = 20\\,\\%$$"
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "mc",
+        frage: "Welche Aussage ist FALSCH?",
+        optionen: ["Der Mittelwert kann größer als der Median sein", "Modus und Median können gleich sein", "Die Spannweite ist nie negativ", "Der Median ist immer eine Zahl aus der Liste"],
+        korrekt: 3,
+        tipp: "Bei gerader Anzahl ist der Median Mittelwert zweier Werte.",
+        loesungsweg: "Bei gerader Anzahl ist der <b>Median</b> der Mittelwert zweier Werte — und muss nicht in der Liste stehen. Die Aussage ist falsch."
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "numerisch",
+        frage: "Eine Datenreihe hat Mittelwert \\(50\\) und Umfang \\(n = 20\\). Wie ändert sich der Mittelwert, wenn zu jedem Wert \\(3\\) addiert wird? Gib den neuen Mittelwert an.",
+        loesung: 53,
+        toleranz: 0,
+        tipp: "Beim Addieren einer Konstanten verschiebt sich der Mittelwert um dieselbe Konstante.",
+        loesungsweg: "Addition von 3 zu jedem Wert erhöht den Mittelwert um 3: \\(50 + 3 = 53\\)."
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zufallsgrößen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-stoch-zufallsgroessen';
+    const THEMA_CONFIG = { name: 'Zufallsgrößen', bereich: 'stochastik' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 — Grundbegriffe ==========
+      { id:1, level:1, typ:"mc", frage:"Was ist eine Zufallsgröße?", optionen:["Eine Funktion, die jedem Ergebnis eine Zahl zuordnet","Ein zufälliger Buchstabe","Eine Wahrscheinlichkeit","Ein Diagramm"], korrekt:0, tipp:"Zuordnung Ergebnis → Zahl.", loesungsweg:"Eine Zufallsgröße \\(X\\) ordnet jedem Ergebnis eines Zufallsexperiments eine reelle Zahl zu." },
+      { id:2, level:1, typ:"mc", frage:"Was ist die Wahrscheinlichkeitsverteilung einer Zufallsgröße?", optionen:["Eine Liste möglicher Werte","Die Zuordnung Wert → Wahrscheinlichkeit","Der Erwartungswert","Die Varianz"], korrekt:1, tipp:"Jedem Wert eine Wahrscheinlichkeit.", loesungsweg:"Die Verteilung ordnet jedem Wert \\(x_i\\) seine Wahrscheinlichkeit \\(P(X=x_i)\\) zu." },
+      { id:3, level:1, typ:"numerisch", frage:"Die Wahrscheinlichkeiten \\(P(X=1)=0{,}2\\), \\(P(X=2)=0{,}5\\), \\(P(X=3)=?\\). Wie groß ist die fehlende Wahrscheinlichkeit?", loesung:0.3, toleranz:0.001, tipp:"Summe muss 1 sein.", loesungsweg:"\\(1 - 0{,}2 - 0{,}5 = 0{,}3\\)." },
+      { id:4, level:1, typ:"mc", frage:"Welche Formel gilt für den Erwartungswert?", optionen:["\\(E(X) = \\sum x_i\\)","\\(E(X) = \\sum x_i P(X=x_i)\\)","\\(E(X) = \\max x_i\\)","\\(E(X) = n\\cdot p^2\\)"], korrekt:1, tipp:"Gewichtetes Mittel.", loesungsweg:"\\(E(X) = \\sum_i x_i \\cdot P(X=x_i)\\)." },
+      { id:5, level:1, typ:"mc", frage:"Wie ist die Varianz definiert?", optionen:["\\(V(X) = E(X) - \\mu\\)","\\(V(X) = E((X-\\mu)^2)\\)","\\(V(X) = \\sqrt{E(X)}\\)","\\(V(X) = \\mu^2\\)"], korrekt:1, tipp:"Mittlere quadratische Abweichung.", loesungsweg:"\\(V(X) = E((X-\\mu)^2) = \\sum (x_i-\\mu)^2 P(X=x_i)\\)." },
+      { id:6, level:1, typ:"mc", frage:"Wie berechnet man die Standardabweichung aus der Varianz?", optionen:["\\(\\sigma = V\\)","\\(\\sigma = V^2\\)","\\(\\sigma = \\sqrt{V}\\)","\\(\\sigma = \\tfrac{1}{V}\\)"], korrekt:2, tipp:"Wurzel ziehen.", loesungsweg:"\\(\\sigma = \\sqrt{V(X)}\\)." },
+      // ========== LEVEL 2 — Erwartungswert berechnen ==========
+      { id:7, level:2, typ:"numerisch", frage:"Wurf eines fairen Würfels. Zufallsgröße \\(X\\) = Augenzahl. Berechne \\(E(X)\\) (1 Dez.).", loesung:3.5, toleranz:0.05, tipp:"Alle Augenzahlen gleich wahrscheinlich.", loesungsweg:"$$E(X) = \\tfrac{1}{6}(1+2+3+4+5+6) = \\tfrac{21}{6} = 3{,}5$$" },
+      { id:8, level:2, typ:"numerisch", frage:"\\(X\\) mit \\(P(X=0)=0{,}4\\), \\(P(X=1)=0{,}3\\), \\(P(X=2)=0{,}3\\). Berechne \\(E(X)\\).", loesung:0.9, toleranz:0.01, tipp:"Summe \\(x_i \\cdot P\\).", loesungsweg:"\\(0\\cdot 0{,}4 + 1\\cdot 0{,}3 + 2\\cdot 0{,}3 = 0{,}9\\)." },
+      { id:9, level:2, typ:"numerisch", frage:"\\(X\\) mit \\(P(X=-1)=0{,}5\\), \\(P(X=1)=0{,}5\\). Berechne \\(E(X)\\).", loesung:0, toleranz:0.01, tipp:"Symmetrisch.", loesungsweg:"\\(-1\\cdot 0{,}5 + 1\\cdot 0{,}5 = 0\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"Ein Glücksrad: Gewinn 5€ mit \\(p=0{,}2\\), sonst 0. Erwarteter Gewinn?", loesung:1, toleranz:0.01, tipp:"\\(5\\cdot 0{,}2 + 0\\cdot 0{,}8\\).", loesungsweg:"\\(E(X) = 1\\,€\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"\\(X\\) mit \\(P(X=10)=0{,}1\\), \\(P(X=20)=0{,}6\\), \\(P(X=30)=0{,}3\\). Berechne \\(E(X)\\).", loesung:22, toleranz:0.01, tipp:"Gewichtet mitteln.", loesungsweg:"\\(1+12+9 = 22\\)." },
+      { id:12, level:2, typ:"numerisch", frage:"\\(X\\) Binomialverteilt mit \\(n=20,p=0{,}25\\). \\(E(X)=?\\)", loesung:5, toleranz:0, tipp:"\\(n\\cdot p\\).", loesungsweg:"\\(E(X)=np=5\\)." },
+      // ========== LEVEL 3 — Varianz und Standardabweichung ==========
+      { id:13, level:3, typ:"numerisch", frage:"\\(X\\): \\(P(X=0)=0{,}5\\), \\(P(X=1)=0{,}5\\). \\(E(X)=0{,}5\\). Berechne \\(V(X)\\).", loesung:0.25, toleranz:0.01, tipp:"\\((0-0{,}5)^2\\cdot 0{,}5 + (1-0{,}5)^2 \\cdot 0{,}5\\).", loesungsweg:"\\(V=0{,}25\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"\\(X\\) (Würfel). \\(V(X)=?\\) (2 Dez.)", loesung:2.92, toleranz:0.05, tipp:"\\(\\sum (x_i-3{,}5)^2 \\cdot \\tfrac{1}{6}\\).", loesungsweg:"$$V = \\tfrac{1}{6}\\sum_{k=1}^{6}(k-3{,}5)^2 = \\tfrac{17{,}5}{6} \\approx 2{,}9167$$" },
+      { id:15, level:3, typ:"numerisch", frage:"Würfel: Berechne \\(\\sigma\\) (2 Dez.).", loesung:1.71, toleranz:0.05, tipp:"\\(\\sqrt{2{,}9167}\\).", loesungsweg:"\\(\\sigma \\approx 1{,}71\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"\\(X\\): \\(P(X=-2)=0{,}25\\), \\(P(X=0)=0{,}5\\), \\(P(X=2)=0{,}25\\). Berechne \\(V(X)\\).", loesung:2, toleranz:0.01, tipp:"\\(E(X)=0\\), \\(\\sum x_i^2 P\\).", loesungsweg:"\\(V=4\\cdot 0{,}25+0+4\\cdot 0{,}25 = 2\\)." },
+      { id:17, level:3, typ:"mc", frage:"Welche Formel ist äquivalent zu \\(V(X)\\)?", optionen:["\\(E(X^2)-E(X)^2\\)","\\(E(X)^2-E(X^2)\\)","\\(E(X)+\\mu\\)","\\(\\sum P(X=x_i)\\)"], korrekt:0, tipp:"Verschiebungssatz.", loesungsweg:"\\(V(X) = E(X^2) - E(X)^2\\)." },
+      { id:18, level:3, typ:"numerisch", frage:"\\(X\\): \\(P(X=1)=0{,}3, P(X=2)=0{,}5, P(X=3)=0{,}2\\). Berechne \\(V(X)\\) (2 Dez.).", loesung:0.49, toleranz:0.02, tipp:"\\(E(X)=1{,}9\\), \\(E(X^2)=4{,}1\\).", loesungsweg:"\\(V = 4{,}1 - 1{,}9^2 = 4{,}1 - 3{,}61 = 0{,}49\\)." },
+      // ========== LEVEL 4 — Faires Spiel ==========
+      { id:19, level:4, typ:"mc", frage:"Was bedeutet „faires Spiel\"?", optionen:["Jeder kann gewinnen","\\(E(X)=0\\) (Nettogewinn)","Gleiche Wahrscheinlichkeit","Niemand verliert"], korrekt:1, tipp:"Erwarteter Gewinn = 0.", loesungsweg:"Fair: Der erwartete Reingewinn ist 0." },
+      { id:20, level:4, typ:"numerisch", frage:"Einsatz 2€. Gewinn 10€ mit \\(p=0{,}2\\), sonst nichts. Berechne den erwarteten Nettogewinn.", loesung:0, toleranz:0.01, tipp:"\\(0{,}2\\cdot 10 - 2\\).", loesungsweg:"\\(E = 0{,}2\\cdot 10 - 2 = 0\\): fair." },
+      { id:21, level:4, typ:"numerisch", frage:"Spiel: \\(1/6\\) gewinnt 30€. Einsatz \\(k\\) für fair?", loesung:5, toleranz:0.01, tipp:"\\(\\tfrac{1}{6}\\cdot 30 = k\\).", loesungsweg:"\\(k = 5\\)€." },
+      { id:22, level:4, typ:"numerisch", frage:"Glücksrad: 3 Felder (5€, 10€, 0€) mit gleicher Wahrscheinlichkeit. Erwarteter Gewinn (2 Dez.)?", loesung:5, toleranz:0.01, tipp:"Mittelwert.", loesungsweg:"\\((5+10+0)/3 = 5\\)€." },
+      { id:23, level:4, typ:"mc", frage:"Ein Casino-Spiel hat \\(E(X)<0\\). Was bedeutet das?", optionen:["Spieler gewinnt","Casino verliert","Spieler verliert erwartet","Nichts"], korrekt:2, tipp:"Erwarteter Verlust.", loesungsweg:"Spieler macht erwarteten Verlust." },
+      { id:24, level:4, typ:"numerisch", frage:"Lotterielos kostet 2€. Gewinn 1000€ mit \\(p=0{,}001\\). Erwarteter Gewinn (in €)?", loesung:-1, toleranz:0.01, tipp:"\\(0{,}001\\cdot 1000 - 2\\).", loesungsweg:"\\(E = 1 - 2 = -1\\)€." },
+      // ========== LEVEL 5 — Lineare Transformation ==========
+      { id:25, level:5, typ:"numerisch", frage:"\\(E(X)=10\\). Berechne \\(E(2X+3)\\).", loesung:23, toleranz:0, tipp:"\\(aE(X)+b\\).", loesungsweg:"\\(2\\cdot 10+3=23\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"\\(V(X)=9\\). Berechne \\(V(2X+5)\\).", loesung:36, toleranz:0, tipp:"\\(a^2 V(X)\\).", loesungsweg:"\\(4\\cdot 9=36\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"\\(\\sigma(X)=4\\). Berechne \\(\\sigma(3X-1)\\).", loesung:12, toleranz:0, tipp:"\\(|a|\\cdot\\sigma\\).", loesungsweg:"\\(\\sigma = 3\\cdot 4 = 12\\)." },
+      { id:28, level:5, typ:"mc", frage:"Welche Operation ändert \\(V(X)\\) nicht?", optionen:["\\(X + c\\)","\\(2X\\)","\\(-X\\) mit anderer \\(\\sigma\\)","\\(X/2\\)"], korrekt:0, tipp:"Verschiebung.", loesungsweg:"\\(V(X+c) = V(X)\\): Konstante verschiebt nur Mittelwert." },
+      { id:29, level:5, typ:"numerisch", frage:"\\(E(X)=5, V(X)=4\\). Berechne \\(E(X^2)\\).", loesung:29, toleranz:0, tipp:"\\(V = E(X^2) - E(X)^2\\).", loesungsweg:"\\(E(X^2) = 4 + 25 = 29\\)." },
+      { id:30, level:5, typ:"numerisch", frage:"Zwei unabhängige \\(X,Y\\) mit \\(E(X)=3, E(Y)=7\\). \\(E(X+Y)=?\\)", loesung:10, toleranz:0, tipp:"Linearität.", loesungsweg:"\\(E(X+Y) = 3+7 = 10\\)." },
+      // ========== LEVEL 6 — Transfer ==========
+      { id:31, level:6, typ:"numerisch", frage:"\\(X\\): 2 Würfe, Zufallsgröße = Augensumme. Berechne \\(E(X)\\).", loesung:7, toleranz:0.01, tipp:"\\(2\\cdot 3{,}5\\).", loesungsweg:"\\(E(X_1+X_2) = 3{,}5+3{,}5 = 7\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"Zwei Würfel: \\(V(X_1+X_2)\\) (2 Dez.) bei unabhängigen Würfen?", loesung:5.83, toleranz:0.05, tipp:"\\(V(X_1)+V(X_2)\\).", loesungsweg:"\\(2\\cdot 2{,}9167 \\approx 5{,}83\\)." },
+      { id:33, level:6, typ:"mc", frage:"Wofür steht die Ungleichung \\(P(|X-\\mu|\\ge k\\sigma) \\le \\tfrac{1}{k^2}\\)?", optionen:["Bernoulli","Tschebyscheff","Bayes","Laplace"], korrekt:1, tipp:"Abschätzung großer Abweichungen.", loesungsweg:"Tschebyscheff-Ungleichung." },
+      { id:34, level:6, typ:"numerisch", frage:"Ein Zufallsexperiment: \\(P(X=100)=0{,}01\\), \\(P(X=0)=0{,}99\\). Berechne \\(\\sigma\\) (2 Dez.).", loesung:9.95, toleranz:0.1, tipp:"\\(E(X)=1, E(X^2)=100\\), \\(V=99\\).", loesungsweg:"\\(V=99, \\sigma=\\sqrt{99}\\approx 9{,}95\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"Binomial \\(n=100,p=0{,}4\\). Berechne \\(V(X)\\).", loesung:24, toleranz:0, tipp:"\\(np(1-p)\\).", loesungsweg:"\\(V = 100\\cdot 0{,}4\\cdot 0{,}6 = 24\\)." },
+      { id:36, level:6, typ:"mc", frage:"Wenn \\(E(X)=0\\), muss dann auch \\(V(X)=0\\) sein?", optionen:["Ja","Nein, nur bei konstanter Zufallsgröße","Manchmal","Immer"], korrekt:1, tipp:"\\(V=0\\) nur bei konstantem \\(X\\).", loesungsweg:"\\(V(X)=0\\) bedeutet \\(X\\) ist konstant — \\(E(X)=0\\) allein garantiert dies nicht." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

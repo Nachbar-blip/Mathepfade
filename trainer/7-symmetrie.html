@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symmetrie - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-symmetrie';
+    const THEMA_CONFIG = { name: 'Symmetrie', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Achsensymmetrie erkennen ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Welche Figur ist achsensymmetrisch?",
+        optionen: ["Unregelmäßiges Dreieck", "Quadrat", "Buchstabe F", "Zahl 7"],
+        korrekt: 1,
+        tipp: "Quadrat kann man falten und beide Hälften passen aufeinander.",
+        loesungsweg: "Ein <b>Quadrat</b> ist achsensymmetrisch — sogar mit 4 Symmetrieachsen."
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "numerisch",
+        frage: "Wie viele Symmetrieachsen hat ein Quadrat?",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "2 Diagonalen + 2 Mittelsenkrechten der Seiten.",
+        loesungsweg: "Ein Quadrat hat <b>4 Symmetrieachsen</b>: zwei Diagonalen und zwei durch die Seitenmitten."
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "mc",
+        frage: "Welche der folgenden Buchstaben ist achsensymmetrisch?",
+        optionen: ["F", "G", "A", "J"],
+        korrekt: 2,
+        tipp: "Einer hat eine senkrechte Spiegelachse.",
+        loesungsweg: "Der Buchstabe <b>A</b> ist achsensymmetrisch zur senkrechten Mittelachse."
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "numerisch",
+        frage: "Wie viele Symmetrieachsen hat ein gleichseitiges Dreieck?",
+        loesung: 3,
+        toleranz: 0,
+        tipp: "Eine pro Ecke.",
+        loesungsweg: "Ein gleichseitiges Dreieck hat <b>3 Symmetrieachsen</b>."
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "mc",
+        frage: "Was passiert bei einer Spiegelung an einer Achse?",
+        optionen: ["Die Figur wird kleiner", "Die Figur wird an der Achse gespiegelt wie im Spiegel", "Die Figur verschwindet", "Die Figur wird gedreht"],
+        korrekt: 1,
+        tipp: "Wie vor einem Spiegel.",
+        loesungsweg: "Bei einer <b>Achsenspiegelung</b> wird jeder Punkt an der Achse gespiegelt — Abstand bleibt gleich, die Seite wechselt."
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "numerisch",
+        frage: "Wie viele Symmetrieachsen hat ein Kreis?",
+        loesung: -1,
+        toleranz: 0,
+        tipp: "Hinweis: Jede Gerade durch den Mittelpunkt ist Achse — unendlich viele! Gib \\(-1\\) als Code für „unendlich\" an.",
+        loesungsweg: "Ein Kreis hat <b>unendlich viele</b> Symmetrieachsen — jede Gerade durch den Mittelpunkt."
+      },
+      // ========== LEVEL 2 -- leicht: Punktsymmetrie ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "mc",
+        frage: "Was ist Punktsymmetrie?",
+        optionen: ["Spiegelung an einer Achse", "Punkt-Spiegelung an einem Zentrum (entspricht Drehung um \\(180°\\))", "Parallelverschiebung", "Drehung um beliebigen Winkel"],
+        korrekt: 1,
+        tipp: "Drehung um \\(180°\\) um einen festen Punkt.",
+        loesungsweg: "<b>Punktsymmetrie</b> bedeutet: Die Figur geht durch Drehung um \\(180°\\) um das Symmetriezentrum in sich selbst über."
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "mc",
+        frage: "Welche Figur ist punktsymmetrisch?",
+        optionen: ["Gleichseitiges Dreieck", "Parallelogramm", "Gleichschenkliges Dreieck", "Buchstabe A"],
+        korrekt: 1,
+        tipp: "Drehe um \\(180°\\) — bleibt es gleich?",
+        loesungsweg: "Ein <b>Parallelogramm</b> ist punktsymmetrisch bezüglich des Diagonalenschnittpunkts."
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "mc",
+        frage: "Welcher Buchstabe ist punktsymmetrisch?",
+        optionen: ["A", "B", "S", "T"],
+        korrekt: 2,
+        tipp: "Auf den Kopf stellen — wird S bleibt S?",
+        loesungsweg: "Der Buchstabe <b>S</b> ist punktsymmetrisch — bei \\(180°\\)-Drehung sieht er gleich aus."
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "mc",
+        frage: "Das Rechteck ist …",
+        optionen: ["nur achsensymmetrisch", "nur punktsymmetrisch", "sowohl achsen- als auch punktsymmetrisch", "weder noch"],
+        korrekt: 2,
+        tipp: "2 Symmetrieachsen und ein Symmetriezentrum.",
+        loesungsweg: "Ein Rechteck ist <b>achsen- und punktsymmetrisch</b>: 2 Symmetrieachsen + Diagonalenschnittpunkt als Zentrum."
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "numerisch",
+        frage: "Wie viele Symmetrieachsen hat ein Rechteck (kein Quadrat)?",
+        loesung: 2,
+        toleranz: 0,
+        tipp: "Durch die Seitenmitten.",
+        loesungsweg: "Ein Rechteck hat <b>2 Symmetrieachsen</b> — durch die Mitten gegenüberliegender Seiten."
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "mc",
+        frage: "Welche Ziffer ist punktsymmetrisch?",
+        optionen: ["4", "6", "8", "9"],
+        korrekt: 2,
+        tipp: "Drehe sie um \\(180°\\).",
+        loesungsweg: "Die Ziffer <b>8</b> ist punktsymmetrisch — und auch achsensymmetrisch."
+      },
+      // ========== LEVEL 3 -- nervenschonend: Abbildungen ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "mc",
+        frage: "Bei einer Achsenspiegelung bleibt unverändert:",
+        optionen: ["Die Lage rechts/links", "Die Länge von Strecken", "Die Orientierung (Uhrzeigersinn)", "Nichts"],
+        korrekt: 1,
+        tipp: "Längen und Winkel.",
+        loesungsweg: "Bei Spiegelung bleiben <b>Längen und Winkel</b> erhalten. Die Orientierung kehrt sich um."
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "mc",
+        frage: "Bei einer Drehung bleibt erhalten:",
+        optionen: ["Nur Länge", "Nur Winkel", "Länge UND Winkel UND Orientierung", "Nichts"],
+        korrekt: 2,
+        tipp: "Drehung ist „kongruent\" — alles bleibt gleich.",
+        loesungsweg: "Eine <b>Drehung</b> erhält Längen, Winkel und Orientierung."
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein Punkt \\(P(3|4)\\) wird an der \\(x\\)-Achse gespiegelt. Welche \\(y\\)-Koordinate hat der Bildpunkt?",
+        loesung: -4,
+        toleranz: 0,
+        tipp: "\\(y\\)-Koordinate wird mit \\(-1\\) multipliziert.",
+        loesungsweg: "Spiegelung an der \\(x\\)-Achse: \\((x|y) \\mapsto (x|-y)\\). Also \\(P'(3|-4)\\), \\(y = -4\\)."
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein Punkt \\(P(5|2)\\) wird an der \\(y\\)-Achse gespiegelt. Welche \\(x\\)-Koordinate hat der Bildpunkt?",
+        loesung: -5,
+        toleranz: 0,
+        tipp: "\\(x\\)-Koordinate wird mit \\(-1\\) multipliziert.",
+        loesungsweg: "Spiegelung an der \\(y\\)-Achse: \\((x|y) \\mapsto (-x|y)\\). Also \\(P'(-5|2)\\), \\(x = -5\\)."
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "numerisch",
+        frage: "Punkt \\(P(3|4)\\) wird am Ursprung gespiegelt (Punktsymmetrie). Welche \\(x\\)-Koordinate hat \\(P'\\)?",
+        loesung: -3,
+        toleranz: 0,
+        tipp: "Beide Koordinaten negieren.",
+        loesungsweg: "Punktspiegelung am Ursprung: \\((x|y) \\mapsto (-x|-y)\\). Also \\(P'(-3|-4)\\)."
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "mc",
+        frage: "Welche Figur ist weder achsen- noch punktsymmetrisch?",
+        optionen: ["Quadrat", "Allgemeines Trapez", "Kreis", "Rhombus (Raute)"],
+        korrekt: 1,
+        tipp: "Ein „allgemeines\" Trapez hat keine besondere Symmetrie.",
+        loesungsweg: "Ein <b>allgemeines Trapez</b> hat weder Achsen- noch Punktsymmetrie."
+      },
+      // ========== LEVEL 4 -- mittel: Drehsymmetrie ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "numerisch",
+        frage: "Bei welchem Winkel wird ein Quadrat auf sich selbst abgebildet (kleinster Drehwinkel > 0°, in Grad)?",
+        loesung: 90,
+        toleranz: 0,
+        tipp: "Eine Vierteldrehung.",
+        loesungsweg: "Quadrat: \\(360° : 4 = 90°\\). Kleinster Drehwinkel."
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "numerisch",
+        frage: "Kleinster Drehwinkel für ein gleichseitiges Dreieck (in Grad)?",
+        loesung: 120,
+        toleranz: 0,
+        tipp: "\\(360° : 3\\).",
+        loesungsweg: "Gleichseitiges Dreieck: \\(360° : 3 = 120°\\)."
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "numerisch",
+        frage: "Kleinster Drehwinkel für ein regelmäßiges Sechseck (in Grad)?",
+        loesung: 60,
+        toleranz: 0,
+        tipp: "\\(360° : 6\\).",
+        loesungsweg: "Sechseck: \\(360° : 6 = 60°\\)."
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "mc",
+        frage: "Ein regelmäßiges \\(n\\)-Eck ist drehsymmetrisch um den Winkel …",
+        optionen: ["\\(\\frac{180°}{n}\\)", "\\(\\frac{360°}{n}\\)", "\\(180° \\cdot n\\)", "\\(360° \\cdot n\\)"],
+        korrekt: 1,
+        tipp: "\\(360°\\) durch die Anzahl der Ecken.",
+        loesungsweg: "Kleinster Drehwinkel im regelmäßigen \\(n\\)-Eck: \\(\\frac{360°}{n}\\)."
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "numerisch",
+        frage: "Wie viele Symmetrieachsen hat ein regelmäßiges Sechseck?",
+        loesung: 6,
+        toleranz: 0,
+        tipp: "So viele wie Ecken.",
+        loesungsweg: "Regelmäßiges Sechseck: <b>6 Symmetrieachsen</b>."
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "mc",
+        frage: "Welche Figur ist nur punktsymmetrisch, aber nicht achsensymmetrisch?",
+        optionen: ["Quadrat", "Rechteck", "Parallelogramm (kein Rechteck/Raute)", "Raute"],
+        korrekt: 2,
+        tipp: "Ein schiefes Parallelogramm.",
+        loesungsweg: "Ein <b>Parallelogramm</b> (ohne besondere Eigenschaften) ist nur punktsymmetrisch."
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Kombinierte Abbildungen ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "numerisch",
+        frage: "Punkt \\(P(4|-3)\\) wird zuerst an \\(x\\)-Achse gespiegelt, dann an \\(y\\)-Achse. Welche \\(x\\)-Koordinate hat \\(P''\\)?",
+        loesung: -4,
+        toleranz: 0,
+        tipp: "Erst \\(y \\mapsto -y\\), dann \\(x \\mapsto -x\\).",
+        loesungsweg: "Nach 1. Spiegelung: \\((4|3)\\). Nach 2. Spiegelung: \\((-4|3)\\). Das ist gleich einer Punktspiegelung am Ursprung."
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "mc",
+        frage: "Zwei Achsenspiegelungen an parallelen Achsen ergeben …",
+        optionen: ["Eine weitere Achsenspiegelung", "Eine Parallelverschiebung", "Eine Drehung", "Eine Punktspiegelung"],
+        korrekt: 1,
+        tipp: "Das Ergebnis bewegt die Figur in gleicher Richtung.",
+        loesungsweg: "Zwei Spiegelungen an <b>parallelen</b> Achsen ergeben eine <b>Parallelverschiebung</b> um das Doppelte des Achsenabstands."
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "mc",
+        frage: "Zwei Achsenspiegelungen an sich schneidenden Achsen ergeben …",
+        optionen: ["Parallelverschiebung", "Drehung um den Schnittpunkt", "Identität", "Punktspiegelung an einer Achse"],
+        korrekt: 1,
+        tipp: "Schnittpunkt = Drehzentrum.",
+        loesungsweg: "Zwei Spiegelungen an sich schneidenden Achsen ergeben eine <b>Drehung</b> um den Schnittpunkt (doppelter Achsenwinkel)."
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "numerisch",
+        frage: "Eine Figur ist 5-fach drehsymmetrisch (kleinster Drehwinkel). Wie groß ist dieser Winkel in Grad?",
+        loesung: 72,
+        toleranz: 0,
+        tipp: "\\(360° : 5\\).",
+        loesungsweg: "$$\\frac{360°}{5} = 72°$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "mc",
+        frage: "Welche Raute ist zusätzlich achsensymmetrisch zu den Diagonalen?",
+        optionen: ["Nur Raute mit rechten Winkeln (Quadrat)", "Jede Raute", "Keine Raute", "Nur sehr schmale Rauten"],
+        korrekt: 1,
+        tipp: "Eine Raute hat 2 Symmetrieachsen.",
+        loesungsweg: "<b>Jede Raute</b> ist achsensymmetrisch zu beiden Diagonalen (2 Symmetrieachsen)."
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "numerisch",
+        frage: "Punkt \\(A(2|5)\\) wird um den Ursprung um \\(180°\\) gedreht. Welche \\(y\\)-Koordinate hat \\(A'\\)?",
+        loesung: -5,
+        toleranz: 0,
+        tipp: "\\(180°\\)-Drehung = Punktspiegelung.",
+        loesungsweg: "\\((2|5) \\mapsto (-2|-5)\\). \\(y\\)-Koordinate: \\(-5\\)."
+      },
+      // ========== LEVEL 6 -- wagnerisch: Transfer und Beweise ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "numerisch",
+        frage: "Eine gleichschenkliges Trapez hat wie viele Symmetrieachsen?",
+        loesung: 1,
+        toleranz: 0,
+        tipp: "Durch die Mitten der parallelen Seiten.",
+        loesungsweg: "Ein gleichschenkliges Trapez hat <b>1 Symmetrieachse</b> — senkrecht zu den Parallelen durch ihre Mittelpunkte."
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "mc",
+        frage: "Ein Drachenviereck (Drachen) ist …",
+        optionen: ["nur punktsymmetrisch", "achsensymmetrisch zu einer Diagonalen", "achsensymmetrisch zu beiden Diagonalen", "nicht symmetrisch"],
+        korrekt: 1,
+        tipp: "Nur eine Diagonale ist Symmetrieachse.",
+        loesungsweg: "Ein <b>Drachen</b> ist achsensymmetrisch zur Symmetriediagonale (die die spitzen Winkel halbiert)."
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Punkt \\(P(a|b)\\) wird an der Geraden \\(y = x\\) gespiegelt. Der Bildpunkt ist \\((b|a)\\). Bestimme die \\(x\\)-Koordinate des Bildes von \\(P(3|7)\\).",
+        loesung: 7,
+        toleranz: 0,
+        tipp: "Koordinaten vertauschen.",
+        loesungsweg: "Spiegelung an \\(y = x\\): \\((3|7) \\mapsto (7|3)\\). \\(x\\)-Koordinate: \\(7\\)."
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "mc",
+        frage: "Welche der Aussagen ist WAHR?",
+        optionen: ["Jede achsensymmetrische Figur ist auch punktsymmetrisch", "Jede punktsymmetrische Figur ist auch achsensymmetrisch", "Eine Figur kann beide Symmetrien, eine oder keine haben", "Kreise haben nur Punktsymmetrie"],
+        korrekt: 2,
+        tipp: "Die Beziehung ist unabhängig.",
+        loesungsweg: "Achsen- und Punktsymmetrie sind unabhängig. Beispiel: Gleichseitiges Dreieck hat nur Achsensymmetrie, Parallelogramm nur Punktsymmetrie."
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein regelmäßiges \\(n\\)-Eck hat \\(8\\) Symmetrieachsen. Wie viele Ecken hat es?",
+        loesung: 8,
+        toleranz: 0,
+        tipp: "Regelmäßiges \\(n\\)-Eck: \\(n\\) Symmetrieachsen.",
+        loesungsweg: "Ein regelmäßiges \\(n\\)-Eck hat genau \\(n\\) Symmetrieachsen. Also \\(n = 8\\)."
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Stern ist 5-fach drehsymmetrisch. Nach wie vielen Grad Drehung kommt er zum zweiten Mal in Ausgangslage (außer \\(360°\\))? Gib diesen Winkel an.",
+        loesung: 144,
+        toleranz: 0,
+        tipp: "\\(2 \\cdot \\frac{360°}{5}\\).",
+        loesungsweg: "Kleinster Drehwinkel: \\(72°\\). Zweite Übereinstimmung: \\(2 \\cdot 72° = 144°\\)."
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

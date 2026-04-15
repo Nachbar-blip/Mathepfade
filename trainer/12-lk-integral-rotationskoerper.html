@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotationskörper (LK) - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-lk-integral-rotationskoerper';
+    const THEMA_CONFIG = { name: 'Rotationskörper (LK)', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 — Formel & Grundverständnis ==========
+      { id:1, level:1, typ:"mc", frage:"Welche Formel beschreibt das Volumen eines Rotationskörpers um die x-Achse?", optionen:["\\(V=\\pi\\int_a^b f(x)\\,dx\\)","\\(V=\\pi\\int_a^b (f(x))^2\\,dx\\)","\\(V=\\int_a^b f(x)\\,dx\\)","\\(V=2\\pi\\int_a^b f(x)\\,dx\\)"], korrekt:1, tipp:"Kreisscheibenmethode.", loesungsweg:"\\(V = \\pi\\int_a^b [f(x)]^2\\,dx\\)." },
+      { id:2, level:1, typ:"mc", frage:"Was ist die Rotationsachse in der Standardformel?", optionen:["y-Achse","x-Achse","Winkelhalbierende","Ursprungsgerade"], korrekt:1, tipp:"Standardfall.", loesungsweg:"Standard: Rotation um die x-Achse." },
+      { id:3, level:1, typ:"mc", frage:"Warum \\((f(x))^2\\) im Integranden?", optionen:["Weil jeder Kreis-Querschnitt Fläche \\(\\pi r^2\\) hat","Zufall","Wegen Symmetrie","Wegen Ableitung"], korrekt:0, tipp:"Kreisfläche.", loesungsweg:"Kreisfläche mit Radius \\(f(x)\\) ist \\(\\pi f(x)^2\\)." },
+      { id:4, level:1, typ:"numerisch", frage:"\\(f(x)=2\\) auf \\([0;3]\\). Volumen bei Rotation um x-Achse (ohne \\(\\pi\\))?", loesung:12, toleranz:0, tipp:"\\(\\int_0^3 4\\,dx\\).", loesungsweg:"\\(V=\\pi\\cdot 12\\). Angabe ohne \\(\\pi\\): 12." },
+      { id:5, level:1, typ:"mc", frage:"Rotation um die y-Achse — welche Formel?", optionen:["\\(V=\\pi\\int_c^d [g(y)]^2\\,dy\\)","\\(V=\\pi\\int [f(x)]^2\\,dx\\)","\\(V=\\int g(y)\\,dy\\)","keine"], korrekt:0, tipp:"Umkehrfunktion.", loesungsweg:"\\(V = \\pi\\int_c^d [g(y)]^2\\,dy\\) mit \\(g\\) = Umkehrfkt." },
+      { id:6, level:1, typ:"mc", frage:"Ein Zylinder entsteht durch Rotation von \\(f(x)=r\\) auf \\([0;h]\\). Volumen?", optionen:["\\(\\pi r h\\)","\\(\\pi r^2 h\\)","\\(r^2 h\\)","\\(2\\pi r h\\)"], korrekt:1, tipp:"Klassisch.", loesungsweg:"\\(V=\\pi r^2 h\\) — übereinstimmend mit der Formel." },
+      // ========== LEVEL 2 — einfache Rotation ==========
+      { id:7, level:2, typ:"numerisch", frage:"\\(f(x)=x\\) auf \\([0;2]\\). \\(V/\\pi\\)?", loesung:2.67, toleranz:0.05, tipp:"\\(\\int_0^2 x^2\\,dx = \\tfrac{8}{3}\\).", loesungsweg:"\\(V/\\pi = \\tfrac{8}{3}\\approx 2{,}67\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"\\(f(x)=\\sqrt{x}\\) auf \\([0;4]\\). \\(V/\\pi\\)?", loesung:8, toleranz:0.01, tipp:"\\(\\int_0^4 x\\,dx\\).", loesungsweg:"\\(V/\\pi = \\tfrac{1}{2}\\cdot 16 = 8\\)." },
+      { id:9, level:2, typ:"numerisch", frage:"\\(f(x)=x^2\\) auf \\([0;1]\\). \\(V/\\pi\\)?", loesung:0.2, toleranz:0.01, tipp:"\\(\\int_0^1 x^4\\,dx = \\tfrac{1}{5}\\).", loesungsweg:"\\(V/\\pi = 0{,}2\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"\\(f(x)=2x\\) auf \\([0;3]\\). \\(V/\\pi\\)?", loesung:36, toleranz:0.1, tipp:"\\(\\int_0^3 4x^2\\,dx\\).", loesungsweg:"\\(4\\cdot \\tfrac{27}{3} = 36\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"\\(f(x)=1+x\\) auf \\([0;1]\\). \\(V/\\pi\\)?", loesung:2.33, toleranz:0.05, tipp:"\\(\\int_0^1 (1+x)^2\\,dx\\).", loesungsweg:"\\(\\int_0^1 (1+2x+x^2)\\,dx = 1+1+\\tfrac{1}{3} = \\tfrac{7}{3}\\)." },
+      { id:12, level:2, typ:"numerisch", frage:"\\(f(x)=x^3\\) auf \\([0;1]\\). \\(V/\\pi\\) (3 Dez.)?", loesung:0.143, toleranz:0.005, tipp:"\\(\\int_0^1 x^6\\,dx = \\tfrac{1}{7}\\).", loesungsweg:"\\(V/\\pi = \\tfrac{1}{7} \\approx 0{,}143\\)." },
+      // ========== LEVEL 3 — Halbkugel, Kegel ==========
+      { id:13, level:3, typ:"numerisch", frage:"Kugel mit Radius 1: Rotation von \\(\\sqrt{1-x^2}\\) auf \\([-1;1]\\). \\(V/\\pi\\) (2 Dez.)?", loesung:1.33, toleranz:0.02, tipp:"\\(\\int_{-1}^{1}(1-x^2)\\,dx = \\tfrac{4}{3}\\).", loesungsweg:"\\(V = \\pi\\cdot\\tfrac{4}{3}\\): Kugelvolumen mit \\(r=1\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"Halbkugel mit Radius 2: \\(V/\\pi\\) (2 Dez.)?", loesung:5.33, toleranz:0.05, tipp:"\\(\\tfrac{2}{3}r^3 = \\tfrac{16}{3}\\).", loesungsweg:"\\(V = \\tfrac{2}{3}\\pi r^3 = \\tfrac{16}{3}\\pi\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"Kegel: \\(f(x)=x\\) auf \\([0;h]\\) mit \\(h=3\\). \\(V/\\pi\\)?", loesung:9, toleranz:0.01, tipp:"\\(\\tfrac{1}{3}h^3\\).", loesungsweg:"\\(V/\\pi = \\tfrac{27}{3}=9\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"Kegel mit Höhe 6, Basisradius 2: \\(V/\\pi\\)?", loesung:8, toleranz:0.01, tipp:"\\(\\tfrac{1}{3}r^2 h\\).", loesungsweg:"\\(V = \\tfrac{1}{3}\\pi\\cdot 4\\cdot 6 = 8\\pi\\)." },
+      { id:17, level:3, typ:"mc", frage:"Welche Funktion liefert bei Rotation eine Kugel mit Radius \\(R\\)?", optionen:["\\(f(x)=R\\)","\\(f(x)=\\sqrt{R^2-x^2}\\) auf \\([-R;R]\\)","\\(f(x)=R^2-x^2\\)","\\(f(x)=Rx\\)"], korrekt:1, tipp:"Kreisgleichung.", loesungsweg:"\\(y=\\sqrt{R^2-x^2}\\) ist der obere Halbkreis." },
+      { id:18, level:3, typ:"numerisch", frage:"\\(f(x)=\\sqrt{x}\\) auf \\([1;4]\\). \\(V/\\pi\\)?", loesung:7.5, toleranz:0.02, tipp:"\\(\\int_1^4 x\\,dx\\).", loesungsweg:"\\(\\tfrac{1}{2}(16-1)=7{,}5\\)." },
+      // ========== LEVEL 4 — schwierigere Funktionen ==========
+      { id:19, level:4, typ:"numerisch", frage:"\\(f(x)=e^x\\) auf \\([0;1]\\). \\(V/\\pi\\) (3 Dez.)?", loesung:3.195, toleranz:0.02, tipp:"\\(\\int_0^1 e^{2x}\\,dx = \\tfrac{1}{2}(e^2-1)\\).", loesungsweg:"\\(\\tfrac{e^2-1}{2}\\approx 3{,}195\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"\\(f(x)=\\sin x\\) auf \\([0;\\pi]\\). \\(V/\\pi\\) (3 Dez.)?", loesung:1.571, toleranz:0.02, tipp:"\\(\\int_0^\\pi \\sin^2 x\\,dx = \\tfrac{\\pi}{2}\\).", loesungsweg:"\\(V/\\pi = \\tfrac{\\pi}{2}\\approx 1{,}571\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"\\(f(x)=\\cos x\\) auf \\([0;\\tfrac{\\pi}{2}]\\). \\(V/\\pi\\) (3 Dez.)?", loesung:0.785, toleranz:0.02, tipp:"\\(\\int_0^{\\pi/2}\\cos^2 x\\,dx = \\tfrac{\\pi}{4}\\).", loesungsweg:"\\(V/\\pi = \\tfrac{\\pi}{4}\\approx 0{,}785\\)." },
+      { id:22, level:4, typ:"numerisch", frage:"\\(f(x)=\\ln x\\) auf \\([1;e]\\). \\(V/\\pi\\) (mit partieller Integration, 3 Dez.)?", loesung:0.718, toleranz:0.03, tipp:"\\(\\int_1^e (\\ln x)^2\\,dx = e-2\\).", loesungsweg:"Partielle Integration: \\(\\int (\\ln x)^2\\,dx = x(\\ln x)^2-2\\int \\ln x\\,dx\\). Grenzen einsetzen: \\(e-2\\approx 0{,}718\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"\\(f(x)=\\tfrac{1}{x}\\) auf \\([1;2]\\). \\(V/\\pi\\)?", loesung:0.5, toleranz:0.01, tipp:"\\(\\int_1^2 x^{-2}\\,dx = \\tfrac{1}{2}\\).", loesungsweg:"\\([-x^{-1}]_1^2 = -\\tfrac{1}{2}+1 = \\tfrac{1}{2}\\)." },
+      { id:24, level:4, typ:"numerisch", frage:"\\(f(x)=x\\cdot e^{-x}\\) auf \\([0;1]\\). \\(V/\\pi\\) (3 Dez., partielle Integration)?", loesung:0.08, toleranz:0.02, tipp:"\\(\\int_0^1 x^2 e^{-2x}\\,dx\\approx 0{,}0803\\).", loesungsweg:"Zweifache partielle Integration: \\(V/\\pi \\approx 0{,}0803\\)." },
+      // ========== LEVEL 5 — Rotation um y-Achse, Differenzkörper ==========
+      { id:25, level:5, typ:"numerisch", frage:"\\(f(x)=x^2\\) auf \\([0;2]\\), Rotation um y-Achse. \\(V/\\pi\\) (mit \\(g(y)=\\sqrt{y}\\), 2 Dez.)?", loesung:8, toleranz:0.05, tipp:"\\(\\int_0^4 y\\,dy=8\\).", loesungsweg:"\\(V/\\pi = \\int_0^4 y\\,dy = 8\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"Differenzkörper \\(f(x)=2,g(x)=x\\) auf \\([0;2]\\) um x-Achse. \\(V/\\pi\\)?", loesung:5.33, toleranz:0.05, tipp:"\\(\\int_0^2 (4-x^2)\\,dx\\).", loesungsweg:"\\(8-\\tfrac{8}{3}=\\tfrac{16}{3}\\approx 5{,}33\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Differenzkörper: \\(f(x)=\\sqrt{x}, g(x)=x^2\\) auf \\([0;1]\\). \\(V/\\pi\\) (2 Dez.)?", loesung:0.3, toleranz:0.02, tipp:"\\(\\int_0^1 (x - x^4)\\,dx\\).", loesungsweg:"\\(\\tfrac{1}{2} - \\tfrac{1}{5} = 0{,}3\\)." },
+      { id:28, level:5, typ:"mc", frage:"Was gilt für Differenzkörper (äußere \\(f\\), innere \\(g\\))?", optionen:["\\(V=\\pi\\int (f^2-g^2)\\,dx\\)","\\(V=\\pi\\int (f-g)^2\\,dx\\)","\\(V=\\pi\\int (f-g)\\,dx\\)","\\(V=\\int f\\,dx-\\int g\\,dx\\)"], korrekt:0, tipp:"Äußeres Quadrat minus inneres.", loesungsweg:"\\(V = \\pi\\int_a^b [f(x)^2 - g(x)^2]\\,dx\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"Rotation von \\(f(x)=\\sqrt{4-x^2}\\) auf \\([-2;2]\\). \\(V/\\pi\\) (2 Dez.)?", loesung:10.67, toleranz:0.1, tipp:"Kugel Radius 2: \\(\\tfrac{4}{3}\\cdot 8\\).", loesungsweg:"\\(\\tfrac{32}{3}\\approx 10{,}67\\)." },
+      { id:30, level:5, typ:"numerisch", frage:"\\(f(x)=x^2+1\\) auf \\([0;1]\\). \\(V/\\pi\\) (3 Dez.)?", loesung:1.867, toleranz:0.03, tipp:"\\(\\int_0^1 (x^4+2x^2+1)\\,dx\\).", loesungsweg:"\\(\\tfrac{1}{5}+\\tfrac{2}{3}+1 = \\tfrac{28}{15}\\approx 1{,}867\\)." },
+      // ========== LEVEL 6 — Transfer ==========
+      { id:31, level:6, typ:"numerisch", frage:"Torus-ähnlich: Halbkugel vom Radius 3 minus Zylinder Radius 1, Höhe 3. \\(V/\\pi\\)?", loesung:15, toleranz:0.5, tipp:"\\(\\tfrac{2}{3}\\cdot 27 - 3 = 18-3=15\\).", loesungsweg:"\\(V/\\pi = 18 - 3 = 15\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"\\(f(x)=\\sqrt{\\sin x}\\) auf \\([0;\\pi]\\). \\(V/\\pi\\)?", loesung:2, toleranz:0.02, tipp:"\\(\\int_0^\\pi \\sin x\\,dx = 2\\).", loesungsweg:"\\(V/\\pi = 2\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"\\(f(x)=\\tfrac{1}{\\sqrt{x}}\\) auf \\([1;4]\\). \\(V/\\pi\\) (3 Dez.)?", loesung:1.386, toleranz:0.02, tipp:"\\(\\int_1^4 x^{-1}\\,dx = \\ln 4\\).", loesungsweg:"\\(V/\\pi=\\ln 4 \\approx 1{,}386\\)." },
+      { id:34, level:6, typ:"numerisch", frage:"Paraboloid: \\(f(x)=\\sqrt{x}\\) auf \\([0;h]\\). \\(V/\\pi\\) als Funktion von \\(h\\) bei \\(h=5\\)?", loesung:12.5, toleranz:0.05, tipp:"\\(\\tfrac{h^2}{2}\\).", loesungsweg:"\\(V/\\pi = \\tfrac{25}{2}=12{,}5\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"Differenzkörper \\(f=2, g=x\\) auf \\([0;2]\\). Rotation um x-Achse. \\(V/\\pi\\)?", loesung:5.33, toleranz:0.05, tipp:"\\(\\int_0^2 (4-x^2)\\,dx = \\tfrac{16}{3}\\).", loesungsweg:"\\(V/\\pi = \\tfrac{16}{3}\\approx 5{,}33\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"\\(f(x)=x\\cdot\\sqrt{1-x^2}\\) auf \\([0;1]\\). \\(V/\\pi\\) (4 Dez.)?", loesung:0.1333, toleranz:0.005, tipp:"\\(\\int_0^1 x^2(1-x^2)\\,dx = \\tfrac{1}{3}-\\tfrac{1}{5}\\).", loesungsweg:"\\(\\tfrac{1}{3}-\\tfrac{1}{5} = \\tfrac{2}{15}\\approx 0{,}1333\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

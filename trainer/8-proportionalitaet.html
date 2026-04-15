@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proportionalitaet - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-proportionalitaet';
+    const THEMA_CONFIG = { name: 'Direkte und indirekte Proportionalitaet', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id: 1, level: 1, typ: "mc", frage: "Zwei Größen sind direkt proportional, wenn …", optionen: ["ihre Summe konstant ist", "ihr Quotient konstant ist", "ihr Produkt konstant ist", "nichts davon"], korrekt: 1, tipp: "\\(\\frac{y}{x} = k\\).", loesungsweg: "Direkt proportional: \\(\\frac{y}{x} = k\\) ist konstant (Proportionalitätsfaktor)." },
+      { id: 2, level: 1, typ: "mc", frage: "Zwei Größen sind indirekt proportional, wenn …", optionen: ["ihr Quotient konstant ist", "ihr Produkt konstant ist", "ihre Summe konstant ist", "sie gleich sind"], korrekt: 1, tipp: "\\(x \\cdot y = k\\).", loesungsweg: "Indirekt proportional: \\(x \\cdot y = k\\) ist konstant." },
+      { id: 3, level: 1, typ: "mc", frage: "Welche Beziehung ist direkt proportional?", optionen: ["Anzahl Brötchen zu Gesamtpreis", "Arbeiterzahl zu Arbeitsdauer", "Alter zu Körpergröße", "Niederschlag zu Temperatur"], korrekt: 0, tipp: "Mehr Brötchen → mehr Preis.", loesungsweg: "Brötchen & Preis sind direkt proportional: Doppelt so viele Brötchen → doppelter Preis." },
+      { id: 4, level: 1, typ: "numerisch", frage: "3 Äpfel kosten 1{,}50 €. Wie viel kosten 6 Äpfel in €?", loesung: 3, toleranz: 0, tipp: "Doppelt so viele.", loesungsweg: "Doppelt → doppelter Preis: \\(3\\,€\\)." },
+      { id: 5, level: 1, typ: "numerisch", frage: "1 Heft kostet 0{,}80 €. Wie viel kosten 5 Hefte in €?", loesung: 4, toleranz: 0, tipp: "Mal 5.", loesungsweg: "\\(5 \\cdot 0{,}80 = 4\\,€\\)." },
+      { id: 6, level: 1, typ: "numerisch", frage: "4 Arbeiter brauchen 6 h. Wie lange brauchen 2 Arbeiter in h (indirekt prop.)?", loesung: 12, toleranz: 0, tipp: "Halb so viele → doppelt so lang.", loesungsweg: "\\(4 \\cdot 6 = 2 \\cdot t \\Rightarrow t = 12\\,h\\)." },
+      // LEVEL 2
+      { id: 7, level: 2, typ: "mc", frage: "Was ist der Proportionalitätsfaktor bei \\(y = 3x\\)?", optionen: ["\\(x\\)", "\\(y\\)", "\\(3\\)", "\\(\\frac{1}{3}\\)"], korrekt: 2, tipp: "Zahl vor \\(x\\).", loesungsweg: "\\(k = 3\\)." },
+      { id: 8, level: 2, typ: "mc", frage: "Der Graph einer direkten Proportionalität ist …", optionen: ["eine Hyperbel", "eine Parabel", "eine Gerade durch den Ursprung", "ein Kreis"], korrekt: 2, tipp: "\\(y = kx\\).", loesungsweg: "Direkte Prop.: Gerade durch den Ursprung mit Anstieg \\(k\\)." },
+      { id: 9, level: 2, typ: "mc", frage: "Der Graph einer indirekten Proportionalität ist …", optionen: ["Gerade", "Hyperbel", "Parabel", "Kreis"], korrekt: 1, tipp: "\\(y = \\frac{k}{x}\\).", loesungsweg: "Indirekte Prop.: Hyperbel (Funktion \\(y = \\frac{k}{x}\\))." },
+      { id: 10, level: 2, typ: "numerisch", frage: "7 L Saft kosten 14 €. Was kosten 10 L in €?", loesung: 20, toleranz: 0, tipp: "\\(k = 2\\)€/L.", loesungsweg: "\\(k = 2\\). \\(10 \\cdot 2 = 20\\,€\\)." },
+      { id: 11, level: 2, typ: "numerisch", frage: "5 Maschinen brauchen 8 h. Wie lange 10 Maschinen (indirekt, h)?", loesung: 4, toleranz: 0, tipp: "Doppelt → halb so lang.", loesungsweg: "\\(5 \\cdot 8 = 10 \\cdot t \\Rightarrow t = 4\\,h\\)." },
+      { id: 12, level: 2, typ: "numerisch", frage: "\\(y = 5x\\). Berechne \\(y\\) für \\(x = 8\\).", loesung: 40, toleranz: 0, tipp: "Einsetzen.", loesungsweg: "\\(y = 5 \\cdot 8 = 40\\)." },
+      // LEVEL 3
+      { id: 13, level: 3, typ: "mc", frage: "Welche Zuordnung ist DIREKT proportional?", optionen: ["Anzahl Arbeiter - Bauzeit", "Geschwindigkeit - Bremsweg", "Menge Benzin - Preis", "Anzahl Kühe - Futterdauer"], korrekt: 2, tipp: "Preis = Menge·Einzelpreis.", loesungsweg: "Menge Benzin → Preis ist direkt proportional." },
+      { id: 14, level: 3, typ: "mc", frage: "Welche ist INDIREKT proportional?", optionen: ["Zeit - Wegstrecke (konstante Geschwindigkeit)", "Arbeiter - Arbeitsdauer", "Menge - Preis", "Seitenlänge - Umfang"], korrekt: 1, tipp: "Mehr Arbeiter → weniger Zeit.", loesungsweg: "Arbeiter × Zeit = konstante Arbeit → indirekt proportional." },
+      { id: 15, level: 3, typ: "mc", frage: "6 L für 9 €. Wie viel L für 15 €?", optionen: ["8 L", "10 L", "12 L", "9 L"], korrekt: 1, tipp: "\\(k = \\frac{9}{6} = 1{,}5\\)€/L.", loesungsweg: "\\(\\frac{15}{1{,}5} = 10\\,L\\)." },
+      { id: 16, level: 3, typ: "numerisch", frage: "3 Pizzen kosten 24 €. Wie viele Pizzen bekommst du für 40 €?", loesung: 5, toleranz: 0, tipp: "Preis pro Pizza = 8 €.", loesungsweg: "\\(\\frac{40}{8} = 5\\)." },
+      { id: 17, level: 3, typ: "numerisch", frage: "4 Kühe fressen Heu in 12 Tagen. Wie lange reicht es für 6 Kühe (Tage)?", loesung: 8, toleranz: 0, tipp: "Indirekt: \\(4 \\cdot 12 = 6 \\cdot t\\).", loesungsweg: "\\(t = \\frac{48}{6} = 8\\,\\text{Tage}\\)." },
+      { id: 18, level: 3, typ: "numerisch", frage: "Ein Auto fährt in 3 h 180 km. Wie weit in 5 h (gleiche Geschwindigkeit, km)?", loesung: 300, toleranz: 0, tipp: "Direkt prop.", loesungsweg: "\\(k = 60\\,km/h\\). \\(5 \\cdot 60 = 300\\,km\\)." },
+      // LEVEL 4
+      { id: 19, level: 4, typ: "mc", frage: "\\(x \\cdot y = 24\\). Was ist \\(y\\) für \\(x = 6\\)?", optionen: ["2", "3", "4", "6"], korrekt: 2, tipp: "\\(y = \\frac{24}{x}\\).", loesungsweg: "\\(y = \\frac{24}{6} = 4\\)." },
+      { id: 20, level: 4, typ: "mc", frage: "Ein Quadrat: Seitenlänge \\(a\\) und Umfang \\(U = 4a\\). Welche Art Zuordnung?", optionen: ["indirekt prop.", "direkt prop. mit \\(k=4\\)", "keine prop.", "weder noch"], korrekt: 1, tipp: "\\(U = 4a\\).", loesungsweg: "\\(\\frac{U}{a} = 4\\) konstant → direkt prop., \\(k = 4\\)." },
+      { id: 21, level: 4, typ: "mc", frage: "Ein Rechteck hat Fläche 36. Bei indirekt prop.: Wenn Seite \\(a = 4\\), wie groß \\(b\\)?", optionen: ["6", "8", "9", "12"], korrekt: 2, tipp: "\\(a \\cdot b = 36\\).", loesungsweg: "\\(b = \\frac{36}{4} = 9\\)." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Ein Zug braucht bei \\(v = 80\\) km/h für die Strecke 4 h. Wie lange bei \\(v = 100\\) km/h (h)?", loesung: 3.2, toleranz: 0.01, tipp: "Indirekt prop.", loesungsweg: "\\(80 \\cdot 4 = 100 \\cdot t \\Rightarrow t = 3{,}2\\,h\\)." },
+      { id: 23, level: 4, typ: "numerisch", frage: "Eine Umdrehung Zahnrad A entspricht 3 Umdrehungen Rad B. Bei 20 A, wie viele B?", loesung: 60, toleranz: 0, tipp: "Direkt prop.", loesungsweg: "\\(20 \\cdot 3 = 60\\)." },
+      { id: 24, level: 4, typ: "numerisch", frage: "10 Rohre füllen Becken in 6 h. Wie lange mit 15 Rohren (h)?", loesung: 4, toleranz: 0, tipp: "Indirekt.", loesungsweg: "\\(10 \\cdot 6 = 15 \\cdot t \\Rightarrow t = 4\\,h\\)." },
+      // LEVEL 5
+      { id: 25, level: 5, typ: "mc", frage: "4 Arbeiter streichen eine Halle in 9 Tagen. In wie vielen Tagen 6 Arbeiter?", optionen: ["4", "5", "6", "8"], korrekt: 2, tipp: "\\(4 \\cdot 9 = 6 \\cdot t\\).", loesungsweg: "\\(t = \\frac{36}{6} = 6\\) Tage." },
+      { id: 26, level: 5, typ: "mc", frage: "Welcher Graph gehört zu \\(y = \\frac{12}{x}\\)?", optionen: ["Gerade", "Parabel", "Hyperbel", "Waagerechte"], korrekt: 2, tipp: "Indirekt prop.", loesungsweg: "Hyperbel - typischer Graph indirekter Proportionalität." },
+      { id: 27, level: 5, typ: "mc", frage: "Ein Auto verbraucht 7 L auf 100 km. Wie viel auf 350 km?", optionen: ["20{,}5 L", "22{,}5 L", "24{,}5 L", "25{,}0 L"], korrekt: 2, tipp: "Dreifaltig plus halb.", loesungsweg: "\\(\\frac{7}{100} \\cdot 350 = 24{,}5\\,L\\)." },
+      { id: 28, level: 5, typ: "numerisch", frage: "5 Pumpen leeren Tank in 8 h. Wie lange mit 4 Pumpen (h)?", loesung: 10, toleranz: 0, tipp: "\\(5 \\cdot 8 = 4 \\cdot t\\).", loesungsweg: "\\(t = \\frac{40}{4} = 10\\,h\\)." },
+      { id: 29, level: 5, typ: "numerisch", frage: "Bei Zuordnung \\(y = \\frac{20}{x}\\): Was ist \\(y\\) für \\(x = 4\\)?", loesung: 5, toleranz: 0, tipp: "Einsetzen.", loesungsweg: "\\(y = \\frac{20}{4} = 5\\)." },
+      { id: 30, level: 5, typ: "numerisch", frage: "Im Maßstab 1:50 000 sind 4 cm wie viele km in Wirklichkeit?", loesung: 2, toleranz: 0, tipp: "\\(4 \\cdot 50000\\) cm.", loesungsweg: "\\(4 \\cdot 50\\,000 = 200\\,000\\,cm = 2\\,km\\)." },
+      // LEVEL 6
+      { id: 31, level: 6, typ: "mc", frage: "6 Mähdrescher mähen ein Feld in 8 h. Wie lange 4 Mähdrescher?", optionen: ["10 h", "12 h", "14 h", "16 h"], korrekt: 1, tipp: "Indirekt prop.", loesungsweg: "\\(6 \\cdot 8 = 4 \\cdot t \\Rightarrow t = 12\\,h\\)." },
+      { id: 32, level: 6, typ: "mc", frage: "Ein Auto fährt 3 h bei 60 km/h. Jetzt derselbe Weg in 2 h - welche Geschwindigkeit?", optionen: ["80 km/h", "90 km/h", "100 km/h", "120 km/h"], korrekt: 1, tipp: "Indirekt: \\(v \\cdot t = s\\).", loesungsweg: "\\(60 \\cdot 3 = v \\cdot 2 \\Rightarrow v = 90\\,km/h\\)." },
+      { id: 33, level: 6, typ: "mc", frage: "Welche Aussage ist FALSCH?", optionen: ["Bei direkt prop. gilt \\(y = kx\\)", "Bei indirekt prop. gilt \\(y = \\frac{k}{x}\\)", "Direkt prop. Graph geht durch Ursprung", "Bei indirekt prop. ist \\(x + y\\) konstant"], korrekt: 3, tipp: "Produkt, nicht Summe.", loesungsweg: "Bei indirekter Prop. ist das PRODUKT \\(xy = k\\) konstant, nicht die Summe." },
+      { id: 34, level: 6, typ: "numerisch", frage: "Ein Vorrat reicht 12 Pferden 30 Tage. Wie lange reicht er 20 Pferden (Tage)?", loesung: 18, toleranz: 0, tipp: "Indirekt.", loesungsweg: "\\(12 \\cdot 30 = 20 \\cdot t \\Rightarrow t = 18\\,\\text{Tage}\\)." },
+      { id: 35, level: 6, typ: "numerisch", frage: "Maßstab 1:200 000. Auf der Karte sind 7{,}5 cm. In der Wirklichkeit wie viele km?", loesung: 15, toleranz: 0, tipp: "\\(7{,}5 \\cdot 200000\\) cm.", loesungsweg: "\\(7{,}5 \\cdot 200\\,000 = 1\\,500\\,000\\,cm = 15\\,km\\)." },
+      { id: 36, level: 6, typ: "numerisch", frage: "3 Drucker drucken 120 Seiten in 4 min. Wie viele Seiten drucken 5 Drucker in 6 min? (Direkt in beiden Größen)", loesung: 300, toleranz: 0, tipp: "Pro Drucker&Minute: 10 Seiten.", loesungsweg: "Pro Drucker pro Minute: \\(\\frac{120}{3 \\cdot 4} = 10\\). \\(5 \\cdot 6 \\cdot 10 = 300\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

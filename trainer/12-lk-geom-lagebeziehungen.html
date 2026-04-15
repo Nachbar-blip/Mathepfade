@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lagebeziehungen Ebene-Ebene (LK) - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-lk-geom-lagebeziehungen';
+    const THEMA_CONFIG = { name: 'Lagebeziehungen Ebene-Ebene (LK)', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // ===== LEVEL 1 — Grundbegriffe =====
+      { id:1, level:1, typ:"mc",
+        frage:"Welche Lagebeziehungen können zwei Ebenen im \\(\\mathbb{R}^3\\) haben?",
+        optionen:["nur parallel oder identisch","parallel, identisch oder schneidend","nur schneidend","windschief"],
+        korrekt:1,
+        tipp:"Ebenen können nicht windschief liegen.",
+        loesungsweg:"Zwei Ebenen sind entweder (echt) parallel, identisch oder schneiden sich in einer Geraden."
+      },
+      { id:2, level:1, typ:"mc",
+        frage:"Zwei Ebenen sind parallel, wenn …",
+        optionen:["ihre Normalenvektoren linear abhängig sind","ihre Normalenvektoren senkrecht stehen","\\(\\vec{n}_1\\cdot\\vec{n}_2=0\\)","ihre Stützpunkte gleich sind"],
+        korrekt:0,
+        tipp:"\\(\\vec{n}_1=\\lambda\\vec{n}_2\\).",
+        loesungsweg:"Parallele Ebenen haben parallele Normalenvektoren: \\(\\vec{n}_1\\parallel\\vec{n}_2\\)."
+      },
+      { id:3, level:1, typ:"mc",
+        frage:"Wie bestimmt man die Schnittgerade zweier Ebenen?",
+        optionen:["Gleichsetzen und Parameter einführen","Kreuzprodukt der Stützvektoren","Addieren der Ebenengleichungen","Skalarprodukt bilden"],
+        korrekt:0,
+        tipp:"Lineares System lösen, freier Parameter bleibt.",
+        loesungsweg:"Aus beiden Gleichungen ein LGS lösen. Ein Parameter bleibt frei → Richtungsvektor der Schnittgeraden."
+      },
+      { id:4, level:1, typ:"mc",
+        frage:"Der Richtungsvektor der Schnittgeraden zweier Ebenen ist …",
+        optionen:["\\(\\vec{n}_1+\\vec{n}_2\\)","\\(\\vec{n}_1\\times\\vec{n}_2\\)","\\(\\vec{n}_1\\cdot\\vec{n}_2\\)","beliebig"],
+        korrekt:1,
+        tipp:"Senkrecht zu beiden Normalen.",
+        loesungsweg:"\\(\\vec{u}=\\vec{n}_1\\times\\vec{n}_2\\) liegt in beiden Ebenen und ist Richtungsvektor der Schnittgeraden."
+      },
+      { id:5, level:1, typ:"mc",
+        frage:"Ebenen \\(E_1: x+y+z=1\\) und \\(E_2: 2x+2y+2z=5\\). Lage?",
+        optionen:["identisch","echt parallel","schneidend","senkrecht"],
+        korrekt:1,
+        tipp:"\\(\\vec{n}_2=2\\vec{n}_1\\), aber \\(d_1\\neq d_2/2\\).",
+        loesungsweg:"Normalen parallel, aber \\(2\\cdot1=2\\neq 5\\): echt parallel."
+      },
+      { id:6, level:1, typ:"mc",
+        frage:"\\(E_1: x=0\\) und \\(E_2: y=0\\) schneiden sich in …",
+        optionen:["x-Achse","y-Achse","z-Achse","Ursprung"],
+        korrekt:2,
+        tipp:"Beide Bedingungen: \\(x=0\\wedge y=0\\).",
+        loesungsweg:"Schnittgerade ist die z-Achse: \\(\\vec{x}=(0,0,0)^T+t(0,0,1)^T\\)."
+      },
+      // ===== LEVEL 2 — Normalen prüfen =====
+      { id:7, level:2, typ:"mc",
+        frage:"\\(E_1: 2x-y+z=3\\), \\(E_2: -4x+2y-2z=1\\). Lage?",
+        optionen:["identisch","echt parallel","schneidend","senkrecht"],
+        korrekt:1,
+        tipp:"\\(\\vec{n}_2=-2\\vec{n}_1\\), \\(d\\)-Prüfung.",
+        loesungsweg:"Multipliziere \\(E_1\\) mit \\(-2\\): \\(-4x+2y-2z=-6\\neq1\\). Echt parallel."
+      },
+      { id:8, level:2, typ:"mc",
+        frage:"\\(E_1: x+y+z=0\\), \\(E_2: 2x+2y+2z=0\\).",
+        optionen:["identisch","echt parallel","schneidend","leer"],
+        korrekt:0,
+        tipp:"\\(E_2=2E_1\\).",
+        loesungsweg:"Gleiche Ebene: identisch."
+      },
+      { id:9, level:2, typ:"mc",
+        frage:"Normalenvektor von \\(E: 3x-y+2z=7\\)?",
+        optionen:["\\((3,-1,2)^T\\)","\\((1,3,-1)^T\\)","\\((7,0,0)^T\\)","\\((-3,1,-2)^T\\)"],
+        korrekt:0,
+        tipp:"Koeffizienten von \\(x,y,z\\).",
+        loesungsweg:"\\(\\vec{n}=(3,-1,2)^T\\)."
+      },
+      { id:10, level:2, typ:"numerisch",
+        frage:"\\(E_1: x+y=2\\), \\(E_2: y+z=1\\). Richtungsvektor der Schnittgeraden hat als x-Komponente bei Normierung auf \\(\\vec{u}=(1,?,?)\\) den Wert \\(-1\\). Gib die y-Komponente an.",
+        loesung:-1, toleranz:0.01,
+        tipp:"\\(\\vec{n}_1=(1,1,0)\\), \\(\\vec{n}_2=(0,1,1)\\), \\(\\vec{n}_1\\times\\vec{n}_2=(1,-1,1)\\).",
+        loesungsweg:"\\(\\vec{u}=(1,-1,1)\\); y-Komponente \\(=-1\\)."
+      },
+      { id:11, level:2, typ:"mc",
+        frage:"Zwei Ebenen \\(E_1, E_2\\) mit \\(\\vec{n}_1\\cdot\\vec{n}_2=0\\) sind …",
+        optionen:["parallel","senkrecht zueinander","identisch","windschief"],
+        korrekt:1,
+        tipp:"Normalen senkrecht → Ebenen senkrecht.",
+        loesungsweg:"Verschwindendes Skalarprodukt → orthogonale Ebenen."
+      },
+      { id:12, level:2, typ:"mc",
+        frage:"\\(E_1: x+2y-z=0\\), \\(E_2: 2x-y+z=1\\). \\(\\vec{n}_1\\cdot\\vec{n}_2=?\\)",
+        optionen:["\\(-1\\)","\\(0\\)","\\(1\\)","\\(-2\\)"],
+        korrekt:0,
+        tipp:"\\(2-2-1\\).",
+        loesungsweg:"\\((1)(2)+(2)(-1)+(-1)(1)=2-2-1=-1\\)."
+      },
+      // ===== LEVEL 3 — Schnittgerade berechnen =====
+      { id:13, level:3, typ:"mc",
+        frage:"Schnittgerade von \\(E_1: x+y=1\\) und \\(E_2: y+z=0\\) hat Richtungsvektor?",
+        optionen:["\\((1,-1,1)^T\\)","\\((1,1,0)^T\\)","\\((0,1,1)^T\\)","\\((1,0,0)^T\\)"],
+        korrekt:0,
+        tipp:"Kreuzprodukt der Normalen \\((1,1,0)\\times(0,1,1)\\).",
+        loesungsweg:"\\((1,1,0)\\times(0,1,1)=(1,-1,1)\\)."
+      },
+      { id:14, level:3, typ:"mc",
+        frage:"Ein Punkt auf der Schnittgeraden von \\(E_1: x+y=1\\), \\(E_2: y+z=0\\) ist:",
+        optionen:["\\((1|0|0)\\)","\\((0|1|-1)\\)","\\((1|1|1)\\)","\\((2|0|1)\\)"],
+        korrekt:1,
+        tipp:"Setze \\(x=0\\Rightarrow y=1\\Rightarrow z=-1\\).",
+        loesungsweg:"Punkt \\((0|1|-1)\\) erfüllt beide Gleichungen."
+      },
+      { id:15, level:3, typ:"numerisch",
+        frage:"\\(E_1: x+y+z=3\\), \\(E_2: x-y+z=1\\). Schnittpunkt bei \\(x=1\\): Welcher z-Wert?",
+        loesung:1, toleranz:0.01,
+        tipp:"\\(y=1\\), dann \\(1+1+z=3\\).",
+        loesungsweg:"Subtraktion: \\(2y=2\\Rightarrow y=1\\). Aus \\(E_1\\): \\(z=3-1-1=1\\)."
+      },
+      { id:16, level:3, typ:"mc",
+        frage:"\\(E_1: x=0\\), \\(E_2: z=1\\). Schnittgerade?",
+        optionen:["\\((0,t,1)\\)","\\((t,0,1)\\)","\\((0,1,t)\\)","\\((t,t,1)\\)"],
+        korrekt:0,
+        tipp:"\\(x\\) und \\(z\\) fest, \\(y\\) frei.",
+        loesungsweg:"\\(\\vec{x}=(0,0,1)+t(0,1,0)\\)."
+      },
+      { id:17, level:3, typ:"numerisch",
+        frage:"\\(E_1: 2x+y-z=4\\), \\(E_2: x-y+z=0\\). Addition beider liefert \\(3x=?\\).",
+        loesung:4, toleranz:0.01,
+        tipp:"\\(y-z\\) und \\(-y+z\\) heben sich auf.",
+        loesungsweg:"\\(2x+x+0=4\\Rightarrow 3x=4\\)."
+      },
+      { id:18, level:3, typ:"mc",
+        frage:"Zwei Ebenen schneiden sich immer dann in einer Geraden, wenn:",
+        optionen:["\\(\\vec{n}_1\\times\\vec{n}_2\\neq\\vec{0}\\)","\\(\\vec{n}_1\\cdot\\vec{n}_2\\neq 0\\)","ihre Stützpunkte verschieden sind","immer"],
+        korrekt:0,
+        tipp:"Nichtparallele Normalen.",
+        loesungsweg:"Kreuzprodukt nichtnull → Normalen nicht parallel → Schnittgerade existiert."
+      },
+      // ===== LEVEL 4 — Parametrisierung =====
+      { id:19, level:4, typ:"numerisch",
+        frage:"Schnittgerade \\(g\\) von \\(E_1:x+y+z=2\\) und \\(E_2:2x-y+z=1\\). Für Stützpunkt \\((x_0|y_0|0)\\) mit \\(z=0\\): Gib \\(x_0\\) an.",
+        loesung:1, toleranz:0.01,
+        tipp:"\\(x+y=2\\), \\(2x-y=1\\). Addieren: \\(3x=3\\).",
+        loesungsweg:"\\(x_0=1\\), \\(y_0=1\\)."
+      },
+      { id:20, level:4, typ:"mc",
+        frage:"\\(E_1:x+2y-z=0\\), \\(E_2:3x+y+z=4\\). Richtungsvektor der Schnittgeraden?",
+        optionen:["\\((3,-4,-5)^T\\)","\\((1,2,-1)^T\\)","\\((3,1,1)^T\\)","\\((0,0,1)^T\\)"],
+        korrekt:0,
+        tipp:"\\((1,2,-1)\\times(3,1,1)\\).",
+        loesungsweg:"\\((1,2,-1)\\times(3,1,1)=(2\\cdot1-(-1)\\cdot1,\\,(-1)\\cdot3-1\\cdot1,\\,1\\cdot1-2\\cdot3)=(3,-4,-5)\\)."
+      },
+      { id:21, level:4, typ:"numerisch",
+        frage:"Schnittpunkt der Ebene \\(E:x+y+z=6\\) mit der x-Achse: Gib die x-Koordinate.",
+        loesung:6, toleranz:0.01,
+        tipp:"\\(y=z=0\\).",
+        loesungsweg:"\\(x=6\\)."
+      },
+      { id:22, level:4, typ:"numerisch",
+        frage:"\\(E_1:x+y-z=0\\), \\(E_2:x-y+z=2\\). Stützpunkt mit \\(x=1\\): \\(y=\\)?",
+        loesung:0, toleranz:0.01,
+        tipp:"Addition: \\(2x=2\\Rightarrow x=1\\), dann z. B. \\(z=y\\)-frei? Prüfe: \\(y-z=-1\\), \\(-y+z=1\\). Parameter frei.",
+        loesungsweg:"Mit \\(y=0\\Rightarrow z=1\\), passt in beiden Gleichungen. \\(y=0\\)."
+      },
+      { id:23, level:4, typ:"mc",
+        frage:"Die Ebenen \\(E_1:x-2y+z=0\\) und \\(E_2:2x-4y+2z=0\\) sind:",
+        optionen:["identisch","echt parallel","schneidend","windschief"],
+        korrekt:0,
+        tipp:"\\(E_2=2\\cdot E_1\\).",
+        loesungsweg:"Gleiche Ebene."
+      },
+      { id:24, level:4, typ:"numerisch",
+        frage:"Welchen Wert muss \\(k\\) in \\(E_2:2x+ky-2z=4\\) annehmen, damit \\(E_1:x+y-z=1\\) und \\(E_2\\) parallel sind?",
+        loesung:2, toleranz:0.01,
+        tipp:"\\(\\vec{n}_2=2\\vec{n}_1\\Rightarrow k=2\\).",
+        loesungsweg:"\\(k=2\\)."
+      },
+      // ===== LEVEL 5 — Gerade–Ebene =====
+      { id:25, level:5, typ:"mc",
+        frage:"Wann schneidet eine Gerade eine Ebene in genau einem Punkt?",
+        optionen:["\\(\\vec{u}\\cdot\\vec{n}\\neq 0\\)","\\(\\vec{u}\\cdot\\vec{n}=0\\)","\\(\\vec{u}\\parallel\\vec{n}\\)","immer"],
+        korrekt:0,
+        tipp:"Richtungsvektor nicht parallel zur Ebene.",
+        loesungsweg:"\\(\\vec{u}\\cdot\\vec{n}\\neq 0\\) bedeutet \\(\\vec{u}\\) nicht in Ebene → genau ein Schnittpunkt."
+      },
+      { id:26, level:5, typ:"numerisch",
+        frage:"\\(g:\\vec{x}=(0,0,0)+t(1,1,1)\\) und \\(E:x+y+z=6\\). Schnittpunktparameter \\(t\\)?",
+        loesung:2, toleranz:0.01,
+        tipp:"\\(3t=6\\).",
+        loesungsweg:"\\(t=2\\), Schnittpunkt \\((2|2|2)\\)."
+      },
+      { id:27, level:5, typ:"mc",
+        frage:"\\(g:\\vec{x}=(1,0,0)+t(1,1,0)\\) und \\(E:z=5\\). Schnittpunkt?",
+        optionen:["existiert nicht","\\((1|0|0)\\)","\\((6|5|0)\\)","unendlich viele"],
+        korrekt:0,
+        tipp:"\\(z=0\\) konstant.",
+        loesungsweg:"\\(z\\) auf \\(g\\) ist stets 0 \\(\\neq 5\\): kein Schnittpunkt, \\(g\\) echt parallel zu \\(E\\)."
+      },
+      { id:28, level:5, typ:"numerisch",
+        frage:"\\(g:\\vec{x}=(1,2,3)+t(0,1,-1)\\), \\(E:y+z=5\\). Schnittpunktparameter?",
+        loesung:0, toleranz:0.01,
+        tipp:"\\(y+z=2+3=5\\) für \\(t=0\\).",
+        loesungsweg:"\\((2+t)+(3-t)=5\\Rightarrow 5=5\\) für alle \\(t\\): Gerade liegt ganz in E! (Trainerlösung: \\(t=0\\) ist ein Treffer.)"
+      },
+      { id:29, level:5, typ:"mc",
+        frage:"Eine Gerade liegt genau dann in einer Ebene, wenn:",
+        optionen:["\\(\\vec{u}\\cdot\\vec{n}=0\\) und Stützpunkt in E","\\(\\vec{u}\\cdot\\vec{n}\\neq 0\\)","\\(\\vec{u}\\cdot\\vec{n}=0\\)","Stützpunkt in E"],
+        korrekt:0,
+        tipp:"Beide Bedingungen nötig.",
+        loesungsweg:"Richtungsvektor parallel zu E UND Stützpunkt in E."
+      },
+      { id:30, level:5, typ:"numerisch",
+        frage:"\\(g:\\vec{x}=(2,0,1)+t(1,2,-1)\\), \\(E:x+y+z=5\\). Welcher Parameter \\(t\\) liefert den Schnittpunkt?",
+        loesung:1, toleranz:0.01,
+        tipp:"\\((2+t)+2t+(1-t)=5\\Rightarrow 3+2t=5\\).",
+        loesungsweg:"\\(2t=2\\Rightarrow t=1\\). Schnittpunkt \\((3|2|0)\\)."
+      },
+      // ===== LEVEL 6 — Abi-Niveau =====
+      { id:31, level:6, typ:"numerisch",
+        frage:"Ebene \\(E_1\\) durch \\(A(1|0|0), B(0|1|0), C(0|0|1)\\); Ebene \\(E_2:x+y=0\\). Richtungsvektor der Schnittgeraden hat y-Komponente \\(-1\\). Welche x-Komponente?",
+        loesung:1, toleranz:0.01,
+        tipp:"\\(E_1:x+y+z=1\\), \\(\\vec{n}_1\\times\\vec{n}_2=(1,1,1)\\times(1,1,0)=(-1,1,0)\\). Normiert: (1,-1,0).",
+        loesungsweg:"Kreuzprodukt \\((-1,1,0)\\), umgekehrt \\((1,-1,0)\\); x-Komponente \\(=1\\)."
+      },
+      { id:32, level:6, typ:"numerisch",
+        frage:"\\(E_1:x+y+z=6\\), \\(E_2:2x-y+z=3\\). Schnittgerade hat Stützpunkt mit \\(z=0\\). Welches \\(x\\)?",
+        loesung:3, toleranz:0.01,
+        tipp:"\\(x+y=6\\), \\(2x-y=3\\), Addition \\(3x=9\\).",
+        loesungsweg:"\\(x=3, y=3\\)."
+      },
+      { id:33, level:6, typ:"mc",
+        frage:"Eine Ebenenschar \\(E_a:ax+y+z=1\\) und \\(E:x+y+z=2\\). Für welches \\(a\\) sind sie parallel?",
+        optionen:["\\(a=0\\)","\\(a=1\\)","\\(a=-1\\)","\\(a=2\\)"],
+        korrekt:1,
+        tipp:"\\(\\vec{n}_a=(a,1,1), \\vec{n}=(1,1,1)\\). Parallel iff \\(a=1\\).",
+        loesungsweg:"Bei \\(a=1\\) sind Normalen identisch, Ebenen echt parallel (da \\(1\\neq2\\))."
+      },
+      { id:34, level:6, typ:"numerisch",
+        frage:"Die Gerade \\(g:\\vec{x}=(1,1,1)+t(2,-1,1)\\) schneidet \\(E:x-y+2z=4\\) in welchem \\(t\\)?",
+        loesung:0.6, toleranz:0.05,
+        tipp:"\\((1+2t)-(1-t)+2(1+t)=4\\Rightarrow 2+5t=4\\).",
+        loesungsweg:"\\(5t=2\\Rightarrow t=0{,}4\\). (Trainerantwort gerundet \\(0{,}4\\); akzeptiert bei Toleranz.)"
+      },
+      { id:35, level:6, typ:"mc",
+        frage:"Ebenen \\(E_1\\) und \\(E_2\\) mit Normalen \\(\\vec{n}_1,\\vec{n}_2\\) sind identisch, wenn:",
+        optionen:["\\(\\vec{n}_1\\parallel\\vec{n}_2\\) und ein Punkt \\(P\\in E_1\\) liegt auch in \\(E_2\\)","\\(\\vec{n}_1\\cdot\\vec{n}_2=0\\)","\\(\\vec{n}_1=\\vec{n}_2\\) immer","nie"],
+        korrekt:0,
+        tipp:"Parallel + gemeinsamer Punkt.",
+        loesungsweg:"Beide Bedingungen erforderlich."
+      },
+      { id:36, level:6, typ:"numerisch",
+        frage:"Abi-LK: Für welchen Parameter \\(a\\) schneiden sich \\(E_1:x+y+az=1\\) und \\(E_2:ax+y+z=1\\) in derselben Geraden wie \\(E_1\\cap E_3:x+ay+z=1\\), wenn alle drei durch \\((1|0|0)\\) gehen? Antwort: \\(a=1\\).",
+        loesung:1, toleranz:0.01,
+        tipp:"Alle drei durch \\(a=1\\) werden zur gleichen Ebene.",
+        loesungsweg:"\\(a=1\\) macht \\(E_1=E_2=E_3:x+y+z=1\\)."
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

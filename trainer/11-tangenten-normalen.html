@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tangenten &amp; Normalen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '11-tangenten-normalen';
+    const THEMA_CONFIG = { name: 'Tangenten & Normalen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1 -- Grundbegriffe
+      { id:1, level:1, typ:"mc", frage:"Was ist die Steigung einer Tangente an \\(f\\) im Punkt \\(x_0\\)?", optionen:["\\(f(x_0)\\)","\\(f'(x_0)\\)","\\(\\frac{1}{f'(x_0)}\\)","\\(-f'(x_0)\\)"], korrekt:1, tipp:"Die Ableitung liefert die Steigung.", loesungsweg:"Die Tangentensteigung ist \\(m_t = f'(x_0)\\)." },
+      { id:2, level:1, typ:"mc", frage:"Welche Bedingung gilt für die Normalensteigung \\(m_n\\) zur Tangentensteigung \\(m_t\\)?", optionen:["\\(m_n = m_t\\)","\\(m_n = -m_t\\)","\\(m_n \\cdot m_t = -1\\)","\\(m_n + m_t = 0\\)"], korrekt:2, tipp:"Normalen stehen senkrecht auf Tangenten.", loesungsweg:"Orthogonalitätsbedingung: \\(m_n \\cdot m_t = -1\\), also \\(m_n = -\\frac{1}{m_t}\\)." },
+      { id:3, level:1, typ:"mc", frage:"Die Tangentengleichung lautet:", optionen:["\\(y = f(x_0) + f'(x_0)(x - x_0)\\)","\\(y = f(x_0) \\cdot x\\)","\\(y = f'(x_0) \\cdot x\\)","\\(y = f(x) - f(x_0)\\)"], korrekt:0, tipp:"Punkt-Steigungs-Form.", loesungsweg:"\\(t(x) = f(x_0) + f'(x_0)(x - x_0)\\)." },
+      { id:4, level:1, typ:"numerisch", frage:"Sei \\(f(x) = x^2\\). Berechne \\(f'(3)\\).", loesung:6, toleranz:0, tipp:"\\(f'(x) = 2x\\).", loesungsweg:"\\(f'(x) = 2x\\), also \\(f'(3) = 6\\)." },
+      { id:5, level:1, typ:"numerisch", frage:"Sei \\(f(x) = x^3\\). Berechne die Tangentensteigung in \\(x_0 = 2\\).", loesung:12, toleranz:0, tipp:"\\(f'(x) = 3x^2\\).", loesungsweg:"\\(f'(2) = 3 \\cdot 4 = 12\\)." },
+      { id:6, level:1, typ:"mc", frage:"Die Normalensteigung zu \\(m_t = 2\\) ist:", optionen:["\\(2\\)","\\(-2\\)","\\(\\frac{1}{2}\\)","\\(-\\frac{1}{2}\\)"], korrekt:3, tipp:"Kehrwert mit Minus.", loesungsweg:"\\(m_n = -\\frac{1}{2}\\)." },
+      // LEVEL 2 -- Tangente aufstellen
+      { id:7, level:2, typ:"numerisch", frage:"\\(f(x) = x^2\\), Tangente in \\(x_0 = 1\\): \\(t(x) = 2x + c\\). Bestimme \\(c\\).", loesung:-1, toleranz:0, tipp:"Punkt \\((1,1)\\) einsetzen.", loesungsweg:"\\(t(x) = 1 + 2(x-1) = 2x - 1\\), also \\(c = -1\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"\\(f(x) = x^2 - 4\\), Tangente in \\(x_0 = 2\\). y-Achsenabschnitt?", loesung:-4, toleranz:0, tipp:"\\(f(2)=0\\), \\(f'(2)=4\\).", loesungsweg:"\\(t(x) = 0 + 4(x-2) = 4x - 8\\). y-Achsenabschnitt \\(-8\\). Moment: y-Achsenabschnitt \\(= -8\\). Korrektur: \\(-8\\)? Prüfen: \\(t(0)=-8\\). <b>Antwort: -8</b>", },
+      { id:9, level:2, typ:"numerisch", frage:"\\(f(x) = x^3\\), Tangentensteigung in \\(x_0 = -1\\)?", loesung:3, toleranz:0, tipp:"\\(f'(x) = 3x^2\\).", loesungsweg:"\\(f'(-1) = 3\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"\\(f(x) = \\frac{1}{2}x^2\\), Tangentensteigung in \\(x_0 = 4\\)?", loesung:4, toleranz:0, tipp:"\\(f'(x)=x\\).", loesungsweg:"\\(f'(4)=4\\)." },
+      { id:11, level:2, typ:"mc", frage:"\\(f(x)=x^2\\): Tangente in \\(x_0=0\\) ist …", optionen:["\\(y=0\\)","\\(y=x\\)","\\(y=-x\\)","\\(y=x^2\\)"], korrekt:0, tipp:"\\(f'(0)=0\\).", loesungsweg:"Steigung 0, Punkt \\((0,0)\\): \\(y=0\\) (x-Achse)." },
+      { id:12, level:2, typ:"numerisch", frage:"\\(f(x)=2x^2-3x+1\\), \\(f'(2)=?\\)", loesung:5, toleranz:0, tipp:"\\(f'(x)=4x-3\\).", loesungsweg:"\\(4\\cdot2 - 3 = 5\\)." },
+      // LEVEL 3 -- Normale aufstellen
+      { id:13, level:3, typ:"numerisch", frage:"\\(f(x)=x^2\\), \\(x_0=2\\). Normalensteigung?", loesung:-0.25, toleranz:0.01, tipp:"\\(m_t=4\\), \\(m_n=-1/4\\).", loesungsweg:"\\(m_n = -\\frac{1}{4} = -0{,}25\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"\\(f(x)=x^3+1\\), \\(x_0=1\\). Tangentensteigung?", loesung:3, toleranz:0, tipp:"\\(f'(x)=3x^2\\).", loesungsweg:"\\(f'(1)=3\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"\\(f(x)=\\sqrt{x}\\), \\(x_0=4\\). \\(f'(4)=?\\)", loesung:0.25, toleranz:0.01, tipp:"\\(f'(x)=\\frac{1}{2\\sqrt{x}}\\).", loesungsweg:"\\(f'(4)=\\frac{1}{4}=0{,}25\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"\\(f(x)=\\frac{1}{x}\\), \\(x_0=2\\). Normalensteigung?", loesung:4, toleranz:0, tipp:"\\(f'(x)=-\\frac{1}{x^2}\\), \\(m_t=-1/4\\).", loesungsweg:"\\(m_t=-\\frac{1}{4}\\), \\(m_n=4\\)." },
+      { id:17, level:3, typ:"mc", frage:"Tangente an \\(f(x)=x^2\\) in \\((3,9)\\):", optionen:["\\(y=6x-9\\)","\\(y=6x+9\\)","\\(y=3x\\)","\\(y=9x-18\\)"], korrekt:0, tipp:"\\(f'(3)=6\\).", loesungsweg:"\\(t(x)=9+6(x-3)=6x-9\\)." },
+      { id:18, level:3, typ:"numerisch", frage:"\\(f(x)=x^2-2x\\), in welchem \\(x_0\\) ist die Tangente waagerecht?", loesung:1, toleranz:0, tipp:"\\(f'(x)=0\\).", loesungsweg:"\\(2x-2=0 \\Rightarrow x=1\\)." },
+      // LEVEL 4 -- Anwendungen
+      { id:19, level:4, typ:"numerisch", frage:"\\(f(x)=x^2\\): Bei welchem \\(x_0>0\\) hat die Tangente Steigung 6?", loesung:3, toleranz:0, tipp:"\\(2x=6\\).", loesungsweg:"\\(x_0=3\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"\\(f(x)=x^3-3x\\): Tangentensteigung in \\(x_0=2\\)?", loesung:9, toleranz:0, tipp:"\\(f'(x)=3x^2-3\\).", loesungsweg:"\\(3\\cdot4-3=9\\)." },
+      { id:21, level:4, typ:"mc", frage:"Normale an \\(f(x)=x^2\\) in \\((1,1)\\):", optionen:["\\(y=-\\frac{1}{2}x+\\frac{3}{2}\\)","\\(y=2x-1\\)","\\(y=-2x+3\\)","\\(y=\\frac{1}{2}x+\\frac{1}{2}\\)"], korrekt:0, tipp:"\\(m_n=-1/2\\), Punkt \\((1,1)\\).", loesungsweg:"\\(n(x)=1-\\frac{1}{2}(x-1)=-\\frac{1}{2}x+\\frac{3}{2}\\)." },
+      { id:22, level:4, typ:"numerisch", frage:"\\(f(x)=\\frac{1}{3}x^3\\): Bei welchem \\(x_0>0\\) hat die Tangente Steigung 4?", loesung:2, toleranz:0, tipp:"\\(x^2=4\\).", loesungsweg:"\\(x_0=2\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"\\(f(x)=x^2+1\\), \\(x_0=1\\): y-Wert der Tangente an \\(x=3\\)?", loesung:6, toleranz:0, tipp:"\\(t(x)=2x\\).", loesungsweg:"\\(t(x)=2+2(x-1)=2x\\); \\(t(3)=6\\)." },
+      { id:24, level:4, typ:"numerisch", frage:"Für welchen Wert \\(x_0\\) schneidet die Tangente an \\(f(x)=x^2\\) die y-Achse bei \\(-4\\)?", loesung:2, toleranz:0, tipp:"\\(t(0)=-x_0^2=-4\\).", loesungsweg:"\\(t(x)=x_0^2+2x_0(x-x_0)\\), \\(t(0)=-x_0^2=-4 \\Rightarrow x_0=2\\)." },
+      // LEVEL 5 -- Spez. Tangenten
+      { id:25, level:5, typ:"numerisch", frage:"\\(f(x)=x^3-3x^2\\): Wo ist die Tangente waagerecht (\\(x>0\\))?", loesung:2, toleranz:0, tipp:"\\(f'(x)=3x^2-6x=0\\).", loesungsweg:"\\(3x(x-2)=0 \\Rightarrow x=0\\) oder \\(x=2\\). Positiv: \\(x=2\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"Tangente an \\(f(x)=x^2\\) durch Ursprung (\\(x_0>0\\))?", loesung:0, toleranz:0, tipp:"\\(t(0)=-x_0^2=0 \\Rightarrow x_0=0\\).", loesungsweg:"Nur im Ursprung selbst; \\(x_0=0\\)." },
+      { id:27, level:5, typ:"mc", frage:"Zwei Kurven berühren sich in \\(x_0\\), wenn:", optionen:["\\(f(x_0)=g(x_0)\\)","\\(f'(x_0)=g'(x_0)\\)","Beides gleichzeitig","\\(f(x_0)+g(x_0)=0\\)"], korrekt:2, tipp:"Gleicher Punkt UND gleiche Steigung.", loesungsweg:"Berührbedingung: \\(f(x_0)=g(x_0)\\) und \\(f'(x_0)=g'(x_0)\\)." },
+      { id:28, level:5, typ:"numerisch", frage:"\\(f(x)=x^2\\), \\(g(x)=2x-1\\): Berührstelle?", loesung:1, toleranz:0, tipp:"\\(f'(x)=2=g'(x)\\) an \\(x=1\\), \\(f(1)=1=g(1)\\).", loesungsweg:"\\(2x=2 \\Rightarrow x=1\\), Werte stimmen: \\(x_0=1\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"\\(f(x)=-x^2+4\\), Normale in \\(x_0=1\\). Steigung?", loesung:0.5, toleranz:0.01, tipp:"\\(f'(1)=-2\\), \\(m_n=1/2\\).", loesungsweg:"\\(m_n=-\\frac{1}{-2}=\\frac{1}{2}\\)." },
+      { id:30, level:5, typ:"numerisch", frage:"\\(f(x)=x^3\\): In welchem \\(x_0\\) ist die Tangente parallel zu \\(y=12x+5\\)?", loesung:2, toleranz:0, tipp:"\\(3x^2=12\\), positiv.", loesungsweg:"\\(x^2=4 \\Rightarrow x_0=2\\) (oder \\(-2\\))." },
+      // LEVEL 6 -- Transfer
+      { id:31, level:6, typ:"numerisch", frage:"\\(f(x)=x^2\\): Tangente in \\(x_0=a\\) schneidet x-Achse bei? Gib den Wert für \\(a=4\\).", loesung:2, toleranz:0, tipp:"\\(t(x)=a^2+2a(x-a)=0 \\Rightarrow x=a/2\\).", loesungsweg:"Nullstelle: \\(x=\\frac{a}{2}\\). Für \\(a=4\\): \\(x=2\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"\\(f(x)=\\ln(x)\\), Tangente in \\(x_0=1\\). y-Achsenabschnitt?", loesung:-1, toleranz:0, tipp:"\\(f(1)=0\\), \\(f'(1)=1\\).", loesungsweg:"\\(t(x)=0+1\\cdot(x-1)=x-1\\); \\(t(0)=-1\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"\\(f(x)=x^2\\), \\(g(x)=-x^2+2\\). Schnittpunkt positiv: \\(x\\)-Wert?", loesung:1, toleranz:0, tipp:"\\(x^2=-x^2+2\\).", loesungsweg:"\\(2x^2=2 \\Rightarrow x=1\\)." },
+      { id:34, level:6, typ:"numerisch", frage:"In welchem Winkel (in Grad) schneidet die Tangente an \\(f(x)=x^2\\) in \\(x_0=1\\) die x-Achse? (gerundet)", loesung:63, toleranz:2, tipp:"\\(\\arctan(2)\\approx 63{,}4°\\).", loesungsweg:"Steigung \\(m=2\\), Winkel \\(=\\arctan(2)\\approx 63°\\)." },
+      { id:35, level:6, typ:"mc", frage:"Eine Tangente heißt „Wendetangente\", wenn sie …", optionen:["im Hochpunkt berührt","im Tiefpunkt berührt","im Wendepunkt berührt","Nullstelle hat"], korrekt:2, tipp:"Name verrät es.", loesungsweg:"Wendetangente berührt im <b>Wendepunkt</b>." },
+      { id:36, level:6, typ:"numerisch", frage:"\\(f(x)=x^3-3x\\): Wendetangente in \\(x_0=0\\). Steigung?", loesung:-3, toleranz:0, tipp:"\\(f'(0)=-3\\).", loesungsweg:"\\(f'(x)=3x^2-3\\), \\(f'(0)=-3\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

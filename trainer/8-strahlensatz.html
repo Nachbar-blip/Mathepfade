@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strahlensatz - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-strahlensatz';
+    const THEMA_CONFIG = { name: 'Strahlensatz', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht ==========
+      { id: 1, level: 1, typ: "mc", frage: "Voraussetzung fuer den Strahlensatz ist ...", optionen: ["zwei senkrechte Geraden", "zwei Strahlen mit gemeinsamem Anfang und zwei parallele Schnittgeraden", "ein Kreis mit zwei Sehnen", "ein Rechteck"], korrekt: 1, tipp: "Zwei Strahlen aus einem Zentrum, geschnitten von Parallelen.", loesungsweg: "Zwei Strahlen mit gemeinsamem Anfangspunkt und zwei <b>parallele Schnittgeraden</b>." },
+      { id: 2, level: 1, typ: "mc", frage: "Das Zentrum der beiden Strahlen wird mit welchem Buchstaben bezeichnet?", optionen: ["\\(M\\)", "\\(P\\)", "\\(Z\\) (Scheitel) / \\(S\\)", "\\(O\\)"], korrekt: 2, tipp: "Scheitelpunkt.", loesungsweg: "Haeufig \\(S\\) oder \\(Z\\) -- der Scheitelpunkt der Strahlen." },
+      { id: 3, level: 1, typ: "mc", frage: "Welche Geraden muessen parallel sein?", optionen: ["die Strahlen", "die Schnittgeraden", "keine", "alle vier"], korrekt: 1, tipp: "Strahlen schneiden sich ja im Scheitel.", loesungsweg: "Die beiden <b>Schnittgeraden</b> muessen parallel sein." },
+      { id: 4, level: 1, typ: "mc", frage: "Der Strahlensatz liefert eine Aussage ueber ...", optionen: ["Winkel", "Flaechen", "Streckenverhaeltnisse", "Volumen"], korrekt: 2, tipp: "Verhaeltnisse von Strecken.", loesungsweg: "Er liefert Proportionen von <b>Strecken</b> auf den Strahlen." },
+      { id: 5, level: 1, typ: "numerisch", frage: "Auf Strahl 1: \\(SA = 3\\), \\(SA' = 9\\). Streckungsfaktor?", loesung: 3, toleranz: 0, tipp: "\\(k = \\frac{SA'}{SA}\\).", loesungsweg: "$$k = \\frac{9}{3} = 3$$" },
+      { id: 6, level: 1, typ: "mc", frage: "Welcher Bruch steht beim 1. Strahlensatz links?", optionen: ["\\(\\frac{SA}{SA'}\\)", "\\(\\frac{AA'}{BB'}\\)", "\\(\\frac{SA}{AB}\\)", "\\(\\frac{AB}{SA}\\)"], korrekt: 0, tipp: "Streckenverhaeltnis auf einem Strahl.", loesungsweg: "$$\\frac{SA}{SA'} = \\frac{SB}{SB'}$$" },
+      // ========== LEVEL 2 -- leicht: Einfache Berechnungen ==========
+      { id: 7, level: 2, typ: "numerisch", frage: "\\(SA = 4\\), \\(SA' = 12\\), \\(SB = 5\\). Berechne \\(SB'\\).", loesung: 15, toleranz: 0, tipp: "\\(\\frac{SA}{SA'} = \\frac{SB}{SB'}\\).", loesungsweg: "$$\\frac{4}{12} = \\frac{5}{SB'} \\implies SB' = 15$$" },
+      { id: 8, level: 2, typ: "numerisch", frage: "\\(SA = 2\\), \\(SA' = 8\\), \\(AB = 3\\). Berechne \\(A'B'\\).", loesung: 12, toleranz: 0, tipp: "2. Strahlensatz: \\(\\frac{SA}{SA'} = \\frac{AB}{A'B'}\\).", loesungsweg: "$$\\frac{2}{8} = \\frac{3}{A'B'} \\implies A'B' = 12$$" },
+      { id: 9, level: 2, typ: "numerisch", frage: "\\(SA = 6\\), \\(SB = 4\\), \\(SA' = 9\\). \\(SB' = ?\\)", loesung: 6, toleranz: 0, tipp: "\\(\\frac{6}{9} = \\frac{4}{SB'}\\).", loesungsweg: "$$SB' = \\frac{9 \\cdot 4}{6} = 6$$" },
+      { id: 10, level: 2, typ: "numerisch", frage: "\\(SA = 3\\), \\(SA' = 12\\), \\(SB' = 20\\). \\(SB = ?\\)", loesung: 5, toleranz: 0, tipp: "\\(\\frac{3}{12} = \\frac{SB}{20}\\).", loesungsweg: "$$SB = \\frac{3 \\cdot 20}{12} = 5$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "\\(AB = 4\\), \\(A'B' = 10\\), \\(SA = 6\\). \\(SA' = ?\\)", loesung: 15, toleranz: 0, tipp: "\\(\\frac{SA}{SA'} = \\frac{AB}{A'B'}\\).", loesungsweg: "$$\\frac{6}{SA'} = \\frac{4}{10} \\implies SA' = 15$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "Zwei Parallelen, \\(SA = 5\\), \\(AA' = 10\\), \\(SB = 4\\). \\(SB'\\) (Gesamtstrecke)?", loesung: 12, toleranz: 0, tipp: "\\(SA' = SA + AA' = 15\\). Proportion.", loesungsweg: "$$SA' = 15, \\frac{5}{15} = \\frac{4}{SB'} \\implies SB' = 12$$" },
+      // ========== LEVEL 3 -- nervenschonend ==========
+      { id: 13, level: 3, typ: "numerisch", frage: "\\(SA = 5\\,\\text{cm}\\), \\(AA' = 10\\,\\text{cm}\\), \\(SB = 3\\,\\text{cm}\\). Berechne \\(BB'\\) in cm.", loesung: 6, toleranz: 0, tipp: "\\(SA' = 15\\), \\(SB' = 9\\), \\(BB' = 6\\).", loesungsweg: "$$\\frac{5}{15} = \\frac{3}{SB'} \\implies SB' = 9, BB' = 6$$" },
+      { id: 14, level: 3, typ: "numerisch", frage: "\\(SA = 4\\), \\(SA' = 10\\), \\(AB = 6\\). \\(A'B' = ?\\)", loesung: 15, toleranz: 0, tipp: "\\(\\frac{4}{10} = \\frac{6}{A'B'}\\).", loesungsweg: "$$A'B' = \\frac{10 \\cdot 6}{4} = 15$$" },
+      { id: 15, level: 3, typ: "numerisch", frage: "Ein Baum wirft \\(12\\,\\text{m}\\) Schatten. Eine \\(1{,}80\\,\\text{m}\\) Person \\(3\\,\\text{m}\\) Schatten. Baumhoehe in m?", loesung: 7.2, toleranz: 0.05, tipp: "\\(\\frac{h}{12} = \\frac{1{,}8}{3}\\).", loesungsweg: "$$h = \\frac{1{,}8 \\cdot 12}{3} = 7{,}2\\,\\text{m}$$" },
+      { id: 16, level: 3, typ: "numerisch", frage: "\\(SA = 2\\), \\(SA' = 7\\), \\(SB = 3\\). \\(SB' = ?\\) (auf 2 Nachkommastellen)", loesung: 10.5, toleranz: 0.05, tipp: "\\(\\frac{2}{7} = \\frac{3}{SB'}\\).", loesungsweg: "$$SB' = \\frac{3 \\cdot 7}{2} = 10{,}5$$" },
+      { id: 17, level: 3, typ: "mc", frage: "Wann gilt der Strahlensatz nicht?", optionen: ["wenn die Schnittgeraden parallel sind", "wenn die Schnittgeraden nicht parallel sind", "wenn der Scheitel rechts liegt", "wenn ein Strahl kurz ist"], korrekt: 1, tipp: "Parallelitaet ist Voraussetzung.", loesungsweg: "Ohne parallele Schnittgeraden gilt der Strahlensatz <b>nicht</b>." },
+      { id: 18, level: 3, typ: "numerisch", frage: "Person \\(1{,}6\\,\\text{m}\\) hoch, Schattenlaenge \\(2\\,\\text{m}\\). Mast \\(24\\,\\text{m}\\) Schatten. Masthoehe in m?", loesung: 19.2, toleranz: 0.1, tipp: "Strahlensatz mit Sonne als Scheitel.", loesungsweg: "$$h = \\frac{1{,}6}{2} \\cdot 24 = 19{,}2\\,\\text{m}$$" },
+      // ========== LEVEL 4 -- mittel ==========
+      { id: 19, level: 4, typ: "numerisch", frage: "\\(SA = x\\), \\(SA' = 15\\), \\(SB = 4\\), \\(SB' = 12\\). Bestimme \\(x\\).", loesung: 5, toleranz: 0, tipp: "\\(\\frac{x}{15} = \\frac{4}{12}\\).", loesungsweg: "$$x = \\frac{15 \\cdot 4}{12} = 5$$" },
+      { id: 20, level: 4, typ: "numerisch", frage: "\\(SA' = 3 \\cdot SA\\). Wenn \\(SB = 6\\), dann \\(SB' = ?\\)", loesung: 18, toleranz: 0, tipp: "Gleicher Faktor.", loesungsweg: "$$SB' = 3 \\cdot 6 = 18$$" },
+      { id: 21, level: 4, typ: "numerisch", frage: "\\(AB = 5\\), \\(A'B' = 20\\). Verhaeltnis \\(k\\)?", loesung: 4, toleranz: 0, tipp: "\\(k = \\frac{A'B'}{AB}\\).", loesungsweg: "$$k = \\frac{20}{5} = 4$$" },
+      { id: 22, level: 4, typ: "numerisch", frage: "Dreieck mit parallelen Seiten. \\(SA = 6\\), \\(AA' = 4\\), \\(AB = 9\\). \\(A'B' = ?\\)", loesung: 15, toleranz: 0, tipp: "\\(SA' = 10\\), \\(\\frac{6}{10} = \\frac{9}{A'B'}\\).", loesungsweg: "$$A'B' = \\frac{10 \\cdot 9}{6} = 15$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Ein Fluss: Du stehst am Ufer. \\(SA = 10\\,\\text{m}\\) zum Baum am anderen Ufer (\\(A\\)), parallele Hilfslinie in \\(SB = 2\\,\\text{m}\\), Hilfslaenge \\(AB = 3\\,\\text{m}\\), Bildstrecke \\(A'B' = 15\\,\\text{m}\\) ... Bestimme \\(SA'\\) als Flussbreite zum Punkt \\(A'\\).", loesung: 50, toleranz: 0, tipp: "\\(\\frac{SA}{SA'} = \\frac{AB}{A'B'}\\), also \\(\\frac{10}{SA'} = \\frac{3}{15}\\).", loesungsweg: "$$SA' = \\frac{10 \\cdot 15}{3} = 50\\,\\text{m}$$" },
+      { id: 24, level: 4, typ: "mc", frage: "Aus \\(\\frac{SA}{SA'} = \\frac{SB}{SB'}\\) folgt <b>nicht</b>:", optionen: ["\\(\\frac{SA}{SB} = \\frac{SA'}{SB'}\\)", "\\(SA \\cdot SB' = SA' \\cdot SB\\)", "\\(SA + SA' = SB + SB'\\)", "\\(\\frac{SA'}{SA} = \\frac{SB'}{SB}\\)"], korrekt: 2, tipp: "Summen gelten nicht automatisch.", loesungsweg: "Proportionen erhalten nur Produkte und Verhaeltnisse, keine Summen." },
+      // ========== LEVEL 5 -- anspruchsvoll ==========
+      { id: 25, level: 5, typ: "numerisch", frage: "\\(SA = 4\\), \\(SB = 6\\), \\(AA' = 8\\), \\(BB' = ?\\)", loesung: 12, toleranz: 0, tipp: "\\(\\frac{SA}{AA'} = \\frac{SB}{BB'}\\) gilt NICHT. Benutze \\(\\frac{SA}{SA'} = \\frac{SB}{SB'}\\).", loesungsweg: "$$SA' = 12, \\frac{4}{12} = \\frac{6}{SB'} \\implies SB' = 18, BB' = 12$$" },
+      { id: 26, level: 5, typ: "numerisch", frage: "Eine Leiter lehnt an der Wand. In \\(1\\,\\text{m}\\) Hoehe eine Parallele zum Boden der Laenge \\(0{,}4\\,\\text{m}\\). Gesamtlaenge der Leiter am Boden \\(2\\,\\text{m}\\). Hoehe der Wandberuehrung in m?", loesung: 5, toleranz: 0.1, tipp: "\\(\\frac{1}{h} = \\frac{0{,}4}{2}\\).", loesungsweg: "$$h = \\frac{2}{0{,}4} \\cdot 1 = 5\\,\\text{m}$$" },
+      { id: 27, level: 5, typ: "numerisch", frage: "\\(SA = a\\), \\(SA' = 3a\\), \\(SB = 8\\). \\(SB' = ?\\)", loesung: 24, toleranz: 0, tipp: "\\(k = 3\\).", loesungsweg: "$$SB' = 3 \\cdot 8 = 24$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "Foerster-Dreieck: parallele Strecke \\(AB = 12\\), \\(A'B' = 30\\). \\(SA = 8\\). \\(SA' = ?\\)", loesung: 20, toleranz: 0, tipp: "\\(\\frac{8}{SA'} = \\frac{12}{30}\\).", loesungsweg: "$$SA' = \\frac{8 \\cdot 30}{12} = 20$$" },
+      { id: 29, level: 5, typ: "numerisch", frage: "Dach: Sparren \\(SA' = 6\\,\\text{m}\\), ab Scheitel \\(SA = 2\\,\\text{m}\\). Dachbreite unten \\(A'B' = 9\\,\\text{m}\\). Wie breit ist die Parallele auf der Hoehe \\(SA\\)?", loesung: 3, toleranz: 0, tipp: "\\(\\frac{2}{6} = \\frac{AB}{9}\\).", loesungsweg: "$$AB = \\frac{2 \\cdot 9}{6} = 3\\,\\text{m}$$" },
+      { id: 30, level: 5, typ: "mc", frage: "Gegeben: \\(SA : SA' = 2 : 5\\). Dann ist \\(AA' : SA'\\) gleich ...", optionen: ["\\(2 : 5\\)", "\\(3 : 5\\)", "\\(3 : 2\\)", "\\(5 : 3\\)"], korrekt: 1, tipp: "\\(AA' = SA' - SA\\).", loesungsweg: "\\(SA' - SA = 5 - 2 = 3\\), also \\(AA' : SA' = 3 : 5\\)." },
+      // ========== LEVEL 6 -- wagnerisch ==========
+      { id: 31, level: 6, typ: "numerisch", frage: "\\(SA = 3\\), \\(AA' = 6\\), \\(SB' = 18\\). \\(BB' = ?\\)", loesung: 12, toleranz: 0, tipp: "\\(SA' = 9\\), \\(\\frac{3}{9} = \\frac{SB}{18}\\) liefert \\(SB = 6\\).", loesungsweg: "$$SB = 6, BB' = 18 - 6 = 12$$" },
+      { id: 32, level: 6, typ: "numerisch", frage: "Um die Entfernung zu einer Baumgruppe zu messen, nutzt man eine parallele Hilfsstrecke. \\(SA = 5\\,\\text{m}\\), parallele Hilfsbasis \\(AB = 2\\,\\text{m}\\), reale Baumabstand \\(A'B' = 14\\,\\text{m}\\). Entfernung \\(SA'\\) in m?", loesung: 35, toleranz: 0, tipp: "\\(\\frac{SA}{SA'} = \\frac{AB}{A'B'}\\).", loesungsweg: "$$SA' = \\frac{5 \\cdot 14}{2} = 35\\,\\text{m}$$" },
+      { id: 33, level: 6, typ: "numerisch", frage: "\\(SA : SA' = 1 : 4\\). Flaechenverhaeltnis der aehnlichen Dreiecke \\(SAB : SA'B'\\)?", loesung: 16, toleranz: 0, tipp: "\\(k^2\\).", loesungsweg: "$$k^2 = 16, \\text{Verhaeltnis } 1 : 16$$" },
+      { id: 34, level: 6, typ: "numerisch", frage: "Zwei Strahlen, eine Parallele in \\(SA = 2\\), eine in \\(SA' = 5\\). Das Trapez \\(ABB'A'\\) hat Parallelseiten \\(AB = 4\\) und \\(A'B' = ?\\)", loesung: 10, toleranz: 0, tipp: "\\(\\frac{2}{5} = \\frac{4}{A'B'}\\).", loesungsweg: "$$A'B' = \\frac{5 \\cdot 4}{2} = 10$$" },
+      { id: 35, level: 6, typ: "mc", frage: "Die Umkehrung des Strahlensatzes erlaubt zu schliessen ...", optionen: ["dass zwei Geraden senkrecht sind", "dass zwei Schnittgeraden parallel sind, wenn bestimmte Verhaeltnisse gleich sind", "dass ein Dreieck gleichseitig ist", "dass ein Winkel 90 Grad hat"], korrekt: 1, tipp: "Von den Verhaeltnissen auf Parallelitaet schliessen.", loesungsweg: "Die <b>Umkehrung</b>: Stimmt \\(\\frac{SA}{SA'} = \\frac{SB}{SB'}\\), sind die Schnittgeraden parallel." },
+      { id: 36, level: 6, typ: "numerisch", frage: "Leiter-Problem: \\(SA = 2\\,\\text{m}\\), \\(AA' = 3\\,\\text{m}\\), auf Hoehe \\(SA\\) misst man \\(AB = 1{,}2\\,\\text{m}\\) bis zur Wand. Wie breit (in m) ist der Raum an der Leiterspitze (\\(A'B'\\))?", loesung: 3, toleranz: 0, tipp: "\\(SA' = 5\\), \\(\\frac{2}{5} = \\frac{1{,}2}{A'B'}\\).", loesungsweg: "$$A'B' = \\frac{5 \\cdot 1{,}2}{2} = 3\\,\\text{m}$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

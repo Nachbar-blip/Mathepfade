@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kreise - Umfang &amp; Flaeche - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-kreise';
+    const THEMA_CONFIG = { name: 'Kreise - Umfang & Flaeche', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 ==========
+      { id: 1, level: 1, typ: "mc", frage: "Der Durchmesser \\(d\\) eines Kreises ist ...", optionen: ["halb so gross wie der Radius", "doppelt so gross wie der Radius", "gleich dem Radius", "Pi mal Radius"], korrekt: 1, tipp: "Radius = halber Durchmesser.", loesungsweg: "$$d = 2 \\cdot r$$" },
+      { id: 2, level: 1, typ: "mc", frage: "Welche Formel gibt den Umfang an?", optionen: ["\\(U = \\pi r^2\\)", "\\(U = 2\\pi r\\)", "\\(U = \\pi r\\)", "\\(U = \\pi d^2\\)"], korrekt: 1, tipp: "Umfang haengt linear von \\(r\\) ab.", loesungsweg: "$$U = 2\\pi r = \\pi d$$" },
+      { id: 3, level: 1, typ: "mc", frage: "Welche Formel gibt die Kreisflaeche an?", optionen: ["\\(A = 2\\pi r\\)", "\\(A = \\pi r^2\\)", "\\(A = \\pi d\\)", "\\(A = \\pi r\\)"], korrekt: 1, tipp: "Flaeche ist quadratisch in \\(r\\).", loesungsweg: "$$A = \\pi r^2$$" },
+      { id: 4, level: 1, typ: "mc", frage: "Der Wert von \\(\\pi\\) betraegt naeherungsweise ...", optionen: ["\\(2{,}71\\)", "\\(3{,}14\\)", "\\(1{,}41\\)", "\\(1{,}73\\)"], korrekt: 1, tipp: "Pi ist die Kreiszahl.", loesungsweg: "$$\\pi \\approx 3{,}14159\\ldots$$" },
+      { id: 5, level: 1, typ: "numerisch", frage: "Radius \\(r = 5\\,\\text{cm}\\). Durchmesser \\(d\\) in cm?", loesung: 10, toleranz: 0, tipp: "\\(d = 2r\\).", loesungsweg: "$$d = 2 \\cdot 5 = 10\\,\\text{cm}$$" },
+      { id: 6, level: 1, typ: "numerisch", frage: "Durchmesser \\(d = 14\\,\\text{cm}\\). Radius \\(r\\) in cm?", loesung: 7, toleranz: 0, tipp: "\\(r = d/2\\).", loesungsweg: "$$r = 14/2 = 7\\,\\text{cm}$$" },
+      // ========== LEVEL 2 ==========
+      { id: 7, level: 2, typ: "numerisch", frage: "Kreis mit \\(r = 3\\,\\text{cm}\\). Umfang in cm (auf 2 Nachkommastellen, \\(\\pi = 3{,}14\\))?", loesung: 18.84, toleranz: 0.05, tipp: "\\(U = 2\\pi r\\).", loesungsweg: "$$U = 2 \\cdot 3{,}14 \\cdot 3 = 18{,}84\\,\\text{cm}$$" },
+      { id: 8, level: 2, typ: "numerisch", frage: "Kreis mit \\(r = 4\\,\\text{cm}\\). Flaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 50.24, toleranz: 0.05, tipp: "\\(A = \\pi r^2\\).", loesungsweg: "$$A = 3{,}14 \\cdot 16 = 50{,}24\\,\\text{cm}^2$$" },
+      { id: 9, level: 2, typ: "numerisch", frage: "Durchmesser \\(d = 10\\,\\text{cm}\\). Umfang in cm (\\(\\pi = 3{,}14\\))?", loesung: 31.4, toleranz: 0.05, tipp: "\\(U = \\pi d\\).", loesungsweg: "$$U = 3{,}14 \\cdot 10 = 31{,}4\\,\\text{cm}$$" },
+      { id: 10, level: 2, typ: "numerisch", frage: "Kreis mit \\(r = 2\\,\\text{cm}\\). Flaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 12.56, toleranz: 0.05, tipp: "\\(A = \\pi \\cdot 4\\).", loesungsweg: "$$A = 3{,}14 \\cdot 4 = 12{,}56\\,\\text{cm}^2$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "Kreis \\(r = 10\\,\\text{cm}\\). Umfang in cm (\\(\\pi = 3{,}14\\))?", loesung: 62.8, toleranz: 0.1, tipp: "\\(U = 2\\pi r\\).", loesungsweg: "$$U = 2 \\cdot 3{,}14 \\cdot 10 = 62{,}8\\,\\text{cm}$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "\\(d = 6\\,\\text{cm}\\). Flaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 28.26, toleranz: 0.1, tipp: "\\(r = 3\\), \\(A = \\pi r^2\\).", loesungsweg: "$$A = 3{,}14 \\cdot 9 = 28{,}26\\,\\text{cm}^2$$" },
+      // ========== LEVEL 3 ==========
+      { id: 13, level: 3, typ: "numerisch", frage: "Umfang \\(U = 31{,}4\\,\\text{cm}\\). Radius in cm (\\(\\pi = 3{,}14\\))?", loesung: 5, toleranz: 0.05, tipp: "\\(r = U / (2\\pi)\\).", loesungsweg: "$$r = \\frac{31{,}4}{2 \\cdot 3{,}14} = 5\\,\\text{cm}$$" },
+      { id: 14, level: 3, typ: "numerisch", frage: "Flaeche \\(A = 78{,}5\\,\\text{cm}^2\\). Radius in cm (\\(\\pi = 3{,}14\\))?", loesung: 5, toleranz: 0.1, tipp: "\\(r = \\sqrt{A/\\pi}\\).", loesungsweg: "$$r = \\sqrt{78{,}5 / 3{,}14} = \\sqrt{25} = 5$$" },
+      { id: 15, level: 3, typ: "numerisch", frage: "Ein Rad dreht sich mit Radius \\(30\\,\\text{cm}\\). Wie weit in m bei einer Umdrehung (\\(\\pi = 3{,}14\\))?", loesung: 1.884, toleranz: 0.01, tipp: "\\(U = 2\\pi r = 188{,}4\\,\\text{cm} = 1{,}884\\,\\text{m}\\).", loesungsweg: "$$U = 2 \\cdot 3{,}14 \\cdot 0{,}3 = 1{,}884\\,\\text{m}$$" },
+      { id: 16, level: 3, typ: "numerisch", frage: "Kreisring: Aussenradius \\(5\\), Innenradius \\(3\\). Flaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 50.24, toleranz: 0.1, tipp: "\\(A = \\pi(R^2 - r^2) = \\pi \\cdot 16\\).", loesungsweg: "$$A = 3{,}14 \\cdot (25 - 9) = 50{,}24\\,\\text{cm}^2$$" },
+      { id: 17, level: 3, typ: "mc", frage: "Wenn der Radius verdoppelt wird, vervielfacht sich die Flaeche um den Faktor ...", optionen: ["\\(2\\)", "\\(3\\)", "\\(4\\)", "\\(8\\)"], korrekt: 2, tipp: "Flaeche haengt von \\(r^2\\) ab.", loesungsweg: "$$(2r)^2 = 4r^2$$, also Faktor 4." },
+      { id: 18, level: 3, typ: "numerisch", frage: "Pizza mit \\(d = 30\\,\\text{cm}\\). Flaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 706.5, toleranz: 1, tipp: "\\(r = 15\\), \\(A = \\pi r^2\\).", loesungsweg: "$$A = 3{,}14 \\cdot 225 = 706{,}5\\,\\text{cm}^2$$" },
+      // ========== LEVEL 4 ==========
+      { id: 19, level: 4, typ: "numerisch", frage: "Halbkreis mit \\(r = 4\\,\\text{cm}\\). Flaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 25.12, toleranz: 0.1, tipp: "\\(A = \\frac{1}{2} \\pi r^2\\).", loesungsweg: "$$A = 0{,}5 \\cdot 3{,}14 \\cdot 16 = 25{,}12\\,\\text{cm}^2$$" },
+      { id: 20, level: 4, typ: "numerisch", frage: "Kreissektor, Radius \\(6\\), Mittelpunktswinkel \\(90^\\circ\\). Flaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 28.26, toleranz: 0.1, tipp: "\\(A = \\frac{\\alpha}{360^\\circ} \\pi r^2\\).", loesungsweg: "$$A = \\frac{90}{360} \\cdot 3{,}14 \\cdot 36 = 28{,}26\\,\\text{cm}^2$$" },
+      { id: 21, level: 4, typ: "numerisch", frage: "Bogenlaenge bei \\(r = 5\\), \\(\\alpha = 180^\\circ\\) (\\(\\pi = 3{,}14\\))?", loesung: 15.7, toleranz: 0.1, tipp: "\\(b = \\frac{\\alpha}{360^\\circ} \\cdot 2\\pi r\\).", loesungsweg: "$$b = 0{,}5 \\cdot 2 \\cdot 3{,}14 \\cdot 5 = 15{,}7$$" },
+      { id: 22, level: 4, typ: "numerisch", frage: "Umfang \\(62{,}8\\,\\text{cm}\\). Flaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 314, toleranz: 1, tipp: "Erst \\(r = 10\\), dann \\(A = \\pi r^2\\).", loesungsweg: "$$r = 10, A = 3{,}14 \\cdot 100 = 314$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Ein Kreissegment-Rasensprenger bewaessert 120 Grad bei \\(r = 6\\,\\text{m}\\). Flaeche in m\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 37.68, toleranz: 0.2, tipp: "\\(\\frac{120}{360} \\pi r^2\\).", loesungsweg: "$$A = \\frac{1}{3} \\cdot 3{,}14 \\cdot 36 = 37{,}68\\,\\text{m}^2$$" },
+      { id: 24, level: 4, typ: "mc", frage: "Bei Verdopplung des Radius vervielfacht sich der Umfang um ...", optionen: ["\\(2\\)", "\\(4\\)", "\\(\\pi\\)", "\\(2\\pi\\)"], korrekt: 0, tipp: "Umfang linear in \\(r\\).", loesungsweg: "$$U = 2\\pi r \\implies U(2r) = 4\\pi r = 2 \\cdot U$$" },
+      // ========== LEVEL 5 ==========
+      { id: 25, level: 5, typ: "numerisch", frage: "Ein Kreis hat Umfang \\(12{,}56\\,\\text{cm}\\). Flaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 12.56, toleranz: 0.1, tipp: "Erst \\(r\\). \\(r = 12{,}56/(2\\pi) = 2\\).", loesungsweg: "$$r = 2, A = 3{,}14 \\cdot 4 = 12{,}56$$" },
+      { id: 26, level: 5, typ: "numerisch", frage: "Ein Fahrrad-Rad dreht sich 100-mal und rollt \\(157\\,\\text{m}\\). Radius in cm (\\(\\pi = 3{,}14\\))?", loesung: 25, toleranz: 0.5, tipp: "Pro Umdrehung \\(1{,}57\\,\\text{m}\\), also \\(2\\pi r = 1{,}57\\,\\text{m} = 157\\,\\text{cm}\\). \\(r = 157/(2\\cdot3{,}14)\\).", loesungsweg: "$$r = \\frac{157}{6{,}28} = 25\\,\\text{cm}$$" },
+      { id: 27, level: 5, typ: "numerisch", frage: "Quadrat mit Seite 10 cm, eingeschriebener Kreis. Flaeche des Kreises in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 78.5, toleranz: 0.5, tipp: "\\(r = 5\\).", loesungsweg: "$$A = 3{,}14 \\cdot 25 = 78{,}5$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "Kreissektor mit \\(r = 10\\) und Bogenlaenge \\(20\\). Mittelpunktswinkel in Grad (\\(\\pi = 3{,}14\\))?", loesung: 114.65, toleranz: 1, tipp: "\\(\\alpha = \\frac{b}{2\\pi r} \\cdot 360\\).", loesungsweg: "$$\\alpha = \\frac{20}{62{,}8} \\cdot 360 \\approx 114{,}65^\\circ$$" },
+      { id: 29, level: 5, typ: "numerisch", frage: "Kreisring, Aussenradius \\(10\\), Innenradius \\(6\\). Flaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 200.96, toleranz: 1, tipp: "\\(\\pi(100 - 36) = \\pi \\cdot 64\\).", loesungsweg: "$$A = 3{,}14 \\cdot 64 = 200{,}96$$" },
+      { id: 30, level: 5, typ: "numerisch", frage: "Ein Kreissektor hat \\(r = 12\\) und \\(\\alpha = 60^\\circ\\). Flaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 75.36, toleranz: 0.5, tipp: "\\(\\frac{60}{360} \\cdot \\pi r^2 = \\frac{\\pi r^2}{6}\\).", loesungsweg: "$$A = \\frac{3{,}14 \\cdot 144}{6} = 75{,}36$$" },
+      // ========== LEVEL 6 ==========
+      { id: 31, level: 6, typ: "numerisch", frage: "Ein Kreis hat Flaeche \\(314\\,\\text{cm}^2\\). Umfang in cm (\\(\\pi = 3{,}14\\))?", loesung: 62.8, toleranz: 0.2, tipp: "\\(r = 10\\), \\(U = 2\\pi r\\).", loesungsweg: "$$r = 10, U = 62{,}8\\,\\text{cm}$$" },
+      { id: 32, level: 6, typ: "mc", frage: "Zwei Kreise: \\(r_2 = 3 r_1\\). Verhaeltnis der Flaechen?", optionen: ["\\(1:3\\)", "\\(1:6\\)", "\\(1:9\\)", "\\(1:\\pi\\)"], korrekt: 2, tipp: "Quadrat des Faktors.", loesungsweg: "$$A \\propto r^2 \\implies 1 : 9$$" },
+      { id: 33, level: 6, typ: "numerisch", frage: "Die laengere Seite eines Rechtecks (\\(12\\,\\text{cm} \\times 8\\,\\text{cm}\\)) ist Durchmesser eines Halbkreises, der aussen am Rechteck gezeichnet ist. Gesamtflaeche in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 152.52, toleranz: 1, tipp: "Rechteck + Halbkreis mit \\(r = 6\\).", loesungsweg: "$$96 + 0{,}5 \\cdot 3{,}14 \\cdot 36 = 96 + 56{,}52 = 152{,}52$$" },
+      { id: 34, level: 6, typ: "numerisch", frage: "Ein Pferd lauft an einer \\(10\\,\\text{m}\\) langen Leine um einen Pfosten. Wie weit in m nach 3 Umrundungen (\\(\\pi = 3{,}14\\))?", loesung: 188.4, toleranz: 0.5, tipp: "\\(3 \\cdot 2\\pi r\\).", loesungsweg: "$$3 \\cdot 2 \\cdot 3{,}14 \\cdot 10 = 188{,}4\\,\\text{m}$$" },
+      { id: 35, level: 6, typ: "numerisch", frage: "Einer Pizza (\\(d = 30\\,\\text{cm}\\)) wird ein Sektor von \\(45^\\circ\\) entnommen. Flaeche des entnommenen Stueckes in cm\\(^2\\) (\\(\\pi = 3{,}14\\))?", loesung: 88.31, toleranz: 1, tipp: "\\(r = 15\\), \\(\\frac{45}{360} = \\frac{1}{8}\\).", loesungsweg: "$$A = \\frac{1}{8} \\cdot 3{,}14 \\cdot 225 \\approx 88{,}31$$" },
+      { id: 36, level: 6, typ: "numerisch", frage: "Ein Kreis hat Umfang gleich seiner Flaeche (gleiche Zahl). Radius? (\\(\\pi = 3{,}14\\))", loesung: 2, toleranz: 0, tipp: "\\(2\\pi r = \\pi r^2 \\implies r = 2\\).", loesungsweg: "$$2\\pi r = \\pi r^2 \\implies r = 2$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lineare Funktionen - Anwendungen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-lineare-funktionen-anwendungen';
+    const THEMA_CONFIG = { name: 'Lineare Funktionen - Anwendungen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id: 1, level: 1, typ: "mc", frage: "Ein Taxi kostet 3 € Grundgebühr + 2 €/km. Welche Funktion beschreibt die Kosten?", optionen: ["\\(K(x) = 2x\\)", "\\(K(x) = 3x + 2\\)", "\\(K(x) = 2x + 3\\)", "\\(K(x) = 5x\\)"], korrekt: 2, tipp: "Fix + variabel.", loesungsweg: "Grundgebühr: \\(n = 3\\). Pro km: \\(m = 2\\). \\(K(x) = 2x + 3\\)." },
+      { id: 2, level: 1, typ: "mc", frage: "Ein Handytarif: 10 € Grundgebühr + 0,05 € pro Minute. Funktion?", optionen: ["\\(K(x) = 10x + 0{,}05\\)", "\\(K(x) = 0{,}05x + 10\\)", "\\(K(x) = 10{,}05x\\)", "\\(K(x) = 0{,}5x + 10\\)"], korrekt: 1, tipp: "Grundgebühr = \\(n\\).", loesungsweg: "\\(K(x) = 0{,}05x + 10\\)." },
+      { id: 3, level: 1, typ: "mc", frage: "Auto fährt gleichmäßig 60 km/h los bei \\(s = 20\\) km. Wegfunktion?", optionen: ["\\(s(t) = 60t\\)", "\\(s(t) = 20t + 60\\)", "\\(s(t) = 60t + 20\\)", "\\(s(t) = 80t\\)"], korrekt: 2, tipp: "Anfangsweg + Geschwindigkeit·Zeit.", loesungsweg: "\\(s(t) = 60t + 20\\)." },
+      { id: 4, level: 1, typ: "numerisch", frage: "Taxi: 3 € + 2 €/km. Kosten für 5 km in €?", loesung: 13, toleranz: 0, tipp: "\\(2 \\cdot 5 + 3\\).", loesungsweg: "$$K(5) = 2 \\cdot 5 + 3 = 13\\,€$$" },
+      { id: 5, level: 1, typ: "numerisch", frage: "Handytarif: 10 € + 0,05 €/min. Kosten bei 200 min in €?", loesung: 20, toleranz: 0, tipp: "\\(0{,}05 \\cdot 200 + 10\\).", loesungsweg: "$$K(200) = 0{,}05 \\cdot 200 + 10 = 10 + 10 = 20\\,€$$" },
+      { id: 6, level: 1, typ: "numerisch", frage: "Auto mit \\(s(t) = 60t + 20\\) (km). Ort nach 2 h (km)?", loesung: 140, toleranz: 0, tipp: "Einsetzen.", loesungsweg: "$$s(2) = 120 + 20 = 140\\,\\text{km}$$" },
+      // LEVEL 2
+      { id: 7, level: 2, typ: "mc", frage: "Tank: 50 L, Verbrauch 5 L/h. Funktion für Restmenge?", optionen: ["\\(R(t) = 50t - 5\\)", "\\(R(t) = -5t + 50\\)", "\\(R(t) = 5t + 50\\)", "\\(R(t) = 50 + 5t\\)"], korrekt: 1, tipp: "Negativer Anstieg (Abnahme).", loesungsweg: "Abnahme → \\(m = -5\\), Anfang \\(n = 50\\). \\(R(t) = -5t + 50\\)." },
+      { id: 8, level: 2, typ: "mc", frage: "Fitness-Abo: 20 € Anmeldung + 15 €/Monat. Für 6 Monate?", optionen: ["90 €", "110 €", "120 €", "100 €"], korrekt: 1, tipp: "\\(15 \\cdot 6 + 20\\).", loesungsweg: "\\(K(6) = 15 \\cdot 6 + 20 = 90 + 20 = 110\\,€\\)." },
+      { id: 9, level: 2, typ: "mc", frage: "Welcher Graph beschreibt \"je mehr Zeit, desto mehr Strecke\" (gleichmäßig)?", optionen: ["Gerade fallend", "Gerade steigend", "Parabel", "Waagerechte"], korrekt: 1, tipp: "Wachstum.", loesungsweg: "Gleichmäßige Zunahme = steigende Gerade (\\(m > 0\\))." },
+      { id: 10, level: 2, typ: "numerisch", frage: "Tank \\(R(t) = -5t + 50\\). Nach wie vielen Stunden ist er leer?", loesung: 10, toleranz: 0, tipp: "\\(R = 0\\).", loesungsweg: "$$-5t + 50 = 0 \\implies t = 10$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "Kerze \\(h(t) = -2t + 24\\) (cm, t in h). Höhe nach 5 h (cm)?", loesung: 14, toleranz: 0, tipp: "Einsetzen.", loesungsweg: "$$h(5) = -10 + 24 = 14\\,\\text{cm}$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "Kerze \\(h(t) = -2t + 24\\). Wann aufgebraucht (h)?", loesung: 12, toleranz: 0, tipp: "\\(h = 0\\).", loesungsweg: "$$-2t + 24 = 0 \\implies t = 12$$" },
+      // LEVEL 3
+      { id: 13, level: 3, typ: "mc", frage: "Zwei Tarife: A = 2x + 5, B = 3x + 2. Für welches \\(x\\) kosten sie gleich?", optionen: ["\\(x = 1\\)", "\\(x = 3\\)", "\\(x = 5\\)", "\\(x = 7\\)"], korrekt: 1, tipp: "\\(A = B\\).", loesungsweg: "\\(2x + 5 = 3x + 2 \\Rightarrow x = 3\\)." },
+      { id: 14, level: 3, typ: "mc", frage: "Ein Behälter enthält 100 L, füllt sich mit 8 L/min. Welche Füllung hat er nach 10 min?", optionen: ["80 L", "108 L", "180 L", "800 L"], korrekt: 2, tipp: "\\(F(t) = 8t + 100\\).", loesungsweg: "\\(F(10) = 80 + 100 = 180\\,L\\)." },
+      { id: 15, level: 3, typ: "mc", frage: "Sparbuch: 200 € + 25 €/Monat. Nach wie vielen Monaten sind 500 € erreicht?", optionen: ["10", "12", "15", "20"], korrekt: 1, tipp: "\\(25t + 200 = 500\\).", loesungsweg: "\\(25t = 300 \\Rightarrow t = 12\\)." },
+      { id: 16, level: 3, typ: "numerisch", frage: "Tarif A: \\(20 + 0{,}10 \\cdot m\\). Tarif B: \\(0{,}30 \\cdot m\\). Schnittstelle (min)?", loesung: 100, toleranz: 0, tipp: "A = B.", loesungsweg: "$$20 + 0{,}1m = 0{,}3m \\implies 20 = 0{,}2m \\implies m = 100$$" },
+      { id: 17, level: 3, typ: "numerisch", frage: "\\(K_1(x) = 3x + 12\\), \\(K_2(x) = 5x\\). Schnittpunkt bei \\(x =\\) ?", loesung: 6, toleranz: 0, tipp: "\\(3x + 12 = 5x\\).", loesungsweg: "$$2x = 12 \\implies x = 6$$" },
+      { id: 18, level: 3, typ: "numerisch", frage: "Auto A startet bei \\(s=0\\), 80 km/h. Auto B startet bei \\(s=40\\), 60 km/h. Nach wie vielen Stunden sind sie gleichauf?", loesung: 2, toleranz: 0, tipp: "\\(80t = 60t + 40\\).", loesungsweg: "$$80t = 60t + 40 \\implies 20t = 40 \\implies t = 2$$" },
+      // LEVEL 4
+      { id: 19, level: 4, typ: "mc", frage: "Firmenkosten: 500 € Fix + 20 €/Stück. Bei 50 Stück Gesamtkosten?", optionen: ["1000 €", "1500 €", "1200 €", "2500 €"], korrekt: 1, tipp: "\\(K(x) = 20x + 500\\).", loesungsweg: "\\(K(50) = 1000 + 500 = 1500\\,€\\)." },
+      { id: 20, level: 4, typ: "mc", frage: "Verkaufspreis \\(E(x) = 50x\\), Kosten \\(K(x) = 20x + 600\\). Gewinnschwelle bei \\(x =\\) ?", optionen: ["10", "15", "20", "30"], korrekt: 2, tipp: "\\(E = K\\).", loesungsweg: "\\(50x = 20x + 600 \\Rightarrow 30x = 600 \\Rightarrow x = 20\\)." },
+      { id: 21, level: 4, typ: "mc", frage: "Ein Rechteckumfang \\(U(x) = 2x + 14\\). Bei \\(U = 30\\) ist \\(x\\) = ?", optionen: ["\\(x = 8\\)", "\\(x = 10\\)", "\\(x = 14\\)", "\\(x = 16\\)"], korrekt: 0, tipp: "\\(2x + 14 = 30\\).", loesungsweg: "\\(2x = 16 \\Rightarrow x = 8\\)." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Pool: 500 L, wird mit 40 L/min befüllt. Wann 1500 L (min)?", loesung: 25, toleranz: 0, tipp: "\\(40t + 500 = 1500\\).", loesungsweg: "$$40t = 1000 \\implies t = 25$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Gewinn \\(G(x) = 12x - 240\\). Gewinnschwelle bei \\(x = ?\\)", loesung: 20, toleranz: 0, tipp: "\\(G = 0\\).", loesungsweg: "$$12x - 240 = 0 \\implies x = 20$$" },
+      { id: 24, level: 4, typ: "numerisch", frage: "Bei \\(K(x) = 25x + 50\\): Wie viele Stück kann man für 300 € kaufen?", loesung: 10, toleranz: 0, tipp: "\\(K(x) = 300\\).", loesungsweg: "$$25x + 50 = 300 \\implies x = 10$$" },
+      // LEVEL 5
+      { id: 25, level: 5, typ: "mc", frage: "Stromanbieter: A = 15 + 0,25·x, B = 5 + 0,35·x (x in kWh). Bei welchem Verbrauch gleich?", optionen: ["50 kWh", "75 kWh", "100 kWh", "150 kWh"], korrekt: 2, tipp: "\\(A = B\\).", loesungsweg: "\\(15 + 0{,}25x = 5 + 0{,}35x \\Rightarrow 10 = 0{,}1x \\Rightarrow x = 100\\)." },
+      { id: 26, level: 5, typ: "mc", frage: "Temperatur fällt linear: 20 °C bei 0 Uhr, -4 °C bei 6 Uhr. Anstieg pro h?", optionen: ["−2 °C/h", "−4 °C/h", "−6 °C/h", "−8 °C/h"], korrekt: 1, tipp: "\\(\\frac{-4-20}{6}\\).", loesungsweg: "\\(m = \\frac{-4 - 20}{6} = -4\\). Also −4 °C/h." },
+      { id: 27, level: 5, typ: "mc", frage: "Bei welchem Verbrauch ist Tarif A = 20 + 0,10x günstiger als B = 0,30x?", optionen: ["\\(x > 50\\)", "\\(x > 100\\)", "\\(x < 100\\)", "\\(x < 50\\)"], korrekt: 1, tipp: "\\(A < B\\).", loesungsweg: "\\(20 + 0{,}1x < 0{,}3x \\Rightarrow 20 < 0{,}2x \\Rightarrow x > 100\\)." },
+      { id: 28, level: 5, typ: "numerisch", frage: "Bei Temperatur \\(T(t) = -4t + 20\\) (°C, t in h): Wann 0 °C?", loesung: 5, toleranz: 0, tipp: "\\(T = 0\\).", loesungsweg: "$$-4t + 20 = 0 \\implies t = 5$$" },
+      { id: 29, level: 5, typ: "numerisch", frage: "Zwei Züge: Zug 1 mit \\(s_1(t) = 100t\\), Zug 2 mit \\(s_2(t) = 80t + 50\\). Nach welcher Zeit in h überholt Zug 1?", loesung: 2.5, toleranz: 0.01, tipp: "Gleichsetzen.", loesungsweg: "$$100t = 80t + 50 \\implies 20t = 50 \\implies t = 2{,}5$$" },
+      { id: 30, level: 5, typ: "numerisch", frage: "Kostenfunktion \\(K(x) = 8x + 120\\), Einnahmen \\(E(x) = 14x\\). Gewinn bei 50 Stück in €?", loesung: 180, toleranz: 0, tipp: "\\(G(x) = E - K\\).", loesungsweg: "\\(G(x) = 6x - 120\\). \\(G(50) = 300 - 120 = 180\\,€\\)." },
+      // LEVEL 6
+      { id: 31, level: 6, typ: "mc", frage: "Ein Vermieter: 250 € Kaltmiete + 80 €/Monat Nebenkosten. Welche Aussage gilt?", optionen: ["Linear mit \\(m = 250\\)", "Konstant", "Linear mit \\(m = 80\\), \\(n = 250\\)", "Quadratisch"], korrekt: 2, tipp: "Monatliche Kosten.", loesungsweg: "Pro Monat: \\(K(t) = 80t + 250\\). Anstieg 80, Achsenabschnitt 250." },
+      { id: 32, level: 6, typ: "mc", frage: "Parallele Geraden bedeuten im Sachkontext …", optionen: ["Gleiche Anfangskosten", "Gleicher Preis pro Einheit", "Kein Zusammenhang", "Schnittpunkt"], korrekt: 1, tipp: "Gleicher Anstieg = gleicher Einheitspreis.", loesungsweg: "Parallel = gleicher Anstieg = gleiche Änderungsrate (z. B. gleicher Preis pro Minute)." },
+      { id: 33, level: 6, typ: "mc", frage: "Bei linearem Wachstum verdoppelt sich …", optionen: ["Der y-Wert in gleichen Zeiten", "Der Zuwachs ist konstant", "Der Anstieg ändert sich", "Beides nichtlinear"], korrekt: 1, tipp: "Linearer Zuwachs.", loesungsweg: "Bei linearen Funktionen ist der <b>Zuwachs pro Schritt konstant</b>, nicht die Verdopplung." },
+      { id: 34, level: 6, typ: "numerisch", frage: "Ein Auto verbraucht linear: Bei 0 km sind 40 L im Tank, bei 500 km noch 5 L. Verbrauch pro 100 km in L?", loesung: 7, toleranz: 0, tipp: "\\(m = \\frac{5-40}{500}\\).", loesungsweg: "Verbrauch: \\(\\frac{35\\,L}{500\\,km} = 0{,}07\\,L/km = 7\\,L/100\\,km\\)." },
+      { id: 35, level: 6, typ: "numerisch", frage: "Handytarif A: 15 + 0,10·x, Tarif B: 0,20·x. Bis zu wie viel Minuten ist A günstiger?", loesung: 150, toleranz: 0, tipp: "\\(A = B\\).", loesungsweg: "$$15 + 0{,}1x = 0{,}2x \\implies x = 150$$<br>A ist günstiger für \\(x > 150\\). Bei \\(x < 150\\) ist B günstiger." },
+      { id: 36, level: 6, typ: "numerisch", frage: "Taxi A: 4 + 1,5·km, Taxi B: 6 + 1,2·km. Ab wie vielen km ist A teurer als B? (km-Grenze)", loesung: 6.67, toleranz: 0.1, tipp: "\\(A = B\\): Grenze.", loesungsweg: "$$4 + 1{,}5x = 6 + 1{,}2x \\implies 0{,}3x = 2 \\implies x \\approx 6{,}67$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

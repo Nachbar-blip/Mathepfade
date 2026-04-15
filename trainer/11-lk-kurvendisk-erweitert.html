@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LK: Kurvendiskussion erweitert - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '11-lk-kurvendisk-erweitert';
+    const THEMA_CONFIG = { name: 'LK: Kurvendiskussion erweitert', bereich: 'analysis' };
+    const AUFGABEN = [
+      // L1
+      { id:1, level:1, typ:"mc", frage:"Zur Kurvendiskussion gehören:", optionen:["Nur Extrema","D, Nullstellen, Symmetrie, Extrema, Wendep., Asymptoten","Nur die 2. Ableitung","Nur Skizze"], korrekt:1, tipp:"Vollständiger Katalog.", loesungsweg:"Komplettes Schema." },
+      { id:2, level:1, typ:"mc", frage:"\\(f(x)=x^3-3x\\) ist:", optionen:["achsensymmetrisch","punktsymmetrisch","beides","weder-noch"], korrekt:1, tipp:"Nur ungerade Exponenten.", loesungsweg:"\\(f(-x)=-f(x)\\)." },
+      { id:3, level:1, typ:"numerisch", frage:"\\(f(x)=x^3-3x\\): Nullstelle \\(x>0\\)?", loesung:1.732, toleranz:0.01, tipp:"\\(x(x^2-3)=0\\).", loesungsweg:"\\(\\sqrt{3}\\approx 1{,}73\\)." },
+      { id:4, level:1, typ:"numerisch", frage:"Selbe Fkt., Tiefpunkt \\(x>0\\)?", loesung:1, toleranz:0, tipp:"\\(f'=3x^2-3=0\\).", loesungsweg:"\\(x=1\\)." },
+      { id:5, level:1, typ:"numerisch", frage:"Tiefpunkt y-Wert?", loesung:-2, toleranz:0, tipp:"\\(f(1)=1-3\\).", loesungsweg:"\\(=-2\\)." },
+      { id:6, level:1, typ:"numerisch", frage:"Wendestelle?", loesung:0, toleranz:0, tipp:"\\(f''=6x=0\\).", loesungsweg:"\\(x=0\\)." },
+      // L2
+      { id:7, level:2, typ:"numerisch", frage:"\\(f(x)=x^4-4x^2\\): Nullstellen \\(x>0\\)?", loesung:2, toleranz:0, tipp:"\\(x^2(x^2-4)\\).", loesungsweg:"\\(x=0\\) oder \\(\\pm 2\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"Selbe Fkt., Tiefpunkt \\(x>0\\)?", loesung:1.414, toleranz:0.02, tipp:"\\(f'=4x^3-8x=4x(x^2-2)\\).", loesungsweg:"\\(\\sqrt 2\\approx 1{,}41\\)." },
+      { id:9, level:2, typ:"numerisch", frage:"Tiefpunkt y-Wert?", loesung:-4, toleranz:0, tipp:"\\(f(\\sqrt 2)=4-8\\).", loesungsweg:"\\(=-4\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"Selbe Fkt., Wendestelle \\(x>0\\)?", loesung:0.816, toleranz:0.02, tipp:"\\(f''=12x^2-8=0\\).", loesungsweg:"\\(\\sqrt{2/3}\\approx 0{,}816\\)." },
+      { id:11, level:2, typ:"mc", frage:"\\(x^4\\)-Funktion Symmetrie:", optionen:["Punktsymm.","Achsensymm. zur y-Achse","beides","keine"], korrekt:1, tipp:"Nur gerade Exp.", loesungsweg:"Achsensymm." },
+      { id:12, level:2, typ:"numerisch", frage:"\\(f(x)=x^4-4x^2\\): y-Achsenabschnitt?", loesung:0, toleranz:0, tipp:"\\(f(0)=0\\).", loesungsweg:"\\(=0\\)." },
+      // L3
+      { id:13, level:3, typ:"numerisch", frage:"\\(f(x)=x^3-6x^2+9x\\): Nullstellen (pos, doppelt)?", loesung:3, toleranz:0, tipp:"\\(x(x-3)^2\\).", loesungsweg:"\\(x=0\\) oder \\(x=3\\) (doppelt)." },
+      { id:14, level:3, typ:"numerisch", frage:"Selbe Fkt., Hochpunkt \\(x\\)?", loesung:1, toleranz:0, tipp:"\\(f'=3x^2-12x+9=0\\).", loesungsweg:"\\(x=1\\) (und \\(x=3\\))." },
+      { id:15, level:3, typ:"numerisch", frage:"Hochpunkt y-Wert?", loesung:4, toleranz:0, tipp:"\\(f(1)=1-6+9\\).", loesungsweg:"\\(=4\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"Wendestelle?", loesung:2, toleranz:0, tipp:"\\(f''=6x-12=0\\).", loesungsweg:"\\(x=2\\)." },
+      { id:17, level:3, typ:"numerisch", frage:"Wendepunkt y-Wert?", loesung:2, toleranz:0, tipp:"\\(f(2)=8-24+18\\).", loesungsweg:"\\(=2\\)." },
+      { id:18, level:3, typ:"numerisch", frage:"Tangente im Wendepunkt: Steigung?", loesung:-3, toleranz:0, tipp:"\\(f'(2)=12-24+9\\).", loesungsweg:"\\(=-3\\)." },
+      // L4
+      { id:19, level:4, typ:"numerisch", frage:"\\(f(x)=\\frac{1}{4}x^4-x^2\\): Nullstellen \\(x>0\\)?", loesung:2, toleranz:0, tipp:"\\(\\frac{1}{4}x^2(x^2-4)\\).", loesungsweg:"\\(x=0\\) oder \\(\\pm 2\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"Selbe Fkt., Tiefpunkt \\(x>0\\)?", loesung:1.414, toleranz:0.02, tipp:"\\(f'=x^3-2x=0\\).", loesungsweg:"\\(\\sqrt 2\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"Tiefpunkt y-Wert?", loesung:-1, toleranz:0, tipp:"\\(f(\\sqrt 2)=1-2\\).", loesungsweg:"\\(=-1\\)." },
+      { id:22, level:4, typ:"numerisch", frage:"Wendestelle \\(x>0\\)?", loesung:0.816, toleranz:0.02, tipp:"\\(f''=3x^2-2=0\\).", loesungsweg:"\\(\\sqrt{2/3}\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"\\(f(x)=x\\cdot e^{-x}\\): Hochpunkt \\(x\\)?", loesung:1, toleranz:0, tipp:"\\(f'=(1-x)e^{-x}\\).", loesungsweg:"\\(x=1\\)." },
+      { id:24, level:4, typ:"numerisch", frage:"Hochpunkt y-Wert (gerundet)?", loesung:0.37, toleranz:0.02, tipp:"\\(1/e\\).", loesungsweg:"\\(\\approx 0{,}368\\)." },
+      // L5
+      { id:25, level:5, typ:"numerisch", frage:"\\(f(x)=x\\cdot e^{-x}\\): Wendestelle?", loesung:2, toleranz:0, tipp:"\\(f''=(x-2)e^{-x}\\).", loesungsweg:"\\(x=2\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"\\(f(x)=\\ln x - x\\): Extremstelle \\(x>0\\)?", loesung:1, toleranz:0, tipp:"\\(f'=1/x-1=0\\).", loesungsweg:"\\(x=1\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Extremwert (y)?", loesung:-1, toleranz:0, tipp:"\\(\\ln 1 -1\\).", loesungsweg:"\\(=-1\\)." },
+      { id:28, level:5, typ:"mc", frage:"Maximum oder Minimum?", optionen:["Min","Max","Sattel","Pol"], korrekt:1, tipp:"\\(f''=-1/x^2<0\\).", loesungsweg:"Maximum." },
+      { id:29, level:5, typ:"numerisch", frage:"\\(f(x)=\\frac{x^2}{x^2+1}\\): Wendestelle \\(x>0\\)?", loesung:0.577, toleranz:0.05, tipp:"\\(f''=0 \\Rightarrow x=\\pm 1/\\sqrt 3\\).", loesungsweg:"\\(\\approx 0{,}577\\)." },
+      { id:30, level:5, typ:"numerisch", frage:"Waagerechte Asymptote?", loesung:1, toleranz:0, tipp:"Gleiche Grade.", loesungsweg:"\\(y=1\\)." },
+      // L6
+      { id:31, level:6, typ:"numerisch", frage:"\\(f(x)=(x^2-1)e^{-x}\\): \\(f(0)=?\\)", loesung:-1, toleranz:0, tipp:"Einsetzen.", loesungsweg:"\\(=-1\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"\\(f(x)=(x^2-1)e^{-x}\\): pos. Nullstelle?", loesung:1, toleranz:0, tipp:"\\(x^2=1\\).", loesungsweg:"\\(x=1\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"\\(f(x)=\\sin x\\) auf \\([0,2\\pi]\\): Wendestelle \\(x\\in(0,\\pi)\\)?", loesung:3.14, toleranz:0.02, tipp:"\\(f''=-\\sin x=0\\).", loesungsweg:"\\(x=\\pi\\approx 3{,}14\\)." },
+      { id:34, level:6, typ:"numerisch", frage:"\\(f(x)=x^3-3x^2+4\\): Wendestelle?", loesung:1, toleranz:0, tipp:"\\(f''=6x-6\\).", loesungsweg:"\\(x=1\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"Wendepunkt y?", loesung:2, toleranz:0, tipp:"\\(f(1)=1-3+4\\).", loesungsweg:"\\(=2\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Steigung der Wendetangente?", loesung:-3, toleranz:0, tipp:"\\(f'(1)=3-6\\).", loesungsweg:"\\(=-3\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

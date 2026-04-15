@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruchgleichungen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-bruchgleichungen';
+    const THEMA_CONFIG = { name: 'Bruchgleichungen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id: 1, level: 1, typ: "mc", frage: "Was ist eine Bruchgleichung?", optionen: ["Eine Gleichung mit Dezimalbrüchen", "Eine Gleichung, bei der die Variable im Nenner steht", "Ein Bruchterm", "Eine Ungleichung"], korrekt: 1, tipp: "Variable im Nenner.", loesungsweg: "Eine <b>Bruchgleichung</b> ist eine Gleichung, bei der mindestens eine Variable im Nenner steht, z. B. \\(\\frac{2}{x} = 4\\)." },
+      { id: 2, level: 1, typ: "mc", frage: "Was muss man bei Bruchgleichungen immer zuerst prüfen?", optionen: ["Ob der Zähler 0 ist", "Den Definitionsbereich", "Ob sie quadratisch ist", "Die Probe"], korrekt: 1, tipp: "Nenner ≠ 0.", loesungsweg: "Zuerst den <b>Definitionsbereich</b> bestimmen - der Nenner darf nicht 0 sein." },
+      { id: 3, level: 1, typ: "mc", frage: "Welcher Wert gehört NICHT zum Definitionsbereich von \\(\\frac{1}{x} = 3\\)?", optionen: ["\\(x = 3\\)", "\\(x = 1\\)", "\\(x = 0\\)", "\\(x = -1\\)"], korrekt: 2, tipp: "Nenner \\(x\\) darf nicht 0 sein.", loesungsweg: "\\(x = 0\\) ist ausgeschlossen, weil man nicht durch 0 teilen darf." },
+      { id: 4, level: 1, typ: "numerisch", frage: "Löse \\(\\frac{12}{x} = 4\\).", loesung: 3, toleranz: 0, tipp: "\\(x = \\frac{12}{4}\\).", loesungsweg: "$$\\frac{12}{x} = 4 \\implies 12 = 4x \\implies x = 3$$" },
+      { id: 5, level: 1, typ: "numerisch", frage: "Löse \\(\\frac{20}{x} = 5\\).", loesung: 4, toleranz: 0, tipp: "Mit \\(x\\) multiplizieren.", loesungsweg: "$$20 = 5x \\implies x = 4$$" },
+      { id: 6, level: 1, typ: "numerisch", frage: "Löse \\(\\frac{6}{x} = 2\\).", loesung: 3, toleranz: 0, tipp: "\\(6 = 2x\\).", loesungsweg: "$$6 = 2x \\implies x = 3$$" },
+      // LEVEL 2
+      { id: 7, level: 2, typ: "mc", frage: "Wie geht man bei \\(\\frac{3}{x} = \\frac{1}{2}\\) vor?", optionen: ["Addieren", "Über Kreuz multiplizieren", "Quadrieren", "Wurzel ziehen"], korrekt: 1, tipp: "Kreuzweise Produkt.", loesungsweg: "Über Kreuz: \\(3 \\cdot 2 = 1 \\cdot x \\Rightarrow x = 6\\)." },
+      { id: 8, level: 2, typ: "mc", frage: "Welches ist die Lösung von \\(\\frac{4}{x} = \\frac{2}{3}\\)?", optionen: ["\\(x = 3\\)", "\\(x = 6\\)", "\\(x = 8\\)", "\\(x = 12\\)"], korrekt: 1, tipp: "Kreuzprodukt: \\(4 \\cdot 3 = 2x\\).", loesungsweg: "$$4 \\cdot 3 = 2x \\implies 12 = 2x \\implies x = 6$$" },
+      { id: 9, level: 2, typ: "mc", frage: "Was ist die Definitionsmenge von \\(\\frac{5}{x-2} = 1\\)?", optionen: ["\\(\\mathbb{Q} \\setminus \\{0\\}\\)", "\\(\\mathbb{Q} \\setminus \\{2\\}\\)", "\\(\\mathbb{Q} \\setminus \\{-2\\}\\)", "\\(\\mathbb{Q}\\)"], korrekt: 1, tipp: "Nenner \\(x - 2 = 0\\).", loesungsweg: "\\(x - 2 = 0 \\Rightarrow x = 2\\). Also \\(D = \\mathbb{Q} \\setminus \\{2\\}\\)." },
+      { id: 10, level: 2, typ: "numerisch", frage: "Löse \\(\\frac{8}{x-1} = 4\\).", loesung: 3, toleranz: 0, tipp: "\\(8 = 4(x-1)\\).", loesungsweg: "$$8 = 4(x-1) \\implies 2 = x-1 \\implies x = 3$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "Löse \\(\\frac{15}{x+2} = 3\\).", loesung: 3, toleranz: 0, tipp: "\\(15 = 3(x+2)\\).", loesungsweg: "$$15 = 3(x+2) \\implies 5 = x+2 \\implies x = 3$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "Löse \\(\\frac{x}{5} = \\frac{6}{10}\\).", loesung: 3, toleranz: 0, tipp: "Kreuz: \\(10x = 30\\).", loesungsweg: "$$10x = 30 \\implies x = 3$$" },
+      // LEVEL 3
+      { id: 13, level: 3, typ: "mc", frage: "Wie multipliziert man \\(\\frac{x}{2} + \\frac{x}{3} = 5\\) gegen den Hauptnenner?", optionen: ["Mit 2", "Mit 3", "Mit 6", "Mit 5"], korrekt: 2, tipp: "kgV(2,3).", loesungsweg: "Hauptnenner ist \\(6\\). Multiplikation liefert \\(3x + 2x = 30 \\Rightarrow 5x = 30 \\Rightarrow x = 6\\)." },
+      { id: 14, level: 3, typ: "mc", frage: "Lösung von \\(\\frac{x}{2} + \\frac{x}{3} = 5\\)?", optionen: ["\\(x = 3\\)", "\\(x = 5\\)", "\\(x = 6\\)", "\\(x = 10\\)"], korrekt: 2, tipp: "Mal 6.", loesungsweg: "$$3x + 2x = 30 \\implies 5x = 30 \\implies x = 6$$" },
+      { id: 15, level: 3, typ: "mc", frage: "Welchen Hauptnenner hat \\(\\frac{1}{x} + \\frac{1}{2x} = 3\\)?", optionen: ["\\(x\\)", "\\(2x\\)", "\\(x^2\\)", "\\(2x^2\\)"], korrekt: 1, tipp: "Beide Nenner passen in \\(2x\\).", loesungsweg: "Hauptnenner: \\(2x\\). Gleichung: \\(2 + 1 = 6x \\Rightarrow x = \\frac{1}{2}\\)." },
+      { id: 16, level: 3, typ: "numerisch", frage: "Löse \\(\\frac{x}{3} - \\frac{x}{4} = 1\\).", loesung: 12, toleranz: 0, tipp: "Hauptnenner 12.", loesungsweg: "$$4x - 3x = 12 \\implies x = 12$$" },
+      { id: 17, level: 3, typ: "numerisch", frage: "Löse \\(\\frac{1}{x} = \\frac{1}{6} + \\frac{1}{12}\\).", loesung: 4, toleranz: 0, tipp: "Rechte Seite: \\(\\frac{3}{12} = \\frac{1}{4}\\).", loesungsweg: "$$\\frac{1}{x} = \\frac{2+1}{12} = \\frac{1}{4} \\implies x = 4$$" },
+      { id: 18, level: 3, typ: "numerisch", frage: "Löse \\(\\frac{2}{x} + \\frac{3}{x} = 1\\).", loesung: 5, toleranz: 0, tipp: "\\(\\frac{5}{x} = 1\\).", loesungsweg: "$$\\frac{5}{x} = 1 \\implies x = 5$$" },
+      // LEVEL 4
+      { id: 19, level: 4, typ: "mc", frage: "Lösung von \\(\\frac{x+1}{x-1} = 2\\)?", optionen: ["\\(x = 1\\)", "\\(x = 2\\)", "\\(x = 3\\)", "\\(x = -3\\)"], korrekt: 2, tipp: "Mal \\((x-1)\\).", loesungsweg: "$$x + 1 = 2(x-1) \\implies x + 1 = 2x - 2 \\implies x = 3$$" },
+      { id: 20, level: 4, typ: "mc", frage: "Lösung von \\(\\frac{3}{x-2} = \\frac{5}{x}\\)?", optionen: ["\\(x = 2\\)", "\\(x = 5\\)", "\\(x = -5\\)", "\\(x = 10\\)"], korrekt: 1, tipp: "Kreuz: \\(3x = 5(x-2)\\).", loesungsweg: "$$3x = 5x - 10 \\implies -2x = -10 \\implies x = 5$$" },
+      { id: 21, level: 4, typ: "mc", frage: "Bei \\(\\frac{x}{x-3} = \\frac{3}{x-3}\\) ist die Lösung …", optionen: ["\\(x = 3\\)", "\\(x = 0\\)", "keine Lösung (D verletzt)", "jede Zahl"], korrekt: 2, tipp: "\\(x = 3\\) ist aus D ausgeschlossen.", loesungsweg: "Über Kreuz ergibt \\(x = 3\\), aber \\(x = 3\\) ist nicht in D. Also <b>keine Lösung</b>." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Löse \\(\\frac{x+4}{x} = 3\\).", loesung: 2, toleranz: 0, tipp: "\\(x + 4 = 3x\\).", loesungsweg: "$$x + 4 = 3x \\implies 4 = 2x \\implies x = 2$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Löse \\(\\frac{2x}{x+1} = 1\\).", loesung: 1, toleranz: 0, tipp: "\\(2x = x+1\\).", loesungsweg: "$$2x = x + 1 \\implies x = 1$$" },
+      { id: 24, level: 4, typ: "numerisch", frage: "Löse \\(\\frac{5}{x-3} = \\frac{10}{x}\\).", loesung: -6, toleranz: 0, tipp: "Kreuz: \\(5x = 10(x-3)\\).", loesungsweg: "$$5x = 10x - 30 \\implies -5x = -30 \\implies x = 6$$... Probe: \\(\\frac{5}{3} = \\frac{10}{6}\\) ✓. Lösung: \\(x = 6\\).", },
+      // LEVEL 5
+      { id: 25, level: 5, typ: "mc", frage: "Welcher Schritt ist bei \\(\\frac{1}{x} + \\frac{1}{x+1} = \\frac{3}{4}\\) günstig?", optionen: ["Mit \\(x\\) multiplizieren", "Mit \\(x+1\\) multiplizieren", "Mit \\(4x(x+1)\\) multiplizieren", "Quadrieren"], korrekt: 2, tipp: "Hauptnenner aller Brüche.", loesungsweg: "Hauptnenner: \\(4x(x+1)\\). Damit werden alle Brüche beseitigt." },
+      { id: 26, level: 5, typ: "mc", frage: "Was ergibt \\(\\frac{x}{x-2} - \\frac{2}{x-2} = 1\\) als Lösungsmenge?", optionen: ["\\(x = 2\\)", "\\(\\mathbb{L} = \\{\\}\\)", "Jede Zahl außer 2", "\\(x = 0\\)"], korrekt: 2, tipp: "Zähler zusammen: \\(\\frac{x-2}{x-2} = 1\\).", loesungsweg: "\\(\\frac{x-2}{x-2} = 1\\) ist für alle \\(x \\neq 2\\) wahr. Also: jede Zahl außer 2." },
+      { id: 27, level: 5, typ: "mc", frage: "Lösung von \\(\\frac{2}{x} - \\frac{1}{x} = 5\\)?", optionen: ["\\(x = 1\\)", "\\(x = 0{,}2\\)", "\\(x = 5\\)", "\\(x = 10\\)"], korrekt: 1, tipp: "\\(\\frac{1}{x} = 5\\).", loesungsweg: "$$\\frac{1}{x} = 5 \\implies x = \\frac{1}{5} = 0{,}2$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "Löse \\(\\frac{1}{x} + \\frac{1}{2x} = \\frac{3}{4}\\).", loesung: 2, toleranz: 0, tipp: "Mal \\(4x\\): \\(4 + 2 = 3x\\).", loesungsweg: "$$4 + 2 = 3x \\implies x = 2$$" },
+      { id: 29, level: 5, typ: "numerisch", frage: "Löse \\(\\frac{x-1}{x+1} = \\frac{1}{3}\\).", loesung: 2, toleranz: 0, tipp: "Kreuz: \\(3(x-1) = x+1\\).", loesungsweg: "$$3x - 3 = x + 1 \\implies 2x = 4 \\implies x = 2$$" },
+      { id: 30, level: 5, typ: "numerisch", frage: "Löse \\(\\frac{4}{x} + 1 = 3\\).", loesung: 2, toleranz: 0, tipp: "\\(\\frac{4}{x} = 2\\).", loesungsweg: "$$\\frac{4}{x} = 2 \\implies x = 2$$" },
+      // LEVEL 6
+      { id: 31, level: 6, typ: "mc", frage: "Wann entstehen Scheinlösungen?", optionen: ["Nie", "Wenn man quadriert", "Wenn ein Wert die Definitionsmenge verletzt", "Immer"], korrekt: 2, tipp: "Nenner = 0 möglich.", loesungsweg: "Scheinlösungen treten auf, wenn eine ausgerechnete Lösung NICHT in D liegt - dann ist sie zu verwerfen." },
+      { id: 32, level: 6, typ: "mc", frage: "Lösung von \\(\\frac{x}{x-1} - \\frac{1}{x-1} = 1\\)?", optionen: ["\\(x = 1\\)", "jede Zahl außer 1", "\\(x = 0\\)", "\\(\\mathbb{L} = \\{\\}\\)"], korrekt: 1, tipp: "Bruch zusammenfassen.", loesungsweg: "\\(\\frac{x-1}{x-1} = 1\\) ist für jedes \\(x \\neq 1\\) wahr." },
+      { id: 33, level: 6, typ: "mc", frage: "Zwei Zahlen unterscheiden sich um 3. Die Summe ihrer Kehrwerte ist \\(\\frac{7}{12}\\). Welche Gleichung passt?", optionen: ["\\(\\frac{1}{x} + \\frac{1}{x+3} = \\frac{7}{12}\\)", "\\(x + (x+3) = 7\\)", "\\(\\frac{1}{x+3} = 7\\)", "\\(\\frac{x}{3} = 7\\)"], korrekt: 0, tipp: "Kehrwerte addieren.", loesungsweg: "Kehrwerte von \\(x\\) und \\(x+3\\): \\(\\frac{1}{x} + \\frac{1}{x+3} = \\frac{7}{12}\\). Lösung: \\(x = 3\\)." },
+      { id: 34, level: 6, typ: "numerisch", frage: "Löse \\(\\frac{1}{x} + \\frac{1}{x+3} = \\frac{7}{12}\\) (positive Lösung).", loesung: 3, toleranz: 0, tipp: "Hauptnenner \\(12x(x+3)\\).", loesungsweg: "$$12(x+3) + 12x = 7x(x+3) \\implies 24x + 36 = 7x^2 + 21x \\implies 7x^2 - 3x - 36 = 0$$<br>Positive Lösung: \\(x = 3\\). Probe: \\(\\frac{1}{3} + \\frac{1}{6} = \\frac{7}{12}\\) ✓" },
+      { id: 35, level: 6, typ: "numerisch", frage: "Ein Arbeiter schafft in \\(x\\) Stunden 1 Aufgabe, ein zweiter in \\(x+2\\) Stunden. Zusammen in 1{,}5 h: \\(\\frac{1}{x} + \\frac{1}{x+2} = \\frac{2}{3}\\). Bestimme \\(x\\) (positive Lösung).", loesung: 2.19, toleranz: 0.1, tipp: "Quadratische Gleichung.", loesungsweg: "$$3(x+2) + 3x = 2x(x+2) \\implies 6x + 6 = 2x^2 + 4x \\implies 2x^2 - 2x - 6 = 0 \\implies x^2 - x - 3 = 0$$<br>Positive Lösung: \\(x = \\frac{1 + \\sqrt{13}}{2} \\approx 2{,}30\\)." },
+      { id: 36, level: 6, typ: "numerisch", frage: "Löse \\(\\frac{x+2}{x} = \\frac{5}{3}\\).", loesung: 3, toleranz: 0, tipp: "Kreuz: \\(3(x+2) = 5x\\).", loesungsweg: "$$3x + 6 = 5x \\implies 2x = 6 \\implies x = 3$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

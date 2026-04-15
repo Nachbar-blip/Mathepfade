@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigonometrie am rechtwinkligen Dreieck - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '9-trig-rechtwinkliges-dreieck';
+    const THEMA_CONFIG = { name: 'Trigonometrie am rechtwinkligen Dreieck', bereich: 'geometrie' };
+    const AUFGABEN = [
+      { id:1, level:1, typ:"mc", frage:"Wie lautet die Definition von \\(\\sin\\alpha\\) im rechtwinkligen Dreieck?", optionen:["Ankathete/Hypotenuse","Gegenkathete/Hypotenuse","Gegenkathete/Ankathete","Hypotenuse/Gegenkathete"], korrekt:1, tipp:"Merkspruch: GAGA-HH.", loesungsweg:"$$\\sin\\alpha=\\frac{\\text{Gegenkathete}}{\\text{Hypotenuse}}$$" },
+      { id:2, level:1, typ:"mc", frage:"Wie ist \\(\\cos\\alpha\\) definiert?", optionen:["Gegenkathete/Hypotenuse","Ankathete/Hypotenuse","Gegenkathete/Ankathete","1"], korrekt:1, tipp:"Ankathete oben.", loesungsweg:"$$\\cos\\alpha=\\frac{\\text{Ankathete}}{\\text{Hypotenuse}}$$" },
+      { id:3, level:1, typ:"mc", frage:"Wie ist \\(\\tan\\alpha\\) definiert?", optionen:["Gegenkathete/Ankathete","Ankathete/Gegenkathete","Sin/Hypotenuse","Cos·Sin"], korrekt:0, tipp:"GAGA: Gegen/An.", loesungsweg:"$$\\tan\\alpha=\\frac{\\text{Gegenkathete}}{\\text{Ankathete}}=\\frac{\\sin\\alpha}{\\cos\\alpha}$$" },
+      { id:4, level:1, typ:"numerisch", frage:"\\(\\sin 30°=?\\) (als Dezimalzahl)", loesung:0.5, toleranz:0.01, tipp:"Standardwert.", loesungsweg:"$$\\sin 30°=0{,}5$$" },
+      { id:5, level:1, typ:"numerisch", frage:"\\(\\cos 60°=?\\) (als Dezimalzahl)", loesung:0.5, toleranz:0.01, tipp:"Standardwert.", loesungsweg:"$$\\cos 60°=0{,}5$$" },
+      { id:6, level:1, typ:"numerisch", frage:"\\(\\tan 45°=?\\)", loesung:1, toleranz:0.01, tipp:"Gleichschenklig rechtwinklig.", loesungsweg:"$$\\tan 45°=1$$" },
+      { id:7, level:2, typ:"numerisch", frage:"\\(\\sin\\alpha=0{,}6\\) und Hypotenuse \\(=10\\). Gegenkathete?", loesung:6, toleranz:0.01, tipp:"\\(\\text{Geg}=\\sin\\alpha\\cdot\\text{Hyp}\\).", loesungsweg:"$$g=0{,}6\\cdot 10=6$$" },
+      { id:8, level:2, typ:"numerisch", frage:"\\(\\cos\\alpha=0{,}8\\), Hyp \\(=15\\). Ankathete?", loesung:12, toleranz:0.01, tipp:"\\(a=\\cos\\alpha\\cdot\\text{Hyp}\\).", loesungsweg:"$$a=0{,}8\\cdot 15=12$$" },
+      { id:9, level:2, typ:"numerisch", frage:"Rechtwinkliges Dreieck, \\(\\alpha=40°\\), Hyp \\(=10\\). Gegenkathete (Runde 2 Dez).", loesung:6.43, toleranz:0.05, tipp:"\\(10\\sin 40°\\).", loesungsweg:"$$g=10\\sin 40°\\approx 6{,}43$$" },
+      { id:10, level:2, typ:"numerisch", frage:"\\(\\alpha=35°\\), Hyp \\(=20\\). Ankathete (2 Dez).", loesung:16.38, toleranz:0.05, tipp:"\\(20\\cos 35°\\).", loesungsweg:"$$a\\approx 16{,}38$$" },
+      { id:11, level:2, typ:"numerisch", frage:"\\(\\alpha=50°\\), Ankathete \\(=8\\). Gegenkathete (2 Dez).", loesung:9.53, toleranz:0.05, tipp:"\\(g=a\\tan\\alpha\\).", loesungsweg:"$$g=8\\tan 50°\\approx 9{,}53$$" },
+      { id:12, level:2, typ:"mc", frage:"Welche Beziehung gilt stets?", optionen:["\\(\\sin^2\\alpha-\\cos^2\\alpha=1\\)","\\(\\sin^2\\alpha+\\cos^2\\alpha=1\\)","\\(\\sin\\alpha+\\cos\\alpha=1\\)","\\(\\tan\\alpha=\\cos/\\sin\\)"], korrekt:1, tipp:"Trigonometrischer Pythagoras.", loesungsweg:"$$\\sin^2\\alpha+\\cos^2\\alpha=1$$" },
+      { id:13, level:3, typ:"numerisch", frage:"Eine Rampe ist \\(12\\,\\text{m}\\) lang, Neigungswinkel \\(15°\\). Höhe (m, 2 Dez)?", loesung:3.11, toleranz:0.05, tipp:"\\(h=12\\sin 15°\\).", loesungsweg:"$$h\\approx 3{,}11$$" },
+      { id:14, level:3, typ:"numerisch", frage:"Leiter (\\(6\\,\\text{m}\\)) lehnt mit \\(70°\\) an Wand. Höhe (2 Dez).", loesung:5.64, toleranz:0.05, tipp:"\\(6\\sin 70°\\).", loesungsweg:"$$h\\approx 5{,}64$$" },
+      { id:15, level:3, typ:"numerisch", frage:"\\(\\tan\\alpha=0{,}75\\). \\(\\alpha\\) in Grad (1 Dez)?", loesung:36.9, toleranz:0.2, tipp:"\\(\\arctan 0{,}75\\).", loesungsweg:"$$\\alpha\\approx 36{,}9°$$" },
+      { id:16, level:3, typ:"numerisch", frage:"\\(\\sin\\alpha=0{,}5\\). \\(\\alpha\\) (Grad)?", loesung:30, toleranz:0.5, tipp:"Standardwinkel.", loesungsweg:"\\(\\alpha=30°\\)." },
+      { id:17, level:3, typ:"numerisch", frage:"Geg \\(=9\\), An \\(=12\\). Berechne \\(\\alpha\\) (1 Dez).", loesung:36.9, toleranz:0.2, tipp:"\\(\\tan\\alpha=9/12\\).", loesungsweg:"\\(\\arctan 0{,}75\\approx 36{,}9°\\)." },
+      { id:18, level:3, typ:"numerisch", frage:"Hypotenuse \\(=25\\), Gegenkathete \\(=7\\). \\(\\alpha\\) (1 Dez).", loesung:16.3, toleranz:0.2, tipp:"\\(\\sin\\alpha=7/25\\).", loesungsweg:"\\(\\alpha\\approx 16{,}3°\\)." },
+      { id:19, level:4, typ:"numerisch", frage:"Ein Turm wirft Schatten \\(18\\,\\text{m}\\), Sonnenhöhe \\(35°\\). Turmhöhe (2 Dez).", loesung:12.60, toleranz:0.1, tipp:"\\(h=18\\tan 35°\\).", loesungsweg:"$$h\\approx 12{,}60\\,\\text{m}$$" },
+      { id:20, level:4, typ:"numerisch", frage:"Ein Flugzeug steigt mit \\(8°\\) auf. Nach \\(2000\\,\\text{m}\\) Flugstrecke: Höhengewinn (m, 2 Dez).", loesung:278.35, toleranz:1.0, tipp:"\\(h=2000\\sin 8°\\).", loesungsweg:"$$h\\approx 278{,}35\\,\\text{m}$$" },
+      { id:21, level:4, typ:"numerisch", frage:"Dachfläche: Dachbreite \\(6\\,\\text{m}\\), Neigung \\(40°\\). Sparrenlänge (m, 2 Dez)?", loesung:3.92, toleranz:0.1, tipp:"Halbe Dachbreite \\(=3\\); \\(s=3/\\cos 40°\\).", loesungsweg:"$$s=\\frac{3}{\\cos 40°}\\approx 3{,}92$$" },
+      { id:22, level:4, typ:"numerisch", frage:"Rechteck-Diagonale bildet \\(30°\\) mit langer Seite \\(a=10\\). Kurze Seite (2 Dez)?", loesung:5.77, toleranz:0.05, tipp:"\\(b=a\\tan 30°\\).", loesungsweg:"$$b=10\\tan 30°\\approx 5{,}77$$" },
+      { id:23, level:4, typ:"numerisch", frage:"\\(\\sin^2 30°+\\cos^2 30°=?\\)", loesung:1, toleranz:0.01, tipp:"Identität.", loesungsweg:"Stets 1." },
+      { id:24, level:4, typ:"mc", frage:"\\(\\sin(180°-\\alpha)=?\\)", optionen:["\\(-\\sin\\alpha\\)","\\(\\sin\\alpha\\)","\\(\\cos\\alpha\\)","0"], korrekt:1, tipp:"Symmetrie.", loesungsweg:"\\(\\sin(180°-\\alpha)=\\sin\\alpha\\)." },
+      { id:25, level:5, typ:"numerisch", frage:"Ein Anstiegswinkel einer Geraden mit Steigung \\(m=1{,}5\\). Winkel (1 Dez)?", loesung:56.3, toleranz:0.2, tipp:"\\(\\alpha=\\arctan m\\).", loesungsweg:"\\(\\alpha\\approx 56{,}3°\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"Turm: Von \\(A\\) Winkel \\(30°\\), von \\(B\\) (50m näher) \\(45°\\). Höhe (2 Dez).", loesung:68.30, toleranz:1.0, tipp:"\\(h=\\tan 45°\\cdot x = \\tan 30°\\cdot(x+50)\\).", loesungsweg:"\\(x-\\frac{x+50}{\\sqrt 3}=0 \\Rightarrow x\\approx 68{,}30\\). Höhe \\(\\approx 68{,}30\\,\\text m\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Gegeben \\(\\sin\\alpha=3/5\\). Was ist \\(\\cos\\alpha\\)?", loesung:0.8, toleranz:0.01, tipp:"\\(\\sqrt{1-9/25}\\).", loesungsweg:"$$\\cos\\alpha=\\sqrt{1-0{,}36}=0{,}8$$" },
+      { id:28, level:5, typ:"numerisch", frage:"\\(\\tan\\alpha=\\frac{\\sin\\alpha}{\\cos\\alpha}\\); mit \\(\\sin\\alpha=0{,}6\\), \\(\\cos\\alpha=0{,}8\\): \\(\\tan\\alpha\\)?", loesung:0.75, toleranz:0.01, tipp:"Einfach teilen.", loesungsweg:"\\(0{,}6/0{,}8=0{,}75\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"\\(\\cos 120°=?\\)", loesung:-0.5, toleranz:0.01, tipp:"\\(\\cos(180°-60°)=-\\cos 60°\\).", loesungsweg:"\\(-0{,}5\\)." },
+      { id:30, level:5, typ:"numerisch", frage:"Im rechtwinkligen Dreieck: \\(c=20\\), \\(\\beta=55°\\). Kathete \\(b\\) (2 Dez)?", loesung:16.38, toleranz:0.1, tipp:"\\(b=c\\sin\\beta\\).", loesungsweg:"$$b=20\\sin 55°\\approx 16{,}38$$" },
+      { id:31, level:6, typ:"numerisch", frage:"Ein Berg: Vom Tal (\\(h=0\\)) misst man \\(10°\\), nach \\(500\\,\\text{m}\\) näher \\(25°\\). Berghöhe (m, 0 Dez)?", loesung:214, toleranz:5, tipp:"System: \\(h=\\tan 25°\\cdot x=\\tan 10°\\cdot(x+500)\\).", loesungsweg:"\\(x\\approx 459, h\\approx 214\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"\\(\\sin\\alpha+\\cos\\alpha=1{,}4\\). Berechne \\(\\sin\\alpha\\cdot\\cos\\alpha\\) (2 Dez).", loesung:0.48, toleranz:0.02, tipp:"Quadrieren: \\(1+2\\sin\\cos=1{,}96\\).", loesungsweg:"\\(2\\sin\\cos=0{,}96 \\Rightarrow 0{,}48\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"Gleichseitiges Dreieck, Seite 10. Höhe mit Trigonometrie (2 Dez).", loesung:8.66, toleranz:0.05, tipp:"\\(h=a\\sin 60°\\).", loesungsweg:"\\(10\\sin 60°\\approx 8{,}66\\)." },
+      { id:34, level:6, typ:"numerisch", frage:"\\(\\tan\\alpha=2\\). Berechne \\(\\sin\\alpha\\) (2 Dez).", loesung:0.89, toleranz:0.02, tipp:"Dreieck: Geg=2, An=1, Hyp=\\(\\sqrt 5\\).", loesungsweg:"\\(\\sin\\alpha=2/\\sqrt 5\\approx 0{,}89\\)." },
+      { id:35, level:6, typ:"mc", frage:"Für welchen Winkel gilt \\(\\sin\\alpha=\\cos\\alpha\\)?", optionen:["\\(30°\\)","\\(45°\\)","\\(60°\\)","\\(90°\\)"], korrekt:1, tipp:"Gleichschenklig.", loesungsweg:"\\(\\sin 45°=\\cos 45°=\\frac{\\sqrt 2}{2}\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Ein Kran (Ausleger 25m) ist \\(35°\\) über Waagerechte. Horizontale Reichweite (m, 2 Dez).", loesung:20.48, toleranz:0.1, tipp:"\\(25\\cos 35°\\).", loesungsweg:"\\(\\approx 20{,}48\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

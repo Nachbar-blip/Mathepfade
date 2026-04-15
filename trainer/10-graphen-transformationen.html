@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphen-Transformationen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '10-graphen-transformationen';
+    const THEMA_CONFIG = { name: 'Graphen-Transformationen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht ==========
+      { id: 1, level: 1, typ: "mc", frage: "\\(f(x) = x^2\\). Was bewirkt \\(g(x) = f(x) + 3\\)?", optionen: ["Verschiebung um 3 nach oben", "Verschiebung um 3 nach rechts", "Streckung", "Spiegelung"], korrekt: 0, tipp: "\\(+3\\) am Ende: vertikale Verschiebung.", loesungsweg: "\\(f(x) + c\\) verschiebt den Graphen um \\(c\\) nach oben (hier \\(+3\\))." },
+      { id: 2, level: 1, typ: "mc", frage: "\\(g(x) = f(x) - 2\\). Wohin?", optionen: ["2 nach oben", "2 nach unten", "2 nach rechts", "2 nach links"], korrekt: 1, tipp: "Minus = nach unten.", loesungsweg: "\\(f(x) - 2\\): Verschiebung um \\(2\\) nach unten." },
+      { id: 3, level: 1, typ: "mc", frage: "\\(g(x) = f(x - 4)\\). Wohin?", optionen: ["4 nach rechts", "4 nach links", "4 nach oben", "4 nach unten"], korrekt: 0, tipp: "Minus IN der Klammer = nach rechts (gegensinnig!).", loesungsweg: "\\(f(x - c)\\): Verschiebung um \\(c\\) nach rechts. Also \\(4\\) nach rechts." },
+      { id: 4, level: 1, typ: "mc", frage: "\\(g(x) = f(x + 5)\\). Wohin?", optionen: ["5 nach rechts", "5 nach links", "5 nach oben", "5 nach unten"], korrekt: 1, tipp: "Plus IN der Klammer = nach links.", loesungsweg: "\\(f(x + c)\\): Verschiebung um \\(c\\) nach links." },
+      { id: 5, level: 1, typ: "mc", frage: "\\(g(x) = -f(x)\\). Was passiert?", optionen: ["Spiegelung an der x-Achse", "Spiegelung an der y-Achse", "Verschiebung", "Streckung"], korrekt: 0, tipp: "Minus vor der Funktion.", loesungsweg: "\\(-f(x)\\): Spiegelung an der x-Achse." },
+      { id: 6, level: 1, typ: "mc", frage: "\\(g(x) = f(-x)\\). Was passiert?", optionen: ["Spiegelung an der x-Achse", "Spiegelung an der y-Achse", "Verschiebung", "Streckung"], korrekt: 1, tipp: "Minus bei \\(x\\).", loesungsweg: "\\(f(-x)\\): Spiegelung an der y-Achse." },
+      // ========== LEVEL 2 -- leicht ==========
+      { id: 7, level: 2, typ: "mc", frage: "\\(g(x) = 2 f(x)\\). Was passiert?", optionen: ["Streckung um 2 in y-Richtung", "Streckung um 2 in x-Richtung", "Verschiebung", "Stauchung"], korrekt: 0, tipp: "Faktor vor \\(f\\).", loesungsweg: "\\(a \\cdot f(x)\\) mit \\(a > 1\\): Streckung in y-Richtung um Faktor \\(a\\)." },
+      { id: 8, level: 2, typ: "mc", frage: "\\(g(x) = \\frac{1}{2} f(x)\\). Was passiert?", optionen: ["Streckung um 2", "Stauchung in y-Richtung", "Spiegelung", "Verschiebung"], korrekt: 1, tipp: "Faktor zwischen 0 und 1 = Stauchung.", loesungsweg: "\\(a \\cdot f(x)\\) mit \\(0 < a < 1\\): Stauchung in y-Richtung." },
+      { id: 9, level: 2, typ: "numerisch", frage: "\\(f(x) = x^2\\). Wie lautet \\(g(x) = f(x - 3)\\) ausgeschrieben als Term?<br>Gib den Funktionswert \\(g(3)\\) an.", loesung: 0, toleranz: 0, tipp: "\\(g(x) = (x - 3)^2\\). \\(g(3) = 0\\).", loesungsweg: "\\(g(x) = (x-3)^2\\). \\(g(3) = 0^2 = 0\\)." },
+      { id: 10, level: 2, typ: "numerisch", frage: "\\(f(x) = x^2\\). Für \\(g(x) = f(x) + 5\\): Berechne \\(g(0)\\).", loesung: 5, toleranz: 0, tipp: "\\(g(0) = 0^2 + 5\\).", loesungsweg: "\\(g(0) = 0 + 5 = 5\\)." },
+      { id: 11, level: 2, typ: "mc", frage: "Gegeben ist \\(f(x) = x^2\\). Welcher Graph gehört zu \\(g(x) = (x + 2)^2\\)?", optionen: ["Parabel, Scheitel bei \\((2, 0)\\)", "Parabel, Scheitel bei \\((-2, 0)\\)", "Parabel, Scheitel bei \\((0, 2)\\)", "Parabel, Scheitel bei \\((0, -2)\\)"], korrekt: 1, tipp: "\\((x + 2)\\): Verschiebung um \\(-2\\) (also nach links).", loesungsweg: "Scheitel verschiebt sich um 2 nach links: \\((-2, 0)\\)." },
+      { id: 12, level: 2, typ: "mc", frage: "\\(f(x) = x^2\\). Welche Form hat \\(g(x) = -x^2 + 1\\)?", optionen: ["Nach oben geöffnete Parabel mit Scheitel \\((0,1)\\)", "Nach unten geöffnete Parabel mit Scheitel \\((0,1)\\)", "Gerade", "Hyperbel"], korrekt: 1, tipp: "Minus vor \\(x^2\\): nach unten geöffnet. \\(+1\\) verschiebt nach oben.", loesungsweg: "\\(-x^2\\): Spiegelung (nach unten geöffnet). \\(+1\\): Scheitel bei \\((0, 1)\\)." },
+      // ========== LEVEL 3 -- nervenschonend ==========
+      { id: 13, level: 3, typ: "mc", frage: "\\(f(x) = x^2\\) wird zuerst um 3 nach rechts, dann um 2 nach oben verschoben. Wie lautet \\(g(x)\\)?", optionen: ["\\((x + 3)^2 + 2\\)", "\\((x - 3)^2 + 2\\)", "\\((x - 3)^2 - 2\\)", "\\((x + 3)^2 - 2\\)"], korrekt: 1, tipp: "Rechts: \\((x - 3)\\). Oben: \\(+ 2\\).", loesungsweg: "\\(g(x) = (x - 3)^2 + 2\\). Scheitel bei \\((3, 2)\\)." },
+      { id: 14, level: 3, typ: "numerisch", frage: "\\(g(x) = (x - 2)^2 + 3\\). Wo liegt der Scheitel? Gib die x-Koordinate an.", loesung: 2, toleranz: 0, tipp: "Scheitelpunktform: Scheitel \\((d, e)\\) bei \\((x - d)^2 + e\\).", loesungsweg: "Scheitel \\((2, 3)\\); x-Koordinate \\(= 2\\)." },
+      { id: 15, level: 3, typ: "numerisch", frage: "\\(g(x) = (x - 2)^2 + 3\\). y-Koordinate des Scheitels?", loesung: 3, toleranz: 0, tipp: "Konstante am Ende.", loesungsweg: "Scheitel \\((2, 3)\\); y-Koordinate \\(= 3\\)." },
+      { id: 16, level: 3, typ: "mc", frage: "\\(f(x) = x^2\\). Welche Transformation ergibt Scheitel \\((-1, 4)\\)?", optionen: ["\\((x - 1)^2 + 4\\)", "\\((x + 1)^2 + 4\\)", "\\((x + 1)^2 - 4\\)", "\\((x - 1)^2 - 4\\)"], korrekt: 1, tipp: "Links: \\((x + 1)\\). Oben: \\(+ 4\\).", loesungsweg: "Scheitel \\((-1, 4)\\) → \\((x + 1)^2 + 4\\)." },
+      { id: 17, level: 3, typ: "mc", frage: "\\(g(x) = 2(x - 1)^2\\). Was passiert?", optionen: ["Streckung und Verschiebung nach rechts", "Streckung und Verschiebung nach links", "Stauchung", "Nur Verschiebung"], korrekt: 0, tipp: "Faktor 2 und \\((x - 1)\\).", loesungsweg: "Faktor 2: Streckung in y-Richtung. \\((x - 1)\\): Verschiebung um 1 nach rechts." },
+      { id: 18, level: 3, typ: "numerisch", frage: "\\(g(x) = 2(x - 1)^2\\). Berechne \\(g(3)\\).", loesung: 8, toleranz: 0, tipp: "\\(2 \\cdot (3 - 1)^2 = 2 \\cdot 4\\).", loesungsweg: "$$g(3) = 2 \\cdot (3-1)^2 = 2 \\cdot 4 = 8$$" },
+      // ========== LEVEL 4 -- mittel ==========
+      { id: 19, level: 4, typ: "mc", frage: "\\(g(x) = -2(x + 1)^2 + 3\\). Welche Aussage stimmt?", optionen: ["Nach oben geöffnet, Scheitel \\((1, 3)\\)", "Nach unten geöffnet, Scheitel \\((-1, 3)\\)", "Nach oben geöffnet, Scheitel \\((-1, 3)\\)", "Nach unten geöffnet, Scheitel \\((1, -3)\\)"], korrekt: 1, tipp: "Minus: nach unten. \\((x + 1)\\): Scheitel bei \\(x = -1\\).", loesungsweg: "Faktor \\(-2\\): nach unten geöffnet. Scheitel \\((-1, 3)\\)." },
+      { id: 20, level: 4, typ: "mc", frage: "\\(f(x) = x^2 - 2x\\). Welche Verschiebung führt zur Scheitelform?", optionen: ["\\((x - 1)^2 - 1\\)", "\\((x + 1)^2 + 1\\)", "\\((x - 1)^2 + 1\\)", "\\(x^2 + 1\\)"], korrekt: 0, tipp: "Quadratische Ergänzung: \\(x^2 - 2x = (x - 1)^2 - 1\\).", loesungsweg: "\\(x^2 - 2x = (x-1)^2 - 1\\). Scheitel \\((1, -1)\\)." },
+      { id: 21, level: 4, typ: "numerisch", frage: "\\(g(x) = f(2x)\\) mit \\(f(x) = x^2\\). Berechne \\(g(3)\\).", loesung: 36, toleranz: 0, tipp: "\\(g(3) = f(6) = 36\\).", loesungsweg: "\\(g(3) = (2 \\cdot 3)^2 = 6^2 = 36\\)." },
+      { id: 22, level: 4, typ: "mc", frage: "Was bewirkt \\(g(x) = f(2x)\\)?", optionen: ["Streckung in x-Richtung um Faktor 2", "Stauchung in x-Richtung um Faktor 2", "Streckung in y-Richtung", "Stauchung in y-Richtung"], korrekt: 1, tipp: "\\(f(bx)\\) mit \\(b > 1\\): Stauchung.", loesungsweg: "\\(f(bx)\\) mit \\(b > 1\\): Stauchung in x-Richtung um Faktor \\(\\frac{1}{b}\\)." },
+      { id: 23, level: 4, typ: "numerisch", frage: "Scheitel von \\(f(x) = x^2 + 4x + 7\\)? x-Koordinate?", loesung: -2, toleranz: 0, tipp: "Quadratische Ergänzung: \\((x+2)^2 + 3\\).", loesungsweg: "\\(x^2 + 4x + 7 = (x+2)^2 + 3\\). Scheitel \\((-2, 3)\\); x-Koordinate \\(= -2\\)." },
+      { id: 24, level: 4, typ: "numerisch", frage: "Scheitel von \\(f(x) = x^2 + 4x + 7\\)? y-Koordinate?", loesung: 3, toleranz: 0, tipp: "Aus Scheitelform ablesen.", loesungsweg: "\\((x+2)^2 + 3\\): y-Koordinate des Scheitels \\(= 3\\)." },
+      // ========== LEVEL 5 -- anspruchsvoll ==========
+      { id: 25, level: 5, typ: "mc", frage: "Reihenfolge: Erst Streckung (Faktor 2), dann Verschiebung um 3 nach oben bei \\(f(x) = x^2\\). Wie lautet \\(g\\)?", optionen: ["\\(g(x) = 2x^2 + 3\\)", "\\(g(x) = 2(x^2 + 3)\\)", "\\(g(x) = (2x)^2 + 3\\)", "\\(g(x) = 2x + 3\\)"], korrekt: 0, tipp: "Erst \\(2 \\cdot f(x)\\), dann \\(+ 3\\).", loesungsweg: "Streckung: \\(2x^2\\). Dann + 3: \\(2x^2 + 3\\)." },
+      { id: 26, level: 5, typ: "mc", frage: "\\(f(x) = x^3\\). \\(g(x) = -f(x - 1) + 2\\) bedeutet …", optionen: ["Spiegelung an x-Achse, Verschiebung 1 rechts und 2 oben", "Spiegelung an y-Achse, Verschiebung 1 links und 2 oben", "Streckung, dann Verschiebung", "Nur Verschiebung"], korrekt: 0, tipp: "Minus vor \\(f\\): Spiegelung an x. \\((x-1)\\): rechts. \\(+2\\): oben.", loesungsweg: "\\(-\\): x-Achse spiegeln. \\((x-1)\\): 1 rechts. \\(+2\\): 2 oben." },
+      { id: 27, level: 5, typ: "numerisch", frage: "\\(f(x) = x^2\\). Nach welchem Faktor \\(a\\) in \\(g(x) = a \\cdot x^2\\) geht der Graph durch \\((2, 12)\\)?", loesung: 3, toleranz: 0, tipp: "\\(a \\cdot 4 = 12\\).", loesungsweg: "\\(g(2) = a \\cdot 4 = 12 \\implies a = 3\\)." },
+      { id: 28, level: 5, typ: "mc", frage: "Welche Verschiebung von \\(f(x) = x^2\\) ergibt Scheitel \\((3, -4)\\)?", optionen: ["3 rechts, 4 oben", "3 rechts, 4 unten", "3 links, 4 oben", "3 links, 4 unten"], korrekt: 1, tipp: "x-Koord. positiv = rechts, y-Koord. negativ = unten.", loesungsweg: "Scheitel \\((3, -4)\\): 3 nach rechts, 4 nach unten." },
+      { id: 29, level: 5, typ: "numerisch", frage: "Nullstelle von \\(g(x) = (x - 2)^2 - 9\\)? Gib die größere der beiden an.", loesung: 5, toleranz: 0, tipp: "\\((x-2)^2 = 9 \\implies x - 2 = \\pm 3\\).", loesungsweg: "\\(x - 2 = \\pm 3 \\implies x = 5\\) oder \\(x = -1\\). Größere: \\(5\\)." },
+      { id: 30, level: 5, typ: "numerisch", frage: "Selbe Aufgabe: kleinere Nullstelle?", loesung: -1, toleranz: 0, tipp: "\\(x = 2 - 3\\).", loesungsweg: "Kleinere Nullstelle: \\(2 - 3 = -1\\)." },
+      // ========== LEVEL 6 -- wagnerisch ==========
+      { id: 31, level: 6, typ: "mc", frage: "\\(f(x) = x^2\\), \\(g(x) = f\\left(\\frac{x}{2}\\right)\\). Wie verändert sich der Graph?", optionen: ["Streckung in x-Richtung um Faktor 2", "Stauchung in x-Richtung", "Streckung in y-Richtung", "Stauchung in y-Richtung"], korrekt: 0, tipp: "\\(f(bx)\\) mit \\(0 < b < 1\\): Streckung.", loesungsweg: "\\(f(x/2)\\): Streckung in x-Richtung um Faktor 2." },
+      { id: 32, level: 6, typ: "numerisch", frage: "\\(g(x) = -(x + 1)^2 + 5\\). Maximaler Wert von \\(g\\)?", loesung: 5, toleranz: 0, tipp: "Nach unten geöffnete Parabel: Maximum = y-Koord. des Scheitels.", loesungsweg: "Scheitel \\((-1, 5)\\); nach unten geöffnet → Maximum \\(5\\)." },
+      { id: 33, level: 6, typ: "numerisch", frage: "Welches \\(c\\) bewirkt, dass \\(g(x) = x^2 + c\\) Nullstelle bei \\(x = 3\\) hat?", loesung: -9, toleranz: 0, tipp: "\\(9 + c = 0\\).", loesungsweg: "\\(3^2 + c = 0 \\implies c = -9\\)." },
+      { id: 34, level: 6, typ: "mc", frage: "Bei \\(g(x) = a \\cdot f(x - d) + e\\) ist der \\(a\\) wofür zuständig?", optionen: ["Horizontale Verschiebung", "Vertikale Verschiebung", "Streckung/Stauchung in y-Richtung und evtl. Spiegelung", "Spiegelung an y-Achse"], korrekt: 2, tipp: "Faktor vor der Funktion.", loesungsweg: "\\(a\\) bestimmt Streckung (\\(|a| > 1\\)) oder Stauchung (\\(|a| < 1\\)), Minus bewirkt Spiegelung an x-Achse." },
+      { id: 35, level: 6, typ: "numerisch", frage: "Scheitel von \\(g(x) = 2(x-3)^2 - 8\\)? y-Koordinate?", loesung: -8, toleranz: 0, tipp: "Scheitelform ablesen.", loesungsweg: "Scheitel \\((3, -8)\\); y-Koord. \\(= -8\\)." },
+      { id: 36, level: 6, typ: "numerisch", frage: "Nullstellen von \\(g(x) = 2(x - 3)^2 - 8\\)? Summe?", loesung: 6, toleranz: 0, tipp: "\\((x-3)^2 = 4 \\implies x = 5\\) oder \\(x = 1\\).", loesungsweg: "\\(2(x-3)^2 = 8 \\implies (x-3)^2 = 4 \\implies x = 5\\) oder \\(x = 1\\). Summe: \\(6\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

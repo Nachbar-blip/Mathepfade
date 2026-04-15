@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extremwertaufgaben - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '11-extremwertaufgaben';
+    const THEMA_CONFIG = { name: 'Extremwertaufgaben', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1 -- Grundlagen
+      { id:1, level:1, typ:"mc", frage:"Notwendige Bedingung für eine Extremstelle?", optionen:["\\(f(x_0)=0\\)","\\(f'(x_0)=0\\)","\\(f''(x_0)=0\\)","\\(f'''(x_0)=0\\)"], korrekt:1, tipp:"Erste Ableitung.", loesungsweg:"Notwendig: \\(f'(x_0)=0\\)." },
+      { id:2, level:1, typ:"mc", frage:"Hinreichend für Hochpunkt:", optionen:["\\(f'(x_0)=0\\) und \\(f''(x_0)>0\\)","\\(f'(x_0)=0\\) und \\(f''(x_0)<0\\)","\\(f''(x_0)=0\\)","\\(f(x_0)=0\\)"], korrekt:1, tipp:"Zweite Ableitung negativ = Linkskrümmung… Rechts.", loesungsweg:"Hochpunkt: \\(f'(x_0)=0\\) und \\(f''(x_0)<0\\)." },
+      { id:3, level:1, typ:"mc", frage:"Hinreichend für Tiefpunkt:", optionen:["\\(f''(x_0)<0\\)","\\(f''(x_0)>0\\)","\\(f''(x_0)=0\\)","\\(f'(x_0)>0\\)"], korrekt:1, tipp:"Linkskrümmung.", loesungsweg:"Tiefpunkt: \\(f'(x_0)=0\\) und \\(f''(x_0)>0\\)." },
+      { id:4, level:1, typ:"numerisch", frage:"\\(f(x)=x^2-4x\\). Extremstelle?", loesung:2, toleranz:0, tipp:"\\(2x-4=0\\).", loesungsweg:"\\(x=2\\)." },
+      { id:5, level:1, typ:"numerisch", frage:"\\(f(x)=x^2-4x\\). Extremwert (y-Wert)?", loesung:-4, toleranz:0, tipp:"\\(f(2)\\).", loesungsweg:"\\(f(2)=4-8=-4\\)." },
+      { id:6, level:1, typ:"mc", frage:"Was ist die „Zielfunktion\"?", optionen:["Die Nebenbedingung","Die zu optimierende Größe","Die Definitionsmenge","Die Ableitung"], korrekt:1, tipp:"Name: Ziel.", loesungsweg:"Die Zielfunktion beschreibt die zu maximierende/minimierende Größe." },
+      // LEVEL 2 -- Rechteckoptimierung
+      { id:7, level:2, typ:"numerisch", frage:"Rechteck mit Umfang 20. Maximale Fläche bei Seite \\(a=?\\)", loesung:5, toleranz:0, tipp:"Quadrat maximiert.", loesungsweg:"\\(a=b=5\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"Rechteck mit Umfang 20: maximaler Flächeninhalt?", loesung:25, toleranz:0, tipp:"\\(5\\cdot5\\).", loesungsweg:"\\(A_\\max=25\\)." },
+      { id:9, level:2, typ:"numerisch", frage:"Rechteck mit Fläche 36, minimaler Umfang?", loesung:24, toleranz:0, tipp:"Quadrat mit \\(a=6\\).", loesungsweg:"\\(a=b=6\\), \\(U=24\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"Von 24m Zaun: Rechteck an einer Wand (3 Seiten). Maximalfläche bei Breite \\(b=?\\)", loesung:6, toleranz:0, tipp:"\\(A=b(24-2b)\\), Maximum.", loesungsweg:"\\(A'(b)=24-4b=0 \\Rightarrow b=6\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"24m Zaun, 3 Seiten: maximaler Flächeninhalt?", loesung:72, toleranz:0, tipp:"\\(b=6\\), \\(l=12\\).", loesungsweg:"\\(A=6\\cdot12=72\\)." },
+      { id:12, level:2, typ:"mc", frage:"Vorgehen Extremwertaufgabe:", optionen:["Zielfunktion, Nebenbedingung, Eine Variable, Ableiten","Ableiten, Integrieren","Gleichung, Einsetzen","Skizze, Ergebnis"], korrekt:0, tipp:"Standardschema.", loesungsweg:"Zielfunktion → Nebenbedingung einsetzen → 1 Variable → Ableiten → Extremum." },
+      // LEVEL 3 -- Volumenoptimierung
+      { id:13, level:3, typ:"numerisch", frage:"Quadratische Schachtel ohne Deckel, Oberfläche 300. Kantenlänge Grundseite für max. V? (\\(V=a^2h\\), \\(O=a^2+4ah\\))", loesung:10, toleranz:0, tipp:"\\(V(a)=\\frac{a(300-a^2)}{4}\\), ableiten.", loesungsweg:"\\(V'(a)=\\frac{300-3a^2}{4}=0 \\Rightarrow a=10\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"Zylinder: Oberfläche \\(O=6\\pi\\), Volumen maximal. Radius?", loesung:1, toleranz:0.01, tipp:"\\(r=h\\) bei Extremum mit \\(O=2\\pi r^2+2\\pi rh\\).", loesungsweg:"Rechnung ergibt \\(r=1\\), \\(h=2\\)… Prüfen: mit \\(O=6\\pi\\), \\(V_{\\max}\\) bei \\(r=1\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"Rechteck unter Parabel \\(y=4-x^2\\), Achsen-symmetrisch. Fläche max. bei \\(x=?\\)", loesung:1.1547, toleranz:0.1, tipp:"\\(A(x)=2x(4-x^2)\\), ableiten.", loesungsweg:"\\(A'(x)=8-6x^2=0 \\Rightarrow x=\\sqrt{4/3}\\approx 1{,}15\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"Aus Quadrat Seite 12 cm an Ecken kleine Quadrate (Seite \\(x\\)) ausschneiden, Box falten. V maximal bei \\(x=?\\)", loesung:2, toleranz:0, tipp:"\\(V=(12-2x)^2 x\\), ableiten.", loesungsweg:"\\(V'(x)=12(x-2)(x-6)=0\\), \\(x=2\\)." },
+      { id:17, level:3, typ:"numerisch", frage:"Schachtel oben: \\(V_\\max\\) (cm³, bei \\(x=2\\), Seite 12)?", loesung:128, toleranz:0, tipp:"\\(V=8^2\\cdot 2\\).", loesungsweg:"\\(V=64\\cdot2=128\\)." },
+      { id:18, level:3, typ:"mc", frage:"Welche Ableitung prüft, ob Maximum?", optionen:["\\(f'\\)","\\(f''<0\\)","\\(f''>0\\)","\\(f'''\\)"], korrekt:1, tipp:"Rechtskrümmung.", loesungsweg:"\\(f''(x_0)<0\\) ⇒ Maximum." },
+      // LEVEL 4 -- komplexere NB
+      { id:19, level:4, typ:"numerisch", frage:"Punkt \\(P(x|x^2)\\) auf Parabel mit minimalem Abstand zu \\(A(4|0)\\). \\(x\\)?", loesung:1, toleranz:0.1, tipp:"\\(d^2=(x-4)^2+x^4\\), ableiten.", loesungsweg:"\\(2(x-4)+4x^3=0\\), numerisch \\(x\\approx 1\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"Dreieck unter \\(y=6-x\\) im 1. Quadranten mit rechtem Winkel im Ursprung. \\(x\\) für max Fläche?", loesung:3, toleranz:0, tipp:"\\(A=\\frac{1}{2}x(6-x)\\).", loesungsweg:"\\(A'=3-x=0 \\Rightarrow x=3\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"Bauernhof: Zaun 100m, max. Rechteckfläche?", loesung:625, toleranz:0, tipp:"Quadrat 25×25.", loesungsweg:"\\(A_\\max=625\\) m²." },
+      { id:22, level:4, typ:"numerisch", frage:"Dose (Zylinder) mit V=1L=1000cm³. Oberfläche minimal bei \\(r\\) (cm, gerundet)?", loesung:5.42, toleranz:0.2, tipp:"\\(h=2r\\) im Optimum: \\(r=\\sqrt[3]{V/(2\\pi)}\\).", loesungsweg:"\\(r=\\sqrt[3]{500/\\pi}\\approx 5{,}42\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"Rechteck mit Fläche 100, minimaler Umfang?", loesung:40, toleranz:0, tipp:"Quadrat \\(a=10\\).", loesungsweg:"\\(U=40\\)." },
+      { id:24, level:4, typ:"numerisch", frage:"Offene Schachtel, quadratische Grundseite, V=32. Min. Oberfläche bei \\(a=?\\)", loesung:4, toleranz:0, tipp:"\\(O=a^2+\\frac{128}{a}\\), ableiten.", loesungsweg:"\\(2a-128/a^2=0 \\Rightarrow a^3=64 \\Rightarrow a=4\\)." },
+      // LEVEL 5 -- Transfer
+      { id:25, level:5, typ:"numerisch", frage:"Aus Rechteckblech 8×5 an allen Ecken Quadrat Seite \\(x\\), Box falten. \\(V'=0\\) für \\(x=?\\) (kleine Lösung, gerundet)", loesung:1, toleranz:0.1, tipp:"\\(V=(8-2x)(5-2x)x\\).", loesungsweg:"\\(V'=12x^2-52x+40=0 \\Rightarrow x\\approx 1{,}0\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"Punkt auf \\(y=\\sqrt{x}\\) mit min. Abstand zu \\((2|0)\\). \\(x\\)?", loesung:1.5, toleranz:0.1, tipp:"\\(d^2=(x-2)^2+x\\).", loesungsweg:"\\(2(x-2)+1=0 \\Rightarrow x=1{,}5\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Drahtstück 40cm in 2 Teile: Quadrat + Kreis. Min. Gesamtfläche bei Quadratseite (gerundet)?", loesung:5.6, toleranz:0.3, tipp:"\\(x=\\) Quadratseite, Ableiten.", loesungsweg:"Ergibt \\(x=\\frac{40}{4+\\pi}\\approx 5{,}6\\)." },
+      { id:28, level:5, typ:"numerisch", frage:"Trapez unter Parabel \\(y=9-x^2\\): Rechteck symm. zur y-Achse. Max Fläche bei \\(x=?\\)", loesung:1.732, toleranz:0.1, tipp:"\\(A=2x(9-x^2)\\).", loesungsweg:"\\(18-6x^2=0 \\Rightarrow x=\\sqrt{3}\\approx 1{,}73\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"Maximales Rechteck unter \\(y=9-x^2\\): Flächeninhalt? (gerundet)", loesung:20.78, toleranz:0.5, tipp:"\\(A=2\\sqrt{3}\\cdot 6\\).", loesungsweg:"\\(A=12\\sqrt{3}\\approx 20{,}78\\)." },
+      { id:30, level:5, typ:"mc", frage:"Bei der Randwertbetrachtung prüft man:", optionen:["Nur innere Extrema","Funktionswerte an den Rändern des Definitionsbereichs","Nur die 2. Ableitung","Die Umkehrfunktion"], korrekt:1, tipp:"Auch Ränder können Extrema sein.", loesungsweg:"Randextrema müssen verglichen werden." },
+      // LEVEL 6 -- Anwendungen
+      { id:31, level:6, typ:"numerisch", frage:"Gewinn \\(G(x)=-x^2+100x-500\\). Max. Gewinn bei \\(x=?\\)", loesung:50, toleranz:0, tipp:"\\(G'(x)=-2x+100\\).", loesungsweg:"\\(x=50\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"Max. Gewinn (y-Wert bei \\(x=50\\))?", loesung:2000, toleranz:0, tipp:"\\(G(50)=-2500+5000-500\\).", loesungsweg:"\\(G_\\max=2000\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"Kosten \\(K(x)=x^2-20x+150\\). Min. Kosten bei \\(x=?\\)", loesung:10, toleranz:0, tipp:"\\(K'(x)=0\\).", loesungsweg:"\\(x=10\\)." },
+      { id:34, level:6, typ:"numerisch", frage:"Min. Kostenwert?", loesung:50, toleranz:0, tipp:"\\(K(10)\\).", loesungsweg:"\\(100-200+150=50\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"Zwei positive Zahlen mit Summe 10, Produkt maximal. Eine der Zahlen?", loesung:5, toleranz:0, tipp:"\\(P=x(10-x)\\).", loesungsweg:"\\(x=5\\), \\(P=25\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Kürzester Abstand von \\((0|3)\\) zur Geraden \\(y=x\\)?", loesung:2.121, toleranz:0.1, tipp:"Lotfußpunkt.", loesungsweg:"\\(d=\\frac{3}{\\sqrt{2}}\\approx 2{,}12\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

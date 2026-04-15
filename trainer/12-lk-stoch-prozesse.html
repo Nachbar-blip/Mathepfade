@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stochastische Prozesse (LK) - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-lk-stoch-prozesse';
+    const THEMA_CONFIG = { name: 'Stochastische Prozesse (LK)', bereich: 'stochastik' };
+    const AUFGABEN = [
+      // ===== LEVEL 1 — Grundlagen =====
+      { id:1, level:1, typ:"mc",
+        frage:"Eine stochastische Matrix hat:",
+        optionen:["Zeilen/Spalten-Summen = 1 und Einträge \\(\\ge 0\\)","Determinante 1","Einträge \\(\\le 1\\) beliebig","keine Nullen"],
+        korrekt:0,
+        tipp:"Spaltensumme = 1 (bei spaltenweiser Konvention).",
+        loesungsweg:"Alle Einträge in \\([0,1]\\), Spaltensummen = 1."
+      },
+      { id:2, level:1, typ:"mc",
+        frage:"Eine Markov-Kette ist …",
+        optionen:["ein Prozess, bei dem der nächste Zustand nur vom aktuellen abhängt","stets periodisch","deterministisch","ohne Übergänge"],
+        korrekt:0,
+        tipp:"Gedächtnislosigkeit.",
+        loesungsweg:"Markov-Eigenschaft: Zukunft hängt nur vom gegenwärtigen Zustand ab."
+      },
+      { id:3, level:1, typ:"mc",
+        frage:"Der Zustandsvektor \\(\\vec{v}_n\\) nach \\(n\\) Schritten ist:",
+        optionen:["\\(M^n\\cdot\\vec{v}_0\\)","\\(M+\\vec{v}_0\\)","\\(M^{-n}\\vec{v}_0\\)","\\(\\vec{v}_0\\)"],
+        korrekt:0,
+        tipp:"Wiederholte Multiplikation.",
+        loesungsweg:"\\(\\vec{v}_n=M^n\\vec{v}_0\\)."
+      },
+      { id:4, level:1, typ:"mc",
+        frage:"Ein stationärer Verteilungsvektor \\(\\vec{s}\\) erfüllt:",
+        optionen:["\\(M\\vec{s}=\\vec{s}\\)","\\(M\\vec{s}=\\vec{0}\\)","\\(\\vec{s}=\\vec{0}\\)","\\(M^{-1}\\vec{s}=\\vec{s}\\)"],
+        korrekt:0,
+        tipp:"Eigenvektor zum Eigenwert 1.",
+        loesungsweg:"Fixvektor: \\(M\\vec{s}=\\vec{s}\\) mit Summe der Einträge = 1."
+      },
+      { id:5, level:1, typ:"mc",
+        frage:"Was bedeutet Spaltensumme 1 bei der Übergangsmatrix?",
+        optionen:["Aus jedem Zustand geht Wahrscheinlichkeit 1 aus","Zustände sind gleichverteilt","Matrix ist diagonalisierbar","Matrix ist invertierbar"],
+        korrekt:0,
+        tipp:"Wahrscheinlichkeitserhaltung.",
+        loesungsweg:"Die Summe aller Übergangswahrscheinlichkeiten aus einem Zustand ist 1."
+      },
+      { id:6, level:1, typ:"mc",
+        frage:"Die Matrix \\(\\begin{pmatrix}0{,}5&0{,}3\\\\0{,}5&0{,}7\\end{pmatrix}\\) ist stochastisch?",
+        optionen:["ja","nein"],
+        korrekt:0,
+        tipp:"Spaltensummen prüfen.",
+        loesungsweg:"\\(0{,}5+0{,}5=1\\), \\(0{,}3+0{,}7=1\\). Ja."
+      },
+      // ===== LEVEL 2 — Matrix-Vektor =====
+      { id:7, level:2, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}0{,}8&0{,}3\\\\0{,}2&0{,}7\\end{pmatrix}\\), \\(\\vec{v}_0=\\begin{pmatrix}1\\\\0\\end{pmatrix}\\). Erste Komponente von \\(\\vec{v}_1=M\\vec{v}_0\\)?",
+        loesung:0.8, toleranz:0.01,
+        tipp:"Erste Spalte.",
+        loesungsweg:"\\(0{,}8\\cdot1+0{,}3\\cdot0=0{,}8\\)."
+      },
+      { id:8, level:2, typ:"numerisch",
+        frage:"Gleiche Matrix, \\(\\vec{v}_0=(0{,}5;0{,}5)^T\\). Erste Komponente von \\(\\vec{v}_1\\)?",
+        loesung:0.55, toleranz:0.01,
+        tipp:"\\(0{,}8\\cdot0{,}5+0{,}3\\cdot0{,}5\\).",
+        loesungsweg:"\\(0{,}4+0{,}15=0{,}55\\)."
+      },
+      { id:9, level:2, typ:"numerisch",
+        frage:"Welche Summe haben die Einträge eines Verteilungsvektors?",
+        loesung:1, toleranz:0.01,
+        tipp:"Wahrscheinlichkeiten.",
+        loesungsweg:"Summe = 1."
+      },
+      { id:10, level:2, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}0{,}6&0{,}4\\\\0{,}4&0{,}6\\end{pmatrix}\\), \\(\\vec{v}_0=(1;0)^T\\). Erste Komponente von \\(\\vec{v}_2\\)?",
+        loesung:0.52, toleranz:0.01,
+        tipp:"Erst \\(\\vec{v}_1=(0{,}6;0{,}4)\\), dann anwenden.",
+        loesungsweg:"\\(\\vec{v}_2=(0{,}6\\cdot0{,}6+0{,}4\\cdot0{,}4;\\ldots)=(0{,}36+0{,}16;\\ldots)=(0{,}52;0{,}48)\\)."
+      },
+      { id:11, level:2, typ:"mc",
+        frage:"Die Matrix \\(\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}\\) beschreibt:",
+        optionen:["keine Zustandsänderung","alles ändert sich","Drehung","Spiegelung"],
+        korrekt:0,
+        tipp:"Einheitsmatrix.",
+        loesungsweg:"Zustände bleiben unverändert."
+      },
+      { id:12, level:2, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}0{,}9&0{,}1\\\\0{,}1&0{,}9\\end{pmatrix}\\). Erste Komponente \\(M^2\\vec{e}_1\\)?",
+        loesung:0.82, toleranz:0.01,
+        tipp:"\\(0{,}9\\cdot0{,}9+0{,}1\\cdot0{,}1\\).",
+        loesungsweg:"\\(0{,}81+0{,}01=0{,}82\\)."
+      },
+      // ===== LEVEL 3 — Baumdiagramme/Übergänge =====
+      { id:13, level:3, typ:"numerisch",
+        frage:"Wetter: Sonne→Sonne 0,8; Sonne→Regen 0,2. Heute Sonne. \\(P(\\text{morgen Sonne})=?\\)",
+        loesung:0.8, toleranz:0.01,
+        tipp:"Direkte Übergangswahrscheinlichkeit.",
+        loesungsweg:"0,8."
+      },
+      { id:14, level:3, typ:"numerisch",
+        frage:"Sonne→Sonne 0,8; Regen→Sonne 0,4. Heute Sonne. \\(P(\\text{übermorgen Sonne})\\)?",
+        loesung:0.72, toleranz:0.01,
+        tipp:"\\(0{,}8\\cdot 0{,}8+0{,}2\\cdot 0{,}4\\).",
+        loesungsweg:"\\(0{,}64+0{,}08=0{,}72\\)."
+      },
+      { id:15, level:3, typ:"numerisch",
+        frage:"Übergangsmatrix \\(\\begin{pmatrix}0{,}7&0{,}2\\\\0{,}3&0{,}8\\end{pmatrix}\\). \\(\\vec{v}_0=(1;0)\\). 2. Komponente \\(\\vec{v}_1\\)?",
+        loesung:0.3, toleranz:0.01,
+        tipp:"Untere Zeile.",
+        loesungsweg:"\\(0{,}3\\)."
+      },
+      { id:16, level:3, typ:"numerisch",
+        frage:"Gleiche Matrix. Was ist die Spaltensumme jeder Spalte?",
+        loesung:1, toleranz:0.01,
+        tipp:"Stochastisch.",
+        loesungsweg:"1."
+      },
+      { id:17, level:3, typ:"mc",
+        frage:"Eine absorbierende Zustand bedeutet:",
+        optionen:["Übergangswahrscheinlichkeit zu sich selbst = 1","Zustand kommt nie vor","symmetrische Matrix","Zustand mit Wahrscheinlichkeit 0"],
+        korrekt:0,
+        tipp:"Kein Verlassen mehr.",
+        loesungsweg:"\\(M_{ii}=1\\), einmal erreicht — immer dort."
+      },
+      { id:18, level:3, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}0{,}5&0\\\\0{,}5&1\\end{pmatrix}\\). Ist Zustand 2 absorbierend? (1=ja, 0=nein)",
+        loesung:1, toleranz:0.01,
+        tipp:"\\(M_{22}=1\\).",
+        loesungsweg:"Ja."
+      },
+      // ===== LEVEL 4 — Matrixpotenz =====
+      { id:19, level:4, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}0{,}5&0{,}5\\\\0{,}5&0{,}5\\end{pmatrix}\\). \\(M^2\\): Eintrag oben links?",
+        loesung:0.5, toleranz:0.01,
+        tipp:"\\(0{,}25+0{,}25\\).",
+        loesungsweg:"\\(0{,}5\\cdot0{,}5+0{,}5\\cdot0{,}5=0{,}5\\)."
+      },
+      { id:20, level:4, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}\\). \\(M^{100}\\): Spur?",
+        loesung:2, toleranz:0.01,
+        tipp:"\\(M^n=M\\).",
+        loesungsweg:"Spur = 2."
+      },
+      { id:21, level:4, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}0{,}9&0{,}1\\\\0{,}1&0{,}9\\end{pmatrix}\\). \\(M^2\\) Eintrag oben links?",
+        loesung:0.82, toleranz:0.01,
+        tipp:"\\(0{,}9^2+0{,}1^2\\).",
+        loesungsweg:"\\(0{,}81+0{,}01=0{,}82\\)."
+      },
+      { id:22, level:4, typ:"mc",
+        frage:"Welcher Grenzwert besitzt \\(M^n\\) bei einer regulären stochastischen Matrix \\(2\\times2\\)?",
+        optionen:["Matrix aus konstanten Spalten (stationäre Verteilung)","Nullmatrix","Einheitsmatrix","keiner"],
+        korrekt:0,
+        tipp:"Perron-Frobenius.",
+        loesungsweg:"Spalten konvergieren gegen den stationären Vektor."
+      },
+      { id:23, level:4, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}0{,}7&0{,}2\\\\0{,}3&0{,}8\\end{pmatrix}\\). Stationärer Verteilungsvektor: erste Komponente?",
+        loesung:0.4, toleranz:0.01,
+        tipp:"\\(s_1=\\frac{0{,}2}{0{,}3+0{,}2}=0{,}4\\).",
+        loesungsweg:"\\(\\vec{s}=(0{,}4;0{,}6)\\)."
+      },
+      { id:24, level:4, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}0{,}6&0{,}5\\\\0{,}4&0{,}5\\end{pmatrix}\\). Stationäre 1. Komponente?",
+        loesung:0.556, toleranz:0.01,
+        tipp:"\\(s_1=\\frac{0{,}5}{0{,}4+0{,}5}=\\frac{5}{9}\\).",
+        loesungsweg:"\\(s_1\\approx 0{,}556\\)."
+      },
+      // ===== LEVEL 5 — Fixvektor, Gleichgewicht =====
+      { id:25, level:5, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}0{,}8&0{,}3\\\\0{,}2&0{,}7\\end{pmatrix}\\). Stationärer 1. Eintrag?",
+        loesung:0.6, toleranz:0.01,
+        tipp:"\\(s_1=\\frac{0{,}3}{0{,}2+0{,}3}=0{,}6\\).",
+        loesungsweg:"\\((0{,}6;0{,}4)\\)."
+      },
+      { id:26, level:5, typ:"numerisch",
+        frage:"Gleicher Aufgabenkontext. 2. Eintrag?",
+        loesung:0.4, toleranz:0.01,
+        tipp:"Ergänzung auf 1.",
+        loesungsweg:"0,4."
+      },
+      { id:27, level:5, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}0{,}2&0{,}4\\\\0{,}8&0{,}6\\end{pmatrix}\\). Stationärer 1. Eintrag?",
+        loesung:0.333, toleranz:0.01,
+        tipp:"\\(s_1=\\frac{0{,}4}{0{,}8+0{,}4}=1/3\\).",
+        loesungsweg:"\\(1/3\\approx0{,}333\\)."
+      },
+      { id:28, level:5, typ:"mc",
+        frage:"Wie findet man den Fixvektor algebraisch?",
+        optionen:["\\((M-I)\\vec{s}=\\vec{0}\\) plus \\(s_1+s_2=1\\)","Matrix invertieren","Determinante bilden","Kreuzprodukt"],
+        korrekt:0,
+        tipp:"Eigenwert 1.",
+        loesungsweg:"LGS lösen; Normierung notwendig."
+      },
+      { id:29, level:5, typ:"numerisch",
+        frage:"\\(M=\\begin{pmatrix}0{,}5&0{,}25\\\\0{,}5&0{,}75\\end{pmatrix}\\). Stationärer 1. Eintrag?",
+        loesung:0.333, toleranz:0.01,
+        tipp:"\\(s_1=\\frac{0{,}25}{0{,}5+0{,}25}=1/3\\).",
+        loesungsweg:"\\(1/3\\)."
+      },
+      { id:30, level:5, typ:"numerisch",
+        frage:"Für Matrix \\(\\begin{pmatrix}a&1-b\\\\1-a&b\\end{pmatrix}\\) (spaltenstochastisch) ist \\(s_1=\\frac{1-b}{2-a-b}\\). Für \\(a=0{,}7, b=0{,}9\\): \\(s_1\\)?",
+        loesung:0.25, toleranz:0.01,
+        tipp:"\\(\\frac{0{,}1}{0{,}4}\\).",
+        loesungsweg:"\\(0{,}25\\)."
+      },
+      // ===== LEVEL 6 — Abi =====
+      { id:31, level:6, typ:"numerisch",
+        frage:"Stadt A/B: 90 % bleiben in A, 80 % bleiben in B. Start 1000 A, 0 B. Nach 1 Jahr A-Bevölkerung?",
+        loesung:900, toleranz:1,
+        tipp:"\\(0{,}9\\cdot1000\\).",
+        loesungsweg:"900 in A."
+      },
+      { id:32, level:6, typ:"numerisch",
+        frage:"Gleiche Kette. Langfristiger Anteil in A (stationär)?",
+        loesung:0.667, toleranz:0.01,
+        tipp:"\\(\\vec{s}:\\ s_1=\\frac{0{,}2}{0{,}1+0{,}2}=2/3\\).",
+        loesungsweg:"\\(2/3\\approx0{,}667\\)."
+      },
+      { id:33, level:6, typ:"numerisch",
+        frage:"3-Zustands-Kette: Absorptionsmatrix \\(M=\\begin{pmatrix}0{,}5&0&0\\\\0{,}5&1&0\\\\0&0&1\\end{pmatrix}\\). Start Zustand 1. \\(P(\\text{absorbiert in 2})\\) langfristig?",
+        loesung:1, toleranz:0.01,
+        tipp:"Von 1 geht's nur nach 2.",
+        loesungsweg:"Mit Wahrscheinlichkeit 1 gelangt man nach 2."
+      },
+      { id:34, level:6, typ:"numerisch",
+        frage:"Markenwechsel: 3 Marken, Matrix \\(M=\\begin{pmatrix}0{,}7&0{,}1&0{,}2\\\\0{,}2&0{,}8&0{,}1\\\\0{,}1&0{,}1&0{,}7\\end{pmatrix}\\). Spaltensumme Spalte 1?",
+        loesung:1, toleranz:0.01,
+        tipp:"Stochastisch.",
+        loesungsweg:"\\(0{,}7+0{,}2+0{,}1=1\\)."
+      },
+      { id:35, level:6, typ:"numerisch",
+        frage:"Matrix \\(\\begin{pmatrix}0{,}9&0{,}2\\\\0{,}1&0{,}8\\end{pmatrix}\\). Nach 10 Schritten Start (1,0). Approx 1. Eintrag nähert sich stationärem Wert \\(s_1=\\frac{0{,}2}{0{,}3}\\). \\(s_1=?\\)",
+        loesung:0.667, toleranz:0.01,
+        tipp:"\\(2/3\\).",
+        loesungsweg:"\\(0{,}667\\)."
+      },
+      { id:36, level:6, typ:"numerisch",
+        frage:"Firmenwechsel A↔B: Aus A 15 % nach B, aus B 10 % nach A. Langzeitanteil A?",
+        loesung:0.4, toleranz:0.01,
+        tipp:"\\(s_A=\\frac{0{,}10}{0{,}15+0{,}10}=0{,}4\\).",
+        loesungsweg:"\\(40\\,\\%\\)."
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

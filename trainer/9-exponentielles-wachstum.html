@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exponentielles Wachstum - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '9-exponentielles-wachstum';
+    const THEMA_CONFIG = { name: 'Exponentielles Wachstum', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 ==========
+      { id: 1, level: 1, typ: "mc", frage: "Welche Funktion beschreibt exponentielles Wachstum?", optionen: ["\\(f(x) = 2x\\)", "\\(f(x) = 2^x\\)", "\\(f(x) = x^2\\)", "\\(f(x) = x + 2\\)"], korrekt: 1, tipp: "Die Variable steht im Exponenten.", loesungsweg: "\\(f(x) = 2^x\\): Variable im Exponenten → exponentiell." },
+      { id: 2, level: 1, typ: "numerisch", frage: "\\(f(x) = 2^x\\): Berechne \\(f(3)\\).", loesung: 8, toleranz: 0, tipp: "\\(2^3\\).", loesungsweg: "$$f(3) = 8$$" },
+      { id: 3, level: 1, typ: "numerisch", frage: "\\(f(x) = 3^x\\): Berechne \\(f(2)\\).", loesung: 9, toleranz: 0, tipp: "\\(3^2\\).", loesungsweg: "$$f(2) = 9$$" },
+      { id: 4, level: 1, typ: "mc", frage: "Was ist typisch für exponentielles Wachstum?", optionen: ["konstante Zunahme pro Zeiteinheit", "konstanter Faktor pro Zeiteinheit", "konstante Abnahme pro Zeiteinheit", "lineare Zunahme"], korrekt: 1, tipp: "Multiplikativ statt additiv.", loesungsweg: "Exponentielles Wachstum: multiplikation mit festem <b>Wachstumsfaktor</b>." },
+      { id: 5, level: 1, typ: "numerisch", frage: "\\(f(x) = 2^x\\): Berechne \\(f(0)\\).", loesung: 1, toleranz: 0, tipp: "Jede Zahl hoch 0 = 1.", loesungsweg: "$$f(0) = 1$$" },
+      { id: 6, level: 1, typ: "numerisch", frage: "\\(f(x) = 5^x\\): Berechne \\(f(2)\\).", loesung: 25, toleranz: 0, tipp: "\\(5^2\\).", loesungsweg: "$$f(2) = 25$$" },
+      // ========== LEVEL 2 -- Wachstumsfaktor ==========
+      { id: 7, level: 2, typ: "mc", frage: "Bei 5 % jährlicher Zunahme lautet der Wachstumsfaktor pro Jahr …", optionen: ["\\(0{,}05\\)", "\\(1{,}05\\)", "\\(5\\)", "\\(0{,}95\\)"], korrekt: 1, tipp: "Faktor = 1 + Prozentsatz als Dezimalzahl.", loesungsweg: "\\(q = 1 + 0{,}05 = 1{,}05\\)." },
+      { id: 8, level: 2, typ: "numerisch", frage: "Startwert 100, Wachstumsfaktor \\(1{,}1\\): Wert nach 2 Schritten? \\(N = 100 \\cdot 1{,}1^2\\).", loesung: 121, toleranz: 0.1, tipp: "\\(1{,}1^2 = 1{,}21\\).", loesungsweg: "$$100 \\cdot 1{,}21 = 121$$" },
+      { id: 9, level: 2, typ: "numerisch", frage: "Bei 10 % Abnahme: Wachstumsfaktor = ?", loesung: 0.9, toleranz: 0.01, tipp: "\\(1 - 0{,}1\\).", loesungsweg: "$$q = 1 - 0{,}1 = 0{,}9$$" },
+      { id: 10, level: 2, typ: "numerisch", frage: "Bakterien verdoppeln sich stündlich. Start: 50. Nach 3 h: \\(50 \\cdot 2^3\\)?", loesung: 400, toleranz: 0, tipp: "\\(2^3 = 8\\).", loesungsweg: "$$50 \\cdot 8 = 400$$" },
+      { id: 11, level: 2, typ: "mc", frage: "Allgemeine Form exponentiellen Wachstums?", optionen: ["\\(N(t) = a + bt\\)", "\\(N(t) = a \\cdot q^t\\)", "\\(N(t) = at^2\\)", "\\(N(t) = a/t\\)"], korrekt: 1, tipp: "Startwert mal Faktor hoch Zeit.", loesungsweg: "\\(N(t) = N_0 \\cdot q^t\\) mit Startwert \\(N_0\\) und Faktor \\(q\\)." },
+      { id: 12, level: 2, typ: "numerisch", frage: "Startwert 200, \\(q = 1{,}5\\), Zeit \\(t = 3\\). Wert?", loesung: 675, toleranz: 0.1, tipp: "\\(200 \\cdot 1{,}5^3 = 200 \\cdot 3{,}375\\).", loesungsweg: "$$200 \\cdot 3{,}375 = 675$$" },
+      // ========== LEVEL 3 -- Zinseszins, %-Anwendungen ==========
+      { id: 13, level: 3, typ: "numerisch", frage: "Kapital 1000 €, 3 % Zinsen p. a. Nach 2 Jahren? \\(K = 1000 \\cdot 1{,}03^2\\).", loesung: 1060.9, toleranz: 0.5, tipp: "\\(1{,}03^2 = 1{,}0609\\).", loesungsweg: "$$1000 \\cdot 1{,}0609 = 1060{,}90\\,€$$" },
+      { id: 14, level: 3, typ: "numerisch", frage: "Ein Auto verliert jährlich 15 % Wert. Neuwert 20 000 €. Nach 1 Jahr?", loesung: 17000, toleranz: 10, tipp: "\\(20000 \\cdot 0{,}85\\).", loesungsweg: "$$20\\,000 \\cdot 0{,}85 = 17\\,000\\,€$$" },
+      { id: 15, level: 3, typ: "numerisch", frage: "Auto-Wert nach 2 Jahren (wie Aufg. 14, gerundet auf Euro)?", loesung: 14450, toleranz: 10, tipp: "\\(20000 \\cdot 0{,}85^2\\).", loesungsweg: "$$20\\,000 \\cdot 0{,}7225 = 14\\,450\\,€$$" },
+      { id: 16, level: 3, typ: "mc", frage: "Eine Größe wächst exponentiell mit Faktor 2 pro Stunde. Nach wie vielen Stunden ist sie 16-mal so groß?", optionen: ["2", "3", "4", "8"], korrekt: 2, tipp: "\\(2^n = 16\\).", loesungsweg: "\\(2^4 = 16 \\Rightarrow n = 4\\) Stunden." },
+      { id: 17, level: 3, typ: "numerisch", frage: "\\(N(t) = 500 \\cdot 1{,}2^t\\). Wert bei \\(t = 2\\)?", loesung: 720, toleranz: 0.5, tipp: "\\(1{,}2^2 = 1{,}44\\).", loesungsweg: "$$500 \\cdot 1{,}44 = 720$$" },
+      { id: 18, level: 3, typ: "numerisch", frage: "Wachstumsfaktor bei 25 % Zunahme?", loesung: 1.25, toleranz: 0.01, tipp: "\\(1 + 0{,}25\\).", loesungsweg: "$$q = 1{,}25$$" },
+      // ========== LEVEL 4 -- Halbwertszeit, Vergleich ==========
+      { id: 19, level: 4, typ: "numerisch", frage: "Eine radioaktive Substanz hat Halbwertszeit 10 Jahre. Startmenge 80 g. Menge nach 30 Jahren? \\(80 \\cdot 0{,}5^3\\).", loesung: 10, toleranz: 0, tipp: "\\(0{,}5^3 = 0{,}125\\).", loesungsweg: "$$80 \\cdot 0{,}125 = 10\\,\\text{g}$$" },
+      { id: 20, level: 4, typ: "mc", frage: "Welche Funktion wächst langfristig schneller?", optionen: ["\\(f(x) = x^2\\)", "\\(f(x) = 2^x\\)", "beide gleich", "kommt auf \\(x\\) an"], korrekt: 1, tipp: "Exponentiell schlägt polynomiell.", loesungsweg: "Für große \\(x\\) wächst \\(2^x\\) schneller als jedes Polynom." },
+      { id: 21, level: 4, typ: "numerisch", frage: "Halbwertszeit 5 h. Wie viel Prozent sind nach 5 h übrig?", loesung: 50, toleranz: 0, tipp: "Definition der Halbwertszeit.", loesungsweg: "Nach einer Halbwertszeit: 50 %." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Eine Seerosenkolonie verdoppelt sich täglich. Am Tag 20 ist der Teich voll. An welchem Tag war er halb voll?", loesung: 19, toleranz: 0, tipp: "Einen Tag vor „voll\", da Verdoppelung.", loesungsweg: "Tag 19: halb voll → Tag 20: voll (weil Verdoppelung)." },
+      { id: 23, level: 4, typ: "numerisch", frage: "\\(N(t) = 1000 \\cdot 0{,}9^t\\). Bei \\(t = 3\\)? (gerundet auf Ganze)", loesung: 729, toleranz: 1, tipp: "\\(0{,}9^3 = 0{,}729\\).", loesungsweg: "$$1000 \\cdot 0{,}729 = 729$$" },
+      { id: 24, level: 4, typ: "mc", frage: "Welcher Graph passt zu \\(f(x) = 3^x\\)?", optionen: ["fallende Gerade", "steigende Parabel", "steigende Exponentialkurve durch \\((0|1)\\)", "Hyperbel"], korrekt: 2, tipp: "Exp. durch \\(f(0) = 1\\).", loesungsweg: "Exp. Kurve, steigend, durch \\((0|1)\\)." },
+      // ========== LEVEL 5 ==========
+      { id: 25, level: 5, typ: "numerisch", frage: "Startkapital 500 €, Zinssatz 4 %. Nach 5 Jahren? \\(500 \\cdot 1{,}04^5\\). (gerundet auf Cent)", loesung: 608.33, toleranz: 0.5, tipp: "\\(1{,}04^5 \\approx 1{,}2167\\).", loesungsweg: "$$500 \\cdot 1{,}2167 \\approx 608{,}33\\,€$$" },
+      { id: 26, level: 5, typ: "mc", frage: "Welche Gleichung beschreibt exponentielle Abnahme?", optionen: ["\\(N(t) = 100 \\cdot t^{0{,}5}\\)", "\\(N(t) = 100 \\cdot 0{,}5^t\\)", "\\(N(t) = 100 - 0{,}5t\\)", "\\(N(t) = 100 + 0{,}5^t\\)"], korrekt: 1, tipp: "\\(0 < q < 1\\).", loesungsweg: "\\(q = 0{,}5 < 1\\) → Abnahme." },
+      { id: 27, level: 5, typ: "numerisch", frage: "Bevölkerung wächst um 2 % p. a. Startwert 10 000. Nach 10 Jahren? \\(10000 \\cdot 1{,}02^{10}\\). (gerundet)", loesung: 12190, toleranz: 20, tipp: "\\(1{,}02^{10} \\approx 1{,}219\\).", loesungsweg: "$$10\\,000 \\cdot 1{,}219 \\approx 12\\,190$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "Nach wie vielen Verdoppelungen ist aus 1 die Zahl 1024?", loesung: 10, toleranz: 0, tipp: "\\(2^n = 1024\\).", loesungsweg: "\\(2^{10} = 1024 \\Rightarrow n = 10\\)." },
+      { id: 29, level: 5, typ: "numerisch", frage: "Eine Population halbiert sich alle 3 Jahre. Startwert 800. Nach 9 Jahren?", loesung: 100, toleranz: 0, tipp: "\\(800 \\cdot 0{,}5^3\\).", loesungsweg: "$$800 \\cdot 0{,}125 = 100$$" },
+      { id: 30, level: 5, typ: "mc", frage: "Ein Wachstumsfaktor von \\(q = 1{,}5\\) entspricht welcher Änderungsrate?", optionen: ["+50 %", "+15 %", "+5 %", "+150 %"], korrekt: 0, tipp: "\\(q - 1 = 0{,}5\\).", loesungsweg: "\\(q - 1 = 0{,}5 = 50\\%\\) Zunahme." },
+      // ========== LEVEL 6 ==========
+      { id: 31, level: 6, typ: "numerisch", frage: "Bei welchem \\(t\\) hat \\(N(t) = 100 \\cdot 2^t\\) den Wert 800? (ganzzahlig)", loesung: 3, toleranz: 0, tipp: "\\(2^t = 8\\).", loesungsweg: "\\(2^3 = 8 \\Rightarrow t = 3\\)." },
+      { id: 32, level: 6, typ: "numerisch", frage: "Bei welchem \\(t\\) hat \\(N(t) = 1000 \\cdot 0{,}5^t\\) den Wert 125? (ganzzahlig)", loesung: 3, toleranz: 0, tipp: "\\(0{,}5^t = 0{,}125\\).", loesungsweg: "\\(0{,}5^3 = 0{,}125 \\Rightarrow t = 3\\)." },
+      { id: 33, level: 6, typ: "mc", frage: "Welche Funktion hat bei \\(t = 0\\) den Wert 5 und den Wachstumsfaktor 1,2?", optionen: ["\\(N(t) = 5 + 1{,}2t\\)", "\\(N(t) = 5 \\cdot 1{,}2^t\\)", "\\(N(t) = 1{,}2 \\cdot 5^t\\)", "\\(N(t) = 5 \\cdot t^{1{,}2}\\)"], korrekt: 1, tipp: "Startwert × Faktor^t.", loesungsweg: "$$N(t) = 5 \\cdot 1{,}2^t$$" },
+      { id: 34, level: 6, typ: "numerisch", frage: "Verdopplungszeit: Bei \\(q = 2\\) pro Stunde, wann ist Startwert verdreifacht? \\(2^t = 3\\). (gerundet auf 2 Stellen)", loesung: 1.58, toleranz: 0.05, tipp: "\\(t = \\log_2 3 \\approx 1{,}585\\).", loesungsweg: "$$t = \\log_2 3 \\approx 1{,}58\\,\\text{h}$$" },
+      { id: 35, level: 6, typ: "numerisch", frage: "Ein Konto bringt 5 % Zinsen p. a. Verdopplungszeit grob mit 72er-Regel: \\(72/5\\)?", loesung: 14.4, toleranz: 0.1, tipp: "72er-Regel: \\(T \\approx 72/p\\).", loesungsweg: "$$T \\approx 72/5 = 14{,}4\\,\\text{Jahre}$$" },
+      { id: 36, level: 6, typ: "mc", frage: "Welche Aussage zum exponentiellen Wachstum ist falsch?", optionen: ["Der Graph schneidet nie die x-Achse", "Der Wachstumsfaktor ist konstant", "Die Zunahme pro Zeiteinheit ist konstant", "Durch \\((0 | N_0)\\) geht der Graph"], korrekt: 2, tipp: "Konstante Zunahme wäre linear.", loesungsweg: "Die <b>Zunahme</b> ist nicht konstant, nur der <b>Faktor</b>." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypothesentests - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-stoch-hypothesentests';
+    const THEMA_CONFIG = { name: 'Hypothesentests', bereich: 'stochastik' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 — Grundbegriffe ==========
+      { id:1, level:1, typ:"mc", frage:"Was ist die Nullhypothese \\(H_0\\)?", optionen:["Die anzunehmende Annahme, die widerlegt werden soll","Die Gegenhypothese","Die Wahrscheinlichkeit","Der Erwartungswert"], korrekt:0, tipp:"Wird getestet.", loesungsweg:"\\(H_0\\) ist die zu prüfende Ausgangsannahme." },
+      { id:2, level:1, typ:"mc", frage:"Was ist ein Fehler 1. Art?", optionen:["\\(H_0\\) richtig, aber abgelehnt","\\(H_0\\) falsch, aber angenommen","Kein Fehler","Zufallsfehler"], korrekt:0, tipp:"Fälschliche Ablehnung.", loesungsweg:"Fehler 1. Art: \\(H_0\\) wird abgelehnt, obwohl sie wahr ist." },
+      { id:3, level:1, typ:"mc", frage:"Was ist ein Fehler 2. Art?", optionen:["\\(H_0\\) abgelehnt obwohl richtig","\\(H_0\\) angenommen obwohl falsch","Kein Fehler","Messfehler"], korrekt:1, tipp:"Fälschliche Annahme.", loesungsweg:"Fehler 2. Art: \\(H_0\\) wird beibehalten, obwohl sie falsch ist." },
+      { id:4, level:1, typ:"mc", frage:"Was ist das Signifikanzniveau \\(\\alpha\\)?", optionen:["Maximale Wahrscheinlichkeit für Fehler 1. Art","Stichprobenumfang","Standardabweichung","Erwartungswert"], korrekt:0, tipp:"Obergrenze für den Alpha-Fehler.", loesungsweg:"\\(\\alpha\\) = Obergrenze der Wahrscheinlichkeit für einen Fehler 1. Art." },
+      { id:5, level:1, typ:"mc", frage:"Was ist der Ablehnungsbereich?", optionen:["Die Werte der Teststatistik, die zur Ablehnung von \\(H_0\\) führen","Alle möglichen Werte","Werte \\(>0\\)","Zufällig bestimmt"], korrekt:0, tipp:"Kritischer Bereich.", loesungsweg:"Der Ablehnungsbereich (kritische Bereich) enthält die Werte, bei denen \\(H_0\\) abgelehnt wird." },
+      { id:6, level:1, typ:"mc", frage:"Was unterscheidet einseitige und zweiseitige Tests?", optionen:["Einseitig: \\(H_1\\) nur größer oder nur kleiner; zweiseitig: ungleich","Nichts","Nur der Test-Name","Die Stichprobengröße"], korrekt:0, tipp:"Richtung der Alternative.", loesungsweg:"Einseitig: \\(p<p_0\\) oder \\(p>p_0\\). Zweiseitig: \\(p\\neq p_0\\)." },
+      // ========== LEVEL 2 — Einseitige Tests formulieren ==========
+      { id:7, level:2, typ:"mc", frage:"Ein Hersteller behauptet, höchstens 5 % defekt. Welche \\(H_0\\)?", optionen:["\\(p \\le 0{,}05\\)","\\(p \\ge 0{,}05\\)","\\(p = 0{,}05\\)","\\(p = 0\\)"], korrekt:0, tipp:"Behauptung = \\(H_0\\).", loesungsweg:"\\(H_0: p\\le 0{,}05\\); \\(H_1: p>0{,}05\\) (rechtsseitig)." },
+      { id:8, level:2, typ:"mc", frage:"Welche Alternativhypothese bei \\(H_0: p\\ge 0{,}5\\)?", optionen:["\\(p<0{,}5\\)","\\(p>0{,}5\\)","\\(p\\ne 0{,}5\\)","\\(p=0{,}5\\)"], korrekt:0, tipp:"Gegenteil.", loesungsweg:"\\(H_1: p<0{,}5\\) (linksseitig)." },
+      { id:9, level:2, typ:"mc", frage:"Ein fairer Würfel wird getestet. Welche \\(H_0\\)?", optionen:["\\(p = \\tfrac{1}{6}\\)","\\(p \\ne \\tfrac{1}{6}\\)","\\(p = 0\\)","\\(p = 1\\)"], korrekt:0, tipp:"Gleichverteilung.", loesungsweg:"\\(H_0: p=\\tfrac{1}{6}\\), \\(H_1: p\\ne\\tfrac{1}{6}\\) (zweiseitig)." },
+      { id:10, level:2, typ:"numerisch", frage:"\\(n=100, p_0=0{,}5\\). Berechne \\(\\mu\\).", loesung:50, toleranz:0, tipp:"\\(np_0\\).", loesungsweg:"\\(\\mu=50\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"\\(n=100, p_0=0{,}5\\). Berechne \\(\\sigma\\).", loesung:5, toleranz:0.01, tipp:"\\(\\sqrt{np(1-p)}\\).", loesungsweg:"\\(\\sigma=\\sqrt{25}=5\\)." },
+      { id:12, level:2, typ:"mc", frage:"Bei \\(\\alpha=5\\%\\) rechtsseitig: Welche Grenze mit Sigma-Regel?", optionen:["\\(\\approx \\mu+1{,}64\\sigma\\)","\\(\\approx \\mu+2\\sigma\\)","\\(\\approx \\mu+3\\sigma\\)","\\(\\approx \\mu\\)"], korrekt:0, tipp:"Einseitiges 5%-Quantil.", loesungsweg:"Bei einseitig \\(\\alpha=5\\%\\) liegt der kritische Wert bei \\(\\mu+1{,}64\\sigma\\)." },
+      // ========== LEVEL 3 — Entscheidungsregel ==========
+      { id:13, level:3, typ:"numerisch", frage:"\\(n=100, p_0=0{,}5, \\alpha=5\\%\\) rechtsseitig. Näherung: kritischer Wert (ganzzahlig, Sigma-Regel 1,64\\(\\sigma\\))?", loesung:58, toleranz:1, tipp:"\\(50+1{,}64\\cdot 5\\approx 58{,}2\\).", loesungsweg:"\\(\\mu+1{,}64\\sigma = 58{,}2\\), \\(A=\\{59,60,\\dots\\}\\) (oder mit Stetigkeitskorrektur \\(58\\))." },
+      { id:14, level:3, typ:"mc", frage:"\\(n=100,p_0=0{,}5\\). Bei Testergebnis \\(X=60\\) und \\(\\alpha=5\\%\\) rechtsseitig:", optionen:["\\(H_0\\) wird abgelehnt","\\(H_0\\) wird angenommen","Kein Test möglich","Fehler 2. Art"], korrekt:0, tipp:"60 \\(>\\) 58.", loesungsweg:"\\(60 > 58\\): \\(H_0\\) wird abgelehnt." },
+      { id:15, level:3, typ:"numerisch", frage:"\\(n=100,p_0=0{,}2,\\alpha=5\\%\\) einseitig rechts. Berechne \\(\\sigma\\) (2 Dez.).", loesung:4, toleranz:0.05, tipp:"\\(\\sqrt{100\\cdot 0{,}2\\cdot 0{,}8}\\).", loesungsweg:"\\(\\sigma=\\sqrt{16}=4\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"\\(n=100,p_0=0{,}2\\), kritischer Wert bei \\(\\alpha=5\\%\\) (mit \\(\\mu+1{,}64\\sigma\\), ganzzahlig)?", loesung:27, toleranz:1, tipp:"\\(20+1{,}64\\cdot 4\\approx 26{,}56\\).", loesungsweg:"\\(\\mu+1{,}64\\sigma \\approx 26{,}56\\), Ablehnung ab \\(k\\ge 27\\)." },
+      { id:17, level:3, typ:"mc", frage:"Bei zweiseitigem Test \\(\\alpha=5\\%\\): Welche Sigma-Grenze?", optionen:["\\(\\mu\\pm 1{,}64\\sigma\\)","\\(\\mu\\pm 1{,}96\\sigma\\)","\\(\\mu\\pm 2{,}58\\sigma\\)","\\(\\mu\\pm \\sigma\\)"], korrekt:1, tipp:"2,5 % je Seite.", loesungsweg:"Zweiseitig \\(5\\%\\): \\(\\mu\\pm 1{,}96\\sigma\\)." },
+      { id:18, level:3, typ:"mc", frage:"Bei \\(\\alpha=1\\%\\) einseitig: kritischer Wert?", optionen:["\\(\\mu+1{,}28\\sigma\\)","\\(\\mu+1{,}64\\sigma\\)","\\(\\mu+2{,}33\\sigma\\)","\\(\\mu+3\\sigma\\)"], korrekt:2, tipp:"1%-Quantil.", loesungsweg:"\\(z_{0{,}99} \\approx 2{,}33\\)." },
+      // ========== LEVEL 4 — Fehler 1. Art ==========
+      { id:19, level:4, typ:"mc", frage:"\\(H_0\\) wird bei \\(X\\ge 58\\) abgelehnt. Fehler 1. Art =", optionen:["\\(P(X\\ge 58 | H_0)\\)","\\(P(X<58 | H_0)\\)","\\(P(H_0)\\)","\\(0\\)"], korrekt:0, tipp:"\\(H_0\\) wahr, aber abgelehnt.", loesungsweg:"\\(\\alpha=P(X\\in A | H_0)\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"\\(n=100,p_0=0{,}5\\). Ablehnung ab \\(X\\ge 60\\). Fehler 1. Art (Sigma-Näherung) in % (1 Dez.)?", loesung:2.3, toleranz:0.3, tipp:"\\(P(X\\ge \\mu+2\\sigma)\\).", loesungsweg:"\\(60 = \\mu+2\\sigma\\). Sigma-Regel: \\(\\approx 2{,}3\\%\\)." },
+      { id:21, level:4, typ:"mc", frage:"Je kleiner \\(\\alpha\\), desto …", optionen:["Kleiner der Ablehnungsbereich","Größer der Ablehnungsbereich","Sicherer Fehler 1. Art","Keine Änderung"], korrekt:0, tipp:"Strengerer Test.", loesungsweg:"Kleines \\(\\alpha\\) → engerer Ablehnungsbereich." },
+      { id:22, level:4, typ:"numerisch", frage:"\\(n=200, p_0=0{,}5\\). Berechne die Grenze für Fehler 1. Art = 5 % rechtsseitig (ganz, Sigma-Näherung).", loesung:112, toleranz:1, tipp:"\\(\\sigma=\\sqrt{50}\\approx 7{,}07\\). \\(\\mu+1{,}64\\sigma\\).", loesungsweg:"\\(100 + 1{,}64\\cdot 7{,}07 \\approx 111{,}6\\), also ab \\(k=112\\)." },
+      { id:23, level:4, typ:"mc", frage:"Ein Test lehnt \\(H_0\\) ab bei \\(X\\ge 120\\). Wann Fehler 1. Art?", optionen:["\\(X=130\\) und \\(H_0\\) falsch","\\(X=130\\) und \\(H_0\\) wahr","\\(X=100\\) und \\(H_0\\) wahr","\\(X=100\\) und \\(H_0\\) falsch"], korrekt:1, tipp:"Abgelehnt obwohl wahr.", loesungsweg:"Fehler 1. Art: \\(H_0\\) wahr, aber \\(X\\ge 120\\) → abgelehnt." },
+      { id:24, level:4, typ:"numerisch", frage:"\\(n=100, p_0=0{,}4\\). Berechne \\(\\sigma\\).", loesung:4.9, toleranz:0.05, tipp:"\\(\\sqrt{24}\\).", loesungsweg:"\\(\\sigma=\\sqrt{24}\\approx 4{,}9\\)." },
+      // ========== LEVEL 5 — Fehler 2. Art ==========
+      { id:25, level:5, typ:"mc", frage:"Fehler 2. Art wird berechnet unter …", optionen:["\\(H_0\\)","\\(H_1\\) (konkrete Gegenhypothese)","Stichprobe","Summe aller Wahrscheinlichkeiten"], korrekt:1, tipp:"Alternative.", loesungsweg:"\\(\\beta = P(X\\notin A | H_1)\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"\\(n=100\\). Test \\(H_0:p=0{,}5\\) vs \\(H_1:p=0{,}6\\), Ablehnung ab \\(X\\ge 58\\). Berechne \\(\\mu_1\\).", loesung:60, toleranz:0, tipp:"\\(np_1\\).", loesungsweg:"\\(\\mu_1=60\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Mit \\(\\sigma_1=\\sqrt{24}\\approx 4{,}9\\): \\(P(X<58|H_1)\\) in % (ca., Sigma-Näherung)?", loesung:34, toleranz:5, tipp:"\\(z=(57{,}5-60)/4{,}9 \\approx -0{,}51\\).", loesungsweg:"\\(\\Phi(-0{,}51) \\approx 0{,}305\\), also \\(\\approx 30\\%\\) bis 34\\%." },
+      { id:28, level:5, typ:"mc", frage:"Je kleiner \\(\\alpha\\), desto …", optionen:["größer \\(\\beta\\)","kleiner \\(\\beta\\)","kein Zusammenhang","\\(\\beta=0\\)"], korrekt:0, tipp:"Trade-off.", loesungsweg:"Sinkendes \\(\\alpha\\) erhöht tendenziell \\(\\beta\\)." },
+      { id:29, level:5, typ:"mc", frage:"Welche Maßnahme senkt beide Fehler?", optionen:["\\(n\\) erhöhen","\\(\\alpha\\) senken","\\(p_0\\) ändern","Ablehnbereich erweitern"], korrekt:0, tipp:"Mehr Information.", loesungsweg:"Größerer Stichprobenumfang \\(n\\) senkt beide Fehler." },
+      { id:30, level:5, typ:"numerisch", frage:"\\(n=400,p_0=0{,}5,\\alpha=5\\%\\) rechtsseitig. Kritischer Wert (ganz, Sigma)?", loesung:217, toleranz:1, tipp:"\\(\\mu=200,\\sigma=10\\). \\(\\mu+1{,}64\\sigma\\).", loesungsweg:"\\(200+16{,}4=216{,}4\\), ab \\(k=217\\)." },
+      // ========== LEVEL 6 — Transfer ==========
+      { id:31, level:6, typ:"numerisch", frage:"Bei \\(n=500, p_0=0{,}3\\). Berechne \\(\\sigma\\) (2 Dez.).", loesung:10.25, toleranz:0.05, tipp:"\\(\\sqrt{500\\cdot 0{,}3\\cdot 0{,}7}\\).", loesungsweg:"\\(\\sigma=\\sqrt{105}\\approx 10{,}25\\)." },
+      { id:32, level:6, typ:"mc", frage:"Was bewirkt eine Erhöhung von \\(n\\) auf den Ablehnungsbereich (relativ)?", optionen:["Er wird kleiner in Anteil von \\(n\\)","Er wird größer","Bleibt gleich","Verschwindet"], korrekt:0, tipp:"\\(\\sigma/n\\) sinkt.", loesungsweg:"Die relative Schwankung \\(\\sigma/n\\) sinkt mit \\(1/\\sqrt{n}\\)." },
+      { id:33, level:6, typ:"mc", frage:"Ein \\(p\\)-Wert kleiner als \\(\\alpha\\) bedeutet:", optionen:["\\(H_0\\) wird abgelehnt","\\(H_0\\) wird angenommen","Kein Test","Fehler 1. Art sicher"], korrekt:0, tipp:"\\(p<\\alpha\\).", loesungsweg:"Kleiner \\(p\\)-Wert → Ergebnis unwahrscheinlich unter \\(H_0\\) → Ablehnung." },
+      { id:34, level:6, typ:"numerisch", frage:"\\(n=100, p_0=0{,}5\\), \\(\\alpha=5\\%\\) zweiseitig. Obere Grenze (Sigma-Näherung, ganz)?", loesung:60, toleranz:1, tipp:"\\(\\mu+1{,}96\\sigma\\).", loesungsweg:"\\(50+1{,}96\\cdot 5 = 59{,}8 \\approx 60\\)." },
+      { id:35, level:6, typ:"mc", frage:"Ein signifikantes Ergebnis beweist, dass \\(H_0\\) falsch ist?", optionen:["Ja, sicher","Nein, es liefert starke Evidenz, aber keinen Beweis","Immer","Nur bei \\(\\alpha=0\\)"], korrekt:1, tipp:"Wahrscheinlichkeit, kein Beweis.", loesungsweg:"Ein signifikanter Test liefert Evidenz, aber keinen mathematischen Beweis." },
+      { id:36, level:6, typ:"numerisch", frage:"\\(n=1000, p_0=0{,}1\\). Ablehnung ab \\(X\\ge ?\\) bei \\(\\alpha=5\\%\\) rechtsseitig (Sigma, ganz)?", loesung:116, toleranz:1, tipp:"\\(\\mu=100,\\sigma=\\sqrt{90}\\approx 9{,}49\\). \\(\\mu+1{,}64\\sigma\\).", loesungsweg:"\\(100+1{,}64\\cdot 9{,}49 \\approx 115{,}56\\), ab \\(k=116\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

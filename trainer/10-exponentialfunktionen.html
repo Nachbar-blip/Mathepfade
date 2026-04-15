@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exponentialfunktionen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '10-exponentialfunktionen';
+    const THEMA_CONFIG = { name: 'Exponentialfunktionen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht ==========
+      { id: 1, level: 1, typ: "mc", frage: "Wie sieht eine Exponentialfunktion aus?", optionen: ["\\(f(x) = x^a\\)", "\\(f(x) = a^x\\) mit \\(a > 0\\)", "\\(f(x) = a + x\\)", "\\(f(x) = \\log x\\)"], korrekt: 1, tipp: "Variable im Exponenten.", loesungsweg: "Eine <b>Exponentialfunktion</b> hat die Form \\(f(x) = a^x\\) mit \\(a > 0\\), \\(a \\neq 1\\)." },
+      { id: 2, level: 1, typ: "numerisch", frage: "\\(f(x) = 2^x\\). Berechne \\(f(3)\\).", loesung: 8, toleranz: 0, tipp: "\\(2 \\cdot 2 \\cdot 2\\).", loesungsweg: "$$f(3) = 2^3 = 8$$" },
+      { id: 3, level: 1, typ: "numerisch", frage: "\\(f(x) = 3^x\\). Berechne \\(f(0)\\).", loesung: 1, toleranz: 0, tipp: "Jede Zahl hoch 0 = 1.", loesungsweg: "$$f(0) = 3^0 = 1$$" },
+      { id: 4, level: 1, typ: "numerisch", frage: "\\(f(x) = 2^x\\). Berechne \\(f(-2)\\) als Dezimalzahl.", loesung: 0.25, toleranz: 0.01, tipp: "\\(2^{-2} = \\frac{1}{4}\\).", loesungsweg: "$$f(-2) = 2^{-2} = \\frac{1}{4} = 0{,}25$$" },
+      { id: 5, level: 1, typ: "mc", frage: "Durch welchen Punkt geht JEDE Exponentialfunktion \\(f(x) = a^x\\)?", optionen: ["\\((1, 1)\\)", "\\((0, 1)\\)", "\\((0, 0)\\)", "\\((1, 0)\\)"], korrekt: 1, tipp: "\\(a^0 = 1\\).", loesungsweg: "\\(a^0 = 1\\) für jedes \\(a\\) — alle Graphen gehen durch \\((0, 1)\\)." },
+      { id: 6, level: 1, typ: "mc", frage: "\\(f(x) = 2^x\\). Wie verhält sich \\(f\\) für \\(x \\to -\\infty\\)?", optionen: ["\\(\\to \\infty\\)", "\\(\\to -\\infty\\)", "\\(\\to 0\\)", "\\(\\to 1\\)"], korrekt: 2, tipp: "\\(2^{-100}\\) ist sehr klein.", loesungsweg: "Für \\(x \\to -\\infty\\) geht \\(2^x \\to 0\\). Die x-Achse ist Asymptote." },
+      // ========== LEVEL 2 -- leicht ==========
+      { id: 7, level: 2, typ: "numerisch", frage: "\\(f(x) = 5 \\cdot 2^x\\). Berechne \\(f(3)\\).", loesung: 40, toleranz: 0, tipp: "\\(5 \\cdot 8\\).", loesungsweg: "$$f(3) = 5 \\cdot 2^3 = 5 \\cdot 8 = 40$$" },
+      { id: 8, level: 2, typ: "mc", frage: "\\(f(x) = \\left(\\frac{1}{2}\\right)^x\\). Wie verhält sich \\(f\\) für \\(x \\to \\infty\\)?", optionen: ["\\(\\to \\infty\\)", "\\(\\to 0\\)", "\\(\\to 1\\)", "\\(\\to -\\infty\\)"], korrekt: 1, tipp: "Basis \\(< 1\\): Funktion fällt.", loesungsweg: "\\(\\left(\\frac{1}{2}\\right)^x\\) fällt monoton: \\(\\to 0\\) für \\(x \\to \\infty\\)." },
+      { id: 9, level: 2, typ: "mc", frage: "\\(f(x) = 3^x\\). Monotonie?", optionen: ["Streng monoton steigend", "Streng monoton fallend", "Konstant", "Weder noch"], korrekt: 0, tipp: "Basis \\(> 1\\): steigend.", loesungsweg: "\\(a^x\\) mit \\(a > 1\\): streng monoton steigend." },
+      { id: 10, level: 2, typ: "numerisch", frage: "\\(f(x) = 100 \\cdot 1{,}05^x\\). Berechne \\(f(0)\\).", loesung: 100, toleranz: 0, tipp: "\\(1{,}05^0 = 1\\).", loesungsweg: "$$f(0) = 100 \\cdot 1 = 100$$" },
+      { id: 11, level: 2, typ: "mc", frage: "Eine Population wächst mit \\(P(t) = 1000 \\cdot 1{,}1^t\\). Was ist der Wachstumsfaktor?", optionen: ["\\(1000\\)", "\\(1{,}1\\)", "\\(t\\)", "\\(0{,}1\\)"], korrekt: 1, tipp: "Basis der Potenz.", loesungsweg: "Der <b>Wachstumsfaktor</b> ist \\(1{,}1\\) (entspricht 10 % Wachstum pro Zeiteinheit)." },
+      { id: 12, level: 2, typ: "numerisch", frage: "Wachstumsrate bei Faktor \\(1{,}08\\) in Prozent?", loesung: 8, toleranz: 0, tipp: "\\(1{,}08 = 100 \\% + 8 \\%\\).", loesungsweg: "Wachstumsfaktor \\(1{,}08\\) entspricht \\(8\\%\\) Wachstum." },
+      // ========== LEVEL 3 -- nervenschonend ==========
+      { id: 13, level: 3, typ: "numerisch", frage: "Ein Kapital von 1000 € wird mit 5 % jährlich verzinst. Nach wie vielen Jahren ergibt \\(1000 \\cdot 1{,}05^2\\) das Kapital? Gib die Jahre an.", loesung: 2, toleranz: 0, tipp: "Exponent.", loesungsweg: "\\(1{,}05^2\\) entspricht 2 Jahren." },
+      { id: 14, level: 3, typ: "numerisch", frage: "\\(f(x) = 3 \\cdot 2^x\\). Berechne \\(f(4)\\).", loesung: 48, toleranz: 0, tipp: "\\(3 \\cdot 16\\).", loesungsweg: "$$f(4) = 3 \\cdot 2^4 = 3 \\cdot 16 = 48$$" },
+      { id: 15, level: 3, typ: "mc", frage: "Bei Halbwertszeit einer radioaktiven Substanz ist …", optionen: ["Die Menge verdoppelt sich", "Die Menge halbiert sich", "Die Menge bleibt gleich", "Die Menge wird 0"], korrekt: 1, tipp: "Halb-.", loesungsweg: "Nach einer Halbwertszeit ist die Hälfte der Substanz übrig." },
+      { id: 16, level: 3, typ: "mc", frage: "Zerfallsfaktor bei 20 % Abnahme pro Zeiteinheit?", optionen: ["\\(0{,}2\\)", "\\(0{,}8\\)", "\\(1{,}2\\)", "\\(1{,}8\\)"], korrekt: 1, tipp: "Rest = 100 % − 20 %.", loesungsweg: "Zerfallsfaktor \\(= 1 - 0{,}2 = 0{,}8\\)." },
+      { id: 17, level: 3, typ: "numerisch", frage: "Bei 3 %-igem Wachstum: Wachstumsfaktor?", loesung: 1.03, toleranz: 0.001, tipp: "\\(1 + 0{,}03\\).", loesungsweg: "\\(1 + 0{,}03 = 1{,}03\\)." },
+      { id: 18, level: 3, typ: "numerisch", frage: "\\(f(x) = 2^x\\). Für welchen \\(x\\) gilt \\(f(x) = 32\\)?", loesung: 5, toleranz: 0, tipp: "\\(2^5 = 32\\).", loesungsweg: "\\(2^x = 32 = 2^5 \\implies x = 5\\)." },
+      // ========== LEVEL 4 -- mittel ==========
+      { id: 19, level: 4, typ: "numerisch", frage: "Ein Bakterium verdoppelt sich stündlich. Start: 100. Nach wie vielen Stunden sind es 800? (\\(100 \\cdot 2^t = 800\\))", loesung: 3, toleranz: 0, tipp: "\\(2^t = 8 = 2^3\\).", loesungsweg: "\\(100 \\cdot 2^t = 800 \\implies 2^t = 8 \\implies t = 3\\)." },
+      { id: 20, level: 4, typ: "numerisch", frage: "Ein Kapital 1000 € wächst mit 10 % p.a. Wert nach 2 Jahren in Euro?", loesung: 1210, toleranz: 0.01, tipp: "\\(1000 \\cdot 1{,}1^2\\).", loesungsweg: "$$1000 \\cdot 1{,}1^2 = 1000 \\cdot 1{,}21 = 1210$$" },
+      { id: 21, level: 4, typ: "mc", frage: "\\(f(x) = 2 \\cdot 3^x\\). Was ist der Anfangswert?", optionen: ["\\(2\\)", "\\(3\\)", "\\(6\\)", "\\(1\\)"], korrekt: 0, tipp: "Anfangswert \\(= f(0)\\).", loesungsweg: "\\(f(0) = 2 \\cdot 3^0 = 2\\)." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Zerfall mit Halbwertszeit 5 Tage, Start 200 g. Nach 10 Tagen in g?", loesung: 50, toleranz: 0.01, tipp: "Nach 5 Tagen: 100 g. Nach 10 Tagen: 50 g.", loesungsweg: "Nach 2 Halbwertszeiten: \\(200 \\cdot (1/2)^2 = 50\\) g." },
+      { id: 23, level: 4, typ: "numerisch", frage: "\\(f(x) = 4^x\\). Für welches \\(x\\) gilt \\(f(x) = 64\\)?", loesung: 3, toleranz: 0, tipp: "\\(4^3 = 64\\).", loesungsweg: "\\(4^x = 64 = 4^3 \\implies x = 3\\)." },
+      { id: 24, level: 4, typ: "numerisch", frage: "\\(f(x) = 2^x\\). Löse \\(f(x) = \\frac{1}{8}\\).", loesung: -3, toleranz: 0, tipp: "\\(\\frac{1}{8} = 2^{-3}\\).", loesungsweg: "\\(2^x = 2^{-3} \\implies x = -3\\)." },
+      // ========== LEVEL 5 -- anspruchsvoll ==========
+      { id: 25, level: 5, typ: "numerisch", frage: "Eine Bakterienkultur wächst von 500 auf 2000 in 4 Stunden. Wachstumsfaktor pro Stunde als Dezimalzahl (Hinweis: \\(\\sqrt[4]{4} \\approx 1{,}414\\))?", loesung: 1.414, toleranz: 0.01, tipp: "\\(500 \\cdot q^4 = 2000 \\implies q^4 = 4\\).", loesungsweg: "\\(q^4 = 4 \\implies q = \\sqrt[4]{4} \\approx 1{,}414\\)." },
+      { id: 26, level: 5, typ: "mc", frage: "Bei \\(f(x) = a^x\\): Was bestimmt \\(a\\)?", optionen: ["Nur den Anfangswert", "Den Wachstumsfaktor pro Einheit", "Die Asymptote", "Die Spiegelung"], korrekt: 1, tipp: "Basis.", loesungsweg: "Die Basis \\(a\\) ist der Wachstumsfaktor pro Einheitsschritt." },
+      { id: 27, level: 5, typ: "numerisch", frage: "Start 200 €, Wachstum 5 % p.a. Wann verdoppelt? (Näherungsformel: \\(t \\approx \\frac{70}{p}\\), \\(p\\) in Prozent.) Gib \\(t\\) gerundet an.", loesung: 14, toleranz: 1, tipp: "\\(70 / 5 = 14\\).", loesungsweg: "Nach der Faustformel: \\(t \\approx \\frac{70}{5} = 14\\) Jahre." },
+      { id: 28, level: 5, typ: "numerisch", frage: "\\(f(x) = 3 \\cdot 2^x\\). Für welches \\(x\\) ist \\(f(x) = 96\\)?", loesung: 5, toleranz: 0, tipp: "\\(2^x = 32\\).", loesungsweg: "\\(3 \\cdot 2^x = 96 \\implies 2^x = 32 \\implies x = 5\\)." },
+      { id: 29, level: 5, typ: "mc", frage: "Welcher Graph entspricht exponentieller Abnahme?", optionen: ["\\(f(x) = 1{,}2^x\\)", "\\(f(x) = 0{,}8^x\\)", "\\(f(x) = x^2\\)", "\\(f(x) = 2x\\)"], korrekt: 1, tipp: "Basis zwischen 0 und 1.", loesungsweg: "Basis \\(0{,}8 < 1\\): exponentieller Zerfall." },
+      { id: 30, level: 5, typ: "numerisch", frage: "Eine Substanz zerfällt mit Zerfallsfaktor 0,5 pro Jahr. Nach wie vielen Jahren ist von 80 g nur noch 10 g übrig?", loesung: 3, toleranz: 0, tipp: "\\(80 \\cdot 0{,}5^t = 10\\): \\(0{,}5^t = \\frac{1}{8}\\).", loesungsweg: "\\(0{,}5^t = 1/8 = 0{,}5^3 \\implies t = 3\\) Jahre." },
+      // ========== LEVEL 6 -- wagnerisch ==========
+      { id: 31, level: 6, typ: "numerisch", frage: "Exponentialfunktion durch \\((0, 5)\\) und \\((1, 15)\\). Basis?", loesung: 3, toleranz: 0, tipp: "\\(f(0) = c = 5\\). \\(f(1) = c \\cdot a = 15\\).", loesungsweg: "\\(c = 5\\), \\(5a = 15 \\implies a = 3\\). Also \\(f(x) = 5 \\cdot 3^x\\)." },
+      { id: 32, level: 6, typ: "numerisch", frage: "Für \\(f(x) = 5 \\cdot 3^x\\): Berechne \\(f(2)\\).", loesung: 45, toleranz: 0, tipp: "\\(5 \\cdot 9\\).", loesungsweg: "$$f(2) = 5 \\cdot 3^2 = 5 \\cdot 9 = 45$$" },
+      { id: 33, level: 6, typ: "mc", frage: "\\(f(x) = 2^{-x}\\). Welche Form hat die Funktion?", optionen: ["Steigt", "Fällt (identisch mit \\((1/2)^x\\))", "Konstant", "Nullfunktion"], korrekt: 1, tipp: "\\(2^{-x} = (2^{-1})^x = (1/2)^x\\).", loesungsweg: "\\(2^{-x} = (1/2)^x\\): streng monoton fallend." },
+      { id: 34, level: 6, typ: "numerisch", frage: "\\(f(x) = 10 \\cdot 0{,}9^x\\). Nach wie vielen Einheiten erreicht \\(f\\) ca. 6,561? Gib die Antwort in ganzen Einheiten.", loesung: 4, toleranz: 0, tipp: "\\(0{,}9^4 \\approx 0{,}6561\\).", loesungsweg: "\\(10 \\cdot 0{,}9^4 \\approx 10 \\cdot 0{,}6561 = 6{,}561\\). Also \\(x = 4\\)." },
+      { id: 35, level: 6, typ: "numerisch", frage: "Ein Auto verliert 20 % seines Werts pro Jahr. Startwert: 20000 €. Wert nach 2 Jahren in Euro?", loesung: 12800, toleranz: 1, tipp: "\\(20000 \\cdot 0{,}8^2\\).", loesungsweg: "\\(20000 \\cdot 0{,}8^2 = 20000 \\cdot 0{,}64 = 12800\\) €." },
+      { id: 36, level: 6, typ: "mc", frage: "Warum haben alle Exponentialfunktionen \\(f(x) = a^x\\) die x-Achse als Asymptote?", optionen: ["Weil \\(a^x\\) für \\(x \\to -\\infty\\) (oder \\(\\infty\\) bei \\(a < 1\\)) gegen 0 geht", "Weil sie durch den Ursprung gehen", "Weil \\(a\\) immer 1 ist", "Weil der Definitionsbereich eingeschränkt ist"], korrekt: 0, tipp: "Grenzwert.", loesungsweg: "\\(a^x \\to 0\\) für \\(x \\to -\\infty\\) (bei \\(a > 1\\)) bzw. \\(x \\to \\infty\\) (bei \\(a < 1\\)). Also ist \\(y = 0\\) Asymptote." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

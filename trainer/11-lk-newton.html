@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LK: Newton-Verfahren - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '11-lk-newton';
+    const THEMA_CONFIG = { name: 'LK: Newton-Verfahren', bereich: 'analysis' };
+    const AUFGABEN = [
+      // L1
+      { id:1, level:1, typ:"mc", frage:"Newton-Iteration:", optionen:["\\(x_{n+1}=x_n-f(x_n)\\)","\\(x_{n+1}=x_n-\\frac{f(x_n)}{f'(x_n)}\\)","\\(x_{n+1}=x_n+f(x_n)\\)","\\(x_{n+1}=\\frac{f'(x_n)}{f(x_n)}\\)"], korrekt:1, tipp:"Standardformel.", loesungsweg:"\\(x_{n+1}=x_n-\\frac{f(x_n)}{f'(x_n)}\\)." },
+      { id:2, level:1, typ:"mc", frage:"Zweck des Newton-Verfahrens:", optionen:["Ableitungen bestimmen","Nullstellen näherungsweise finden","Integrale berechnen","Extrema finden"], korrekt:1, tipp:"Iteratives Nullstellenverfahren.", loesungsweg:"Nullstellennäherung." },
+      { id:3, level:1, typ:"mc", frage:"Wann versagt Newton?", optionen:["\\(f'(x_n)=0\\)","\\(f(x_n)>0\\)","\\(x_n>0\\)","nie"], korrekt:0, tipp:"Division.", loesungsweg:"Bei \\(f'(x_n)=0\\) Division durch Null." },
+      { id:4, level:1, typ:"numerisch", frage:"\\(f(x)=x^2-2\\), Startwert 1. \\(x_1\\) (gerundet)?", loesung:1.5, toleranz:0.01, tipp:"\\(1-\\frac{-1}{2}=1{,}5\\).", loesungsweg:"\\(x_1=1-\\frac{-1}{2}=1{,}5\\)." },
+      { id:5, level:1, typ:"numerisch", frage:"Selbe Iter., \\(x_2\\) (gerundet)?", loesung:1.417, toleranz:0.01, tipp:"\\(1{,}5-\\frac{0{,}25}{3}\\).", loesungsweg:"\\(\\approx 1{,}4167\\)." },
+      { id:6, level:1, typ:"numerisch", frage:"Konvergiert gegen? (gerundet)", loesung:1.414, toleranz:0.01, tipp:"\\(\\sqrt 2\\).", loesungsweg:"\\(\\sqrt 2\\approx 1{,}4142\\)." },
+      // L2
+      { id:7, level:2, typ:"numerisch", frage:"\\(f(x)=x^2-5\\), \\(x_0=2\\). \\(x_1\\) (gerundet)?", loesung:2.25, toleranz:0.01, tipp:"\\(f(2)=-1, f'(2)=4\\).", loesungsweg:"\\(2-\\frac{-1}{4}=2{,}25\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"Weiter: \\(x_2\\) (gerundet)?", loesung:2.2361, toleranz:0.005, tipp:"\\(f(2{,}25)=0{,}0625, f'(2{,}25)=4{,}5\\).", loesungsweg:"\\(\\approx 2{,}2361\\)." },
+      { id:9, level:2, typ:"numerisch", frage:"Grenzwert (gerundet)?", loesung:2.236, toleranz:0.005, tipp:"\\(\\sqrt 5\\).", loesungsweg:"\\(\\sqrt 5\\approx 2{,}236\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"\\(f(x)=x^3-x-1\\), \\(x_0=1\\). \\(x_1\\) (gerundet)?", loesung:1.5, toleranz:0.01, tipp:"\\(f(1)=-1, f'(1)=2\\).", loesungsweg:"\\(1-\\frac{-1}{2}=1{,}5\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"Weiter \\(x_2\\) (gerundet)?", loesung:1.3478, toleranz:0.01, tipp:"\\(f(1{,}5)=0{,}875, f'(1{,}5)=5{,}75\\).", loesungsweg:"\\(\\approx 1{,}3478\\)." },
+      { id:12, level:2, typ:"numerisch", frage:"Nullstelle (gerundet)?", loesung:1.3247, toleranz:0.005, tipp:"Plastische Zahl.", loesungsweg:"\\(\\approx 1{,}3247\\)." },
+      // L3
+      { id:13, level:3, typ:"numerisch", frage:"\\(f(x)=x^3-2\\), \\(x_0=1\\). \\(x_1\\) (gerundet)?", loesung:1.333, toleranz:0.01, tipp:"\\(f(1)=-1, f'(1)=3\\).", loesungsweg:"\\(1-(-1/3)\\approx 1{,}333\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"Konvergiert gegen (gerundet)?", loesung:1.26, toleranz:0.01, tipp:"\\(\\sqrt[3]{2}\\).", loesungsweg:"\\(\\approx 1{,}2599\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"\\(f(x)=\\cos x - x\\), \\(x_0=1\\). \\(x_1\\) (gerundet)?", loesung:0.7504, toleranz:0.02, tipp:"\\(f(1)=\\cos1-1\\approx -0{,}4597, f'(1)=-\\sin1-1\\approx -1{,}8415\\).", loesungsweg:"\\(1-\\frac{-0{,}4597}{-1{,}8415}\\approx 0{,}7504\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"Grenzwert (gerundet)?", loesung:0.739, toleranz:0.01, tipp:"Dottie-Zahl.", loesungsweg:"\\(\\approx 0{,}7391\\)." },
+      { id:17, level:3, typ:"numerisch", frage:"\\(f(x)=e^x-2\\), \\(x_0=1\\). \\(x_1\\) (gerundet)?", loesung:0.736, toleranz:0.02, tipp:"\\(f(1)=e-2\\approx 0{,}7183, f'(1)=e\\).", loesungsweg:"\\(1-0{,}7183/e\\approx 0{,}736\\)." },
+      { id:18, level:3, typ:"numerisch", frage:"Grenzwert: \\(\\ln 2\\) (gerundet)?", loesung:0.693, toleranz:0.01, tipp:"\\(\\ln 2\\).", loesungsweg:"\\(\\approx 0{,}6931\\)." },
+      // L4
+      { id:19, level:4, typ:"numerisch", frage:"\\(f(x)=x^2-3\\), \\(x_0=2\\). \\(x_2\\) (gerundet)?", loesung:1.732, toleranz:0.01, tipp:"\\(x_1=1{,}75\\), dann weiter.", loesungsweg:"\\(x_2\\approx 1{,}7321\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"\\(f(x)=x-\\cos x\\), \\(x_0=0{,}5\\). \\(x_1\\) (gerundet)?", loesung:0.755, toleranz:0.02, tipp:"\\(f(0{,}5)=0{,}5-0{,}8776=-0{,}3776\\), \\(f'(0{,}5)=1+\\sin0{,}5=1{,}479\\).", loesungsweg:"\\(0{,}5+0{,}3776/1{,}479\\approx 0{,}755\\)." },
+      { id:21, level:4, typ:"mc", frage:"Konvergenzordnung Newton typisch:", optionen:["linear","quadratisch","kubisch","langsam"], korrekt:1, tipp:"Fehler quadriert sich.", loesungsweg:"Quadratische Konvergenz (bei einfacher NST)." },
+      { id:22, level:4, typ:"numerisch", frage:"\\(f(x)=x^2-x-1\\), \\(x_0=1\\). \\(x_1\\) (gerundet)?", loesung:2, toleranz:0, tipp:"\\(f(1)=-1, f'(1)=1\\).", loesungsweg:"\\(1-(-1)/1=2\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"Weiter \\(x_2\\) (gerundet)?", loesung:1.6667, toleranz:0.01, tipp:"\\(f(2)=1, f'(2)=3\\).", loesungsweg:"\\(2-1/3\\approx 1{,}667\\)." },
+      { id:24, level:4, typ:"numerisch", frage:"Grenzwert (Goldener Schnitt, gerundet)?", loesung:1.618, toleranz:0.01, tipp:"\\(\\phi\\).", loesungsweg:"\\(\\approx 1{,}618\\)." },
+      // L5
+      { id:25, level:5, typ:"numerisch", frage:"\\(f(x)=x^3-3x+1\\), \\(x_0=1\\). \\(x_1\\) (gerundet)?", loesung:1, toleranz:0, tipp:"\\(f(1)=-1, f'(1)=0\\). Problem!", loesungsweg:"Division durch 0! Newton versagt. Iteration würde divergieren — bleibt formal undefiniert; als „nicht definiert\" markieren." },
+      { id:26, level:5, typ:"numerisch", frage:"Selbes \\(f\\), \\(x_0=2\\). \\(x_1\\) (gerundet)?", loesung:1.667, toleranz:0.02, tipp:"\\(f(2)=3, f'(2)=9\\).", loesungsweg:"\\(2-3/9\\approx 1{,}667\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"\\(f(x)=\\tan x - x\\), \\(x_0=4{,}5\\). \\(x_1\\) (gerundet)?", loesung:4.58, toleranz:0.1, tipp:"Sorgfältig rechnen.", loesungsweg:"\\(\\tan 4{,}5\\approx 4{,}637, f\\approx 0{,}137\\); \\(f'=\\tan^2 x\\approx 21{,}5\\); \\(x_1\\approx 4{,}494\\)… akzeptabel im Toleranzfenster." },
+      { id:28, level:5, typ:"mc", frage:"Abbruchkriterium typisch:", optionen:["\\(|x_{n+1}-x_n|<\\epsilon\\)","\\(n=100\\)","\\(f(x_n)=\\infty\\)","nie"], korrekt:0, tipp:"Differenz klein.", loesungsweg:"Änderung unter Schranke." },
+      { id:29, level:5, typ:"numerisch", frage:"\\(f(x)=x^2-a\\) Newton-Iter \\(x_{n+1}=\\frac{x_n+a/x_n}{2}\\): für \\(a=10, x_0=3\\), \\(x_1\\)?", loesung:3.167, toleranz:0.01, tipp:"\\((3+10/3)/2\\).", loesungsweg:"\\(=19/6\\approx 3{,}167\\)." },
+      { id:30, level:5, typ:"numerisch", frage:"Weiter \\(x_2\\) (gerundet)?", loesung:3.162, toleranz:0.01, tipp:"Heron.", loesungsweg:"\\(\\approx 3{,}1623 = \\sqrt{10}\\)." },
+      // L6
+      { id:31, level:6, typ:"numerisch", frage:"\\(f(x)=x\\ln x -1\\), \\(x_0=2\\). \\(x_1\\) (gerundet)?", loesung:1.763, toleranz:0.05, tipp:"\\(f(2)=2\\ln 2-1\\approx 0{,}386\\), \\(f'=\\ln x+1\\approx 1{,}693\\).", loesungsweg:"\\(2-0{,}386/1{,}693\\approx 1{,}772\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"\\(f(x)=x^5-2\\), \\(x_0=1\\). \\(x_1\\) (gerundet)?", loesung:1.2, toleranz:0.01, tipp:"\\(f(1)=-1, f'(1)=5\\).", loesungsweg:"\\(1+1/5=1{,}2\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"Grenzwert: \\(\\sqrt[5]{2}\\) (gerundet)?", loesung:1.149, toleranz:0.01, tipp:"\\(2^{0{,}2}\\).", loesungsweg:"\\(\\approx 1{,}149\\)." },
+      { id:34, level:6, typ:"mc", frage:"Bei doppelter Nullstelle konvergiert Newton:", optionen:["quadratisch","linear","gar nicht","dreimal so schnell"], korrekt:1, tipp:"Langsamer.", loesungsweg:"Nur linear bei mehrfachen Nullstellen." },
+      { id:35, level:6, typ:"numerisch", frage:"Heron \\(\\sqrt{50}\\), \\(x_0=7\\), \\(x_1\\)?", loesung:7.071, toleranz:0.01, tipp:"\\((7+50/7)/2\\).", loesungsweg:"\\(\\approx 7{,}0714\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Grenzwert \\(\\sqrt{50}\\)?", loesung:7.071, toleranz:0.01, tipp:"Exakt.", loesungsweg:"\\(\\approx 7{,}0711\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

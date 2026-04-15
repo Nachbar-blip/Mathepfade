@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logarithmus - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '10-logarithmus';
+    const THEMA_CONFIG = { name: 'Logarithmus', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht ==========
+      { id: 1, level: 1, typ: "mc", frage: "Was bedeutet \\(\\log_2 8 = 3\\)?", optionen: ["\\(2 \\cdot 8 = 3\\)", "\\(2^3 = 8\\)", "\\(3^2 = 8\\)", "\\(\\frac{8}{2} = 3\\)"], korrekt: 1, tipp: "Logarithmus = gesuchter Exponent.", loesungsweg: "\\(\\log_2 8 = 3\\) bedeutet: Mit welchem Exponenten muss man \\(2\\) potenzieren, um \\(8\\) zu erhalten? Antwort: \\(3\\), weil \\(2^3 = 8\\)." },
+      { id: 2, level: 1, typ: "numerisch", frage: "Berechne \\(\\log_2 16\\).", loesung: 4, toleranz: 0, tipp: "\\(2^? = 16\\).", loesungsweg: "\\(2^4 = 16\\), also \\(\\log_2 16 = 4\\)." },
+      { id: 3, level: 1, typ: "numerisch", frage: "Berechne \\(\\log_{10} 100\\).", loesung: 2, toleranz: 0, tipp: "\\(10^? = 100\\).", loesungsweg: "\\(10^2 = 100\\), also \\(\\log_{10} 100 = 2\\)." },
+      { id: 4, level: 1, typ: "numerisch", frage: "Berechne \\(\\log_{10} 1000\\).", loesung: 3, toleranz: 0, tipp: "\\(10^3 = 1000\\).", loesungsweg: "\\(\\log_{10} 1000 = 3\\)." },
+      { id: 5, level: 1, typ: "numerisch", frage: "\\(\\log_a 1 = ?\\) (für beliebige Basis \\(a > 0\\))", loesung: 0, toleranz: 0, tipp: "\\(a^0 = 1\\).", loesungsweg: "Es gilt stets \\(\\log_a 1 = 0\\), da \\(a^0 = 1\\)." },
+      { id: 6, level: 1, typ: "numerisch", frage: "\\(\\log_a a = ?\\)", loesung: 1, toleranz: 0, tipp: "\\(a^1 = a\\).", loesungsweg: "Stets \\(\\log_a a = 1\\), da \\(a^1 = a\\)." },
+      // ========== LEVEL 2 -- leicht ==========
+      { id: 7, level: 2, typ: "numerisch", frage: "Berechne \\(\\log_3 27\\).", loesung: 3, toleranz: 0, tipp: "\\(3^3 = 27\\).", loesungsweg: "\\(\\log_3 27 = 3\\)." },
+      { id: 8, level: 2, typ: "numerisch", frage: "Berechne \\(\\log_5 125\\).", loesung: 3, toleranz: 0, tipp: "\\(5^3 = 125\\).", loesungsweg: "\\(\\log_5 125 = 3\\)." },
+      { id: 9, level: 2, typ: "numerisch", frage: "Berechne \\(\\log_2 \\frac{1}{4}\\).", loesung: -2, toleranz: 0, tipp: "\\(\\frac{1}{4} = 2^{-2}\\).", loesungsweg: "\\(\\log_2 \\frac{1}{4} = \\log_2 2^{-2} = -2\\)." },
+      { id: 10, level: 2, typ: "numerisch", frage: "Berechne \\(\\log_{10} 0{,}01\\).", loesung: -2, toleranz: 0, tipp: "\\(0{,}01 = 10^{-2}\\).", loesungsweg: "\\(\\log_{10} 0{,}01 = -2\\)." },
+      { id: 11, level: 2, typ: "mc", frage: "Was ist der Definitionsbereich von \\(f(x) = \\log_a x\\)?", optionen: ["\\(\\mathbb{R}\\)", "\\(\\mathbb{R}_{> 0}\\)", "\\(\\mathbb{R}_{\\geq 0}\\)", "\\(\\mathbb{Z}\\)"], korrekt: 1, tipp: "Nur positive Argumente.", loesungsweg: "Der Logarithmus ist nur für \\(x > 0\\) definiert: \\(D = \\mathbb{R}_{> 0}\\)." },
+      { id: 12, level: 2, typ: "numerisch", frage: "Berechne \\(\\log_2 64\\).", loesung: 6, toleranz: 0, tipp: "\\(2^6 = 64\\).", loesungsweg: "\\(2^6 = 64\\), also \\(\\log_2 64 = 6\\)." },
+      // ========== LEVEL 3 -- nervenschonend ==========
+      { id: 13, level: 3, typ: "numerisch", frage: "Logarithmusgesetz: \\(\\log_a(xy) = \\log_a x + \\log_a y\\). Berechne \\(\\log_2(4 \\cdot 8)\\).", loesung: 5, toleranz: 0, tipp: "\\(\\log_2 4 + \\log_2 8 = 2 + 3\\).", loesungsweg: "\\(\\log_2 4 + \\log_2 8 = 2 + 3 = 5\\). Kontrolle: \\(\\log_2 32 = 5\\) ✓" },
+      { id: 14, level: 3, typ: "numerisch", frage: "\\(\\log_a \\frac{x}{y} = \\log_a x - \\log_a y\\). Berechne \\(\\log_2 \\frac{64}{4}\\).", loesung: 4, toleranz: 0, tipp: "\\(6 - 2 = 4\\).", loesungsweg: "\\(\\log_2 64 - \\log_2 4 = 6 - 2 = 4\\). Kontrolle: \\(\\log_2 16 = 4\\)." },
+      { id: 15, level: 3, typ: "numerisch", frage: "\\(\\log_a(x^n) = n \\cdot \\log_a x\\). Berechne \\(\\log_2 8^3\\).", loesung: 9, toleranz: 0, tipp: "\\(3 \\cdot \\log_2 8 = 3 \\cdot 3\\).", loesungsweg: "\\(\\log_2 8^3 = 3 \\cdot \\log_2 8 = 3 \\cdot 3 = 9\\)." },
+      { id: 16, level: 3, typ: "mc", frage: "Vereinfache \\(\\log_a x + \\log_a y\\).", optionen: ["\\(\\log_a(x + y)\\)", "\\(\\log_a(xy)\\)", "\\(\\log_a(x \\cdot a^y)\\)", "\\(\\log_a\\frac{x}{y}\\)"], korrekt: 1, tipp: "1. Logarithmusgesetz.", loesungsweg: "\\(\\log_a x + \\log_a y = \\log_a(x \\cdot y)\\)." },
+      { id: 17, level: 3, typ: "mc", frage: "Vereinfache \\(\\log_a x - \\log_a y\\).", optionen: ["\\(\\log_a(x - y)\\)", "\\(\\log_a \\frac{x}{y}\\)", "\\(\\log_a(x \\cdot y)\\)", "\\(\\log_a \\frac{y}{x}\\)"], korrekt: 1, tipp: "2. Logarithmusgesetz.", loesungsweg: "\\(\\log_a x - \\log_a y = \\log_a \\frac{x}{y}\\)." },
+      { id: 18, level: 3, typ: "numerisch", frage: "Berechne \\(\\log_3 81\\).", loesung: 4, toleranz: 0, tipp: "\\(3^4 = 81\\).", loesungsweg: "\\(\\log_3 81 = 4\\)." },
+      // ========== LEVEL 4 -- mittel ==========
+      { id: 19, level: 4, typ: "numerisch", frage: "Löse \\(2^x = 16\\).", loesung: 4, toleranz: 0, tipp: "\\(x = \\log_2 16\\).", loesungsweg: "\\(x = \\log_2 16 = 4\\)." },
+      { id: 20, level: 4, typ: "numerisch", frage: "Löse \\(3^x = \\frac{1}{9}\\).", loesung: -2, toleranz: 0, tipp: "\\(\\frac{1}{9} = 3^{-2}\\).", loesungsweg: "\\(3^x = 3^{-2} \\implies x = -2\\)." },
+      { id: 21, level: 4, typ: "numerisch", frage: "Berechne \\(\\log_2 32 + \\log_2 2\\).", loesung: 6, toleranz: 0, tipp: "\\(5 + 1\\).", loesungsweg: "\\(5 + 1 = 6\\). Oder: \\(\\log_2(32 \\cdot 2) = \\log_2 64 = 6\\)." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Berechne \\(\\log_{10} 10000 - \\log_{10} 10\\).", loesung: 3, toleranz: 0, tipp: "\\(4 - 1\\).", loesungsweg: "\\(4 - 1 = 3\\). Oder: \\(\\log_{10} 1000 = 3\\)." },
+      { id: 23, level: 4, typ: "mc", frage: "\\(\\log_a a^n = ?\\)", optionen: ["\\(a\\)", "\\(n\\)", "\\(a \\cdot n\\)", "\\(1\\)"], korrekt: 1, tipp: "Umkehrfunktion.", loesungsweg: "\\(\\log_a a^n = n\\) (definierende Eigenschaft)." },
+      { id: 24, level: 4, typ: "numerisch", frage: "Berechne \\(\\log_2 \\sqrt{2}\\) als Dezimalzahl.", loesung: 0.5, toleranz: 0.01, tipp: "\\(\\sqrt{2} = 2^{1/2}\\).", loesungsweg: "\\(\\log_2 2^{1/2} = \\frac{1}{2} = 0{,}5\\)." },
+      // ========== LEVEL 5 -- anspruchsvoll ==========
+      { id: 25, level: 5, typ: "numerisch", frage: "Löse \\(5 \\cdot 2^x = 40\\).", loesung: 3, toleranz: 0, tipp: "Erst durch 5 teilen: \\(2^x = 8\\).", loesungsweg: "\\(5 \\cdot 2^x = 40 \\implies 2^x = 8 \\implies x = 3\\)." },
+      { id: 26, level: 5, typ: "numerisch", frage: "Ein Kapital verdoppelt sich bei 7 % Zinsen in etwa \\(\\log_{1{,}07}2 \\approx ?\\) Jahren. Mit Näherungsformel 70 / p = 10. Gib 10 an.", loesung: 10, toleranz: 1, tipp: "70 / 7 = 10.", loesungsweg: "Faustformel: Verdopplungszeit \\(\\approx 70 / p\\) (\\(p\\) in Prozent) \\(= 70 / 7 = 10\\) Jahre." },
+      { id: 27, level: 5, typ: "numerisch", frage: "Berechne \\(\\log_2 48 - \\log_2 3\\).", loesung: 4, toleranz: 0, tipp: "\\(\\log_2 \\frac{48}{3} = \\log_2 16\\).", loesungsweg: "\\(\\log_2 \\frac{48}{3} = \\log_2 16 = 4\\)." },
+      { id: 28, level: 5, typ: "mc", frage: "Welche Basis hat der dekadische Logarithmus \\(\\lg x\\)?", optionen: ["\\(2\\)", "\\(e\\)", "\\(10\\)", "\\(100\\)"], korrekt: 2, tipp: "„Deka\" = zehn.", loesungsweg: "\\(\\lg x = \\log_{10} x\\) — dekadischer Logarithmus." },
+      { id: 29, level: 5, typ: "mc", frage: "Welche Basis hat der natürliche Logarithmus \\(\\ln x\\)?", optionen: ["\\(2\\)", "\\(10\\)", "\\(e \\approx 2{,}718\\)", "\\(1\\)"], korrekt: 2, tipp: "Eulersche Zahl.", loesungsweg: "\\(\\ln x = \\log_e x\\), wobei \\(e \\approx 2{,}718\\)." },
+      { id: 30, level: 5, typ: "numerisch", frage: "Löse \\(2 \\cdot 3^x = 54\\).", loesung: 3, toleranz: 0, tipp: "\\(3^x = 27\\).", loesungsweg: "\\(3^x = 27 \\implies x = 3\\)." },
+      // ========== LEVEL 6 -- wagnerisch ==========
+      { id: 31, level: 6, typ: "numerisch", frage: "Basiswechselformel: \\(\\log_a b = \\frac{\\log_c b}{\\log_c a}\\). Berechne mit \\(\\log_{10} 2 \\approx 0{,}301\\) und \\(\\log_{10} 8 = 0{,}903\\) den Wert \\(\\log_2 8\\).", loesung: 3, toleranz: 0.02, tipp: "\\(\\frac{0{,}903}{0{,}301} = 3\\).", loesungsweg: "\\(\\log_2 8 = \\frac{\\log_{10} 8}{\\log_{10} 2} = \\frac{0{,}903}{0{,}301} = 3\\)." },
+      { id: 32, level: 6, typ: "numerisch", frage: "Berechne \\(\\log_2(16 \\cdot 32)\\).", loesung: 9, toleranz: 0, tipp: "\\(\\log_2 16 + \\log_2 32\\).", loesungsweg: "\\(4 + 5 = 9\\). Oder: \\(\\log_2 512 = 9\\)." },
+      { id: 33, level: 6, typ: "numerisch", frage: "Vereinfache \\(\\log_3(x^2) - \\log_3 x\\). Wenn \\(x = 27\\), gib den Wert an.", loesung: 3, toleranz: 0, tipp: "\\(\\log_3 \\frac{x^2}{x} = \\log_3 x\\). \\(\\log_3 27 = 3\\).", loesungsweg: "\\(\\log_3 x^2 - \\log_3 x = \\log_3 \\frac{x^2}{x} = \\log_3 x\\). Für \\(x = 27\\): \\(\\log_3 27 = 3\\)." },
+      { id: 34, level: 6, typ: "mc", frage: "Die Logarithmusfunktion \\(f(x) = \\log_a x\\) (mit \\(a > 1\\)) …", optionen: ["Wächst schneller als jede Potenzfunktion", "Wächst langsamer als jede Potenzfunktion \\(x^c\\) mit \\(c > 0\\)", "Ist konstant", "Fällt"], korrekt: 1, tipp: "Logarithmen wachsen sehr langsam.", loesungsweg: "Der Logarithmus wächst langsamer als jede Potenzfunktion mit positivem Exponenten." },
+      { id: 35, level: 6, typ: "numerisch", frage: "Radioaktiver Zerfall: \\(N(t) = N_0 \\cdot 0{,}5^{t/T}\\), \\(T\\) Halbwertszeit. \\(T = 5\\) h, \\(N_0 = 100\\), \\(t = 15\\) h: \\(N\\)?", loesung: 12.5, toleranz: 0.01, tipp: "Nach 3 Halbwertszeiten: \\(100 \\cdot (1/2)^3\\).", loesungsweg: "\\(100 \\cdot 0{,}5^{15/5} = 100 \\cdot 0{,}5^3 = 100 \\cdot 0{,}125 = 12{,}5\\)." },
+      { id: 36, level: 6, typ: "numerisch", frage: "Bei wie vielen Halbwertszeiten sind nur noch ca. 25 % der Anfangsmenge vorhanden?", loesung: 2, toleranz: 0, tipp: "\\(0{,}5^n = 0{,}25 = 0{,}5^2\\).", loesungsweg: "\\(0{,}5^n = 0{,}25 \\implies n = 2\\) Halbwertszeiten." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

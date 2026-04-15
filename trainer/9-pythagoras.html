@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satz des Pythagoras - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '9-pythagoras';
+    const THEMA_CONFIG = { name: 'Satz des Pythagoras', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id:1, level:1, typ:"mc", frage:"Wie heißt die längste Seite im rechtwinkligen Dreieck?", optionen:["Kathete","Hypotenuse","Ankathete","Gegenkathete"], korrekt:1, tipp:"Sie liegt dem rechten Winkel gegenüber.", loesungsweg:"Die <b>Hypotenuse</b> ist die längste Seite und liegt dem rechten Winkel gegenüber." },
+      { id:2, level:1, typ:"mc", frage:"Wie lautet der Satz des Pythagoras?", optionen:["\\(a+b=c\\)","\\(a^2+b^2=c^2\\)","\\(a\\cdot b=c\\)","\\(a^2-b^2=c^2\\)"], korrekt:1, tipp:"Quadrat über Hypotenuse = Summe der Kathetenquadrate.", loesungsweg:"$$a^2+b^2=c^2$$ mit \\(c\\) als Hypotenuse." },
+      { id:3, level:1, typ:"mc", frage:"In \\(a^2+b^2=c^2\\): Was ist \\(c\\)?", optionen:["Kathete","Hypotenuse","Winkel","Höhe"], korrekt:1, tipp:"Die Seite gegenüber dem rechten Winkel.", loesungsweg:"\\(c\\) ist die <b>Hypotenuse</b>." },
+      { id:4, level:1, typ:"numerisch", frage:"Berechne \\(c\\) für \\(a=3\\), \\(b=4\\).", loesung:5, toleranz:0, tipp:"\\(9+16=25\\), dann Wurzel.", loesungsweg:"$$c=\\sqrt{3^2+4^2}=\\sqrt{25}=5$$" },
+      { id:5, level:1, typ:"numerisch", frage:"Berechne \\(c\\) für \\(a=6\\), \\(b=8\\).", loesung:10, toleranz:0, tipp:"\\(36+64=100\\).", loesungsweg:"$$c=\\sqrt{36+64}=\\sqrt{100}=10$$" },
+      { id:6, level:1, typ:"mc", frage:"Gilt der Satz des Pythagoras in jedem Dreieck?", optionen:["Ja","Nein, nur im rechtwinkligen","Nur im gleichseitigen","Nur im stumpfwinkligen"], korrekt:1, tipp:"Es braucht einen rechten Winkel.", loesungsweg:"Nur im <b>rechtwinkligen</b> Dreieck gilt \\(a^2+b^2=c^2\\)." },
+      // LEVEL 2
+      { id:7, level:2, typ:"numerisch", frage:"Berechne \\(c\\) für \\(a=5\\), \\(b=12\\).", loesung:13, toleranz:0, tipp:"\\(25+144=169\\).", loesungsweg:"$$c=\\sqrt{25+144}=\\sqrt{169}=13$$" },
+      { id:8, level:2, typ:"numerisch", frage:"Berechne \\(c\\) für \\(a=9\\), \\(b=12\\).", loesung:15, toleranz:0, tipp:"\\(81+144=225\\).", loesungsweg:"$$c=\\sqrt{225}=15$$" },
+      { id:9, level:2, typ:"numerisch", frage:"Kathete \\(a\\) für \\(b=8\\), \\(c=17\\).", loesung:15, toleranz:0, tipp:"\\(a^2=c^2-b^2=289-64\\).", loesungsweg:"$$a=\\sqrt{289-64}=\\sqrt{225}=15$$" },
+      { id:10, level:2, typ:"numerisch", frage:"Kathete \\(b\\) für \\(a=7\\), \\(c=25\\).", loesung:24, toleranz:0, tipp:"\\(b^2=625-49\\).", loesungsweg:"$$b=\\sqrt{576}=24$$" },
+      { id:11, level:2, typ:"numerisch", frage:"Berechne \\(c\\) für \\(a=1\\), \\(b=1\\). Runde auf 2 Dezimalen.", loesung:1.41, toleranz:0.02, tipp:"\\(\\sqrt{2}\\).", loesungsweg:"$$c=\\sqrt{2}\\approx 1{,}41$$" },
+      { id:12, level:2, typ:"mc", frage:"Ein Dreieck hat Seiten \\(3, 4, 5\\). Ist es rechtwinklig?", optionen:["Ja","Nein","Nur bei Gleichseitigkeit","Nicht bestimmbar"], korrekt:0, tipp:"Prüfe \\(3^2+4^2=5^2\\).", loesungsweg:"\\(9+16=25\\) ✓ also <b>rechtwinklig</b>." },
+      // LEVEL 3
+      { id:13, level:3, typ:"numerisch", frage:"Eine Leiter (\\(5\\,\\text{m}\\)) steht \\(3\\,\\text{m}\\) von der Wand. Wie hoch reicht sie? (in m)", loesung:4, toleranz:0.01, tipp:"\\(h^2+3^2=5^2\\).", loesungsweg:"$$h=\\sqrt{25-9}=4\\,\\text{m}$$" },
+      { id:14, level:3, typ:"numerisch", frage:"Diagonale eines Rechtecks \\(6\\times 8\\). In cm.", loesung:10, toleranz:0, tipp:"Pythagoras im Rechteck.", loesungsweg:"$$d=\\sqrt{36+64}=10\\,\\text{cm}$$" },
+      { id:15, level:3, typ:"numerisch", frage:"Diagonale eines Quadrats mit Seite \\(a=4\\). Runde auf 2 Dezimalen.", loesung:5.66, toleranz:0.02, tipp:"\\(d=a\\sqrt{2}\\).", loesungsweg:"$$d=4\\sqrt{2}\\approx 5{,}66$$" },
+      { id:16, level:3, typ:"mc", frage:"Welches Tripel ist ein pythagoreisches?", optionen:["\\((2,3,4)\\)","\\((5,12,13)\\)","\\((4,5,7)\\)","\\((6,7,8)\\)"], korrekt:1, tipp:"Prüfe \\(a^2+b^2=c^2\\).", loesungsweg:"\\(25+144=169=13^2\\) ✓" },
+      { id:17, level:3, typ:"numerisch", frage:"Höhe eines gleichseitigen Dreiecks mit Seite \\(a=6\\). Runde auf 2 Dezimalen.", loesung:5.20, toleranz:0.03, tipp:"\\(h=\\frac{a}{2}\\sqrt{3}\\).", loesungsweg:"$$h=\\sqrt{36-9}=\\sqrt{27}\\approx 5{,}20$$" },
+      { id:18, level:3, typ:"numerisch", frage:"Ein Mast ist mit Seil (\\(13\\,\\text{m}\\)) gesichert, Fußpunkt \\(5\\,\\text{m}\\) entfernt. Masthöhe in m?", loesung:12, toleranz:0, tipp:"\\(h^2=169-25\\).", loesungsweg:"$$h=\\sqrt{144}=12$$" },
+      // LEVEL 4
+      { id:19, level:4, typ:"numerisch", frage:"Diagonale eines Quaders \\(3\\times 4\\times 12\\).", loesung:13, toleranz:0.01, tipp:"\\(d=\\sqrt{a^2+b^2+c^2}\\).", loesungsweg:"$$d=\\sqrt{9+16+144}=\\sqrt{169}=13$$" },
+      { id:20, level:4, typ:"numerisch", frage:"Abstand der Punkte \\(A(1|2)\\) und \\(B(5|5)\\).", loesung:5, toleranz:0, tipp:"\\(\\sqrt{(\\Delta x)^2+(\\Delta y)^2}\\).", loesungsweg:"$$d=\\sqrt{16+9}=5$$" },
+      { id:21, level:4, typ:"numerisch", frage:"Gleichschenkliges Dreieck, Basis \\(10\\), Schenkel \\(13\\). Höhe?", loesung:12, toleranz:0, tipp:"\\(h^2=13^2-5^2\\).", loesungsweg:"$$h=\\sqrt{169-25}=12$$" },
+      { id:22, level:4, typ:"numerisch", frage:"Trapez mit parallelen Seiten \\(10\\) und \\(4\\), Schenkel je \\(5\\) (gleichschenklig). Höhe?", loesung:4, toleranz:0, tipp:"Projektion: \\(\\frac{10-4}{2}=3\\), dann Pythagoras mit \\(5\\).", loesungsweg:"$$h=\\sqrt{25-9}=4$$" },
+      { id:23, level:4, typ:"numerisch", frage:"Rechteck \\(a\\times b\\) mit Diagonale \\(d=17\\) und \\(a=15\\). Berechne \\(b\\).", loesung:8, toleranz:0, tipp:"\\(b^2=289-225\\).", loesungsweg:"$$b=\\sqrt{64}=8$$" },
+      { id:24, level:4, typ:"mc", frage:"Umkehrsatz: Wenn \\(a^2+b^2=c^2\\), dann …", optionen:["ist das Dreieck spitzwinklig","ist das Dreieck rechtwinklig","ist es stumpfwinklig","existiert kein Dreieck"], korrekt:1, tipp:"Kehrsatz des Pythagoras.", loesungsweg:"Gilt \\(a^2+b^2=c^2\\), so ist das Dreieck <b>rechtwinklig</b> mit Hypotenuse \\(c\\)." },
+      // LEVEL 5
+      { id:25, level:5, typ:"numerisch", frage:"Raumdiagonale eines Würfels mit Kante \\(a=5\\). Runde auf 2 Dezimalen.", loesung:8.66, toleranz:0.03, tipp:"\\(d=a\\sqrt{3}\\).", loesungsweg:"$$d=5\\sqrt{3}\\approx 8{,}66$$" },
+      { id:26, level:5, typ:"numerisch", frage:"Seitenhöhe eines gleichschenkligen Dreiecks mit Basis \\(16\\) und Umfang \\(36\\).", loesung:6, toleranz:0, tipp:"Schenkel \\(s=10\\), halbe Basis \\(=8\\).", loesungsweg:"\\(s=(36-16)/2=10\\). \\(h=\\sqrt{100-64}=6\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Abstand \\(A(-2|3)\\) zu \\(B(4|-5)\\).", loesung:10, toleranz:0.01, tipp:"\\(\\Delta x=6, \\Delta y=8\\).", loesungsweg:"$$d=\\sqrt{36+64}=10$$" },
+      { id:28, level:5, typ:"numerisch", frage:"Ein Kabel spannt sich von einem \\(20\\,\\text{m}\\) hohen Mast zu einem \\(5\\,\\text{m}\\) hohen Mast, Abstand \\(8\\,\\text{m}\\). Kabellänge in m?", loesung:17, toleranz:0.01, tipp:"Höhendifferenz \\(15\\), Abstand \\(8\\).", loesungsweg:"$$L=\\sqrt{15^2+8^2}=\\sqrt{289}=17$$" },
+      { id:29, level:5, typ:"numerisch", frage:"Kathete \\(a\\) für \\(b=20\\), \\(c=29\\).", loesung:21, toleranz:0, tipp:"\\(a^2=841-400\\).", loesungsweg:"$$a=\\sqrt{441}=21$$" },
+      { id:30, level:5, typ:"mc", frage:"Der Höhensatz im rechtwinkligen Dreieck lautet …", optionen:["\\(h^2=p\\cdot q\\)","\\(h=p+q\\)","\\(h^2=p^2+q^2\\)","\\(h=c/2\\)"], korrekt:0, tipp:"Produkt der Hypotenusenabschnitte.", loesungsweg:"<b>Höhensatz:</b> \\(h^2=p\\cdot q\\)." },
+      // LEVEL 6
+      { id:31, level:6, typ:"numerisch", frage:"Die Hypotenuse beträgt \\(c=25\\), eine Kathete ist dreimal so lang wie die andere. Berechne die kürzere Kathete. Runde auf 2 Dezimalen.", loesung:7.91, toleranz:0.05, tipp:"\\(a^2+(3a)^2=625\\), also \\(10a^2=625\\).", loesungsweg:"$$a=\\sqrt{62{,}5}\\approx 7{,}91$$" },
+      { id:32, level:6, typ:"numerisch", frage:"Kathetensatz: \\(a^2=c\\cdot p\\). Für \\(c=25\\), \\(p=9\\) ist \\(a=?\\)", loesung:15, toleranz:0, tipp:"\\(a=\\sqrt{cp}\\).", loesungsweg:"$$a=\\sqrt{225}=15$$" },
+      { id:33, level:6, typ:"numerisch", frage:"Im Würfel (Kante 6): Länge einer Flächendiagonale. Runde auf 2 Dez.", loesung:8.49, toleranz:0.03, tipp:"\\(a\\sqrt 2\\).", loesungsweg:"$$d=6\\sqrt 2\\approx 8{,}49$$" },
+      { id:34, level:6, typ:"numerisch", frage:"Dreieck \\(A(0|0), B(6|0), C(3|4)\\). Ist es rechtwinklig? Wenn ja, gib die Hypotenusenlänge, sonst \\(0\\).", loesung:0, toleranz:0, tipp:"Seiten: 6, 5, 5. \\(25+25\\ne 36\\).", loesungsweg:"\\(|AB|=6, |AC|=5, |BC|=5\\). \\(5^2+5^2=50\\ne 36\\). Nicht rechtwinklig: Antwort 0." },
+      { id:35, level:6, typ:"numerisch", frage:"Ein gleichseitiges Dreieck hat Flächeninhalt \\(A=\\sqrt 3\\cdot 9\\). Berechne die Seitenlänge.", loesung:6, toleranz:0, tipp:"\\(A=\\frac{a^2\\sqrt 3}{4}\\).", loesungsweg:"\\(\\frac{a^2\\sqrt 3}{4}=9\\sqrt 3 \\Rightarrow a^2=36 \\Rightarrow a=6\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Pyramide mit quadratischer Grundfläche (Kante 6) und Höhe 4. Länge der Seitenkante?", loesung:6.63, toleranz:0.05, tipp:"Halbe Diagonale \\(3\\sqrt 2\\), dann Pythagoras mit Höhe 4.", loesungsweg:"\\(s=\\sqrt{(3\\sqrt 2)^2+16}=\\sqrt{34}\\approx 6{,}63\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

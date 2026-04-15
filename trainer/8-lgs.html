@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lineare Gleichungssysteme - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-lgs';
+    const THEMA_CONFIG = { name: 'Lineare Gleichungssysteme', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id: 1, level: 1, typ: "mc", frage: "Ein LGS mit 2 Unbekannten besteht aus …", optionen: ["einer Gleichung", "zwei Gleichungen mit je 2 Unbekannten", "drei Gleichungen", "Ungleichungen"], korrekt: 1, tipp: "Schnittpunkt zweier Geraden.", loesungsweg: "Ein 2×2-LGS hat <b>zwei lineare Gleichungen mit den Unbekannten \\(x\\) und \\(y\\)</b>." },
+      { id: 2, level: 1, typ: "mc", frage: "Welche Verfahren zum Lösen kennst du?", optionen: ["Nur Einsetzen", "Einsetzungs-, Gleichsetzungs-, Additionsverfahren", "Nur graphisch", "Nur Rechnen"], korrekt: 1, tipp: "Drei Hauptverfahren.", loesungsweg: "Einsetzungs-, Gleichsetzungs- und Additionsverfahren - dazu das grafische Verfahren." },
+      { id: 3, level: 1, typ: "mc", frage: "Geometrisch ist die Lösung eines 2×2-LGS …", optionen: ["Mittelpunkt einer Strecke", "Schnittpunkt zweier Geraden", "Symmetrieachse", "Parallele"], korrekt: 1, tipp: "Jede Gleichung = Gerade.", loesungsweg: "Jede lineare Gleichung beschreibt eine Gerade. Die Lösung ist deren <b>Schnittpunkt</b>." },
+      { id: 4, level: 1, typ: "numerisch", frage: "\\(x + y = 7\\), \\(y = 3\\). Berechne \\(x\\).", loesung: 4, toleranz: 0, tipp: "\\(y\\) einsetzen.", loesungsweg: "$$x + 3 = 7 \\implies x = 4$$" },
+      { id: 5, level: 1, typ: "numerisch", frage: "\\(x = 5\\), \\(x + y = 12\\). Berechne \\(y\\).", loesung: 7, toleranz: 0, tipp: "\\(x\\) einsetzen.", loesungsweg: "$$5 + y = 12 \\implies y = 7$$" },
+      { id: 6, level: 1, typ: "numerisch", frage: "\\(2x = 10\\), \\(x + y = 8\\). Berechne \\(y\\).", loesung: 3, toleranz: 0, tipp: "Erst \\(x\\) aus Gl. 1.", loesungsweg: "\\(x = 5\\), also \\(5 + y = 8 \\Rightarrow y = 3\\)." },
+      // LEVEL 2 (Einsetzungsverfahren)
+      { id: 7, level: 2, typ: "mc", frage: "Löse mit Einsetzen: \\(y = x + 1\\), \\(2x + y = 7\\). Welches \\(x\\)?", optionen: ["\\(x = 1\\)", "\\(x = 2\\)", "\\(x = 3\\)", "\\(x = 4\\)"], korrekt: 1, tipp: "\\(y\\) ersetzen.", loesungsweg: "\\(2x + (x+1) = 7 \\Rightarrow 3x = 6 \\Rightarrow x = 2\\)." },
+      { id: 8, level: 2, typ: "mc", frage: "\\(y = 2x\\), \\(x + y = 9\\). Lösung \\((x; y)\\)?", optionen: ["\\((2; 4)\\)", "\\((3; 6)\\)", "\\((4; 5)\\)", "\\((5; 4)\\)"], korrekt: 1, tipp: "\\(x + 2x = 9\\).", loesungsweg: "\\(3x = 9 \\Rightarrow x = 3, y = 6\\)." },
+      { id: 9, level: 2, typ: "mc", frage: "\\(x = y + 2\\), \\(x + y = 10\\). Lösung?", optionen: ["\\((6; 4)\\)", "\\((4; 6)\\)", "\\((5; 5)\\)", "\\((3; 7)\\)"], korrekt: 0, tipp: "\\((y+2) + y = 10\\).", loesungsweg: "\\(2y + 2 = 10 \\Rightarrow y = 4, x = 6\\)." },
+      { id: 10, level: 2, typ: "numerisch", frage: "\\(y = x - 3\\), \\(x + y = 11\\). Berechne \\(x\\).", loesung: 7, toleranz: 0, tipp: "Einsetzen in Gl. 2.", loesungsweg: "\\(x + (x-3) = 11 \\Rightarrow 2x = 14 \\Rightarrow x = 7\\)." },
+      { id: 11, level: 2, typ: "numerisch", frage: "\\(y = 3x\\), \\(2x + y = 20\\). Berechne \\(x\\).", loesung: 4, toleranz: 0, tipp: "\\(2x + 3x = 20\\).", loesungsweg: "\\(5x = 20 \\Rightarrow x = 4\\)." },
+      { id: 12, level: 2, typ: "numerisch", frage: "\\(x = 2y\\), \\(x + 3y = 15\\). Berechne \\(y\\).", loesung: 3, toleranz: 0, tipp: "Einsetzen.", loesungsweg: "\\(2y + 3y = 15 \\Rightarrow y = 3\\)." },
+      // LEVEL 3 (Gleichsetzungsverfahren)
+      { id: 13, level: 3, typ: "mc", frage: "\\(y = 2x + 1\\), \\(y = x + 4\\). Gleichsetzen liefert \\(x = ?\\)", optionen: ["1", "2", "3", "4"], korrekt: 2, tipp: "\\(2x + 1 = x + 4\\).", loesungsweg: "\\(2x + 1 = x + 4 \\Rightarrow x = 3\\). \\(y = 7\\)." },
+      { id: 14, level: 3, typ: "mc", frage: "\\(y = -x + 6\\), \\(y = 2x\\). Schnittpunkt?", optionen: ["\\((2; 4)\\)", "\\((3; 3)\\)", "\\((1; 5)\\)", "\\((4; 2)\\)"], korrekt: 0, tipp: "Gleichsetzen.", loesungsweg: "\\(-x + 6 = 2x \\Rightarrow 3x = 6 \\Rightarrow x = 2, y = 4\\)." },
+      { id: 15, level: 3, typ: "mc", frage: "\\(y = 3x - 2\\), \\(y = -x + 6\\). Schnittpunkt bei \\(x = ?\\)", optionen: ["1", "2", "3", "4"], korrekt: 1, tipp: "\\(3x - 2 = -x + 6\\).", loesungsweg: "\\(4x = 8 \\Rightarrow x = 2, y = 4\\)." },
+      { id: 16, level: 3, typ: "numerisch", frage: "\\(y = 5x\\), \\(y = 2x + 9\\). Bestimme \\(x\\).", loesung: 3, toleranz: 0, tipp: "Gleichsetzen.", loesungsweg: "\\(5x = 2x + 9 \\Rightarrow 3x = 9 \\Rightarrow x = 3\\)." },
+      { id: 17, level: 3, typ: "numerisch", frage: "\\(y = 4x + 1\\), \\(y = x + 7\\). Bestimme \\(y\\) im Schnittpunkt.", loesung: 9, toleranz: 0, tipp: "Erst \\(x = 2\\).", loesungsweg: "\\(4x + 1 = x + 7 \\Rightarrow x = 2, y = 9\\)." },
+      { id: 18, level: 3, typ: "numerisch", frage: "\\(y = -2x + 10\\), \\(y = x + 1\\). Bestimme \\(x\\).", loesung: 3, toleranz: 0, tipp: "Gleichsetzen.", loesungsweg: "\\(-2x + 10 = x + 1 \\Rightarrow 9 = 3x \\Rightarrow x = 3\\)." },
+      // LEVEL 4 (Additionsverfahren)
+      { id: 19, level: 4, typ: "mc", frage: "\\(x + y = 10\\), \\(x - y = 4\\). Addition liefert?", optionen: ["\\(x = 6\\)", "\\(x = 7\\)", "\\(x = 5\\)", "\\(x = 3\\)"], korrekt: 1, tipp: "\\(2x = 14\\).", loesungsweg: "Addieren: \\(2x = 14 \\Rightarrow x = 7\\). \\(y = 3\\)." },
+      { id: 20, level: 4, typ: "mc", frage: "\\(2x + y = 11\\), \\(x - y = 1\\). Lösung \\((x; y)\\)?", optionen: ["\\((4; 3)\\)", "\\((5; 4)\\)", "\\((3; 5)\\)", "\\((2; 7)\\)"], korrekt: 0, tipp: "Addieren.", loesungsweg: "Addition: \\(3x = 12 \\Rightarrow x = 4, y = 3\\)." },
+      { id: 21, level: 4, typ: "mc", frage: "\\(3x + 2y = 16\\), \\(x + 2y = 10\\). Subtrahieren liefert?", optionen: ["\\(x = 2\\)", "\\(x = 3\\)", "\\(x = 4\\)", "\\(x = 6\\)"], korrekt: 1, tipp: "1. - 2. Gleichung.", loesungsweg: "Subtrahieren: \\(2x = 6 \\Rightarrow x = 3, y = 3{,}5\\)." },
+      { id: 22, level: 4, typ: "numerisch", frage: "\\(x + y = 8\\), \\(x - y = 2\\). Bestimme \\(x\\).", loesung: 5, toleranz: 0, tipp: "Addieren.", loesungsweg: "\\(2x = 10 \\Rightarrow x = 5\\)." },
+      { id: 23, level: 4, typ: "numerisch", frage: "\\(2x + 3y = 12\\), \\(2x - 3y = 0\\). Bestimme \\(x\\).", loesung: 3, toleranz: 0, tipp: "Addieren.", loesungsweg: "\\(4x = 12 \\Rightarrow x = 3\\)." },
+      { id: 24, level: 4, typ: "numerisch", frage: "\\(5x + 2y = 16\\), \\(3x + 2y = 12\\). Bestimme \\(x\\).", loesung: 2, toleranz: 0, tipp: "1. - 2.", loesungsweg: "\\(2x = 4 \\Rightarrow x = 2\\)." },
+      // LEVEL 5 (Sachkontext)
+      { id: 25, level: 5, typ: "mc", frage: "Im Kino: 2 Erwachsene + 3 Kinder = 32 €. 1 Erw. + 2 Kinder = 18 €. Was zahlt 1 Erwachsener?", optionen: ["8 €", "10 €", "12 €", "6 €"], korrekt: 1, tipp: "LGS aufstellen.", loesungsweg: "\\(2e + 3k = 32\\), \\(e + 2k = 18\\). Aus 2.: \\(e = 18 - 2k\\). In 1.: \\(2(18-2k) + 3k = 32 \\Rightarrow 36 - k = 32 \\Rightarrow k = 4, e = 10\\)." },
+      { id: 26, level: 5, typ: "mc", frage: "Zwei Zahlen: Summe 20, Differenz 6. Größere Zahl?", optionen: ["10", "12", "13", "14"], korrekt: 2, tipp: "\\(x+y=20, x-y=6\\).", loesungsweg: "Addition: \\(2x = 26 \\Rightarrow x = 13\\)." },
+      { id: 27, level: 5, typ: "mc", frage: "3 Hefte + 2 Stifte = 8,40 €. 1 Heft + 1 Stift = 3,20 €. Preis 1 Heft?", optionen: ["1,60 €", "2,00 €", "2,40 €", "1,20 €"], korrekt: 1, tipp: "LGS.", loesungsweg: "\\(3h + 2s = 8{,}40\\), \\(h + s = 3{,}20\\). \\(s = 3{,}20 - h\\) in 1.: \\(3h + 6{,}40 - 2h = 8{,}40 \\Rightarrow h = 2{,}00\\)." },
+      { id: 28, level: 5, typ: "numerisch", frage: "Vater und Sohn: zusammen 50 Jahre, Differenz 30 Jahre. Alter des Sohnes?", loesung: 10, toleranz: 0, tipp: "\\(v+s=50, v-s=30\\).", loesungsweg: "Subtraktion: \\(2s = 20 \\Rightarrow s = 10\\)." },
+      { id: 29, level: 5, typ: "numerisch", frage: "2 Äpfel + 3 Birnen = 5{,}10 €. 3 Äpfel + 2 Birnen = 5{,}40 €. Preis 1 Apfel in €?", loesung: 1.2, toleranz: 0.01, tipp: "LGS.", loesungsweg: "\\(2a + 3b = 5{,}10\\), \\(3a + 2b = 5{,}40\\). Multiplizieren & subtrahieren: \\(5a = 6{,}00 \\Rightarrow a = 1{,}20\\)." },
+      { id: 30, level: 5, typ: "numerisch", frage: "Parkhaus: 3 PKW + 1 LKW = 17 €. 1 PKW + 2 LKW = 14 €. Was kostet ein LKW in €?", loesung: 5, toleranz: 0, tipp: "LGS.", loesungsweg: "\\(3p + l = 17\\), \\(p + 2l = 14\\). Auflösen: \\(l = 5, p = 4\\)." },
+      // LEVEL 6
+      { id: 31, level: 6, typ: "mc", frage: "Wann hat ein LGS KEINE Lösung?", optionen: ["Wenn Geraden parallel und verschieden sind", "Wenn Geraden identisch sind", "Wenn sich Geraden schneiden", "Nie"], korrekt: 0, tipp: "Parallele Geraden.", loesungsweg: "Parallele, verschiedene Geraden schneiden sich nicht - also keine Lösung." },
+      { id: 32, level: 6, typ: "mc", frage: "Wann hat ein LGS unendlich viele Lösungen?", optionen: ["Geraden schneiden sich", "Geraden parallel verschieden", "Geraden identisch", "Nie"], korrekt: 2, tipp: "Gleiche Gerade.", loesungsweg: "Identische Geraden haben <b>jeden Punkt</b> gemeinsam - unendlich viele Lösungen." },
+      { id: 33, level: 6, typ: "mc", frage: "\\(2x + y = 4\\), \\(4x + 2y = 8\\). Lösungsmenge?", optionen: ["Genau eine", "Keine", "Unendlich viele", "Zwei"], korrekt: 2, tipp: "Gleiche Gerade?", loesungsweg: "Gl. 2 ist das Doppelte von Gl. 1 - identische Geraden. Unendlich viele Lösungen." },
+      { id: 34, level: 6, typ: "numerisch", frage: "\\(4x + 3y = 18\\), \\(2x - y = 4\\). Bestimme \\(x\\).", loesung: 3, toleranz: 0, tipp: "Additionsverfahren.", loesungsweg: "Gl. 2 mal 3: \\(6x - 3y = 12\\). Addition: \\(10x = 30 \\Rightarrow x = 3, y = 2\\)." },
+      { id: 35, level: 6, typ: "numerisch", frage: "Ein Rechteck hat Umfang 36 cm, Länge 4 cm mehr als Breite. Bestimme die Länge in cm.", loesung: 11, toleranz: 0, tipp: "\\(2(l+b) = 36, l = b+4\\).", loesungsweg: "\\(l + b = 18, l = b + 4 \\Rightarrow 2b + 4 = 18 \\Rightarrow b = 7, l = 11\\)." },
+      { id: 36, level: 6, typ: "numerisch", frage: "\\(3x + 2y = 13\\), \\(x - y = 1\\). Bestimme \\(y\\).", loesung: 2, toleranz: 0, tipp: "Einsetzen \\(x = y+1\\).", loesungsweg: "\\(3(y+1) + 2y = 13 \\Rightarrow 5y = 10 \\Rightarrow y = 2, x = 3\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

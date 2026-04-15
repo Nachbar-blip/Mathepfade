@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometrische Konstruktionen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-konstruktionen';
+    const THEMA_CONFIG = { name: 'Geometrische Konstruktionen', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Werkzeuge und Grundbegriffe ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Welche zwei Werkzeuge braucht man für klassische geometrische Konstruktionen?",
+        optionen: ["Lineal und Geodreieck", "Zirkel und Lineal", "Zirkel und Winkelmesser", "Taschenrechner und Stift"],
+        korrekt: 1,
+        tipp: "Die zwei klassischen Werkzeuge der Geometrie.",
+        loesungsweg: "Klassisch werden <b>Zirkel</b> (für Kreise) und <b>Lineal</b> (für Geraden) genutzt."
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "mc",
+        frage: "Wozu dient der Zirkel?",
+        optionen: ["Winkel messen", "Kreise und Kreisbögen zeichnen", "Geraden ziehen", "Flächen berechnen"],
+        korrekt: 1,
+        tipp: "Der Zirkel hat eine feste und eine bewegliche Spitze.",
+        loesungsweg: "Mit dem Zirkel werden <b>Kreise und Kreisbögen</b> gezeichnet."
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "mc",
+        frage: "Die Menge aller Punkte, die von einem Punkt \\(M\\) den Abstand \\(r\\) haben, ist ein …",
+        optionen: ["Quadrat", "Dreieck", "Kreis", "Rechteck"],
+        korrekt: 2,
+        tipp: "Der Zirkel zeichnet genau diese Menge.",
+        loesungsweg: "Ein <b>Kreis</b> ist die Menge aller Punkte mit festem Abstand \\(r\\) zum Mittelpunkt \\(M\\)."
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "numerisch",
+        frage: "Ein Kreis hat den Radius \\(5\\,\\text{cm}\\). Wie groß ist der Durchmesser in cm?",
+        loesung: 10,
+        toleranz: 0,
+        tipp: "Durchmesser = 2 mal Radius.",
+        loesungsweg: "$$d = 2r = 2 \\cdot 5 = 10\\,\\text{cm}$$"
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "mc",
+        frage: "Eine Strecke ist …",
+        optionen: ["unendlich lang", "ein Teil einer Geraden mit zwei Endpunkten", "immer gekrümmt", "ein Kreisbogen"],
+        korrekt: 1,
+        tipp: "Zwei Endpunkte begrenzen sie.",
+        loesungsweg: "Eine <b>Strecke</b> \\(\\overline{AB}\\) ist ein Teil einer Geraden mit zwei Endpunkten \\(A\\) und \\(B\\)."
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "numerisch",
+        frage: "Ein Kreis hat den Durchmesser \\(12\\,\\text{cm}\\). Wie groß ist der Radius in cm?",
+        loesung: 6,
+        toleranz: 0,
+        tipp: "Radius = halber Durchmesser.",
+        loesungsweg: "$$r = \\frac{d}{2} = \\frac{12}{2} = 6\\,\\text{cm}$$"
+      },
+      // ========== LEVEL 2 -- leicht: Mittelsenkrechte und Winkelhalbierende ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "mc",
+        frage: "Die Mittelsenkrechte einer Strecke \\(AB\\) ist die Menge aller Punkte, die …",
+        optionen: ["auf der Strecke liegen", "von \\(A\\) und \\(B\\) gleich weit entfernt sind", "von \\(A\\) doppelt so weit wie von \\(B\\) sind", "den Mittelpunkt berühren"],
+        korrekt: 1,
+        tipp: "„Mittel\" und „senkrecht\" sind die Hinweise.",
+        loesungsweg: "Die <b>Mittelsenkrechte</b> enthält alle Punkte mit gleichem Abstand zu \\(A\\) und \\(B\\). Sie steht senkrecht auf \\(AB\\) und geht durch den Mittelpunkt."
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "mc",
+        frage: "Wie konstruiert man die Mittelsenkrechte einer Strecke \\(AB\\)?",
+        optionen: ["Kreis um \\(A\\) mit beliebigem Radius, gleicher Kreis um \\(B\\); Schnittpunkte verbinden", "Kreis um \\(A\\) mit Radius 1 cm", "Gerade durch \\(A\\) senkrecht zur Tafel", "Punkt auf halber Strecke markieren"],
+        korrekt: 0,
+        tipp: "Zwei Kreise mit gleichem Radius größer als halbe Strecke.",
+        loesungsweg: "Zeichne Kreise um \\(A\\) und \\(B\\) mit gleichem Radius (\\(> \\frac{|AB|}{2}\\)). Die zwei Schnittpunkte liegen auf der <b>Mittelsenkrechten</b>."
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "mc",
+        frage: "Die Winkelhalbierende eines Winkels enthält alle Punkte, die …",
+        optionen: ["auf einem Schenkel liegen", "zu beiden Schenkeln gleichen Abstand haben", "den Scheitel berühren", "den Winkel verdoppeln"],
+        korrekt: 1,
+        tipp: "Sie teilt den Winkel in zwei gleiche Teile.",
+        loesungsweg: "Die <b>Winkelhalbierende</b> teilt den Winkel in zwei gleich große Teile. Ihre Punkte haben gleichen Abstand zu beiden Schenkeln."
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "numerisch",
+        frage: "Ein Winkel hat \\(80°\\). Wie groß ist jede Hälfte nach Konstruktion der Winkelhalbierenden (in Grad)?",
+        loesung: 40,
+        toleranz: 0,
+        tipp: "Die Halbierende teilt in zwei gleiche Teile.",
+        loesungsweg: "$$80° : 2 = 40°$$"
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "mc",
+        frage: "Wie konstruiert man eine Senkrechte von einem Punkt \\(P\\) auf eine Gerade \\(g\\)?",
+        optionen: ["Geodreieck mit Winkel von \\(P\\) zu \\(g\\)", "Kreis um \\(P\\) schneidet \\(g\\) in zwei Punkten; Mittelsenkrechte dieser Punkte geht durch \\(P\\)", "Einfach einen rechten Winkel raten", "Gerade durch \\(P\\) parallel zu \\(g\\)"],
+        korrekt: 1,
+        tipp: "Zirkel nutzen — Kreis um P.",
+        loesungsweg: "Kreis um \\(P\\) schneidet \\(g\\) in \\(A, B\\). Die Mittelsenkrechte von \\(AB\\) geht durch \\(P\\) und steht senkrecht auf \\(g\\)."
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "numerisch",
+        frage: "Ein Winkel von \\(90°\\) wird halbiert. Wie viel Grad hat jeder Teil?",
+        loesung: 45,
+        toleranz: 0,
+        tipp: "\\(90 : 2\\).",
+        loesungsweg: "$$\\frac{90°}{2} = 45°$$"
+      },
+      // ========== LEVEL 3 -- nervenschonend: Dreieckskonstruktion ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "mc",
+        frage: "Welche Angaben reichen, um ein Dreieck eindeutig zu konstruieren?",
+        optionen: ["Drei Winkel", "Drei Seiten (SSS)", "Eine Seite", "Zwei Winkel"],
+        korrekt: 1,
+        tipp: "Drei Seitenlängen legen ein Dreieck eindeutig fest.",
+        loesungsweg: "Nach <b>SSS</b> lässt sich ein Dreieck aus drei Seitenlängen eindeutig konstruieren (falls Dreiecksungleichung erfüllt)."
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "mc",
+        frage: "Ein Dreieck soll aus \\(a = 5\\,\\text{cm}\\), \\(b = 4\\,\\text{cm}\\) und \\(\\gamma = 60°\\) konstruiert werden. Welcher Kongruenzsatz?",
+        optionen: ["SSS", "SWS", "WSW", "SsW"],
+        korrekt: 1,
+        tipp: "Zwei Seiten und der <b>eingeschlossene</b> Winkel.",
+        loesungsweg: "\\(\\gamma\\) ist der von \\(a\\) und \\(b\\) eingeschlossene Winkel → <b>SWS</b>."
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "mc",
+        frage: "Welche Seitenlängen lassen KEIN Dreieck zu (Dreiecksungleichung)?",
+        optionen: ["\\(3, 4, 5\\)", "\\(2, 3, 6\\)", "\\(7, 7, 7\\)", "\\(5, 12, 13\\)"],
+        korrekt: 1,
+        tipp: "\\(2 + 3 = 5 < 6\\).",
+        loesungsweg: "Bei \\(2, 3, 6\\) gilt \\(2+3=5<6\\) → kein Dreieck möglich."
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein Dreieck hat \\(a = 6\\), \\(b = 5\\), \\(c = 4\\). Wie groß ist der Umfang (in cm)?",
+        loesung: 15,
+        toleranz: 0,
+        tipp: "Alle drei Seiten addieren.",
+        loesungsweg: "$$U = 6 + 5 + 4 = 15\\,\\text{cm}$$"
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "mc",
+        frage: "Wie zeichnet man einen \\(60°\\)-Winkel mit Zirkel und Lineal?",
+        optionen: ["Mit dem Geodreieck", "Als Innenwinkel eines gleichseitigen Dreiecks", "Man muss raten", "Zwei \\(30°\\)-Winkel addieren"],
+        korrekt: 1,
+        tipp: "Gleichseitig hat nur einen Winkel …",
+        loesungsweg: "Ein gleichseitiges Dreieck hat drei \\(60°\\)-Winkel. Konstruiere eines mit Zirkel: Der Innenwinkel ist \\(60°\\)."
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein gleichseitiges Dreieck mit Seite \\(7\\,\\text{cm}\\) wird konstruiert. Wie groß ist der Umfang (in cm)?",
+        loesung: 21,
+        toleranz: 0,
+        tipp: "\\(3 \\cdot 7\\).",
+        loesungsweg: "$$U = 3 \\cdot 7 = 21\\,\\text{cm}$$"
+      },
+      // ========== LEVEL 4 -- mittel: Umkreis und Inkreis ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "mc",
+        frage: "Der Schnittpunkt der Mittelsenkrechten eines Dreiecks ist der …",
+        optionen: ["Schwerpunkt", "Umkreismittelpunkt", "Inkreismittelpunkt", "Höhenschnittpunkt"],
+        korrekt: 1,
+        tipp: "Gleicher Abstand zu allen Ecken.",
+        loesungsweg: "Die Mittelsenkrechten schneiden sich im <b>Umkreismittelpunkt</b> — er hat gleichen Abstand zu allen drei Ecken."
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "mc",
+        frage: "Der Schnittpunkt der Winkelhalbierenden eines Dreiecks ist der …",
+        optionen: ["Umkreismittelpunkt", "Inkreismittelpunkt", "Schwerpunkt", "Höhenschnittpunkt"],
+        korrekt: 1,
+        tipp: "Gleicher Abstand zu allen Seiten.",
+        loesungsweg: "Die Winkelhalbierenden schneiden sich im <b>Inkreismittelpunkt</b> — er hat gleichen Abstand zu allen drei Seiten."
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "mc",
+        frage: "Wie viele Mittelsenkrechten hat ein Dreieck?",
+        optionen: ["\\(1\\)", "\\(2\\)", "\\(3\\)", "\\(6\\)"],
+        korrekt: 2,
+        tipp: "Eine pro Seite.",
+        loesungsweg: "Ein Dreieck hat <b>3 Mittelsenkrechten</b> (eine pro Seite). Alle schneiden sich in einem Punkt."
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "mc",
+        frage: "Wo liegt der Umkreismittelpunkt bei einem stumpfwinkligen Dreieck?",
+        optionen: ["Innerhalb des Dreiecks", "Außerhalb des Dreiecks", "Auf einer Seite", "In einer Ecke"],
+        korrekt: 1,
+        tipp: "Stumpfe Winkel „drücken\" den Punkt hinaus.",
+        loesungsweg: "Bei einem <b>stumpfwinkligen</b> Dreieck liegt der Umkreismittelpunkt <b>außerhalb</b> des Dreiecks."
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "mc",
+        frage: "Beim rechtwinkligen Dreieck liegt der Umkreismittelpunkt …",
+        optionen: ["in der rechten Ecke", "auf der Mitte der Hypotenuse", "außerhalb", "im Schwerpunkt"],
+        korrekt: 1,
+        tipp: "Satz des Thales.",
+        loesungsweg: "Nach dem <b>Satz des Thales</b> liegt der Umkreismittelpunkt auf der Mitte der Hypotenuse."
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "numerisch",
+        frage: "Wie viele Winkelhalbierende hat ein Dreieck?",
+        loesung: 3,
+        toleranz: 0,
+        tipp: "Eine pro Innenwinkel.",
+        loesungsweg: "Drei Winkelhalbierende — eine für jeden Innenwinkel. Sie schneiden sich im Inkreismittelpunkt."
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Höhen, Schwerpunkt ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "mc",
+        frage: "Eine Höhe im Dreieck ist das Lot von …",
+        optionen: ["einer Ecke auf die gegenüberliegende Seite", "der Mitte einer Seite zur gegenüberliegenden Ecke", "einem Schenkel zur Basis", "dem Scheitel zum Schwerpunkt"],
+        korrekt: 0,
+        tipp: "„Lot\" = senkrecht.",
+        loesungsweg: "Die <b>Höhe</b> ist das Lot von einer Ecke auf die gegenüberliegende Seite (bzw. deren Verlängerung)."
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "mc",
+        frage: "Die Schwerlinien (Seitenhalbierenden) verbinden …",
+        optionen: ["Ecke mit Mitte der gegenüberliegenden Seite", "zwei Seitenmitten", "zwei Ecken", "Mittelpunkt des Umkreises mit einer Ecke"],
+        korrekt: 0,
+        tipp: "Von der Ecke zur Seitenmitte.",
+        loesungsweg: "Eine <b>Seitenhalbierende</b> verbindet eine Ecke mit der Mitte der gegenüberliegenden Seite. Sie schneiden sich im Schwerpunkt."
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "mc",
+        frage: "Der Schwerpunkt teilt jede Seitenhalbierende im Verhältnis …",
+        optionen: ["\\(1:1\\)", "\\(1:2\\) (von der Ecke aus)", "\\(2:1\\) (von der Ecke aus)", "\\(1:3\\)"],
+        korrekt: 2,
+        tipp: "Das längere Stück ist zur Ecke hin.",
+        loesungsweg: "Der <b>Schwerpunkt</b> teilt jede Seitenhalbierende im Verhältnis \\(2:1\\), gemessen von der Ecke aus."
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "numerisch",
+        frage: "Eine Seitenhalbierende ist \\(9\\,\\text{cm}\\) lang. Wie weit ist der Schwerpunkt von der Ecke entfernt (in cm)?",
+        loesung: 6,
+        toleranz: 0,
+        tipp: "\\(\\frac{2}{3}\\) der Länge.",
+        loesungsweg: "$$\\frac{2}{3} \\cdot 9 = 6\\,\\text{cm}$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "mc",
+        frage: "Welcher Punkt liegt bei einem gleichseitigen Dreieck zusammen?",
+        optionen: ["Nur Umkreismittelpunkt und Schwerpunkt", "Nur Umkreis- und Inkreismittelpunkt", "Alle vier besonderen Punkte (Schwerpunkt, Umkreis-, Inkreismittelpunkt, Höhenschnittpunkt)", "Keiner"],
+        korrekt: 2,
+        tipp: "Symmetrie macht alles gleich.",
+        loesungsweg: "Beim <b>gleichseitigen Dreieck</b> fallen Schwerpunkt, Umkreis-, Inkreismittelpunkt und Höhenschnittpunkt zu einem Punkt zusammen."
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "numerisch",
+        frage: "Ein Kreis hat Durchmesser \\(14\\,\\text{cm}\\). Ein einbeschriebenes Quadrat hat die Diagonale \\(d = 14\\). Wie lang ist die Diagonale (in cm)?",
+        loesung: 14,
+        toleranz: 0,
+        tipp: "Die Diagonale des einbeschriebenen Quadrats ist gleich dem Durchmesser.",
+        loesungsweg: "Die Diagonale = Durchmesser = \\(14\\,\\text{cm}\\)."
+      },
+      // ========== LEVEL 6 -- wagnerisch: Komplexe Konstruktionen ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "mc",
+        frage: "Ein Dreieck mit \\(c = 6\\,\\text{cm}\\), \\(\\alpha = 50°\\), \\(\\beta = 70°\\) soll konstruiert werden. Welcher Kongruenzsatz?",
+        optionen: ["SSS", "SWS", "WSW", "Nicht konstruierbar"],
+        korrekt: 2,
+        tipp: "Ein Seite zwischen zwei Winkeln.",
+        loesungsweg: "Seite \\(c\\) liegt zwischen \\(\\alpha\\) und \\(\\beta\\) → <b>WSW</b>."
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Dreieck hat die Winkel \\(\\alpha = 50°, \\beta = 70°\\). Wie groß ist \\(\\gamma\\) vor der Konstruktion (in Grad)?",
+        loesung: 60,
+        toleranz: 0,
+        tipp: "\\(180° - 50° - 70°\\).",
+        loesungsweg: "$$\\gamma = 180° - 120° = 60°$$"
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "mc",
+        frage: "Wie konstruiert man einen \\(30°\\)-Winkel mit Zirkel und Lineal?",
+        optionen: ["Mit dem Geodreieck", "Zuerst \\(60°\\) (gleichseitig), dann halbieren", "\\(45°\\) halbieren", "Man braucht einen Winkelmesser"],
+        korrekt: 1,
+        tipp: "\\(60° : 2 = 30°\\).",
+        loesungsweg: "\\(60°\\)-Winkel durch gleichseitiges Dreieck konstruieren, dann mit Winkelhalbierender halbieren → \\(30°\\)."
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Kreis hat Radius \\(5\\,\\text{cm}\\). Er ist Umkreis eines Dreiecks. In welchem Verhältnis steht der Abstand jeder Ecke zum Mittelpunkt? Gib diesen Abstand in cm an.",
+        loesung: 5,
+        toleranz: 0,
+        tipp: "Umkreis → alle Ecken auf dem Kreis → Abstand = Radius.",
+        loesungsweg: "Jede Ecke hat vom Umkreismittelpunkt den Abstand \\(r = 5\\,\\text{cm}\\)."
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "mc",
+        frage: "Welche Konstruktion ergibt eine Parallele zu einer Geraden \\(g\\) durch einen Punkt \\(P\\) außerhalb von \\(g\\)?",
+        optionen: ["Senkrechte in \\(P\\) zu \\(g\\), dann Senkrechte dazu in \\(P\\)", "Kreis um \\(P\\) mit beliebigem Radius", "Zwei Kreise mit gleichem Radius", "Winkelhalbierende"],
+        korrekt: 0,
+        tipp: "Zweimal senkrecht = parallel.",
+        loesungsweg: "Konstruiere das Lot von \\(P\\) auf \\(g\\), dann das Lot auf dieses Lot in \\(P\\) → <b>Parallele</b> zu \\(g\\) durch \\(P\\)."
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein gleichseitiges Dreieck mit Seite \\(6\\,\\text{cm}\\) wird konstruiert. Die Höhe beträgt \\(h = \\frac{a\\sqrt{3}}{2}\\). Berechne die Höhe gerundet auf eine Dezimale in cm.",
+        loesung: 5.2,
+        toleranz: 0.1,
+        tipp: "\\(h = \\frac{6 \\cdot 1{,}732}{2}\\).",
+        loesungsweg: "$$h = \\frac{6\\sqrt{3}}{2} = 3\\sqrt{3} \\approx 5{,}196\\,\\text{cm} \\approx 5{,}2\\,\\text{cm}$$"
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxplot &amp; Quartile - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '9-stoch-boxplot';
+    const THEMA_CONFIG = { name: 'Boxplot & Quartile', bereich: 'stochastik' };
+    const AUFGABEN = [
+      { id:1, level:1, typ:"mc", frage:"Ein Boxplot zeigt NICHT …", optionen:["Median","Quartile","Ausreißer","Mittelwert"], korrekt:3, tipp:"Mittelwert nicht direkt.", loesungsweg:"Mittelwert ist im Boxplot nicht enthalten." },
+      { id:2, level:1, typ:"mc", frage:"Das untere Quartil \\(Q_1\\) trennt …", optionen:["Median von Max","25% unterste vom Rest","50% ab","Max von Min"], korrekt:1, tipp:"25%.", loesungsweg:"\\(Q_1\\) = 25%-Quantil." },
+      { id:3, level:1, typ:"mc", frage:"Interquartilsabstand?", optionen:["\\(Q_3-Q_1\\)","Max-Min","Q2","\\(Q_3+Q_1\\)"], korrekt:0, tipp:"IQR.", loesungsweg:"\\(\\text{IQR}=Q_3-Q_1\\)." },
+      { id:4, level:1, typ:"numerisch", frage:"Daten 1,2,3,4,5,6,7. Median?", loesung:4, toleranz:0, tipp:"Mitte.", loesungsweg:"\\(4\\)." },
+      { id:5, level:1, typ:"numerisch", frage:"1,2,3,4,5,6,7,8. Median?", loesung:4.5, toleranz:0.01, tipp:"Mitte von 4 und 5.", loesungsweg:"\\(4{,}5\\)." },
+      { id:6, level:1, typ:"numerisch", frage:"1,2,3,4,5. Spannweite?", loesung:4, toleranz:0, tipp:"Max-Min.", loesungsweg:"\\(4\\)." },
+      { id:7, level:2, typ:"numerisch", frage:"Daten 2,4,6,8,10,12,14,16. \\(Q_1\\)?", loesung:5, toleranz:0.1, tipp:"Median der unteren Hälfte.", loesungsweg:"Untere Hälfte 2,4,6,8 → Median \\(5\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"Gleiche Daten. \\(Q_3\\)?", loesung:13, toleranz:0.1, tipp:"Median obere Hälfte.", loesungsweg:"\\(13\\)." },
+      { id:9, level:2, typ:"numerisch", frage:"Gleiche Daten. IQR?", loesung:8, toleranz:0.1, tipp:"\\(Q_3-Q_1\\).", loesungsweg:"\\(8\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"Daten 3,5,7,9,11,13,15. \\(Q_1\\)?", loesung:5, toleranz:0, tipp:"Untere Hälfte 3,5,7.", loesungsweg:"\\(5\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"Gleiche: \\(Q_3\\)?", loesung:13, toleranz:0, tipp:"Obere Hälfte 11,13,15.", loesungsweg:"\\(13\\)." },
+      { id:12, level:2, typ:"mc", frage:"Die Box umfasst …", optionen:["25% der Daten","50% der Daten","75% der Daten","alle"], korrekt:1, tipp:"Von \\(Q_1\\) bis \\(Q_3\\).", loesungsweg:"50% der Daten (mittlere)." },
+      { id:13, level:3, typ:"numerisch", frage:"Datensatz 4,7,8,9,10,11,12,13,15,18,22. Median?", loesung:11, toleranz:0, tipp:"6. Wert.", loesungsweg:"\\(11\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"Gleich: \\(Q_1\\)?", loesung:8, toleranz:0.5, tipp:"Median 4,7,8,9,10 = 8.", loesungsweg:"\\(8\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"Gleich: \\(Q_3\\)?", loesung:15, toleranz:0.5, tipp:"Median 12,13,15,18,22.", loesungsweg:"\\(15\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"Gleich: IQR?", loesung:7, toleranz:0.5, tipp:"15-8.", loesungsweg:"\\(7\\)." },
+      { id:17, level:3, typ:"numerisch", frage:"Gleich: Spannweite?", loesung:18, toleranz:0, tipp:"22-4.", loesungsweg:"\\(18\\)." },
+      { id:18, level:3, typ:"mc", frage:"In welcher Reihenfolge liegen Werte im Boxplot (links nach rechts)?", optionen:["Min, Q1, Median, Q3, Max","Max, Q3, Median, Q1, Min","Q1, Min, Median, Max, Q3","Median, Q1, Q3, Min, Max"], korrekt:0, tipp:"Aufsteigend.", loesungsweg:"Min, Q1, Median, Q3, Max." },
+      { id:19, level:4, typ:"numerisch", frage:"Ein Wert \\(x\\) heißt Ausreißer nach Tukey, wenn \\(x<Q_1-1{,}5\\cdot IQR\\) oder \\(x>Q_3+1{,}5\\cdot IQR\\). Bei \\(Q_1=10, Q_3=20\\) ist die untere Grenze?", loesung:-5, toleranz:0.1, tipp:"\\(10-1{,}5\\cdot 10\\).", loesungsweg:"\\(-5\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"Gleich: obere Grenze?", loesung:35, toleranz:0.1, tipp:"\\(20+15\\).", loesungsweg:"\\(35\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"Daten: 5,5,7,8,9,10,11,12,13,14,30. Spannweite?", loesung:25, toleranz:0, tipp:"30-5.", loesungsweg:"\\(25\\)." },
+      { id:22, level:4, typ:"numerisch", frage:"Gleich: Median?", loesung:10, toleranz:0, tipp:"6. Wert bei n=11.", loesungsweg:"\\(10\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"Gleich: \\(Q_3\\)?", loesung:13, toleranz:0.5, tipp:"Median 11,12,13,14,30 = 13.", loesungsweg:"\\(13\\)." },
+      { id:24, level:4, typ:"mc", frage:"Ein symmetrischer Boxplot zeigt …", optionen:["ausgeglichene Verteilung","Ausreißer rechts","stark linksschief","viele extreme Werte"], korrekt:0, tipp:"Symmetrie.", loesungsweg:"Ausgeglichen, symmetrisch verteilt." },
+      { id:25, level:5, typ:"numerisch", frage:"Klasse A: Median 7, Q1=5, Q3=9. IQR?", loesung:4, toleranz:0, tipp:"9-5.", loesungsweg:"\\(4\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"Noten: 1,1,2,2,2,3,3,4,4,5,6. Median?", loesung:3, toleranz:0, tipp:"6. Wert.", loesungsweg:"\\(3\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Gleich: \\(Q_1\\) (untere Hälfte 1,1,2,2,2)?", loesung:2, toleranz:0, tipp:"Median der unt. Hälfte.", loesungsweg:"\\(2\\)." },
+      { id:28, level:5, typ:"numerisch", frage:"Gleich: \\(Q_3\\) (obere Hälfte 3,4,4,5,6)?", loesung:4, toleranz:0, tipp:"Median.", loesungsweg:"\\(4\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"Zwei Klassen: A mit IQR=3, B mit IQR=8. Welche streut mehr? (A=1, B=2)", loesung:2, toleranz:0, tipp:"Größerer IQR.", loesungsweg:"Klasse B." },
+      { id:30, level:5, typ:"mc", frage:"Die „Whisker\" (Antennen) reichen bei Standardboxplots bis …", optionen:["Q1 und Q3","Median","Min/Max innerhalb 1,5·IQR","immer Max/Min"], korrekt:2, tipp:"Tukey-Konvention.", loesungsweg:"Bis zu Min/Max im Bereich 1,5·IQR." },
+      { id:31, level:6, typ:"numerisch", frage:"Datensatz: 2,5,7,8,9,10,12,13,14,16,20,35. Gibt es nach Tukey einen oberen Ausreißer? Ja=1, Nein=0. (\\(Q_1=7{,}5; Q_3=15\\))", loesung:1, toleranz:0, tipp:"Obere Grenze \\(15+1{,}5\\cdot 7{,}5=26{,}25\\).", loesungsweg:"35>26,25 → Ausreißer (1)." },
+      { id:32, level:6, typ:"numerisch", frage:"Gleich: IQR?", loesung:7.5, toleranz:0.1, tipp:"15-7,5.", loesungsweg:"\\(7{,}5\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"Zwei Klassen im Notenvergleich. Boxplot A: Median 3, IQR 1. Boxplot B: Median 3, IQR 3. Welche ist homogener? (A=1, B=2)", loesung:1, toleranz:0, tipp:"Kleinerer IQR.", loesungsweg:"Klasse A." },
+      { id:34, level:6, typ:"numerisch", frage:"Wenn Median = Q1 = Q3, was trifft zu? (Box ist leer=1, alle Werte gleich=2)", loesung:2, toleranz:0, tipp:"Keine Streuung.", loesungsweg:"Alle Werte (in diesen Quartilen) identisch → 2." },
+      { id:35, level:6, typ:"numerisch", frage:"Bei n=20 geordneten Werten: Position des Medians?", loesung:10.5, toleranz:0.1, tipp:"Zwischen 10. und 11.", loesungsweg:"\\(10{,}5\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Verteilung rechtsschief: Typischerweise gilt …? (Median>Mittelwert=1, Median<Mittelwert=2, Median=Mittelwert=3)", loesung:2, toleranz:0, tipp:"Rechte Ausreißer ziehen Mittelwert hoch.", loesungsweg:"Median < Mittelwert (2)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

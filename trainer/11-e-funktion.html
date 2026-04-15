@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Funktion - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '11-e-funktion';
+    const THEMA_CONFIG = { name: 'e-Funktion', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1 -- Grundlagen
+      { id:1, level:1, typ:"mc", frage:"Die Eulersche Zahl \\(e\\) ist ungefähr:", optionen:["\\(2{,}71\\)","\\(3{,}14\\)","\\(1{,}41\\)","\\(1{,}73\\)"], korrekt:0, tipp:"Basis des natürlichen Log.", loesungsweg:"\\(e\\approx 2{,}71828\\)." },
+      { id:2, level:1, typ:"numerisch", frage:"\\(e^0=?\\)", loesung:1, toleranz:0, tipp:"Jede Zahl hoch 0.", loesungsweg:"\\(e^0=1\\)." },
+      { id:3, level:1, typ:"mc", frage:"Definitionsbereich von \\(f(x)=e^x\\):", optionen:["\\(x>0\\)","\\(x\\neq 0\\)","\\(\\mathbb{R}\\)","\\(x\\geq 0\\)"], korrekt:2, tipp:"Alle reellen Zahlen.", loesungsweg:"\\(D=\\mathbb{R}\\)." },
+      { id:4, level:1, typ:"mc", frage:"Wertebereich von \\(e^x\\):", optionen:["\\(\\mathbb{R}\\)","\\(y>0\\)","\\(y\\geq 0\\)","\\(y<0\\)"], korrekt:1, tipp:"Immer positiv.", loesungsweg:"\\(W=(0,\\infty)\\)." },
+      { id:5, level:1, typ:"numerisch", frage:"\\(e^1\\) (gerundet auf 2 Nachkommastellen)?", loesung:2.72, toleranz:0.01, tipp:"\\(e\\).", loesungsweg:"\\(e\\approx 2{,}72\\)." },
+      { id:6, level:1, typ:"mc", frage:"Der Graph von \\(e^x\\) …", optionen:["fällt monoton","ist streng monoton steigend","ist periodisch","hat Nullstelle bei 0"], korrekt:1, tipp:"Exponentielles Wachstum.", loesungsweg:"\\(e^x\\) ist streng monoton wachsend." },
+      // LEVEL 2 -- Rechengesetze
+      { id:7, level:2, typ:"mc", frage:"\\(e^a \\cdot e^b=\\)?", optionen:["\\(e^{a+b}\\)","\\(e^{ab}\\)","\\(e^{a-b}\\)","\\(2e^{a+b}\\)"], korrekt:0, tipp:"Potenzgesetze.", loesungsweg:"\\(e^a\\cdot e^b=e^{a+b}\\)." },
+      { id:8, level:2, typ:"mc", frage:"\\(\\frac{e^a}{e^b}=\\)?", optionen:["\\(e^{ab}\\)","\\(e^{a+b}\\)","\\(e^{a-b}\\)","\\(e^{a/b}\\)"], korrekt:2, tipp:"Division = Subtraktion im Exponenten.", loesungsweg:"\\(e^{a-b}\\)." },
+      { id:9, level:2, typ:"mc", frage:"\\((e^a)^b=\\)?", optionen:["\\(e^{a+b}\\)","\\(e^{ab}\\)","\\(e^{a^b}\\)","\\(e^{a/b}\\)"], korrekt:1, tipp:"Potenz einer Potenz.", loesungsweg:"\\(e^{ab}\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"\\(e^2\\cdot e^{-2}=?\\)", loesung:1, toleranz:0, tipp:"Summe der Exponenten.", loesungsweg:"\\(e^0=1\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"\\(\\frac{e^5}{e^3}\\) als \\(e^k\\): \\(k=?\\)", loesung:2, toleranz:0, tipp:"Subtraktion.", loesungsweg:"\\(k=2\\)." },
+      { id:12, level:2, typ:"numerisch", frage:"\\(e^{-1}\\) gerundet?", loesung:0.37, toleranz:0.01, tipp:"\\(1/e\\).", loesungsweg:"\\(\\approx 0{,}37\\)." },
+      // LEVEL 3 -- ln und e
+      { id:13, level:3, typ:"mc", frage:"\\(\\ln(e)=?\\)", optionen:["\\(0\\)","\\(1\\)","\\(e\\)","\\(2{,}72\\)"], korrekt:1, tipp:"ln ist Umkehrung.", loesungsweg:"\\(\\ln e=1\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"\\(\\ln(1)=?\\)", loesung:0, toleranz:0, tipp:"\\(e^0=1\\).", loesungsweg:"\\(\\ln 1=0\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"\\(\\ln(e^5)=?\\)", loesung:5, toleranz:0, tipp:"Umkehrfunktion.", loesungsweg:"\\(\\ln(e^5)=5\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"\\(e^{\\ln 7}=?\\)", loesung:7, toleranz:0, tipp:"Inverse.", loesungsweg:"\\(=7\\)." },
+      { id:17, level:3, typ:"numerisch", frage:"Löse \\(e^x=10\\). \\(x\\) (gerundet)?", loesung:2.30, toleranz:0.05, tipp:"\\(x=\\ln 10\\).", loesungsweg:"\\(x=\\ln 10\\approx 2{,}30\\)." },
+      { id:18, level:3, typ:"numerisch", frage:"Löse \\(e^{2x}=e^6\\). \\(x=?\\)", loesung:3, toleranz:0, tipp:"Exponentenvergleich.", loesungsweg:"\\(2x=6\\Rightarrow x=3\\)." },
+      // LEVEL 4 -- Exponentialgleichungen
+      { id:19, level:4, typ:"numerisch", frage:"\\(e^x=5\\), \\(x\\) (gerundet)?", loesung:1.61, toleranz:0.05, tipp:"\\(\\ln 5\\).", loesungsweg:"\\(x\\approx 1{,}61\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"\\(3e^x=15\\), \\(x\\) (gerundet)?", loesung:1.61, toleranz:0.05, tipp:"Erst durch 3, dann ln.", loesungsweg:"\\(e^x=5 \\Rightarrow x=\\ln 5\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"\\(e^x \\cdot e^2 = e^7\\), \\(x=?\\)", loesung:5, toleranz:0, tipp:"Exponenten.", loesungsweg:"\\(x+2=7\\)." },
+      { id:22, level:4, typ:"numerisch", frage:"\\(e^{x+1}=e^{2x-3}\\), \\(x=?\\)", loesung:4, toleranz:0, tipp:"Exponentengleichheit.", loesungsweg:"\\(x+1=2x-3 \\Rightarrow x=4\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"Wachstum \\(N(t)=100\\cdot e^{0{,}1t}\\). \\(N(0)=?\\)", loesung:100, toleranz:0, tipp:"\\(e^0=1\\).", loesungsweg:"\\(=100\\)." },
+      { id:24, level:4, typ:"numerisch", frage:"\\(N(t)=100 e^{0{,}1t}\\), \\(N(10)\\) (gerundet)?", loesung:272, toleranz:5, tipp:"\\(100\\cdot e\\).", loesungsweg:"\\(\\approx 271{,}8\\)." },
+      // LEVEL 5 -- Zerfall
+      { id:25, level:5, typ:"numerisch", frage:"Zerfall: \\(N(t)=1000 e^{-0{,}2t}\\). \\(N(5)\\) (gerundet)?", loesung:368, toleranz:5, tipp:"\\(1000/e\\).", loesungsweg:"\\(\\approx 367{,}9\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"Halbwertszeit bei \\(N(t)=N_0 e^{-0{,}2t}\\): \\(T\\) (gerundet)?", loesung:3.47, toleranz:0.1, tipp:"\\(T=\\ln 2/0{,}2\\).", loesungsweg:"\\(T=\\ln 2/0{,}2\\approx 3{,}47\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Verdoppelungszeit \\(N(t)=N_0 e^{0{,}05t}\\), \\(T\\) (gerundet)?", loesung:13.86, toleranz:0.2, tipp:"\\(T=\\ln 2/0{,}05\\).", loesungsweg:"\\(\\approx 13{,}86\\)." },
+      { id:28, level:5, typ:"mc", frage:"\\(f(x)=e^{-x^2}\\) nimmt Maximum an bei:", optionen:["\\(x=-1\\)","\\(x=0\\)","\\(x=1\\)","gar nicht"], korrekt:1, tipp:"Exponent minimal bei \\(x=0\\).", loesungsweg:"Maximum bei \\(x=0\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"\\(f(x)=e^x+e^{-x}\\), \\(f(0)=?\\)", loesung:2, toleranz:0, tipp:"\\(1+1\\).", loesungsweg:"\\(=2\\)." },
+      { id:30, level:5, typ:"numerisch", frage:"Gleichung \\(e^{2x}-3e^x+2=0\\) (Subst. \\(u=e^x\\)): größere Lösung \\(x\\) (gerundet)?", loesung:0.69, toleranz:0.05, tipp:"\\(u=1,2\\), \\(\\ln 2\\).", loesungsweg:"\\(x=\\ln 2\\approx 0{,}69\\)." },
+      // LEVEL 6 -- Modellierung
+      { id:31, level:6, typ:"numerisch", frage:"Bakterien: \\(N(t)=50 e^{0{,}3t}\\). Wann \\(N=500\\) (h, gerundet)?", loesung:7.68, toleranz:0.2, tipp:"\\(t=\\ln 10/0{,}3\\).", loesungsweg:"\\(\\approx 7{,}68\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"Zinseszins stetig: Kapital 1000€, Zinsrate 5% stetig, nach 10 Jahren (gerundet)?", loesung:1649, toleranz:5, tipp:"\\(1000 e^{0{,}5}\\).", loesungsweg:"\\(\\approx 1648{,}7\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"\\(f(x)=e^x - 1\\). Nullstelle?", loesung:0, toleranz:0, tipp:"\\(e^x=1\\).", loesungsweg:"\\(x=0\\)." },
+      { id:34, level:6, typ:"mc", frage:"Wie verhält sich \\(e^x\\) für \\(x\\to -\\infty\\)?", optionen:["\\(\\to \\infty\\)","\\(\\to 0\\)","\\(\\to -\\infty\\)","\\(\\to 1\\)"], korrekt:1, tipp:"Gegen Null von oben.", loesungsweg:"\\(e^x\\to 0^+\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"Temperatur: \\(T(t)=20+80 e^{-0{,}1t}\\). \\(T(0)?\\)", loesung:100, toleranz:0, tipp:"\\(e^0=1\\).", loesungsweg:"\\(=100\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Wann ist \\(T=40\\) (min, gerundet)?", loesung:13.86, toleranz:0.3, tipp:"\\(80e^{-0{,}1t}=20\\).", loesungsweg:"\\(t=\\ln 4/0{,}1\\approx 13{,}86\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaehlprinzip &amp; Baumdiagramme - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-stoch-zaehlprinzip';
+    const THEMA_CONFIG = { name: 'Zaehlprinzip & Baumdiagramme', bereich: 'stochastik' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id: 1, level: 1, typ: "mc", frage: "Das Zaehlprinzip besagt: Wenn es in Stufe 1 \\(n_1\\) Moeglichkeiten und in Stufe 2 \\(n_2\\) gibt, dann gesamt ...", optionen: ["\\(n_1 + n_2\\)", "\\(n_1 \\cdot n_2\\)", "\\(n_1 - n_2\\)", "\\(n_1^{n_2}\\)"], korrekt: 1, tipp: "Produktregel.", loesungsweg: "$$\\text{Gesamt} = n_1 \\cdot n_2$$" },
+      { id: 2, level: 1, typ: "numerisch", frage: "3 Hosen, 4 Shirts. Anzahl Outfits?", loesung: 12, toleranz: 0, tipp: "\\(3 \\cdot 4\\).", loesungsweg: "$$12$$" },
+      { id: 3, level: 1, typ: "numerisch", frage: "Muenze zweimal. Anzahl Ausgaenge?", loesung: 4, toleranz: 0, tipp: "\\(2 \\cdot 2\\).", loesungsweg: "$$|\\Omega| = 4$$" },
+      { id: 4, level: 1, typ: "numerisch", frage: "Wuerfel dreimal. Anzahl Ausgaenge?", loesung: 216, toleranz: 0, tipp: "\\(6^3\\).", loesungsweg: "$$216$$" },
+      { id: 5, level: 1, typ: "mc", frage: "Die Pfadregel (Multiplikationsregel) sagt: Wahrscheinlichkeit eines Pfades ist ...", optionen: ["Summe der Astwahrscheinlichkeiten", "Produkt der Astwahrscheinlichkeiten", "Maximum der Astwahrscheinlichkeiten", "Anzahl der Aeste"], korrekt: 1, tipp: "Entlang eines Pfades multiplizieren.", loesungsweg: "Entlang eines Pfades werden die Wahrscheinlichkeiten <b>multipliziert</b>." },
+      { id: 6, level: 1, typ: "mc", frage: "Die Summenregel (fuer Ereignisse aus mehreren Pfaden) sagt ...", optionen: ["multiplizieren", "addieren", "subtrahieren", "dividieren"], korrekt: 1, tipp: "Pfade desselben Ereignisses werden addiert.", loesungsweg: "Wahrscheinlichkeiten mehrerer guenstiger Pfade werden <b>addiert</b>." },
+      // LEVEL 2
+      { id: 7, level: 2, typ: "numerisch", frage: "PIN 4-stellig (0-9, Wiederholung erlaubt). Anzahl?", loesung: 10000, toleranz: 0, tipp: "\\(10^4\\).", loesungsweg: "$$10\\,000$$" },
+      { id: 8, level: 2, typ: "numerisch", frage: "5 Buecher in Reihe. Anordnungen?", loesung: 120, toleranz: 0, tipp: "\\(5! = 120\\).", loesungsweg: "$$5! = 120$$" },
+      { id: 9, level: 2, typ: "numerisch", frage: "3 Personen auf 3 Plaetze. Moeglichkeiten?", loesung: 6, toleranz: 0, tipp: "\\(3!\\).", loesungsweg: "$$6$$" },
+      { id: 10, level: 2, typ: "numerisch", frage: "Menue: 3 Vorspeisen, 4 Hauptspeisen, 2 Desserts. Menues?", loesung: 24, toleranz: 0, tipp: "\\(3 \\cdot 4 \\cdot 2\\).", loesungsweg: "$$24$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "Muenze 4-mal. Anzahl Ausgaenge?", loesung: 16, toleranz: 0, tipp: "\\(2^4\\).", loesungsweg: "$$16$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "Autokennzeichen: 1 Buchstabe (26) + 2 Ziffern (10). Anzahl?", loesung: 2600, toleranz: 0, tipp: "\\(26 \\cdot 10 \\cdot 10\\).", loesungsweg: "$$2600$$" },
+      // LEVEL 3
+      { id: 13, level: 3, typ: "numerisch", frage: "Urne: 3 rot, 2 blau. 1. Zug Wahrsch. fuer rot?", loesung: 0.6, toleranz: 0, tipp: "3/5.", loesungsweg: "$$0{,}6$$" },
+      { id: 14, level: 3, typ: "numerisch", frage: "Urne: 3 rot, 2 blau. Mit Zuruecklegen. \\(P(\\text{rot, rot})\\)?", loesung: 0.36, toleranz: 0.01, tipp: "\\(0{,}6 \\cdot 0{,}6\\).", loesungsweg: "$$0{,}36$$" },
+      { id: 15, level: 3, typ: "numerisch", frage: "Urne: 3 rot, 2 blau. Ohne Zuruecklegen. \\(P(\\text{rot, rot})\\) (4 Nachk.)?", loesung: 0.3, toleranz: 0.01, tipp: "\\(\\frac{3}{5} \\cdot \\frac{2}{4}\\).", loesungsweg: "$$0{,}6 \\cdot 0{,}5 = 0{,}3$$" },
+      { id: 16, level: 3, typ: "numerisch", frage: "Muenze 3-mal. \\(P(\\text{KKZ})\\) als Pfad?", loesung: 0.125, toleranz: 0.001, tipp: "\\((1/2)^3\\).", loesungsweg: "$$1/8 = 0{,}125$$" },
+      { id: 17, level: 3, typ: "numerisch", frage: "Schuettel-Box: 70 % Blau. 2-mal ziehen (mit Zurueck). \\(P(\\text{Blau, Blau})\\)?", loesung: 0.49, toleranz: 0.01, tipp: "\\(0{,}7^2\\).", loesungsweg: "$$0{,}49$$" },
+      { id: 18, level: 3, typ: "numerisch", frage: "Elfmeter: Treffer 80%. 3-mal schiessen. \\(P(\\text{3x Treffer})\\) (4 Nachk.)?", loesung: 0.512, toleranz: 0.01, tipp: "\\(0{,}8^3\\).", loesungsweg: "$$0{,}512$$" },
+      // LEVEL 4
+      { id: 19, level: 4, typ: "numerisch", frage: "Urne 4 rot, 6 blau. Mit Zurueck. 2 Zuege. \\(P(\\text{genau 1 rot})\\)?", loesung: 0.48, toleranz: 0.01, tipp: "2 Pfade: RB + BR.", loesungsweg: "$$2 \\cdot 0{,}4 \\cdot 0{,}6 = 0{,}48$$" },
+      { id: 20, level: 4, typ: "numerisch", frage: "Urne 3 rot, 2 blau. Ohne Zurueck. 2 Zuege. \\(P(\\text{1. rot, 2. blau})\\)?", loesung: 0.3, toleranz: 0.01, tipp: "\\(\\frac{3}{5} \\cdot \\frac{2}{4}\\).", loesungsweg: "$$0{,}3$$" },
+      { id: 21, level: 4, typ: "numerisch", frage: "Muenze 3-mal. \\(P(\\text{genau 2 Kopf})\\)?", loesung: 0.375, toleranz: 0.01, tipp: "3 Pfade, je \\(1/8\\).", loesungsweg: "$$3/8 = 0{,}375$$" },
+      { id: 22, level: 4, typ: "numerisch", frage: "Elfmeter 80%. 3 Schuss. \\(P(\\text{genau 2 Treffer})\\)?", loesung: 0.384, toleranz: 0.01, tipp: "3 Pfade: TTN, TNT, NTT. Je \\(0{,}8^2 \\cdot 0{,}2\\).", loesungsweg: "$$3 \\cdot 0{,}128 = 0{,}384$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Wuerfel 2-mal. \\(P(\\text{beide 6})\\) (4 Nachk.)?", loesung: 0.0278, toleranz: 0.001, tipp: "\\(1/36\\).", loesungsweg: "$$0{,}0278$$" },
+      { id: 24, level: 4, typ: "mc", frage: "„Mindestens eine 6\" bei 2 Wuerfen hat \\(P = ?\\) (4 Nachk.)", optionen: ["\\(0{,}1667\\)", "\\(0{,}3056\\)", "\\(0{,}5000\\)", "\\(0{,}8333\\)"], korrekt: 1, tipp: "1 - P(keine 6) = 1 - (5/6)^2.", loesungsweg: "$$1 - 25/36 = 11/36 \\approx 0{,}3056$$" },
+      // LEVEL 5
+      { id: 25, level: 5, typ: "numerisch", frage: "Produktionstest: 5% Ausschuss. 3 Teile. \\(P(\\text{alle OK})\\) (4 Nachk.)?", loesung: 0.8574, toleranz: 0.005, tipp: "\\(0{,}95^3\\).", loesungsweg: "$$0{,}857\\ldots$$" },
+      { id: 26, level: 5, typ: "numerisch", frage: "Selbe Aufgabe: \\(P(\\text{mind. 1 Ausschuss})\\) (4 Nachk.)?", loesung: 0.1426, toleranz: 0.005, tipp: "1 - P(alle OK).", loesungsweg: "$$\\approx 0{,}1426$$" },
+      { id: 27, level: 5, typ: "numerisch", frage: "Urne 2 rot, 3 blau. Ohne Zurueck. 2 Zuege. \\(P(\\text{beide gleich farbig})\\) (4 Nachk.)?", loesung: 0.4, toleranz: 0.01, tipp: "\\(\\frac{2}{5}\\cdot\\frac{1}{4} + \\frac{3}{5}\\cdot\\frac{2}{4}\\).", loesungsweg: "$$2/20 + 6/20 = 8/20 = 0{,}4$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "3-stellige Zahl aus Ziffern 1-5, ohne Wdh. Anzahl?", loesung: 60, toleranz: 0, tipp: "\\(5 \\cdot 4 \\cdot 3\\).", loesungsweg: "$$60$$" },
+      { id: 29, level: 5, typ: "numerisch", frage: "Lottoklasse: 6 Fragen a 4 Antworten. Zufaellig alle richtig? (4 Nachk.)", loesung: 0.0002, toleranz: 0.0001, tipp: "\\((1/4)^6\\).", loesungsweg: "$$1/4096 \\approx 0{,}0002$$" },
+      { id: 30, level: 5, typ: "numerisch", frage: "Urne 3 rot, 2 blau. Mit Zurueck. 3 Zuege. \\(P(\\text{alle rot})\\) (4 Nachk.)?", loesung: 0.216, toleranz: 0.005, tipp: "\\(0{,}6^3\\).", loesungsweg: "$$0{,}216$$" },
+      // LEVEL 6
+      { id: 31, level: 6, typ: "numerisch", frage: "4 aus 7 ohne Wdh, Reihenfolge wichtig. Anzahl?", loesung: 840, toleranz: 0, tipp: "\\(7 \\cdot 6 \\cdot 5 \\cdot 4\\).", loesungsweg: "$$840$$" },
+      { id: 32, level: 6, typ: "numerisch", frage: "Buchstabenwort „MATHE\" alle Anordnungen?", loesung: 120, toleranz: 0, tipp: "\\(5!\\).", loesungsweg: "$$120$$" },
+      { id: 33, level: 6, typ: "numerisch", frage: "Urne 5 rot, 5 blau. Ohne Zurueck, 3 Zuege. \\(P(\\text{1.rot, 2.blau, 3.rot})\\) (4 Nachk.)?", loesung: 0.1389, toleranz: 0.005, tipp: "\\(\\frac{5}{10}\\cdot\\frac{5}{9}\\cdot\\frac{4}{8}\\).", loesungsweg: "$$100/720 \\approx 0{,}1389$$" },
+      { id: 34, level: 6, typ: "numerisch", frage: "Test: 70% bestehen. 4 Schueler unabhaengig. \\(P(\\text{alle bestehen})\\) (4 Nachk.)?", loesung: 0.2401, toleranz: 0.005, tipp: "\\(0{,}7^4\\).", loesungsweg: "$$0{,}2401$$" },
+      { id: 35, level: 6, typ: "mc", frage: "Warum werden bei Baumdiagrammen entlang Pfad multipliziert?", optionen: ["wegen Kommutativitaet", "weil Stufen unabhaengig hintereinander ausgefuehrt werden", "weil die Summe immer 1 ist", "zufaellig"], korrekt: 1, tipp: "Pfadregel.", loesungsweg: "Jeder Schritt bedingt den naechsten -- Wahrsch. werden multipliziert." },
+      { id: 36, level: 6, typ: "numerisch", frage: "Urne 2 rot, 3 blau. Ohne Zurueck. 2 Zuege. \\(P(\\text{mind. 1 rot})\\) (4 Nachk.)?", loesung: 0.7, toleranz: 0.01, tipp: "1 - P(beide blau) = \\(1 - \\frac{3}{5}\\cdot\\frac{2}{4}\\).", loesungsweg: "$$1 - 0{,}3 = 0{,}7$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

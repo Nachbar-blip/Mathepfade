@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flächenberechnung - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-flaechenberechnung';
+    const THEMA_CONFIG = { name: 'Flächenberechnung', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id: 1, level: 1, typ: "mc", frage: "Die Fläche zwischen Graph von \\(f\\) (mit \\(f \\geq 0\\)) und x-Achse auf \\([a,b]\\) berechnet man mit:", optionen: ["\\(f(b)-f(a)\\)", "\\(\\int_a^b f(x)dx\\)", "\\(F'(x)\\)", "\\(\\frac{f(a)+f(b)}{2}\\)"], korrekt: 1, tipp: "Fläche = bestimmtes Integral.", loesungsweg: "$$A = \\int_a^b f(x)dx \\;\\; (\\text{für } f \\geq 0)$$" },
+      { id: 2, level: 1, typ: "numerisch", frage: "Fläche zwischen \\(f(x) = 2\\) und x-Achse auf \\([0,3]\\).", loesung: 6, toleranz: 0, tipp: "Rechteck 3×2.", loesungsweg: "$$A = \\int_0^3 2\\,dx = 6$$" },
+      { id: 3, level: 1, typ: "numerisch", frage: "Fläche zwischen \\(f(x) = x\\) und x-Achse auf \\([0,4]\\).", loesung: 8, toleranz: 0, tipp: "Dreieck: \\(\\frac{1}{2}\\cdot 4 \\cdot 4\\).", loesungsweg: "$$A = \\int_0^4 x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_0^4 = 8$$" },
+      { id: 4, level: 1, typ: "mc", frage: "Wenn \\(f(x) < 0\\) auf \\([a,b]\\), dann ist \\(\\int_a^b f dx\\)", optionen: ["positiv, = Fläche", "negativ, Fläche = \\(-\\int_a^b f dx\\)", "null", "undefiniert"], korrekt: 1, tipp: "Integral negativ → Betrag nehmen für Fläche.", loesungsweg: "Fläche \\(A = |\\int_a^b f dx| = -\\int_a^b f dx\\), wenn \\(f<0\\)." },
+      { id: 5, level: 1, typ: "numerisch", frage: "Fläche zwischen \\(f(x) = -2\\) und x-Achse auf \\([0,3]\\).", loesung: 6, toleranz: 0, tipp: "Betrag nehmen.", loesungsweg: "$$A = |\\int_0^3 -2\\,dx| = |-6| = 6$$" },
+      { id: 6, level: 1, typ: "mc", frage: "Welche Nullstellen hat \\(f(x) = x^2 - 4\\)?", optionen: ["\\(0\\)", "\\(\\pm 2\\)", "\\(\\pm 4\\)", "\\(1; 4\\)"], korrekt: 1, tipp: "\\(x^2 = 4\\).", loesungsweg: "\\(x^2 - 4 = 0 \\Rightarrow x = \\pm 2\\)." },
+      // LEVEL 2
+      { id: 7, level: 2, typ: "numerisch", frage: "Fläche unter \\(f(x) = x^2\\) auf \\([0,3]\\).", loesung: 9, toleranz: 0, tipp: "\\(F=\\frac{x^3}{3}\\).", loesungsweg: "$$A = \\int_0^3 x^2 dx = \\tfrac{27}{3} = 9$$" },
+      { id: 8, level: 2, typ: "numerisch", frage: "Fläche unter \\(f(x) = 3x^2\\) auf \\([0,2]\\).", loesung: 8, toleranz: 0, tipp: "\\(F=x^3\\).", loesungsweg: "$$A = [x^3]_0^2 = 8$$" },
+      { id: 9, level: 2, typ: "numerisch", frage: "Fläche zwischen \\(f(x) = 4-x^2\\) und x-Achse auf \\([-2,2]\\). (Dezimal)", loesung: 10.667, toleranz: 0.05, tipp: "\\(F = 4x - \\frac{x^3}{3}\\). \\(f \\geq 0\\) dort.", loesungsweg: "$$A = \\left[4x - \\tfrac{x^3}{3}\\right]_{-2}^{2} = (8-\\tfrac{8}{3})-(-8+\\tfrac{8}{3}) = \\tfrac{32}{3} \\approx 10{,}67$$" },
+      { id: 10, level: 2, typ: "numerisch", frage: "Fläche unter \\(f(x) = 2x + 1\\) auf \\([0,3]\\).", loesung: 12, toleranz: 0, tipp: "\\(F = x^2 + x\\).", loesungsweg: "$$A = [x^2+x]_0^3 = 12$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "Fläche unter \\(f(x) = x^3\\) auf \\([0,2]\\).", loesung: 4, toleranz: 0, tipp: "\\(F = \\frac{x^4}{4}\\).", loesungsweg: "$$A = \\tfrac{16}{4} = 4$$" },
+      { id: 12, level: 2, typ: "mc", frage: "Fläche unter \\(f(x) = e^x\\) auf \\([0,1]\\):", optionen: ["\\(e\\)", "\\(e-1\\)", "\\(1-e\\)", "\\(e+1\\)"], korrekt: 1, tipp: "\\([e^x]_0^1\\).", loesungsweg: "$$A = e - 1 \\approx 1{,}718$$" },
+      // LEVEL 3 -- Mit Nullstellen
+      { id: 13, level: 3, typ: "numerisch", frage: "\\(f(x) = x^2 - 1\\). Fläche zwischen Graph und x-Achse auf \\([-1,1]\\). (Dezimal)", loesung: 1.333, toleranz: 0.01, tipp: "\\(f \\leq 0\\) dort. \\(A = |\\int_{-1}^1 f|\\).", loesungsweg: "$$\\int_{-1}^{1}(x^2-1)dx = \\tfrac{2}{3}-2 = -\\tfrac{4}{3}$$<br>\\(A = \\tfrac{4}{3} \\approx 1{,}33\\)." },
+      { id: 14, level: 3, typ: "numerisch", frage: "\\(f(x) = x^2 - 4\\). Fläche zwischen Graph und x-Achse auf \\([-2,2]\\). (Dezimal)", loesung: 10.667, toleranz: 0.05, tipp: "\\(f \\leq 0\\) dort.", loesungsweg: "$$|\\int_{-2}^{2}(x^2-4)dx| = |\\tfrac{16}{3}-16| = \\tfrac{32}{3} \\approx 10{,}67$$" },
+      { id: 15, level: 3, typ: "numerisch", frage: "Fläche zwischen \\(f(x) = x^3\\) und x-Achse auf \\([-2,2]\\).", loesung: 8, toleranz: 0.01, tipp: "Vorzeichenwechsel bei 0! Aufteilen.", loesungsweg: "$$A = |\\int_{-2}^{0} x^3 dx| + \\int_0^2 x^3 dx = 4 + 4 = 8$$" },
+      { id: 16, level: 3, typ: "mc", frage: "Warum muss man bei Flächen mit Nullstellen aufteilen?", optionen: ["Wegen Symmetrie", "Weil sich pos. und neg. Flächen sonst aufheben", "Nur bei geraden Funktionen", "Man muss nie aufteilen"], korrekt: 1, tipp: "Integral kann 0 werden, Fläche nicht.", loesungsweg: "Das Integral kann wegen Vorzeichen Flächen zu null summieren. Flächen dagegen sind immer positiv — deshalb Nullstellen finden und abschnittsweise integrieren." },
+      { id: 17, level: 3, typ: "numerisch", frage: "\\(f(x) = x(x-2)\\). Fläche zwischen Graph und x-Achse auf \\([0,2]\\). (Dezimal)", loesung: 1.333, toleranz: 0.01, tipp: "\\(f \\leq 0\\) dort. \\(F = \\frac{x^3}{3} - x^2\\).", loesungsweg: "$$\\int_0^2(x^2-2x)dx = \\tfrac{8}{3} - 4 = -\\tfrac{4}{3}$$<br>\\(A = \\tfrac{4}{3} \\approx 1{,}33\\)." },
+      { id: 18, level: 3, typ: "numerisch", frage: "Nullstellen von \\(f(x) = x^3 - x\\)? Summe der Nullstellen:", loesung: 0, toleranz: 0, tipp: "\\(x(x-1)(x+1)=0\\).", loesungsweg: "NS: \\(-1; 0; 1\\). Summe: \\(0\\)." },
+      // LEVEL 4 -- Fläche zwischen zwei Kurven
+      { id: 19, level: 4, typ: "mc", frage: "Fläche zwischen \\(f\\) und \\(g\\) auf \\([a,b]\\) (mit \\(f \\geq g\\)):", optionen: ["\\(\\int_a^b f dx\\)", "\\(\\int_a^b (f - g) dx\\)", "\\(\\int_a^b (g - f) dx\\)", "\\(f(b)-g(a)\\)"], korrekt: 1, tipp: "Obere minus untere Funktion.", loesungsweg: "$$A = \\int_a^b (f(x) - g(x))dx \\;\\; \\text{mit } f \\geq g$$" },
+      { id: 20, level: 4, typ: "numerisch", frage: "Fläche zwischen \\(f(x)=x+2\\) und \\(g(x)=x^2\\). Schnittstellen: \\(-1\\) und \\(2\\). Berechne.", loesung: 4.5, toleranz: 0.05, tipp: "\\(\\int_{-1}^{2}(x+2-x^2)dx\\).", loesungsweg: "$$A = \\left[\\tfrac{x^2}{2}+2x-\\tfrac{x^3}{3}\\right]_{-1}^{2} = \\tfrac{10}{3}+\\tfrac{7}{6} = \\tfrac{27}{6} = 4{,}5$$" },
+      { id: 21, level: 4, typ: "numerisch", frage: "Schnittstellen von \\(f(x)=x^2\\) und \\(g(x)=2x\\): \\(x_1 = 0\\), \\(x_2 = ?\\)", loesung: 2, toleranz: 0, tipp: "\\(x^2 = 2x \\Rightarrow x(x-2)=0\\).", loesungsweg: "\\(x^2 - 2x = 0 \\Rightarrow x(x-2) = 0 \\Rightarrow x_2 = 2\\)." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Fläche zwischen \\(f(x)=2x\\) und \\(g(x)=x^2\\) (Schnittstellen 0 und 2). (Dezimal)", loesung: 1.333, toleranz: 0.01, tipp: "\\(\\int_0^2 (2x - x^2)dx\\).", loesungsweg: "$$A = \\left[x^2 - \\tfrac{x^3}{3}\\right]_0^2 = 4 - \\tfrac{8}{3} = \\tfrac{4}{3} \\approx 1{,}33$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Schnittstellen von \\(f(x)=x^2\\) und \\(g(x)=4\\). Produkt der Schnittstellen:", loesung: -4, toleranz: 0, tipp: "\\(x^2 = 4 \\Rightarrow x = \\pm 2\\).", loesungsweg: "\\(x = \\pm 2\\). Produkt: \\(2 \\cdot (-2) = -4\\)." },
+      { id: 24, level: 4, typ: "numerisch", frage: "Fläche zwischen \\(f(x) = 4\\) und \\(g(x) = x^2\\) über \\([-2,2]\\). (Dezimal)", loesung: 10.667, toleranz: 0.05, tipp: "\\(\\int_{-2}^2 (4 - x^2)dx\\).", loesungsweg: "$$A = \\left[4x - \\tfrac{x^3}{3}\\right]_{-2}^{2} = \\tfrac{32}{3} \\approx 10{,}67$$" },
+      // LEVEL 5
+      { id: 25, level: 5, typ: "numerisch", frage: "Fläche zwischen \\(f(x)=x^3\\) und \\(g(x)=x\\) auf \\([0,1]\\). (Dezimal)", loesung: 0.25, toleranz: 0.01, tipp: "Auf \\([0,1]\\) ist \\(x \\geq x^3\\).", loesungsweg: "$$A = \\int_0^1 (x - x^3)dx = \\tfrac{1}{2} - \\tfrac{1}{4} = 0{,}25$$" },
+      { id: 26, level: 5, typ: "numerisch", frage: "Fläche zwischen \\(f(x)=\\sin x\\) und x-Achse auf \\([0, 2\\pi]\\).", loesung: 4, toleranz: 0.01, tipp: "Aufteilen bei \\(\\pi\\). \\(\\int_0^\\pi \\sin + |\\int_\\pi^{2\\pi} \\sin|\\).", loesungsweg: "$$A = \\int_0^\\pi \\sin x\\,dx + |\\int_\\pi^{2\\pi} \\sin x\\,dx| = 2 + 2 = 4$$" },
+      { id: 27, level: 5, typ: "numerisch", frage: "Fläche zwischen \\(f(x)=x^2-2x\\) und x-Achse auf \\([0,2]\\). (Dezimal)", loesung: 1.333, toleranz: 0.01, tipp: "\\(f \\leq 0\\) dort.", loesungsweg: "$$A = |\\int_0^2(x^2-2x)dx| = |\\tfrac{8}{3}-4| = \\tfrac{4}{3}$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "Schnittstellen \\(f(x) = x^2\\) und \\(g(x) = x+2\\). Summe der Schnittstellen:", loesung: 1, toleranz: 0, tipp: "\\(x^2 - x - 2 = 0\\). Vieta: \\(x_1+x_2 = 1\\).", loesungsweg: "\\(x^2 - x - 2 = 0 \\Rightarrow x = -1, 2\\). Summe: \\(1\\)." },
+      { id: 29, level: 5, typ: "numerisch", frage: "Fläche zwischen \\(f(x)=x^2\\) und x-Achse auf \\([-1,2]\\). (Dezimal)", loesung: 3, toleranz: 0.01, tipp: "\\(f \\geq 0\\) überall.", loesungsweg: "$$A = \\int_{-1}^{2} x^2 dx = \\tfrac{8}{3}+\\tfrac{1}{3} = 3$$" },
+      { id: 30, level: 5, typ: "numerisch", frage: "Fläche zwischen \\(f(x)=4-x^2\\) und x-Achse über den Nullstellen. (Dezimal)", loesung: 10.667, toleranz: 0.05, tipp: "NS: \\(\\pm 2\\). \\(f \\geq 0\\) dort.", loesungsweg: "$$A = \\int_{-2}^{2}(4-x^2)dx = \\tfrac{32}{3}$$" },
+      // LEVEL 6
+      { id: 31, level: 6, typ: "numerisch", frage: "Fläche zwischen \\(f(x)=x^3-x\\) und x-Achse über \\([-1,1]\\). (Dezimal)", loesung: 0.5, toleranz: 0.01, tipp: "NS bei \\(0\\). Symmetrie.", loesungsweg: "$$A = 2 \\cdot |\\int_0^1 (x^3-x)dx| = 2 \\cdot |{-\\tfrac{1}{4}}| = 0{,}5$$" },
+      { id: 32, level: 6, typ: "numerisch", frage: "Fläche zwischen \\(f(x)=x^2\\) und \\(g(x)=x^3\\) auf \\([0,1]\\). (Dezimal)", loesung: 0.083, toleranz: 0.005, tipp: "Dort gilt \\(x^2 \\geq x^3\\).", loesungsweg: "$$A = \\int_0^1 (x^2 - x^3)dx = \\tfrac{1}{3} - \\tfrac{1}{4} = \\tfrac{1}{12} \\approx 0{,}083$$" },
+      { id: 33, level: 6, typ: "numerisch", frage: "Gesamt­fläche zwischen \\(f(x) = x^3-4x\\) und x-Achse auf \\([-2,2]\\). (Dezimal)", loesung: 8, toleranz: 0.05, tipp: "NS: \\(0; \\pm 2\\). Symmetrie.", loesungsweg: "$$A = 2 \\cdot |\\int_0^2 (x^3-4x)dx| = 2 \\cdot 4 = 8$$" },
+      { id: 34, level: 6, typ: "numerisch", frage: "Für welches \\(a > 0\\) schließt \\(f(x) = x\\) mit der x-Achse über \\([0, a]\\) eine Fläche von \\(8\\) ein?", loesung: 4, toleranz: 0.01, tipp: "\\(\\frac{a^2}{2} = 8\\).", loesungsweg: "$$\\tfrac{a^2}{2} = 8 \\Rightarrow a = 4$$" },
+      { id: 35, level: 6, typ: "numerisch", frage: "Fläche, die \\(f(x) = -x^2 + 6x - 5\\) mit x-Achse einschließt. NS bei 1 und 5. (Dezimal)", loesung: 10.667, toleranz: 0.05, tipp: "\\(\\int_1^5 (-x^2+6x-5)dx\\).", loesungsweg: "$$A = \\left[-\\tfrac{x^3}{3}+3x^2-5x\\right]_1^5 = \\tfrac{25}{3}-(-\\tfrac{7}{3}) = \\tfrac{32}{3} \\approx 10{,}67$$" },
+      { id: 36, level: 6, typ: "mc", frage: "Abitur-Niveau: \\(f(x) = x^2\\), \\(g(x) = \\sqrt{x}\\). Die Fläche zwischen beiden auf \\([0,1]\\) beträgt:", optionen: ["\\(1\\)", "\\(\\frac{1}{3}\\)", "\\(\\frac{1}{6}\\)", "\\(\\frac{2}{3}\\)"], korrekt: 1, tipp: "\\(\\int_0^1 (\\sqrt{x} - x^2)dx\\).", loesungsweg: "$$A = \\left[\\tfrac{2}{3}x^{3/2} - \\tfrac{x^3}{3}\\right]_0^1 = \\tfrac{2}{3} - \\tfrac{1}{3} = \\tfrac{1}{3}$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

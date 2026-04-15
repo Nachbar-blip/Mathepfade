@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratische Funktionen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '9-quadratische-funktionen';
+    const THEMA_CONFIG = { name: 'Quadratische Funktionen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 ==========
+      { id: 1, level: 1, typ: "mc", frage: "Welche Funktion ist quadratisch?", optionen: ["\\(f(x) = 3x + 2\\)", "\\(f(x) = x^2 - 4\\)", "\\(f(x) = \\frac{1}{x}\\)", "\\(f(x) = 2^x\\)"], korrekt: 1, tipp: "Quadratisch bedeutet: höchste Potenz ist \\(x^2\\).", loesungsweg: "\\(f(x) = x^2 - 4\\) ist quadratisch (höchste Potenz 2)." },
+      { id: 2, level: 1, typ: "mc", frage: "Wie heißt der Graph einer quadratischen Funktion?", optionen: ["Gerade", "Parabel", "Hyperbel", "Kreis"], korrekt: 1, tipp: "Typische U-Form.", loesungsweg: "Der Graph heißt <b>Parabel</b>." },
+      { id: 3, level: 1, typ: "numerisch", frage: "Berechne \\(f(3)\\) für \\(f(x) = x^2\\).", loesung: 9, toleranz: 0, tipp: "Setze \\(x = 3\\) ein.", loesungsweg: "$$f(3) = 3^2 = 9$$" },
+      { id: 4, level: 1, typ: "mc", frage: "Wo liegt der Scheitelpunkt von \\(f(x) = x^2\\)?", optionen: ["\\((1|1)\\)", "\\((0|0)\\)", "\\((0|1)\\)", "\\((-1|0)\\)"], korrekt: 1, tipp: "Die Normalparabel hat ihren tiefsten Punkt im Ursprung.", loesungsweg: "Scheitel der Normalparabel: \\(S(0|0)\\)." },
+      { id: 5, level: 1, typ: "numerisch", frage: "Berechne \\(f(-2)\\) für \\(f(x) = x^2\\).", loesung: 4, toleranz: 0, tipp: "\\((-2)^2 = 4\\).", loesungsweg: "$$f(-2) = 4$$" },
+      { id: 6, level: 1, typ: "mc", frage: "Ist die Parabel \\(f(x) = -x^2\\) nach oben oder unten geöffnet?", optionen: ["nach oben", "nach unten", "nach links", "nach rechts"], korrekt: 1, tipp: "Negatives Vorzeichen vor \\(x^2\\) spiegelt.", loesungsweg: "Negative Leitkoeffizient → <b>nach unten geöffnet</b>." },
+      // ========== LEVEL 2 -- Scheitelform ==========
+      { id: 7, level: 2, typ: "mc", frage: "Der Scheitel von \\(f(x) = (x - 3)^2 + 2\\) ist …", optionen: ["\\(S(3|2)\\)", "\\(S(-3|2)\\)", "\\(S(3|-2)\\)", "\\(S(-3|-2)\\)"], korrekt: 0, tipp: "Scheitelform: \\(f(x) = a(x - d)^2 + e\\) mit \\(S(d|e)\\).", loesungsweg: "Direkt ablesbar: \\(d = 3\\), \\(e = 2\\), also \\(S(3|2)\\)." },
+      { id: 8, level: 2, typ: "mc", frage: "Der Scheitel von \\(f(x) = (x + 4)^2 - 1\\) ist …", optionen: ["\\(S(4|-1)\\)", "\\(S(-4|-1)\\)", "\\(S(-4|1)\\)", "\\(S(4|1)\\)"], korrekt: 1, tipp: "Vorsicht beim Vorzeichen: \\((x+4) = (x-(-4))\\).", loesungsweg: "\\(S(-4|-1)\\)." },
+      { id: 9, level: 2, typ: "numerisch", frage: "Gib den Scheitel von \\(f(x) = 2(x-1)^2 + 5\\) an — y-Koordinate?", loesung: 5, toleranz: 0, tipp: "\\(e = 5\\).", loesungsweg: "Scheitel: \\(S(1|5)\\). y-Koord. = 5." },
+      { id: 10, level: 2, typ: "numerisch", frage: "Berechne \\(f(1)\\) für \\(f(x) = (x-2)^2 + 3\\).", loesung: 4, toleranz: 0, tipp: "\\((1-2)^2 + 3\\).", loesungsweg: "$$f(1) = 1 + 3 = 4$$" },
+      { id: 11, level: 2, typ: "mc", frage: "\\(f(x) = 3(x-2)^2\\) ist gegenüber der Normalparabel …", optionen: ["breiter / gestreckt", "schmaler / gestaucht nach innen (gestreckt nach oben)", "gespiegelt", "verschoben, aber gleich breit"], korrekt: 1, tipp: "\\(|a| > 1\\) streckt.", loesungsweg: "\\(a = 3 > 1\\): Parabel ist schmaler als die Normalparabel." },
+      { id: 12, level: 2, typ: "numerisch", frage: "Berechne \\(f(0)\\) für \\(f(x) = (x+1)^2 - 4\\).", loesung: -3, toleranz: 0, tipp: "\\((0+1)^2 - 4\\).", loesungsweg: "$$f(0) = 1 - 4 = -3$$" },
+      // ========== LEVEL 3 -- Normalform ==========
+      { id: 13, level: 3, typ: "numerisch", frage: "\\(f(x) = x^2 - 4x + 3\\): Berechne \\(f(2)\\).", loesung: -1, toleranz: 0, tipp: "Einsetzen: \\(4 - 8 + 3\\).", loesungsweg: "$$f(2) = 4 - 8 + 3 = -1$$" },
+      { id: 14, level: 3, typ: "numerisch", frage: "\\(f(x) = x^2 + 2x - 3\\): Wo liegt der y-Achsenabschnitt?", loesung: -3, toleranz: 0, tipp: "\\(f(0)\\).", loesungsweg: "$$f(0) = -3$$" },
+      { id: 15, level: 3, typ: "mc", frage: "Bringe \\(f(x) = (x - 2)^2 - 5\\) in die Normalform.", optionen: ["\\(x^2 - 4x - 1\\)", "\\(x^2 - 4x + 9\\)", "\\(x^2 + 4x - 1\\)", "\\(x^2 - 2x - 5\\)"], korrekt: 0, tipp: "1. bin. Formel: \\((x-2)^2 = x^2 - 4x + 4\\).", loesungsweg: "$$(x-2)^2 - 5 = x^2 - 4x + 4 - 5 = x^2 - 4x - 1$$" },
+      { id: 16, level: 3, typ: "numerisch", frage: "Die x-Koordinate des Scheitels von \\(f(x) = x^2 - 6x + 10\\) ist (Formel \\(x_S = -\\frac{b}{2a}\\)):", loesung: 3, toleranz: 0, tipp: "\\(x_S = -\\frac{-6}{2 \\cdot 1} = 3\\).", loesungsweg: "$$x_S = -\\frac{-6}{2} = 3$$" },
+      { id: 17, level: 3, typ: "numerisch", frage: "\\(f(x) = x^2 - 6x + 10\\): y-Koord. des Scheitels.", loesung: 1, toleranz: 0, tipp: "\\(f(3) = 9 - 18 + 10\\).", loesungsweg: "$$f(3) = 1 \\Rightarrow S(3|1)$$" },
+      { id: 18, level: 3, typ: "mc", frage: "Wo schneidet \\(f(x) = x^2 - 9\\) die x-Achse?", optionen: ["\\(x = 3\\)", "\\(x = -3\\)", "\\(x = \\pm 3\\)", "Gar nicht"], korrekt: 2, tipp: "\\(x^2 - 9 = 0\\).", loesungsweg: "\\(x^2 = 9 \\Rightarrow x = \\pm 3\\)." },
+      // ========== LEVEL 4 -- Scheitel via quadr. Ergänzung ==========
+      { id: 19, level: 4, typ: "numerisch", frage: "Bringe \\(f(x) = x^2 + 4x + 1\\) in Scheitelform. x-Koord. des Scheitels?", loesung: -2, toleranz: 0, tipp: "Quadr. Ergänzung: \\(x^2 + 4x = (x+2)^2 - 4\\).", loesungsweg: "$$f(x) = (x+2)^2 - 3 \\Rightarrow S(-2|-3)$$" },
+      { id: 20, level: 4, typ: "numerisch", frage: "Scheitel-y-Koord. von \\(f(x) = x^2 + 4x + 1\\).", loesung: -3, toleranz: 0, tipp: "\\((x+2)^2 - 3\\).", loesungsweg: "$$S(-2|-3)$$" },
+      { id: 21, level: 4, typ: "mc", frage: "Scheitelform von \\(f(x) = x^2 - 6x + 5\\)?", optionen: ["\\((x-3)^2 - 4\\)", "\\((x-3)^2 + 5\\)", "\\((x+3)^2 - 4\\)", "\\((x-6)^2 + 5\\)"], korrekt: 0, tipp: "Ergänze zu \\((x-3)^2 = x^2 - 6x + 9\\).", loesungsweg: "$$x^2 - 6x + 5 = (x-3)^2 - 9 + 5 = (x-3)^2 - 4$$" },
+      { id: 22, level: 4, typ: "numerisch", frage: "\\(f(x) = 2x^2 - 8x + 3\\): x-Koord. des Scheitels.", loesung: 2, toleranz: 0, tipp: "\\(x_S = -\\frac{-8}{2 \\cdot 2} = 2\\).", loesungsweg: "$$x_S = 2$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "\\(f(x) = 2x^2 - 8x + 3\\): y-Koord. des Scheitels.", loesung: -5, toleranz: 0, tipp: "\\(f(2)\\).", loesungsweg: "$$f(2) = 8 - 16 + 3 = -5$$" },
+      { id: 24, level: 4, typ: "mc", frage: "Ist \\(S\\) der Scheitel von \\(f(x) = -(x-1)^2 + 4\\), so ist \\(S\\) …", optionen: ["Minimum mit Wert 4", "Maximum mit Wert 4", "Nullstelle", "y-Achsenabschnitt"], korrekt: 1, tipp: "\\(a = -1 < 0\\): nach unten geöffnet.", loesungsweg: "Negative Öffnung → Scheitel ist Maximum. \\(f_{\\max} = 4\\)." },
+      // ========== LEVEL 5 -- Nullstellen / Anwendungen ==========
+      { id: 25, level: 5, typ: "numerisch", frage: "Berechne die positive Nullstelle von \\(f(x) = x^2 - 7x + 10\\).", loesung: 5, toleranz: 0, tipp: "\\(x^2 - 7x + 10 = (x-2)(x-5)\\).", loesungsweg: "Nullstellen: \\(x_1 = 2\\), \\(x_2 = 5\\)." },
+      { id: 26, level: 5, typ: "numerisch", frage: "Eine Parabel hat Scheitel \\(S(2|3)\\) und geht durch \\(P(0|7)\\). Form: \\(f(x) = a(x-2)^2 + 3\\). Berechne \\(a\\).", loesung: 1, toleranz: 0, tipp: "Setze \\(P\\) ein: \\(7 = a \\cdot 4 + 3\\).", loesungsweg: "$$7 = 4a + 3 \\Rightarrow 4a = 4 \\Rightarrow a = 1$$" },
+      { id: 27, level: 5, typ: "numerisch", frage: "Ein Ball wird geworfen: \\(h(t) = -5t^2 + 20t\\). Maximale Höhe? (x-Koord. des Scheitels = \\(t = 2\\).)", loesung: 20, toleranz: 0, tipp: "\\(h(2)\\).", loesungsweg: "$$h(2) = -20 + 40 = 20\\,\\text{m}$$" },
+      { id: 28, level: 5, typ: "mc", frage: "\\(f(x) = (x-1)(x+3)\\): Nullstellen?", optionen: ["\\(x=1;\\,x=3\\)", "\\(x=1;\\,x=-3\\)", "\\(x=-1;\\,x=3\\)", "\\(x=-1;\\,x=-3\\)"], korrekt: 1, tipp: "Produkt = 0: jeder Faktor = 0.", loesungsweg: "\\(x - 1 = 0 \\lor x + 3 = 0 \\Rightarrow x = 1, x = -3\\)." },
+      { id: 29, level: 5, typ: "numerisch", frage: "Ein Rechteck mit Umfang 20 m hat Fläche \\(A(x) = x(10 - x)\\). Für welches \\(x\\) ist \\(A\\) maximal?", loesung: 5, toleranz: 0, tipp: "\\(A(x) = 10x - x^2\\). Scheitel bei \\(x = 5\\).", loesungsweg: "$$A(x) = -x^2 + 10x \\Rightarrow x_S = 5\\,\\text{m}$$" },
+      { id: 30, level: 5, typ: "numerisch", frage: "Maximale Fläche aus Aufg. 29 in \\(\\text{m}^2\\)?", loesung: 25, toleranz: 0, tipp: "\\(A(5) = 5 \\cdot 5\\).", loesungsweg: "$$A(5) = 25\\,\\text{m}^2$$" },
+      // ========== LEVEL 6 ==========
+      { id: 31, level: 6, typ: "numerisch", frage: "Eine Parabel verläuft durch \\((0|-3)\\), \\((1|0)\\) und \\((-1|-4)\\). In \\(f(x) = ax^2 + bx + c\\) ist \\(c = -3\\). Bestimme \\(a + b\\) (aus \\(f(1)=0\\)).", loesung: 3, toleranz: 0, tipp: "\\(f(1) = a + b - 3 = 0\\).", loesungsweg: "$$a + b = 3$$" },
+      { id: 32, level: 6, typ: "mc", frage: "Wie viele Nullstellen kann eine Parabel haben?", optionen: ["Genau 2", "Nur 1", "0, 1 oder 2", "Immer 0"], korrekt: 2, tipp: "Abhängig von Diskriminante.", loesungsweg: "0, 1 oder 2 Nullstellen — je nach Lage des Scheitels und Öffnung." },
+      { id: 33, level: 6, typ: "numerisch", frage: "Scheitel von \\(f(x) = -x^2 + 4x + 1\\): y-Koord. (Max.).", loesung: 5, toleranz: 0, tipp: "\\(x_S = 2\\), dann \\(f(2)\\).", loesungsweg: "$$f(2) = -4 + 8 + 1 = 5$$" },
+      { id: 34, level: 6, typ: "mc", frage: "\\(f(x) = x^2 + 1\\) hat wie viele reelle Nullstellen?", optionen: ["2", "1", "0", "unendlich viele"], korrekt: 2, tipp: "\\(x^2 = -1\\) hat keine reelle Lösung.", loesungsweg: "\\(x^2 + 1 > 0\\) für alle \\(x \\in \\mathbb{R}\\) → keine Nullstellen." },
+      { id: 35, level: 6, typ: "numerisch", frage: "Die Parabel \\(f(x) = a x^2\\) geht durch \\((2|8)\\). Bestimme \\(a\\).", loesung: 2, toleranz: 0, tipp: "\\(8 = a \\cdot 4\\).", loesungsweg: "$$a = 2$$" },
+      { id: 36, level: 6, typ: "numerisch", frage: "Für welches \\(x\\) ist \\(f(x) = x^2 - 4x + 7\\) minimal? (x-Wert)", loesung: 2, toleranz: 0, tipp: "\\(x_S = -\\frac{-4}{2} = 2\\).", loesungsweg: "$$x_S = 2 \\Rightarrow f_{\\min} = f(2) = 3$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

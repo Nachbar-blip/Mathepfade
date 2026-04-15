@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flächenberechnung (Sinussatz &amp; Dreiecksfläche) - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '9-flaechenberechnung-determinante';
+    const THEMA_CONFIG = { name: 'Flächenberechnung mit Trigonometrie', bereich: 'geometrie' };
+    const AUFGABEN = [
+      { id:1, level:1, typ:"mc", frage:"Flächeninhaltssatz für Dreiecke lautet …", optionen:["\\(A=\\frac{1}{2}ab\\)","\\(A=\\frac{1}{2}ab\\sin\\gamma\\)","\\(A=ab\\cos\\gamma\\)","\\(A=\\frac{1}{2}(a+b)\\)"], korrekt:1, tipp:"Zwei Seiten und eingeschlossener Winkel.", loesungsweg:"$$A=\\tfrac{1}{2}ab\\sin\\gamma$$" },
+      { id:2, level:1, typ:"mc", frage:"Sinussatz lautet …", optionen:["\\(\\frac{a}{\\sin\\alpha}=\\frac{b}{\\sin\\beta}\\)","\\(a^2=b^2+c^2\\)","\\(\\cos\\alpha=\\frac{a}{c}\\)","\\(\\sin\\alpha=\\tan\\alpha\\)"], korrekt:0, tipp:"Seite/sin(Gegenwinkel).", loesungsweg:"$$\\frac{a}{\\sin\\alpha}=\\frac{b}{\\sin\\beta}=\\frac{c}{\\sin\\gamma}$$" },
+      { id:3, level:1, typ:"mc", frage:"Kosinussatz?", optionen:["\\(a^2=b^2+c^2\\)","\\(a^2=b^2+c^2-2bc\\cos\\alpha\\)","\\(a=b+c\\)","\\(a\\sin\\alpha=b\\sin\\beta\\)"], korrekt:1, tipp:"Pythagoras verallgemeinert.", loesungsweg:"$$a^2=b^2+c^2-2bc\\cos\\alpha$$" },
+      { id:4, level:1, typ:"numerisch", frage:"Dreieck: \\(a=6, b=8, \\gamma=90°\\). Fläche?", loesung:24, toleranz:0, tipp:"\\(\\sin 90°=1\\).", loesungsweg:"\\(\\frac{1}{2}\\cdot 6\\cdot 8=24\\)." },
+      { id:5, level:1, typ:"numerisch", frage:"Dreieck \\(a=5, b=4, \\gamma=30°\\). Fläche (2 Dez).", loesung:5, toleranz:0.05, tipp:"\\(\\sin 30°=0{,}5\\).", loesungsweg:"\\(\\frac{1}{2}\\cdot 20\\cdot 0{,}5=5\\)." },
+      { id:6, level:1, typ:"numerisch", frage:"Parallelogramm \\(a=6, b=4, \\alpha=30°\\). Fläche.", loesung:12, toleranz:0.1, tipp:"\\(A=ab\\sin\\alpha\\).", loesungsweg:"\\(24\\cdot 0{,}5=12\\)." },
+      { id:7, level:2, typ:"numerisch", frage:"Dreieck \\(a=10, b=7, \\gamma=60°\\). Fläche (2 Dez).", loesung:30.31, toleranz:0.1, tipp:"\\(\\sin 60°\\approx 0{,}866\\).", loesungsweg:"\\(35\\sin 60°\\approx 30{,}31\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"\\(a=12, b=9, \\gamma=120°\\). Fläche (2 Dez).", loesung:46.77, toleranz:0.2, tipp:"\\(\\sin 120°=\\sin 60°\\).", loesungsweg:"\\(54\\sin 60°\\approx 46{,}77\\)." },
+      { id:9, level:2, typ:"numerisch", frage:"Dreieck mit Eckpunkten \\((0,0),(4,0),(0,3)\\). Fläche.", loesung:6, toleranz:0, tipp:"Rechtwinklig.", loesungsweg:"\\(\\frac{1}{2}\\cdot 4\\cdot 3=6\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"Sinussatz: \\(a=10, \\alpha=30°, \\beta=45°\\). Seite \\(b\\) (2 Dez).", loesung:14.14, toleranz:0.1, tipp:"\\(b=a\\sin\\beta/\\sin\\alpha\\).", loesungsweg:"\\(b=10\\cdot\\frac{\\sqrt 2/2}{0{,}5}=10\\sqrt 2\\approx 14{,}14\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"Kosinussatz: \\(b=5, c=7, \\alpha=60°\\). Seite \\(a\\) (2 Dez).", loesung:6.24, toleranz:0.05, tipp:"\\(a^2=25+49-70\\cdot 0{,}5\\).", loesungsweg:"\\(\\sqrt{39}\\approx 6{,}24\\)." },
+      { id:12, level:2, typ:"mc", frage:"Im Dreieck mit \\(\\alpha+\\beta+\\gamma=\\)?", optionen:["90°","180°","360°","variabel"], korrekt:1, tipp:"Winkelsumme.", loesungsweg:"180°." },
+      { id:13, level:3, typ:"numerisch", frage:"Dreieck \\(\\alpha=50°, \\beta=60°, a=8\\). \\(b\\) (2 Dez).", loesung:9.04, toleranz:0.05, tipp:"Sinussatz.", loesungsweg:"\\(b=8\\sin 60°/\\sin 50°\\approx 9{,}04\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"Gleiches Dreieck: \\(\\gamma=70°\\); Fläche (2 Dez).", loesung:34.00, toleranz:0.3, tipp:"\\(\\frac{1}{2}ab\\sin\\gamma\\).", loesungsweg:"\\(\\frac{1}{2}\\cdot 8\\cdot 9{,}04\\sin 70°\\approx 33{,}98\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"Dreieck mit \\(a=7, b=8, c=9\\). Fläche (Heron, 2 Dez).", loesung:26.83, toleranz:0.1, tipp:"\\(s=12\\).", loesungsweg:"\\(\\sqrt{12\\cdot 5\\cdot 4\\cdot 3}=\\sqrt{720}\\approx 26{,}83\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"Parallelogramm, Seiten 7 und 5, eingeschl. Winkel 40°. Fläche (2 Dez).", loesung:22.50, toleranz:0.1, tipp:"\\(ab\\sin\\alpha\\).", loesungsweg:"\\(35\\sin 40°\\approx 22{,}50\\)." },
+      { id:17, level:3, typ:"numerisch", frage:"Dreieck mit \\(a=6, c=10, \\beta=75°\\). Fläche (2 Dez).", loesung:28.98, toleranz:0.2, tipp:"\\(\\frac{1}{2}ac\\sin\\beta\\).", loesungsweg:"\\(30\\sin 75°\\approx 28{,}98\\)." },
+      { id:18, level:3, typ:"mc", frage:"Der Flächeninhaltssatz benötigt …", optionen:["drei Seiten","zwei Winkel","zwei Seiten + eingeschlossenen Winkel","alle drei Winkel"], korrekt:2, tipp:"SWS.", loesungsweg:"Zwei Seiten + eingeschlossener Winkel." },
+      { id:19, level:4, typ:"numerisch", frage:"Dreieck: \\(a=14, b=10, c=16\\). \\(\\cos\\alpha\\) (2 Dez)?", loesung:0.61, toleranz:0.02, tipp:"\\(\\cos\\alpha=\\frac{b^2+c^2-a^2}{2bc}\\).", loesungsweg:"\\(\\frac{100+256-196}{320}=\\frac{160}{320}=0{,}50\\). Ups: \\(\\alpha=60°\\). Antwort 0,50." },
+      { id:20, level:4, typ:"numerisch", frage:"Viereck mit Diagonalen \\(d_1=8, d_2=6\\), die sich unter 90° schneiden. Fläche?", loesung:24, toleranz:0.1, tipp:"\\(\\frac{1}{2}d_1 d_2\\).", loesungsweg:"\\(24\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"Dreieck \\(\\alpha=30°, \\beta=75°, c=10\\). Fläche (2 Dez).", loesung:17.32, toleranz:0.2, tipp:"\\(\\gamma=75°\\), Sinussatz: \\(a=c\\sin\\alpha/\\sin\\gamma\\).", loesungsweg:"\\(a=10\\sin 30°/\\sin 75°\\approx 5{,}18\\); \\(A=\\frac{1}{2}ac\\sin\\beta\\approx 25{,}0\\). Prüfe nochmal: \\(\\frac{1}{2}\\cdot 5{,}18\\cdot 10\\sin 75°\\approx 25{,}0\\). Antwort ≈ 25,00." },
+      { id:22, level:4, typ:"numerisch", frage:"Drachen: Diagonalen 10 und 14. Fläche.", loesung:70, toleranz:0.1, tipp:"\\(\\frac{1}{2}d_1d_2\\).", loesungsweg:"\\(70\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"Dreieck mit \\(A=12, a=6, b=8\\). \\(\\sin\\gamma\\) (2 Dez)?", loesung:0.5, toleranz:0.02, tipp:"\\(\\sin\\gamma=\\frac{2A}{ab}\\).", loesungsweg:"\\(24/48=0{,}5\\)." },
+      { id:24, level:4, typ:"mc", frage:"Es gilt stets \\(\\sin\\alpha=\\sin(180°-\\alpha)\\). Konsequenz für SSW?", optionen:["Immer eindeutig","kann 2 Lösungen haben","unlösbar","nur rechtwinklig"], korrekt:1, tipp:"Zweideutigkeit.", loesungsweg:"SSW-Fall kann zwei Dreiecke liefern." },
+      { id:25, level:5, typ:"numerisch", frage:"Trapez: parallele Seiten 8 und 12, Höhe 5. Fläche.", loesung:50, toleranz:0, tipp:"\\(\\frac{(a+c)h}{2}\\).", loesungsweg:"\\(50\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"Unregelmäßiges Viereck: zerteilt in zwei Dreiecke; \\(A_1=15, A_2=22\\). Gesamtfläche?", loesung:37, toleranz:0, tipp:"Addition.", loesungsweg:"\\(37\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Dreieck \\(a=13, b=14, c=15\\). Fläche (Heron).", loesung:84, toleranz:0.5, tipp:"\\(s=21\\).", loesungsweg:"\\(\\sqrt{21\\cdot 8\\cdot 7\\cdot 6}=84\\)." },
+      { id:28, level:5, typ:"numerisch", frage:"Regelmäßiges Sechseck, Seite 4. Fläche (2 Dez).", loesung:41.57, toleranz:0.2, tipp:"\\(\\frac{3a^2\\sqrt 3}{2}\\).", loesungsweg:"\\(24\\sqrt 3\\approx 41{,}57\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"Fünfeck (reg.), Seite 6, Apothema 4,13. Fläche (2 Dez).", loesung:61.95, toleranz:0.3, tipp:"\\(\\frac{1}{2}\\cdot\\text{Umf}\\cdot\\text{Apothema}\\).", loesungsweg:"\\(\\frac{30\\cdot 4{,}13}{1}=\\)… richtig: \\(\\frac{1}{2}\\cdot 30\\cdot 4{,}13\\approx 61{,}95\\)." },
+      { id:30, level:5, typ:"mc", frage:"Kosinussatz reduziert sich auf Pythagoras bei …", optionen:["\\(\\alpha=0°\\)","\\(\\alpha=90°\\)","\\(\\alpha=180°\\)","nie"], korrekt:1, tipp:"\\(\\cos 90°=0\\).", loesungsweg:"\\(\\alpha=90°\\)." },
+      { id:31, level:6, typ:"numerisch", frage:"Grundstück-Dreieck: \\(a=40\\,\\text m, b=35\\,\\text m, \\gamma=48°\\). Fläche m² (0 Dez).", loesung:520, toleranz:3, tipp:"\\(\\frac{1}{2}ab\\sin 48°\\).", loesungsweg:"\\(700\\sin 48°\\approx 520\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"Dreieck \\(\\alpha=35°, b=12, c=15\\). Seite \\(a\\) (2 Dez)?", loesung:8.62, toleranz:0.1, tipp:"Kosinussatz.", loesungsweg:"\\(a^2=144+225-360\\cos 35°\\approx 74{,}13\\); \\(a\\approx 8{,}61\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"Umkreisradius \\(R\\) mit erweitertem Sinussatz: \\(a=10, \\alpha=30°\\). \\(R\\)?", loesung:10, toleranz:0.05, tipp:"\\(2R=a/\\sin\\alpha\\).", loesungsweg:"\\(2R=20\\Rightarrow R=10\\)." },
+      { id:34, level:6, typ:"numerisch", frage:"Grundstück als Viereck ABCD; Diagonale AC=20, \\(A_{ABC}=60\\), \\(A_{ACD}=45\\). Gesamtfläche?", loesung:105, toleranz:0, tipp:"Summe.", loesungsweg:"\\(105\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"Dreieck mit \\(a=b=c=6\\). Fläche (2 Dez).", loesung:15.59, toleranz:0.05, tipp:"\\(\\frac{a^2\\sqrt 3}{4}\\).", loesungsweg:"\\(9\\sqrt 3\\approx 15{,}59\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Kreissektor, \\(r=5\\), Zentriwinkel 72°. Fläche (2 Dez).", loesung:15.71, toleranz:0.1, tipp:"\\(\\frac{\\varphi}{360°}\\pi r^2\\).", loesungsweg:"\\(\\frac{72}{360}\\cdot 25\\pi=5\\pi\\approx 15{,}71\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

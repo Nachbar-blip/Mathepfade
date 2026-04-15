@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stammfunktionen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-stammfunktionen';
+    const THEMA_CONFIG = { name: 'Stammfunktionen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1 -- Grundbegriffe
+      { id: 1, level: 1, typ: "mc", frage: "Was ist eine Stammfunktion \\(F(x)\\) von \\(f(x)\\)?", optionen: ["\\(F'(x) = f(x)\\)", "\\(F(x) = f'(x)\\)", "\\(F(x) \\cdot f(x) = 1\\)", "\\(F(x) = \\frac{1}{f(x)}\\)"], korrekt: 0, tipp: "Stammfunktion ist die Umkehrung der Ableitung.", loesungsweg: "\\(F\\) ist Stammfunktion von \\(f\\), wenn \\(F'(x) = f(x)\\)." },
+      { id: 2, level: 1, typ: "mc", frage: "Eine Stammfunktion von \\(f(x) = 1\\) ist:", optionen: ["\\(F(x) = 0\\)", "\\(F(x) = x\\)", "\\(F(x) = x^2\\)", "\\(F(x) = \\frac{1}{x}\\)"], korrekt: 1, tipp: "Welche Funktion hat die Ableitung 1?", loesungsweg: "\\((x)' = 1\\), also \\(F(x) = x\\)." },
+      { id: 3, level: 1, typ: "mc", frage: "Eine Stammfunktion von \\(f(x) = 2x\\) ist:", optionen: ["\\(x^2\\)", "\\(2\\)", "\\(x\\)", "\\(2x^2\\)"], korrekt: 0, tipp: "\\((x^2)' = 2x\\).", loesungsweg: "\\(F(x) = x^2\\), denn \\(F'(x) = 2x\\)." },
+      { id: 4, level: 1, typ: "mc", frage: "Was bedeutet das Symbol \\(\\int f(x)\\,dx\\)?", optionen: ["Die Ableitung von \\(f\\)", "Eine Stammfunktion von \\(f\\)", "Den Funktionswert", "Den Grenzwert"], korrekt: 1, tipp: "Das unbestimmte Integral.", loesungsweg: "\\(\\int f(x)\\,dx\\) ist das <b>unbestimmte Integral</b> — die Menge aller Stammfunktionen." },
+      { id: 5, level: 1, typ: "mc", frage: "Wenn \\(F\\) Stammfunktion von \\(f\\) ist, dann ist auch \\(F(x) + C\\) für beliebiges \\(C \\in \\mathbb{R}\\) eine Stammfunktion.", optionen: ["Ja", "Nein", "Nur wenn \\(C = 0\\)", "Nur wenn \\(C > 0\\)"], korrekt: 0, tipp: "Die Ableitung einer Konstanten ist 0.", loesungsweg: "\\((F(x)+C)' = F'(x) + 0 = f(x)\\). Deshalb gibt es unendlich viele Stammfunktionen." },
+      { id: 6, level: 1, typ: "mc", frage: "Eine Stammfunktion von \\(f(x) = x^2\\) ist:", optionen: ["\\(2x\\)", "\\(\\frac{1}{3}x^3\\)", "\\(x^3\\)", "\\(\\frac{1}{2}x^2\\)"], korrekt: 1, tipp: "Potenzregel: Exponent +1, durch neuen Exponenten teilen.", loesungsweg: "\\(\\int x^2\\,dx = \\frac{x^3}{3} + C\\)." },
+      // LEVEL 2 -- Potenzregel
+      { id: 7, level: 2, typ: "mc", frage: "Stammfunktion von \\(x^5\\):", optionen: ["\\(5x^4\\)", "\\(\\frac{x^6}{6}\\)", "\\(\\frac{x^6}{5}\\)", "\\(6x^6\\)"], korrekt: 1, tipp: "\\(\\int x^n dx = \\frac{x^{n+1}}{n+1}\\).", loesungsweg: "$$\\int x^5 dx = \\frac{x^6}{6} + C$$" },
+      { id: 8, level: 2, typ: "numerisch", frage: "Gegeben \\(f(x) = 3x^2\\). Berechne \\(F(2)\\), wobei \\(F(x) = x^3\\).", loesung: 8, toleranz: 0, tipp: "\\(F(2) = 2^3\\).", loesungsweg: "$$F(2) = 2^3 = 8$$" },
+      { id: 9, level: 2, typ: "mc", frage: "Stammfunktion von \\(4x^3\\):", optionen: ["\\(12x^2\\)", "\\(x^4\\)", "\\(4x^4\\)", "\\(\\frac{x^4}{4}\\)"], korrekt: 1, tipp: "\\(4 \\cdot \\frac{x^4}{4} = x^4\\).", loesungsweg: "$$\\int 4x^3 dx = 4 \\cdot \\frac{x^4}{4} = x^4 + C$$" },
+      { id: 10, level: 2, typ: "numerisch", frage: "Wenn \\(F(x) = \\frac{x^4}{4}\\), berechne \\(F(2) - F(0)\\).", loesung: 4, toleranz: 0, tipp: "\\(\\frac{16}{4} - 0\\).", loesungsweg: "$$\\frac{2^4}{4} - 0 = \\frac{16}{4} = 4$$" },
+      { id: 11, level: 2, typ: "mc", frage: "Stammfunktion von \\(f(x) = 6x\\):", optionen: ["\\(3x^2\\)", "\\(6\\)", "\\(6x^2\\)", "\\(\\frac{x^2}{6}\\)"], korrekt: 0, tipp: "\\(6 \\cdot \\frac{x^2}{2} = 3x^2\\).", loesungsweg: "$$\\int 6x\\,dx = 3x^2 + C$$" },
+      { id: 12, level: 2, typ: "mc", frage: "Stammfunktion der konstanten Funktion \\(f(x) = 5\\):", optionen: ["\\(0\\)", "\\(5\\)", "\\(5x\\)", "\\(\\frac{x^2}{5}\\)"], korrekt: 2, tipp: "\\((5x)' = 5\\).", loesungsweg: "$$\\int 5\\,dx = 5x + C$$" },
+      // LEVEL 3 -- Summenregel
+      { id: 13, level: 3, typ: "mc", frage: "Stammfunktion von \\(f(x) = 3x^2 + 2x\\):", optionen: ["\\(x^3 + x^2\\)", "\\(6x + 2\\)", "\\(x^3 + 2x\\)", "\\(3x^3 + x^2\\)"], korrekt: 0, tipp: "Summandenweise integrieren.", loesungsweg: "$$\\int (3x^2 + 2x)dx = x^3 + x^2 + C$$" },
+      { id: 14, level: 3, typ: "mc", frage: "Stammfunktion von \\(f(x) = 4x^3 - 6x^2 + 2\\):", optionen: ["\\(x^4 - 2x^3 + 2x\\)", "\\(12x^2 - 12x\\)", "\\(4x^4 - 6x^3 + 2x\\)", "\\(x^4 - 3x^2 + 2\\)"], korrekt: 0, tipp: "Jeden Summand einzeln.", loesungsweg: "$$\\int (4x^3 - 6x^2 + 2)dx = x^4 - 2x^3 + 2x + C$$" },
+      { id: 15, level: 3, typ: "numerisch", frage: "Sei \\(F(x) = x^3 - x^2 + x\\). Berechne \\(F(2)\\).", loesung: 6, toleranz: 0, tipp: "\\(8 - 4 + 2\\).", loesungsweg: "$$F(2) = 8 - 4 + 2 = 6$$" },
+      { id: 16, level: 3, typ: "mc", frage: "Stammfunktion von \\(f(x) = x^2 - 4x + 3\\):", optionen: ["\\(\\frac{x^3}{3} - 2x^2 + 3x\\)", "\\(2x - 4\\)", "\\(x^3 - 4x^2 + 3x\\)", "\\(\\frac{x^3}{3} - 4x^2 + 3\\)"], korrekt: 0, tipp: "Potenzregel auf jeden Summanden.", loesungsweg: "$$\\int (x^2 - 4x + 3)dx = \\frac{x^3}{3} - 2x^2 + 3x + C$$" },
+      { id: 17, level: 3, typ: "numerisch", frage: "Berechne für \\(F(x) = \\frac{x^3}{3}\\) den Wert \\(F(3) - F(0)\\).", loesung: 9, toleranz: 0, tipp: "\\(\\frac{27}{3} - 0\\).", loesungsweg: "$$\\frac{27}{3} - 0 = 9$$" },
+      { id: 18, level: 3, typ: "mc", frage: "Stammfunktion von \\(f(x) = \\frac{1}{2}x^2 + 3\\):", optionen: ["\\(x + 3\\)", "\\(\\frac{x^3}{6} + 3x\\)", "\\(\\frac{x^3}{2} + 3x\\)", "\\(\\frac{x^3}{6}\\)"], korrekt: 1, tipp: "\\(\\frac{1}{2} \\cdot \\frac{x^3}{3} = \\frac{x^3}{6}\\).", loesungsweg: "$$\\int \\left(\\tfrac{1}{2}x^2 + 3\\right)dx = \\frac{x^3}{6} + 3x + C$$" },
+      // LEVEL 4 -- Spezialfälle: 1/x, e^x, sin, cos
+      { id: 19, level: 4, typ: "mc", frage: "Stammfunktion von \\(f(x) = \\frac{1}{x}\\) (für \\(x > 0\\)):", optionen: ["\\(-\\frac{1}{x^2}\\)", "\\(\\ln(x)\\)", "\\(x \\ln(x)\\)", "\\(\\frac{1}{2x^2}\\)"], korrekt: 1, tipp: "\\((\\ln x)' = \\frac{1}{x}\\).", loesungsweg: "$$\\int \\frac{1}{x}dx = \\ln|x| + C$$" },
+      { id: 20, level: 4, typ: "mc", frage: "Stammfunktion von \\(f(x) = e^x\\):", optionen: ["\\(e^x\\)", "\\(\\frac{e^x}{x}\\)", "\\(x \\cdot e^{x-1}\\)", "\\(\\ln(e^x)\\)"], korrekt: 0, tipp: "Die e-Funktion ist ihre eigene Stammfunktion.", loesungsweg: "$$\\int e^x dx = e^x + C$$" },
+      { id: 21, level: 4, typ: "mc", frage: "Stammfunktion von \\(f(x) = \\sin(x)\\):", optionen: ["\\(\\cos(x)\\)", "\\(-\\cos(x)\\)", "\\(\\sin(x)\\)", "\\(-\\sin(x)\\)"], korrekt: 1, tipp: "\\((-\\cos x)' = \\sin x\\).", loesungsweg: "$$\\int \\sin x\\,dx = -\\cos x + C$$" },
+      { id: 22, level: 4, typ: "mc", frage: "Stammfunktion von \\(f(x) = \\cos(x)\\):", optionen: ["\\(-\\sin(x)\\)", "\\(\\sin(x)\\)", "\\(-\\cos(x)\\)", "\\(\\tan(x)\\)"], korrekt: 1, tipp: "\\((\\sin x)' = \\cos x\\).", loesungsweg: "$$\\int \\cos x\\,dx = \\sin x + C$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Sei \\(F(x) = e^x\\). Berechne \\(F(0)\\).", loesung: 1, toleranz: 0.001, tipp: "\\(e^0 = 1\\).", loesungsweg: "$$F(0) = e^0 = 1$$" },
+      { id: 24, level: 4, typ: "mc", frage: "Stammfunktion von \\(f(x) = 2e^x\\):", optionen: ["\\(e^x\\)", "\\(2e^x\\)", "\\(\\frac{e^x}{2}\\)", "\\(e^{2x}\\)"], korrekt: 1, tipp: "Konstante Faktoren bleiben.", loesungsweg: "$$\\int 2e^x dx = 2e^x + C$$" },
+      // LEVEL 5 -- Kettenregel rückwärts (lineare Substitution)
+      { id: 25, level: 5, typ: "mc", frage: "Stammfunktion von \\(f(x) = (2x+1)^3\\):", optionen: ["\\(\\frac{(2x+1)^4}{4}\\)", "\\(\\frac{(2x+1)^4}{8}\\)", "\\(3(2x+1)^2 \\cdot 2\\)", "\\((2x+1)^4\\)"], korrekt: 1, tipp: "Lineare Substitution: durch innere Ableitung teilen.", loesungsweg: "$$\\int (2x+1)^3 dx = \\frac{(2x+1)^4}{4 \\cdot 2} = \\frac{(2x+1)^4}{8} + C$$" },
+      { id: 26, level: 5, typ: "mc", frage: "Stammfunktion von \\(f(x) = e^{3x}\\):", optionen: ["\\(e^{3x}\\)", "\\(3e^{3x}\\)", "\\(\\frac{e^{3x}}{3}\\)", "\\(\\frac{e^{3x+1}}{3x+1}\\)"], korrekt: 2, tipp: "Durch innere Ableitung 3 teilen.", loesungsweg: "$$\\int e^{3x} dx = \\frac{1}{3}e^{3x} + C$$" },
+      { id: 27, level: 5, typ: "mc", frage: "Stammfunktion von \\(f(x) = \\sin(2x)\\):", optionen: ["\\(\\cos(2x)\\)", "\\(-\\frac{1}{2}\\cos(2x)\\)", "\\(-2\\cos(2x)\\)", "\\(-\\cos(2x)\\)"], korrekt: 1, tipp: "Innere Ableitung ist 2.", loesungsweg: "$$\\int \\sin(2x) dx = -\\frac{1}{2}\\cos(2x) + C$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "Sei \\(F(x) = \\frac{1}{2}e^{2x}\\). Berechne \\(F(0)\\).", loesung: 0.5, toleranz: 0.01, tipp: "\\(e^0 = 1\\).", loesungsweg: "$$F(0) = \\tfrac{1}{2} \\cdot e^0 = 0{,}5$$" },
+      { id: 29, level: 5, typ: "mc", frage: "Stammfunktion von \\(f(x) = (3x-2)^5\\):", optionen: ["\\(\\frac{(3x-2)^6}{6}\\)", "\\(\\frac{(3x-2)^6}{18}\\)", "\\(5(3x-2)^4\\)", "\\(\\frac{(3x-2)^6}{3}\\)"], korrekt: 1, tipp: "Durch \\(6 \\cdot 3 = 18\\) teilen.", loesungsweg: "$$\\int (3x-2)^5 dx = \\frac{(3x-2)^6}{18} + C$$" },
+      { id: 30, level: 5, typ: "mc", frage: "Stammfunktion von \\(f(x) = \\cos(\\frac{x}{2})\\):", optionen: ["\\(2\\sin(\\frac{x}{2})\\)", "\\(\\frac{1}{2}\\sin(\\frac{x}{2})\\)", "\\(-\\sin(\\frac{x}{2})\\)", "\\(\\sin(\\frac{x}{2})\\)"], korrekt: 0, tipp: "Innere Ableitung \\(\\frac{1}{2}\\), also mit 2 multiplizieren.", loesungsweg: "$$\\int \\cos\\tfrac{x}{2}\\,dx = 2\\sin\\tfrac{x}{2} + C$$" },
+      // LEVEL 6 -- Stammfunktion mit Bedingung
+      { id: 31, level: 6, typ: "numerisch", frage: "\\(f(x) = 2x\\), gesucht \\(F\\) mit \\(F(1) = 5\\). Berechne \\(F(0)\\).", loesung: 4, toleranz: 0, tipp: "\\(F(x) = x^2 + C\\), \\(F(1) = 1 + C = 5\\).", loesungsweg: "$$F(x) = x^2 + C, \\; F(1) = 1 + C = 5 \\Rightarrow C = 4$$<br>\\(F(0) = 0 + 4 = 4\\)." },
+      { id: 32, level: 6, typ: "numerisch", frage: "\\(f(x) = 3x^2\\), \\(F(2) = 10\\). Was ist \\(F(0)\\)?", loesung: 2, toleranz: 0, tipp: "\\(F(x) = x^3 + C\\), \\(8 + C = 10\\).", loesungsweg: "$$F(x) = x^3 + C, \\; 8 + C = 10 \\Rightarrow C = 2$$<br>\\(F(0) = 2\\)." },
+      { id: 33, level: 6, typ: "mc", frage: "Welche Funktion ist KEINE Stammfunktion von \\(f(x) = 2x\\)?", optionen: ["\\(x^2\\)", "\\(x^2 + 7\\)", "\\(x^2 - 3\\)", "\\(2x^2\\)"], korrekt: 3, tipp: "Ableite jede Option und prüfe.", loesungsweg: "\\((2x^2)' = 4x \\neq 2x\\). Alle anderen haben Ableitung \\(2x\\)." },
+      { id: 34, level: 6, typ: "numerisch", frage: "\\(f(x) = e^x\\), \\(F(0) = 3\\). Berechne \\(F(1)\\) (auf 2 Nachkommastellen).", loesung: 4.72, toleranz: 0.05, tipp: "\\(F(x) = e^x + C\\), \\(C = 2\\).", loesungsweg: "$$F(x) = e^x + 2, \\; F(1) = e + 2 \\approx 4{,}72$$" },
+      { id: 35, level: 6, typ: "mc", frage: "Alle Stammfunktionen von \\(f(x) = 6x^2 - 4\\) lauten:", optionen: ["\\(2x^3 - 4x\\)", "\\(2x^3 - 4x + C\\)", "\\(12x\\)", "\\(6x^3 - 4x + C\\)"], korrekt: 1, tipp: "Plus Integrationskonstante!", loesungsweg: "$$\\int (6x^2 - 4)dx = 2x^3 - 4x + C$$" },
+      { id: 36, level: 6, typ: "numerisch", frage: "\\(f(x) = \\cos x\\), gesucht \\(F\\) mit \\(F(0) = 0\\). Berechne \\(F(\\pi)\\).", loesung: 0, toleranz: 0.01, tipp: "\\(F(x) = \\sin x\\). \\(\\sin(\\pi) = 0\\).", loesungsweg: "$$F(x) = \\sin x + C, \\; F(0) = 0 \\Rightarrow C = 0$$<br>\\(F(\\pi) = \\sin(\\pi) = 0\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

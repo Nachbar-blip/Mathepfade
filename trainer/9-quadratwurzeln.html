@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratwurzeln - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '9-quadratwurzeln';
+    const THEMA_CONFIG = { name: 'Quadratwurzeln', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Grundbegriffe ==========
+      { id: 1, level: 1, typ: "mc", frage: "Was ist \\(\\sqrt{9}\\)?", optionen: ["\\(3\\)", "\\(4{,}5\\)", "\\(81\\)", "\\(-3\\)"], korrekt: 0, tipp: "Welche Zahl mal sich selbst ergibt 9?", loesungsweg: "\\(3 \\cdot 3 = 9\\), also \\(\\sqrt{9} = 3\\)." },
+      { id: 2, level: 1, typ: "numerisch", frage: "Berechne \\(\\sqrt{25}\\).", loesung: 5, toleranz: 0, tipp: "\\(5 \\cdot 5 = 25\\).", loesungsweg: "$$\\sqrt{25} = 5$$" },
+      { id: 3, level: 1, typ: "numerisch", frage: "Berechne \\(\\sqrt{64}\\).", loesung: 8, toleranz: 0, tipp: "\\(8 \\cdot 8 = 64\\).", loesungsweg: "$$\\sqrt{64} = 8$$" },
+      { id: 4, level: 1, typ: "mc", frage: "Wie heißt die Zahl unter dem Wurzelzeichen?", optionen: ["Exponent", "Radikand", "Koeffizient", "Basis"], korrekt: 1, tipp: "Lateinisch radix = Wurzel.", loesungsweg: "Die Zahl unter der Wurzel heißt <b>Radikand</b>." },
+      { id: 5, level: 1, typ: "numerisch", frage: "Berechne \\(\\sqrt{100}\\).", loesung: 10, toleranz: 0, tipp: "\\(10 \\cdot 10 = 100\\).", loesungsweg: "$$\\sqrt{100} = 10$$" },
+      { id: 6, level: 1, typ: "mc", frage: "Welche Zahl ist eine Quadratzahl?", optionen: ["\\(12\\)", "\\(18\\)", "\\(49\\)", "\\(50\\)"], korrekt: 2, tipp: "\\(49 = 7 \\cdot 7\\).", loesungsweg: "\\(49 = 7^2\\) ist eine Quadratzahl." },
+      // ========== LEVEL 2 -- leicht: Wurzeln ziehen ==========
+      { id: 7, level: 2, typ: "numerisch", frage: "Berechne \\(\\sqrt{144}\\).", loesung: 12, toleranz: 0, tipp: "\\(12 \\cdot 12 = 144\\).", loesungsweg: "$$\\sqrt{144} = 12$$" },
+      { id: 8, level: 2, typ: "numerisch", frage: "Berechne \\(\\sqrt{0{,}25}\\).", loesung: 0.5, toleranz: 0.001, tipp: "\\(0{,}5 \\cdot 0{,}5 = 0{,}25\\).", loesungsweg: "$$\\sqrt{0{,}25} = 0{,}5$$" },
+      { id: 9, level: 2, typ: "numerisch", frage: "Berechne \\(\\sqrt{\\frac{4}{9}}\\) als Dezimalzahl (gerundet auf 4 Stellen).", loesung: 0.6667, toleranz: 0.001, tipp: "\\(\\sqrt{\\frac{4}{9}} = \\frac{2}{3}\\).", loesungsweg: "$$\\sqrt{\\frac{4}{9}} = \\frac{\\sqrt{4}}{\\sqrt{9}} = \\frac{2}{3} \\approx 0{,}6667$$" },
+      { id: 10, level: 2, typ: "mc", frage: "Welcher Wert ist \\(\\sqrt{169}\\)?", optionen: ["\\(11\\)", "\\(12\\)", "\\(13\\)", "\\(14\\)"], korrekt: 2, tipp: "\\(13 \\cdot 13 = 169\\).", loesungsweg: "\\(13^2 = 169\\), also \\(\\sqrt{169} = 13\\)." },
+      { id: 11, level: 2, typ: "numerisch", frage: "Berechne \\(\\sqrt{81} + \\sqrt{16}\\).", loesung: 13, toleranz: 0, tipp: "\\(\\sqrt{81} = 9\\), \\(\\sqrt{16} = 4\\).", loesungsweg: "$$9 + 4 = 13$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "Berechne \\(\\sqrt{400}\\).", loesung: 20, toleranz: 0, tipp: "\\(20 \\cdot 20 = 400\\).", loesungsweg: "$$\\sqrt{400} = 20$$" },
+      // ========== LEVEL 3 -- Wurzelgesetze ==========
+      { id: 13, level: 3, typ: "numerisch", frage: "Berechne \\(\\sqrt{2} \\cdot \\sqrt{8}\\).", loesung: 4, toleranz: 0, tipp: "\\(\\sqrt{a}\\cdot\\sqrt{b}=\\sqrt{ab}\\).", loesungsweg: "$$\\sqrt{2}\\cdot\\sqrt{8} = \\sqrt{16} = 4$$" },
+      { id: 14, level: 3, typ: "numerisch", frage: "Berechne \\(\\frac{\\sqrt{50}}{\\sqrt{2}}\\).", loesung: 5, toleranz: 0, tipp: "\\(\\frac{\\sqrt{a}}{\\sqrt{b}} = \\sqrt{\\frac{a}{b}}\\).", loesungsweg: "$$\\sqrt{\\frac{50}{2}} = \\sqrt{25} = 5$$" },
+      { id: 15, level: 3, typ: "mc", frage: "Welche Vereinfachung von \\(\\sqrt{18}\\) ist richtig?", optionen: ["\\(2\\sqrt{3}\\)", "\\(3\\sqrt{2}\\)", "\\(9\\sqrt{2}\\)", "\\(\\sqrt{9} \\cdot 2\\)"], korrekt: 1, tipp: "\\(18 = 9 \\cdot 2\\).", loesungsweg: "$$\\sqrt{18} = \\sqrt{9 \\cdot 2} = 3\\sqrt{2}$$" },
+      { id: 16, level: 3, typ: "mc", frage: "Vereinfache \\(\\sqrt{72}\\).", optionen: ["\\(6\\sqrt{2}\\)", "\\(8\\sqrt{3}\\)", "\\(2\\sqrt{18}\\)", "\\(12\\sqrt{2}\\)"], korrekt: 0, tipp: "\\(72 = 36 \\cdot 2\\).", loesungsweg: "$$\\sqrt{72} = \\sqrt{36 \\cdot 2} = 6\\sqrt{2}$$" },
+      { id: 17, level: 3, typ: "numerisch", frage: "Berechne \\(\\sqrt{3} \\cdot \\sqrt{12}\\).", loesung: 6, toleranz: 0, tipp: "\\(\\sqrt{3 \\cdot 12} = \\sqrt{36}\\).", loesungsweg: "$$\\sqrt{36} = 6$$" },
+      { id: 18, level: 3, typ: "numerisch", frage: "Berechne \\((\\sqrt{7})^2\\).", loesung: 7, toleranz: 0, tipp: "\\((\\sqrt{a})^2 = a\\) für \\(a \\geq 0\\).", loesungsweg: "$$(\\sqrt{7})^2 = 7$$" },
+      // ========== LEVEL 4 -- mittel: Teilweises Radizieren, Addieren ==========
+      { id: 19, level: 4, typ: "mc", frage: "Vereinfache \\(3\\sqrt{2} + 5\\sqrt{2}\\).", optionen: ["\\(8\\sqrt{4}\\)", "\\(8\\sqrt{2}\\)", "\\(15\\sqrt{2}\\)", "\\(8\\)"], korrekt: 1, tipp: "Gleichartige Wurzeln addieren sich wie Variablen.", loesungsweg: "$$3\\sqrt{2} + 5\\sqrt{2} = 8\\sqrt{2}$$" },
+      { id: 20, level: 4, typ: "mc", frage: "Vereinfache \\(\\sqrt{50} + \\sqrt{8}\\).", optionen: ["\\(7\\sqrt{2}\\)", "\\(\\sqrt{58}\\)", "\\(5\\sqrt{2} + 2\\sqrt{2}\\)", "\\(7\\sqrt{2}\\) und \\(5\\sqrt{2}+2\\sqrt{2}\\) stimmen beide"], korrekt: 3, tipp: "\\(\\sqrt{50} = 5\\sqrt{2}\\), \\(\\sqrt{8} = 2\\sqrt{2}\\).", loesungsweg: "$$\\sqrt{50}+\\sqrt{8} = 5\\sqrt{2} + 2\\sqrt{2} = 7\\sqrt{2}$$" },
+      { id: 21, level: 4, typ: "numerisch", frage: "Berechne \\(\\sqrt{200}\\) als Dezimalzahl (gerundet auf 2 Stellen).", loesung: 14.14, toleranz: 0.05, tipp: "\\(\\sqrt{200} = 10\\sqrt{2} \\approx 10 \\cdot 1{,}414\\).", loesungsweg: "$$\\sqrt{200} = \\sqrt{100 \\cdot 2} = 10\\sqrt{2} \\approx 14{,}14$$" },
+      { id: 22, level: 4, typ: "numerisch", frage: "Berechne \\((\\sqrt{5} + \\sqrt{5})^2\\).", loesung: 20, toleranz: 0, tipp: "\\(2\\sqrt{5}\\) quadrieren.", loesungsweg: "$$(2\\sqrt{5})^2 = 4 \\cdot 5 = 20$$" },
+      { id: 23, level: 4, typ: "mc", frage: "Welche Zahl ist irrational?", optionen: ["\\(\\sqrt{16}\\)", "\\(\\sqrt{2}\\)", "\\(\\sqrt{0{,}25}\\)", "\\(\\sqrt{\\frac{9}{16}}\\)"], korrekt: 1, tipp: "Ist der Radikand keine Quadratzahl?", loesungsweg: "\\(\\sqrt{2}\\) lässt sich nicht als Bruch darstellen, ist also <b>irrational</b>." },
+      { id: 24, level: 4, typ: "numerisch", frage: "Vereinfache \\(\\sqrt{32} - \\sqrt{8}\\) zu \\(k\\sqrt{2}\\). Gib \\(k\\) an.", loesung: 2, toleranz: 0, tipp: "\\(\\sqrt{32} = 4\\sqrt{2}\\), \\(\\sqrt{8} = 2\\sqrt{2}\\).", loesungsweg: "$$4\\sqrt{2} - 2\\sqrt{2} = 2\\sqrt{2}$$" },
+      // ========== LEVEL 5 -- anspruchsvoll: Nenner rational machen ==========
+      { id: 25, level: 5, typ: "mc", frage: "Mache den Nenner von \\(\\frac{1}{\\sqrt{2}}\\) rational.", optionen: ["\\(\\frac{\\sqrt{2}}{2}\\)", "\\(\\frac{2}{\\sqrt{2}}\\)", "\\(\\sqrt{2}\\)", "\\(\\frac{1}{2}\\)"], korrekt: 0, tipp: "Erweitere mit \\(\\sqrt{2}\\).", loesungsweg: "$$\\frac{1}{\\sqrt{2}} \\cdot \\frac{\\sqrt{2}}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}$$" },
+      { id: 26, level: 5, typ: "numerisch", frage: "Ein Quadrat hat Flächeninhalt \\(A = 50\\,\\text{cm}^2\\). Berechne die Seitenlänge in cm (gerundet auf 2 Stellen).", loesung: 7.07, toleranz: 0.05, tipp: "\\(a = \\sqrt{A}\\).", loesungsweg: "$$a = \\sqrt{50} = 5\\sqrt{2} \\approx 7{,}07\\,\\text{cm}$$" },
+      { id: 27, level: 5, typ: "numerisch", frage: "Berechne \\((\\sqrt{3} + 2)(\\sqrt{3} - 2)\\).", loesung: -1, toleranz: 0, tipp: "3. binomische Formel: \\((a+b)(a-b) = a^2 - b^2\\).", loesungsweg: "$$(\\sqrt{3})^2 - 2^2 = 3 - 4 = -1$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "Berechne \\((\\sqrt{5} + 1)^2\\). Gib das Ergebnis als \\(a + b\\sqrt{5}\\) an — was ist \\(a\\)?", loesung: 6, toleranz: 0, tipp: "1. bin. Formel: \\(5 + 2\\sqrt{5} + 1\\).", loesungsweg: "$$(\\sqrt{5}+1)^2 = 5 + 2\\sqrt{5} + 1 = 6 + 2\\sqrt{5}$$ Also \\(a = 6\\)." },
+      { id: 29, level: 5, typ: "mc", frage: "Welcher Ausdruck ist gleich \\(\\sqrt{a^2}\\) für reelle \\(a\\)?", optionen: ["\\(a\\)", "\\(|a|\\)", "\\(a^2\\)", "\\(-a\\)"], korrekt: 1, tipp: "Was ist \\(\\sqrt{(-3)^2}\\)?", loesungsweg: "\\(\\sqrt{a^2} = |a|\\), denn die Wurzel liefert stets einen nicht-negativen Wert." },
+      { id: 30, level: 5, typ: "numerisch", frage: "Die Diagonale eines Quadrats mit Seite \\(a = 4\\) ist \\(d = a\\sqrt{2}\\). Berechne \\(d\\) (gerundet auf 2 Stellen).", loesung: 5.66, toleranz: 0.05, tipp: "\\(4 \\cdot \\sqrt{2} \\approx 4 \\cdot 1{,}414\\).", loesungsweg: "$$d = 4\\sqrt{2} \\approx 5{,}66$$" },
+      // ========== LEVEL 6 -- Transfer ==========
+      { id: 31, level: 6, typ: "numerisch", frage: "Berechne \\(\\sqrt{98} - \\sqrt{50} + \\sqrt{2}\\) als Vielfaches von \\(\\sqrt{2}\\). Gib den Koeffizienten an.", loesung: 3, toleranz: 0, tipp: "\\(7\\sqrt{2} - 5\\sqrt{2} + \\sqrt{2}\\).", loesungsweg: "$$7\\sqrt{2} - 5\\sqrt{2} + \\sqrt{2} = 3\\sqrt{2}$$" },
+      { id: 32, level: 6, typ: "mc", frage: "Für welche \\(x\\) ist \\(\\sqrt{x}\\) definiert?", optionen: ["Alle reellen \\(x\\)", "\\(x > 0\\)", "\\(x \\geq 0\\)", "Nur für Quadratzahlen"], korrekt: 2, tipp: "Unter der Wurzel darf nichts Negatives stehen, aber 0 ist erlaubt.", loesungsweg: "Die Quadratwurzel ist für \\(x \\geq 0\\) definiert; \\(\\sqrt{0} = 0\\)." },
+      { id: 33, level: 6, typ: "numerisch", frage: "Berechne \\(\\frac{6}{\\sqrt{3}}\\) nach Rationalisieren (ohne Wurzel im Nenner).", loesung: 3.464, toleranz: 0.01, tipp: "\\(\\frac{6}{\\sqrt{3}} = \\frac{6\\sqrt{3}}{3} = 2\\sqrt{3}\\).", loesungsweg: "$$\\frac{6}{\\sqrt{3}} = 2\\sqrt{3} \\approx 3{,}464$$" },
+      { id: 34, level: 6, typ: "numerisch", frage: "Ein rechtwinkliges Dreieck hat Katheten \\(3\\) und \\(4\\). Berechne die Hypotenuse mit \\(c = \\sqrt{a^2+b^2}\\).", loesung: 5, toleranz: 0, tipp: "\\(\\sqrt{9 + 16}\\).", loesungsweg: "$$c = \\sqrt{9 + 16} = \\sqrt{25} = 5$$" },
+      { id: 35, level: 6, typ: "mc", frage: "Welche Aussage ist korrekt?", optionen: ["\\(\\sqrt{a + b} = \\sqrt{a} + \\sqrt{b}\\)", "\\(\\sqrt{a \\cdot b} = \\sqrt{a} \\cdot \\sqrt{b}\\) für \\(a, b \\geq 0\\)", "\\(\\sqrt{a^2 + b^2} = a + b\\)", "\\((\\sqrt{a})^2 = a^2\\)"], korrekt: 1, tipp: "Nur Produkt- und Quotientenregel gelten, keine Summenregel.", loesungsweg: "Nur \\(\\sqrt{ab} = \\sqrt{a}\\sqrt{b}\\) (für \\(a,b \\geq 0\\)) ist korrekt. Summen darf man nicht zerlegen." },
+      { id: 36, level: 6, typ: "numerisch", frage: "Zeige: \\((\\sqrt{8} + \\sqrt{2})^2 = 18\\). Gib nur 18 ein.", loesung: 18, toleranz: 0, tipp: "\\((2\\sqrt{2} + \\sqrt{2})^2 = (3\\sqrt{2})^2\\).", loesungsweg: "$$(3\\sqrt{2})^2 = 9 \\cdot 2 = 18$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

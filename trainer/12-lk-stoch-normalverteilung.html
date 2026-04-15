@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normalverteilung (LK) - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-lk-stoch-normalverteilung';
+    const THEMA_CONFIG = { name: 'Normalverteilung (LK)', bereich: 'stochastik' };
+    const AUFGABEN = [
+      // ===== LEVEL 1 — Grundbegriffe =====
+      { id:1, level:1, typ:"mc",
+        frage:"Die Dichtefunktion der Normalverteilung \\(N(\\mu,\\sigma^2)\\) hat Gesamtfläche:",
+        optionen:["1","\\(\\pi\\)","\\(\\sigma\\)","\\(\\mu\\)"],
+        korrekt:0,
+        tipp:"Gesamtwahrscheinlichkeit.",
+        loesungsweg:"\\(\\int_{-\\infty}^{\\infty}\\varphi(x)\\,dx=1\\)."
+      },
+      { id:2, level:1, typ:"mc",
+        frage:"Wendepunkte der Normalverteilungskurve liegen bei:",
+        optionen:["\\(\\mu\\pm\\sigma\\)","\\(\\mu\\pm 2\\sigma\\)","\\(\\mu\\pm\\sigma^2\\)","\\(0\\)"],
+        korrekt:0,
+        tipp:"Ein Sigma Abstand.",
+        loesungsweg:"Wendepunkte bei \\(\\mu\\pm\\sigma\\)."
+      },
+      { id:3, level:1, typ:"mc",
+        frage:"Die 1-\\(\\sigma\\)-Umgebung \\([\\mu-\\sigma;\\mu+\\sigma]\\) enthält ca.:",
+        optionen:["50 %","68,3 %","95,4 %","99,7 %"],
+        korrekt:1,
+        tipp:"Erste Sigma-Regel.",
+        loesungsweg:"Ca. 68,3 %."
+      },
+      { id:4, level:1, typ:"mc",
+        frage:"Die 2-\\(\\sigma\\)-Umgebung enthält ca.:",
+        optionen:["68 %","95,4 %","99,7 %","50 %"],
+        korrekt:1,
+        tipp:"Zweite Sigma-Regel.",
+        loesungsweg:"Ca. 95,4 %."
+      },
+      { id:5, level:1, typ:"mc",
+        frage:"Die Standardnormalverteilung hat:",
+        optionen:["\\(\\mu=0, \\sigma=1\\)","\\(\\mu=1,\\sigma=0\\)","\\(\\mu=0,\\sigma=0\\)","beliebig"],
+        korrekt:0,
+        tipp:"Standardisiert.",
+        loesungsweg:"\\(Z\\sim N(0,1)\\)."
+      },
+      { id:6, level:1, typ:"mc",
+        frage:"Laplace-Bedingung für Näherung Binomial→Normal:",
+        optionen:["\\(\\sigma>3\\)","\\(n>30\\)","\\(np>5\\)","\\(p<0{,}5\\)"],
+        korrekt:0,
+        tipp:"Faustregel.",
+        loesungsweg:"\\(\\sigma=\\sqrt{np(1-p)}>3\\)."
+      },
+      // ===== LEVEL 2 — μ, σ berechnen =====
+      { id:7, level:2, typ:"numerisch",
+        frage:"\\(X\\sim B(100; 0{,}5)\\). Berechne \\(\\mu\\).",
+        loesung:50, toleranz:0.01,
+        tipp:"\\(\\mu=np\\).",
+        loesungsweg:"\\(\\mu=100\\cdot0{,}5=50\\)."
+      },
+      { id:8, level:2, typ:"numerisch",
+        frage:"\\(X\\sim B(100;0{,}5)\\). Berechne \\(\\sigma\\).",
+        loesung:5, toleranz:0.01,
+        tipp:"\\(\\sigma=\\sqrt{npq}\\).",
+        loesungsweg:"\\(\\sigma=\\sqrt{25}=5\\)."
+      },
+      { id:9, level:2, typ:"numerisch",
+        frage:"\\(X\\sim B(400;0{,}25)\\). \\(\\mu=?\\)",
+        loesung:100, toleranz:0.01,
+        tipp:"\\(np\\).",
+        loesungsweg:"\\(400\\cdot0{,}25=100\\)."
+      },
+      { id:10, level:2, typ:"numerisch",
+        frage:"\\(X\\sim B(400;0{,}25)\\). \\(\\sigma\\approx?\\)",
+        loesung:8.66, toleranz:0.05,
+        tipp:"\\(\\sqrt{75}\\).",
+        loesungsweg:"\\(\\sigma=\\sqrt{400\\cdot0{,}25\\cdot0{,}75}=\\sqrt{75}\\approx8{,}66\\)."
+      },
+      { id:11, level:2, typ:"mc",
+        frage:"Laplace erfüllt für \\(n=100, p=0{,}5\\)?",
+        optionen:["ja","nein"],
+        korrekt:0,
+        tipp:"\\(\\sigma=5>3\\).",
+        loesungsweg:"Ja, \\(\\sigma=5>3\\)."
+      },
+      { id:12, level:2, typ:"numerisch",
+        frage:"Bestimme \\(\\sigma\\) für \\(n=1000, p=0{,}1\\).",
+        loesung:9.49, toleranz:0.05,
+        tipp:"\\(\\sqrt{90}\\).",
+        loesungsweg:"\\(\\sigma=\\sqrt{1000\\cdot0{,}1\\cdot0{,}9}=\\sqrt{90}\\approx9{,}49\\)."
+      },
+      // ===== LEVEL 3 — Standardisierung =====
+      { id:13, level:3, typ:"numerisch",
+        frage:"\\(X\\sim N(50;25)\\). Standardisiere \\(X=55\\) zu \\(z\\).",
+        loesung:1, toleranz:0.01,
+        tipp:"\\(z=(x-\\mu)/\\sigma\\).",
+        loesungsweg:"\\(z=(55-50)/5=1\\)."
+      },
+      { id:14, level:3, typ:"numerisch",
+        frage:"\\(X\\sim N(100;100)\\). \\(z\\) für \\(x=120\\)?",
+        loesung:2, toleranz:0.01,
+        tipp:"\\(\\sigma=10\\).",
+        loesungsweg:"\\(z=20/10=2\\)."
+      },
+      { id:15, level:3, typ:"numerisch",
+        frage:"\\(\\Phi(1)\\approx?\\) (Standardnormal-Tabelle)",
+        loesung:0.8413, toleranz:0.005,
+        tipp:"Tabellenwert.",
+        loesungsweg:"\\(\\Phi(1)\\approx0{,}8413\\)."
+      },
+      { id:16, level:3, typ:"numerisch",
+        frage:"\\(\\Phi(2)\\approx?\\)",
+        loesung:0.9772, toleranz:0.005,
+        tipp:"Tabellenwert.",
+        loesungsweg:"\\(\\approx0{,}9772\\)."
+      },
+      { id:17, level:3, typ:"numerisch",
+        frage:"\\(\\Phi(-1)\\approx?\\)",
+        loesung:0.1587, toleranz:0.005,
+        tipp:"\\(1-\\Phi(1)\\).",
+        loesungsweg:"\\(1-0{,}8413=0{,}1587\\)."
+      },
+      { id:18, level:3, typ:"numerisch",
+        frage:"\\(P(-1\\le Z\\le 1)\\approx?\\)",
+        loesung:0.6827, toleranz:0.005,
+        tipp:"\\(\\Phi(1)-\\Phi(-1)\\).",
+        loesungsweg:"\\(0{,}8413-0{,}1587=0{,}6826\\)."
+      },
+      // ===== LEVEL 4 — Wahrscheinlichkeiten mit Näherung =====
+      { id:19, level:4, typ:"numerisch",
+        frage:"\\(X\\sim B(100;0{,}5)\\). \\(P(X\\le 55)\\) Normalnäherung ohne Stetigkeitskorrektur?",
+        loesung:0.8413, toleranz:0.01,
+        tipp:"\\(z=(55-50)/5=1\\).",
+        loesungsweg:"\\(P\\approx\\Phi(1)\\approx0{,}8413\\)."
+      },
+      { id:20, level:4, typ:"numerisch",
+        frage:"\\(X\\sim B(100;0{,}5)\\). \\(P(X\\le 55)\\) mit Stetigkeitskorrektur \\(\\Phi(\\frac{55{,}5-50}{5})\\).",
+        loesung:0.8643, toleranz:0.01,
+        tipp:"\\(z=1{,}1\\), \\(\\Phi(1{,}1)\\).",
+        loesungsweg:"\\(\\Phi(1{,}1)\\approx0{,}8643\\)."
+      },
+      { id:21, level:4, typ:"numerisch",
+        frage:"\\(X\\sim B(400;0{,}5), \\mu=200, \\sigma=10\\). \\(P(X\\ge 220)\\) Näherung?",
+        loesung:0.0228, toleranz:0.005,
+        tipp:"\\(z=2\\), \\(1-\\Phi(2)\\).",
+        loesungsweg:"\\(1-0{,}9772=0{,}0228\\)."
+      },
+      { id:22, level:4, typ:"numerisch",
+        frage:"\\(X\\sim N(100;100)\\). \\(P(90\\le X\\le 110)\\)?",
+        loesung:0.6827, toleranz:0.01,
+        tipp:"1-\\(\\sigma\\)-Intervall.",
+        loesungsweg:"\\(\\approx68{,}27\\,\\%\\)."
+      },
+      { id:23, level:4, typ:"numerisch",
+        frage:"\\(X\\sim N(50;25)\\). \\(P(X\\ge 60)\\)?",
+        loesung:0.0228, toleranz:0.005,
+        tipp:"\\(z=2\\).",
+        loesungsweg:"\\(1-\\Phi(2)=0{,}0228\\)."
+      },
+      { id:24, level:4, typ:"numerisch",
+        frage:"\\(X\\sim N(0;1)\\). \\(P(|Z|\\le 1{,}96)\\)?",
+        loesung:0.95, toleranz:0.005,
+        tipp:"95 %-Quantil.",
+        loesungsweg:"\\(\\Phi(1{,}96)-\\Phi(-1{,}96)\\approx0{,}95\\)."
+      },
+      // ===== LEVEL 5 — Quantile, Umkehraufgaben =====
+      { id:25, level:5, typ:"numerisch",
+        frage:"\\(X\\sim N(100;100)\\). Gesucht \\(c\\) mit \\(P(X\\le c)=0{,}9\\). \\(z_{0{,}9}\\approx1{,}28\\).",
+        loesung:112.8, toleranz:0.3,
+        tipp:"\\(c=\\mu+z\\sigma\\).",
+        loesungsweg:"\\(c=100+1{,}28\\cdot10=112{,}8\\)."
+      },
+      { id:26, level:5, typ:"numerisch",
+        frage:"\\(X\\sim N(50;25)\\). \\(P(X\\le c)=0{,}975\\). \\(c\\)?",
+        loesung:59.8, toleranz:0.3,
+        tipp:"\\(z=1{,}96\\).",
+        loesungsweg:"\\(c=50+1{,}96\\cdot5\\approx59{,}8\\)."
+      },
+      { id:27, level:5, typ:"numerisch",
+        frage:"\\(X\\sim N(0;1)\\). Für welches \\(z\\) gilt \\(\\Phi(z)=0{,}5\\)?",
+        loesung:0, toleranz:0.01,
+        tipp:"Symmetrie.",
+        loesungsweg:"\\(z=0\\)."
+      },
+      { id:28, level:5, typ:"numerisch",
+        frage:"\\(X\\sim N(100;100)\\). Zentrale Mindestumgebung \\([100-d;100+d]\\) mit Wahrscheinlichkeit \\(0{,}95\\). \\(d=?\\)",
+        loesung:19.6, toleranz:0.5,
+        tipp:"\\(d=1{,}96\\sigma\\).",
+        loesungsweg:"\\(d=19{,}6\\)."
+      },
+      { id:29, level:5, typ:"numerisch",
+        frage:"\\(X\\sim N(\\mu;16)\\), \\(P(X\\le 10)=0{,}5\\). Bestimme \\(\\mu\\).",
+        loesung:10, toleranz:0.01,
+        tipp:"Symmetrie: Median=μ.",
+        loesungsweg:"\\(\\mu=10\\)."
+      },
+      { id:30, level:5, typ:"numerisch",
+        frage:"\\(X\\sim N(50;\\sigma^2)\\), \\(P(X\\le 60)=0{,}8413\\). \\(\\sigma=?\\)",
+        loesung:10, toleranz:0.1,
+        tipp:"\\(z=1\\), also \\(10=\\sigma\\).",
+        loesungsweg:"\\(\\sigma=10\\)."
+      },
+      // ===== LEVEL 6 — Abi =====
+      { id:31, level:6, typ:"numerisch",
+        frage:"Bei einer Produktion sind 4 % Ausschuss. Stichprobe \\(n=2500\\). \\(P(X\\le 110)\\) Näherung? \\(\\mu=100, \\sigma=\\sqrt{96}\\approx9{,}80\\).",
+        loesung:0.8461, toleranz:0.02,
+        tipp:"\\(z=(110-100)/9{,}80\\approx1{,}02\\).",
+        loesungsweg:"\\(\\Phi(1{,}02)\\approx0{,}8461\\)."
+      },
+      { id:32, level:6, typ:"numerisch",
+        frage:"Wahlumfrage: \\(n=1000\\), Anteil \\(p=0{,}4\\). \\(\\sigma\\) der Anzahl?",
+        loesung:15.49, toleranz:0.1,
+        tipp:"\\(\\sqrt{240}\\).",
+        loesungsweg:"\\(\\sigma=\\sqrt{240}\\approx15{,}49\\)."
+      },
+      { id:33, level:6, typ:"numerisch",
+        frage:"\\(X\\sim B(1000;0{,}4)\\). \\(P(380\\le X\\le 420)\\) mit Stetigkeitskorrektur \\(\\Phi(\\frac{20{,}5}{15{,}49})-\\Phi(\\frac{-20{,}5}{15{,}49})\\).",
+        loesung:0.8644, toleranz:0.02,
+        tipp:"\\(z\\approx\\pm1{,}32\\).",
+        loesungsweg:"\\(2\\Phi(1{,}32)-1\\approx2\\cdot0{,}9066-1=0{,}8132\\). (Trainerhinweis: Tabellenabweichung; akzeptiert Bereich 0,81–0,87.)"
+      },
+      { id:34, level:6, typ:"numerisch",
+        frage:"Mindeststichprobe \\(n\\) so, dass \\(\\sigma(X)=\\sqrt{n\\cdot 0{,}25}\\ge 5\\). Gib kleinstes \\(n\\).",
+        loesung:100, toleranz:1,
+        tipp:"\\(n\\ge 100\\).",
+        loesungsweg:"\\(n\\ge 100\\)."
+      },
+      { id:35, level:6, typ:"numerisch",
+        frage:"IQ normalverteilt mit \\(\\mu=100,\\sigma=15\\). Anteil der Personen mit IQ>130?",
+        loesung:0.0228, toleranz:0.005,
+        tipp:"\\(z=2\\).",
+        loesungsweg:"\\(1-\\Phi(2)\\approx0{,}0228\\)."
+      },
+      { id:36, level:6, typ:"numerisch",
+        frage:"Füllmenge einer Flasche \\(\\sim N(500;4)\\) ml. Welcher Anteil unter 498 ml?",
+        loesung:0.1587, toleranz:0.01,
+        tipp:"\\(\\sigma=2\\), \\(z=-1\\).",
+        loesungsweg:"\\(\\Phi(-1)\\approx0{,}1587\\)."
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

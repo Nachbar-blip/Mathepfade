@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dreiecke und Kongruenz - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-dreiecke-kongruenz';
+    const THEMA_CONFIG = { name: 'Dreiecke und Kongruenz', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Dreiecksarten ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Wie viele Ecken hat ein Dreieck?",
+        optionen: ["\\(2\\)", "\\(3\\)", "\\(4\\)", "\\(5\\)"],
+        korrekt: 1,
+        tipp: "Das Wort „Drei-eck\" verrät es.",
+        loesungsweg: "Ein Dreieck hat <b>3 Ecken</b>, 3 Seiten und 3 Innenwinkel."
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "mc",
+        frage: "Ein Dreieck mit drei gleich langen Seiten heißt …",
+        optionen: ["rechtwinklig", "gleichschenklig", "gleichseitig", "stumpfwinklig"],
+        korrekt: 2,
+        tipp: "„Gleichseitig\" = „alle Seiten gleich\".",
+        loesungsweg: "Ein <b>gleichseitiges Dreieck</b> hat drei gleich lange Seiten und drei \\(60°\\)-Winkel."
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "mc",
+        frage: "Ein Dreieck mit einem 90°-Winkel heißt …",
+        optionen: ["spitzwinklig", "stumpfwinklig", "rechtwinklig", "gleichwinklig"],
+        korrekt: 2,
+        tipp: "90° ist ein rechter Winkel.",
+        loesungsweg: "Ein <b>rechtwinkliges Dreieck</b> hat einen 90°-Winkel."
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "mc",
+        frage: "Ein Dreieck mit zwei gleich langen Seiten heißt …",
+        optionen: ["gleichseitig", "gleichschenklig", "rechtwinklig", "stumpfwinklig"],
+        korrekt: 1,
+        tipp: "Die zwei gleich langen Seiten heißen „Schenkel\".",
+        loesungsweg: "Ein <b>gleichschenkliges Dreieck</b> hat zwei gleich lange Schenkel und eine Basis."
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "numerisch",
+        frage: "Wie viele Innenwinkel hat ein Dreieck?",
+        loesung: 3,
+        toleranz: 0,
+        tipp: "Gleich viele wie Ecken.",
+        loesungsweg: "Ein Dreieck hat <b>3</b> Innenwinkel."
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "mc",
+        frage: "Wenn alle Winkel eines Dreiecks kleiner als 90° sind, heißt es …",
+        optionen: ["spitzwinklig", "stumpfwinklig", "rechtwinklig", "gleichseitig"],
+        korrekt: 0,
+        tipp: "Winkel kleiner 90° sind spitze Winkel.",
+        loesungsweg: "Ein <b>spitzwinkliges Dreieck</b> hat nur spitze Innenwinkel (alle \\(< 90°\\))."
+      },
+      // ========== LEVEL 2 -- leicht: Winkelsumme im Dreieck ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "numerisch",
+        frage: "Die Winkelsumme in jedem Dreieck beträgt wie viel Grad?",
+        loesung: 180,
+        toleranz: 0,
+        tipp: "Die berühmte Zahl.",
+        loesungsweg: "Die <b>Winkelsumme</b> im Dreieck beträgt stets \\(180°\\)."
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "numerisch",
+        frage: "In einem Dreieck sind zwei Winkel \\(50°\\) und \\(70°\\). Wie groß ist der dritte Winkel (in Grad)?",
+        loesung: 60,
+        toleranz: 0,
+        tipp: "\\(180° - 50° - 70°\\).",
+        loesungsweg: "$$\\gamma = 180° - 50° - 70° = 60°$$"
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "numerisch",
+        frage: "Wie groß ist jeder Winkel in einem gleichseitigen Dreieck (in Grad)?",
+        loesung: 60,
+        toleranz: 0,
+        tipp: "\\(180° : 3\\).",
+        loesungsweg: "Alle drei Winkel gleich: \\(\\frac{180°}{3} = 60°\\)."
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "mc",
+        frage: "In einem rechtwinkligen Dreieck ist ein Winkel \\(30°\\). Wie groß ist der dritte Winkel?",
+        optionen: ["\\(30°\\)", "\\(60°\\)", "\\(90°\\)", "\\(120°\\)"],
+        korrekt: 1,
+        tipp: "\\(180° - 90° - 30°\\).",
+        loesungsweg: "$$180° - 90° - 30° = 60°$$"
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "numerisch",
+        frage: "In einem gleichschenkligen Dreieck ist der Winkel an der Spitze \\(80°\\). Wie groß ist je ein Basiswinkel (in Grad)?",
+        loesung: 50,
+        toleranz: 0,
+        tipp: "Die beiden Basiswinkel sind gleich. \\((180°-80°):2\\).",
+        loesungsweg: "$$\\frac{180° - 80°}{2} = \\frac{100°}{2} = 50°$$"
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "numerisch",
+        frage: "Zwei Winkel eines Dreiecks sind \\(45°\\) und \\(45°\\). Wie groß ist der dritte Winkel?",
+        loesung: 90,
+        toleranz: 0,
+        tipp: "\\(180° - 45° - 45°\\).",
+        loesungsweg: "$$180° - 90° = 90°$$ Das ist ein rechtwinkliges, gleichschenkliges Dreieck."
+      },
+      // ========== LEVEL 3 -- nervenschonend: Dreiecksungleichung ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "mc",
+        frage: "Welche der Seitenlängen bilden KEIN Dreieck?",
+        optionen: ["\\(3, 4, 5\\)", "\\(2, 2, 3\\)", "\\(1, 2, 5\\)", "\\(5, 5, 5\\)"],
+        korrekt: 2,
+        tipp: "Die Summe zweier Seiten muss größer als die dritte sein.",
+        loesungsweg: "\\(1 + 2 = 3 < 5\\). Die Dreiecksungleichung verletzt — kein Dreieck möglich."
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "mc",
+        frage: "Die Dreiecksungleichung lautet …",
+        optionen: ["\\(a + b + c = 180°\\)", "\\(a + b > c\\) (für jede Seite)", "\\(a \\cdot b = c\\)", "\\(a^2 + b^2 = c^2\\)"],
+        korrekt: 1,
+        tipp: "Eine Aussage über die Seitenlängen.",
+        loesungsweg: "In einem Dreieck gilt: <b>jede Seite ist kleiner als die Summe der beiden anderen</b>."
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "mc",
+        frage: "Zwei Seiten eines Dreiecks sind \\(6\\) und \\(8\\). Welche Länge ist für die dritte Seite unmöglich?",
+        optionen: ["\\(3\\)", "\\(10\\)", "\\(13\\)", "\\(15\\)"],
+        korrekt: 3,
+        tipp: "Die dritte Seite muss kleiner als \\(6+8=14\\) und größer als \\(|8-6|=2\\) sein.",
+        loesungsweg: "\\(2 < c < 14\\). Also ist \\(15\\) unmöglich."
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein gleichschenkliges Dreieck hat die Schenkel \\(5\\,\\text{cm}\\) und die Basis \\(6\\,\\text{cm}\\). Wie groß ist der Umfang in cm?",
+        loesung: 16,
+        toleranz: 0,
+        tipp: "\\(2 \\cdot 5 + 6\\).",
+        loesungsweg: "$$U = 2 \\cdot 5 + 6 = 16\\,\\text{cm}$$"
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein gleichseitiges Dreieck hat den Umfang \\(21\\,\\text{cm}\\). Wie lang ist eine Seite (in cm)?",
+        loesung: 7,
+        toleranz: 0,
+        tipp: "\\(21 : 3\\).",
+        loesungsweg: "$$a = \\frac{21}{3} = 7\\,\\text{cm}$$"
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "mc",
+        frage: "In einem Dreieck liegt der größte Winkel …",
+        optionen: ["gegenüber der kürzesten Seite", "gegenüber der längsten Seite", "immer bei der Basis", "immer oben"],
+        korrekt: 1,
+        tipp: "Längere Seite → größerer Gegenwinkel.",
+        loesungsweg: "Je länger die Seite, desto größer der gegenüberliegende Winkel."
+      },
+      // ========== LEVEL 4 -- mittel: Kongruenzsätze ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "mc",
+        frage: "Zwei Dreiecke sind kongruent, wenn sie in … übereinstimmen.",
+        optionen: ["allen Winkeln", "allen drei Seiten (SSS)", "einer Seite", "zwei Winkeln"],
+        korrekt: 1,
+        tipp: "Kongruenz = deckungsgleich. Gleiche Winkel reichen nicht (nur ähnlich).",
+        loesungsweg: "<b>Kongruenzsatz SSS</b>: Stimmen zwei Dreiecke in allen drei Seitenlängen überein, sind sie kongruent."
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "mc",
+        frage: "Welcher Kongruenzsatz wird abgekürzt mit SWS?",
+        optionen: ["Seite-Winkel-Seite (der eingeschlossene Winkel)", "Seite-Winkel-Seite (egal welcher Winkel)", "Winkel-Seite-Winkel", "Seite-Seite-Seite"],
+        korrekt: 0,
+        tipp: "Wichtig: der Winkel muss <b>eingeschlossen</b> sein.",
+        loesungsweg: "<b>SWS</b>: Zwei Dreiecke sind kongruent, wenn sie in zwei Seiten und dem eingeschlossenen Winkel übereinstimmen."
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "mc",
+        frage: "Welcher Kongruenzsatz ist das: WSW?",
+        optionen: ["Winkel-Seite-Winkel", "Winkel-Winkel-Winkel", "Winkel-Seite-Seite", "Seite-Winkel-Winkel"],
+        korrekt: 0,
+        tipp: "Die Buchstaben geben die Reihenfolge an.",
+        loesungsweg: "<b>WSW</b>: Winkel, anliegende Seite, Winkel — stimmen zwei Dreiecke darin überein, sind sie kongruent."
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "mc",
+        frage: "Reicht die Übereinstimmung von drei Winkeln (WWW), um Kongruenz zu zeigen?",
+        optionen: ["Ja, WWW ist ein Kongruenzsatz", "Nein, die Dreiecke sind nur ähnlich, nicht zwingend kongruent", "Nur bei rechtwinkligen Dreiecken", "Nur bei gleichseitigen Dreiecken"],
+        korrekt: 1,
+        tipp: "Vergrößerte Dreiecke haben die gleichen Winkel, sind aber nicht deckungsgleich.",
+        loesungsweg: "Drei gleiche Winkel bedeuten <b>Ähnlichkeit</b>, nicht Kongruenz. WWW ist kein Kongruenzsatz."
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "numerisch",
+        frage: "Ein Dreieck hat die Winkel \\(\\alpha = 40°\\) und \\(\\beta = 75°\\). Wie groß ist \\(\\gamma\\) (in Grad)?",
+        loesung: 65,
+        toleranz: 0,
+        tipp: "\\(180° - 40° - 75°\\).",
+        loesungsweg: "$$\\gamma = 180° - 40° - 75° = 65°$$"
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "numerisch",
+        frage: "Wie viele Kongruenzsätze für Dreiecke gibt es (klassisch: SSS, SWS, WSW, SsW)?",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "Vier Grundsätze.",
+        loesungsweg: "Es gibt die 4 Kongruenzsätze: <b>SSS, SWS, WSW, SsW</b>."
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Transfer Winkel ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "numerisch",
+        frage: "In einem Dreieck verhalten sich die Winkel wie \\(2:3:4\\). Wie groß ist der größte Winkel (in Grad)?",
+        loesung: 80,
+        toleranz: 0,
+        tipp: "Teile \\(180°\\) in \\(2+3+4=9\\) Teile.",
+        loesungsweg: "$$180° : 9 = 20°$$ Größter Winkel: \\(4 \\cdot 20° = 80°\\)."
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "numerisch",
+        frage: "In einem gleichschenkligen Dreieck ist ein Basiswinkel \\(35°\\). Wie groß ist der Winkel an der Spitze (in Grad)?",
+        loesung: 110,
+        toleranz: 0,
+        tipp: "Beide Basiswinkel gleich. \\(180° - 2 \\cdot 35°\\).",
+        loesungsweg: "$$\\gamma = 180° - 70° = 110°$$"
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "mc",
+        frage: "Welche Angabe reicht NICHT, um ein Dreieck eindeutig zu konstruieren?",
+        optionen: ["\\(a = 5, b = 6, c = 7\\) (SSS)", "\\(a = 5, b = 6, \\gamma = 70°\\) (SWS)", "\\(\\alpha = 50°, \\beta = 60°, \\gamma = 70°\\) (WWW)", "\\(a = 5, \\alpha = 40°, \\beta = 60°\\) (WSW)"],
+        korrekt: 2,
+        tipp: "Drei Winkel → Ähnlichkeit, keine Größe.",
+        loesungsweg: "WWW reicht nicht — es gibt unendlich viele ähnliche Dreiecke mit diesen Winkeln, aber verschiedener Größe."
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "numerisch",
+        frage: "Ein Dreieck hat \\(\\alpha = x\\), \\(\\beta = 2x\\), \\(\\gamma = 3x\\). Bestimme \\(x\\) in Grad.",
+        loesung: 30,
+        toleranz: 0,
+        tipp: "\\(x + 2x + 3x = 180°\\).",
+        loesungsweg: "$$6x = 180° \\implies x = 30°$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "numerisch",
+        frage: "Ein gleichschenkliges Dreieck hat den Umfang \\(28\\,\\text{cm}\\). Die Basis ist \\(8\\,\\text{cm}\\). Wie lang ist ein Schenkel (in cm)?",
+        loesung: 10,
+        toleranz: 0,
+        tipp: "\\(U = 2s + b\\), also \\(28 = 2s + 8\\).",
+        loesungsweg: "$$2s = 28 - 8 = 20 \\implies s = 10\\,\\text{cm}$$"
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "mc",
+        frage: "Zwei Dreiecke haben: \\(a=5, b=7\\), eingeschlossener Winkel \\(\\gamma = 40°\\). Sind sie kongruent?",
+        optionen: ["Ja, nach SWS", "Nein, zu wenig Angaben", "Nur, wenn die dritte Seite gleich ist", "Nur, wenn sie rechtwinklig sind"],
+        korrekt: 0,
+        tipp: "Zwei Seiten und der <b>eingeschlossene</b> Winkel.",
+        loesungsweg: "Nach dem Kongruenzsatz <b>SWS</b> sind die Dreiecke kongruent."
+      },
+      // ========== LEVEL 6 -- wagnerisch: Außenwinkel und Transfer ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "numerisch",
+        frage: "Außenwinkelsatz: Der Außenwinkel eines Dreiecks ist die Summe der beiden nicht anliegenden Innenwinkel. Wenn \\(\\alpha = 40°\\) und \\(\\beta = 70°\\), wie groß ist der Außenwinkel an \\(C\\) (in Grad)?",
+        loesung: 110,
+        toleranz: 0,
+        tipp: "Außenwinkel an \\(C\\) = \\(\\alpha + \\beta\\).",
+        loesungsweg: "$$\\text{Außenwinkel an } C = \\alpha + \\beta = 40° + 70° = 110°$$"
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "numerisch",
+        frage: "Die Winkel eines Dreiecks sind \\(\\alpha, \\alpha+10°, \\alpha+20°\\). Bestimme \\(\\alpha\\) in Grad.",
+        loesung: 50,
+        toleranz: 0,
+        tipp: "\\(3\\alpha + 30° = 180°\\).",
+        loesungsweg: "$$3\\alpha = 150° \\implies \\alpha = 50°$$"
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "mc",
+        frage: "Im gleichschenkligen Dreieck mit \\(a = c\\) gilt für die Winkel:",
+        optionen: ["\\(\\alpha = \\beta\\)", "\\(\\alpha = \\gamma\\)", "\\(\\beta = \\gamma\\)", "alle drei sind gleich"],
+        korrekt: 1,
+        tipp: "Gleichen Seiten liegen gleiche Gegenwinkel gegenüber. \\(a\\) liegt gegenüber \\(\\alpha\\), \\(c\\) gegenüber \\(\\gamma\\).",
+        loesungsweg: "\\(a = c\\) → \\(\\alpha = \\gamma\\) (Basiswinkelsatz)."
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "numerisch",
+        frage: "Zwei Außenwinkel eines Dreiecks sind \\(110°\\) und \\(130°\\). Wie groß ist der dritte Außenwinkel (in Grad)?",
+        loesung: 120,
+        toleranz: 0,
+        tipp: "Die Summe der Außenwinkel beträgt \\(360°\\).",
+        loesungsweg: "$$360° - 110° - 130° = 120°$$"
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "mc",
+        frage: "Ein rechtwinkliges Dreieck hat die Kathete \\(a = 3\\) und \\(b = 4\\). Welcher Satz liefert \\(c\\)?",
+        optionen: ["Winkelsumme", "Dreiecksungleichung", "Satz des Pythagoras \\(a^2+b^2=c^2\\)", "Kongruenzsatz SSS"],
+        korrekt: 2,
+        tipp: "Pythagoras verbindet die drei Seiten im rechtwinkligen Dreieck.",
+        loesungsweg: "Mit dem <b>Satz des Pythagoras</b>: \\(c^2 = 9 + 16 = 25\\), \\(c = 5\\)."
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "numerisch",
+        frage: "Konstruktionsaufgabe: Für welche Seite \\(c\\) (ganzzahlig) ist ein Dreieck mit \\(a=4\\) und \\(b=9\\) möglich? Gib den größten möglichen Wert für \\(c\\) an.",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "\\(|9-4| < c < 9+4\\), also \\(5 < c < 13\\).",
+        loesungsweg: "$$5 < c < 13 \\implies c \\in \\{6,7,8,9,10,11,12\\}$$ Größter ganzzahliger Wert: \\(c = 12\\)."
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

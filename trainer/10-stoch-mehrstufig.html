@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehrstufige Zufallsversuche - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '10-stoch-mehrstufig';
+    const THEMA_CONFIG = { name: 'Mehrstufige Zufallsversuche', bereich: 'stochastik' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 — Baumdiagramm-Grundlagen ==========
+      { id: 1, level: 1, typ: "mc", frage: "Was ist ein mehrstufiger Zufallsversuch?", optionen: ["Ein einmaliger Wurf", "Ein Zufallsexperiment aus mehreren hintereinander ausgeführten Teilexperimenten", "Ein gewichteter Würfel", "Ein Test auf Unabhängigkeit"], korrekt: 1, tipp: "„Mehrstufig\" heißt mehrere Stufen hintereinander.", loesungsweg: "Ein mehrstufiger Zufallsversuch besteht aus zwei oder mehr Teilexperimenten, die nacheinander ausgeführt werden." },
+      { id: 2, level: 1, typ: "mc", frage: "Wie werden die Wahrscheinlichkeiten entlang eines Pfades im Baumdiagramm verknüpft?", optionen: ["addiert", "multipliziert", "subtrahiert", "dividiert"], korrekt: 1, tipp: "Pfadmultiplikationsregel.", loesungsweg: "Entlang eines Pfades werden die Wahrscheinlichkeiten multipliziert." },
+      { id: 3, level: 1, typ: "mc", frage: "Wie werden die Wahrscheinlichkeiten mehrerer günstiger Pfade verknüpft?", optionen: ["addiert", "multipliziert", "maximiert", "minimiert"], korrekt: 0, tipp: "Summenregel.", loesungsweg: "Günstige Pfade werden addiert." },
+      { id: 4, level: 1, typ: "mc", frage: "In einem Baumdiagramm muss die Summe der Wahrscheinlichkeiten an jeder Verzweigung sein:", optionen: ["0", "0{,}5", "1", "je nach Experiment"], korrekt: 2, tipp: "Die Ereignisse einer Verzweigung decken alle Möglichkeiten ab.", loesungsweg: "Summe an jeder Verzweigung = 1." },
+      { id: 5, level: 1, typ: "numerisch", frage: "Ein Würfel wird 2x geworfen. \\(P(\\text{beide Male 6})\\) (4 Dezimalen).", loesung: 0.0278, toleranz: 0.001, tipp: "\\(\\tfrac{1}{6} \\cdot \\tfrac{1}{6}\\).", loesungsweg: "\\(P = \\tfrac{1}{36} \\approx 0{,}0278\\)." },
+      { id: 6, level: 1, typ: "numerisch", frage: "Münze 3x werfen. \\(P(\\text{alle Kopf})\\).", loesung: 0.125, toleranz: 0.005, tipp: "\\(0{,}5^3\\).", loesungsweg: "\\(P = 0{,}5^3 = 0{,}125\\)." },
+      // ========== LEVEL 2 — Mit/ohne Zurücklegen ==========
+      { id: 7, level: 2, typ: "numerisch", frage: "Urne: 5 rote, 3 blaue. 2x mit Zurücklegen. \\(P(\\text{rot, rot})\\) (4 Dezimalen).", loesung: 0.3906, toleranz: 0.005, tipp: "\\(\\tfrac{5}{8} \\cdot \\tfrac{5}{8}\\).", loesungsweg: "\\(\\left(\\tfrac{5}{8}\\right)^2 = \\tfrac{25}{64} \\approx 0{,}3906\\)." },
+      { id: 8, level: 2, typ: "numerisch", frage: "Gleiche Urne, 2x ohne Zurücklegen. \\(P(\\text{rot, rot})\\) (4 Dezimalen).", loesung: 0.3571, toleranz: 0.005, tipp: "\\(\\tfrac{5}{8} \\cdot \\tfrac{4}{7}\\).", loesungsweg: "\\(\\tfrac{5}{8} \\cdot \\tfrac{4}{7} = \\tfrac{20}{56} \\approx 0{,}3571\\)." },
+      { id: 9, level: 2, typ: "numerisch", frage: "Urne: 2 weiß, 3 schwarz. 2x mit Zurücklegen. \\(P(\\text{weiß, schwarz})\\)?", loesung: 0.24, toleranz: 0.005, tipp: "\\(\\tfrac{2}{5} \\cdot \\tfrac{3}{5}\\).", loesungsweg: "\\(0{,}4 \\cdot 0{,}6 = 0{,}24\\)." },
+      { id: 10, level: 2, typ: "numerisch", frage: "Gleiche Urne, 2x ohne Zurücklegen. \\(P(\\text{weiß, schwarz})\\) (2 Dezimalen).", loesung: 0.3, toleranz: 0.005, tipp: "\\(\\tfrac{2}{5} \\cdot \\tfrac{3}{4}\\).", loesungsweg: "\\(\\tfrac{2}{5} \\cdot \\tfrac{3}{4} = \\tfrac{6}{20} = 0{,}3\\)." },
+      { id: 11, level: 2, typ: "numerisch", frage: "Urne: 4 rote, 6 blaue. 3x mit Zurücklegen. \\(P(\\text{alle rot})\\) (4 Dezimalen).", loesung: 0.064, toleranz: 0.001, tipp: "\\(0{,}4^3\\).", loesungsweg: "\\(0{,}4^3 = 0{,}064\\)." },
+      { id: 12, level: 2, typ: "mc", frage: "Beim Ziehen ohne Zurücklegen sind die Stufen…", optionen: ["immer unabhängig", "abhängig", "immer gleichwahrscheinlich", "irrelevant"], korrekt: 1, tipp: "Ohne Zurücklegen verändert jeder Zug die Zusammensetzung.", loesungsweg: "Die Teilexperimente hängen vom vorherigen Ergebnis ab — abhängig." },
+      // ========== LEVEL 3 — Pfadsummenregel ==========
+      { id: 13, level: 3, typ: "numerisch", frage: "Münze 2x: \\(P(\\text{genau 1x Kopf})\\)?", loesung: 0.5, toleranz: 0.01, tipp: "KZ und ZK — 2 Pfade, je \\(0{,}25\\).", loesungsweg: "\\(P = 0{,}25 + 0{,}25 = 0{,}5\\)." },
+      { id: 14, level: 3, typ: "numerisch", frage: "Urne: 3 rote, 2 blaue, 2x ohne Zurücklegen. \\(P(\\text{genau 1x rot})\\) (2 Dezimalen).", loesung: 0.6, toleranz: 0.01, tipp: "RB + BR = \\(\\tfrac{3}{5}\\tfrac{2}{4} + \\tfrac{2}{5}\\tfrac{3}{4}\\).", loesungsweg: "\\(\\tfrac{6}{20} + \\tfrac{6}{20} = \\tfrac{12}{20} = 0{,}6\\)." },
+      { id: 15, level: 3, typ: "numerisch", frage: "Würfel 2x: \\(P(\\text{mindestens eine 6})\\) (4 Dezimalen).", loesung: 0.3056, toleranz: 0.005, tipp: "\\(1 - P(\\text{keine 6}) = 1 - \\left(\\tfrac{5}{6}\\right)^2\\).", loesungsweg: "\\(1 - \\tfrac{25}{36} = \\tfrac{11}{36} \\approx 0{,}3056\\)." },
+      { id: 16, level: 3, typ: "numerisch", frage: "Münze 3x: \\(P(\\text{genau 2x Kopf})\\) (3 Dezimalen).", loesung: 0.375, toleranz: 0.005, tipp: "3 Pfade: KKZ, KZK, ZKK, je \\(0{,}125\\).", loesungsweg: "\\(3 \\cdot 0{,}125 = 0{,}375\\)." },
+      { id: 17, level: 3, typ: "numerisch", frage: "Urne: 6 rote, 4 blaue. 2x mit Zurücklegen. \\(P(\\text{mind. 1 blau})\\) (2 Dezimalen).", loesung: 0.64, toleranz: 0.01, tipp: "\\(1 - P(\\text{0 blau}) = 1 - 0{,}6^2\\).", loesungsweg: "\\(1 - 0{,}36 = 0{,}64\\)." },
+      { id: 18, level: 3, typ: "mc", frage: "Wann lohnt sich die Gegenereignis-Strategie?", optionen: ["Nie", "Bei „mindestens ein…\"-Aufgaben", "Bei Gleichverteilung", "Bei Unabhängigkeit"], korrekt: 1, tipp: "„Kein\" ist oft nur 1 Pfad, „mindestens 1\" viele.", loesungsweg: "Bei „mindestens eins\" rechnet man meist über \\(1 - P(\\text{keins})\\)." },
+      // ========== LEVEL 4 — Drei Stufen und komplexer ==========
+      { id: 19, level: 4, typ: "numerisch", frage: "Urne: 3 rote, 7 blaue. 3x mit Zurücklegen. \\(P(\\text{genau 2x rot})\\) (3 Dezimalen).", loesung: 0.189, toleranz: 0.005, tipp: "\\(\\binom{3}{2} \\cdot 0{,}3^2 \\cdot 0{,}7\\).", loesungsweg: "\\(3 \\cdot 0{,}09 \\cdot 0{,}7 = 0{,}189\\)." },
+      { id: 20, level: 4, typ: "numerisch", frage: "Würfel 3x: \\(P(\\text{Summe} = 18)\\)?", loesung: 0.0046, toleranz: 0.001, tipp: "Nur 6, 6, 6 — ein Pfad.", loesungsweg: "\\(P = \\left(\\tfrac{1}{6}\\right)^3 = \\tfrac{1}{216} \\approx 0{,}0046\\)." },
+      { id: 21, level: 4, typ: "numerisch", frage: "Aus 10 Karten (4 Asse) werden 3 ohne Zurücklegen gezogen. \\(P(\\text{alle Asse})\\) (4 Dezimalen).", loesung: 0.0333, toleranz: 0.002, tipp: "\\(\\tfrac{4}{10} \\cdot \\tfrac{3}{9} \\cdot \\tfrac{2}{8}\\).", loesungsweg: "\\(\\tfrac{24}{720} = \\tfrac{1}{30} \\approx 0{,}0333\\)." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Münze 4x: \\(P(\\text{genau 2x Kopf})\\) (4 Dezimalen).", loesung: 0.375, toleranz: 0.005, tipp: "\\(\\binom{4}{2} \\cdot 0{,}5^4 = 6 \\cdot 0{,}0625\\).", loesungsweg: "\\(6 \\cdot 0{,}0625 = 0{,}375\\)." },
+      { id: 23, level: 4, typ: "numerisch", frage: "Torhüter hält einen Strafstoß mit Wsk. 0{,}3. Bei 3 Strafstößen: \\(P(\\text{keinen hält})\\) (3 Dezimalen).", loesung: 0.343, toleranz: 0.005, tipp: "\\(0{,}7^3\\).", loesungsweg: "\\(0{,}7^3 = 0{,}343\\)." },
+      { id: 24, level: 4, typ: "numerisch", frage: "(Gleicher Torhüter:) Bei 3 Strafstößen, \\(P(\\text{genau 1 hält})\\) (3 Dezimalen).", loesung: 0.441, toleranz: 0.01, tipp: "\\(\\binom{3}{1} \\cdot 0{,}3 \\cdot 0{,}7^2\\).", loesungsweg: "\\(3 \\cdot 0{,}3 \\cdot 0{,}49 = 0{,}441\\)." },
+      // ========== LEVEL 5 — Erwartungswert einfach ==========
+      { id: 25, level: 5, typ: "numerisch", frage: "Würfel einmal werfen. Erwartungswert der Augenzahl (1 Dezimale)?", loesung: 3.5, toleranz: 0.05, tipp: "\\(\\tfrac{1+2+3+4+5+6}{6}\\).", loesungsweg: "\\(E(X) = \\tfrac{21}{6} = 3{,}5\\)." },
+      { id: 26, level: 5, typ: "numerisch", frage: "Glücksrad: Gewinn 10€ mit Wsk. 0{,}2, sonst 0€. Erwartungswert des Gewinns?", loesung: 2, toleranz: 0.01, tipp: "\\(0{,}2 \\cdot 10 + 0{,}8 \\cdot 0\\).", loesungsweg: "\\(E = 2\\) Euro." },
+      { id: 27, level: 5, typ: "numerisch", frage: "Spiel: Gewinn 5€ mit Wsk. 0{,}3, Verlust 2€ mit Wsk. 0{,}7. Erwartungswert (2 Dezimalen)?", loesung: 0.1, toleranz: 0.01, tipp: "\\(5 \\cdot 0{,}3 + (-2) \\cdot 0{,}7\\).", loesungsweg: "\\(1{,}5 - 1{,}4 = 0{,}1\\) Euro — faires Spiel leicht zugunsten des Spielers." },
+      { id: 28, level: 5, typ: "numerisch", frage: "Lotterie: 1 Euro Einsatz, Wsk. 0{,}01 auf 50 € Gewinn, sonst verloren. Erwartungswert des Reingewinns?", loesung: -0.5, toleranz: 0.01, tipp: "\\(0{,}01 \\cdot 49 + 0{,}99 \\cdot (-1)\\).", loesungsweg: "\\(0{,}49 - 0{,}99 = -0{,}5\\) Euro Verlust pro Spiel." },
+      { id: 29, level: 5, typ: "mc", frage: "Der Erwartungswert gibt an:", optionen: ["Den wahrscheinlichsten Wert", "Den mittleren Wert auf lange Sicht", "Den Maximalwert", "Das Quadrat der Wahrscheinlichkeit"], korrekt: 1, tipp: "„Auf lange Sicht\" = bei vielen Wiederholungen.", loesungsweg: "Erwartungswert = Mittelwert, den man auf lange Sicht erwartet." },
+      { id: 30, level: 5, typ: "numerisch", frage: "Zwei Würfel: Erwartungswert der Summe.", loesung: 7, toleranz: 0.01, tipp: "Linearität: \\(E(X + Y) = E(X) + E(Y)\\).", loesungsweg: "\\(E = 3{,}5 + 3{,}5 = 7\\)." },
+      // ========== LEVEL 6 — Transfer ==========
+      { id: 31, level: 6, typ: "numerisch", frage: "Aus 20 Losen sind 4 Gewinne. Zieht man 5 ohne Zurücklegen, \\(P(\\text{kein Gewinn})\\) (3 Dezimalen).", loesung: 0.282, toleranz: 0.01, tipp: "\\(\\tfrac{16}{20} \\cdot \\tfrac{15}{19} \\cdot \\tfrac{14}{18} \\cdot \\tfrac{13}{17} \\cdot \\tfrac{12}{16}\\).", loesungsweg: "\\(P \\approx 0{,}8 \\cdot 0{,}789 \\cdot 0{,}778 \\cdot 0{,}765 \\cdot 0{,}75 \\approx 0{,}282\\)." },
+      { id: 32, level: 6, typ: "numerisch", frage: "(Gleiche Lose:) \\(P(\\text{mindestens 1 Gewinn})\\) (3 Dezimalen).", loesung: 0.718, toleranz: 0.01, tipp: "Gegenereignis: \\(1 - 0{,}282\\).", loesungsweg: "\\(1 - 0{,}282 = 0{,}718\\)." },
+      { id: 33, level: 6, typ: "numerisch", frage: "Ein Basketballspieler trifft mit Wsk. 0{,}8. Wie viele Treffer sind bei 10 Würfen zu erwarten?", loesung: 8, toleranz: 0, tipp: "\\(n \\cdot p\\).", loesungsweg: "\\(E(X) = n \\cdot p = 10 \\cdot 0{,}8 = 8\\) Treffer." },
+      { id: 34, level: 6, typ: "mc", frage: "Ein Glücksspiel ist „fair\", wenn…", optionen: ["\\(E = 1\\)", "\\(E > 0\\)", "\\(E = 0\\)", "\\(E < 0\\)"], korrekt: 2, tipp: "Fair = auf lange Sicht weder Gewinn noch Verlust.", loesungsweg: "Ein faires Spiel hat Erwartungswert \\(0\\)." },
+      { id: 35, level: 6, typ: "numerisch", frage: "In einer Klasse sind 5 Mädchen und 7 Jungen. 2 Personen werden ohne Zurücklegen gewählt. \\(P(\\text{gleiches Geschlecht})\\) (3 Dezimalen).", loesung: 0.470, toleranz: 0.01, tipp: "\\(P(MM) + P(JJ)\\).", loesungsweg: "\\(\\tfrac{5}{12}\\tfrac{4}{11} + \\tfrac{7}{12}\\tfrac{6}{11} = \\tfrac{20+42}{132} = \\tfrac{62}{132} \\approx 0{,}470\\)." },
+      { id: 36, level: 6, typ: "numerisch", frage: "Ein Würfel wird bis zur ersten 6 geworfen. Wie hoch ist die Wsk., dass erst beim 3. Wurf die 6 kommt (4 Dezimalen)?", loesung: 0.1157, toleranz: 0.005, tipp: "Erst 2x keine 6, dann 1x 6: \\(\\left(\\tfrac{5}{6}\\right)^2 \\cdot \\tfrac{1}{6}\\).", loesungsweg: "\\(\\tfrac{25}{36} \\cdot \\tfrac{1}{6} = \\tfrac{25}{216} \\approx 0{,}1157\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

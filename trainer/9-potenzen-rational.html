@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potenzen mit rationalen Exponenten - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '9-potenzen-rational';
+    const THEMA_CONFIG = { name: 'Potenzen mit rationalen Exponenten', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 ==========
+      { id: 1, level: 1, typ: "mc", frage: "Was bedeutet \\(a^{1/2}\\)?", optionen: ["\\(a \\cdot \\frac{1}{2}\\)", "\\(\\sqrt{a}\\)", "\\(\\frac{1}{a^2}\\)", "\\(a^2\\)"], korrekt: 1, tipp: "Hoch \\(\\frac{1}{2}\\) = Quadratwurzel.", loesungsweg: "$$a^{1/2} = \\sqrt{a}$$" },
+      { id: 2, level: 1, typ: "numerisch", frage: "Berechne \\(9^{1/2}\\).", loesung: 3, toleranz: 0, tipp: "\\(\\sqrt{9}\\).", loesungsweg: "$$9^{1/2} = \\sqrt{9} = 3$$" },
+      { id: 3, level: 1, typ: "mc", frage: "Was ist \\(a^{1/3}\\)?", optionen: ["\\(\\sqrt{a}\\)", "\\(\\sqrt[3]{a}\\)", "\\(\\frac{a}{3}\\)", "\\(3a\\)"], korrekt: 1, tipp: "Hoch \\(\\frac{1}{n}\\) = n-te Wurzel.", loesungsweg: "$$a^{1/3} = \\sqrt[3]{a}$$" },
+      { id: 4, level: 1, typ: "numerisch", frage: "Berechne \\(8^{1/3}\\).", loesung: 2, toleranz: 0, tipp: "\\(\\sqrt[3]{8} = ?\\), denn \\(2^3 = 8\\).", loesungsweg: "$$8^{1/3} = \\sqrt[3]{8} = 2$$" },
+      { id: 5, level: 1, typ: "numerisch", frage: "Berechne \\(16^{1/2}\\).", loesung: 4, toleranz: 0, tipp: "\\(\\sqrt{16}\\).", loesungsweg: "$$16^{1/2} = 4$$" },
+      { id: 6, level: 1, typ: "numerisch", frage: "Berechne \\(27^{1/3}\\).", loesung: 3, toleranz: 0, tipp: "\\(3^3 = 27\\).", loesungsweg: "$$27^{1/3} = 3$$" },
+      // ========== LEVEL 2 ==========
+      { id: 7, level: 2, typ: "mc", frage: "Was bedeutet \\(a^{m/n}\\)?", optionen: ["\\(\\sqrt[n]{a^m}\\)", "\\(\\sqrt[m]{a^n}\\)", "\\(\\frac{a^m}{n}\\)", "\\(a \\cdot \\frac{m}{n}\\)"], korrekt: 0, tipp: "Nenner = Wurzelexponent, Zähler = Potenz.", loesungsweg: "$$a^{m/n} = \\sqrt[n]{a^m} = (\\sqrt[n]{a})^m$$" },
+      { id: 8, level: 2, typ: "numerisch", frage: "Berechne \\(4^{3/2}\\).", loesung: 8, toleranz: 0, tipp: "\\(\\sqrt{4^3} = \\sqrt{64}\\) oder \\((\\sqrt{4})^3 = 2^3\\).", loesungsweg: "$$4^{3/2} = (\\sqrt{4})^3 = 2^3 = 8$$" },
+      { id: 9, level: 2, typ: "numerisch", frage: "Berechne \\(8^{2/3}\\).", loesung: 4, toleranz: 0, tipp: "\\((\\sqrt[3]{8})^2 = 2^2\\).", loesungsweg: "$$8^{2/3} = (\\sqrt[3]{8})^2 = 4$$" },
+      { id: 10, level: 2, typ: "numerisch", frage: "Berechne \\(25^{1/2}\\).", loesung: 5, toleranz: 0, tipp: "\\(\\sqrt{25}\\).", loesungsweg: "$$25^{1/2} = 5$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "Berechne \\(32^{1/5}\\).", loesung: 2, toleranz: 0, tipp: "\\(2^5 = 32\\).", loesungsweg: "$$32^{1/5} = 2$$" },
+      { id: 12, level: 2, typ: "mc", frage: "Schreibe \\(\\sqrt[4]{a^3}\\) als Potenz.", optionen: ["\\(a^{4/3}\\)", "\\(a^{3/4}\\)", "\\(a^{12}\\)", "\\(a^{-4/3}\\)"], korrekt: 1, tipp: "Wurzelexp. in den Nenner.", loesungsweg: "$$\\sqrt[4]{a^3} = a^{3/4}$$" },
+      // ========== LEVEL 3 ==========
+      { id: 13, level: 3, typ: "numerisch", frage: "Berechne \\(16^{3/4}\\).", loesung: 8, toleranz: 0, tipp: "\\((\\sqrt[4]{16})^3 = 2^3\\).", loesungsweg: "$$16^{3/4} = 2^3 = 8$$" },
+      { id: 14, level: 3, typ: "numerisch", frage: "Berechne \\(25^{3/2}\\).", loesung: 125, toleranz: 0, tipp: "\\((\\sqrt{25})^3 = 5^3\\).", loesungsweg: "$$25^{3/2} = 125$$" },
+      { id: 15, level: 3, typ: "mc", frage: "Vereinfache \\(a^{1/2} \\cdot a^{1/3}\\).", optionen: ["\\(a^{1/6}\\)", "\\(a^{5/6}\\)", "\\(a^{2/3}\\)", "\\(a^{1/5}\\)"], korrekt: 1, tipp: "Exponenten addieren: \\(\\frac{1}{2} + \\frac{1}{3}\\).", loesungsweg: "$$a^{1/2} \\cdot a^{1/3} = a^{3/6 + 2/6} = a^{5/6}$$" },
+      { id: 16, level: 3, typ: "mc", frage: "Vereinfache \\(\\frac{a^{3/4}}{a^{1/4}}\\).", optionen: ["\\(a^{1/2}\\)", "\\(a^{3/16}\\)", "\\(a\\)", "\\(a^{1/3}\\)"], korrekt: 0, tipp: "Exponenten subtrahieren.", loesungsweg: "$$a^{3/4 - 1/4} = a^{2/4} = a^{1/2}$$" },
+      { id: 17, level: 3, typ: "numerisch", frage: "Berechne \\(64^{1/6}\\).", loesung: 2, toleranz: 0, tipp: "\\(2^6 = 64\\).", loesungsweg: "$$64^{1/6} = 2$$" },
+      { id: 18, level: 3, typ: "numerisch", frage: "Berechne \\(81^{1/4}\\).", loesung: 3, toleranz: 0, tipp: "\\(3^4 = 81\\).", loesungsweg: "$$81^{1/4} = 3$$" },
+      // ========== LEVEL 4 -- negative Brüche ==========
+      { id: 19, level: 4, typ: "numerisch", frage: "Berechne \\(4^{-1/2}\\) als Dezimalzahl.", loesung: 0.5, toleranz: 0.001, tipp: "\\(\\frac{1}{\\sqrt{4}} = \\frac{1}{2}\\).", loesungsweg: "$$4^{-1/2} = \\frac{1}{4^{1/2}} = \\frac{1}{2}$$" },
+      { id: 20, level: 4, typ: "numerisch", frage: "Berechne \\(8^{-2/3}\\) als Dezimalzahl.", loesung: 0.25, toleranz: 0.001, tipp: "\\(\\frac{1}{8^{2/3}} = \\frac{1}{4}\\).", loesungsweg: "$$8^{-2/3} = \\frac{1}{(\\sqrt[3]{8})^2} = \\frac{1}{4} = 0{,}25$$" },
+      { id: 21, level: 4, typ: "mc", frage: "Schreibe \\(\\frac{1}{\\sqrt[3]{x^2}}\\) als Potenz.", optionen: ["\\(x^{-3/2}\\)", "\\(x^{-2/3}\\)", "\\(x^{2/3}\\)", "\\(x^{3/2}\\)"], korrekt: 1, tipp: "Negativer Exponent + rationale Wurzel.", loesungsweg: "$$\\frac{1}{\\sqrt[3]{x^2}} = \\frac{1}{x^{2/3}} = x^{-2/3}$$" },
+      { id: 22, level: 4, typ: "numerisch", frage: "Berechne \\(27^{-1/3}\\) als Dezimalzahl (4 Stellen).", loesung: 0.3333, toleranz: 0.001, tipp: "\\(\\frac{1}{3}\\).", loesungsweg: "$$27^{-1/3} = \\frac{1}{3} \\approx 0{,}3333$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Berechne \\(16^{-3/4}\\) als Dezimalzahl.", loesung: 0.125, toleranz: 0.001, tipp: "\\(\\frac{1}{16^{3/4}} = \\frac{1}{8}\\).", loesungsweg: "$$16^{-3/4} = \\frac{1}{8} = 0{,}125$$" },
+      { id: 24, level: 4, typ: "mc", frage: "Vereinfache \\((a^{2/3})^3\\).", optionen: ["\\(a^2\\)", "\\(a^{1/2}\\)", "\\(a^{6/3}\\) und \\(a^2\\) sind beide richtig", "\\(a^{2/9}\\)"], korrekt: 2, tipp: "Exponenten multiplizieren: \\(\\frac{2}{3} \\cdot 3 = 2\\).", loesungsweg: "$$(a^{2/3})^3 = a^{2} $$" },
+      // ========== LEVEL 5 ==========
+      { id: 25, level: 5, typ: "numerisch", frage: "Berechne \\(\\sqrt[3]{125}\\).", loesung: 5, toleranz: 0, tipp: "\\(5^3 = 125\\).", loesungsweg: "$$\\sqrt[3]{125} = 5$$" },
+      { id: 26, level: 5, typ: "numerisch", frage: "Berechne \\(\\left(\\frac{1}{4}\\right)^{-1/2}\\).", loesung: 2, toleranz: 0, tipp: "Negativer Exp. kehrt um: \\(4^{1/2}\\).", loesungsweg: "$$\\left(\\frac{1}{4}\\right)^{-1/2} = 4^{1/2} = 2$$" },
+      { id: 27, level: 5, typ: "mc", frage: "Vereinfache \\(\\sqrt{a} \\cdot \\sqrt[3]{a}\\).", optionen: ["\\(a^{1/6}\\)", "\\(a^{2/3}\\)", "\\(a^{5/6}\\)", "\\(\\sqrt[5]{a^2}\\)"], korrekt: 2, tipp: "Als Potenzen: \\(a^{1/2} \\cdot a^{1/3}\\).", loesungsweg: "$$a^{1/2} \\cdot a^{1/3} = a^{5/6}$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "Berechne \\(32^{3/5}\\).", loesung: 8, toleranz: 0, tipp: "\\((\\sqrt[5]{32})^3 = 2^3\\).", loesungsweg: "$$32^{3/5} = 2^3 = 8$$" },
+      { id: 29, level: 5, typ: "numerisch", frage: "Berechne \\(100^{3/2}\\).", loesung: 1000, toleranz: 0, tipp: "\\((\\sqrt{100})^3 = 10^3\\).", loesungsweg: "$$100^{3/2} = 1000$$" },
+      { id: 30, level: 5, typ: "mc", frage: "Welcher Ausdruck ist gleich \\(x \\cdot \\sqrt{x}\\)?", optionen: ["\\(x^{3/2}\\)", "\\(x^{2}\\)", "\\(x^{1/2}\\)", "\\(x^{1/3}\\)"], korrekt: 0, tipp: "\\(x = x^1\\), \\(\\sqrt{x} = x^{1/2}\\).", loesungsweg: "$$x \\cdot x^{1/2} = x^{3/2}$$" },
+      // ========== LEVEL 6 ==========
+      { id: 31, level: 6, typ: "numerisch", frage: "Für welches \\(x\\) gilt \\(x^{1/2} = 7\\)?", loesung: 49, toleranz: 0, tipp: "Quadriere beide Seiten.", loesungsweg: "$$x^{1/2} = 7 \\Rightarrow x = 49$$" },
+      { id: 32, level: 6, typ: "numerisch", frage: "Für welches \\(x\\) gilt \\(x^{2/3} = 4\\)?", loesung: 8, toleranz: 0, tipp: "Potenziere mit \\(\\frac{3}{2}\\): \\(x = 4^{3/2}\\).", loesungsweg: "$$x = 4^{3/2} = (\\sqrt{4})^3 = 8$$" },
+      { id: 33, level: 6, typ: "mc", frage: "Welche Aussage ist korrekt?", optionen: ["\\((-4)^{1/2} = -2\\)", "\\((-4)^{1/2}\\) ist nicht reell", "\\((-4)^{1/2} = 2\\)", "\\((-4)^{1/2} = \\pm 2\\)"], korrekt: 1, tipp: "Wurzeln aus negativen Zahlen sind im Reellen nicht definiert.", loesungsweg: "\\((-4)^{1/2} = \\sqrt{-4}\\) ist im Reellen nicht definiert." },
+      { id: 34, level: 6, typ: "numerisch", frage: "Vereinfache \\(\\frac{a^{5/2}}{a^{1/2}}\\) zu \\(a^k\\). Gib \\(k\\) an.", loesung: 2, toleranz: 0, tipp: "Exponenten subtrahieren.", loesungsweg: "$$\\frac{a^{5/2}}{a^{1/2}} = a^{5/2 - 1/2} = a^2$$" },
+      { id: 35, level: 6, typ: "numerisch", frage: "Berechne \\(\\sqrt[4]{81} \\cdot \\sqrt[3]{8}\\).", loesung: 6, toleranz: 0, tipp: "\\(3 \\cdot 2\\).", loesungsweg: "$$81^{1/4} \\cdot 8^{1/3} = 3 \\cdot 2 = 6$$" },
+      { id: 36, level: 6, typ: "numerisch", frage: "Das Volumen eines Würfels ist \\(V = 64\\,\\text{cm}^3\\). Berechne die Kantenlänge \\(a = V^{1/3}\\) in cm.", loesung: 4, toleranz: 0, tipp: "\\(\\sqrt[3]{64}\\).", loesungsweg: "$$a = 64^{1/3} = 4\\,\\text{cm}$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

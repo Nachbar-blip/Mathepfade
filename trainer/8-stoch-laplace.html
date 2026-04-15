@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laplace-Wahrscheinlichkeiten - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-stoch-laplace';
+    const THEMA_CONFIG = { name: 'Laplace-Wahrscheinlichkeiten', bereich: 'stochastik' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id: 1, level: 1, typ: "mc", frage: "Die Laplace-Formel lautet ...", optionen: ["\\(P = \\frac{\\text{guenstig}}{\\text{moeglich}}\\)", "\\(P = \\frac{\\text{moeglich}}{\\text{guenstig}}\\)", "\\(P = \\text{guenstig} \\cdot \\text{moeglich}\\)", "\\(P = \\text{guenstig} - \\text{moeglich}\\)"], korrekt: 0, tipp: "Anzahl guenstiger durch Anzahl moeglicher.", loesungsweg: "$$P(A) = \\frac{|A|}{|\\Omega|}$$" },
+      { id: 2, level: 1, typ: "mc", frage: "Voraussetzung fuer Laplace-Versuch?", optionen: ["beliebige Ergebnisse", "gleich wahrscheinliche Ergebnisse", "genau zwei Ergebnisse", "unendlich viele Ergebnisse"], korrekt: 1, tipp: "Gleichverteilung.", loesungsweg: "Alle Ergebnisse muessen <b>gleich wahrscheinlich</b> sein." },
+      { id: 3, level: 1, typ: "numerisch", frage: "Wuerfel. \\(P(\\text{6 wuerfeln})\\) als Dezimalzahl (auf 4 Nachkommastellen)?", loesung: 0.1667, toleranz: 0.001, tipp: "\\(1/6\\).", loesungsweg: "$$P = 1/6 \\approx 0{,}1667$$" },
+      { id: 4, level: 1, typ: "numerisch", frage: "Muenze. \\(P(\\text{Kopf})\\)?", loesung: 0.5, toleranz: 0, tipp: "1/2.", loesungsweg: "$$P = 0{,}5$$" },
+      { id: 5, level: 1, typ: "numerisch", frage: "Urne: 3 rote, 2 blaue Kugeln. \\(P(\\text{rot})\\) als Dezimalzahl?", loesung: 0.6, toleranz: 0, tipp: "\\(3/5\\).", loesungsweg: "$$P = 3/5 = 0{,}6$$" },
+      { id: 6, level: 1, typ: "mc", frage: "Wahrscheinlichkeiten liegen zwischen ...", optionen: ["\\(0\\) und \\(100\\)", "\\(-1\\) und \\(1\\)", "\\(0\\) und \\(1\\)", "\\(1\\) und \\(10\\)"], korrekt: 2, tipp: "Nie negativ, nie groesser 1.", loesungsweg: "$$0 \\le P \\le 1$$" },
+      // LEVEL 2
+      { id: 7, level: 2, typ: "numerisch", frage: "Wuerfel. \\(P(\\text{gerade Zahl})\\) als Dezimalzahl?", loesung: 0.5, toleranz: 0, tipp: "3 von 6.", loesungsweg: "$$P = 3/6 = 0{,}5$$" },
+      { id: 8, level: 2, typ: "numerisch", frage: "Wuerfel. \\(P(\\text{Zahl} > 4)\\) als Dezimalzahl (4 Nachk.)?", loesung: 0.3333, toleranz: 0.001, tipp: "5 oder 6.", loesungsweg: "$$P = 2/6 \\approx 0{,}3333$$" },
+      { id: 9, level: 2, typ: "numerisch", frage: "Karten (32): \\(P(\\text{Herz})\\) als Dezimalzahl?", loesung: 0.25, toleranz: 0, tipp: "8 Herzen von 32.", loesungsweg: "$$P = 8/32 = 0{,}25$$" },
+      { id: 10, level: 2, typ: "numerisch", frage: "Urne: 4 rot, 6 blau, 10 gelb. \\(P(\\text{blau})\\)?", loesung: 0.3, toleranz: 0, tipp: "\\(6/20\\).", loesungsweg: "$$P = 6/20 = 0{,}3$$" },
+      { id: 11, level: 2, typ: "numerisch", frage: "Wuerfel. \\(P(\\text{keine 6})\\) (4 Nachk.)?", loesung: 0.8333, toleranz: 0.001, tipp: "Gegenereignis. \\(5/6\\).", loesungsweg: "$$P = 5/6 \\approx 0{,}8333$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "Lostrommel: 50 Lose, 5 Gewinne. \\(P(\\text{Gewinn})\\)?", loesung: 0.1, toleranz: 0, tipp: "\\(5/50\\).", loesungsweg: "$$P = 1/10 = 0{,}1$$" },
+      // LEVEL 3
+      { id: 13, level: 3, typ: "numerisch", frage: "Wuerfel. \\(P(\\text{Primzahl}) = ?\\) (4 Nachk., Primzahlen 2,3,5)", loesung: 0.5, toleranz: 0.001, tipp: "2, 3, 5 sind prim.", loesungsweg: "$$P = 3/6 = 0{,}5$$" },
+      { id: 14, level: 3, typ: "numerisch", frage: "Zwei Wuerfel. Anzahl aller moeglichen Ergebnisse?", loesung: 36, toleranz: 0, tipp: "\\(6 \\cdot 6\\).", loesungsweg: "$$|\\Omega| = 36$$" },
+      { id: 15, level: 3, typ: "numerisch", frage: "Zwei Wuerfel. \\(P(\\text{Summe} = 7)\\) (4 Nachk.)?", loesung: 0.1667, toleranz: 0.002, tipp: "6 von 36.", loesungsweg: "$$P = 6/36 \\approx 0{,}1667$$" },
+      { id: 16, level: 3, typ: "numerisch", frage: "Zwei Wuerfel. \\(P(\\text{Paesche})\\)?", loesung: 0.1667, toleranz: 0.002, tipp: "6 Paesche.", loesungsweg: "$$P = 6/36 \\approx 0{,}1667$$" },
+      { id: 17, level: 3, typ: "numerisch", frage: "Karten (32): \\(P(\\text{Ass})\\) (4 Nachk.)?", loesung: 0.125, toleranz: 0.001, tipp: "4/32.", loesungsweg: "$$P = 0{,}125$$" },
+      { id: 18, level: 3, typ: "mc", frage: "Sicheres Ereignis hat \\(P = ?\\)", optionen: ["\\(0\\)", "\\(0{,}5\\)", "\\(1\\)", "\\(100\\)"], korrekt: 2, tipp: "Tritt immer ein.", loesungsweg: "$$P(\\text{sicher}) = 1$$" },
+      // LEVEL 4
+      { id: 19, level: 4, typ: "numerisch", frage: "Zwei Wuerfel. \\(P(\\text{Summe} = 2)\\) (4 Nachk.)?", loesung: 0.0278, toleranz: 0.001, tipp: "Nur (1,1).", loesungsweg: "$$P = 1/36 \\approx 0{,}0278$$" },
+      { id: 20, level: 4, typ: "numerisch", frage: "Urne: 5 rot, 3 blau. \\(P(\\text{rot}) + P(\\text{blau})\\)?", loesung: 1, toleranz: 0, tipp: "Summe aller Wahrscheinlichkeiten.", loesungsweg: "$$5/8 + 3/8 = 1$$" },
+      { id: 21, level: 4, typ: "numerisch", frage: "Zahlenschloss mit 3 Ziffern (0-9, mit Wiederholung). \\(P(\\text{richtige Kombi})\\)?", loesung: 0.001, toleranz: 0.0001, tipp: "\\(1/1000\\).", loesungsweg: "$$P = 1/1000 = 0{,}001$$" },
+      { id: 22, level: 4, typ: "numerisch", frage: "Muenze 3-mal. \\(|\\Omega| = ?\\)", loesung: 8, toleranz: 0, tipp: "\\(2^3\\).", loesungsweg: "$$|\\Omega| = 8$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Muenze 3-mal. \\(P(\\text{genau 2 Kopf})\\)?", loesung: 0.375, toleranz: 0.001, tipp: "3 Moeglichkeiten (KKZ, KZK, ZKK) von 8.", loesungsweg: "$$P = 3/8 = 0{,}375$$" },
+      { id: 24, level: 4, typ: "mc", frage: "Gegenereignis von „mindestens 1 Kopf\" bei 3 Wuerfen?", optionen: ["„mindestens 1 Zahl\"", "„kein Kopf\"", "„genau 1 Kopf\"", "„3 Koepfe\""], korrekt: 1, tipp: "Negation.", loesungsweg: "Gegenereignis: <b>kein Kopf</b> = alles Zahl." },
+      // LEVEL 5
+      { id: 25, level: 5, typ: "numerisch", frage: "Muenze 3-mal. \\(P(\\text{mind. 1 Kopf})\\)?", loesung: 0.875, toleranz: 0.001, tipp: "1 - P(kein Kopf) = 1 - 1/8.", loesungsweg: "$$P = 1 - 1/8 = 7/8 = 0{,}875$$" },
+      { id: 26, level: 5, typ: "numerisch", frage: "Wuerfel 2-mal. \\(P(\\text{Augensumme} \\ge 10)\\)?", loesung: 0.1667, toleranz: 0.003, tipp: "Summen 10,11,12: 6 Tripel.", loesungsweg: "$$P = 6/36 \\approx 0{,}1667$$" },
+      { id: 27, level: 5, typ: "numerisch", frage: "Urne: 4 rot, 6 blau. 2-mal ziehen mit Zuruecklegen. \\(P(\\text{beide rot})\\)?", loesung: 0.16, toleranz: 0.001, tipp: "\\(0{,}4 \\cdot 0{,}4\\).", loesungsweg: "$$P = 0{,}16$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "10 Karten, 3 rot. 1 Karte ziehen. \\(P(\\text{nicht rot})\\)?", loesung: 0.7, toleranz: 0, tipp: "\\(7/10\\).", loesungsweg: "$$P = 0{,}7$$" },
+      { id: 29, level: 5, typ: "numerisch", frage: "Wuerfel 2-mal. \\(P(\\text{Produkt ungerade})\\)?", loesung: 0.25, toleranz: 0.001, tipp: "Beide Wuerfel ungerade.", loesungsweg: "$$P = (3/6)^2 = 0{,}25$$" },
+      { id: 30, level: 5, typ: "mc", frage: "\\(P(A) = 0{,}4\\). \\(P(\\bar{A}) = ?\\)", optionen: ["\\(0{,}4\\)", "\\(0{,}6\\)", "\\(0\\)", "\\(1{,}4\\)"], korrekt: 1, tipp: "\\(1 - P(A)\\).", loesungsweg: "$$P(\\bar{A}) = 0{,}6$$" },
+      // LEVEL 6
+      { id: 31, level: 6, typ: "numerisch", frage: "Lotto „4 aus 10\". Anzahl Moeglichkeiten \\(\\binom{10}{4}\\)?", loesung: 210, toleranz: 0, tipp: "\\(\\frac{10!}{4! \\cdot 6!}\\).", loesungsweg: "$$\\binom{10}{4} = 210$$" },
+      { id: 32, level: 6, typ: "numerisch", frage: "3 aus 10 ziehen, ohne Zuruecklegen, mit Reihenfolge. Anzahl?", loesung: 720, toleranz: 0, tipp: "\\(10 \\cdot 9 \\cdot 8\\).", loesungsweg: "$$720$$" },
+      { id: 33, level: 6, typ: "numerisch", frage: "Urne: 5 rot, 3 blau. 2 ohne Zuruecklegen. \\(P(\\text{beide rot})\\) (4 Nachk.)?", loesung: 0.3571, toleranz: 0.002, tipp: "\\(\\frac{5}{8} \\cdot \\frac{4}{7}\\).", loesungsweg: "$$P = 20/56 \\approx 0{,}3571$$" },
+      { id: 34, level: 6, typ: "numerisch", frage: "Wuerfel 3-mal. \\(P(\\text{dreimal 6})\\)?", loesung: 0.0046, toleranz: 0.001, tipp: "\\((1/6)^3\\).", loesungsweg: "$$P = 1/216 \\approx 0{,}0046$$" },
+      { id: 35, level: 6, typ: "numerisch", frage: "In einer Klasse sind 15 Maedchen und 10 Jungen. Zufaellige Wahl eines Sprechers. \\(P(\\text{Junge})\\)?", loesung: 0.4, toleranz: 0, tipp: "\\(10/25\\).", loesungsweg: "$$P = 0{,}4$$" },
+      { id: 36, level: 6, typ: "mc", frage: "Ein Ereignis \\(A\\) mit \\(P(A) = 0\\) ist ...", optionen: ["sicher", "unmoeglich", "gleich wahrscheinlich", "haeufig"], korrekt: 1, tipp: "Kann nicht eintreten.", loesungsweg: "$$P = 0 \\iff A \\text{ unmoeglich}$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

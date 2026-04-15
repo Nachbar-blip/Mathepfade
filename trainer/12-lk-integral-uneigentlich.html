@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uneigentliche Integrale (LK) - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-lk-integral-uneigentlich';
+    const THEMA_CONFIG = { name: 'Uneigentliche Integrale (LK)', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 — Begriff ==========
+      { id:1, level:1, typ:"mc", frage:"Was ist ein uneigentliches Integral?", optionen:["Ein Integral mit unendlicher Grenze oder singulärer Stelle","Ein Integral ohne Lösung","Ein bestimmtes Integral","Ein Flächeninhalt"], korrekt:0, tipp:"Grenzwert einer Stammfunktion.", loesungsweg:"Uneigentlich: \\(\\int_a^\\infty f\\,dx\\) oder \\(\\int_a^b f\\,dx\\) mit Unstetigkeit." },
+      { id:2, level:1, typ:"mc", frage:"Wie ist \\(\\int_a^\\infty f(x)\\,dx\\) definiert?", optionen:["\\(\\lim_{b\\to\\infty}\\int_a^b f\\,dx\\)","\\(\\int_a^b f\\,dx\\) mit beliebigem \\(b\\)","\\(f(\\infty)\\)","\\(0\\)"], korrekt:0, tipp:"Grenzwert.", loesungsweg:"\\(\\int_a^\\infty f\\,dx = \\lim_{b\\to\\infty}\\int_a^b f\\,dx\\)." },
+      { id:3, level:1, typ:"mc", frage:"Wann heißt ein uneigentliches Integral „konvergent\"?", optionen:["Wenn der Grenzwert existiert und endlich ist","Immer","Wenn Integrand positiv","Wenn Stammfunktion existiert"], korrekt:0, tipp:"Endlicher Limes.", loesungsweg:"Endlicher Limes \\(\\Rightarrow\\) konvergent." },
+      { id:4, level:1, typ:"mc", frage:"\\(\\int_1^\\infty \\tfrac{1}{x}\\,dx\\) ist …", optionen:["konvergent","divergent","\\(=0\\)","\\(=1\\)"], korrekt:1, tipp:"\\(\\ln b\\to\\infty\\).", loesungsweg:"\\(\\int_1^b \\tfrac{1}{x}\\,dx = \\ln b \\to \\infty\\)." },
+      { id:5, level:1, typ:"mc", frage:"\\(\\int_1^\\infty \\tfrac{1}{x^2}\\,dx\\) ist …", optionen:["konvergent","divergent","\\(=0\\)","unbestimmt"], korrekt:0, tipp:"\\(-\\tfrac{1}{x}\\to 0\\).", loesungsweg:"\\(\\lim_{b\\to\\infty}(1-\\tfrac{1}{b}) = 1\\)." },
+      { id:6, level:1, typ:"numerisch", frage:"Wert von \\(\\int_1^\\infty \\tfrac{1}{x^2}\\,dx\\)?", loesung:1, toleranz:0, tipp:"Stammfkt \\(-\\tfrac{1}{x}\\).", loesungsweg:"\\([-\\tfrac{1}{x}]_1^\\infty = 0 - (-1) = 1\\)." },
+      // ========== LEVEL 2 — Potenzfunktionen ==========
+      { id:7, level:2, typ:"numerisch", frage:"\\(\\int_1^\\infty x^{-3}\\,dx = ?\\)", loesung:0.5, toleranz:0.01, tipp:"Stammfkt \\(-\\tfrac{1}{2}x^{-2}\\).", loesungsweg:"\\(\\tfrac{1}{2}\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"\\(\\int_1^\\infty x^{-4}\\,dx = ?\\) (3 Dez.)", loesung:0.333, toleranz:0.01, tipp:"\\(-\\tfrac{1}{3}x^{-3}\\).", loesungsweg:"\\(\\tfrac{1}{3}\\)." },
+      { id:9, level:2, typ:"mc", frage:"Für welche \\(p\\) konvergiert \\(\\int_1^\\infty x^{-p}\\,dx\\)?", optionen:["\\(p>1\\)","\\(p<1\\)","\\(p=1\\)","\\(p=0\\)"], korrekt:0, tipp:"Kriterium.", loesungsweg:"Konvergent für \\(p>1\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"\\(\\int_1^\\infty x^{-p}\\,dx = \\tfrac{1}{p-1}\\) für \\(p=3\\): Wert?", loesung:0.5, toleranz:0.01, tipp:"\\(\\tfrac{1}{2}\\).", loesungsweg:"\\(\\tfrac{1}{3-1} = 0{,}5\\)." },
+      { id:11, level:2, typ:"mc", frage:"\\(\\int_0^1 x^{-1/2}\\,dx\\) ist …", optionen:["konvergent, Wert 2","divergent","\\(=0\\)","\\(=1\\)"], korrekt:0, tipp:"Stammfkt \\(2\\sqrt{x}\\).", loesungsweg:"\\([2\\sqrt{x}]_0^1 = 2\\)." },
+      { id:12, level:2, typ:"numerisch", frage:"\\(\\int_0^1 x^{-1/2}\\,dx = ?\\)", loesung:2, toleranz:0.01, tipp:"\\(2\\sqrt{x}\\).", loesungsweg:"\\(2\\)." },
+      // ========== LEVEL 3 — Exponentialfunktionen ==========
+      { id:13, level:3, typ:"numerisch", frage:"\\(\\int_0^\\infty e^{-x}\\,dx = ?\\)", loesung:1, toleranz:0.01, tipp:"\\(-e^{-x}\\to 0\\).", loesungsweg:"\\([-e^{-x}]_0^\\infty = 0-(-1) = 1\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"\\(\\int_0^\\infty e^{-2x}\\,dx = ?\\)", loesung:0.5, toleranz:0.01, tipp:"\\(-\\tfrac{1}{2}e^{-2x}\\).", loesungsweg:"\\(\\tfrac{1}{2}\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"\\(\\int_0^\\infty 3e^{-3x}\\,dx = ?\\)", loesung:1, toleranz:0.01, tipp:"Dichte Exp-Verteilung.", loesungsweg:"\\(1\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"\\(\\int_0^\\infty e^{-x/2}\\,dx = ?\\)", loesung:2, toleranz:0.01, tipp:"\\(-2e^{-x/2}\\).", loesungsweg:"\\(2\\)." },
+      { id:17, level:3, typ:"numerisch", frage:"\\(\\int_{-\\infty}^0 e^x\\,dx = ?\\)", loesung:1, toleranz:0.01, tipp:"\\(e^x\\to 0\\) für \\(x\\to-\\infty\\).", loesungsweg:"\\([e^x]_{-\\infty}^0 = 1-0 = 1\\)." },
+      { id:18, level:3, typ:"numerisch", frage:"\\(\\int_1^\\infty e^{-x}\\,dx\\) (3 Dez.)?", loesung:0.368, toleranz:0.005, tipp:"\\(e^{-1}\\).", loesungsweg:"\\(e^{-1}\\approx 0{,}368\\)." },
+      // ========== LEVEL 4 — Singularitäten ==========
+      { id:19, level:4, typ:"mc", frage:"\\(\\int_0^1 \\ln x\\,dx\\) — singulär bei \\(x=0\\). Konvergent?", optionen:["Ja, Wert \\(-1\\)","Divergent","Wert \\(0\\)","Wert \\(1\\)"], korrekt:0, tipp:"\\(x\\ln x\\to 0\\).", loesungsweg:"\\([x\\ln x - x]_0^1 = -1-0 = -1\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"\\(\\int_0^1 \\ln x\\,dx = ?\\)", loesung:-1, toleranz:0.01, tipp:"Partielle Integration.", loesungsweg:"\\(-1\\)." },
+      { id:21, level:4, typ:"mc", frage:"\\(\\int_0^1 \\tfrac{1}{x}\\,dx\\) konvergent?", optionen:["Ja","Nein, divergent","\\(=1\\)","\\(=0\\)"], korrekt:1, tipp:"\\(\\ln\\) divergiert bei 0.", loesungsweg:"\\(\\ln x\\to -\\infty\\) für \\(x\\to 0^+\\)." },
+      { id:22, level:4, typ:"numerisch", frage:"\\(\\int_0^1 x^{-3/4}\\,dx = ?\\)", loesung:4, toleranz:0.02, tipp:"\\(4x^{1/4}\\).", loesungsweg:"\\([4x^{1/4}]_0^1 = 4\\)." },
+      { id:23, level:4, typ:"mc", frage:"Für welche \\(p\\) konvergiert \\(\\int_0^1 x^{-p}\\,dx\\)?", optionen:["\\(p>1\\)","\\(p<1\\)","\\(p=1\\)","\\(p=0\\)"], korrekt:1, tipp:"Umgekehrt zum Unendlichen.", loesungsweg:"Konvergent für \\(p<1\\)." },
+      { id:24, level:4, typ:"numerisch", frage:"\\(\\int_0^4 \\tfrac{1}{\\sqrt{x}}\\,dx = ?\\)", loesung:4, toleranz:0.02, tipp:"\\(2\\sqrt{x}\\).", loesungsweg:"\\([2\\sqrt{x}]_0^4 = 4\\)." },
+      // ========== LEVEL 5 — partielle Integration ==========
+      { id:25, level:5, typ:"numerisch", frage:"\\(\\int_0^\\infty x e^{-x}\\,dx = ?\\) (partielle Integration)", loesung:1, toleranz:0.01, tipp:"\\(\\Gamma(2)=1\\).", loesungsweg:"Partiell: \\([-xe^{-x}]_0^\\infty + \\int_0^\\infty e^{-x}\\,dx = 0 + 1 = 1\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"\\(\\int_0^\\infty x^2 e^{-x}\\,dx = ?\\)", loesung:2, toleranz:0.02, tipp:"\\(\\Gamma(3) = 2!\\).", loesungsweg:"\\(2\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"\\(\\int_0^\\infty x e^{-2x}\\,dx = ?\\)", loesung:0.25, toleranz:0.01, tipp:"\\(\\tfrac{1}{2^2}\\).", loesungsweg:"\\(\\tfrac{1}{4}\\)." },
+      { id:28, level:5, typ:"numerisch", frage:"\\(\\int_1^\\infty \\tfrac{\\ln x}{x^2}\\,dx = ?\\) (partielle Integration)", loesung:1, toleranz:0.02, tipp:"\\(u=\\ln x, dv=x^{-2}dx\\).", loesungsweg:"\\([-\\tfrac{\\ln x}{x}]_1^\\infty + \\int_1^\\infty \\tfrac{1}{x^2}\\,dx = 0+1 = 1\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"\\(\\int_0^\\infty e^{-x}\\sin x\\,dx = ?\\) (2 Dez.)", loesung:0.5, toleranz:0.02, tipp:"Zweifach partiell, Standardresultat \\(\\tfrac{1}{2}\\).", loesungsweg:"\\(\\tfrac{1}{1+1^2}=\\tfrac{1}{2}\\)." },
+      { id:30, level:5, typ:"numerisch", frage:"\\(\\int_0^\\infty e^{-x}\\cos x\\,dx = ?\\) (2 Dez.)", loesung:0.5, toleranz:0.02, tipp:"Analog, \\(\\tfrac{a}{a^2+b^2}\\) mit \\(a=b=1\\).", loesungsweg:"\\(\\tfrac{1}{2}\\)." },
+      // ========== LEVEL 6 — Transfer ==========
+      { id:31, level:6, typ:"numerisch", frage:"\\(\\int_2^\\infty \\tfrac{1}{x(\\ln x)^2}\\,dx = ?\\) (3 Dez.)", loesung:1.443, toleranz:0.05, tipp:"Substitution \\(u=\\ln x\\).", loesungsweg:"\\(\\int_{\\ln 2}^\\infty u^{-2}\\,du = \\tfrac{1}{\\ln 2}\\approx 1{,}443\\)." },
+      { id:32, level:6, typ:"mc", frage:"\\(\\int_{-\\infty}^\\infty e^{-x^2}\\,dx\\) ist …", optionen:["\\(\\sqrt{\\pi}\\)","\\(\\pi\\)","\\(e\\)","\\(\\infty\\)"], korrekt:0, tipp:"Gaußsches Integral.", loesungsweg:"\\(\\int_{-\\infty}^\\infty e^{-x^2}\\,dx = \\sqrt{\\pi}\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"\\(\\int_0^\\infty \\tfrac{1}{1+x^2}\\,dx = ?\\) (2 Dez.)", loesung:1.57, toleranz:0.02, tipp:"\\(\\arctan x\\).", loesungsweg:"\\([\\arctan x]_0^\\infty = \\tfrac{\\pi}{2}\\approx 1{,}5708\\)." },
+      { id:34, level:6, typ:"numerisch", frage:"\\(\\int_{-\\infty}^\\infty \\tfrac{1}{1+x^2}\\,dx = ?\\) (2 Dez.)", loesung:3.14, toleranz:0.02, tipp:"\\(\\pi\\).", loesungsweg:"\\(\\pi \\approx 3{,}14\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"\\(\\int_0^\\infty 2x e^{-x^2}\\,dx = ?\\)", loesung:1, toleranz:0.01, tipp:"Substitution \\(u=x^2\\).", loesungsweg:"\\(\\int_0^\\infty e^{-u}\\,du = 1\\)." },
+      { id:36, level:6, typ:"mc", frage:"\\(\\int_1^\\infty \\tfrac{1}{x\\ln x}\\,dx\\) ist …", optionen:["konvergent","divergent","\\(=0\\)","\\(=1\\)"], korrekt:1, tipp:"Substitution \\(u=\\ln x\\) → \\(\\int \\tfrac{1}{u}\\,du\\).", loesungsweg:"Divergent: \\(\\int \\tfrac{1}{u}\\,du = \\ln u \\to\\infty\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

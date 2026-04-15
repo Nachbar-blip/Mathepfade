@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LK: Funktionsscharen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '11-lk-funktionsscharen';
+    const THEMA_CONFIG = { name: 'LK: Funktionsscharen', bereich: 'analysis' };
+    const AUFGABEN = [
+      // L1
+      { id:1, level:1, typ:"mc", frage:"Was ist eine Funktionsschar?", optionen:["Eine einzige Funktion","Eine Menge von Funktionen mit Parameter","Eine Folge","Eine Gleichung"], korrekt:1, tipp:"Parameter \\(a, k, t, \\ldots\\)", loesungsweg:"Funktionenfamilie abhängig vom Parameter." },
+      { id:2, level:1, typ:"mc", frage:"Bei \\(f_a(x)=x^2+a\\) ist \\(a\\):", optionen:["Variable","Parameter","Konstante 0","Exponent"], korrekt:1, tipp:"Nicht die unabhängige Variable.", loesungsweg:"\\(a\\) ist der Scharparameter." },
+      { id:3, level:1, typ:"numerisch", frage:"\\(f_a(x)=x^2+a\\), \\(f_3(2)=?\\)", loesung:7, toleranz:0, tipp:"\\(a=3\\) einsetzen.", loesungsweg:"\\(4+3=7\\)." },
+      { id:4, level:1, typ:"numerisch", frage:"\\(f_a(x)=ax^2\\), \\(f_2(3)=?\\)", loesung:18, toleranz:0, tipp:"\\(2\\cdot 9\\).", loesungsweg:"\\(=18\\)." },
+      { id:5, level:1, typ:"mc", frage:"\\(f_a(x)=x^2-a\\): Nullstellen (für \\(a>0\\)):", optionen:["\\(x=0\\)","\\(x=\\pm\\sqrt{a}\\)","\\(x=a\\)","keine"], korrekt:1, tipp:"\\(x^2=a\\).", loesungsweg:"\\(x=\\pm\\sqrt a\\)." },
+      { id:6, level:1, typ:"numerisch", frage:"\\(f_a(x)=x^2-a\\) hat doppelte Nullstelle bei \\(a=?\\)", loesung:0, toleranz:0, tipp:"Nur dann \\(x=0\\) doppelt.", loesungsweg:"\\(a=0\\)." },
+      // L2 -- Ableitungen mit Param.
+      { id:7, level:2, typ:"mc", frage:"\\(f_a(x)=ax^3-3x\\), \\(f_a'(x)=?\\)", optionen:["\\(3ax^2-3\\)","\\(ax^2\\)","\\(3a-3\\)","\\(3x^2\\)"], korrekt:0, tipp:"Normal ableiten.", loesungsweg:"\\(3ax^2-3\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"\\(f_a(x)=ax^3-3x\\): Extremstelle \\(x>0\\) (abh. von \\(a>0\\))? Bsp. \\(a=3\\): \\(x_0=?\\)", loesung:0.577, toleranz:0.05, tipp:"\\(x=\\sqrt{1/a}\\).", loesungsweg:"\\(3ax^2-3=0 \\Rightarrow x=\\frac{1}{\\sqrt a}\\); bei \\(a=3\\): \\(\\approx 0{,}577\\)." },
+      { id:9, level:2, typ:"numerisch", frage:"\\(f_k(x)=x^3-kx\\), Extremstelle \\(x>0\\) für \\(k=12\\)?", loesung:2, toleranz:0, tipp:"\\(x=\\sqrt{k/3}\\).", loesungsweg:"\\(\\sqrt{4}=2\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"\\(f_t(x)=x^2-2tx\\): Tiefpunkt \\(x=?\\) (in \\(t\\)). Für \\(t=5\\): \\(x=?\\)", loesung:5, toleranz:0, tipp:"\\(2x-2t=0\\).", loesungsweg:"\\(x=t=5\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"\\(f_t(x)=x^2-2tx\\), \\(t=5\\): \\(y\\)-Wert Tiefpunkt?", loesung:-25, toleranz:0, tipp:"\\(f(t)=-t^2\\).", loesungsweg:"\\(-25\\)." },
+      { id:12, level:2, typ:"mc", frage:"\\(f_a(x)=e^{ax}\\), \\(f_a'(x)=?\\)", optionen:["\\(e^{ax}\\)","\\(ae^{ax}\\)","\\(xe^{ax}\\)","\\(a^2e^{ax}\\)"], korrekt:1, tipp:"Kettenregel.", loesungsweg:"\\(ae^{ax}\\)." },
+      // L3 -- Ortskurven
+      { id:13, level:3, typ:"numerisch", frage:"\\(f_t(x)=x^2-2tx\\): Tiefpunkte \\((t, -t^2)\\). Ortskurve \\(y=?\\) bei \\(x=3\\)", loesung:-9, toleranz:0, tipp:"\\(y=-x^2\\).", loesungsweg:"\\(-9\\)." },
+      { id:14, level:3, typ:"mc", frage:"Ortskurve = …", optionen:["Eine Funktion der Schar","Kurve aller Hoch-/Tiefpunkte","Nullstellenmenge","Tangente"], korrekt:1, tipp:"Aller Extrempunkte.", loesungsweg:"Kurve aller Extrem- bzw. Wendepunkte." },
+      { id:15, level:3, typ:"numerisch", frage:"\\(f_a(x)=x^3-3a^2 x\\): Hochpunkt bei \\(x=-a\\) (\\(a>0\\)), \\(y\\)-Wert? Für \\(a=1\\)", loesung:2, toleranz:0, tipp:"\\(f(-1)=-1+3=2\\).", loesungsweg:"\\(=2\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"Gleiche Schar, \\(a=2\\): Hochpunkt y-Wert?", loesung:16, toleranz:0, tipp:"\\(f(-2)=-8+24=16\\).", loesungsweg:"\\(=16\\)." },
+      { id:17, level:3, typ:"mc", frage:"\\(f_a(x)=x^2+ax+1\\): Scheitelpunkt hat \\(x_s=?\\)", optionen:["\\(a\\)","\\(-a\\)","\\(a/2\\)","\\(-a/2\\)"], korrekt:3, tipp:"\\(f'=2x+a=0\\).", loesungsweg:"\\(x_s=-a/2\\)." },
+      { id:18, level:3, typ:"numerisch", frage:"Selbe Schar, \\(y_s\\)? (In \\(a\\)) Für \\(a=4\\)?", loesung:-3, toleranz:0, tipp:"\\(y=1-a^2/4\\).", loesungsweg:"\\(1-4=-3\\)." },
+      // L4 -- Gemeinsame Punkte
+      { id:19, level:4, typ:"numerisch", frage:"\\(f_a(x)=x^3+ax\\) hat bei welchem \\(x\\) den Wert unabh. von \\(a\\)?", loesung:0, toleranz:0, tipp:"Koeffizient von \\(a\\) muss Null sein.", loesungsweg:"\\(x=0\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"Alle Funktionen \\(f_a(x)=x^2-a x^2+1\\) gehen durch Punkt mit \\(y=?\\) bei \\(x=0\\)", loesung:1, toleranz:0, tipp:"\\(f_a(0)=1\\).", loesungsweg:"\\((0,1)\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"\\(f_a(x)=a(x-1)^2\\): Alle Graphen schneiden sich in \\((x_0,0)\\). \\(x_0=?\\)", loesung:1, toleranz:0, tipp:"Immer \\(f_a(1)=0\\).", loesungsweg:"\\(x_0=1\\)." },
+      { id:22, level:4, typ:"numerisch", frage:"\\(f_k(x)=kx^2-k+2\\) hat Fixpunkt bei \\(x=?\\) (\\(x>0\\))", loesung:1, toleranz:0, tipp:"Kompetent: \\(kx^2-k=k(x^2-1)\\), Null bei \\(x=\\pm 1\\).", loesungsweg:"\\(x=1\\), \\(y=2\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"\\(f_a(x)=x^3-3ax\\): Wendestelle?", loesung:0, toleranz:0, tipp:"\\(f''(x)=6x=0\\).", loesungsweg:"\\(x=0\\) (unabhängig von \\(a\\))." },
+      { id:24, level:4, typ:"mc", frage:"\\(f_a\\) hat Extrema für:", optionen:["alle \\(a\\)","nur \\(a>0\\)","nur \\(a<0\\)","nie"], korrekt:0, tipp:"Je nach Schar.", loesungsweg:"Bei \\(x^3-3ax\\): Extrema für \\(a>0\\)." },
+      // L5 -- Parameterabhängige Extrema
+      { id:25, level:5, typ:"numerisch", frage:"\\(f_a(x)=x^3-ax\\), \\(a>0\\): Abstand Hoch-Tiefpunkt auf x-Achse für \\(a=3\\)?", loesung:2, toleranz:0, tipp:"Stellen \\(\\pm\\sqrt{a/3}=\\pm 1\\).", loesungsweg:"Abstand \\(2\\sqrt{a/3}=2\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"\\(f_a(x)=a x^3-3x\\), Hochpunkt-\\(y\\)-Wert in \\(a\\)? Für \\(a=1\\) (pos. Extr bei \\(x=-1\\))?", loesung:2, toleranz:0, tipp:"\\(f(-1)=-a+3\\).", loesungsweg:"\\(3-a=2\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"\\(f_k(x)=kx^2+x\\): Tiefpunkt \\(x=?\\) für \\(k=1\\)", loesung:-0.5, toleranz:0.01, tipp:"\\(f'=2kx+1=0\\).", loesungsweg:"\\(x=-\\frac{1}{2k}=-0{,}5\\)." },
+      { id:28, level:5, typ:"numerisch", frage:"\\(f_a(x)=ax\\cdot e^{-x}\\): Extremstelle?", loesung:1, toleranz:0, tipp:"\\(f'=a(1-x)e^{-x}\\).", loesungsweg:"\\(x=1\\) (unabh. von \\(a\\))." },
+      { id:29, level:5, typ:"numerisch", frage:"\\(f_a(x)=x^2-a\\): gemeinsamer Punkt aller Graphen (y-Wert bei \\(x=\\sqrt a\\))?", loesung:0, toleranz:0, tipp:"Nullstelle.", loesungsweg:"Nullstellen sind \\(\\pm\\sqrt a\\), also \\(y=0\\)." },
+      { id:30, level:5, typ:"numerisch", frage:"\\(f_a(x)=x^3-3a^2 x+2a^3\\): Tiefpunkt \\(x=a\\), \\(y=?\\) für \\(a=2\\)", loesung:0, toleranz:0, tipp:"\\(f(a)=a^3-3a^3+2a^3=0\\).", loesungsweg:"\\(=0\\)." },
+      // L6 -- Transfer
+      { id:31, level:6, typ:"numerisch", frage:"\\(f_t(x)=x\\cdot e^{-tx}\\), \\(t>0\\): Maximum bei \\(x=1/t\\). Wert bei \\(t=1\\)?", loesung:0.37, toleranz:0.02, tipp:"\\(1/e\\).", loesungsweg:"\\(\\approx 0{,}368\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"Ortskurve der Hochpunkte \\((1/t, 1/(te))\\): \\(y\\cdot x=?\\)", loesung:0.37, toleranz:0.02, tipp:"\\(\\frac{1}{e}\\).", loesungsweg:"\\(x\\cdot y=1/e\\approx 0{,}368\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"\\(f_a(x)=x^2-2ax+a^2 = (x-a)^2\\): Nullstelle?", loesung:0, toleranz:0, tipp:"y-Wert der Nullstelle.", loesungsweg:"Doppelte Nullstelle bei \\(x=a\\), \\(y=0\\)." },
+      { id:34, level:6, typ:"mc", frage:"\\(f_a(x)=ax^3+x^2\\) hat Wendestelle bei:", optionen:["\\(x=0\\)","\\(x=-1/(3a)\\)","\\(x=1/a\\)","hängt nicht ab"], korrekt:1, tipp:"\\(f''=6ax+2=0\\).", loesungsweg:"\\(x=-\\frac{1}{3a}\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"\\(f_a(x)=x^2+a\\): Integrationskonstante der Stammfkt. unter \\([0,2]\\), \\(\\int_0^2 f_a\\,dx\\) für \\(a=1\\)?", loesung:4.67, toleranz:0.1, tipp:"\\(\\frac{8}{3}+2\\).", loesungsweg:"\\(\\approx 4{,}67\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Allgemein \\(\\int_0^2 (x^2+a)dx=?\\) für \\(a=3\\)", loesung:8.67, toleranz:0.1, tipp:"\\(\\frac{8}{3}+6\\).", loesungsweg:"\\(\\approx 8{,}67\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

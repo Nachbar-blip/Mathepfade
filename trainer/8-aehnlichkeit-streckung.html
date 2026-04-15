@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aehnlichkeit &amp; zentrische Streckung - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '8-aehnlichkeit-streckung';
+    const THEMA_CONFIG = { name: 'Aehnlichkeit & zentrische Streckung', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Grundbegriffe ==========
+      { id: 1, level: 1, typ: "mc", frage: "Was bedeutet das Symbol \\(\\sim\\) in der Geometrie?", optionen: ["kongruent", "aehnlich", "parallel", "senkrecht"], korrekt: 1, tipp: "Das Symbol \\(\\sim\\) wird fuer Figuren verwendet, die die gleiche Form haben.", loesungsweg: "\\(\\sim\\) heisst <b>aehnlich</b>: gleiche Form, evtl. unterschiedliche Groesse." },
+      { id: 2, level: 1, typ: "mc", frage: "Bei einer zentrischen Streckung mit \\(k = 2\\) wird eine Figur ...", optionen: ["halbiert", "gleich gross", "doppelt so gross", "gespiegelt"], korrekt: 2, tipp: "Der Streckungsfaktor gibt die Groessenaenderung an.", loesungsweg: "Faktor \\(k = 2\\) verdoppelt alle Strecken." },
+      { id: 3, level: 1, typ: "mc", frage: "Was bleibt bei einer zentrischen Streckung gleich?", optionen: ["Streckenlaengen", "Winkelgroessen", "Flaecheninhalt", "Umfang"], korrekt: 1, tipp: "Form bleibt erhalten, Groesse aendert sich.", loesungsweg: "<b>Winkel</b> bleiben bei zentrischer Streckung unveraendert." },
+      { id: 4, level: 1, typ: "mc", frage: "Zwei Figuren sind aehnlich, wenn ...", optionen: ["sie gleich gross sind", "sie die gleiche Form haben", "sie den gleichen Umfang haben", "sie sich beruehren"], korrekt: 1, tipp: "Aehnlich bedeutet: gleiche Form.", loesungsweg: "Aehnliche Figuren haben gleiche Winkel und proportionale Seiten." },
+      { id: 5, level: 1, typ: "numerisch", frage: "Ein Dreieck hat die Seite \\(a = 4\\,\\text{cm}\\). Es wird mit \\(k = 3\\) gestreckt. Wie lang ist die neue Seite in cm?", loesung: 12, toleranz: 0, tipp: "Multipliziere mit \\(k\\).", loesungsweg: "$$a' = k \\cdot a = 3 \\cdot 4 = 12\\,\\text{cm}$$" },
+      { id: 6, level: 1, typ: "mc", frage: "Das Streckungszentrum ...", optionen: ["veraendert seine Lage", "bleibt als einziger Punkt fest", "wird verdoppelt", "verschwindet"], korrekt: 1, tipp: "Der Mittelpunkt der Streckung ist der Fixpunkt.", loesungsweg: "Das <b>Streckungszentrum</b> bleibt als einziger Punkt an seiner Stelle." },
+      // ========== LEVEL 2 -- leicht: Streckungsfaktor bestimmen ==========
+      { id: 7, level: 2, typ: "numerisch", frage: "Urbild: \\(a = 5\\,\\text{cm}\\). Bild: \\(a' = 15\\,\\text{cm}\\). Berechne \\(k\\).", loesung: 3, toleranz: 0, tipp: "\\(k = \\frac{a'}{a}\\).", loesungsweg: "$$k = \\frac{15}{5} = 3$$" },
+      { id: 8, level: 2, typ: "numerisch", frage: "Urbild: \\(b = 8\\,\\text{cm}\\). Bild: \\(b' = 4\\,\\text{cm}\\). Berechne \\(k\\).", loesung: 0.5, toleranz: 0.01, tipp: "\\(k = \\frac{b'}{b}\\). Hier wird die Figur kleiner.", loesungsweg: "$$k = \\frac{4}{8} = 0{,}5$$" },
+      { id: 9, level: 2, typ: "numerisch", frage: "Eine Strecke von \\(6\\,\\text{cm}\\) wird mit \\(k = 2{,}5\\) gestreckt. Laenge des Bildes in cm?", loesung: 15, toleranz: 0, tipp: "\\(a' = k \\cdot a\\).", loesungsweg: "$$a' = 2{,}5 \\cdot 6 = 15\\,\\text{cm}$$" },
+      { id: 10, level: 2, typ: "numerisch", frage: "Eine Strecke von \\(20\\,\\text{cm}\\) wird mit \\(k = 0{,}4\\) gestreckt. Laenge in cm?", loesung: 8, toleranz: 0, tipp: "\\(k < 1\\) verkleinert.", loesungsweg: "$$a' = 0{,}4 \\cdot 20 = 8\\,\\text{cm}$$" },
+      { id: 11, level: 2, typ: "mc", frage: "Bei \\(k = 1\\) ist das Bild ...", optionen: ["kleiner", "groesser", "deckungsgleich mit dem Urbild", "gespiegelt"], korrekt: 2, tipp: "Faktor 1 bedeutet keine Groessenaenderung.", loesungsweg: "Bei \\(k = 1\\) ist das Bild <b>identisch</b> mit dem Urbild." },
+      { id: 12, level: 2, typ: "numerisch", frage: "Ein Quadrat mit Seite \\(3\\,\\text{cm}\\) wird mit \\(k = 4\\) gestreckt. Neue Seite in cm?", loesung: 12, toleranz: 0, tipp: "Jede Seite mal \\(k\\).", loesungsweg: "$$3 \\cdot 4 = 12\\,\\text{cm}$$" },
+      // ========== LEVEL 3 -- nervenschonend: Seitenverhaeltnisse ==========
+      { id: 13, level: 3, typ: "numerisch", frage: "Zwei aehnliche Dreiecke: \\(a = 3\\), \\(a' = 9\\). Seite \\(b = 4\\). Wie gross ist \\(b'\\)?", loesung: 12, toleranz: 0, tipp: "Gleicher Faktor fuer alle Seiten. \\(k = 3\\).", loesungsweg: "$$k = \\frac{9}{3} = 3 \\implies b' = 3 \\cdot 4 = 12$$" },
+      { id: 14, level: 3, typ: "numerisch", frage: "Aehnliche Rechtecke: Urbild \\(2 \\times 5\\), Bild hat Laenge \\(15\\). Wie breit ist das Bild?", loesung: 6, toleranz: 0, tipp: "\\(k = \\frac{15}{5} = 3\\). Breite auch mal 3.", loesungsweg: "$$k = 3 \\implies b' = 3 \\cdot 2 = 6$$" },
+      { id: 15, level: 3, typ: "numerisch", frage: "Dreieck mit Seiten \\(3, 4, 5\\) wird mit \\(k = 4\\) gestreckt. Wie lang ist die groesste Seite?", loesung: 20, toleranz: 0, tipp: "Laengste Seite ist \\(5\\).", loesungsweg: "$$5 \\cdot 4 = 20$$" },
+      { id: 16, level: 3, typ: "mc", frage: "Zwei Quadrate sind ...", optionen: ["nie aehnlich", "immer aehnlich", "nur bei gleicher Seitenlaenge aehnlich", "nur bei bestimmten Winkeln"], korrekt: 1, tipp: "Alle Winkel und Seitenverhaeltnisse gleich?", loesungsweg: "Alle Quadrate haben rechte Winkel und gleiche Seiten -- sie sind <b>stets aehnlich</b>." },
+      { id: 17, level: 3, typ: "numerisch", frage: "Aehnliche Dreiecke: \\(a = 6\\,\\text{cm}\\), \\(a' = 2\\,\\text{cm}\\). Bestimme \\(k\\).", loesung: 0.333, toleranz: 0.01, tipp: "\\(k = \\frac{a'}{a} = \\frac{2}{6} = \\frac{1}{3}\\).", loesungsweg: "$$k = \\frac{2}{6} = \\frac{1}{3} \\approx 0{,}333$$" },
+      { id: 18, level: 3, typ: "mc", frage: "Bei einer Landkarte mit Massstab \\(1 : 50\\,000\\) entspricht \\(1\\,\\text{cm}\\) in der Karte in der Realitaet ...", optionen: ["\\(50\\,\\text{m}\\)", "\\(500\\,\\text{m}\\)", "\\(5\\,\\text{km}\\)", "\\(0{,}5\\,\\text{km}\\)"], korrekt: 1, tipp: "\\(50\\,000\\,\\text{cm} = 500\\,\\text{m}\\).", loesungsweg: "$$1\\,\\text{cm} \\cdot 50\\,000 = 50\\,000\\,\\text{cm} = 500\\,\\text{m}$$" },
+      // ========== LEVEL 4 -- mittel: Flaechen und Umfang ==========
+      { id: 19, level: 4, typ: "numerisch", frage: "Ein Quadrat hat Umfang \\(12\\,\\text{cm}\\). Es wird mit \\(k = 3\\) gestreckt. Neuer Umfang in cm?", loesung: 36, toleranz: 0, tipp: "Umfang mal \\(k\\).", loesungsweg: "$$U' = k \\cdot U = 3 \\cdot 12 = 36\\,\\text{cm}$$" },
+      { id: 20, level: 4, typ: "numerisch", frage: "Ein Quadrat mit Flaeche \\(9\\,\\text{cm}^2\\) wird mit \\(k = 2\\) gestreckt. Neue Flaeche in cm\\(^2\\)?", loesung: 36, toleranz: 0, tipp: "Flaeche mal \\(k^2\\).", loesungsweg: "$$A' = k^2 \\cdot A = 4 \\cdot 9 = 36\\,\\text{cm}^2$$" },
+      { id: 21, level: 4, typ: "mc", frage: "Bei einer zentrischen Streckung mit \\(k = 3\\) waechst die Flaeche um den Faktor ...", optionen: ["\\(3\\)", "\\(6\\)", "\\(9\\)", "\\(27\\)"], korrekt: 2, tipp: "Flaechenfaktor = \\(k^2\\).", loesungsweg: "$$k^2 = 3^2 = 9$$" },
+      { id: 22, level: 4, typ: "numerisch", frage: "Ein Dreieck mit Flaeche \\(20\\,\\text{cm}^2\\) wird mit \\(k = 0{,}5\\) gestreckt. Neue Flaeche in cm\\(^2\\)?", loesung: 5, toleranz: 0, tipp: "\\(A' = k^2 \\cdot A\\).", loesungsweg: "$$A' = 0{,}25 \\cdot 20 = 5\\,\\text{cm}^2$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "Ein Rechteck hat Flaeche \\(12\\,\\text{cm}^2\\). Nach Streckung hat das Bild \\(108\\,\\text{cm}^2\\). Bestimme \\(k\\).", loesung: 3, toleranz: 0, tipp: "\\(k^2 = \\frac{108}{12} = 9\\).", loesungsweg: "$$k^2 = 9 \\implies k = 3$$" },
+      { id: 24, level: 4, typ: "mc", frage: "Um eine Flaeche zu verdoppeln, muss der Streckungsfaktor sein ...", optionen: ["\\(2\\)", "\\(\\sqrt{2}\\)", "\\(4\\)", "\\(0{,}5\\)"], korrekt: 1, tipp: "\\(k^2 = 2 \\Rightarrow k = \\sqrt{2}\\).", loesungsweg: "$$k = \\sqrt{2} \\approx 1{,}414$$" },
+      // ========== LEVEL 5 -- anspruchsvoll: Anwendungen ==========
+      { id: 25, level: 5, typ: "numerisch", frage: "Ein Baum wirft im gleichen Moment einen Schatten von \\(8\\,\\text{m}\\), ein \\(1{,}5\\,\\text{m}\\) hoher Stock wirft \\(2\\,\\text{m}\\) Schatten. Baumhoehe in m?", loesung: 6, toleranz: 0, tipp: "\\(\\frac{h}{8} = \\frac{1{,}5}{2}\\).", loesungsweg: "$$h = \\frac{1{,}5}{2} \\cdot 8 = 6\\,\\text{m}$$" },
+      { id: 26, level: 5, typ: "numerisch", frage: "Massstab \\(1 : 200\\). Im Plan \\(4\\,\\text{cm}\\). Wie viele Meter in Wirklichkeit?", loesung: 8, toleranz: 0, tipp: "\\(4 \\cdot 200 = 800\\,\\text{cm} = 8\\,\\text{m}\\).", loesungsweg: "$$4\\,\\text{cm} \\cdot 200 = 800\\,\\text{cm} = 8\\,\\text{m}$$" },
+      { id: 27, level: 5, typ: "numerisch", frage: "Ein Foto \\(10 \\times 15\\,\\text{cm}\\) wird auf Breite \\(30\\,\\text{cm}\\) gestreckt. Neue Hoehe in cm?", loesung: 20, toleranz: 0, tipp: "\\(k = \\frac{30}{15} = 2\\).", loesungsweg: "$$k = 2 \\implies h' = 2 \\cdot 10 = 20\\,\\text{cm}$$" },
+      { id: 28, level: 5, typ: "mc", frage: "Zwei Dreiecke sind aehnlich. Die Seiten des ersten sind \\(3, 4, 5\\), die laengste Seite des zweiten ist \\(15\\). Welche Seiten hat das zweite?", optionen: ["\\(9, 12, 15\\)", "\\(6, 8, 15\\)", "\\(3, 4, 15\\)", "\\(5, 10, 15\\)"], korrekt: 0, tipp: "\\(k = \\frac{15}{5} = 3\\).", loesungsweg: "Alle Seiten mal 3: \\(9, 12, 15\\)." },
+      { id: 29, level: 5, typ: "numerisch", frage: "Modellauto Massstab \\(1 : 18\\). Reales Auto \\(4{,}5\\,\\text{m}\\) lang. Modelllaenge in cm?", loesung: 25, toleranz: 0, tipp: "\\(450\\,\\text{cm} : 18 = 25\\,\\text{cm}\\).", loesungsweg: "$$\\frac{450\\,\\text{cm}}{18} = 25\\,\\text{cm}$$" },
+      { id: 30, level: 5, typ: "numerisch", frage: "Aehnliche Dreiecke. Flaeche Urbild: \\(5\\,\\text{cm}^2\\), Flaeche Bild: \\(45\\,\\text{cm}^2\\). Streckungsfaktor \\(k\\)?", loesung: 3, toleranz: 0, tipp: "\\(k^2 = 9\\).", loesungsweg: "$$k^2 = \\frac{45}{5} = 9 \\implies k = 3$$" },
+      // ========== LEVEL 6 -- wagnerisch: Transfer ==========
+      { id: 31, level: 6, typ: "numerisch", frage: "Urbild Dreieck: Flaeche \\(8\\,\\text{cm}^2\\), Umfang \\(12\\,\\text{cm}\\). Streckung mit \\(k = 2{,}5\\). Neue Flaeche in cm\\(^2\\)?", loesung: 50, toleranz: 0, tipp: "\\(A' = k^2 \\cdot A = 6{,}25 \\cdot 8\\).", loesungsweg: "$$A' = 2{,}5^2 \\cdot 8 = 6{,}25 \\cdot 8 = 50\\,\\text{cm}^2$$" },
+      { id: 32, level: 6, typ: "mc", frage: "Welche Aussage ist <b>falsch</b>?", optionen: ["Kongruente Figuren sind stets aehnlich.", "Aehnliche Figuren sind stets kongruent.", "Bei \\(k = 1\\) sind Urbild und Bild kongruent.", "Aehnliche Figuren haben gleiche Winkel."], korrekt: 1, tipp: "Kongruenz ist strenger als Aehnlichkeit.", loesungsweg: "<b>Aehnliche Figuren sind nicht immer kongruent</b> -- sie koennen unterschiedlich gross sein." },
+      { id: 33, level: 6, typ: "numerisch", frage: "Ein Kreis mit Radius \\(5\\,\\text{cm}\\) wird mit \\(k = 2\\) gestreckt. Um welchen Faktor waechst die Kreisflaeche?", loesung: 4, toleranz: 0, tipp: "Flaechenfaktor = \\(k^2\\).", loesungsweg: "$$k^2 = 4$$ Die Flaeche waechst um den Faktor 4." },
+      { id: 34, level: 6, typ: "numerisch", frage: "Zwei aehnliche Quadrate. Verhaeltnis der Umfaenge \\(1 : 4\\). Verhaeltnis der Flaechen \\(1 : x\\). Bestimme \\(x\\).", loesung: 16, toleranz: 0, tipp: "\\(k = 4\\), Flaechenverhaeltnis \\(k^2\\).", loesungsweg: "$$k = 4 \\implies k^2 = 16$$" },
+      { id: 35, level: 6, typ: "mc", frage: "Ein Dreieck mit Flaeche \\(A\\) wird mit \\(k = 0{,}5\\) gestreckt. Die neue Flaeche betraegt ...", optionen: ["\\(0{,}5 A\\)", "\\(0{,}25 A\\)", "\\(2 A\\)", "\\(4 A\\)"], korrekt: 1, tipp: "\\(k^2 = 0{,}25\\).", loesungsweg: "$$A' = 0{,}5^2 \\cdot A = 0{,}25 A$$" },
+      { id: 36, level: 6, typ: "numerisch", frage: "Aehnliche Dreiecke mit Flaechen \\(4\\,\\text{cm}^2\\) und \\(100\\,\\text{cm}^2\\). Verhaeltnis der Seiten \\(1 : k\\). Bestimme \\(k\\).", loesung: 5, toleranz: 0, tipp: "\\(k^2 = \\frac{100}{4} = 25\\).", loesungsweg: "$$k = \\sqrt{25} = 5$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

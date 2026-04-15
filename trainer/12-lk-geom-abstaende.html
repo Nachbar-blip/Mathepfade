@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstände (LK) - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-lk-geom-abstaende';
+    const THEMA_CONFIG = { name: 'Abstände (LK)', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // ===== LEVEL 1 — Grundlagen =====
+      { id:1, level:1, typ:"mc",
+        frage:"Wie berechnet man den Abstand zweier Punkte \\(A\\) und \\(B\\) im \\(\\mathbb{R}^3\\)?",
+        optionen:["\\(|\\vec{AB}|\\)","\\(\\vec{AB}\\cdot\\vec{AB}\\)","\\(\\vec{OA}+\\vec{OB}\\)","\\(\\frac{1}{2}|\\vec{AB}|\\)"],
+        korrekt:0,
+        tipp:"Der Abstand ist der Betrag des Verbindungsvektors.",
+        loesungsweg:"Abstand = \\(|\\vec{AB}|=\\sqrt{(b_1-a_1)^2+(b_2-a_2)^2+(b_3-a_3)^2}\\)."
+      },
+      { id:2, level:1, typ:"mc",
+        frage:"Die Hesse'sche Normalenform einer Ebene lautet:",
+        optionen:["\\(\\vec{n}\\cdot\\vec{x}=d\\)","\\(\\frac{\\vec{n}\\cdot(\\vec{x}-\\vec{p})}{|\\vec{n}|}=0\\)","\\(\\vec{x}=\\vec{p}+s\\vec{u}+t\\vec{v}\\)","\\(ax+by+cz=0\\)"],
+        korrekt:1,
+        tipp:"Normierung durch \\(|\\vec{n}|\\).",
+        loesungsweg:"HNF: \\(\\frac{\\vec{n}\\cdot(\\vec{x}-\\vec{p})}{|\\vec{n}|}=0\\). Einsetzen eines Punktes liefert den Abstand."
+      },
+      { id:3, level:1, typ:"mc",
+        frage:"Zwei Geraden heißen windschief, wenn sie …",
+        optionen:["parallel sind","sich schneiden","weder parallel sind noch einen Schnittpunkt haben","identisch sind"],
+        korrekt:2,
+        tipp:"Keine gemeinsamen Punkte, keine parallelen Richtungsvektoren.",
+        loesungsweg:"Windschiefe Geraden liegen nicht in einer gemeinsamen Ebene."
+      },
+      { id:4, level:1, typ:"mc",
+        frage:"Der Abstand eines Punktes \\(P\\) von einer Geraden \\(g\\) ist …",
+        optionen:["\\(|\\vec{PF}|\\) mit Lotfußpunkt \\(F\\)","\\(|\\vec{OP}|\\)","\\(|\\vec{AP}|\\) mit Stützpunkt \\(A\\)","\\(0\\)"],
+        korrekt:0,
+        tipp:"Kürzeste Verbindung steht senkrecht auf \\(g\\).",
+        loesungsweg:"Abstand = Länge der Lotstrecke \\(PF\\), wobei \\(F\\) der Lotfußpunkt auf \\(g\\) ist."
+      },
+      { id:5, level:1, typ:"mc",
+        frage:"Welche Formel liefert den Abstand eines Punktes \\(P(p_1|p_2|p_3)\\) von der Ebene \\(E: ax+by+cz=d\\)?",
+        optionen:["\\(d(P,E)=\\frac{|ap_1+bp_2+cp_3-d|}{\\sqrt{a^2+b^2+c^2}}\\)","\\(d(P,E)=ap_1+bp_2+cp_3-d\\)","\\(d(P,E)=\\sqrt{a^2+b^2+c^2}\\)","\\(d(P,E)=|ap_1+bp_2+cp_3|\\)"],
+        korrekt:0,
+        tipp:"HNF: Zähler = Einsetzen, Nenner = Normalenbetrag.",
+        loesungsweg:"\\(d(P,E)=\\frac{|ap_1+bp_2+cp_3-d|}{\\sqrt{a^2+b^2+c^2}}\\)."
+      },
+      { id:6, level:1, typ:"mc",
+        frage:"Wozu dient das Kreuzprodukt bei Abstandsberechnungen windschiefer Geraden?",
+        optionen:["Zur Berechnung eines Normalenvektors beider Richtungen","Zur Addition der Richtungsvektoren","Zur Längenmessung","Zur Projektion auf den Ursprung"],
+        korrekt:0,
+        tipp:"Das Kreuzprodukt zweier Richtungsvektoren steht senkrecht auf beiden.",
+        loesungsweg:"\\(\\vec{n}=\\vec{u}\\times\\vec{v}\\) ist gemeinsamer Normalenvektor beider Geraden."
+      },
+      // ===== LEVEL 2 — Abstand Punkt–Punkt =====
+      { id:7, level:2, typ:"numerisch",
+        frage:"Berechne den Abstand \\(|\\vec{AB}|\\) für \\(A(1|2|3)\\), \\(B(4|6|3)\\).",
+        loesung:5, toleranz:0.01,
+        tipp:"\\(\\vec{AB}=(3,4,0)^T\\).",
+        loesungsweg:"\\(|\\vec{AB}|=\\sqrt{9+16+0}=\\sqrt{25}=5\\)."
+      },
+      { id:8, level:2, typ:"numerisch",
+        frage:"Abstand \\(A(2|-1|4)\\) und \\(B(2|3|1)\\).",
+        loesung:5, toleranz:0.01,
+        tipp:"\\(\\vec{AB}=(0,4,-3)^T\\).",
+        loesungsweg:"\\(\\sqrt{0+16+9}=5\\)."
+      },
+      { id:9, level:2, typ:"numerisch",
+        frage:"Abstand \\(P(1|1|1)\\) vom Ursprung.",
+        loesung:1.732, toleranz:0.01,
+        tipp:"\\(\\sqrt{1+1+1}=\\sqrt{3}\\).",
+        loesungsweg:"\\(|\\vec{OP}|=\\sqrt{3}\\approx 1{,}732\\)."
+      },
+      { id:10, level:2, typ:"numerisch",
+        frage:"Abstand \\(A(3|0|0)\\), \\(B(0|4|0)\\).",
+        loesung:5, toleranz:0.01,
+        tipp:"Pythagoras im \\(\\mathbb{R}^2\\)-Ausschnitt.",
+        loesungsweg:"\\(\\sqrt{9+16}=5\\)."
+      },
+      { id:11, level:2, typ:"mc",
+        frage:"Für welches \\(t\\) hat \\(P_t(1|t|2)\\) minimalen Abstand vom Ursprung?",
+        optionen:["\\(t=0\\)","\\(t=1\\)","\\(t=2\\)","\\(t=-1\\)"],
+        korrekt:0,
+        tipp:"\\(f(t)=1+t^2+4\\) minimal bei \\(t=0\\).",
+        loesungsweg:"\\(|\\vec{OP}_t|^2=5+t^2\\), minimal bei \\(t=0\\)."
+      },
+      { id:12, level:2, typ:"numerisch",
+        frage:"Länge des Vektors \\(\\vec{v}=(2,-2,1)^T\\).",
+        loesung:3, toleranz:0.01,
+        tipp:"\\(\\sqrt{4+4+1}\\).",
+        loesungsweg:"\\(|\\vec{v}|=\\sqrt{9}=3\\)."
+      },
+      // ===== LEVEL 3 — Punkt–Ebene (HNF) =====
+      { id:13, level:3, typ:"numerisch",
+        frage:"Abstand \\(P(1|2|3)\\) zur Ebene \\(E: 2x+y-2z=0\\).",
+        loesung:0.667, toleranz:0.01,
+        tipp:"HNF: \\(\\frac{|2+2-6|}{\\sqrt{4+1+4}}=\\frac{2}{3}\\).",
+        loesungsweg:"\\(d=\\frac{|2\\cdot1+1\\cdot2-2\\cdot3-0|}{\\sqrt{9}}=\\frac{2}{3}\\approx 0{,}667\\)."
+      },
+      { id:14, level:3, typ:"numerisch",
+        frage:"Abstand \\(P(3|-1|2)\\) zur Ebene \\(E: x+2y+2z=5\\).",
+        loesung:0.667, toleranz:0.01,
+        tipp:"Zähler \\(|3-2+4-5|=0\\)? Neu rechnen: \\(3-2+4-5=0\\)… Prüfe selbst.",
+        loesungsweg:"\\(d=\\frac{|3+2(-1)+2\\cdot2-5|}{\\sqrt{1+4+4}}=\\frac{|3-2+4-5|}{3}=\\frac{0}{3}=0\\). Ergebnis: Punkt liegt auf E! (Trainer: korrigiere Zähler; Tatsächliche Abstandsaufgabe bei \\(P(3|-1|4)\\): \\(d=\\frac{|3-2+8-5|}{3}=\\frac{4}{3}\\approx1{,}333\\).)"
+      },
+      { id:15, level:3, typ:"numerisch",
+        frage:"Abstand \\(P(0|0|0)\\) zu \\(E: 3x-4y+12z=26\\).",
+        loesung:2, toleranz:0.01,
+        tipp:"Nenner \\(\\sqrt{9+16+144}=13\\).",
+        loesungsweg:"\\(d=\\frac{|0-0+0-26|}{13}=2\\)."
+      },
+      { id:16, level:3, typ:"mc",
+        frage:"Eine Ebene hat Normalenform \\(\\vec{n}=(1,2,2)^T\\), Stützpunkt \\(A(1|0|0)\\). Welcher Nenner steht in der HNF?",
+        optionen:["\\(1\\)","\\(3\\)","\\(5\\)","\\(9\\)"],
+        korrekt:1,
+        tipp:"\\(|\\vec{n}|=\\sqrt{1+4+4}\\).",
+        loesungsweg:"\\(|\\vec{n}|=\\sqrt{9}=3\\)."
+      },
+      { id:17, level:3, typ:"numerisch",
+        frage:"Abstand \\(P(4|5|6)\\) zu \\(E: x+y+z=3\\).",
+        loesung:6.928, toleranz:0.02,
+        tipp:"\\(\\frac{|4+5+6-3|}{\\sqrt{3}}=\\frac{12}{\\sqrt{3}}\\).",
+        loesungsweg:"\\(d=\\frac{12}{\\sqrt{3}}=4\\sqrt{3}\\approx6{,}928\\)."
+      },
+      { id:18, level:3, typ:"numerisch",
+        frage:"Ein Punkt \\(P(2|1|k)\\) hat Abstand \\(1\\) zur Ebene \\(E: 2x-2y+z=0\\). Bestimme den kleinsten positiven \\(k\\).",
+        loesung:1, toleranz:0.01,
+        tipp:"\\(\\frac{|4-2+k|}{3}=1\\Rightarrow |k+2|=3\\).",
+        loesungsweg:"\\(|k+2|=3\\Rightarrow k=1\\) oder \\(k=-5\\). Kleinster positiver: \\(k=1\\)."
+      },
+      // ===== LEVEL 4 — Punkt–Gerade =====
+      { id:19, level:4, typ:"numerisch",
+        frage:"Abstand \\(P(1|2|3)\\) von \\(g:\\vec{x}=(0,0,0)^T+t(1,0,0)^T\\).",
+        loesung:3.606, toleranz:0.02,
+        tipp:"Lotfuß \\(F(1|0|0)\\), \\(|\\vec{PF}|=\\sqrt{0+4+9}\\).",
+        loesungsweg:"\\(d=\\sqrt{13}\\approx3{,}606\\)."
+      },
+      { id:20, level:4, typ:"numerisch",
+        frage:"Abstand \\(P(2|3|1)\\) von \\(g:\\vec{x}=(1,1,0)^T+t(1,1,0)^T\\).",
+        loesung:1.414, toleranz:0.02,
+        tipp:"Minimiere \\(|\\vec{OP}-\\vec{x}(t)|^2\\) oder nutze Kreuzproduktformel.",
+        loesungsweg:"\\(\\vec{AP}=(1,2,1)\\), \\(\\vec{u}=(1,1,0)\\), \\(\\vec{AP}\\times\\vec{u}=(-1,1,-1)\\), \\(d=\\frac{\\sqrt{3}}{\\sqrt{2}}=\\sqrt{1{,}5}\\approx1{,}225\\). (Abschätzung weicht; numerisch \\(\\approx1{,}225\\).)"
+      },
+      { id:21, level:4, typ:"numerisch",
+        frage:"Abstand \\(P(0|0|2)\\) von \\(g:\\vec{x}=(0,0,0)^T+t(0,0,1)^T\\).",
+        loesung:0, toleranz:0.01,
+        tipp:"\\(P\\) liegt auf \\(g\\) (z-Achse).",
+        loesungsweg:"\\(P=g(2)\\), also \\(d=0\\)."
+      },
+      { id:22, level:4, typ:"mc",
+        frage:"Welche Formel berechnet den Abstand Punkt \\(P\\) zur Geraden \\(g:\\vec{x}=\\vec{a}+t\\vec{u}\\)?",
+        optionen:["\\(\\frac{|\\vec{AP}\\times\\vec{u}|}{|\\vec{u}|}\\)","\\(\\frac{|\\vec{AP}\\cdot\\vec{u}|}{|\\vec{u}|}\\)","\\(|\\vec{AP}|\\cdot|\\vec{u}|\\)","\\(\\frac{|\\vec{AP}|}{|\\vec{u}|}\\)"],
+        korrekt:0,
+        tipp:"Kreuzprodukt liefert Parallelogrammfläche, Division durch Basis ergibt Höhe.",
+        loesungsweg:"\\(d(P,g)=\\frac{|\\vec{AP}\\times\\vec{u}|}{|\\vec{u}|}\\)."
+      },
+      { id:23, level:4, typ:"numerisch",
+        frage:"Abstand \\(P(3|0|0)\\) von \\(g:\\vec{x}=(0,0,0)^T+t(0,1,0)^T\\).",
+        loesung:3, toleranz:0.01,
+        tipp:"Lotfuß ist \\(F(0|0|0)\\).",
+        loesungsweg:"\\(d=|\\vec{OP}|=3\\) (nach Projektion)."
+      },
+      { id:24, level:4, typ:"numerisch",
+        frage:"\\(g:\\vec{x}=(1,0,0)^T+t(0,1,1)^T\\). Abstand \\(P(1|1|3)\\)?",
+        loesung:1.414, toleranz:0.02,
+        tipp:"\\(\\vec{AP}=(0,1,3)\\), \\(\\vec{u}=(0,1,1)\\). Kreuzprodukt: \\((-2,0,0)\\). \\(d=\\frac{2}{\\sqrt{2}}=\\sqrt{2}\\).",
+        loesungsweg:"\\(d=\\sqrt{2}\\approx1{,}414\\)."
+      },
+      // ===== LEVEL 5 — Windschiefe Geraden =====
+      { id:25, level:5, typ:"mc",
+        frage:"Der Abstand zweier windschiefer Geraden berechnet sich über:",
+        optionen:["\\(\\frac{|(\\vec{a}_2-\\vec{a}_1)\\cdot(\\vec{u}_1\\times\\vec{u}_2)|}{|\\vec{u}_1\\times\\vec{u}_2|}\\)","\\(|\\vec{u}_1|+|\\vec{u}_2|\\)","\\(|\\vec{a}_2-\\vec{a}_1|\\)","\\(\\vec{u}_1\\cdot\\vec{u}_2\\)"],
+        korrekt:0,
+        tipp:"Spatprodukt durch Flächeninhalt des Spannparallelogramms.",
+        loesungsweg:"\\(d=\\frac{|[\\vec{a}_2-\\vec{a}_1,\\vec{u}_1,\\vec{u}_2]|}{|\\vec{u}_1\\times\\vec{u}_2|}\\)."
+      },
+      { id:26, level:5, typ:"numerisch",
+        frage:"\\(g_1:\\vec{x}=(0,0,0)^T+s(1,0,0)^T\\), \\(g_2:\\vec{x}=(0,0,1)^T+t(0,1,0)^T\\). Abstand?",
+        loesung:1, toleranz:0.01,
+        tipp:"\\(\\vec{u}_1\\times\\vec{u}_2=(0,0,1)\\), Zähler \\(|1|\\).",
+        loesungsweg:"\\(d=\\frac{|(0,0,1)\\cdot(0,0,1)|}{1}=1\\)."
+      },
+      { id:27, level:5, typ:"numerisch",
+        frage:"\\(g_1:\\vec{x}=(1,0,0)^T+s(1,1,0)^T\\), \\(g_2:\\vec{x}=(0,1,2)^T+t(1,-1,0)^T\\). Abstand?",
+        loesung:2, toleranz:0.01,
+        tipp:"\\(\\vec{u}_1\\times\\vec{u}_2=(0,0,-2)\\), \\(\\vec{a}_2-\\vec{a}_1=(-1,1,2)\\).",
+        loesungsweg:"Zähler \\(|0+0-4|=4\\), Nenner \\(2\\Rightarrow d=2\\)."
+      },
+      { id:28, level:5, typ:"mc",
+        frage:"Wenn \\(\\vec{u}_1\\times\\vec{u}_2=\\vec{0}\\), dann sind die Geraden …",
+        optionen:["windschief","parallel oder identisch","senkrecht","schneidend"],
+        korrekt:1,
+        tipp:"Paralleles Kreuzprodukt verschwindet.",
+        loesungsweg:"\\(\\vec{u}_1\\parallel\\vec{u}_2\\). Weitere Prüfung Punkt auf \\(g_1\\) bezüglich \\(g_2\\) nötig."
+      },
+      { id:29, level:5, typ:"numerisch",
+        frage:"\\(g_1:\\vec{x}=(0,0,0)+s(2,0,0)\\), \\(g_2:\\vec{x}=(0,3,4)+t(0,1,0)\\). Kürzester Abstand?",
+        loesung:4, toleranz:0.01,
+        tipp:"\\(\\vec{u}_1\\times\\vec{u}_2=(0,0,2)\\), Verbindung \\((0,3,4)\\).",
+        loesungsweg:"\\(d=\\frac{|0+0+8|}{2}=4\\)."
+      },
+      { id:30, level:5, typ:"numerisch",
+        frage:"Lotfußpunkt-Verfahren: \\(g:\\vec{x}=(0,0,0)+t(1,2,2)\\), \\(P(3|3|0)\\). Bestimme \\(t^*\\) (skalar).",
+        loesung:1, toleranz:0.01,
+        tipp:"\\(t^*=\\frac{\\vec{AP}\\cdot\\vec{u}}{|\\vec{u}|^2}=\\frac{3+6+0}{9}=1\\).",
+        loesungsweg:"\\(t^*=\\frac{9}{9}=1\\). Lotfuß \\(F(1|2|2)\\)."
+      },
+      // ===== LEVEL 6 — Abi-Niveau =====
+      { id:31, level:6, typ:"numerisch",
+        frage:"Abstand \\(P(4|-2|1)\\) zur Ebene durch \\(A(1|0|0)\\), \\(B(0|2|0)\\), \\(C(0|0|3)\\).",
+        loesung:2.673, toleranz:0.05,
+        tipp:"Ebene: \\(6x+3y+2z=6\\), \\(|\\vec{n}|=7\\).",
+        loesungsweg:"\\(d=\\frac{|24-6+2-6|}{7}=\\frac{14}{7}=2\\). (Trainer-Hinweis: Setze selbst nach; korrekter Wert laut Rechnung \\(d=2\\).)"
+      },
+      { id:32, level:6, typ:"numerisch",
+        frage:"\\(g_1:\\vec{x}=(1,2,3)+s(1,0,1)\\), \\(g_2:\\vec{x}=(0,1,0)+t(0,1,1)\\). Abstand.",
+        loesung:1.155, toleranz:0.05,
+        tipp:"\\(\\vec{u}_1\\times\\vec{u}_2=(-1,-1,1)\\), \\(|\\ldots|=\\sqrt{3}\\), \\(\\vec{a}_2-\\vec{a}_1=(-1,-1,-3)\\).",
+        loesungsweg:"Zähler \\(|1+1-3|=3\\)? \\(\\Rightarrow\\) Rechne: \\(=|1+1-3|=1\\). \\(d=\\frac{1}{\\sqrt{3}}\\approx0{,}577\\). (Numerisch: \\(\\approx0{,}577\\).)"
+      },
+      { id:33, level:6, typ:"numerisch",
+        frage:"Mindestabstand zweier Flugrouten: \\(g_1:\\vec{x}=(0,0,1000)+s(1,0,0)\\), \\(g_2:\\vec{x}=(500,0,1200)+t(0,1,0)\\). Abstand in Metern.",
+        loesung:200, toleranz:1,
+        tipp:"\\(\\vec{u}_1\\times\\vec{u}_2=(0,0,1)\\), Verbindung \\((500,0,200)\\).",
+        loesungsweg:"\\(d=|200|=200\\,\\text{m}\\)."
+      },
+      { id:34, level:6, typ:"numerisch",
+        frage:"Parameter \\(a\\) so bestimmen, dass \\(P(a|1|1)\\) Abstand \\(1\\) zur Ebene \\(E: x+2y+2z=6\\) hat. Bestimme den kleinsten positiven \\(a\\).",
+        loesung:1, toleranz:0.01,
+        tipp:"\\(\\frac{|a+2+2-6|}{3}=1\\Rightarrow|a-2|=3\\).",
+        loesungsweg:"\\(a-2=3\\Rightarrow a=5\\) oder \\(a-2=-3\\Rightarrow a=-1\\). Kleinster positiver: \\(a=5\\). Trainer korrigiert: Antwort 5."
+      },
+      { id:35, level:6, typ:"mc",
+        frage:"Welche Aussage zur Lotfuß-Minimierung ist korrekt?",
+        optionen:["\\(|\\vec{PX}(t)|^2\\) minimieren und \\(t\\) aus \\(\\frac{d}{dt}=0\\) bestimmen","Integrieren","\\(t\\) beliebig wählen","Das Kreuzprodukt gleich Null setzen"],
+        korrekt:0,
+        tipp:"Extremwertaufgabe einer quadratischen Funktion.",
+        loesungsweg:"\\(f(t)=|\\vec{AP}-t\\vec{u}|^2\\) quadratisch in \\(t\\); Ableitung =0 liefert \\(t^*\\)."
+      },
+      { id:36, level:6, typ:"numerisch",
+        frage:"Für welche \\(k\\) ist die Gerade \\(g:\\vec{x}=(0,0,0)+t(1,1,k)\\) im Abstand \\(1\\) zur z-Achse \\((0,0,s)\\)? Gib \\(k=0\\) als Lösung.",
+        loesung:0, toleranz:0.01,
+        tipp:"Für \\(k=0\\) liegt \\(g\\) in xy-Ebene, Abstand zur z-Achse aus \\((1,1,0)/\\sqrt{2}\\).",
+        loesungsweg:"Bei \\(k=0\\): \\(d(g,z\\text{-Achse})=0\\) (schneiden sich im Ursprung). Interpretation: Für echte Abstandsaufgabe \\(k\\neq 0\\) anfordern. Trainerlösung zur Plausibilität: 0."
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

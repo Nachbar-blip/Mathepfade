@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigma-Regeln - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-stoch-sigma-regeln';
+    const THEMA_CONFIG = { name: 'Sigma-Regeln', bereich: 'stochastik' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 — Grundbegriffe ==========
+      { id:1, level:1, typ:"mc", frage:"Was besagt die 1\\(\\sigma\\)-Regel (näherungsweise)?", optionen:["\\(P(\\mu-\\sigma \\le X \\le \\mu+\\sigma)\\approx 68{,}3\\%\\)","\\(\\approx 50\\%\\)","\\(\\approx 95\\%\\)","\\(\\approx 99{,}7\\%\\)"], korrekt:0, tipp:"Ein Drittel liegt außerhalb.", loesungsweg:"Die 1\\(\\sigma\\)-Regel: ca. 68,3 %." },
+      { id:2, level:1, typ:"mc", frage:"Was besagt die 2\\(\\sigma\\)-Regel?", optionen:["\\(\\approx 68\\%\\)","\\(\\approx 95{,}4\\%\\)","\\(\\approx 99{,}7\\%\\)","\\(\\approx 50\\%\\)"], korrekt:1, tipp:"Fast alles — aber noch nicht fast sicher.", loesungsweg:"\\(P(\\mu-2\\sigma \\le X \\le \\mu+2\\sigma) \\approx 95{,}4\\%\\)." },
+      { id:3, level:1, typ:"mc", frage:"Was besagt die 3\\(\\sigma\\)-Regel?", optionen:["\\(\\approx 95\\%\\)","\\(\\approx 99{,}7\\%\\)","\\(\\approx 68\\%\\)","\\(100\\%\\)"], korrekt:1, tipp:"Praktisch fast sicher.", loesungsweg:"\\(P(\\mu-3\\sigma \\le X \\le \\mu+3\\sigma) \\approx 99{,}7\\%\\)." },
+      { id:4, level:1, typ:"mc", frage:"Wann sind die Sigma-Regeln bei einer Binomialverteilung gut anwendbar?", optionen:["\\(np \\ge 5\\)","\\(\\sigma = \\sqrt{np(1-p)}>3\\) (Laplace)","\\(p=1\\)","immer"], korrekt:1, tipp:"Laplace-Bedingung.", loesungsweg:"Die Sigma-Regeln sind gut, wenn \\(\\sigma > 3\\) (Laplace-Bedingung)." },
+      { id:5, level:1, typ:"numerisch", frage:"\\(n=400, p=0{,}5\\). Berechne \\(\\mu\\).", loesung:200, toleranz:0, tipp:"\\(n\\cdot p\\).", loesungsweg:"\\(\\mu = 200\\)." },
+      { id:6, level:1, typ:"numerisch", frage:"\\(n=400, p=0{,}5\\). Berechne \\(\\sigma\\).", loesung:10, toleranz:0.01, tipp:"\\(\\sqrt{np(1-p)}\\).", loesungsweg:"\\(\\sigma = \\sqrt{100} = 10\\)." },
+      // ========== LEVEL 2 — Sigma-Umgebungen berechnen ==========
+      { id:7, level:2, typ:"numerisch", frage:"\\(\\mu=200, \\sigma=10\\). Untere Grenze der 1\\(\\sigma\\)-Umgebung?", loesung:190, toleranz:0, tipp:"\\(\\mu - \\sigma\\).", loesungsweg:"\\(200 - 10 = 190\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"\\(\\mu=200, \\sigma=10\\). Obere Grenze der 2\\(\\sigma\\)-Umgebung?", loesung:220, toleranz:0, tipp:"\\(\\mu + 2\\sigma\\).", loesungsweg:"\\(200 + 20 = 220\\)." },
+      { id:9, level:2, typ:"numerisch", frage:"\\(n=100, p=0{,}5\\): Berechne die obere Grenze der 3\\(\\sigma\\)-Umgebung.", loesung:65, toleranz:0, tipp:"\\(\\mu+3\\sigma\\) mit \\(\\sigma=5\\).", loesungsweg:"\\(\\mu=50, \\sigma=5 \\Rightarrow 50+15=65\\)." },
+      { id:10, level:2, typ:"mc", frage:"Was gilt für die 1\\(\\sigma\\)-Umgebung bei \\(\\mu=100, \\sigma=4\\)?", optionen:["\\([92; 108]\\)","\\([96; 104]\\)","\\([88; 112]\\)","\\([99; 101]\\)"], korrekt:1, tipp:"\\(\\mu\\pm\\sigma\\).", loesungsweg:"\\([100-4;\\,100+4] = [96;\\,104]\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"\\(\\mu=500, \\sigma=20\\). Berechne die untere Grenze der 3\\(\\sigma\\)-Umgebung.", loesung:440, toleranz:0, tipp:"\\(\\mu-3\\sigma\\).", loesungsweg:"\\(500-60=440\\)." },
+      { id:12, level:2, typ:"numerisch", frage:"\\(n=900, p=\\tfrac{1}{3}\\). Berechne \\(\\sigma\\).", loesung:14.14, toleranz:0.1, tipp:"\\(\\sqrt{900\\cdot\\tfrac{1}{3}\\cdot\\tfrac{2}{3}} = \\sqrt{200}\\).", loesungsweg:"\\(\\sigma = \\sqrt{200} \\approx 14{,}14\\)." },
+      // ========== LEVEL 3 — Wahrscheinlichkeiten mit Sigma-Regeln ==========
+      { id:13, level:3, typ:"numerisch", frage:"\\(\\mu=200, \\sigma=10\\). \\(P(190\\le X\\le 210)\\) in % (1 Dezimalstelle)?", loesung:68.3, toleranz:0.3, tipp:"1\\(\\sigma\\)-Umgebung.", loesungsweg:"1\\(\\sigma\\)-Umgebung \\(\\Rightarrow \\approx 68{,}3\\%\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"\\(\\mu=200, \\sigma=10\\). \\(P(180\\le X\\le 220)\\) in % (1 Dezimalstelle)?", loesung:95.4, toleranz:0.3, tipp:"2\\(\\sigma\\).", loesungsweg:"2\\(\\sigma\\)-Umgebung \\(\\Rightarrow \\approx 95{,}4\\%\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"Wie groß ist \\(P(X > \\mu + \\sigma)\\) in % (1 Dezimalstelle)?", loesung:15.85, toleranz:0.3, tipp:"\\((100-68{,}3)/2\\).", loesungsweg:"\\((1-0{,}683)/2 \\approx 15{,}85\\%\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"Wie groß ist \\(P(X < \\mu - 2\\sigma)\\) in % (1 Dezimalstelle)?", loesung:2.3, toleranz:0.2, tipp:"\\((100-95{,}4)/2\\).", loesungsweg:"\\((1-0{,}954)/2 \\approx 2{,}3\\%\\)." },
+      { id:17, level:3, typ:"mc", frage:"Ein Ereignis liegt außerhalb der 3\\(\\sigma\\)-Umgebung. Wie ist das zu bewerten?", optionen:["Erwartbar","Sehr selten (ca. 0,3 %)","Unmöglich","Zufällig"], korrekt:1, tipp:"Die 3\\(\\sigma\\)-Regel.", loesungsweg:"Außerhalb: \\(\\approx 0{,}3\\%\\) — sehr selten." },
+      { id:18, level:3, typ:"numerisch", frage:"\\(\\mu=100, \\sigma=5\\). Berechne \\(P(95 \\le X \\le 110)\\) mit Sigma-Regeln in % (ca.).", loesung:81.85, toleranz:1, tipp:"1\\(\\sigma\\) nach unten, 2\\(\\sigma\\) nach oben: \\(\\tfrac{68{,}3}{2}+\\tfrac{95{,}4}{2}\\).", loesungsweg:"Links: \\(0{,}3413\\). Rechts: \\(0{,}4772\\). Summe \\(\\approx 81{,}85\\%\\)." },
+      // ========== LEVEL 4 — Anwendungen ==========
+      { id:19, level:4, typ:"numerisch", frage:"\\(n=1000, p=0{,}5\\). Berechne \\(\\mu+2\\sigma\\).", loesung:531.62, toleranz:1, tipp:"\\(\\sigma=\\sqrt{250}\\approx 15{,}81\\).", loesungsweg:"\\(500 + 2\\cdot 15{,}81 \\approx 531{,}62\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"Bei einer Wahl stimmen 40 % für A. 1000 Stimmen. Berechne \\(\\sigma\\) (2 Dez.).", loesung:15.49, toleranz:0.1, tipp:"\\(\\sqrt{1000\\cdot 0{,}4\\cdot 0{,}6}\\).", loesungsweg:"\\(\\sigma = \\sqrt{240} \\approx 15{,}49\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"\\(n=400, p=0{,}5\\). In welchem Bereich \\([a;b]\\) liegt \\(X\\) mit \\(\\approx 95\\%\\)? Gib \\(a\\) an.", loesung:180, toleranz:0, tipp:"\\(\\mu-2\\sigma\\).", loesungsweg:"\\(\\mu=200, \\sigma=10 \\Rightarrow a=180\\)." },
+      { id:22, level:4, typ:"numerisch", frage:"\\(n=400, p=0{,}5\\). Bestimme die obere Grenze der 2\\(\\sigma\\)-Umgebung.", loesung:220, toleranz:0, tipp:"\\(\\mu+2\\sigma\\).", loesungsweg:"\\(200+20=220\\)." },
+      { id:23, level:4, typ:"mc", frage:"Welche Umgebung gehört zu \\(\\approx 99{,}7\\%\\)?", optionen:["\\([\\mu-\\sigma;\\mu+\\sigma]\\)","\\([\\mu-2\\sigma;\\mu+2\\sigma]\\)","\\([\\mu-3\\sigma;\\mu+3\\sigma]\\)","\\([0;\\mu]\\)"], korrekt:2, tipp:"3\\(\\sigma\\).", loesungsweg:"3\\(\\sigma\\)-Umgebung: \\([\\mu-3\\sigma;\\mu+3\\sigma]\\)." },
+      { id:24, level:4, typ:"numerisch", frage:"Eine Münze wird 10000-mal geworfen. Berechne \\(\\sigma\\).", loesung:50, toleranz:0.5, tipp:"\\(\\sqrt{10000\\cdot 0{,}5\\cdot 0{,}5}\\).", loesungsweg:"\\(\\sigma = \\sqrt{2500} = 50\\)." },
+      // ========== LEVEL 5 — Rückwärtsaufgaben ==========
+      { id:25, level:5, typ:"numerisch", frage:"Eine Umfrage zeigt \\(\\mu=300\\) Ja-Stimmen bei \\(n=600\\) und \\(p=0{,}5\\). Berechne \\(\\sigma\\) (2 Dez.).", loesung:12.25, toleranz:0.1, tipp:"\\(\\sqrt{150}\\).", loesungsweg:"\\(\\sigma=\\sqrt{150}\\approx 12{,}25\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"Bei \\(n=600, p=0{,}5\\): Innerhalb von 2\\(\\sigma\\) erwartet man \\(X\\) zwischen … und …. Gib die untere Grenze (abgerundet auf ganz) an.", loesung:275, toleranz:1, tipp:"\\(\\mu-2\\sigma = 300 - 24{,}5\\approx 275{,}5\\).", loesungsweg:"\\(\\mu-2\\sigma \\approx 275{,}5\\), also \\(\\ge 276\\) praktisch — hier 275." },
+      { id:27, level:5, typ:"mc", frage:"Ein Beobachtungswert \\(X=250\\) bei \\(\\mu=200,\\sigma=10\\) liegt …", optionen:["Innerhalb 1\\(\\sigma\\)","Innerhalb 2\\(\\sigma\\)","Außerhalb 3\\(\\sigma\\)","Innerhalb 3\\(\\sigma\\)"], korrekt:2, tipp:"\\(250-200=50 = 5\\sigma\\).", loesungsweg:"Der Wert liegt \\(5\\sigma\\) oberhalb — weit außerhalb \\(3\\sigma\\)." },
+      { id:28, level:5, typ:"numerisch", frage:"\\(\\mu=100,\\sigma=5\\). Wie groß ist \\(P(X\\ge 105)\\) in % (1 Dez.)?", loesung:15.85, toleranz:0.3, tipp:"\\(\\ge \\mu+\\sigma\\).", loesungsweg:"\\(\\approx (1-0{,}683)/2 = 15{,}85\\%\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"Wahrscheinlichkeit, dass \\(X\\) zwischen \\(\\mu-\\sigma\\) und \\(\\mu+2\\sigma\\) liegt, in % (1 Dez.)?", loesung:81.85, toleranz:0.5, tipp:"\\(\\tfrac{0{,}683}{2}+\\tfrac{0{,}954}{2}\\).", loesungsweg:"Links: \\(34{,}15\\%\\), rechts: \\(47{,}7\\%\\). Summe \\(\\approx 81{,}85\\%\\)." },
+      { id:30, level:5, typ:"numerisch", frage:"Ein Test zeigt \\(X=235\\) bei \\(\\mu=200, \\sigma=10\\). Wie viele \\(\\sigma\\) weicht \\(X\\) ab?", loesung:3.5, toleranz:0.05, tipp:"\\((X-\\mu)/\\sigma\\).", loesungsweg:"\\((235-200)/10 = 3{,}5\\)." },
+      // ========== LEVEL 6 — Transfer ==========
+      { id:31, level:6, typ:"numerisch", frage:"\\(n=2500, p=0{,}2\\). Berechne \\(\\sigma\\).", loesung:20, toleranz:0.1, tipp:"\\(\\sqrt{2500\\cdot 0{,}2\\cdot 0{,}8}\\).", loesungsweg:"\\(\\sigma = \\sqrt{400} = 20\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"\\(n=2500, p=0{,}2\\). Berechne die untere Grenze der 2\\(\\sigma\\)-Umgebung.", loesung:460, toleranz:0, tipp:"\\(\\mu-2\\sigma\\).", loesungsweg:"\\(500-40=460\\)." },
+      { id:33, level:6, typ:"mc", frage:"Ein Wert liegt im Bereich \\([\\mu-\\sigma;\\mu+3\\sigma]\\). Wahrscheinlichkeit?", optionen:["\\(\\approx 81{,}85\\%\\)","\\(\\approx 83{,}85\\%\\)","\\(\\approx 99{,}85\\%\\)","\\(\\approx 95{,}4\\%\\)"], korrekt:1, tipp:"\\(\\tfrac{0{,}683}{2}+\\tfrac{0{,}997}{2}\\).", loesungsweg:"\\(34{,}15+49{,}85 \\approx 83{,}85\\%\\)." },
+      { id:34, level:6, typ:"numerisch", frage:"\\(n=400, p=0{,}3\\). Wie groß ist \\(P(|X-\\mu|\\le\\sigma)\\) in % (1 Dez.)?", loesung:68.3, toleranz:0.5, tipp:"1\\(\\sigma\\)-Regel.", loesungsweg:"\\(\\approx 68{,}3\\%\\)." },
+      { id:35, level:6, typ:"mc", frage:"Bei einer Binomialverteilung mit \\(\\sigma=2\\) sind die Sigma-Regeln …", optionen:["gut anwendbar","nicht gut anwendbar (Laplace-Bedingung verletzt)","immer exakt","nur für \\(p=0{,}5\\)"], korrekt:1, tipp:"\\(\\sigma > 3\\) nötig.", loesungsweg:"Laplace-Bedingung \\(\\sigma>3\\) verletzt, daher ungenau." },
+      { id:36, level:6, typ:"numerisch", frage:"In einer Urne sind 50 % rote Kugeln. 10000-mal ziehen mit Zurücklegen. Gib die obere Grenze der 3\\(\\sigma\\)-Umgebung an.", loesung:5150, toleranz:1, tipp:"\\(\\sigma=50\\), \\(\\mu+3\\sigma\\).", loesungsweg:"\\(\\mu=5000, \\sigma=50 \\Rightarrow 5000+150=5150\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

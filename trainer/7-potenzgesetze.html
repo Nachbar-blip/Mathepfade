@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potenzgesetze - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-potenzgesetze';
+    const THEMA_CONFIG = { name: 'Potenzgesetze', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Potenzen verstehen ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Was bedeutet \\(3^4\\)?",
+        optionen: ["\\(3 + 3 + 3 + 3\\)", "\\(3 \\cdot 4\\)", "\\(3 \\cdot 3 \\cdot 3 \\cdot 3\\)", "\\(4 \\cdot 4 \\cdot 4\\)"],
+        korrekt: 2,
+        tipp: "Die Hochzahl gibt an, wie oft die Basis mit sich selbst multipliziert wird.",
+        loesungsweg: "\\(3^4 = 3 \\cdot 3 \\cdot 3 \\cdot 3 = 81\\). Die Basis ist 3, der Exponent ist 4."
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "numerisch",
+        frage: "Berechne \\(2^5\\).",
+        loesung: 32,
+        toleranz: 0,
+        tipp: "\\(2 \\cdot 2 \\cdot 2 \\cdot 2 \\cdot 2\\).",
+        loesungsweg: "$$2^5 = 2 \\cdot 2 \\cdot 2 \\cdot 2 \\cdot 2 = 32$$"
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "mc",
+        frage: "Wie heißt die Zahl unten in \\(5^3\\)?",
+        optionen: ["Exponent", "Basis", "Koeffizient", "Potenzwert"],
+        korrekt: 1,
+        tipp: "Die untere Zahl ist die, die vervielfacht wird.",
+        loesungsweg: "In \\(5^3\\) ist \\(5\\) die <b>Basis</b> und \\(3\\) der <b>Exponent</b>."
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "numerisch",
+        frage: "Berechne \\(10^3\\).",
+        loesung: 1000,
+        toleranz: 0,
+        tipp: "\\(10 \\cdot 10 \\cdot 10\\).",
+        loesungsweg: "$$10^3 = 10 \\cdot 10 \\cdot 10 = 1000$$"
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "mc",
+        frage: "Welcher Wert ist \\(7^1\\)?",
+        optionen: ["\\(0\\)", "\\(1\\)", "\\(7\\)", "\\(14\\)"],
+        korrekt: 2,
+        tipp: "Jede Zahl hoch 1 ist sie selbst.",
+        loesungsweg: "\\(a^1 = a\\), also \\(7^1 = 7\\)."
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "numerisch",
+        frage: "Berechne \\(4^2\\).",
+        loesung: 16,
+        toleranz: 0,
+        tipp: "\\(4 \\cdot 4\\).",
+        loesungsweg: "$$4^2 = 4 \\cdot 4 = 16$$"
+      },
+      // ========== LEVEL 2 -- leicht: Produktregel gleiche Basis ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "mc",
+        frage: "Vereinfache: \\(a^3 \\cdot a^4\\).",
+        optionen: ["\\(a^{12}\\)", "\\(a^7\\)", "\\(2a^7\\)", "\\(a^{3+4+1}\\)"],
+        korrekt: 1,
+        tipp: "Gleiche Basis: Exponenten addieren.",
+        loesungsweg: "$$a^3 \\cdot a^4 = a^{3+4} = a^7$$"
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne \\(2^3 \\cdot 2^2\\) als Zahl.",
+        loesung: 32,
+        toleranz: 0,
+        tipp: "\\(2^{3+2} = 2^5\\).",
+        loesungsweg: "$$2^3 \\cdot 2^2 = 2^5 = 32$$"
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "mc",
+        frage: "Vereinfache: \\(x^5 \\cdot x\\).",
+        optionen: ["\\(x^5\\)", "\\(x^6\\)", "\\(2x^5\\)", "\\(x^{5\\cdot 1}\\)"],
+        korrekt: 1,
+        tipp: "\\(x = x^1\\). Exponenten addieren.",
+        loesungsweg: "$$x^5 \\cdot x^1 = x^{5+1} = x^6$$"
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne \\(3^2 \\cdot 3^3\\).",
+        loesung: 243,
+        toleranz: 0,
+        tipp: "\\(3^5\\).",
+        loesungsweg: "$$3^2 \\cdot 3^3 = 3^5 = 243$$"
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "mc",
+        frage: "Vereinfache: \\(b^2 \\cdot b^6\\).",
+        optionen: ["\\(b^{12}\\)", "\\(b^4\\)", "\\(b^8\\)", "\\(2b^8\\)"],
+        korrekt: 2,
+        tipp: "Exponenten addieren: \\(2 + 6\\).",
+        loesungsweg: "$$b^2 \\cdot b^6 = b^{8}$$"
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "numerisch",
+        frage: "Berechne \\(5^2 \\cdot 5^1\\).",
+        loesung: 125,
+        toleranz: 0,
+        tipp: "\\(5^3\\).",
+        loesungsweg: "$$5^2 \\cdot 5 = 5^3 = 125$$"
+      },
+      // ========== LEVEL 3 -- nervenschonend: Quotientenregel ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "mc",
+        frage: "Vereinfache: \\(\\frac{a^7}{a^3}\\).",
+        optionen: ["\\(a^{10}\\)", "\\(a^{21}\\)", "\\(a^4\\)", "\\(a^{7/3}\\)"],
+        korrekt: 2,
+        tipp: "Gleiche Basis dividieren: Exponenten subtrahieren.",
+        loesungsweg: "$$\\frac{a^7}{a^3} = a^{7-3} = a^4$$"
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "numerisch",
+        frage: "Berechne \\(\\frac{2^6}{2^3}\\).",
+        loesung: 8,
+        toleranz: 0,
+        tipp: "\\(2^{6-3} = 2^3\\).",
+        loesungsweg: "$$\\frac{2^6}{2^3} = 2^3 = 8$$"
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "mc",
+        frage: "Vereinfache: \\(\\frac{x^5 \\cdot x^2}{x^3}\\).",
+        optionen: ["\\(x^{10}\\)", "\\(x^4\\)", "\\(x^6\\)", "\\(x^0\\)"],
+        korrekt: 1,
+        tipp: "Erst Zähler zusammenfassen: \\(x^7\\). Dann \\(x^{7-3}\\).",
+        loesungsweg: "$$\\frac{x^5 \\cdot x^2}{x^3} = \\frac{x^7}{x^3} = x^4$$"
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "numerisch",
+        frage: "Berechne \\(\\frac{10^5}{10^2}\\).",
+        loesung: 1000,
+        toleranz: 0,
+        tipp: "\\(10^3\\).",
+        loesungsweg: "$$\\frac{10^5}{10^2} = 10^3 = 1000$$"
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "mc",
+        frage: "Was ergibt \\(a^5 : a^5\\) (für \\(a \\ne 0\\))?",
+        optionen: ["\\(a^{10}\\)", "\\(a^0 = 1\\)", "\\(0\\)", "\\(a\\)"],
+        korrekt: 1,
+        tipp: "Gleiche Potenzen dividiert: Ergebnis ist 1.",
+        loesungsweg: "$$\\frac{a^5}{a^5} = a^{5-5} = a^0 = 1$$"
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "numerisch",
+        frage: "Berechne \\(\\frac{7^4}{7^2}\\).",
+        loesung: 49,
+        toleranz: 0,
+        tipp: "\\(7^2\\).",
+        loesungsweg: "$$\\frac{7^4}{7^2} = 7^2 = 49$$"
+      },
+      // ========== LEVEL 4 -- mittel: Potenzregel und gleiche Exponenten ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "mc",
+        frage: "Vereinfache: \\((a^3)^4\\).",
+        optionen: ["\\(a^7\\)", "\\(a^{12}\\)", "\\(a^{81}\\)", "\\(4a^3\\)"],
+        korrekt: 1,
+        tipp: "Potenz einer Potenz: Exponenten multiplizieren.",
+        loesungsweg: "$$(a^3)^4 = a^{3 \\cdot 4} = a^{12}$$"
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "numerisch",
+        frage: "Berechne \\((2^2)^3\\).",
+        loesung: 64,
+        toleranz: 0,
+        tipp: "\\(2^6\\).",
+        loesungsweg: "$$(2^2)^3 = 2^{2 \\cdot 3} = 2^6 = 64$$"
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "mc",
+        frage: "Vereinfache: \\(a^3 \\cdot b^3\\).",
+        optionen: ["\\((ab)^3\\)", "\\((ab)^6\\)", "\\(a^3 + b^3\\)", "\\((a+b)^3\\)"],
+        korrekt: 0,
+        tipp: "Gleiche Exponenten: Basen multiplizieren.",
+        loesungsweg: "$$a^3 \\cdot b^3 = (a \\cdot b)^3 = (ab)^3$$"
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "numerisch",
+        frage: "Berechne \\(2^3 \\cdot 5^3\\) mit der Potenzregel.",
+        loesung: 1000,
+        toleranz: 0,
+        tipp: "\\((2 \\cdot 5)^3 = 10^3\\).",
+        loesungsweg: "$$2^3 \\cdot 5^3 = (2 \\cdot 5)^3 = 10^3 = 1000$$"
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "mc",
+        frage: "Vereinfache: \\(\\frac{a^5}{b^5}\\).",
+        optionen: ["\\(\\left(\\frac{a}{b}\\right)^5\\)", "\\(\\frac{a}{b}\\)", "\\(\\left(\\frac{a}{b}\\right)^{25}\\)", "\\(a^5 - b^5\\)"],
+        korrekt: 0,
+        tipp: "Gleiche Exponenten bei Bruch: Basis ist der Bruch.",
+        loesungsweg: "$$\\frac{a^5}{b^5} = \\left(\\frac{a}{b}\\right)^5$$"
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "numerisch",
+        frage: "Berechne \\((3^2)^2\\).",
+        loesung: 81,
+        toleranz: 0,
+        tipp: "\\(3^4\\).",
+        loesungsweg: "$$(3^2)^2 = 3^4 = 81$$"
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Kombinierte Regeln ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "mc",
+        frage: "Vereinfache: \\(\\frac{(a^2)^3 \\cdot a^4}{a^5}\\).",
+        optionen: ["\\(a^2\\)", "\\(a^5\\)", "\\(a^{10}\\)", "\\(a^{15}\\)"],
+        korrekt: 1,
+        tipp: "\\((a^2)^3 = a^6\\). Dann \\(\\frac{a^6 \\cdot a^4}{a^5}\\).",
+        loesungsweg: "$$\\frac{a^6 \\cdot a^4}{a^5} = \\frac{a^{10}}{a^5} = a^5$$"
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "numerisch",
+        frage: "Berechne \\(\\frac{2^7 \\cdot 2^3}{2^5}\\).",
+        loesung: 32,
+        toleranz: 0,
+        tipp: "\\(2^{7+3-5} = 2^5\\).",
+        loesungsweg: "$$\\frac{2^{10}}{2^5} = 2^5 = 32$$"
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "mc",
+        frage: "Vereinfache: \\((2a^3)^2\\).",
+        optionen: ["\\(2a^6\\)", "\\(4a^5\\)", "\\(4a^6\\)", "\\(2a^5\\)"],
+        korrekt: 2,
+        tipp: "Jeder Faktor hoch 2: \\(2^2 \\cdot (a^3)^2\\).",
+        loesungsweg: "$$(2a^3)^2 = 2^2 \\cdot a^{6} = 4a^6$$"
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "numerisch",
+        frage: "Berechne \\((2 \\cdot 3)^3\\).",
+        loesung: 216,
+        toleranz: 0,
+        tipp: "\\(6^3\\).",
+        loesungsweg: "$$(2 \\cdot 3)^3 = 6^3 = 216$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "mc",
+        frage: "Welcher Ausdruck ist gleich \\(a^6\\)?",
+        optionen: ["\\(a^2 \\cdot a^3\\)", "\\((a^2)^3\\)", "\\(a^3 + a^3\\)", "\\(\\frac{a^{10}}{a^5}\\)"],
+        korrekt: 1,
+        tipp: "\\((a^2)^3 = a^{2\\cdot3}\\).",
+        loesungsweg: "\\((a^2)^3 = a^6\\). Die anderen ergeben \\(a^5\\), \\(2a^3\\), \\(a^5\\)."
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "numerisch",
+        frage: "Berechne \\(\\frac{5^4 \\cdot 5^2}{5^3}\\).",
+        loesung: 125,
+        toleranz: 0,
+        tipp: "\\(5^{4+2-3} = 5^3\\).",
+        loesungsweg: "$$\\frac{5^6}{5^3} = 5^3 = 125$$"
+      },
+      // ========== LEVEL 6 -- wagnerisch: Transfer und Zehnerpotenzen ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "mc",
+        frage: "In wissenschaftlicher Schreibweise: \\(3 \\cdot 10^4 \\cdot 2 \\cdot 10^3\\) = ?",
+        optionen: ["\\(5 \\cdot 10^7\\)", "\\(6 \\cdot 10^7\\)", "\\(6 \\cdot 10^{12}\\)", "\\(5 \\cdot 10^{12}\\)"],
+        korrekt: 1,
+        tipp: "Zahlen multiplizieren, Zehnerpotenzen addieren.",
+        loesungsweg: "$$3 \\cdot 2 \\cdot 10^{4+3} = 6 \\cdot 10^7$$"
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "numerisch",
+        frage: "Berechne \\(\\frac{(3a^2)^3}{9a^4}\\) für \\(a = 2\\). Vereinfache zuerst zu \\(3a^2\\).",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "\\((3a^2)^3 = 27a^6\\). Durch \\(9a^4\\) ergibt \\(3a^2\\). Dann \\(a = 2\\).",
+        loesungsweg: "$$\\frac{27a^6}{9a^4} = 3a^2$$ Für \\(a = 2\\): \\(3 \\cdot 4 = 12\\)."
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "mc",
+        frage: "Welche Gleichung ist falsch?",
+        optionen: ["\\(a^m \\cdot a^n = a^{m+n}\\)", "\\((a^m)^n = a^{m \\cdot n}\\)", "\\(a^m + a^n = a^{m+n}\\)", "\\(a^0 = 1\\) für \\(a \\ne 0\\)"],
+        korrekt: 2,
+        tipp: "Addition von Potenzen hat KEINE einfache Regel.",
+        loesungsweg: "\\(a^m + a^n \\ne a^{m+n}\\). Beispiel: \\(2^2 + 2^3 = 4 + 8 = 12 \\ne 32\\)."
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "numerisch",
+        frage: "Berechne \\(\\frac{8^3}{2^6}\\). Hinweis: \\(8 = 2^3\\).",
+        loesung: 8,
+        toleranz: 0,
+        tipp: "\\(8^3 = (2^3)^3 = 2^9\\). Dann \\(\\frac{2^9}{2^6}\\).",
+        loesungsweg: "$$\\frac{(2^3)^3}{2^6} = \\frac{2^9}{2^6} = 2^3 = 8$$"
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "mc",
+        frage: "Vereinfache: \\(\\frac{a^3 b^5}{a b^2}\\).",
+        optionen: ["\\(a^2 b^3\\)", "\\(a^3 b^3\\)", "\\(a^2 b^7\\)", "\\(a^4 b^7\\)"],
+        korrekt: 0,
+        tipp: "Getrennt: \\(\\frac{a^3}{a} \\cdot \\frac{b^5}{b^2}\\).",
+        loesungsweg: "$$\\frac{a^3}{a^1} \\cdot \\frac{b^5}{b^2} = a^2 \\cdot b^3$$"
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Bakterium teilt sich jede Stunde. Nach 10 Stunden sind es \\(2^{10}\\) Bakterien. Wie viele sind das?",
+        loesung: 1024,
+        toleranz: 0,
+        tipp: "\\(2^{10} = 2^5 \\cdot 2^5 = 32 \\cdot 32\\).",
+        loesungsweg: "$$2^{10} = 1024$$"
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binomialverteilung - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-stoch-binomialverteilung';
+    const THEMA_CONFIG = { name: 'Binomialverteilung', bereich: 'stochastik' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 — Bernoulli-Kette erkennen ==========
+      { id:1, level:1, typ:"mc", frage:"Welches Experiment ist eine Bernoulli-Kette?", optionen:["Ziehen ohne Zurücklegen aus einer Urne","10-maliges Würfeln mit Erfolg = 6","Lottoziehung 6 aus 49","Temperatur an 7 Tagen"], korrekt:1, tipp:"Gleiche Erfolgswahrscheinlichkeit in jedem Versuch, Unabhängigkeit.", loesungsweg:"Bei 10-maligem Würfeln ist \\(p = \\tfrac{1}{6}\\) konstant und die Würfe sind unabhängig." },
+      { id:2, level:1, typ:"mc", frage:"Ein Würfel wird 20-mal geworfen. Erfolg: Augenzahl \\(\\ge 5\\). Wie groß ist \\(p\\)?", optionen:["\\(\\tfrac{1}{6}\\)","\\(\\tfrac{1}{3}\\)","\\(\\tfrac{1}{2}\\)","\\(\\tfrac{2}{3}\\)"], korrekt:1, tipp:"Günstig: 5 oder 6.", loesungsweg:"\\(p = \\tfrac{2}{6} = \\tfrac{1}{3}\\)." },
+      { id:3, level:1, typ:"numerisch", frage:"Wie viele Parameter hat eine Binomialverteilung? (Anzahl angeben)", loesung:2, toleranz:0, tipp:"\\(n\\) und \\(p\\).", loesungsweg:"Zwei Parameter: \\(n\\) (Länge der Kette) und \\(p\\) (Erfolgswahrscheinlichkeit)." },
+      { id:4, level:1, typ:"mc", frage:"Was bedeutet \\(B(n;p;k)\\)?", optionen:["Wahrscheinlichkeit genau \\(k\\) Erfolge","Wahrscheinlichkeit höchstens \\(k\\) Erfolge","Erwartungswert","Standardabweichung"], korrekt:0, tipp:"Einzelwahrscheinlichkeit.", loesungsweg:"\\(B(n;p;k) = \\binom{n}{k} p^k (1-p)^{n-k}\\) ist die Wahrscheinlichkeit für genau \\(k\\) Erfolge." },
+      { id:5, level:1, typ:"numerisch", frage:"Berechne \\(\\binom{5}{2}\\).", loesung:10, toleranz:0, tipp:"\\(\\binom{n}{k} = \\tfrac{n!}{k!(n-k)!}\\)", loesungsweg:"$$\\binom{5}{2} = \\tfrac{5!}{2!\\cdot 3!} = \\tfrac{120}{2\\cdot 6} = 10$$" },
+      { id:6, level:1, typ:"mc", frage:"Welche Formel ist die Binomialverteilung?", optionen:["\\(p^k\\)","\\(\\binom{n}{k}p^k(1-p)^{n-k}\\)","\\(n\\cdot p\\)","\\(\\sqrt{np(1-p)}\\)"], korrekt:1, tipp:"Binomialkoeffizient mal Potenzen.", loesungsweg:"\\(P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}\\)." },
+      // ========== LEVEL 2 — Einzelwahrscheinlichkeiten ==========
+      { id:7, level:2, typ:"numerisch", frage:"\\(n=10, p=0{,}3\\). Berechne \\(P(X=3)\\) (auf 4 Nachkommastellen).", loesung:0.2668, toleranz:0.005, tipp:"\\(\\binom{10}{3}\\cdot 0{,}3^3\\cdot 0{,}7^7\\).", loesungsweg:"$$\\binom{10}{3}\\cdot 0{,}3^3\\cdot 0{,}7^7 = 120 \\cdot 0{,}027 \\cdot 0{,}0824 \\approx 0{,}2668$$" },
+      { id:8, level:2, typ:"numerisch", frage:"\\(n=6, p=0{,}5\\). Berechne \\(P(X=3)\\).", loesung:0.3125, toleranz:0.005, tipp:"\\(\\binom{6}{3} = 20\\).", loesungsweg:"$$20 \\cdot 0{,}5^6 = 20 \\cdot \\tfrac{1}{64} = 0{,}3125$$" },
+      { id:9, level:2, typ:"numerisch", frage:"\\(n=4, p=\\tfrac{1}{6}\\). Berechne \\(P(X=0)\\) auf 4 Nachkommastellen.", loesung:0.4823, toleranz:0.005, tipp:"\\(\\left(\\tfrac{5}{6}\\right)^4\\).", loesungsweg:"$$\\left(\\tfrac{5}{6}\\right)^4 = \\tfrac{625}{1296} \\approx 0{,}4823$$" },
+      { id:10, level:2, typ:"mc", frage:"\\(n=8, p=0{,}25\\). Welcher Wert ist der Erwartungswert \\(\\mu\\)?", optionen:["\\(2\\)","\\(1{,}5\\)","\\(4\\)","\\(0{,}25\\)"], korrekt:0, tipp:"\\(\\mu = n\\cdot p\\).", loesungsweg:"\\(\\mu = 8 \\cdot 0{,}25 = 2\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"\\(n=12, p=0{,}5\\). Berechne \\(P(X=6)\\) auf 4 Nachkommastellen.", loesung:0.2256, toleranz:0.005, tipp:"\\(\\binom{12}{6}=924\\).", loesungsweg:"$$924 \\cdot 0{,}5^{12} = \\tfrac{924}{4096} \\approx 0{,}2256$$" },
+      { id:12, level:2, typ:"numerisch", frage:"\\(n=5, p=0{,}4\\). Berechne \\(P(X=2)\\) auf 4 Nachkommastellen.", loesung:0.3456, toleranz:0.005, tipp:"\\(\\binom{5}{2}=10\\).", loesungsweg:"$$10\\cdot 0{,}4^2\\cdot 0{,}6^3 = 10\\cdot 0{,}16\\cdot 0{,}216 = 0{,}3456$$" },
+      // ========== LEVEL 3 — Kumulierte Wahrscheinlichkeiten ==========
+      { id:13, level:3, typ:"mc", frage:"Wie berechnet man \\(P(X \\le k)\\)?", optionen:["\\(P(X=k)\\)","Summe \\(P(X=0)+\\dots+P(X=k)\\)","\\(1-P(X=k)\\)","\\(P(X \\ge k)\\)"], korrekt:1, tipp:"Kumulativ = aufsummieren.", loesungsweg:"\\(P(X\\le k) = \\sum_{i=0}^{k} P(X=i)\\)." },
+      { id:14, level:3, typ:"mc", frage:"Welche Umformung ist korrekt?", optionen:["\\(P(X\\ge k) = 1 - P(X\\le k-1)\\)","\\(P(X\\ge k) = 1 - P(X\\le k)\\)","\\(P(X\\ge k) = P(X\\le k)\\)","\\(P(X\\ge k) = P(X=k)\\)"], korrekt:0, tipp:"Gegenereignis: höchstens \\(k-1\\).", loesungsweg:"\\(P(X\\ge k) = 1 - P(X\\le k-1)\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"\\(n=10, p=0{,}5\\). Berechne \\(P(X\\le 3)\\) auf 4 Nachkommastellen.", loesung:0.1719, toleranz:0.008, tipp:"Summe \\(P(X=0)+P(X=1)+P(X=2)+P(X=3)\\).", loesungsweg:"$$P(X\\le 3) = \\tfrac{1+10+45+120}{1024} = \\tfrac{176}{1024} \\approx 0{,}1719$$" },
+      { id:16, level:3, typ:"numerisch", frage:"\\(n=20, p=0{,}3\\). Berechne \\(P(X\\ge 1)\\) auf 4 Nachkommastellen.", loesung:0.9992, toleranz:0.005, tipp:"Gegenereignis: \\(X=0\\).", loesungsweg:"$$P(X\\ge 1) = 1 - 0{,}7^{20} \\approx 1 - 0{,}000798 \\approx 0{,}9992$$" },
+      { id:17, level:3, typ:"mc", frage:"Wie berechnet man \\(P(a \\le X \\le b)\\)?", optionen:["\\(P(X\\le b) - P(X\\le a)\\)","\\(P(X\\le b) - P(X\\le a-1)\\)","\\(P(X\\le a) - P(X\\le b)\\)","\\(P(X=b) - P(X=a)\\)"], korrekt:1, tipp:"Obergrenze minus (Untergrenze \\(-1\\)).", loesungsweg:"\\(P(a \\le X \\le b) = P(X\\le b) - P(X\\le a-1)\\)." },
+      { id:18, level:3, typ:"numerisch", frage:"\\(n=8, p=0{,}5\\). Berechne \\(P(X\\ge 6)\\) auf 4 Nachkommastellen.", loesung:0.1445, toleranz:0.005, tipp:"\\(P(X=6)+P(X=7)+P(X=8)\\).", loesungsweg:"$$\\tfrac{28+8+1}{256} = \\tfrac{37}{256} \\approx 0{,}1445$$" },
+      // ========== LEVEL 4 — Erwartungswert, Standardabweichung ==========
+      { id:19, level:4, typ:"numerisch", frage:"\\(n=50, p=0{,}2\\). Berechne \\(\\mu\\).", loesung:10, toleranz:0, tipp:"\\(\\mu = n\\cdot p\\).", loesungsweg:"\\(\\mu = 50\\cdot 0{,}2 = 10\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"\\(n=100, p=0{,}5\\). Berechne \\(\\sigma\\).", loesung:5, toleranz:0.01, tipp:"\\(\\sigma = \\sqrt{np(1-p)}\\).", loesungsweg:"\\(\\sigma = \\sqrt{100\\cdot 0{,}5\\cdot 0{,}5} = \\sqrt{25} = 5\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"\\(n=200, p=0{,}1\\). Berechne \\(\\sigma\\) auf 2 Nachkommastellen.", loesung:4.24, toleranz:0.05, tipp:"\\(\\sqrt{200\\cdot 0{,}1\\cdot 0{,}9}\\).", loesungsweg:"\\(\\sigma = \\sqrt{18} \\approx 4{,}24\\)." },
+      { id:22, level:4, typ:"mc", frage:"Wann ist \\(\\sigma\\) einer Binomialverteilung maximal (bei festem \\(n\\))?", optionen:["\\(p=0\\)","\\(p=0{,}5\\)","\\(p=1\\)","\\(p=0{,}25\\)"], korrekt:1, tipp:"\\(p(1-p)\\) wird maximal bei \\(p=0{,}5\\).", loesungsweg:"Die Varianz \\(np(1-p)\\) ist maximal bei \\(p=0{,}5\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"Eine Münze wird 400-mal geworfen. Wie groß ist \\(\\sigma\\)?", loesung:10, toleranz:0.01, tipp:"\\(n=400, p=0{,}5\\).", loesungsweg:"\\(\\sigma = \\sqrt{400\\cdot 0{,}5 \\cdot 0{,}5} = \\sqrt{100} = 10\\)." },
+      { id:24, level:4, typ:"numerisch", frage:"\\(n=30, p=\\tfrac{1}{3}\\). Berechne \\(\\mu\\).", loesung:10, toleranz:0, tipp:"\\(n\\cdot p\\).", loesungsweg:"\\(\\mu = 30 \\cdot \\tfrac{1}{3} = 10\\)." },
+      // ========== LEVEL 5 — Anwendungen ==========
+      { id:25, level:5, typ:"numerisch", frage:"10 % der Artikel sind defekt. 20 werden geprüft. Wie groß ist die Wahrscheinlichkeit, dass genau 2 defekt sind? (4 Nachkommastellen)", loesung:0.2852, toleranz:0.005, tipp:"\\(n=20, p=0{,}1, k=2\\).", loesungsweg:"$$\\binom{20}{2}\\cdot 0{,}1^2\\cdot 0{,}9^{18} \\approx 190\\cdot 0{,}01\\cdot 0{,}1501 \\approx 0{,}2852$$" },
+      { id:26, level:5, typ:"numerisch", frage:"Ein Medikament wirkt mit \\(p=0{,}8\\). 10 Patienten werden behandelt. Wahrscheinlichkeit, dass alle geheilt werden? (4 Nachkommastellen)", loesung:0.1074, toleranz:0.005, tipp:"\\(0{,}8^{10}\\).", loesungsweg:"\\(0{,}8^{10} \\approx 0{,}1074\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Ein Schütze trifft mit \\(p=0{,}7\\). Bei 10 Schuss: Wahrscheinlichkeit für mindestens 8 Treffer? (4 Nachkommastellen)", loesung:0.3828, toleranz:0.01, tipp:"\\(P(X=8)+P(X=9)+P(X=10)\\).", loesungsweg:"$$\\binom{10}{8}0{,}7^8 0{,}3^2 + \\binom{10}{9}0{,}7^9 0{,}3 + 0{,}7^{10} \\approx 0{,}2335+0{,}1211+0{,}0282 \\approx 0{,}3828$$" },
+      { id:28, level:5, typ:"numerisch", frage:"Eine Urne hat 30 % rote Kugeln. 50-mal ziehen mit Zurücklegen. Erwartungswert roter Kugeln?", loesung:15, toleranz:0, tipp:"\\(\\mu = n\\cdot p\\).", loesungsweg:"\\(\\mu = 50\\cdot 0{,}3 = 15\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"Bei einer Klausur beantworten 60 % richtig. Bei 25 Fragen: \\(\\sigma\\) auf 2 Nachkommastellen?", loesung:2.45, toleranz:0.05, tipp:"\\(\\sqrt{25\\cdot 0{,}6\\cdot 0{,}4}\\).", loesungsweg:"\\(\\sigma = \\sqrt{6} \\approx 2{,}45\\)." },
+      { id:30, level:5, typ:"mc", frage:"Bei welchem \\(k\\) liegt das Maximum von \\(P(X=k)\\) für \\(n=20, p=0{,}3\\)?", optionen:["\\(k=3\\)","\\(k=6\\)","\\(k=10\\)","\\(k=14\\)"], korrekt:1, tipp:"Nahe bei \\(\\mu=np\\).", loesungsweg:"\\(\\mu = 6\\). Das Maximum liegt bei \\(k=6\\)." },
+      // ========== LEVEL 6 — Transfer / Mindestzahl ==========
+      { id:31, level:6, typ:"numerisch", frage:"Münze. Mindestens wie oft werfen, damit \\(P(\\text{mind. 1 Kopf}) \\ge 0{,}99\\)? (ganzzahl)", loesung:7, toleranz:0, tipp:"\\(1-0{,}5^n \\ge 0{,}99 \\Rightarrow 0{,}5^n \\le 0{,}01\\).", loesungsweg:"$$0{,}5^n \\le 0{,}01 \\implies n \\ge \\tfrac{\\ln 0{,}01}{\\ln 0{,}5} \\approx 6{,}64 \\implies n = 7$$" },
+      { id:32, level:6, typ:"numerisch", frage:"Würfel (Erfolg = 6). Mindest-\\(n\\) für \\(P(\\text{mind. 1 Sechs})\\ge 0{,}9\\)?", loesung:13, toleranz:0, tipp:"\\(\\left(\\tfrac{5}{6}\\right)^n \\le 0{,}1\\).", loesungsweg:"$$n \\ge \\tfrac{\\ln 0{,}1}{\\ln \\tfrac{5}{6}} \\approx 12{,}63 \\implies n = 13$$" },
+      { id:33, level:6, typ:"mc", frage:"Binomialverteilung \\(n=100, p=0{,}4\\). Welche Approximation ist sinnvoll?", optionen:["Normalverteilung, da \\(np(1-p)>9\\)","Poisson, da \\(n\\) klein","Gleichverteilung","Keine Approximation möglich"], korrekt:0, tipp:"Laplace-Bedingung \\(np(1-p)>9\\).", loesungsweg:"\\(100\\cdot 0{,}4\\cdot 0{,}6 = 24 > 9\\): Normalverteilung geeignet." },
+      { id:34, level:6, typ:"numerisch", frage:"\\(n=10, p=0{,}4\\). Berechne \\(P(3 \\le X \\le 5)\\) auf 4 Nachkommastellen.", loesung:0.6665, toleranz:0.01, tipp:"\\(P(X=3)+P(X=4)+P(X=5)\\).", loesungsweg:"$$0{,}2150+0{,}2508+0{,}2007 \\approx 0{,}6665$$" },
+      { id:35, level:6, typ:"mc", frage:"Was gilt für die Binomialverteilung bei \\(p=0{,}5\\)?", optionen:["Sie ist schief","Sie ist symmetrisch um \\(\\tfrac{n}{2}\\)","Sie hat \\(\\sigma=0\\)","Sie ist rechtsschief"], korrekt:1, tipp:"Symmetrie bei \\(p=0{,}5\\).", loesungsweg:"Bei \\(p=0{,}5\\) gilt \\(P(X=k) = P(X=n-k)\\) — symmetrisch um \\(\\tfrac{n}{2}\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Eine Maschine produziert mit 5 % Ausschuss. Bei 80 Stück: Wahrscheinlichkeit für höchstens 3 defekte auf 4 Nachkommastellen?", loesung:0.4294, toleranz:0.02, tipp:"\\(P(X\\le 3)\\) mit \\(n=80, p=0{,}05\\).", loesungsweg:"$$P(X\\le 3) = \\sum_{k=0}^{3}\\binom{80}{k}0{,}05^k 0{,}95^{80-k} \\approx 0{,}4294$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

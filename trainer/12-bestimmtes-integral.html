@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bestimmtes Integral - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '12-bestimmtes-integral';
+    const THEMA_CONFIG = { name: 'Bestimmtes Integral', bereich: 'analysis' };
+    const AUFGABEN = [
+      // LEVEL 1
+      { id: 1, level: 1, typ: "mc", frage: "Was bedeutet \\(\\int_a^b f(x)\\,dx\\)?", optionen: ["Ableitung an der Stelle \\(b\\)", "Bestimmtes Integral von \\(a\\) bis \\(b\\)", "Summe aller Funktionswerte", "Differenz \\(f(b) - f(a)\\)"], korrekt: 1, tipp: "Mit Integrationsgrenzen.", loesungsweg: "Das <b>bestimmte Integral</b> \\(\\int_a^b f(x)dx = F(b) - F(a)\\)." },
+      { id: 2, level: 1, typ: "mc", frage: "Hauptsatz: \\(\\int_a^b f(x)dx = \\)", optionen: ["\\(F(b) - F(a)\\)", "\\(f(b) - f(a)\\)", "\\(F(a) - F(b)\\)", "\\(F(b) + F(a)\\)"], korrekt: 0, tipp: "Obere Grenze minus untere Grenze.", loesungsweg: "Hauptsatz der Differential- und Integralrechnung: \\(\\int_a^b f(x)dx = F(b)-F(a)\\)." },
+      { id: 3, level: 1, typ: "numerisch", frage: "Berechne \\(\\int_0^1 1\\,dx\\).", loesung: 1, toleranz: 0, tipp: "Stammfunktion: \\(x\\). \\(1 - 0\\).", loesungsweg: "$$\\int_0^1 1\\,dx = [x]_0^1 = 1 - 0 = 1$$" },
+      { id: 4, level: 1, typ: "numerisch", frage: "Berechne \\(\\int_0^2 x\\,dx\\).", loesung: 2, toleranz: 0, tipp: "\\(F(x) = \\frac{x^2}{2}\\).", loesungsweg: "$$\\int_0^2 x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_0^2 = 2 - 0 = 2$$" },
+      { id: 5, level: 1, typ: "mc", frage: "Was ist \\(\\int_a^a f(x)dx\\)?", optionen: ["\\(f(a)\\)", "\\(F(a)\\)", "\\(0\\)", "undefiniert"], korrekt: 2, tipp: "Gleiche Grenzen.", loesungsweg: "\\(F(a) - F(a) = 0\\)." },
+      { id: 6, level: 1, typ: "mc", frage: "Wenn Grenzen vertauscht werden: \\(\\int_b^a f dx = \\)", optionen: ["\\(\\int_a^b f dx\\)", "\\(-\\int_a^b f dx\\)", "\\(0\\)", "\\(\\frac{1}{\\int_a^b f dx}\\)"], korrekt: 1, tipp: "Vorzeichenwechsel.", loesungsweg: "$$\\int_b^a f(x)dx = -\\int_a^b f(x)dx$$" },
+      // LEVEL 2
+      { id: 7, level: 2, typ: "numerisch", frage: "\\(\\int_0^2 2x\\,dx = ?\\)", loesung: 4, toleranz: 0, tipp: "\\(F(x) = x^2\\).", loesungsweg: "$$[x^2]_0^2 = 4 - 0 = 4$$" },
+      { id: 8, level: 2, typ: "numerisch", frage: "\\(\\int_1^3 x^2\\,dx = ?\\) (Bruch oder Dezimal)", loesung: 8.667, toleranz: 0.01, tipp: "\\(F(x) = \\frac{x^3}{3}\\). \\(\\frac{27}{3} - \\frac{1}{3} = \\frac{26}{3}\\).", loesungsweg: "$$\\left[\\tfrac{x^3}{3}\\right]_1^3 = \\tfrac{27}{3} - \\tfrac{1}{3} = \\tfrac{26}{3} \\approx 8{,}67$$" },
+      { id: 9, level: 2, typ: "numerisch", frage: "\\(\\int_0^3 (2x + 1)\\,dx = ?\\)", loesung: 12, toleranz: 0, tipp: "\\(F(x) = x^2 + x\\).", loesungsweg: "$$[x^2 + x]_0^3 = 9 + 3 - 0 = 12$$" },
+      { id: 10, level: 2, typ: "numerisch", frage: "\\(\\int_{-1}^{1} x^2\\,dx = ?\\) (Dezimal)", loesung: 0.667, toleranz: 0.01, tipp: "\\(\\frac{1}{3} - (-\\frac{1}{3}) = \\frac{2}{3}\\).", loesungsweg: "$$\\left[\\tfrac{x^3}{3}\\right]_{-1}^{1} = \\tfrac{1}{3} + \\tfrac{1}{3} = \\tfrac{2}{3}$$" },
+      { id: 11, level: 2, typ: "mc", frage: "\\(\\int_0^1 4x^3\\,dx = ?\\)", optionen: ["\\(1\\)", "\\(4\\)", "\\(\\frac{1}{4}\\)", "\\(12\\)"], korrekt: 0, tipp: "\\(F(x) = x^4\\).", loesungsweg: "$$[x^4]_0^1 = 1 - 0 = 1$$" },
+      { id: 12, level: 2, typ: "numerisch", frage: "\\(\\int_0^2 3\\,dx = ?\\)", loesung: 6, toleranz: 0, tipp: "Konstante: \\(3 \\cdot (2-0)\\).", loesungsweg: "$$\\int_0^2 3\\,dx = 3 \\cdot 2 = 6$$" },
+      // LEVEL 3
+      { id: 13, level: 3, typ: "numerisch", frage: "\\(\\int_0^2 (3x^2 - 2x)\\,dx = ?\\)", loesung: 4, toleranz: 0, tipp: "\\(F(x) = x^3 - x^2\\).", loesungsweg: "$$[x^3 - x^2]_0^2 = 8 - 4 = 4$$" },
+      { id: 14, level: 3, typ: "numerisch", frage: "\\(\\int_1^2 (x^2 + 1)\\,dx = ?\\) (Dezimal)", loesung: 3.333, toleranz: 0.01, tipp: "\\(F(x) = \\frac{x^3}{3} + x\\).", loesungsweg: "$$\\left[\\tfrac{x^3}{3} + x\\right]_1^2 = (\\tfrac{8}{3}+2)-(\\tfrac{1}{3}+1) = \\tfrac{7}{3}+1 = \\tfrac{10}{3} \\approx 3{,}33$$" },
+      { id: 15, level: 3, typ: "numerisch", frage: "\\(\\int_{-2}^{2} x^3\\,dx = ?\\)", loesung: 0, toleranz: 0, tipp: "Ungerade Funktion, symmetrisches Intervall.", loesungsweg: "$$\\left[\\tfrac{x^4}{4}\\right]_{-2}^{2} = 4 - 4 = 0$$" },
+      { id: 16, level: 3, typ: "mc", frage: "\\(\\int_0^\\pi \\sin x\\,dx = ?\\)", optionen: ["\\(0\\)", "\\(1\\)", "\\(2\\)", "\\(\\pi\\)"], korrekt: 2, tipp: "\\(F(x) = -\\cos x\\). \\(-\\cos\\pi - (-\\cos 0) = 1 + 1\\).", loesungsweg: "$$[-\\cos x]_0^\\pi = -(-1) - (-1) = 2$$" },
+      { id: 17, level: 3, typ: "numerisch", frage: "\\(\\int_0^1 e^x\\,dx = ?\\) (Dezimal)", loesung: 1.718, toleranz: 0.01, tipp: "\\(e - 1\\).", loesungsweg: "$$[e^x]_0^1 = e - 1 \\approx 1{,}718$$" },
+      { id: 18, level: 3, typ: "numerisch", frage: "\\(\\int_1^e \\frac{1}{x}\\,dx = ?\\)", loesung: 1, toleranz: 0.01, tipp: "\\(\\ln e - \\ln 1\\).", loesungsweg: "$$[\\ln x]_1^e = \\ln e - \\ln 1 = 1 - 0 = 1$$" },
+      // LEVEL 4
+      { id: 19, level: 4, typ: "numerisch", frage: "\\(\\int_0^1 (x^3 - 3x^2 + 2x)\\,dx = ?\\) (Dezimal)", loesung: 0.25, toleranz: 0.01, tipp: "\\(F = \\frac{x^4}{4} - x^3 + x^2\\).", loesungsweg: "$$\\left[\\tfrac{x^4}{4} - x^3 + x^2\\right]_0^1 = \\tfrac{1}{4} - 1 + 1 = 0{,}25$$" },
+      { id: 20, level: 4, typ: "numerisch", frage: "\\(\\int_0^{\\pi/2} \\cos x\\,dx = ?\\)", loesung: 1, toleranz: 0.01, tipp: "\\(F = \\sin x\\).", loesungsweg: "$$[\\sin x]_0^{\\pi/2} = 1 - 0 = 1$$" },
+      { id: 21, level: 4, typ: "numerisch", frage: "\\(\\int_0^2 e^{2x}\\,dx = ?\\) (auf 2 NK)", loesung: 26.8, toleranz: 0.5, tipp: "\\(F = \\frac{1}{2}e^{2x}\\).", loesungsweg: "$$\\left[\\tfrac{1}{2}e^{2x}\\right]_0^2 = \\tfrac{1}{2}(e^4 - 1) \\approx 26{,}80$$" },
+      { id: 22, level: 4, typ: "mc", frage: "\\(\\int_0^2 (2x+1)^2\\,dx = ?\\)", optionen: ["\\(\\frac{124}{6}\\)", "\\(\\frac{125}{6} - \\frac{1}{6} = \\frac{124}{6} \\approx 20{,}67\\)", "\\(25\\)", "\\(\\frac{120}{3}\\)"], korrekt: 1, tipp: "Lineare Substitution: \\(F = \\frac{(2x+1)^3}{6}\\).", loesungsweg: "$$\\left[\\tfrac{(2x+1)^3}{6}\\right]_0^2 = \\tfrac{125}{6} - \\tfrac{1}{6} = \\tfrac{124}{6} \\approx 20{,}67$$" },
+      { id: 23, level: 4, typ: "numerisch", frage: "\\(\\int_{-1}^{2} (x^2 - 1)\\,dx = ?\\)", loesung: 0, toleranz: 0.01, tipp: "\\(F = \\frac{x^3}{3} - x\\).", loesungsweg: "$$\\left[\\tfrac{x^3}{3} - x\\right]_{-1}^{2} = (\\tfrac{8}{3} - 2) - (-\\tfrac{1}{3} + 1) = \\tfrac{2}{3} - \\tfrac{2}{3} = 0$$" },
+      { id: 24, level: 4, typ: "numerisch", frage: "\\(\\int_0^1 (e^x + 1)\\,dx = ?\\) (Dezimal)", loesung: 2.718, toleranz: 0.01, tipp: "\\(F = e^x + x\\).", loesungsweg: "$$[e^x + x]_0^1 = (e + 1) - 1 = e \\approx 2{,}718$$" },
+      // LEVEL 5 -- Eigenschaften
+      { id: 25, level: 5, typ: "mc", frage: "Linearität: \\(\\int_a^b (f + g)dx = \\)", optionen: ["\\(\\int f dx \\cdot \\int g dx\\)", "\\(\\int_a^b f dx + \\int_a^b g dx\\)", "\\(\\int_a^b f dx - \\int_a^b g dx\\)", "immer 0"], korrekt: 1, tipp: "Summe der Integrale.", loesungsweg: "$$\\int_a^b(f+g)dx = \\int_a^b f dx + \\int_a^b g dx$$" },
+      { id: 26, level: 5, typ: "numerisch", frage: "Gegeben \\(\\int_0^2 f(x)dx = 5\\) und \\(\\int_2^3 f(x)dx = 3\\). Berechne \\(\\int_0^3 f(x)dx\\).", loesung: 8, toleranz: 0, tipp: "Intervalladditivität.", loesungsweg: "$$\\int_0^3 f = \\int_0^2 f + \\int_2^3 f = 5 + 3 = 8$$" },
+      { id: 27, level: 5, typ: "numerisch", frage: "Gegeben \\(\\int_0^5 f(x)dx = 10\\). Berechne \\(\\int_5^0 f(x)dx\\).", loesung: -10, toleranz: 0, tipp: "Grenzen vertauscht → Vorzeichenwechsel.", loesungsweg: "$$\\int_5^0 f = -\\int_0^5 f = -10$$" },
+      { id: 28, level: 5, typ: "numerisch", frage: "\\(\\int_0^2 3f(x)dx\\), wenn \\(\\int_0^2 f(x)dx = 4\\).", loesung: 12, toleranz: 0, tipp: "Konstanter Faktor vor das Integral.", loesungsweg: "$$\\int_0^2 3f dx = 3 \\cdot 4 = 12$$" },
+      { id: 29, level: 5, typ: "mc", frage: "Wenn \\(f(x) \\geq 0\\) auf \\([a,b]\\), dann ist \\(\\int_a^b f(x)dx\\)", optionen: ["immer positiv", "immer negativ", "\\(\\geq 0\\)", "undefiniert"], korrekt: 2, tipp: "Fläche unter der Kurve.", loesungsweg: "Nicht-negative Integranden liefern ein nicht-negatives Integral (\\(\\geq 0\\))." },
+      { id: 30, level: 5, typ: "numerisch", frage: "\\(\\int_{-1}^{1} (x^4 + 1)\\,dx = ?\\) (Dezimal)", loesung: 2.4, toleranz: 0.05, tipp: "\\(F = \\frac{x^5}{5} + x\\). Gerade Fkt., also \\(2 \\cdot \\int_0^1\\).", loesungsweg: "$$\\left[\\tfrac{x^5}{5} + x\\right]_{-1}^{1} = (\\tfrac{1}{5}+1)-(-\\tfrac{1}{5}-1) = \\tfrac{12}{5} = 2{,}4$$" },
+      // LEVEL 6 -- Anwendungen
+      { id: 31, level: 6, typ: "numerisch", frage: "Ein Fahrzeug hat die Geschwindigkeit \\(v(t) = 2t\\) (m/s). Welche Strecke legt es in \\([0; 5]\\) s zurück? (\\(s = \\int v\\,dt\\))", loesung: 25, toleranz: 0, tipp: "\\(\\int_0^5 2t\\,dt = [t^2]_0^5\\).", loesungsweg: "$$s = \\int_0^5 2t\\,dt = [t^2]_0^5 = 25\\,\\text{m}$$" },
+      { id: 32, level: 6, typ: "numerisch", frage: "Mittelwert von \\(f(x) = x^2\\) auf \\([0,3]\\): \\(\\bar f = \\frac{1}{3}\\int_0^3 x^2 dx\\). Berechne.", loesung: 3, toleranz: 0.01, tipp: "\\(\\frac{1}{3} \\cdot 9 = 3\\).", loesungsweg: "$$\\bar f = \\tfrac{1}{3}\\left[\\tfrac{x^3}{3}\\right]_0^3 = \\tfrac{1}{3} \\cdot 9 = 3$$" },
+      { id: 33, level: 6, typ: "numerisch", frage: "Für welches \\(a > 0\\) gilt \\(\\int_0^a x\\,dx = 8\\)?", loesung: 4, toleranz: 0.01, tipp: "\\(\\frac{a^2}{2} = 8\\).", loesungsweg: "$$\\tfrac{a^2}{2} = 8 \\Rightarrow a^2 = 16 \\Rightarrow a = 4$$" },
+      { id: 34, level: 6, typ: "numerisch", frage: "\\(\\int_0^3 |x - 1|\\,dx = ?\\) (Dezimal)", loesung: 2.5, toleranz: 0.01, tipp: "Aufteilen bei \\(x=1\\): \\(\\int_0^1 (1-x) + \\int_1^3 (x-1)\\).", loesungsweg: "$$\\int_0^1 (1-x)dx + \\int_1^3 (x-1)dx = \\tfrac{1}{2} + 2 = 2{,}5$$" },
+      { id: 35, level: 6, typ: "mc", frage: "\\(\\int_0^2 f(x)dx\\) mit \\(f(x) = x - 1\\). Welche Aussage stimmt?", optionen: ["Das Integral ist positiv, weil f>0", "Das Integral ist 0, weil pos. und neg. Flächen gleich", "Das Integral ist negativ", "\\(\\int = 2\\)"], korrekt: 1, tipp: "\\(F = \\frac{x^2}{2} - x\\). \\(F(2)-F(0) = 0\\).", loesungsweg: "$$\\int_0^2 (x-1)dx = \\left[\\tfrac{x^2}{2}-x\\right]_0^2 = (2-2) - 0 = 0$$" },
+      { id: 36, level: 6, typ: "numerisch", frage: "Bestimme \\(c\\) mit \\(\\int_0^c (2x+1)dx = 6\\).", loesung: 2, toleranz: 0.01, tipp: "\\(c^2 + c = 6\\).", loesungsweg: "$$[x^2+x]_0^c = c^2 + c = 6 \\Rightarrow c^2+c-6=0 \\Rightarrow c = 2$$" }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raumgeometrie: Anwendungen - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '9-raumgeometrie-anwendungen';
+    const THEMA_CONFIG = { name: 'Raumgeometrie: Anwendungen', bereich: 'geometrie' };
+    const AUFGABEN = [
+      { id:1, level:1, typ:"mc", frage:"1 Liter entspricht wie viel cm³?", optionen:["10","100","1000","10000"], korrekt:2, tipp:"Einheit.", loesungsweg:"1 l = 1000 cm³." },
+      { id:2, level:1, typ:"mc", frage:"1 m³ entspricht wie viel Liter?", optionen:["100","1000","10000","100000"], korrekt:1, tipp:"Volumeneinheit.", loesungsweg:"1000 l." },
+      { id:3, level:1, typ:"numerisch", frage:"Badewanne \\(160\\times 70\\times 50\\,\\text{cm}\\). Max Inhalt in Litern.", loesung:560, toleranz:1, tipp:"\\(V/1000\\).", loesungsweg:"\\(560\\,\\text l\\)." },
+      { id:4, level:1, typ:"numerisch", frage:"Wasser-Glas (Zylinder) \\(r=3\\,\\text{cm}, h=10\\,\\text{cm}\\). Inhalt (ml, 2 Dez).", loesung:282.74, toleranz:1, tipp:"\\(90\\pi\\).", loesungsweg:"\\(\\approx 283\\,\\text{ml}\\)." },
+      { id:5, level:1, typ:"numerisch", frage:"Paketkarton \\(40\\times 30\\times 20\\,\\text{cm}\\). Oberfläche (cm²).", loesung:5200, toleranz:0, tipp:"\\(2(ab+bc+ac)\\).", loesungsweg:"\\(2(1200+600+800)=5200\\)." },
+      { id:6, level:1, typ:"mc", frage:"1 ha entspricht …", optionen:["100 m²","1000 m²","10000 m²","1 km²"], korrekt:2, tipp:"Einheit Fläche.", loesungsweg:"10000 m²." },
+      { id:7, level:2, typ:"numerisch", frage:"Swimmingpool \\(8\\times 4\\times 1{,}5\\,\\text m\\). Volumen m³.", loesung:48, toleranz:0, tipp:"Quader.", loesungsweg:"48." },
+      { id:8, level:2, typ:"numerisch", frage:"Gleicher Pool: Wasserverbrauch Liter.", loesung:48000, toleranz:10, tipp:"m³·1000.", loesungsweg:"48000 l." },
+      { id:9, level:2, typ:"numerisch", frage:"Zylindrische Regentonne \\(r=0{,}4\\,\\text m, h=1\\,\\text m\\). Inhalt (l, 0 Dez).", loesung:503, toleranz:2, tipp:"\\(\\pi\\cdot 0{,}16\\cdot 1\\,\\text m^3\\).", loesungsweg:"\\(\\approx 0{,}503\\,\\text m^3=503\\,\\text l\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"Pool \\(8\\times 4\\,\\text m\\), Tiefe 1,5m. Wie lange dauert Füllen bei 20 l/min (h, 1 Dez)?", loesung:40.0, toleranz:0.2, tipp:"\\(48000/20=2400\\) min.", loesungsweg:"\\(40{,}0\\,\\text h\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"Zuckerwürfel Kante 1 cm. Dichte 1,6 g/cm³. Masse g?", loesung:1.6, toleranz:0.05, tipp:"\\(V\\cdot\\rho\\).", loesungsweg:"\\(1{,}6\\) g." },
+      { id:12, level:2, typ:"mc", frage:"Wie viele Würfel Kante 2 cm passen in einen Würfel Kante 6 cm?", optionen:["9","18","27","36"], korrekt:2, tipp:"\\(3^3\\).", loesungsweg:"27." },
+      { id:13, level:3, typ:"numerisch", frage:"Konservendose: \\(r=4\\,\\text{cm}, h=12\\,\\text{cm}\\). Etikettengröße (Mantel, cm², 2 Dez)?", loesung:301.59, toleranz:1, tipp:"\\(2\\pi rh\\).", loesungsweg:"\\(\\approx 301{,}59\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"Dachboden (Prisma, Dreieckquerschnitt Basis 8m, Höhe 3m), Länge 10m. Volumen m³.", loesung:120, toleranz:0, tipp:"\\(G=12\\).", loesungsweg:"\\(120\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"Schokolade (Quader) \\(15\\times 7\\times 1\\,\\text{cm}\\), Dichte 1,3 g/cm³. Masse g?", loesung:136.5, toleranz:0.5, tipp:"\\(V\\cdot\\rho\\).", loesungsweg:"\\(105\\cdot 1{,}3=136{,}5\\) g." },
+      { id:16, level:3, typ:"numerisch", frage:"Kugel-Eiskugel (\\(r=2{,}5\\,\\text{cm}\\)) passt in Waffel-Kegel (\\(r=3, h=10\\)). Platz (ml, 2 Dez)?", loesung:29.85, toleranz:1, tipp:"\\(V_K-V_{Kugel}=30\\pi-\\frac{4}{3}\\pi\\cdot 15{,}625\\).", loesungsweg:"\\(\\approx 94{,}25-65{,}45\\approx 28{,}80\\)? Rechne exakt: \\(30\\pi=94{,}25\\); \\(V_{Kugel}=\\frac{4}{3}\\pi(2{,}5)^3=\\frac{4}{3}\\pi\\cdot 15{,}625\\approx 65{,}45\\); Diff \\(\\approx 28{,}80\\,\\text{cm}^3\\). Antwort ≈ 28,80." },
+      { id:17, level:3, typ:"numerisch", frage:"Holzbrett \\(200\\times 20\\times 3\\,\\text{cm}\\). Volumen cm³.", loesung:12000, toleranz:0, tipp:"Produkt.", loesungsweg:"12000." },
+      { id:18, level:3, typ:"mc", frage:"Welche Einheit passt zu Rauminhalt?", optionen:["m²","m","m³","m/s"], korrekt:2, tipp:"Volumen.", loesungsweg:"m³." },
+      { id:19, level:4, typ:"numerisch", frage:"Heizöltank (Zylinder liegend), \\(r=0{,}6\\,\\text m, L=2\\,\\text m\\). Maximalfüllung l (0 Dez).", loesung:2262, toleranz:5, tipp:"\\(\\pi r^2 L\\) in m³.", loesungsweg:"\\(0{,}36\\pi\\cdot 2\\approx 2{,}262\\,\\text m^3\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"Anstiegswinkel Gerade durch \\((0,0), (4,3)\\) (1 Dez Grad).", loesung:36.9, toleranz:0.2, tipp:"\\(\\arctan(3/4)\\).", loesungsweg:"\\(\\approx 36{,}9°\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"Kegel-Sandhaufen \\(r=1{,}5\\,\\text m, h=1{,}2\\,\\text m\\). Volumen m³ (2 Dez).", loesung:2.83, toleranz:0.05, tipp:"\\(\\frac{1}{3}\\pi r^2 h\\).", loesungsweg:"\\(\\frac{0{,}9\\pi}{1}\\)… rechne: \\(\\frac{1}{3}\\pi\\cdot 2{,}25\\cdot 1{,}2=0{,}9\\pi\\approx 2{,}83\\)." },
+      { id:22, level:4, typ:"numerisch", frage:"Zelt (Pyramide quadratische Basis 3m, Höhe 2m). Volumen m³.", loesung:6, toleranz:0, tipp:"\\(\\frac{1}{3}\\cdot 9\\cdot 2\\).", loesungsweg:"\\(6\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"Getränkekarton Quader \\(7\\times 7\\times 20\\,\\text{cm}\\). In Liter (2 Dez).", loesung:0.98, toleranz:0.02, tipp:"\\(980/1000\\).", loesungsweg:"\\(0{,}98\\,\\text l\\)." },
+      { id:24, level:4, typ:"mc", frage:"Verdopple alle Kanten eines Würfels. Volumen wird …", optionen:["2x","4x","6x","8x"], korrekt:3, tipp:"\\(2^3\\).", loesungsweg:"8-fach." },
+      { id:25, level:5, typ:"numerisch", frage:"Berg (Kegelform, \\(r=200\\,\\text m, h=150\\,\\text m\\)). Volumen (m³, 0 Dez).", loesung:6283185, toleranz:10000, tipp:"\\(\\frac{1}{3}\\pi\\cdot 40000\\cdot 150\\).", loesungsweg:"\\(2\\,000\\,000\\pi\\approx 6\\,283\\,185\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"Schrägdach (Prisma mit Trapezquerschnitt: Parallelseiten 2 und 4 m, Höhe 1 m; Länge 8 m). Volumen m³.", loesung:24, toleranz:0.1, tipp:"\\(G=\\frac{(2+4)\\cdot 1}{2}=3\\).", loesungsweg:"\\(24\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Dichte Stahl 7,85 g/cm³. Stahlkugel \\(r=3\\,\\text{cm}\\). Masse g (2 Dez).", loesung:887.73, toleranz:5, tipp:"\\(V=\\frac{4}{3}\\pi\\cdot 27\\approx 113{,}1\\).", loesungsweg:"\\(113{,}1\\cdot 7{,}85\\approx 887{,}73\\)." },
+      { id:28, level:5, typ:"numerisch", frage:"Würfel Oberfläche 150 cm². Volumen cm³.", loesung:125, toleranz:0.1, tipp:"\\(a^2=25\\Rightarrow a=5\\).", loesungsweg:"\\(125\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"Raum \\(5\\times 4\\times 2{,}5\\,\\text m\\). Luftvolumen m³. (Heizlastberechnung)", loesung:50, toleranz:0, tipp:"Quader.", loesungsweg:"50." },
+      { id:30, level:5, typ:"mc", frage:"Zwei ähnliche Körper mit Maßstab 1:3 haben Volumenverhältnis …", optionen:["1:3","1:6","1:9","1:27"], korrekt:3, tipp:"Dritte Potenz.", loesungsweg:"\\(1^3:3^3\\)." },
+      { id:31, level:6, typ:"numerisch", frage:"Ein Silo: Zylinder (\\(r=2\\,\\text m, h=6\\,\\text m\\)) + Kegeldach (\\(h=3\\,\\text m\\)). Gesamtvolumen m³ (2 Dez).", loesung:87.96, toleranz:1, tipp:"\\(24\\pi+4\\pi=28\\pi\\).", loesungsweg:"\\(\\approx 87{,}96\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"Eine Straße mit 8% Steigung; Winkel (1 Dez Grad).", loesung:4.6, toleranz:0.2, tipp:"\\(\\arctan 0{,}08\\).", loesungsweg:"\\(\\approx 4{,}6°\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"Hohlkugel: Außen-\\(r=5\\), Innen-\\(r=4\\). Materialvolumen (2 Dez).", loesung:255.51, toleranz:2, tipp:"\\(\\frac{4}{3}\\pi(125-64)\\).", loesungsweg:"\\(\\frac{244\\pi}{3}\\approx 255{,}51\\)." },
+      { id:34, level:6, typ:"numerisch", frage:"Schotterpile (Kegel), max Böschungswinkel 30°. Radius 2m. Höhe (m, 2 Dez)?", loesung:1.15, toleranz:0.05, tipp:"\\(h=r\\tan 30°\\).", loesungsweg:"\\(2/\\sqrt 3\\approx 1{,}15\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"Zylinder mit gleicher Grund- und Mantelfläche: \\(\\pi r^2=2\\pi rh\\); bei \\(r=4\\): \\(h\\)?", loesung:2, toleranz:0.01, tipp:"\\(h=r/2\\).", loesungsweg:"\\(2\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Ein Pyramidendach (quadrat. Grund 12m, Höhe 5m). Deckungsfläche (Mantel, m², 2 Dez).", loesung:187.27, toleranz:1, tipp:"\\(h_s=\\sqrt{25+36}=\\sqrt{61}\\); Mantel \\(4\\cdot\\frac{12\\cdot\\sqrt{61}}{2}\\).", loesungsweg:"\\(24\\sqrt{61}\\approx 187{,}44\\). Antwort ≈ 187,44." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

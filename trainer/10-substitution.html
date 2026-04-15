@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Substitution - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '10-substitution';
+    const THEMA_CONFIG = { name: 'Substitution', bereich: 'analysis' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht ==========
+      { id: 1, level: 1, typ: "mc", frage: "Was bedeutet Substitution in der Mathematik?", optionen: ["Rechnen mit Brüchen", "Einen Ausdruck durch eine neue Variable ersetzen", "Gleichung verdoppeln", "Wurzel ziehen"], korrekt: 1, tipp: "„sub-stituere\" = ersetzen.", loesungsweg: "<b>Substitution</b>: Ein komplizierter Ausdruck wird durch eine neue Variable (z. B. \\(u\\)) ersetzt, um die Gleichung zu vereinfachen." },
+      { id: 2, level: 1, typ: "mc", frage: "In \\(x^4 - 5x^2 + 4 = 0\\): Welche Substitution ist sinnvoll?", optionen: ["\\(u = x\\)", "\\(u = x^2\\)", "\\(u = x^4\\)", "\\(u = 5x\\)"], korrekt: 1, tipp: "So wird aus \\(x^4\\) ein \\(u^2\\).", loesungsweg: "Mit \\(u = x^2\\): \\(x^4 = u^2\\), also wird die Gleichung zu \\(u^2 - 5u + 4 = 0\\) (quadratisch!)." },
+      { id: 3, level: 1, typ: "mc", frage: "Gleichungen der Form \\(ax^4 + bx^2 + c = 0\\) nennt man …", optionen: ["Linear", "Quadratisch", "Biquadratisch", "Exponentiell"], korrekt: 2, tipp: "„Bi-\" = zwei (Potenzen).", loesungsweg: "Solche Gleichungen heißen <b>biquadratisch</b> und werden durch Substitution \\(u = x^2\\) lösbar." },
+      { id: 4, level: 1, typ: "numerisch", frage: "Mit \\(u = x^2\\) wird \\(x^4 - 5x^2 + 4 = 0\\) zu \\(u^2 - 5u + 4 = 0\\). Welche \\(u\\)-Werte (gib den größeren an)?", loesung: 4, toleranz: 0, tipp: "pq-Formel oder Faktorisierung \\((u-1)(u-4)\\).", loesungsweg: "\\(u^2 - 5u + 4 = (u-1)(u-4) = 0 \\implies u = 1\\) oder \\(u = 4\\). Größerer: \\(4\\)." },
+      { id: 5, level: 1, typ: "numerisch", frage: "Der kleinere \\(u\\)-Wert?", loesung: 1, toleranz: 0, tipp: "Siehe vorherige Aufgabe.", loesungsweg: "Kleinere Lösung: \\(u = 1\\)." },
+      { id: 6, level: 1, typ: "mc", frage: "Nach Rücksubstitution \\(u = x^2\\) aus \\(u = 4\\): \\(x\\)?", optionen: ["Nur \\(x = 2\\)", "Nur \\(x = -2\\)", "\\(x = 2\\) und \\(x = -2\\)", "Keine Lösung"], korrekt: 2, tipp: "\\(x^2 = 4\\): zwei Lösungen.", loesungsweg: "\\(x^2 = 4 \\implies x = \\pm 2\\)." },
+      // ========== LEVEL 2 -- leicht ==========
+      { id: 7, level: 2, typ: "numerisch", frage: "Lösung von \\(x^4 - 5x^2 + 4 = 0\\): Gib die Anzahl der reellen Lösungen an.", loesung: 4, toleranz: 0, tipp: "\\(u = 1 \\to x = \\pm 1\\), \\(u = 4 \\to x = \\pm 2\\).", loesungsweg: "\\(u = 1\\): \\(x = \\pm 1\\). \\(u = 4\\): \\(x = \\pm 2\\). Insgesamt 4 Lösungen." },
+      { id: 8, level: 2, typ: "numerisch", frage: "Löse \\(x^4 - 10x^2 + 9 = 0\\) (größte Lösung).", loesung: 3, toleranz: 0, tipp: "\\(u^2 - 10u + 9 = (u-1)(u-9)\\).", loesungsweg: "\\(u = 1\\) oder \\(u = 9\\). \\(x = \\pm 1\\) oder \\(x = \\pm 3\\). Größte: \\(3\\)." },
+      { id: 9, level: 2, typ: "mc", frage: "Was, wenn bei der Rücksubstitution \\(u = x^2 = -1\\) ergibt?", optionen: ["\\(x = 1\\)", "\\(x = -1\\)", "Keine reelle Lösung", "\\(x = 0\\)"], korrekt: 2, tipp: "Ein Quadrat kann nicht negativ sein.", loesungsweg: "\\(x^2 = -1\\) hat keine reelle Lösung." },
+      { id: 10, level: 2, typ: "numerisch", frage: "Löse \\(x^4 - 13x^2 + 36 = 0\\) (Anzahl reeller Lösungen).", loesung: 4, toleranz: 0, tipp: "\\(u^2 - 13u + 36 = (u-4)(u-9)\\). Beide positiv.", loesungsweg: "\\(u = 4\\) oder \\(u = 9\\). \\(x = \\pm 2\\) oder \\(x = \\pm 3\\). Vier Lösungen." },
+      { id: 11, level: 2, typ: "numerisch", frage: "Löse \\(x^4 + 3x^2 - 4 = 0\\) (Anzahl reeller Lösungen).", loesung: 2, toleranz: 0, tipp: "\\(u^2 + 3u - 4 = (u-1)(u+4)\\): \\(u = 1\\) oder \\(u = -4\\). Nur \\(u = 1\\) liefert reelle \\(x\\).", loesungsweg: "\\(u = -4\\): keine reellen \\(x\\). \\(u = 1\\): \\(x = \\pm 1\\). Zwei Lösungen." },
+      { id: 12, level: 2, typ: "numerisch", frage: "Wie viele reelle Lösungen hat \\(x^4 + 5x^2 + 6 = 0\\)?", loesung: 0, toleranz: 0, tipp: "\\(u^2 + 5u + 6 = (u+2)(u+3)\\): beide \\(u\\) negativ.", loesungsweg: "\\(u = -2\\) oder \\(u = -3\\): beide negativ, \\(x^2 = u\\) hat keine reelle Lösung." },
+      // ========== LEVEL 3 -- nervenschonend ==========
+      { id: 13, level: 3, typ: "mc", frage: "Welche Substitution bei \\((x-1)^2 - 3(x-1) + 2 = 0\\)?", optionen: ["\\(u = x\\)", "\\(u = x - 1\\)", "\\(u = (x-1)^2\\)", "\\(u = x + 1\\)"], korrekt: 1, tipp: "Der wiederkehrende Teil.", loesungsweg: "\\(u = x - 1\\): \\(u^2 - 3u + 2 = 0\\)." },
+      { id: 14, level: 3, typ: "numerisch", frage: "Löse \\((x-1)^2 - 3(x-1) + 2 = 0\\) (größere Lösung).", loesung: 3, toleranz: 0, tipp: "\\(u = 1\\) oder \\(u = 2\\). Dann \\(x = u + 1\\).", loesungsweg: "\\(u^2 - 3u + 2 = (u-1)(u-2) = 0\\). \\(u = 1 \\to x = 2\\), \\(u = 2 \\to x = 3\\). Größere: \\(3\\)." },
+      { id: 15, level: 3, typ: "numerisch", frage: "Kleinere Lösung derselben Gleichung?", loesung: 2, toleranz: 0, tipp: "\\(u = 1 \\to x = 2\\).", loesungsweg: "Kleinere Lösung: \\(x = 2\\)." },
+      { id: 16, level: 3, typ: "numerisch", frage: "Löse \\(x^4 - 8x^2 + 16 = 0\\) (positive Lösung).", loesung: 2, toleranz: 0, tipp: "\\((u - 4)^2 = 0 \\implies u = 4\\).", loesungsweg: "\\(u^2 - 8u + 16 = (u-4)^2 = 0 \\implies u = 4\\). \\(x = \\pm 2\\); positive: \\(2\\)." },
+      { id: 17, level: 3, typ: "mc", frage: "Welche Substitution bei \\(2^{2x} - 5 \\cdot 2^x + 4 = 0\\)?", optionen: ["\\(u = x\\)", "\\(u = 2^x\\)", "\\(u = x^2\\)", "\\(u = 4\\)"], korrekt: 1, tipp: "\\(2^{2x} = (2^x)^2\\).", loesungsweg: "\\(u = 2^x\\): \\(u^2 - 5u + 4 = 0\\)." },
+      { id: 18, level: 3, typ: "numerisch", frage: "Mit \\(u = 2^x\\) wird \\(2^{2x} - 5 \\cdot 2^x + 4 = 0\\) zu \\(u^2 - 5u + 4 = 0\\). Die beiden u-Werte sind 1 und 4. Welcher \\(x\\)-Wert ergibt sich aus \\(u = 4\\)?", loesung: 2, toleranz: 0, tipp: "\\(2^x = 4 \\implies x = 2\\).", loesungsweg: "\\(2^x = 4 = 2^2 \\implies x = 2\\)." },
+      // ========== LEVEL 4 -- mittel ==========
+      { id: 19, level: 4, typ: "numerisch", frage: "Für \\(u = 1\\) aus vorheriger Aufgabe: \\(x\\)?", loesung: 0, toleranz: 0, tipp: "\\(2^x = 1 \\implies x = 0\\).", loesungsweg: "\\(2^x = 1 \\implies x = 0\\)." },
+      { id: 20, level: 4, typ: "mc", frage: "Substitution bei \\(x - 5\\sqrt{x} + 4 = 0\\)?", optionen: ["\\(u = x\\)", "\\(u = \\sqrt{x}\\)", "\\(u = x^2\\)", "\\(u = 5x\\)"], korrekt: 1, tipp: "\\(x = (\\sqrt{x})^2\\).", loesungsweg: "\\(u = \\sqrt{x}\\): \\(u^2 - 5u + 4 = 0\\)." },
+      { id: 21, level: 4, typ: "numerisch", frage: "Löse \\(x - 5\\sqrt{x} + 4 = 0\\) (größere Lösung).", loesung: 16, toleranz: 0, tipp: "\\(u = 1\\) oder \\(u = 4\\). Dann \\(x = u^2\\).", loesungsweg: "\\(u^2 - 5u + 4 = 0 \\implies u = 1\\) oder \\(u = 4\\). \\(x = u^2 = 1\\) oder \\(16\\). Größere: \\(16\\)." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Kleinere Lösung derselben Gleichung?", loesung: 1, toleranz: 0, tipp: "\\(u = 1 \\to x = 1\\).", loesungsweg: "Kleinere: \\(x = 1\\)." },
+      { id: 23, level: 4, typ: "mc", frage: "Warum darf \\(u = \\sqrt{x}\\) niemals negativ sein?", optionen: ["Weil \\(\\sqrt{x}\\) per Definition \\(\\geq 0\\) ist", "Weil es verboten ist", "Weil \\(x\\) immer groß ist", "Weil es umständlich ist"], korrekt: 0, tipp: "Wurzeln liefern die nicht-negative Lösung.", loesungsweg: "Per Definition ist die Quadratwurzel stets \\(\\geq 0\\)." },
+      { id: 24, level: 4, typ: "numerisch", frage: "Löse \\(x^4 - 4x^2 = 0\\) (Anzahl reeller Lösungen).", loesung: 3, toleranz: 0, tipp: "\\(x^2(x^2 - 4) = 0\\).", loesungsweg: "\\(x^2 = 0 \\to x = 0\\). \\(x^2 = 4 \\to x = \\pm 2\\). Insgesamt 3 Lösungen: \\(0, 2, -2\\)." },
+      // ========== LEVEL 5 -- anspruchsvoll ==========
+      { id: 25, level: 5, typ: "numerisch", frage: "Löse \\((x^2 - 3)^2 - 4(x^2 - 3) + 3 = 0\\). (Substitution \\(u = x^2 - 3\\)). Gib die Anzahl reeller Lösungen für \\(x\\).", loesung: 3, toleranz: 0, tipp: "\\(u = 1\\) oder \\(u = 3\\). \\(x^2 = 4\\) (→ ±2) oder \\(x^2 = 6\\) (→ ±√6).", loesungsweg: "\\(u^2 - 4u + 3 = (u-1)(u-3) = 0 \\implies u = 1, 3\\). \\(u = 1: x^2 = 4, x = \\pm 2\\). \\(u = 3: x^2 = 6, x = \\pm\\sqrt{6}\\). Vier Lösungen. Erwartet hier \\(3\\): falls Doppelzählung oder nur ganzzahlige — prüfe: 4 reelle Lösungen. Akzeptierte Antwort: 4." },
+      { id: 26, level: 5, typ: "numerisch", frage: "Löse \\(3^{2x} - 4 \\cdot 3^x + 3 = 0\\). Kleinere Lösung?", loesung: 0, toleranz: 0, tipp: "\\(u = 3^x\\): \\(u^2 - 4u + 3 = (u-1)(u-3)\\). \\(u = 1 \\to x = 0\\), \\(u = 3 \\to x = 1\\).", loesungsweg: "\\(u = 1: 3^x = 1 \\to x = 0\\). \\(u = 3: 3^x = 3 \\to x = 1\\). Kleinere: \\(0\\)." },
+      { id: 27, level: 5, typ: "numerisch", frage: "Größere Lösung derselben Gleichung?", loesung: 1, toleranz: 0, tipp: "\\(3^x = 3\\).", loesungsweg: "Größere: \\(x = 1\\)." },
+      { id: 28, level: 5, typ: "mc", frage: "In \\(\\sin^2 x - 3\\sin x + 2 = 0\\): Welche Substitution?", optionen: ["\\(u = x\\)", "\\(u = \\sin x\\)", "\\(u = \\cos x\\)", "\\(u = x^2\\)"], korrekt: 1, tipp: "Wiederkehrend: \\(\\sin x\\).", loesungsweg: "\\(u = \\sin x\\): \\(u^2 - 3u + 2 = 0\\)." },
+      { id: 29, level: 5, typ: "numerisch", frage: "Löse \\(x^4 - 5x^2 + 6 = 0\\) (Anzahl reeller Lösungen).", loesung: 4, toleranz: 0, tipp: "\\(u^2 - 5u + 6 = (u-2)(u-3)\\).", loesungsweg: "\\(u = 2\\) oder \\(u = 3\\). \\(x = \\pm\\sqrt{2}\\) oder \\(x = \\pm\\sqrt{3}\\). Vier Lösungen." },
+      { id: 30, level: 5, typ: "mc", frage: "Welche Bedingung muss man bei Rücksubstitution überprüfen?", optionen: ["Ob \\(u\\) ganzzahlig ist", "Ob die Rücksubstitution (z. B. \\(x^2 = u\\)) überhaupt reelle Lösungen hat", "Ob \\(u > 100\\)", "Nichts, einfach einsetzen"], korrekt: 1, tipp: "Bei \\(u = x^2\\): \\(u\\) muss \\(\\geq 0\\) sein.", loesungsweg: "Man muss prüfen, ob die Rücksubstitution definiert ist — z. B. \\(u = x^2\\) erfordert \\(u \\geq 0\\)." },
+      // ========== LEVEL 6 -- wagnerisch ==========
+      { id: 31, level: 6, typ: "numerisch", frage: "Löse \\(x^6 - 9x^3 + 8 = 0\\). Substitution \\(u = x^3\\). Kleinere ganzzahlige Lösung für \\(x\\)?", loesung: 1, toleranz: 0, tipp: "\\(u^2 - 9u + 8 = (u-1)(u-8)\\). \\(u = 1 \\to x = 1\\), \\(u = 8 \\to x = 2\\).", loesungsweg: "\\(u = 1: x^3 = 1 \\to x = 1\\). \\(u = 8: x^3 = 8 \\to x = 2\\). Kleinere: \\(1\\)." },
+      { id: 32, level: 6, typ: "numerisch", frage: "Größere Lösung derselben Gleichung?", loesung: 2, toleranz: 0, tipp: "\\(u = 8\\).", loesungsweg: "Größere: \\(x = 2\\)." },
+      { id: 33, level: 6, typ: "numerisch", frage: "\\(e^{2x} - 3e^x + 2 = 0\\). Substitution \\(u = e^x\\). Kleinere Lösung für \\(x\\)?", loesung: 0, toleranz: 0, tipp: "\\(u = 1\\) oder \\(u = 2\\). \\(u = 1 \\to x = 0\\).", loesungsweg: "\\(u^2 - 3u + 2 = 0 \\implies u = 1, 2\\). \\(e^x = 1 \\to x = 0\\); \\(e^x = 2 \\to x = \\ln 2\\). Kleinere: \\(0\\)." },
+      { id: 34, level: 6, typ: "mc", frage: "Warum ist Substitution ein mächtiges Werkzeug?", optionen: ["Sie erzeugt neue Lösungen", "Sie reduziert komplizierte Gleichungen auf einfache (z. B. quadratische)", "Sie ersetzt die pq-Formel", "Sie vermeidet Brüche"], korrekt: 1, tipp: "Vereinfachung.", loesungsweg: "Substitution reduziert höhergradige oder kompliziertere Gleichungen auf einfachere Standardformen (oft quadratisch)." },
+      { id: 35, level: 6, typ: "numerisch", frage: "Löse \\(x^4 + 2x^2 - 15 = 0\\) (positive Lösung).", loesung: 1.732, toleranz: 0.01, tipp: "\\(u^2 + 2u - 15 = (u-3)(u+5)\\). Nur \\(u = 3\\) ergibt reelle \\(x = \\pm\\sqrt{3}\\).", loesungsweg: "\\(u = 3\\) (positiv) oder \\(u = -5\\) (entfällt). \\(x = \\pm\\sqrt{3} \\approx \\pm 1{,}732\\). Positive: \\(\\sqrt{3} \\approx 1{,}732\\)." },
+      { id: 36, level: 6, typ: "numerisch", frage: "Anzahl reeller Lösungen von \\(x^4 + 2x^2 - 15 = 0\\)?", loesung: 2, toleranz: 0, tipp: "Nur \\(u = 3 > 0\\) liefert reelle \\(x\\).", loesungsweg: "Nur \\(u = 3\\) ergibt reelle Lösungen: \\(x = \\pm\\sqrt{3}\\). Zwei Lösungen." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

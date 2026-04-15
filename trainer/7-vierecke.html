@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vierecke - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '7-vierecke';
+    const THEMA_CONFIG = { name: 'Vierecke', bereich: 'geometrie' };
+    const AUFGABEN = [
+      // ========== LEVEL 1 -- babyleicht: Viereckarten ==========
+      {
+        id: 1,
+        level: 1,
+        typ: "mc",
+        frage: "Wie viele Seiten hat ein Viereck?",
+        optionen: ["\\(3\\)", "\\(4\\)", "\\(5\\)", "\\(6\\)"],
+        korrekt: 1,
+        tipp: "„Vier-eck\".",
+        loesungsweg: "Ein Viereck hat <b>4 Seiten</b>, 4 Ecken und 4 Innenwinkel."
+      },
+      {
+        id: 2,
+        level: 1,
+        typ: "mc",
+        frage: "Ein Viereck mit 4 rechten Winkeln und allen Seiten gleich lang ist …",
+        optionen: ["Rechteck", "Quadrat", "Raute", "Parallelogramm"],
+        korrekt: 1,
+        tipp: "Alles gleich!",
+        loesungsweg: "Ein <b>Quadrat</b> hat 4 rechte Winkel und 4 gleich lange Seiten."
+      },
+      {
+        id: 3,
+        level: 1,
+        typ: "mc",
+        frage: "Ein Viereck mit 4 rechten Winkeln, aber nicht notwendig gleichen Seiten ist …",
+        optionen: ["Raute", "Quadrat", "Rechteck", "Trapez"],
+        korrekt: 2,
+        tipp: "Rechter Winkel = Rechteck.",
+        loesungsweg: "Ein <b>Rechteck</b> hat 4 rechte Winkel. Ein Quadrat ist ein Spezialfall."
+      },
+      {
+        id: 4,
+        level: 1,
+        typ: "mc",
+        frage: "Ein Viereck mit 4 gleich langen Seiten, aber nicht notwendig rechten Winkeln, ist …",
+        optionen: ["Raute", "Quadrat", "Rechteck", "Drachen"],
+        korrekt: 0,
+        tipp: "Alle Seiten gleich, aber schief.",
+        loesungsweg: "Eine <b>Raute</b> (Rhombus) hat 4 gleich lange Seiten."
+      },
+      {
+        id: 5,
+        level: 1,
+        typ: "numerisch",
+        frage: "Wie groß ist die Winkelsumme in jedem Viereck (in Grad)?",
+        loesung: 360,
+        toleranz: 0,
+        tipp: "Viereck = zwei Dreiecke.",
+        loesungsweg: "Winkelsumme im Viereck: \\(2 \\cdot 180° = 360°\\)."
+      },
+      {
+        id: 6,
+        level: 1,
+        typ: "mc",
+        frage: "Ein Viereck mit genau einem Paar paralleler Seiten heißt …",
+        optionen: ["Parallelogramm", "Trapez", "Quadrat", "Raute"],
+        korrekt: 1,
+        tipp: "Bei diesem sind nur zwei Seiten parallel.",
+        loesungsweg: "Ein <b>Trapez</b> hat (mindestens) ein Paar paralleler Seiten."
+      },
+      // ========== LEVEL 2 -- leicht: Umfang ==========
+      {
+        id: 7,
+        level: 2,
+        typ: "numerisch",
+        frage: "Ein Quadrat hat die Seite \\(a = 7\\,\\text{cm}\\). Wie groß ist der Umfang in cm?",
+        loesung: 28,
+        toleranz: 0,
+        tipp: "\\(4a\\).",
+        loesungsweg: "$$U = 4a = 4 \\cdot 7 = 28\\,\\text{cm}$$"
+      },
+      {
+        id: 8,
+        level: 2,
+        typ: "numerisch",
+        frage: "Ein Rechteck hat \\(a = 8\\,\\text{cm}\\) und \\(b = 3\\,\\text{cm}\\). Wie groß ist der Umfang in cm?",
+        loesung: 22,
+        toleranz: 0,
+        tipp: "\\(2a + 2b\\).",
+        loesungsweg: "$$U = 2a + 2b = 16 + 6 = 22\\,\\text{cm}$$"
+      },
+      {
+        id: 9,
+        level: 2,
+        typ: "numerisch",
+        frage: "Eine Raute hat die Seite \\(a = 5\\,\\text{cm}\\). Wie groß ist der Umfang in cm?",
+        loesung: 20,
+        toleranz: 0,
+        tipp: "\\(4a\\).",
+        loesungsweg: "$$U = 4a = 20\\,\\text{cm}$$"
+      },
+      {
+        id: 10,
+        level: 2,
+        typ: "numerisch",
+        frage: "Ein Parallelogramm hat \\(a = 6\\) und \\(b = 4\\). Wie groß ist der Umfang in cm?",
+        loesung: 20,
+        toleranz: 0,
+        tipp: "\\(2(a+b)\\).",
+        loesungsweg: "$$U = 2(6+4) = 20\\,\\text{cm}$$"
+      },
+      {
+        id: 11,
+        level: 2,
+        typ: "mc",
+        frage: "Ein Quadrat hat Umfang \\(36\\,\\text{cm}\\). Wie lang ist eine Seite?",
+        optionen: ["\\(6\\,\\text{cm}\\)", "\\(9\\,\\text{cm}\\)", "\\(12\\,\\text{cm}\\)", "\\(18\\,\\text{cm}\\)"],
+        korrekt: 1,
+        tipp: "\\(U : 4\\).",
+        loesungsweg: "$$a = \\frac{36}{4} = 9\\,\\text{cm}$$"
+      },
+      {
+        id: 12,
+        level: 2,
+        typ: "numerisch",
+        frage: "Ein Rechteck hat Umfang \\(30\\,\\text{cm}\\) und Länge \\(a = 10\\,\\text{cm}\\). Wie breit ist es (in cm)?",
+        loesung: 5,
+        toleranz: 0,
+        tipp: "\\(30 = 2 \\cdot 10 + 2b\\).",
+        loesungsweg: "$$2b = 30 - 20 = 10 \\implies b = 5\\,\\text{cm}$$"
+      },
+      // ========== LEVEL 3 -- nervenschonend: Flächeninhalt ==========
+      {
+        id: 13,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein Quadrat hat Seite \\(a = 6\\,\\text{cm}\\). Wie groß ist der Flächeninhalt (in cm²)?",
+        loesung: 36,
+        toleranz: 0,
+        tipp: "\\(a^2\\).",
+        loesungsweg: "$$A = a^2 = 36\\,\\text{cm}^2$$"
+      },
+      {
+        id: 14,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein Rechteck hat \\(a = 8\\) und \\(b = 5\\). Flächeninhalt in cm²?",
+        loesung: 40,
+        toleranz: 0,
+        tipp: "\\(a \\cdot b\\).",
+        loesungsweg: "$$A = 8 \\cdot 5 = 40\\,\\text{cm}^2$$"
+      },
+      {
+        id: 15,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein Parallelogramm hat Grundseite \\(g = 7\\,\\text{cm}\\) und Höhe \\(h = 4\\,\\text{cm}\\). Flächeninhalt in cm²?",
+        loesung: 28,
+        toleranz: 0,
+        tipp: "\\(A = g \\cdot h\\).",
+        loesungsweg: "$$A = g \\cdot h = 7 \\cdot 4 = 28\\,\\text{cm}^2$$"
+      },
+      {
+        id: 16,
+        level: 3,
+        typ: "numerisch",
+        frage: "Eine Raute hat Diagonalen \\(e = 6\\) und \\(f = 8\\). Flächeninhalt in cm²?",
+        loesung: 24,
+        toleranz: 0,
+        tipp: "\\(A = \\frac{e \\cdot f}{2}\\).",
+        loesungsweg: "$$A = \\frac{6 \\cdot 8}{2} = 24\\,\\text{cm}^2$$"
+      },
+      {
+        id: 17,
+        level: 3,
+        typ: "numerisch",
+        frage: "Ein Trapez hat parallele Seiten \\(a = 10\\) und \\(c = 6\\), Höhe \\(h = 5\\). Flächeninhalt in cm²?",
+        loesung: 40,
+        toleranz: 0,
+        tipp: "\\(A = \\frac{(a+c) \\cdot h}{2}\\).",
+        loesungsweg: "$$A = \\frac{(10+6) \\cdot 5}{2} = \\frac{80}{2} = 40\\,\\text{cm}^2$$"
+      },
+      {
+        id: 18,
+        level: 3,
+        typ: "mc",
+        frage: "Die Formel für den Flächeninhalt eines Drachen mit Diagonalen \\(e\\) und \\(f\\) ist …",
+        optionen: ["\\(e + f\\)", "\\(e \\cdot f\\)", "\\(\\frac{e \\cdot f}{2}\\)", "\\(\\frac{e + f}{2}\\)"],
+        korrekt: 2,
+        tipp: "Wie bei der Raute.",
+        loesungsweg: "Flächeninhalt eines Drachen: \\(A = \\frac{e \\cdot f}{2}\\) (die Diagonalen stehen senkrecht aufeinander)."
+      },
+      // ========== LEVEL 4 -- mittel: Eigenschaften ==========
+      {
+        id: 19,
+        level: 4,
+        typ: "mc",
+        frage: "In einem Parallelogramm gilt für die Diagonalen:",
+        optionen: ["Sie sind gleich lang", "Sie stehen senkrecht aufeinander", "Sie halbieren sich gegenseitig", "Sie sind parallel"],
+        korrekt: 2,
+        tipp: "Sie schneiden sich in der Mitte.",
+        loesungsweg: "Die Diagonalen eines Parallelogramms <b>halbieren sich gegenseitig</b>."
+      },
+      {
+        id: 20,
+        level: 4,
+        typ: "mc",
+        frage: "Welche Eigenschaft hat eine Raute, aber NICHT jedes Parallelogramm?",
+        optionen: ["Gegenüberliegende Seiten parallel", "Diagonalen halbieren sich", "Alle Seiten gleich lang", "Winkelsumme 360°"],
+        korrekt: 2,
+        tipp: "Raute = „schiefer\" Rhombus mit gleichen Seiten.",
+        loesungsweg: "Die Raute hat <b>alle Seiten gleich lang</b> — das ist Parallelogrammen allgemein nicht gegeben."
+      },
+      {
+        id: 21,
+        level: 4,
+        typ: "mc",
+        frage: "Die Diagonalen eines Rechtecks sind …",
+        optionen: ["gleich lang", "senkrecht zueinander", "parallel", "gleich lang UND senkrecht"],
+        korrekt: 0,
+        tipp: "Gleich lang, aber nicht senkrecht (außer im Quadrat).",
+        loesungsweg: "Die Diagonalen eines Rechtecks sind <b>gleich lang</b> und halbieren sich."
+      },
+      {
+        id: 22,
+        level: 4,
+        typ: "mc",
+        frage: "Die Diagonalen einer Raute …",
+        optionen: ["sind gleich lang", "stehen senkrecht aufeinander", "sind parallel", "schneiden sich außen"],
+        korrekt: 1,
+        tipp: "Sie kreuzen sich im rechten Winkel.",
+        loesungsweg: "Die Diagonalen einer Raute stehen <b>senkrecht</b> aufeinander und halbieren sich."
+      },
+      {
+        id: 23,
+        level: 4,
+        typ: "numerisch",
+        frage: "In einem Parallelogramm sind gegenüberliegende Winkel gleich. Ein Winkel ist \\(70°\\). Wie groß ist der Nachbarwinkel (in Grad)?",
+        loesung: 110,
+        toleranz: 0,
+        tipp: "Summe angrenzender Winkel = \\(180°\\).",
+        loesungsweg: "$$\\beta = 180° - 70° = 110°$$"
+      },
+      {
+        id: 24,
+        level: 4,
+        typ: "numerisch",
+        frage: "Ein Quadrat hat Diagonale \\(d\\). Für \\(a = 5\\) gilt \\(d = a\\sqrt{2}\\). Berechne \\(d\\) gerundet auf 2 Dezimalstellen.",
+        loesung: 7.07,
+        toleranz: 0.01,
+        tipp: "\\(5 \\cdot 1{,}414\\).",
+        loesungsweg: "$$d = 5\\sqrt{2} \\approx 7{,}07$$"
+      },
+      // ========== LEVEL 5 -- anspruchsvoll: Gemischte Aufgaben ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "numerisch",
+        frage: "Ein Rechteck hat Umfang \\(40\\,\\text{cm}\\) und Flächeninhalt \\(96\\,\\text{cm}^2\\). Wie lang ist die längere Seite (in cm)?",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "\\(a + b = 20\\), \\(ab = 96\\). Probiere \\(a = 12\\).",
+        loesungsweg: "$$a + b = 20, a \\cdot b = 96$$ \\(a=12, b=8\\): \\(12+8=20\\) ✓, \\(96\\) ✓."
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "numerisch",
+        frage: "Eine Raute hat Diagonalen \\(e = 12\\) und \\(f = 16\\). Die Seite berechnet sich zu \\(a = \\sqrt{(\\frac{e}{2})^2 + (\\frac{f}{2})^2}\\). Berechne \\(a\\) in cm.",
+        loesung: 10,
+        toleranz: 0,
+        tipp: "\\(a = \\sqrt{6^2 + 8^2} = \\sqrt{100}\\).",
+        loesungsweg: "$$a = \\sqrt{36 + 64} = \\sqrt{100} = 10\\,\\text{cm}$$"
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "numerisch",
+        frage: "Ein Trapez hat \\(a = 12\\), \\(c = 6\\), \\(h = 4\\). Ein zweites Trapez mit gleicher Höhe hat \\(a = 10\\), \\(c = 8\\). Welches hat die größere Fläche (in cm²)? Gib die größere Fläche an.",
+        loesung: 36,
+        toleranz: 0,
+        tipp: "Beide haben \\((a+c) \\cdot h/2\\). Berechne beide.",
+        loesungsweg: "1: \\(\\frac{18 \\cdot 4}{2} = 36\\). 2: \\(\\frac{18 \\cdot 4}{2} = 36\\). Beide gleich: \\(36\\,\\text{cm}^2\\)."
+      },
+      {
+        id: 28,
+        level: 5,
+        typ: "numerisch",
+        frage: "Ein Quadrat hat Diagonale \\(d = 10\\). Berechne die Seitenlänge gerundet auf 2 Dezimalstellen.",
+        loesung: 7.07,
+        toleranz: 0.02,
+        tipp: "\\(a = d / \\sqrt{2}\\).",
+        loesungsweg: "$$a = \\frac{10}{\\sqrt{2}} = \\frac{10\\sqrt{2}}{2} \\approx 7{,}07$$"
+      },
+      {
+        id: 29,
+        level: 5,
+        typ: "mc",
+        frage: "Welches Viereck ist KEIN Parallelogramm?",
+        optionen: ["Rechteck", "Raute", "Quadrat", "Trapez (allgemein)"],
+        korrekt: 3,
+        tipp: "Parallelogramm: beide Paare paralleler Seiten.",
+        loesungsweg: "Ein allgemeines <b>Trapez</b> hat nur ein Paar paralleler Seiten — es ist kein Parallelogramm."
+      },
+      {
+        id: 30,
+        level: 5,
+        typ: "numerisch",
+        frage: "Ein Parallelogramm hat \\(A = 54\\,\\text{cm}^2\\) und \\(g = 9\\,\\text{cm}\\). Berechne die Höhe in cm.",
+        loesung: 6,
+        toleranz: 0,
+        tipp: "\\(h = A/g\\).",
+        loesungsweg: "$$h = \\frac{54}{9} = 6\\,\\text{cm}$$"
+      },
+      // ========== LEVEL 6 -- wagnerisch: Haus der Vierecke und Transfer ==========
+      {
+        id: 31,
+        level: 6,
+        typ: "mc",
+        frage: "Im „Haus der Vierecke\" steht das Quadrat …",
+        optionen: ["ganz unten als allgemeinstes", "ganz oben als speziellstes", "seitlich", "als Raute"],
+        korrekt: 1,
+        tipp: "Speziell = alle Eigenschaften kombiniert.",
+        loesungsweg: "Das <b>Quadrat</b> steht oben — es ist gleichzeitig Rechteck, Raute, Parallelogramm und Trapez."
+      },
+      {
+        id: 32,
+        level: 6,
+        typ: "mc",
+        frage: "Ein Viereck mit genau zwei Paaren gleich langer benachbarter Seiten (und nicht Parallelogramm) ist …",
+        optionen: ["Raute", "Drachen", "Rechteck", "Trapez"],
+        korrekt: 1,
+        tipp: "Wie ein Fluggerät.",
+        loesungsweg: "Ein <b>Drachenviereck</b> hat zwei Paare gleich langer benachbarter Seiten."
+      },
+      {
+        id: 33,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Grundstück ist trapezförmig mit \\(a = 25\\,\\text{m}\\), \\(c = 15\\,\\text{m}\\), \\(h = 12\\,\\text{m}\\). Berechne die Fläche in m².",
+        loesung: 240,
+        toleranz: 0,
+        tipp: "\\(\\frac{(a+c) \\cdot h}{2}\\).",
+        loesungsweg: "$$A = \\frac{(25+15) \\cdot 12}{2} = \\frac{480}{2} = 240\\,\\text{m}^2$$"
+      },
+      {
+        id: 34,
+        level: 6,
+        typ: "numerisch",
+        frage: "In einem Viereck sind drei Winkel \\(80°, 100°, 110°\\). Wie groß ist der vierte Winkel (in Grad)?",
+        loesung: 70,
+        toleranz: 0,
+        tipp: "\\(360° - 80° - 100° - 110°\\).",
+        loesungsweg: "$$360° - 290° = 70°$$"
+      },
+      {
+        id: 35,
+        level: 6,
+        typ: "mc",
+        frage: "Welcher Schluss stimmt?",
+        optionen: ["Jedes Rechteck ist ein Quadrat", "Jedes Quadrat ist ein Rechteck", "Jede Raute ist ein Rechteck", "Jedes Trapez ist ein Parallelogramm"],
+        korrekt: 1,
+        tipp: "Ein Quadrat ist ein Rechteck mit gleichen Seiten.",
+        loesungsweg: "<b>Jedes Quadrat ist ein Rechteck</b> — es hat 4 rechte Winkel. Umgekehrt nicht."
+      },
+      {
+        id: 36,
+        level: 6,
+        typ: "numerisch",
+        frage: "Ein Rechteck \\(5 \\times 12\\) wird entlang der Diagonale in zwei Dreiecke geteilt. Wie lang ist die Diagonale (in cm)?",
+        loesung: 13,
+        toleranz: 0,
+        tipp: "Pythagoras: \\(\\sqrt{5^2 + 12^2}\\).",
+        loesungsweg: "$$d = \\sqrt{25 + 144} = \\sqrt{169} = 13\\,\\text{cm}$$"
+      }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>

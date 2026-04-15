@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prisma &amp; Zylinder - Mathepfade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="../spirale.css">
+    <style>:root { --spirale-primary: #10b981; --spirale-secondary: #059669; }</style>
+</head>
+<body>
+    <div class="spirale-container" id="app"></div>
+    <script>
+    const THEMA_KEY = '9-raumgeometrie-prisma-zylinder';
+    const THEMA_CONFIG = { name: 'Raumgeometrie: Prisma & Zylinder', bereich: 'geometrie' };
+    const AUFGABEN = [
+      { id:1, level:1, typ:"mc", frage:"Wie lautet die Volumenformel eines Prismas?", optionen:["\\(V=G\\cdot h\\)","\\(V=\\frac{G\\cdot h}{3}\\)","\\(V=a^3\\)","\\(V=\\pi r^2\\)"], korrekt:0, tipp:"Grundfläche mal Höhe.", loesungsweg:"$$V=G\\cdot h$$" },
+      { id:2, level:1, typ:"mc", frage:"Volumenformel Zylinder?", optionen:["\\(\\pi r^2 h\\)","\\(\\frac{\\pi r^2 h}{3}\\)","\\(2\\pi r h\\)","\\(\\pi r h\\)"], korrekt:0, tipp:"Kreis als Grundfläche.", loesungsweg:"$$V=\\pi r^2 h$$" },
+      { id:3, level:1, typ:"mc", frage:"Mantelfläche Zylinder?", optionen:["\\(\\pi r^2\\)","\\(2\\pi r h\\)","\\(\\pi r h\\)","\\(2\\pi r^2 h\\)"], korrekt:1, tipp:"Umfang mal Höhe.", loesungsweg:"$$M=2\\pi r h$$" },
+      { id:4, level:1, typ:"numerisch", frage:"Würfel Kante 4. Volumen?", loesung:64, toleranz:0, tipp:"\\(a^3\\).", loesungsweg:"\\(4^3=64\\)." },
+      { id:5, level:1, typ:"numerisch", frage:"Quader \\(2\\times 3\\times 5\\). Volumen?", loesung:30, toleranz:0, tipp:"Produkt.", loesungsweg:"\\(30\\)." },
+      { id:6, level:1, typ:"numerisch", frage:"Zylinder \\(r=2, h=5\\). Volumen (\\(\\pi\\approx 3{,}14\\), 2 Dez).", loesung:62.83, toleranz:0.2, tipp:"\\(\\pi\\cdot 4\\cdot 5\\).", loesungsweg:"\\(20\\pi\\approx 62{,}83\\)." },
+      { id:7, level:2, typ:"numerisch", frage:"Zylinder \\(r=3, h=10\\). Volumen (2 Dez).", loesung:282.74, toleranz:0.5, tipp:"\\(90\\pi\\).", loesungsweg:"\\(\\approx 282{,}74\\)." },
+      { id:8, level:2, typ:"numerisch", frage:"Zylinder \\(r=5, h=8\\). Mantel (2 Dez).", loesung:251.33, toleranz:0.5, tipp:"\\(2\\pi\\cdot 5\\cdot 8\\).", loesungsweg:"\\(80\\pi\\approx 251{,}33\\)." },
+      { id:9, level:2, typ:"numerisch", frage:"Prisma mit Dreiecksgrundfläche (Basis 6, Höhe Dreieck 4), Prismenhöhe 10. Volumen?", loesung:120, toleranz:0, tipp:"\\(G=12\\).", loesungsweg:"\\(V=12\\cdot 10=120\\)." },
+      { id:10, level:2, typ:"numerisch", frage:"Quader \\(4\\times 5\\times 6\\). Oberfläche?", loesung:148, toleranz:0, tipp:"\\(2(ab+bc+ac)\\).", loesungsweg:"\\(2(20+30+24)=148\\)." },
+      { id:11, level:2, typ:"numerisch", frage:"Zylinder \\(r=4, h=10\\). Gesamtoberfläche (2 Dez).", loesung:351.86, toleranz:1.0, tipp:"\\(2\\pi r^2+2\\pi rh\\).", loesungsweg:"\\(32\\pi+80\\pi=112\\pi\\approx 351{,}86\\)." },
+      { id:12, level:2, typ:"mc", frage:"Ein Prisma hat stets …", optionen:["dreieckige Grundfläche","zwei kongruente, parallele Grundflächen","einen Scheitelpunkt","kreisförmige Grundfläche"], korrekt:1, tipp:"Definition.", loesungsweg:"Zwei kongruente parallele Grundflächen." },
+      { id:13, level:3, typ:"numerisch", frage:"Ein Aquarium (Quader) \\(40\\times 30\\times 25\\,\\text{cm}\\). Inhalt in Litern?", loesung:30, toleranz:0.1, tipp:"\\(30000\\,\\text{cm}^3=30\\,\\text{l}\\).", loesungsweg:"\\(V=30000\\,\\text{cm}^3=30\\,\\text{l}\\)." },
+      { id:14, level:3, typ:"numerisch", frage:"Zylindertank \\(r=0{,}5\\,\\text{m}, h=2\\,\\text{m}\\). Volumen in m³ (2 Dez).", loesung:1.57, toleranz:0.02, tipp:"\\(\\pi\\cdot 0{,}25\\cdot 2\\).", loesungsweg:"\\(0{,}5\\pi\\approx 1{,}57\\)." },
+      { id:15, level:3, typ:"numerisch", frage:"Ein Prisma mit regelmäßigem Sechseck-Grund (Seite 2, Fläche \\(6\\sqrt 3\\)) und Höhe 5. Volumen (2 Dez).", loesung:51.96, toleranz:0.2, tipp:"\\(G=6\\sqrt 3\\).", loesungsweg:"\\(V=6\\sqrt 3\\cdot 5\\approx 51{,}96\\)." },
+      { id:16, level:3, typ:"numerisch", frage:"Zylinder, Volumen 500 cm³, Höhe 10 cm. Radius (2 Dez).", loesung:3.99, toleranz:0.05, tipp:"\\(r=\\sqrt{V/(\\pi h)}\\).", loesungsweg:"\\(r=\\sqrt{50/\\pi}\\approx 3{,}99\\)." },
+      { id:17, level:3, typ:"numerisch", frage:"Wie viele Liter passen in eine Dose \\(r=4\\,\\text{cm}, h=12\\,\\text{cm}\\) (2 Dez)?", loesung:0.60, toleranz:0.02, tipp:"\\(192\\pi\\) cm³.", loesungsweg:"\\(\\approx 603\\,\\text{cm}^3=0{,}60\\,\\text{l}\\)." },
+      { id:18, level:3, typ:"mc", frage:"Verdopple Radius eines Zylinders. Volumen …", optionen:["verdoppelt","vervierfacht","verdreifacht","gleich"], korrekt:1, tipp:"\\(r^2\\).", loesungsweg:"\\(r^2\\) geht ein → 4-fach." },
+      { id:19, level:4, typ:"numerisch", frage:"Dreieckprisma: Grundfläche rechtwinklig mit Katheten 3, 4; Prismenhöhe 10. Mantelfläche?", loesung:120, toleranz:0, tipp:"Umfang Dreieck \\(3+4+5=12\\); \\(M=12\\cdot 10\\).", loesungsweg:"\\(M=120\\)." },
+      { id:20, level:4, typ:"numerisch", frage:"Gleiches Prisma: Gesamtoberfläche?", loesung:132, toleranz:0, tipp:"\\(M+2G=120+2\\cdot 6\\).", loesungsweg:"\\(120+12=132\\)." },
+      { id:21, level:4, typ:"numerisch", frage:"Zylinderrohr (Außenradius 5, Innen 3, Höhe 10). Volumen Material (2 Dez).", loesung:502.65, toleranz:1.0, tipp:"\\(\\pi(R^2-r^2)h\\).", loesungsweg:"\\(16\\pi\\cdot 10\\approx 502{,}65\\)." },
+      { id:22, level:4, typ:"numerisch", frage:"Ein quaderförmiges Schwimmbecken \\(10\\times 5\\times 2\\,\\text m\\). Füllmenge m³?", loesung:100, toleranz:0, tipp:"Volumen.", loesungsweg:"\\(100\\,\\text m^3\\)." },
+      { id:23, level:4, typ:"numerisch", frage:"Zylinder: \\(V=1\\,\\text l=1000\\,\\text{cm}^3\\), \\(h=20\\,\\text{cm}\\). Radius (2 Dez)?", loesung:3.99, toleranz:0.05, tipp:"\\(r=\\sqrt{50/\\pi}\\).", loesungsweg:"\\(\\approx 3{,}99\\)." },
+      { id:24, level:4, typ:"mc", frage:"Verdopple Höhe eines Zylinders. Mantelfläche …", optionen:["verdoppelt","vervierfacht","halbiert","gleich"], korrekt:0, tipp:"\\(M=2\\pi rh\\).", loesungsweg:"Linear in \\(h\\)." },
+      { id:25, level:5, typ:"numerisch", frage:"Prisma mit gleichseitigem Dreieck (Seite 6) und Höhe 10. Volumen (2 Dez).", loesung:155.88, toleranz:1.0, tipp:"\\(G=\\frac{36\\sqrt 3}{4}\\).", loesungsweg:"\\(G=9\\sqrt 3\\); \\(V=90\\sqrt 3\\approx 155{,}88\\)." },
+      { id:26, level:5, typ:"numerisch", frage:"Raumdiagonale Quader \\(6\\times 8\\times 24\\).", loesung:26, toleranz:0.1, tipp:"\\(\\sqrt{36+64+576}\\).", loesungsweg:"\\(\\sqrt{676}=26\\)." },
+      { id:27, level:5, typ:"numerisch", frage:"Zylinder: Oberfläche \\(2\\pi r(r+h)\\); \\(r=5, h=7\\). Oberfläche (2 Dez).", loesung:376.99, toleranz:1.0, tipp:"\\(10\\pi\\cdot 12\\).", loesungsweg:"\\(120\\pi\\approx 376{,}99\\)." },
+      { id:28, level:5, typ:"numerisch", frage:"Eine Konserve enthält \\(500\\,\\text{ml}\\), \\(r=4\\,\\text{cm}\\). Höhe (cm, 2 Dez)?", loesung:9.95, toleranz:0.1, tipp:"\\(h=V/(\\pi r^2)\\).", loesungsweg:"\\(500/(16\\pi)\\approx 9{,}95\\)." },
+      { id:29, level:5, typ:"numerisch", frage:"Prisma mit Grundfläche Trapez (Parallelseiten 4, 8; Höhe 3), Prismenhöhe 10. Volumen?", loesung:180, toleranz:0, tipp:"\\(G=\\frac{(4+8)\\cdot 3}{2}=18\\).", loesungsweg:"\\(V=180\\)." },
+      { id:30, level:5, typ:"mc", frage:"Schneidet eine Ebene parallel zur Grundfläche ein Prisma, ist die Schnittfigur …", optionen:["kleiner","kongruent zur Grundfläche","Punkt","Kreis"], korrekt:1, tipp:"Gerade Prismen.", loesungsweg:"Kongruent zur Grundfläche." },
+      { id:31, level:6, typ:"numerisch", frage:"Ein Zylinder mit gleich Höhe und Durchmesser, \\(V=250\\pi\\). Radius?", loesung:5, toleranz:0.1, tipp:"\\(h=2r\\), \\(V=2\\pi r^3\\).", loesungsweg:"\\(2\\pi r^3=250\\pi \\Rightarrow r^3=125 \\Rightarrow r=5\\)." },
+      { id:32, level:6, typ:"numerisch", frage:"Quader mit \\(a:b:c=1:2:3\\) und Volumen 162. Länge der kürzesten Kante?", loesung:3, toleranz:0, tipp:"\\(a\\cdot 2a\\cdot 3a=6a^3=162\\).", loesungsweg:"\\(a^3=27 \\Rightarrow a=3\\)." },
+      { id:33, level:6, typ:"numerisch", frage:"Zylinderglas Füllhöhe 12, Radius 4: bekommt Stein, Wasser steigt um 2 cm. Steinvolumen (2 Dez).", loesung:100.53, toleranz:0.5, tipp:"\\(\\Delta V=\\pi r^2\\Delta h\\).", loesungsweg:"\\(16\\pi\\cdot 2=32\\pi\\approx 100{,}53\\)." },
+      { id:34, level:6, typ:"numerisch", frage:"Hohlprisma (Würfel Kante 10 minus inneres Quader \\(6\\times 6\\times 10\\)). Materialvolumen?", loesung:640, toleranz:0, tipp:"\\(1000-360\\).", loesungsweg:"\\(640\\)." },
+      { id:35, level:6, typ:"numerisch", frage:"Zylinder: Mantelfläche \\(=\\) Grundfläche; \\(r=2\\). Höhe?", loesung:1, toleranz:0.01, tipp:"\\(2\\pi rh=\\pi r^2 \\Rightarrow h=r/2\\).", loesungsweg:"\\(h=1\\)." },
+      { id:36, level:6, typ:"numerisch", frage:"Ein Regenrohr (Zylinder, Innenradius 5 cm, Länge 2 m). Wasserdurchsatz, wenn es ganz gefüllt ist, in Litern (2 Dez)?", loesung:15.71, toleranz:0.1, tipp:"\\(V=\\pi\\cdot 25\\cdot 200\\) cm³.", loesungsweg:"\\(5000\\pi\\,\\text{cm}^3\\approx 15{,}71\\,\\text l\\)." }
+    ];
+    </script>
+    <script src="../spirale-engine.js"></script>
+</body>
+</html>
