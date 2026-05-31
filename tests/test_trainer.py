@@ -43,6 +43,21 @@ class TestTrainerStatisch:
             count = len([a for a in aufgaben if a["level"] == level])
             assert count == 6, f"{trainer_file}: Level {level} hat {count} statt 6 Aufgaben"
 
+    def test_zurueck_link(self, page, trainer_file):
+        """'Zur Übersicht' verlinkt auf die existierende Uebersicht (../index.html).
+
+        Regression: frueher href='index.html', was relativ zu trainer/ auf
+        die nicht existierende trainer/index.html (404) zeigte.
+        """
+        load_trainer(page, trainer_file)
+        back = page.query_selector(".back-link")
+        assert back is not None, f"{trainer_file}: kein Zurueck-Link gefunden"
+        href = back.get_attribute("href")
+        assert href == "../index.html", (
+            f"{trainer_file}: Zurueck-Link zeigt auf '{href}', "
+            f"erwartet '../index.html'"
+        )
+
 
 class TestTrainerInteraktiv:
     """Alle 36 Aufgaben werden korrekt beantwortet."""
