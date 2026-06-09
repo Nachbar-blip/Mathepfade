@@ -106,9 +106,9 @@
       },
       { id:14, level:3, typ:"numerisch",
         frage:"Abstand \\(P(3|-1|2)\\) zur Ebene \\(E: x+2y+2z=5\\).",
-        loesung:0.667, toleranz:0.01,
-        tipp:"Zähler \\(|3-2+4-5|=0\\)? Neu rechnen: \\(3-2+4-5=0\\)… Prüfe selbst.",
-        loesungsweg:"\\(d=\\frac{|3+2(-1)+2\\cdot2-5|}{\\sqrt{1+4+4}}=\\frac{|3-2+4-5|}{3}=\\frac{0}{3}=0\\). Ergebnis: Punkt liegt auf E! (Trainer: korrigiere Zähler; Tatsächliche Abstandsaufgabe bei \\(P(3|-1|4)\\): \\(d=\\frac{|3-2+8-5|}{3}=\\frac{4}{3}\\approx1{,}333\\).)"
+        loesung:0, toleranz:0.01,
+        tipp:"Zähler: \\(3+2(-1)+2\\cdot2-5\\); Nenner: \\(\\sqrt{1+4+4}=3\\).",
+        loesungsweg:"\\(d=\\frac{|3+2(-1)+2\\cdot2-5|}{\\sqrt{1+4+4}}=\\frac{|3-2+4-5|}{3}=\\frac{0}{3}=0\\). Der Punkt \\(P\\) liegt also genau auf der Ebene \\(E\\)."
       },
       { id:15, level:3, typ:"numerisch",
         frage:"Abstand \\(P(0|0|0)\\) zu \\(E: 3x-4y+12z=26\\).",
@@ -144,9 +144,9 @@
       },
       { id:20, level:4, typ:"numerisch",
         frage:"Abstand \\(P(2|3|1)\\) von \\(g:\\vec{x}=(1,1,0)^T+t(1,1,0)^T\\).",
-        loesung:1.414, toleranz:0.02,
+        loesung:1.225, toleranz:0.02,
         tipp:"Minimiere \\(|\\vec{OP}-\\vec{x}(t)|^2\\) oder nutze Kreuzproduktformel.",
-        loesungsweg:"\\(\\vec{AP}=(1,2,1)\\), \\(\\vec{u}=(1,1,0)\\), \\(\\vec{AP}\\times\\vec{u}=(-1,1,-1)\\), \\(d=\\frac{\\sqrt{3}}{\\sqrt{2}}=\\sqrt{1{,}5}\\approx1{,}225\\). (Abschätzung weicht; numerisch \\(\\approx1{,}225\\).)"
+        loesungsweg:"\\(\\vec{AP}=(1,2,1)\\), \\(\\vec{u}=(1,1,0)\\), \\(\\vec{AP}\\times\\vec{u}=(-1,1,-1)\\), \\(d=\\frac{|\\vec{AP}\\times\\vec{u}|}{|\\vec{u}|}=\\frac{\\sqrt{3}}{\\sqrt{2}}=\\sqrt{1{,}5}\\approx1{,}225\\)."
       },
       { id:21, level:4, typ:"numerisch",
         frage:"Abstand \\(P(0|0|2)\\) von \\(g:\\vec{x}=(0,0,0)^T+t(0,0,1)^T\\).",
@@ -215,15 +215,15 @@
       // ===== LEVEL 6 — Abi-Niveau =====
       { id:31, level:6, typ:"numerisch",
         frage:"Abstand \\(P(4|-2|1)\\) zur Ebene durch \\(A(1|0|0)\\), \\(B(0|2|0)\\), \\(C(0|0|3)\\).",
-        loesung:2.673, toleranz:0.05,
+        loesung:2, toleranz:0.05,
         tipp:"Ebene: \\(6x+3y+2z=6\\), \\(|\\vec{n}|=7\\).",
-        loesungsweg:"\\(d=\\frac{|24-6+2-6|}{7}=\\frac{14}{7}=2\\). (Trainer-Hinweis: Setze selbst nach; korrekter Wert laut Rechnung \\(d=2\\).)"
+        loesungsweg:"Normalenform \\(6x+3y+2z=6\\), \\(|\\vec{n}|=\\sqrt{6^2+3^2+2^2}=7\\). \\(d=\\frac{|6\\cdot4+3\\cdot(-2)+2\\cdot1-6|}{7}=\\frac{|24-6+2-6|}{7}=\\frac{14}{7}=2\\)."
       },
       { id:32, level:6, typ:"numerisch",
         frage:"\\(g_1:\\vec{x}=(1,2,3)+s(1,0,1)\\), \\(g_2:\\vec{x}=(0,1,0)+t(0,1,1)\\). Abstand.",
-        loesung:1.155, toleranz:0.05,
+        loesung:0.577, toleranz:0.05,
         tipp:"\\(\\vec{u}_1\\times\\vec{u}_2=(-1,-1,1)\\), \\(|\\ldots|=\\sqrt{3}\\), \\(\\vec{a}_2-\\vec{a}_1=(-1,-1,-3)\\).",
-        loesungsweg:"Zähler \\(|1+1-3|=3\\)? \\(\\Rightarrow\\) Rechne: \\(=|1+1-3|=1\\). \\(d=\\frac{1}{\\sqrt{3}}\\approx0{,}577\\). (Numerisch: \\(\\approx0{,}577\\).)"
+        loesungsweg:"\\(\\vec{n}=\\vec{u}_1\\times\\vec{u}_2=(-1,-1,1)\\), \\(|\\vec{n}|=\\sqrt{3}\\). Zähler: \\(|(\\vec{a}_2-\\vec{a}_1)\\cdot\\vec{n}|=|1+1-3|=1\\). \\(d=\\frac{1}{\\sqrt{3}}\\approx0{,}577\\)."
       },
       { id:33, level:6, typ:"numerisch",
         frage:"Mindestabstand zweier Flugrouten: \\(g_1:\\vec{x}=(0,0,1000)+s(1,0,0)\\), \\(g_2:\\vec{x}=(500,0,1200)+t(0,1,0)\\). Abstand in Metern.",
@@ -233,9 +233,9 @@
       },
       { id:34, level:6, typ:"numerisch",
         frage:"Parameter \\(a\\) so bestimmen, dass \\(P(a|1|1)\\) Abstand \\(1\\) zur Ebene \\(E: x+2y+2z=6\\) hat. Bestimme den kleinsten positiven \\(a\\).",
-        loesung:1, toleranz:0.01,
+        loesung:5, toleranz:0.01,
         tipp:"\\(\\frac{|a+2+2-6|}{3}=1\\Rightarrow|a-2|=3\\).",
-        loesungsweg:"\\(a-2=3\\Rightarrow a=5\\) oder \\(a-2=-3\\Rightarrow a=-1\\). Kleinster positiver: \\(a=5\\). Trainer korrigiert: Antwort 5."
+        loesungsweg:"\\(\\frac{|a+2+2-6|}{3}=1\\Rightarrow|a-2|=3\\). Also \\(a-2=3\\Rightarrow a=5\\) oder \\(a-2=-3\\Rightarrow a=-1\\). Kleinster positiver Wert: \\(a=5\\)."
       },
       { id:35, level:6, typ:"mc",
         frage:"Welche Aussage zur Lotfuß-Minimierung ist korrekt?",
