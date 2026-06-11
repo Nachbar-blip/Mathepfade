@@ -49,7 +49,7 @@
       { id:31, level:6, typ:"numerisch", frage:"Datensatz: 2,5,7,8,9,10,12,13,14,16,20,35. Gibt es nach Tukey einen oberen Ausreißer? Ja=1, Nein=0. (\\(Q_1=7{,}5; Q_3=15\\))", loesung:1, toleranz:0, tipp:"Obere Grenze \\(15+1{,}5\\cdot 7{,}5=26{,}25\\).", loesungsweg:"35>26,25 → Ausreißer (1)." },
       { id:32, level:6, typ:"numerisch", frage:"Gleich: IQR?", loesung:7.5, toleranz:0.1, tipp:"15-7,5.", loesungsweg:"\\(7{,}5\\)." },
       { id:33, level:6, typ:"numerisch", frage:"Zwei Klassen im Notenvergleich. Boxplot A: Median 3, IQR 1. Boxplot B: Median 3, IQR 3. Welche ist homogener? (A=1, B=2)", loesung:1, toleranz:0, tipp:"Kleinerer IQR.", loesungsweg:"Klasse A." },
-      { id:34, level:6, typ:"numerisch", frage:"Wenn Median = Q1 = Q3, was trifft zu? (Box ist leer=1, alle Werte gleich=2)", loesung:2, toleranz:0, tipp:"Keine Streuung.", loesungsweg:"Alle Werte (in diesen Quartilen) identisch → 2." },
+      { id:34, level:6, typ:"numerisch", frage:"Wenn Median = Q1 = Q3, was trifft immer zu? (Box hat Breite 0 = 1, alle Werte sind gleich = 2)", loesung:1, toleranz:0, tipp:"\\(Q_3 - Q_1\\) ist die Boxbreite.", loesungsweg:"\\(Q_1=\\text{Median}=Q_3 \\Rightarrow Q_3-Q_1=0\\): die Box hat Breite 0. Dass ALLE Werte gleich sind, folgt nicht (nur die mittleren 50%). → 1." },
       { id:35, level:6, typ:"numerisch", frage:"Bei n=20 geordneten Werten: Position des Medians?", loesung:10.5, toleranz:0.1, tipp:"Zwischen 10. und 11.", loesungsweg:"\\(10{,}5\\)." },
       { id:36, level:6, typ:"numerisch", frage:"Verteilung rechtsschief: Typischerweise gilt …? (Median>Mittelwert=1, Median<Mittelwert=2, Median=Mittelwert=3)", loesung:2, toleranz:0, tipp:"Rechte Ausreißer ziehen Mittelwert hoch.", loesungsweg:"Median < Mittelwert (2)." }
     ];

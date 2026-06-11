@@ -82,7 +82,7 @@
         loesungsweg:"\\(\\vec{n}=(3,-1,2)^T\\)."
       },
       { id:10, level:2, typ:"numerisch",
-        frage:"\\(E_1: x+y=2\\), \\(E_2: y+z=1\\). Richtungsvektor der Schnittgeraden hat als x-Komponente bei Normierung auf \\(\\vec{u}=(1,?,?)\\) den Wert \\(-1\\). Gib die y-Komponente an.",
+        frage:"\\(E_1: x+y=2\\), \\(E_2: y+z=1\\). Normiere den Richtungsvektor der Schnittgeraden auf \\(\\vec{u}=(1,?,?)\\). Gib die y-Komponente an.",
         loesung:-1, toleranz:0.01,
         tipp:"\\(\\vec{n}_1=(1,1,0)\\), \\(\\vec{n}_2=(0,1,1)\\), \\(\\vec{n}_1\\times\\vec{n}_2=(1,-1,1)\\).",
         loesungsweg:"\\(\\vec{u}=(1,-1,1)\\); y-Komponente \\(=-1\\)."
@@ -111,7 +111,7 @@
       },
       { id:14, level:3, typ:"mc",
         frage:"Ein Punkt auf der Schnittgeraden von \\(E_1: x+y=1\\), \\(E_2: y+z=0\\) ist:",
-        optionen:["\\((1|0|0)\\)","\\((0|1|-1)\\)","\\((1|1|1)\\)","\\((2|0|1)\\)"],
+        optionen:["\\((1|0|1)\\)","\\((0|1|-1)\\)","\\((1|1|1)\\)","\\((2|0|1)\\)"],
         korrekt:1,
         tipp:"Setze \\(x=0\\Rightarrow y=1\\Rightarrow z=-1\\).",
         loesungsweg:"Punkt \\((0|1|-1)\\) erfüllt beide Gleichungen."
@@ -163,10 +163,10 @@
         loesungsweg:"\\(x=6\\)."
       },
       { id:22, level:4, typ:"numerisch",
-        frage:"\\(E_1:x+y-z=0\\), \\(E_2:x-y+z=2\\). Stützpunkt mit \\(x=1\\): \\(y=\\)?",
+        frage:"\\(E_1:x+y-z=0\\), \\(E_2:x-y+z=2\\). Stützpunkt mit \\(z=1\\): \\(y=\\)?",
         loesung:0, toleranz:0.01,
-        tipp:"Addition: \\(2x=2\\Rightarrow x=1\\), dann z. B. \\(z=y\\)-frei? Prüfe: \\(y-z=-1\\), \\(-y+z=1\\). Parameter frei.",
-        loesungsweg:"Mit \\(y=0\\Rightarrow z=1\\), passt in beiden Gleichungen. \\(y=0\\)."
+        tipp:"Setze \\(z=1\\): \\(x+y=1\\) und \\(x-y=1\\).",
+        loesungsweg:"\\(x+y=1\\), \\(x-y=1 \\Rightarrow x=1, y=0\\)."
       },
       { id:23, level:4, typ:"mc",
         frage:"Die Ebenen \\(E_1:x-2y+z=0\\) und \\(E_2:2x-4y+2z=0\\) sind:",
@@ -203,10 +203,10 @@
         loesungsweg:"\\(z\\) auf \\(g\\) ist stets 0 \\(\\neq 5\\): kein Schnittpunkt, \\(g\\) echt parallel zu \\(E\\)."
       },
       { id:28, level:5, typ:"numerisch",
-        frage:"\\(g:\\vec{x}=(1,2,3)+t(0,1,-1)\\), \\(E:y+z=5\\). Schnittpunktparameter?",
-        loesung:0, toleranz:0.01,
-        tipp:"\\(y+z=2+3=5\\) für \\(t=0\\).",
-        loesungsweg:"\\((2+t)+(3-t)=5\\Rightarrow 5=5\\) für alle \\(t\\): Gerade liegt ganz in E! (Trainerlösung: \\(t=0\\) ist ein Treffer.)"
+        frage:"\\(g:\\vec{x}=(1,2,3)+t(0,1,1)\\), \\(E:y+z=7\\). Schnittpunktparameter \\(t\\)?",
+        loesung:1, toleranz:0.01,
+        tipp:"\\((2+t)+(3+t)=7\\).",
+        loesungsweg:"\\((2+t)+(3+t)=7\\Rightarrow 5+2t=7\\Rightarrow t=1\\)."
       },
       { id:29, level:5, typ:"mc",
         frage:"Eine Gerade liegt genau dann in einer Ebene, wenn:",
@@ -255,10 +255,10 @@
         loesungsweg:"Beide Bedingungen erforderlich."
       },
       { id:36, level:6, typ:"numerisch",
-        frage:"Abi-LK: Für welchen Parameter \\(a\\) schneiden sich \\(E_1:x+y+az=1\\) und \\(E_2:ax+y+z=1\\) in derselben Geraden wie \\(E_1\\cap E_3:x+ay+z=1\\), wenn alle drei durch \\((1|0|0)\\) gehen? Antwort: \\(a=1\\).",
+        frage:"Abi-LK: \\(E_1:x+y+az=1\\), \\(E_2:ax+y+z=1\\). Für welches \\(a\\) sind \\(E_1\\) und \\(E_2\\) identisch?",
         loesung:1, toleranz:0.01,
-        tipp:"Alle drei durch \\(a=1\\) werden zur gleichen Ebene.",
-        loesungsweg:"\\(a=1\\) macht \\(E_1=E_2=E_3:x+y+z=1\\)."
+        tipp:"Koeffizientenvergleich: \\(a=1\\).",
+        loesungsweg:"\\(a=1\\) macht \\(E_1=E_2:x+y+z=1\\); dann fallen auch \\(E_3:x+y+z=1\\) und alle drei zusammen."
       }
     ];
     </script>
