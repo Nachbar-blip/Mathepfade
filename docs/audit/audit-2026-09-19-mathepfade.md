@@ -37,14 +37,27 @@ Daraus folgt, was man den Zahlen glauben darf:
 
 Ein Lösungsweg soll den Weg zeigen, nicht das Ergebnis wiederholen. Als dünn
 gilt hier ein Lösungsweg, der **weder** einen erklärenden Satz (mindestens vier
-Wörter) **noch** einen sichtbaren Rechenschritt (mindestens zwei
-Gleichheitszeichen) enthält.
+Wörter) **noch** einen sichtbaren Rechenschritt enthält.
+
+**Das Kriterium musste zweimal nachgeschärft werden** — beide Male, weil es sonst
+Lösungswege beanstandet hätte, die in Ordnung sind:
+
+1. Die erste Fassung wertete jede formellastige Zeile als dünn und hätte 42 % der
+   bereits überarbeiteten DifferenzierungsEngine getroffen. Reine Formelketten wie
+   `$$5x + 3x = (5+3)x = 8x$$` sind aber vollwertige Lösungswege.
+2. Die zweite Fassung zählte nur `=` als Rechenschritt. Bei Ungleichungen steht
+   dort aber `\leq`, `\geq` oder `\implies` — `$$3x - 2x \leq 5 + 7 \implies x \leq 12$$`
+   wurde dadurch fälschlich als dünn geführt. In `7-ungleichungen` waren nach diesem
+   Kriterium 20 Aufgaben auffällig, tatsächlich ist es **eine**.
+
+Mit dem endgültigen Kriterium (Rechenschritt = `=`, `\leq`, `\geq`, `\implies`,
+`\Rightarrow`, `\approx`, `<`, `>`):
 
 | Projekt | dünne Lösungswege |
 |---|---|
-| DifferenzierungsEngine | 83 von 3708 (2 %) |
-| Ref4OHG | 71 von 2736 (2 %) |
-| **Mathepfade** | **1356 von 3240 (41 %)** |
+| DifferenzierungsEngine | 39 von 3708 (1 %) |
+| Ref4OHG | 31 von 2736 (1 %) |
+| **Mathepfade** | **rund 1180 von 3240 (36 %)** |
 
 Zum Vergleich, beide aus Stufe 1:
 
@@ -52,8 +65,8 @@ Zum Vergleich, beide aus Stufe 1:
   `$$5x + 3x = (5+3) \cdot x = 8x$$` — zeigt den Schritt.
 - Mathepfade, `11-steckbriefaufgaben` #2: `\(f(2)=5\).` — nur das Ergebnis.
 
-Das ist derselbe Befund, der im Statusbericht als „Telegrammstil" steht, jetzt
-genau beziffert: **1356 Aufgaben in 86 Trainern.**
+Das ist derselbe Befund, der im Statusbericht als „Telegrammstil" steht. Die
+zunächst genannte Zahl von 1356 war um rund 15 % zu hoch.
 
 ## Arbeitsliste
 
@@ -181,22 +194,24 @@ Trainer                                      L1  L2  L3  L4  L5  L6   Befunde
 
 ## Dünne Lösungswege je Trainer
 
+Stand nach der laufenden Überarbeitung, mit dem endgültigen Kriterium:
+
 ```
 
-1356 von 3240 Loesungswegen sind duenn (41 %), in 86 Trainern
-   35  11-e-funktion-ableitung.html
-   34  11-lk-kurvendisk-erweitert.html
-   34  9-raumgeometrie-anwendungen.html
-   33  9-stoch-boxplot.html
-   32  11-e-funktion.html
-   32  8-stoch-zaehlprinzip.html
-   32  9-stoch-haeufigkeiten.html
-   31  11-lk-gebrochen-rational.html
-   31  11-lk-newton.html
-   30  9-raumgeometrie-prisma-zylinder.html
-   29  11-steckbriefaufgaben.html
-   29  12-lk-stoch-normalverteilung.html
-   29  9-flaechenberechnung-determinante.html
-   29  9-raumgeometrie-pyramide-kegel.html
-   28  11-lk-funktionsscharen.html
+614 von 3240 Loesungswegen sind duenn (18 %), in 67 Trainern
+   27  12-lk-stoch-prozesse.html
+   23  12-lk-geom-schnittwinkel.html
+   22  12-lk-integral-uneigentlich.html
+   21  8-vektoren-2d.html
+   20  9-exponentielles-wachstum.html
+   19  11-kurvendiskussion-ganzrational.html
+   19  12-lk-dgl.html
+   17  11-aenderungsrate.html
+   17  12-stammfunktionen.html
+   16  10-polynomdivision.html
+   16  7-terme-umformungen.html
+   15  12-ebenen.html
+   15  12-stoch-zufallsgroessen.html
+   15  9-potenzen-rational.html
+   14  10-graphen-transformationen.html
 ```
