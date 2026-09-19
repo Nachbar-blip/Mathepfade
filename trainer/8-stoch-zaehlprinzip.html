@@ -46,7 +46,7 @@
       { id: 24, level: 4, typ: "mc", frage: "„Mindestens eine 6\" bei 2 Wuerfen hat \\(P = ?\\) (4 Nachk.)", optionen: ["\\(0{,}1667\\)", "\\(0{,}3056\\)", "\\(0{,}5000\\)", "\\(0{,}8333\\)"], korrekt: 1, tipp: "1 - P(keine 6) = 1 - (5/6)^2.", loesungsweg: "$$1 - 25/36 = 11/36 \\approx 0{,}3056$$" },
       // LEVEL 5
       { id: 25, level: 5, typ: "numerisch", frage: "Produktionstest: 5% Ausschuss. 3 Teile. \\(P(\\text{alle OK})\\) (4 Nachk.)?", loesung: 0.8574, toleranz: 0.005, tipp: "\\(0{,}95^3\\).", loesungsweg: "$$0{,}857\\ldots$$" },
-      { id: 26, level: 5, typ: "numerisch", frage: "Selbe Aufgabe: \\(P(\\text{mind. 1 Ausschuss})\\) (4 Nachk.)?", loesung: 0.1426, toleranz: 0.005, tipp: "1 - P(alle OK).", loesungsweg: "$$\\approx 0{,}1426$$" },
+      { id: 26, level: 5, typ: "numerisch", frage: "Produktionstest: 5% Ausschuss, 3 Teile geprueft. \\(P(\\text{mind. 1 Ausschuss})\\) (4 Nachk.)?", loesung: 0.1426, toleranz: 0.005, tipp: "1 - P(alle OK).", loesungsweg: "$$\\approx 0{,}1426$$" },
       { id: 27, level: 5, typ: "numerisch", frage: "Urne 2 rot, 3 blau. Ohne Zurueck. 2 Zuege. \\(P(\\text{beide gleich farbig})\\) (4 Nachk.)?", loesung: 0.4, toleranz: 0.01, tipp: "\\(\\frac{2}{5}\\cdot\\frac{1}{4} + \\frac{3}{5}\\cdot\\frac{2}{4}\\).", loesungsweg: "$$2/20 + 6/20 = 8/20 = 0{,}4$$" },
       { id: 28, level: 5, typ: "numerisch", frage: "3-stellige Zahl aus Ziffern 1-5, ohne Wdh. Anzahl?", loesung: 60, toleranz: 0, tipp: "\\(5 \\cdot 4 \\cdot 3\\).", loesungsweg: "$$60$$" },
       { id: 29, level: 5, typ: "numerisch", frage: "Lottoklasse: 6 Fragen a 4 Antworten. Zufaellig alle richtig? (4 Nachk.)", loesung: 0.0002, toleranz: 0.0001, tipp: "\\((1/4)^6\\).", loesungsweg: "$$1/4096 \\approx 0{,}0002$$" },
@@ -57,8 +57,7 @@
       { id: 33, level: 6, typ: "numerisch", frage: "Urne 5 rot, 5 blau. Ohne Zurueck, 3 Zuege. \\(P(\\text{1.rot, 2.blau, 3.rot})\\) (4 Nachk.)?", loesung: 0.1389, toleranz: 0.005, tipp: "\\(\\frac{5}{10}\\cdot\\frac{5}{9}\\cdot\\frac{4}{8}\\).", loesungsweg: "$$100/720 \\approx 0{,}1389$$" },
       { id: 34, level: 6, typ: "numerisch", frage: "Test: 70% bestehen. 4 Schueler unabhaengig. \\(P(\\text{alle bestehen})\\) (4 Nachk.)?", loesung: 0.2401, toleranz: 0.005, tipp: "\\(0{,}7^4\\).", loesungsweg: "$$0{,}2401$$" },
       { id: 35, level: 6, typ: "mc", frage: "Warum werden bei Baumdiagrammen entlang Pfad multipliziert?", optionen: ["wegen Kommutativitaet", "weil sich die Astwahrscheinlichkeiten auf den bisherigen Pfad beziehen (Multiplikationssatz)", "weil die Summe immer 1 ist", "zufaellig"], korrekt: 1, tipp: "Pfadregel.", loesungsweg: "Jeder Schritt bedingt den naechsten -- Wahrsch. werden multipliziert." },
-      { id: 36, level: 6, typ: "numerisch", frage: "Urne 2 rot, 3 blau. Ohne Zurueck. 2 Zuege. \\(P(\\text{mind. 1 rot})\\) (4 Nachk.)?", loesung: 0.7, toleranz: 0.01, tipp: "1 - P(beide blau) = \\(1 - \\frac{3}{5}\\cdot\\frac{2}{4}\\).", loesungsweg: "$$1 - 0{,}3 = 0{,}7$$" }
-    ];
+      { id: 36, level: 6, typ: "numerisch", frage: "Urne 2 rot, 3 blau. Ohne Zurueck. 2 Zuege. \\(P(\\text{mind. 1 rot})\\) (4 Nachk.)?", loesung: 0.7, toleranz: 0.01, tipp: "1 - P(beide blau) = \\(1 - \\frac{3}{5}\\cdot\\frac{2}{4}\\).", loesungsweg: "$$1 - 0{,}3 = 0{,}7$$" }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>
