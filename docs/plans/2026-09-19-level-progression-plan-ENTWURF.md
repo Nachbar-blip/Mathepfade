@@ -1,75 +1,44 @@
 # Änderungsplan Level-Progression Mathepfade — ENTWURF zur Absprache (2026-09-19)
 
-Status: **Entwurf, noch nicht begonnen.** Anlass ist die am 2026-09-18 abgeschlossene
-Level-Progression der DifferenzierungsEngine (alle 103 Trainer, Kl. 5–12). Mathepfade teilt mit ihr
-Engine, Stylesheet und Aufgabenformat und hat deshalb voraussichtlich dieselben strukturellen
-Mängel — die **Inhalte** sind hier jedoch weitgehend eigenständig.
+Status: **Schritte 1, 2 und 4 umgesetzt (2026-09-19).** Das Rubrik-Gate meldet für alle 90 Trainer
+keinen harten Fehler mehr: **72 ohne Beanstandung, 18 Warnungen, 0 Fehler** (Ausgangslage
+55 / 17 / 18). `katex_check` ist für alle geänderten Trainer grün.
 
-Dieser Plan beruht auf einer **Messung**, nicht auf einer Vermutung — die Zahlen unten stammen aus
-dem Rubrik-Gate der DiffEngine (`tests/level_check.py`), angewendet auf die 90 Mathepfade-Trainer,
-sowie aus einem Textvergleich gegen den DiffEngine-Stand vor der Überarbeitung (Commit `9baddf3`).
+| Schritt | Inhalt | Commit |
+|---|---|---|
+| 1 | Gates übernommen, CSS-Fix, 5 Markdown-Stellen, 2 Toleranzen | `90f423d` |
+| 2 | 35 Fragen mit Kontext versehen (erste Runde) | `d4fa200` |
+| 2+4 | 33 weitere Fragen mit Kontext, 4 Formel-Ansagen, 1 Dublette, 12 MC-Umwandlungen | `39f9602` |
 
-## Befundlage (gemessen am 2026-09-19)
+## Der zentrale Befund
 
-**Umfang:** 90 Trainer, je 36 Aufgaben in 6 Stufen. Klassen 7–12
-(7: 12 · 8: 14 · 9: 16 · 10: 14 · 11: 15 · 12: 19), darunter 12 LK-Trainer (`*-lk-*`).
-Damit ist Mathepfade das **größte** der drei Angebote.
+Die Gate-Meldung „identische Frage" war eine Fehlspur. Es handelte sich nicht um Dubletten,
+sondern um Fragen, die sich auf die **vorhergehende Aufgabe** beziehen — „Dazu \(b=?\)",
+„Gleiche Daten. \(Q_3\)?", „Weiter \(x_2\)?". Weil die Engine innerhalb einer Stufe frei
+auswählt, bekommt ein Schüler solche Fragen ohne ihren Bezug zu sehen und kann sie nicht lösen.
+Dieselbe Kurzfrage tauchte dadurch mehrfach im Trainer auf — daher die Gate-Meldung.
 
-**Rubrik-Gate (DiffEngine-Maßstab, versuchsweise angewendet):**
+**Insgesamt 68 Fragen in 11 Trainern** wurden um ihren Kontext ergänzt. Geändert wurde jeweils nur
+der Fragetext; alle genannten Parameter und Zwischenergebnisse sind mit Wolfram gegengerechnet.
+Ref4OHG und die DifferenzierungsEngine haben diesen Fehler **nicht** (je 0 Vorkommen).
 
-| Ergebnis | Trainer |
-|---|---|
-| ohne Beanstandung | 58 |
-| mit Warnung | 14 |
-| mit hartem Fehler | 18 |
+## Offen: der Telegrammstil
 
-Verteilung der Fehler: Kl. 7 und Kl. 10 je fünf Trainer, Kl. 11 und 12 je drei, Kl. 8 und 9 je einer.
+Mathepfade ist durchgehend sehr knapp geschrieben: **1022 von 3222 Fragen sind sehr kurz**
+gegenüber rund 9 % in Ref4OHG und der DifferenzierungsEngine. Die Lösungswege bestehen vielfach
+nur aus dem Ergebnis („Lösungsweg: −3."), geben also keine Erklärung.
 
-**Das ist deutlich besser als Ref4OHG** (dort 32 von 76 mit hartem Fehler) und liegt in derselben
-Größenordnung wie die DifferenzierungsEngine vor ihrer Überarbeitung. Die Mängel sind hier also
-weniger flächendeckend, dafür gezielter zu suchen.
+Das ist ein Qualitätsproblem des Bestands, kein Stufenproblem, und betrifft rund ein Drittel aller
+Aufgaben. Es braucht eine eigene Entscheidung des Autors — eine Überarbeitung in diesem Umfang
+ist ein eigenes Vorhaben, kein Nebenprodukt der Level-Progression.
 
-**Fehlerarten im Einzelnen:**
+## Noch nicht umgesetzt: Schritt 3 (Audit aller 90 Trainer)
 
-- **11 Trainer mit wortgleichen Aufgaben im eigenen Trainer** — der schwerwiegendste Befund. Beispiele:
-  - `11-lk-kurvendisk-erweitert`: Aufgabe #4 = #8 = #20, #5 = #9 = #21, #6 = #16
-  - `11-steckbriefaufgaben`: #18 = #20 = #26 = #29 = #34 — dieselbe Frage fünfmal, über vier Stufen verteilt
-  - `11-lk-newton`: #11 = #23 = #30 · `10-substitution`: #15 = #22, #27 = #32
-  - dazu `12-stoch-hypothesentests`, `9-stoch-boxplot`
-  Wenn dieselbe Frage auf Stufe 1, 3 und 5 steht, ist die Stufung an dieser Stelle **nachweislich**
-  keine Steigerung, sondern Wiederholung. Das ist kein Schönheitsfehler, sondern genau der Mangel,
-  um den es in diesem Plan geht — und er ist hier maschinell nachweisbar.
-- **8 Stufen mit MC-Überhang** in L5/L6 (bis zu 6 von 6 Aufgaben als Multiple Choice). Vier
-  Antwortmöglichkeiten machen eine Begründungsaufgabe zur Ratefrage; der Maßstab erlaubt höchstens 3.
-- **4 Aufgaben mit Formel- oder Rechenweg-Ansage ab Stufe 4** — ab AFB II soll der Weg selbst
-  gewählt werden.
-- **5 Stellen Markdown-Sternchen** (`**fett**`). Die Engine rendert kein Markdown, die Sternchen
-  erscheinen wörtlich. (Zum Vergleich: DiffEngine 124 Stellen, Ref4OHG 87 — hier also fast sauber.)
-- **2 Dezimallösungen ohne Toleranz** — der Schüler muss exakt treffen.
-
-**Darstellungsfehler in `spirale.css`:** `.aufgabe-text` ist eine Flex-Zeile
-(`display: flex; align-items: center`). Dadurch steht jede Inline-Formel `\(...\)` als eigenes
-Element in einer eigenen Zeile — derselbe Fehler, der in der DiffEngine am 2026-09-18 an der Ursache
-behoben wurde (Commit `2b35b72`). Betrifft **alle 90 Trainer** gleichzeitig.
-
-**Keine Gates vorhanden:** `tests/` enthält nur `test_trainer.py`. Die Prüfskripte `level_check.py`
-und `katex_check.py` existieren bisher nur in der DifferenzierungsEngine.
-
-## Der entscheidende Unterschied zu Ref4OHG: die Inhalte sind eigen
-
-| Deckung mit dem DiffEngine-Altstand | Trainer |
-|---|---|
-| ≥ 80 % (Stufenblock übertragbar) | **0** |
-| 40–79 % | 3 (`10-trig-einheitskreis`, `10-trig-sinusfunktion`, `11-ableitungsregeln`) |
-| < 40 % (eigenständig) | **87** |
-
-Insgesamt sind nur 66 von 3223 Aufgabenfragen (2 %) wortgleich mit der DifferenzierungsEngine.
-
-**Konsequenz:** Anders als bei Ref4OHG (dort 57 übertragbare Kopien) lässt sich hier **fast nichts
-übertragen**. Mathepfade braucht denselben Weg, den die DifferenzierungsEngine gegangen ist:
-erst ein Audit, dann Überarbeitung Trainer für Trainer. Das ist der größere Aufwand — aber es ist
-auch der Grund, warum der Bestand bisher besser dasteht: Die Aufgaben sind eigens für Thüringen
-geschrieben worden und nicht durch mehrfaches Kopieren verwässert.
+Die harten Gate-Fehler sind behoben, das vollständige Audit nach dem Muster der
+DifferenzierungsEngine steht aus. Es würde die Trainer finden, deren Stufen kollabieren, **ohne**
+eine Gate-Regel zu verletzen — in der DifferenzierungsEngine war genau das der häufigste Fall.
+Die 18 verbliebenen Gate-Warnungen (wortgleiche Aufgaben zwischen Trainern, angesagte Rechenart
+auf Stufe 4) sind ein erster Anhaltspunkt dafür.
 
 ## Ziel
 
