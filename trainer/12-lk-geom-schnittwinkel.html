@@ -22,42 +22,42 @@
         optionen:["\\(\\cos\\varphi=\\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|}\\)","\\(\\cos\\varphi=\\vec{a}\\cdot\\vec{b}\\)","\\(\\sin\\varphi=\\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|}\\)","\\(\\tan\\varphi=\\vec{a}\\times\\vec{b}\\)"],
         korrekt:0,
         tipp:"Skalarproduktformel.",
-        loesungsweg:"\\(\\cos\\varphi=\\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|}\\)."
+        loesungsweg:"Das Skalarprodukt ist definiert als \\(\\vec a \\cdot \\vec b = |\\vec a||\\vec b|\\cos\\varphi\\). Nach \\(\\cos\\varphi\\) aufgelöst: $$\\cos\\varphi = \\frac{\\vec a \\cdot \\vec b}{|\\vec a||\\vec b|}$$ Die Division durch die beiden Beträge normiert — ohne sie hinge das Ergebnis von den Vektorlängen ab statt nur von der Richtung."
       },
       { id:2, level:1, typ:"mc",
         frage:"Schnittwinkel zweier Geraden: Warum \\(|\\ldots|\\) im Zähler?",
         optionen:["damit \\(\\varphi\\in[0°;90°]\\)","zur Skalierung","ohne Bedeutung","wegen Länge"],
         korrekt:0,
         tipp:"Betrag wegen Orientierung.",
-        loesungsweg:"\\(\\cos\\varphi=\\frac{|\\vec{u}_1\\cdot\\vec{u}_2|}{|\\vec{u}_1||\\vec{u}_2|}\\), \\(\\varphi\\in[0°;90°]\\)."
+        loesungsweg:"Ein Richtungsvektor lässt sich beliebig umdrehen: \\(\\vec u\\) und \\(-\\vec u\\) beschreiben dieselbe Gerade. Ohne Betrag käme je nach Wahl \\(\\varphi\\) oder \\(180°-\\varphi\\) heraus. $$\\cos\\varphi = \\frac{|\\vec u_1 \\cdot \\vec u_2|}{|\\vec u_1||\\vec u_2|}$$ Der Betrag im Zähler sorgt dafür, dass stets der spitze Winkel \\(\\varphi \\in [0°;90°]\\) herauskommt."
       },
       { id:3, level:1, typ:"mc",
         frage:"Schnittwinkel Gerade–Ebene: Welche Formel?",
         optionen:["\\(\\sin\\alpha=\\frac{|\\vec{u}\\cdot\\vec{n}|}{|\\vec{u}||\\vec{n}|}\\)","\\(\\cos\\alpha=\\frac{|\\vec{u}\\cdot\\vec{n}|}{|\\vec{u}||\\vec{n}|}\\)","\\(\\tan\\alpha=\\vec{u}\\cdot\\vec{n}\\)","keine der genannten"],
         korrekt:0,
         tipp:"Zwischen \\(\\vec{u}\\) und \\(\\vec{n}\\) ist \\(90°-\\alpha\\).",
-        loesungsweg:"\\(\\sin\\alpha=\\frac{|\\vec{u}\\cdot\\vec{n}|}{|\\vec{u}||\\vec{n}|}\\)."
+        loesungsweg:"Der Normalenvektor steht senkrecht auf der Ebene. Zwischen \\(\\vec u\\) und \\(\\vec n\\) liegt daher nicht \\(\\alpha\\) selbst, sondern \\(90° - \\alpha\\). Wegen \\(\\cos(90°-\\alpha) = \\sin\\alpha\\) folgt $$\\sin\\alpha = \\frac{|\\vec u \\cdot \\vec n|}{|\\vec u||\\vec n|}$$ Das ist die einzige der drei Schnittwinkelformeln mit Sinus — genau deshalb."
       },
       { id:4, level:1, typ:"mc",
         frage:"Schnittwinkel zweier Ebenen über Normalen \\(\\vec{n}_1,\\vec{n}_2\\):",
         optionen:["\\(\\cos\\varphi=\\frac{|\\vec{n}_1\\cdot\\vec{n}_2|}{|\\vec{n}_1||\\vec{n}_2|}\\)","\\(\\sin\\varphi=\\frac{|\\vec{n}_1\\cdot\\vec{n}_2|}{|\\vec{n}_1||\\vec{n}_2|}\\)","\\(\\vec{n}_1\\times\\vec{n}_2\\)","\\(\\vec{n}_1+\\vec{n}_2\\)"],
         korrekt:0,
         tipp:"Ebenenwinkel = Winkel der Normalen (bis auf Betrag).",
-        loesungsweg:"\\(\\cos\\varphi=\\frac{|\\vec{n}_1\\cdot\\vec{n}_2|}{|\\vec{n}_1||\\vec{n}_2|}\\)."
+        loesungsweg:"Zwei Ebenen schneiden sich unter demselben Winkel wie ihre Normalen: $$\\cos\\varphi = \\frac{|\\vec n_1 \\cdot \\vec n_2|}{|\\vec n_1||\\vec n_2|}$$ Hier steht wieder der Kosinus, weil beide Male mit Normalen gerechnet wird — anders als beim gemischten Fall Gerade–Ebene."
       },
       { id:5, level:1, typ:"mc",
         frage:"Zwei Vektoren sind orthogonal, wenn:",
         optionen:["\\(\\vec{a}\\cdot\\vec{b}=0\\)","\\(\\vec{a}+\\vec{b}=\\vec{0}\\)","\\(|\\vec{a}|=|\\vec{b}|\\)","\\(\\vec{a}\\times\\vec{b}=\\vec{0}\\)"],
         korrekt:0,
         tipp:"Skalarprodukt = 0.",
-        loesungsweg:"\\(\\vec{a}\\perp\\vec{b}\\iff\\vec{a}\\cdot\\vec{b}=0\\)."
+        loesungsweg:"Aus \\(\\vec a \\cdot \\vec b = |\\vec a||\\vec b|\\cos\\varphi\\) folgt: Ist das Skalarprodukt null und sind beide Vektoren vom Nullvektor verschieden, so muss \\(\\cos\\varphi = 0\\) sein, also \\(\\varphi = 90°\\). $$\\vec a \\perp \\vec b \\iff \\vec a \\cdot \\vec b = 0$$ Das ist die meistgenutzte Anwendung des Skalarprodukts überhaupt."
       },
       { id:6, level:1, typ:"mc",
         frage:"Der Winkelbereich eines Schnittwinkels ist:",
         optionen:["\\([0°;90°]\\)","\\([0°;180°]\\)","\\([-90°;90°]\\)","\\([0°;360°]\\)"],
         korrekt:0,
         tipp:"Durch Betrag.",
-        loesungsweg:"Schnittwinkel sind stets in \\([0°;90°]\\)."
+        loesungsweg:"Durch den Betrag im Zähler wird der Kosinus nie negativ, der Winkel also nie stumpf: $$\\varphi \\in [0°;\\,90°]$$ Das entspricht der Anschauung — zwei sich schneidende Geraden bilden vier Winkel, und man gibt stets den spitzen an."
       },
       // ===== LEVEL 2 — Winkel zweier Vektoren =====
       { id:7, level:2, typ:"numerisch",
@@ -70,25 +70,25 @@
         frage:"Winkel zwischen \\((1,1,0)\\) und \\((1,0,0)\\).",
         loesung:45, toleranz:0.5,
         tipp:"\\(\\cos\\varphi=\\frac{1}{\\sqrt{2}}\\).",
-        loesungsweg:"\\(\\varphi=45°\\)."
+        loesungsweg:"$$\\vec a \\cdot \\vec b = 1\\cdot1 + 1\\cdot0 + 0\\cdot0 = 1, \\quad |\\vec a| = \\sqrt2, \\quad |\\vec b| = 1$$ $$\\cos\\varphi = \\frac{1}{\\sqrt2} \\;\\Rightarrow\\; \\varphi = 45°$$"
       },
       { id:9, level:2, typ:"numerisch",
         frage:"Winkel zwischen \\((1,1,1)\\) und \\((1,0,0)\\).",
         loesung:54.7, toleranz:0.5,
         tipp:"\\(\\cos\\varphi=\\frac{1}{\\sqrt{3}}\\).",
-        loesungsweg:"\\(\\varphi=\\arccos(1/\\sqrt{3})\\approx54{,}74°\\)."
+        loesungsweg:"$$\\vec a \\cdot \\vec b = 1, \\quad |\\vec a| = \\sqrt3, \\quad |\\vec b| = 1$$ $$\\cos\\varphi = \\frac{1}{\\sqrt3} \\;\\Rightarrow\\; \\varphi = \\arccos\\tfrac{1}{\\sqrt3} \\approx 54{,}7°$$ Das ist der Winkel zwischen einer Raumdiagonalen des Würfels und einer Kante."
       },
       { id:10, level:2, typ:"numerisch",
         frage:"Winkel zwischen \\((2,2,1)\\) und \\((1,0,0)\\).",
         loesung:48.2, toleranz:0.5,
         tipp:"\\(\\cos\\varphi=\\frac{2}{3}\\).",
-        loesungsweg:"\\(\\arccos(2/3)\\approx48{,}19°\\)."
+        loesungsweg:"$$\\vec a \\cdot \\vec b = 2, \\quad |\\vec a| = \\sqrt{4+4+1} = 3, \\quad |\\vec b| = 1$$ $$\\cos\\varphi = \\frac{2}{3} \\;\\Rightarrow\\; \\varphi \\approx 48{,}2°$$"
       },
       { id:11, level:2, typ:"numerisch",
         frage:"Für welchen Winkel \\(\\varphi\\) gilt \\(\\cos\\varphi=0{,}5\\)?",
         loesung:60, toleranz:0.1,
         tipp:"\\(\\arccos(0{,}5)\\).",
-        loesungsweg:"\\(\\varphi=60°\\)."
+        loesungsweg:"$$\\varphi = \\arccos 0{,}5 = 60°$$ Dieser Wert gehört zum halbierten gleichseitigen Dreieck und ist einer der Standardwinkel."
       },
       { id:12, level:2, typ:"mc",
         frage:"Für welche Vektoren ist das Skalarprodukt negativ?",
@@ -102,38 +102,38 @@
         frage:"Schnittwinkel von \\(g_1:\\vec{u}_1=(1,0,0)\\) und \\(g_2:\\vec{u}_2=(1,1,0)\\) in °.",
         loesung:45, toleranz:0.5,
         tipp:"\\(\\cos\\varphi=\\frac{1}{\\sqrt{2}}\\).",
-        loesungsweg:"\\(\\varphi=45°\\)."
+        loesungsweg:"$$\\vec u_1 \\cdot \\vec u_2 = 1, \\quad |\\vec u_1| = 1, \\quad |\\vec u_2| = \\sqrt2$$ $$\\cos\\varphi = \\frac{1}{\\sqrt2} \\;\\Rightarrow\\; \\varphi = 45°$$"
       },
       { id:14, level:3, typ:"numerisch",
         frage:"Schnittwinkel \\(\\vec{u}_1=(1,1,0)\\), \\(\\vec{u}_2=(1,-1,0)\\).",
         loesung:90, toleranz:0.1,
         tipp:"Skalarprodukt = 0.",
-        loesungsweg:"\\(\\varphi=90°\\)."
+        loesungsweg:"$$\\vec u_1 \\cdot \\vec u_2 = 1 \\cdot 1 + 1 \\cdot (-1) + 0 = 0$$ Das Skalarprodukt verschwindet, also stehen die Geraden senkrecht aufeinander: \\(\\varphi = 90°\\). Der Umweg über den Arkuskosinus erübrigt sich."
       },
       { id:15, level:3, typ:"numerisch",
         frage:"Schnittwinkel \\(\\vec{u}_1=(2,1,2)\\), \\(\\vec{u}_2=(1,-2,2)\\).",
         loesung:63.6, toleranz:0.5,
         tipp:"\\(|\\vec{u}_1|=3, |\\vec{u}_2|=3\\), \\(\\vec{u}_1\\cdot\\vec{u}_2=2-2+4=4\\). \\(\\cos\\varphi=4/9\\).",
-        loesungsweg:"\\(\\arccos(4/9)\\approx63{,}61°\\)."
+        loesungsweg:"$$\\vec u_1 \\cdot \\vec u_2 = 2 - 2 + 4 = 4$$ $$|\\vec u_1| = \\sqrt{4+1+4} = 3, \\quad |\\vec u_2| = \\sqrt{1+4+4} = 3$$ $$\\cos\\varphi = \\frac{4}{9} \\;\\Rightarrow\\; \\varphi \\approx 63{,}6°$$"
       },
       { id:16, level:3, typ:"mc",
         frage:"Zwei Geraden heißen senkrecht, wenn:",
         optionen:["\\(\\vec{u}_1\\cdot\\vec{u}_2=0\\)","\\(\\vec{u}_1=\\vec{u}_2\\)","\\(\\vec{u}_1\\parallel\\vec{u}_2\\)","\\(|\\vec{u}_1|=|\\vec{u}_2|\\)"],
         korrekt:0,
         tipp:"Orthogonalität.",
-        loesungsweg:"Richtungsvektoren orthogonal."
+        loesungsweg:"Der Winkel zweier Geraden ist der Winkel ihrer Richtungsvektoren. Senkrecht bedeutet \\(\\varphi = 90°\\), also \\(\\cos\\varphi = 0\\) und damit $$\\vec u_1 \\cdot \\vec u_2 = 0$$ Die Geraden müssen sich dafür nicht einmal schneiden — auch windschiefe Geraden können orthogonale Richtungen haben."
       },
       { id:17, level:3, typ:"numerisch",
         frage:"\\(\\vec{u}_1=(3,0,4)\\), \\(\\vec{u}_2=(0,1,0)\\). Winkel?",
         loesung:90, toleranz:0.1,
         tipp:"Skalarprodukt 0.",
-        loesungsweg:"\\(\\varphi=90°\\)."
+        loesungsweg:"$$\\vec u_1 \\cdot \\vec u_2 = 3\\cdot0 + 0\\cdot1 + 4\\cdot0 = 0$$ Also \\(\\varphi = 90°\\)."
       },
       { id:18, level:3, typ:"numerisch",
         frage:"\\(\\vec{u}_1=(1,2,2)\\), \\(\\vec{u}_2=(2,1,-2)\\). Winkel?",
         loesung:90, toleranz:0.1,
         tipp:"\\(2+2-4=0\\).",
-        loesungsweg:"\\(\\varphi=90°\\)."
+        loesungsweg:"$$\\vec u_1 \\cdot \\vec u_2 = 1\\cdot2 + 2\\cdot1 + 2\\cdot(-2) = 2 + 2 - 4 = 0$$ Also \\(\\varphi = 90°\\). Die beiden Beträge braucht man gar nicht zu berechnen — sobald das Skalarprodukt null ist, steht das Ergebnis fest."
       },
       // ===== LEVEL 4 — Gerade–Ebene =====
       { id:19, level:4, typ:"numerisch",
@@ -152,7 +152,7 @@
         frage:"\\(\\vec{u}=(1,1,1)\\), \\(\\vec{n}=(0,0,1)\\). Winkel Gerade–Ebene.",
         loesung:35.3, toleranz:0.5,
         tipp:"\\(\\sin\\alpha=\\frac{1}{\\sqrt{3}}\\).",
-        loesungsweg:"\\(\\alpha=\\arcsin(1/\\sqrt{3})\\approx35{,}26°\\)."
+        loesungsweg:"Gerade und Ebene, also die Sinusformel: $$\\vec u \\cdot \\vec n = 1, \\quad |\\vec u| = \\sqrt3, \\quad |\\vec n| = 1$$ $$\\sin\\alpha = \\frac{1}{\\sqrt3} \\;\\Rightarrow\\; \\alpha \\approx 35{,}3°$$ Mit dem Kosinus käme hier \\(54{,}7°\\) heraus — das ist der Winkel zur Normalen, nicht zur Ebene."
       },
       { id:22, level:4, typ:"numerisch",
         frage:"\\(g:\\vec{u}=(2,1,2)\\), \\(E:2x+y+2z=5\\). Schnittwinkel?",
@@ -171,26 +171,26 @@
         optionen:["Gerade liegt in oder ist parallel zu E","\\(\\alpha=90°\\)","\\(\\alpha=45°\\)","Gerade schneidet E senkrecht"],
         korrekt:0,
         tipp:"\\(\\sin\\alpha=0\\).",
-        loesungsweg:"\\(\\alpha=0°\\)."
+        loesungsweg:"Ist \\(\\vec u \\cdot \\vec n = 0\\), so steht die Gerade senkrecht auf der Normalen — und damit <b>parallel</b> zur Ebene. Die Sinusformel liefert \\(\\sin\\alpha = 0\\), also \\(\\alpha = 0°\\). Ob die Gerade in der Ebene liegt oder echt parallel verläuft, entscheidet erst eine Punktprobe."
       },
       // ===== LEVEL 5 — Ebene–Ebene =====
       { id:25, level:5, typ:"numerisch",
         frage:"Winkel zwischen \\(E_1:x+y+z=0\\) und \\(E_2:x-y+z=0\\).",
         loesung:70.5, toleranz:0.5,
         tipp:"\\(\\vec{n}_1\\cdot\\vec{n}_2=1\\), \\(|\\vec{n}_i|=\\sqrt{3}\\). \\(\\cos\\varphi=1/3\\).",
-        loesungsweg:"\\(\\varphi=\\arccos(1/3)\\approx70{,}53°\\)."
+        loesungsweg:"Normalenvektoren ablesen: \\(\\vec n_1 = (1,1,1)\\), \\(\\vec n_2 = (1,-1,1)\\). $$\\vec n_1 \\cdot \\vec n_2 = 1 - 1 + 1 = 1, \\quad |\\vec n_1| = |\\vec n_2| = \\sqrt3$$ $$\\cos\\varphi = \\frac{1}{3} \\;\\Rightarrow\\; \\varphi \\approx 70{,}5°$$"
       },
       { id:26, level:5, typ:"numerisch",
         frage:"\\(E_1:z=0\\), \\(E_2:x=0\\). Schnittwinkel?",
         loesung:90, toleranz:0.1,
         tipp:"Normalen senkrecht.",
-        loesungsweg:"\\(\\varphi=90°\\)."
+        loesungsweg:"Die Normalen sind \\(\\vec n_1 = (0,0,1)\\) und \\(\\vec n_2 = (1,0,0)\\). Ihr Skalarprodukt ist \\(0\\), also \\(\\varphi = 90°\\) — die beiden Koordinatenebenen stehen senkrecht aufeinander."
       },
       { id:27, level:5, typ:"numerisch",
         frage:"\\(E_1:x+y=0\\), \\(E_2:x-y=0\\). Winkel?",
         loesung:90, toleranz:0.1,
         tipp:"\\(\\vec{n}_1\\cdot\\vec{n}_2=1-1=0\\).",
-        loesungsweg:"\\(\\varphi=90°\\)."
+        loesungsweg:"$$\\vec n_1 = (1,1,0), \\quad \\vec n_2 = (1,-1,0)$$ $$\\vec n_1 \\cdot \\vec n_2 = 1 - 1 + 0 = 0 \\;\\Rightarrow\\; \\varphi = 90°$$"
       },
       { id:28, level:5, typ:"numerisch",
         frage:"\\(E_1:2x-y+2z=1\\), \\(E_2:x+2y+2z=3\\). Winkel.",
@@ -203,13 +203,13 @@
         optionen:["sie parallel oder identisch sind","sie senkrecht stehen","sie die z-Achse enthalten","nie"],
         korrekt:0,
         tipp:"Kein Schnittwinkel bei Parallelität.",
-        loesungsweg:"Parallele Ebenen haben \\(\\varphi=0°\\)."
+        loesungsweg:"Sind die Ebenen parallel, so sind auch ihre Normalen parallel; das Skalarprodukt erreicht dann seinen größten Wert \\(|\\vec n_1||\\vec n_2|\\), der Kosinus wird \\(1\\) und damit \\(\\varphi = 0°\\). Dasselbe gilt für identische Ebenen. Ein echter Schnitt findet in beiden Fällen nicht statt."
       },
       { id:30, level:5, typ:"numerisch",
         frage:"\\(E_1:x=0\\), \\(E_2:x+y+z=1\\). Winkel.",
         loesung:54.7, toleranz:0.5,
         tipp:"\\(\\vec{n}_1=(1,0,0)\\), \\(\\vec{n}_2=(1,1,1)\\). \\(\\cos\\varphi=1/\\sqrt{3}\\).",
-        loesungsweg:"\\(\\arccos(1/\\sqrt{3})\\approx54{,}74°\\)."
+        loesungsweg:"$$\\vec n_1 = (1,0,0), \\quad \\vec n_2 = (1,1,1)$$ $$\\cos\\varphi = \\frac{1}{1 \\cdot \\sqrt3} \\;\\Rightarrow\\; \\varphi \\approx 54{,}7°$$ Die Konstante \\(1\\) auf der rechten Seite der Ebenengleichung verschiebt die Ebene nur und spielt für den Winkel keine Rolle."
       },
       // ===== LEVEL 6 — Abi =====
       { id:31, level:6, typ:"numerisch",
@@ -222,7 +222,7 @@
         frage:"Zwei Dachflächen: \\(E_1:z=0\\) (Boden), \\(E_2: y+z=2\\). Neigungswinkel des Daches?",
         loesung:45, toleranz:0.5,
         tipp:"\\(\\vec{n}_1=(0,0,1)\\), \\(\\vec{n}_2=(0,1,1)\\). \\(\\cos\\varphi=\\frac{1}{\\sqrt{2}}\\).",
-        loesungsweg:"\\(\\varphi=45°\\)."
+        loesungsweg:"$$\\vec n_1 = (0,0,1), \\quad \\vec n_2 = (0,1,1)$$ $$\\cos\\varphi = \\frac{1}{1 \\cdot \\sqrt2} \\;\\Rightarrow\\; \\varphi = 45°$$ Das Dach ist also um \\(45°\\) gegen den Boden geneigt."
       },
       { id:33, level:6, typ:"numerisch",
         frage:"Schnittwinkel der Geraden \\(g_1:\\vec{u}=(1,1,0)\\) und \\(g_2:\\vec{u}=(1,-1,\\sqrt{2})\\). Schnittwinkel in Grad?",
@@ -234,22 +234,21 @@
         frage:"Eine Gerade \\(g\\) mit \\(\\vec{u}=(0,3,4)\\) trifft die Ebene \\(E:z=0\\). Schnittwinkel in °.",
         loesung:53.1, toleranz:0.5,
         tipp:"\\(\\sin\\alpha=4/5\\).",
-        loesungsweg:"\\(\\alpha=\\arcsin(0{,}8)\\approx53{,}13°\\)."
+        loesungsweg:"Gerade und Ebene, also der Sinus. Mit \\(\\vec n = (0,0,1)\\): $$\\vec u \\cdot \\vec n = 4, \\quad |\\vec u| = \\sqrt{9+16} = 5, \\quad |\\vec n| = 1$$ $$\\sin\\alpha = \\frac{4}{5} = 0{,}8 \\;\\Rightarrow\\; \\alpha \\approx 53{,}1°$$"
       },
       { id:35, level:6, typ:"mc",
         frage:"Für Schnittwinkel \\(\\varphi\\) von Gerade und Ebene verwendet man im Nenner:",
         optionen:["\\(|\\vec{u}|\\cdot|\\vec{n}|\\)","\\(|\\vec{u}|+|\\vec{n}|\\)","\\(|\\vec{u}\\times\\vec{n}|\\)","1"],
         korrekt:0,
         tipp:"Produkt der Beträge.",
-        loesungsweg:"\\(\\sin\\alpha=\\frac{|\\vec{u}\\cdot\\vec{n}|}{|\\vec{u}|\\cdot|\\vec{n}|}\\)."
+        loesungsweg:"Im Nenner steht stets das <b>Produkt</b> der beiden Beträge: $$\\sin\\alpha = \\frac{|\\vec u \\cdot \\vec n|}{|\\vec u| \\cdot |\\vec n|}$$ Das folgt direkt aus der Definition des Skalarprodukts und sorgt dafür, dass der Bruch nie größer als \\(1\\) wird — sonst gäbe es keinen passenden Winkel."
       },
       { id:36, level:6, typ:"numerisch",
         frage:"Ein Tetraeder mit Ecken \\(A(0|0|0), B(1|0|0), C(0|1|0), D(0|0|1)\\): Winkel zwischen Ebene \\(ABC\\) (\\(z=0\\)) und Ebene \\(BCD\\) in °.",
         loesung:54.7, toleranz:0.5,
         tipp:"Ebene \\(BCD: x+y+z=1\\), Normalen \\((0,0,1)\\) und \\((1,1,1)\\). \\(\\cos\\varphi=1/\\sqrt{3}\\).",
-        loesungsweg:"\\(\\varphi\\approx54{,}74°\\)."
-      }
-    ];
+        loesungsweg:"Die Ebene \\(BCD\\) enthält die drei Punkte \\((1|0|0)\\), \\((0|1|0)\\), \\((0|0|1)\\) und hat daher die Gleichung \\(x+y+z=1\\) mit \\(\\vec n_2 = (1,1,1)\\). Mit \\(\\vec n_1 = (0,0,1)\\): $$\\cos\\varphi = \\frac{1}{1 \\cdot \\sqrt3} \\;\\Rightarrow\\; \\varphi \\approx 54{,}7°$$ Das ist der Neigungswinkel der Schrägfläche eines solchen Tetraeders gegen die Grundfläche."
+      }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>
