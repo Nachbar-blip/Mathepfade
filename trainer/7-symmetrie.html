@@ -187,7 +187,7 @@
         loesung: -3,
         toleranz: 0,
         tipp: "Beide Koordinaten negieren.",
-        loesungsweg: "Punktspiegelung am Ursprung: \\((x|y) \\mapsto (-x|-y)\\). Also \\(P'(-3|-4)\\)."
+        loesungsweg: "Bei der Punktspiegelung am Ursprung kehren <b>beide</b> Koordinaten ihr Vorzeichen um: $$(x|y) \\mapsto (-x|-y) \\;\\Rightarrow\\; P'(-3|-4)$$ Die gesuchte \\(x\\)-Koordinate ist \\(-3\\). Der Ursprung liegt dabei genau in der Mitte zwischen \\(P\\) und \\(P'\\)."
       },
       {
         id: 18,
@@ -208,7 +208,7 @@
         loesung: 90,
         toleranz: 0,
         tipp: "Eine Vierteldrehung.",
-        loesungsweg: "Quadrat: \\(360° : 4 = 90°\\). Kleinster Drehwinkel."
+        loesungsweg: "Das Quadrat hat vier gleiche Ecken; eine Vierteldrehung bildet es wieder auf sich selbst ab: $$\\frac{360°}{4} = 90°$$ Auch \\(180°\\) und \\(270°\\) leisten das, aber \\(90°\\) ist der kleinste solche Winkel."
       },
       {
         id: 20,
@@ -218,7 +218,7 @@
         loesung: 120,
         toleranz: 0,
         tipp: "\\(360° : 3\\).",
-        loesungsweg: "Gleichseitiges Dreieck: \\(360° : 3 = 120°\\)."
+        loesungsweg: "$$\\frac{360°}{3} = 120°$$ Ein gleichseitiges Dreieck ist dreizählig drehsymmetrisch — es hat außerdem drei Symmetrieachsen."
       },
       {
         id: 21,
@@ -228,7 +228,7 @@
         loesung: 60,
         toleranz: 0,
         tipp: "\\(360° : 6\\).",
-        loesungsweg: "Sechseck: \\(360° : 6 = 60°\\)."
+        loesungsweg: "$$\\frac{360°}{6} = 60°$$ Je mehr Ecken ein regelmäßiges Vieleck hat, desto kleiner ist der Drehwinkel — im Grenzfall wird daraus der Kreis, der sich um jeden Winkel drehen lässt."
       },
       {
         id: 22,
@@ -248,7 +248,7 @@
         loesung: 6,
         toleranz: 0,
         tipp: "So viele wie Ecken.",
-        loesungsweg: "Regelmäßiges Sechseck: <b>6 Symmetrieachsen</b>."
+        loesungsweg: "Ein regelmäßiges \\(n\\)-Eck hat genau \\(n\\) Symmetrieachsen: $$n = 6$$ Bei gerader Eckenzahl verlaufen drei davon durch gegenüberliegende Ecken und drei durch gegenüberliegende Seitenmitten."
       },
       {
         id: 24,
@@ -299,7 +299,7 @@
         loesung: 72,
         toleranz: 0,
         tipp: "\\(360° : 5\\).",
-        loesungsweg: "$$\\frac{360°}{5} = 72°$$"
+        loesungsweg: "Fünf Deckdrehungen teilen die volle Drehung in fünf gleiche Teile: $$\\frac{360°}{5} = 72°$$ Die weiteren Drehwinkel sind Vielfache davon: \\(144°\\), \\(216°\\), \\(288°\\)."
       },
       {
         id: 29,
@@ -319,7 +319,7 @@
         loesung: -5,
         toleranz: 0,
         tipp: "\\(180°\\)-Drehung = Punktspiegelung.",
-        loesungsweg: "\\((2|5) \\mapsto (-2|-5)\\). \\(y\\)-Koordinate: \\(-5\\)."
+        loesungsweg: "Eine Drehung um \\(180°\\) ist dasselbe wie die Punktspiegelung am Drehzentrum: $$(2|5) \\mapsto (-2|-5)$$ Die gesuchte \\(y\\)-Koordinate ist \\(-5\\)."
       },
       // ========== LEVEL 6 -- wagnerisch: Transfer und Beweise ==========
       {
@@ -350,7 +350,7 @@
         loesung: 7,
         toleranz: 0,
         tipp: "Koordinaten vertauschen.",
-        loesungsweg: "Spiegelung an \\(y = x\\): \\((3|7) \\mapsto (7|3)\\). \\(x\\)-Koordinate: \\(7\\)."
+        loesungsweg: "Bei der Spiegelung an der Winkelhalbierenden \\(y = x\\) werden die Koordinaten vertauscht: $$(3|7) \\mapsto (7|3)$$ Die \\(x\\)-Koordinate des Bildes ist also \\(7\\). Anschaulich: Die Gerade \\(y = x\\) besteht genau aus den Punkten, bei denen dieses Vertauschen nichts ändert — sie bleiben fest."
       },
       {
         id: 34,
@@ -381,8 +381,7 @@
         toleranz: 0,
         tipp: "\\(2 \\cdot \\frac{360°}{5}\\).",
         loesungsweg: "Kleinster Drehwinkel: \\(72°\\). Zweite Übereinstimmung: \\(2 \\cdot 72° = 144°\\)."
-      }
-    ];
+      }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>
