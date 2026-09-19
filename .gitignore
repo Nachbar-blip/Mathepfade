@@ -2,3 +2,7 @@ __pycache__/
 .pytest_cache/
 tests/reports/
 *.pyc
+
+# Artefakte der Testlaeufe
+kx_run.txt
+kx_w4.txt
