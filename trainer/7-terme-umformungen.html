@@ -55,7 +55,7 @@
         optionen: ["\\(5x + 5\\)", "\\(10x\\)", "\\(3x + 2x + 5\\)", "\\(9x + 1\\)"],
         korrekt: 0,
         tipp: "Fasse gleichartige Terme zusammen: \\(x\\)-Terme und Zahlen getrennt.",
-        loesungsweg: "$$3x + 2x + 4 + 1 = 5x + 5$$"
+        loesungsweg: "Nur gleichartige Terme dürfen zusammengefasst werden — \\(x\\)-Terme mit \\(x\\)-Termen, Zahlen mit Zahlen: $$3x + 2x + 4 + 1 = 5x + 5$$ Zu \\(10x\\) darf man <b>nicht</b> zusammenfassen: Die \\(5\\) ist keine \\(x\\)-Größe und lässt sich mit \\(5x\\) nicht verrechnen."
       },
       {
         id: 5,
@@ -65,7 +65,7 @@
         optionen: ["\\(4y + 10\\)", "\\(8y + 10\\)", "\\(4y - 4\\)", "\\(14y\\)"],
         korrekt: 0,
         tipp: "\\(y\\)-Terme: \\(6y - 2y\\). Zahlen: \\(3 + 7\\).",
-        loesungsweg: "$$6y - 2y + 3 + 7 = 4y + 10$$"
+        loesungsweg: "Sortieren, dann getrennt zusammenfassen: $$6y - 2y + 3 + 7 = 4y + 10$$ Das Minuszeichen gehört zur \\(2y\\) und wandert beim Sortieren mit."
       },
       {
         id: 6,
@@ -75,7 +75,7 @@
         optionen: ["\\(2a + 7b\\)", "\\(4a + 3b\\)", "\\(3a + 7b\\)", "\\(10ab\\)"],
         korrekt: 0,
         tipp: "\\(a\\)-Terme: \\(3a - a = 2a\\). \\(b\\)-Terme: \\(5b + 2b = 7b\\).",
-        loesungsweg: "$$3a - a + 5b + 2b = 2a + 7b$$"
+        loesungsweg: "Hier gibt es zwei Sorten von Termen, die getrennt behandelt werden: $$3a - a + 5b + 2b = 2a + 7b$$ Beachte \\(3a - a = 2a\\) — ein alleinstehendes \\(a\\) bedeutet \\(1a\\). Weiter zusammenfassen geht nicht: \\(a\\) und \\(b\\) sind verschiedene Variablen."
       },
       // ========== LEVEL 2 -- leicht: Klammern auflösen mit Plus und Minus ==========
       {
@@ -86,7 +86,7 @@
         optionen: ["\\(-3x - 5\\)", "\\(-3x + 5\\)", "\\(3x + 5\\)", "\\(3x - 5\\)"],
         korrekt: 1,
         tipp: "Minus vor der Klammer dreht alle Vorzeichen um.",
-        loesungsweg: "$$-(3x - 5) = -3x + 5$$"
+        loesungsweg: "Ein Minuszeichen vor der Klammer bedeutet Multiplikation mit \\(-1\\) und dreht deshalb <b>jedes</b> Vorzeichen um: $$-(3x-5) = -3x + 5$$ Der häufigste Fehler ist, die hintere \\(-5\\) unverändert zu lassen."
       },
       {
         id: 8,
@@ -96,7 +96,7 @@
         optionen: ["\\(6x - 3\\)", "\\(2x - 3\\)", "\\(6x + 3\\)", "\\(4x + 2x - 3x\\)"],
         korrekt: 0,
         tipp: "Plus vor der Klammer: Vorzeichen bleiben. Dann zusammenfassen.",
-        loesungsweg: "$$4x + 2x - 3 = 6x - 3$$"
+        loesungsweg: "Steht ein Pluszeichen vor der Klammer, bleiben alle Vorzeichen erhalten: $$4x + (2x-3) = 4x + 2x - 3 = 6x - 3$$"
       },
       {
         id: 9,
@@ -106,7 +106,7 @@
         optionen: ["\\(5a + 4\\)", "\\(5a - 4\\)", "\\(9a - 4\\)", "\\(9a + 4\\)"],
         korrekt: 1,
         tipp: "Minus vor der Klammer: \\(-(2a + 4) = -2a - 4\\).",
-        loesungsweg: "$$7a - 2a - 4 = 5a - 4$$"
+        loesungsweg: "Das Minus vor der Klammer dreht beide Vorzeichen um: $$7a - (2a+4) = 7a - 2a - 4 = 5a - 4$$ Aus \\(+4\\) wird \\(-4\\) — genau hier wird am häufigsten gepatzt."
       },
       {
         id: 10,
@@ -126,7 +126,7 @@
         optionen: ["\\(2a + b\\)", "\\(2a + 2b\\)", "\\(a + 2b\\)", "\\(2ab\\)"],
         korrekt: 1,
         tipp: "Multipliziere den Faktor mit jedem Term in der Klammer.",
-        loesungsweg: "$$2(a + b) = 2a + 2b$$"
+        loesungsweg: "Nach dem Distributivgesetz wird der Faktor mit <b>jedem</b> Summanden der Klammer multipliziert: $$2(a+b) = 2a + 2b$$ Probe mit \\(a = 3\\), \\(b = 1\\): links \\(2 \\cdot 4 = 8\\), rechts \\(6+2 = 8\\) ✓"
       },
       {
         id: 12,
@@ -147,7 +147,7 @@
         optionen: ["\\(6a - 12b + 3\\)", "\\(6a - 4b + 3\\)", "\\(6a - 12b + 1\\)", "\\(5a - 7b + 4\\)"],
         korrekt: 0,
         tipp: "Jeden Summanden in der Klammer mit 3 multiplizieren.",
-        loesungsweg: "$$3 \\cdot 2a - 3 \\cdot 4b + 3 \\cdot 1 = 6a - 12b + 3$$"
+        loesungsweg: "Jeder der drei Summanden wird mit \\(3\\) multipliziert: $$3 \\cdot 2a - 3 \\cdot 4b + 3 \\cdot 1 = 6a - 12b + 3$$ Auch die \\(1\\) am Ende wird multipliziert — sie bleibt nicht stehen."
       },
       {
         id: 14,
@@ -157,7 +157,7 @@
         optionen: ["\\(-6x + 10\\)", "\\(-6x - 10\\)", "\\(6x - 10\\)", "\\(6x + 10\\)"],
         korrekt: 0,
         tipp: "Beachte das Minuszeichen: \\(-2 \\cdot 3x\\) und \\(-2 \\cdot (-5)\\).",
-        loesungsweg: "$$-2 \\cdot 3x + (-2) \\cdot (-5) = -6x + 10$$"
+        loesungsweg: "Der Faktor ist negativ, deshalb ändern sich alle Vorzeichen: $$-2 \\cdot 3x = -6x, \\qquad -2 \\cdot (-5) = +10$$ $$-2(3x-5) = -6x + 10$$ Minus mal minus ergibt plus — das zweite Vorzeichen kippt."
       },
       {
         id: 15,
@@ -177,7 +177,7 @@
         optionen: ["\\(2a - 2\\)", "\\(2a + 22\\)", "\\(8a + 22\\)", "\\(2a + 6\\)"],
         korrekt: 1,
         tipp: "\\(5a + 10 - 3a + 12\\). Fasse zusammen.",
-        loesungsweg: "$$5a + 10 - 3a + 12 = 2a + 22$$"
+        loesungsweg: "Zuerst beide Klammern auflösen, dabei das Minus vor der zweiten beachten: $$5a + 10 - 3a + 12$$ Dann zusammenfassen: $$= 2a + 22$$ Aus \\(-3 \\cdot (-4)\\) wird \\(+12\\), nicht \\(-12\\)."
       },
       {
         id: 17,
@@ -208,7 +208,7 @@
         optionen: ["\\(4(a^2 + 8a)\\)", "\\(4a(a + 2)\\)", "\\(2a(2a + 8)\\)", "\\(8a(a + 1)\\)"],
         korrekt: 1,
         tipp: "GGT der Koeffizienten: 4. Gemeinsame Variable: \\(a\\). Also \\(4a\\) ausklammern.",
-        loesungsweg: "$$4a^2 + 8a = 4a(a + 2)$$"
+        loesungsweg: "Größter gemeinsamer Teiler der Koeffizienten ist \\(4\\), gemeinsame Variable ist \\(a\\) — also \\(4a\\) ausklammern: $$4a^2 + 8a = 4a(a+2)$$ Probe durch Ausmultiplizieren: \\(4a \\cdot a + 4a \\cdot 2 = 4a^2+8a\\) ✓ Bei \\(2a(2a+8)\\) wäre noch ein Faktor \\(2\\) übrig — dann ist nicht vollständig ausgeklammert."
       },
       {
         id: 20,
@@ -228,7 +228,7 @@
         optionen: ["\\(a^2 + 3a - 4\\)", "\\(a^2 - 3a - 4\\)", "\\(a^2 - 4a + 1\\)", "\\(a^2 - 5a + 4\\)"],
         korrekt: 1,
         tipp: "\\(a \\cdot a + a \\cdot 1 + (-4) \\cdot a + (-4) \\cdot 1\\).",
-        loesungsweg: "$$a^2 + a - 4a - 4 = a^2 - 3a - 4$$"
+        loesungsweg: "Jeder Term der ersten Klammer wird mit jedem der zweiten multipliziert: $$a \\cdot a + a \\cdot 1 - 4 \\cdot a - 4 \\cdot 1 = a^2 + a - 4a - 4$$ $$= a^2 - 3a - 4$$ Das Absolutglied \\(-4\\) ist das Produkt \\((-4)\\cdot 1\\), der mittlere Koeffizient ihre Summe \\(-4+1 = -3\\)."
       },
       {
         id: 22,
@@ -248,7 +248,7 @@
         optionen: ["\\(3(x^2 - 9x)\\)", "\\(3x(x - 3)\\)", "\\(9x(x - 1)\\)", "\\(3x(x - 9)\\)"],
         korrekt: 1,
         tipp: "GGT: \\(3x\\). Teile jeden Summanden durch \\(3x\\).",
-        loesungsweg: "$$3x^2 - 9x = 3x(x - 3)$$"
+        loesungsweg: "GGT der Koeffizienten ist \\(3\\), gemeinsame Variable \\(x\\): $$3x^2 - 9x = 3x(x-3)$$ Probe: \\(3x \\cdot x - 3x \\cdot 3 = 3x^2-9x\\) ✓ Bei \\(3x(x-9)\\) wäre der zweite Summand nicht durch \\(3x\\), sondern nur durch \\(x\\) geteilt worden."
       },
       {
         id: 24,
@@ -269,7 +269,7 @@
         optionen: ["\\(4x^2 + 5x\\)", "\\(7x\\)", "\\(4x^2 + 7x\\)", "\\(x\\)"],
         korrekt: 1,
         tipp: "Erst ausmultiplizieren: \\(2x^2 + 6x - 2x^2 + x\\).",
-        loesungsweg: "$$2x^2 + 6x - 2x^2 + x = 7x$$"
+        loesungsweg: "Erst beide Produkte ausmultiplizieren, dabei das Minus auf beide Terme der zweiten Klammer anwenden: $$2x^2 + 6x - 2x^2 + x$$ Die quadratischen Terme heben einander auf: $$= 7x$$ Dass \\(x^2\\) verschwindet, ist hier kein Rechenfehler, sondern das Ergebnis."
       },
       {
         id: 26,
@@ -289,7 +289,7 @@
         optionen: ["\\(4ab(3a - 2b)\\)", "\\(4a(3ab - 2b^2)\\)", "\\(2ab(6a - 4b)\\)", "\\(12ab(a - b)\\)"],
         korrekt: 0,
         tipp: "GGT der Koeffizienten: 4. Gemeinsame Variablen: \\(a\\) und \\(b\\).",
-        loesungsweg: "$$12a^2b - 8ab^2 = 4ab(3a - 2b)$$"
+        loesungsweg: "GGT der Zahlen \\(12\\) und \\(8\\) ist \\(4\\); \\(a\\) und \\(b\\) kommen in beiden Summanden vor, also \\(4ab\\) ausklammern: $$12a^2b - 8ab^2 = 4ab(3a-2b)$$ Probe: \\(4ab \\cdot 3a = 12a^2b\\) und \\(4ab \\cdot 2b = 8ab^2\\) ✓ Bei \\(2ab(6a-4b)\\) ließe sich noch \\(2\\) ausklammern — also nicht vollständig."
       },
       {
         id: 28,
@@ -309,7 +309,7 @@
         optionen: ["\\(2x^2 + 5x - 12\\)", "\\(2x^2 + 11x - 12\\)", "\\(2x^2 - x - 12\\)", "\\(2x^2 + x + 12\\)"],
         korrekt: 0,
         tipp: "\\(2x \\cdot x + 2x \\cdot 4 + (-3) \\cdot x + (-3) \\cdot 4\\).",
-        loesungsweg: "$$2x^2 + 8x - 3x - 12 = 2x^2 + 5x - 12$$"
+        loesungsweg: "$$2x \\cdot x + 2x \\cdot 4 - 3 \\cdot x - 3 \\cdot 4 = 2x^2 + 8x - 3x - 12$$ $$= 2x^2 + 5x - 12$$ Die mittleren Terme werden <b>subtrahiert</b>, nicht addiert: \\(8x - 3x = 5x\\), nicht \\(11x\\)."
       },
       {
         id: 30,
