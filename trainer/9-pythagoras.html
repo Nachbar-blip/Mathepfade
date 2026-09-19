@@ -18,7 +18,7 @@
     const AUFGABEN = [
       // LEVEL 1
       { id:1, level:1, typ:"mc", frage:"Wie heißt die längste Seite im rechtwinkligen Dreieck?", optionen:["Kathete","Hypotenuse","Ankathete","Gegenkathete"], korrekt:1, tipp:"Sie liegt dem rechten Winkel gegenüber.", loesungsweg:"Die <b>Hypotenuse</b> ist die längste Seite und liegt dem rechten Winkel gegenüber." },
-      { id:2, level:1, typ:"mc", frage:"Wie lautet der Satz des Pythagoras?", optionen:["\\(a+b=c\\)","\\(a^2+b^2=c^2\\)","\\(a\\cdot b=c\\)","\\(a^2-b^2=c^2\\)"], korrekt:1, tipp:"Quadrat über Hypotenuse = Summe der Kathetenquadrate.", loesungsweg:"$$a^2+b^2=c^2$$ mit \\(c\\) als Hypotenuse." },
+      { id:2, level:1, typ:"mc", frage:"Wie lautet der Satz des Pythagoras?", optionen:["\\(a+b=c\\)","\\(a^2+b^2=c^2\\)","\\(a\\cdot b=c\\)","\\(a^2-b^2=c^2\\)"], korrekt:1, tipp:"Quadrat über Hypotenuse = Summe der Kathetenquadrate.", loesungsweg:"Im rechtwinkligen Dreieck gilt: $$a^2 + b^2 = c^2$$ Dabei sind \\(a\\) und \\(b\\) die Katheten und \\(c\\) die <b>Hypotenuse</b>, also die Seite gegenüber dem rechten Winkel. Anschaulich: Die Quadrate über den beiden Katheten haben zusammen denselben Flächeninhalt wie das Quadrat über der Hypotenuse. Ohne rechten Winkel gilt die Beziehung nicht." },
       { id:3, level:1, typ:"mc", frage:"In \\(a^2+b^2=c^2\\): Was ist \\(c\\)?", optionen:["Kathete","Hypotenuse","Winkel","Höhe"], korrekt:1, tipp:"Die Seite gegenüber dem rechten Winkel.", loesungsweg:"\\(c\\) ist die <b>Hypotenuse</b>." },
       { id:4, level:1, typ:"numerisch", frage:"Berechne \\(c\\) für \\(a=3\\), \\(b=4\\).", loesung:5, toleranz:0, tipp:"\\(9+16=25\\), dann Wurzel.", loesungsweg:"$$c=\\sqrt{3^2+4^2}=\\sqrt{25}=5$$" },
       { id:5, level:1, typ:"numerisch", frage:"Berechne \\(c\\) für \\(a=6\\), \\(b=8\\).", loesung:10, toleranz:0, tipp:"\\(36+64=100\\).", loesungsweg:"$$c=\\sqrt{36+64}=\\sqrt{100}=10$$" },
@@ -57,8 +57,7 @@
       { id:33, level:6, typ:"numerisch", frage:"Im Würfel (Kante 6): Länge einer Flächendiagonale. Runde auf 2 Dez.", loesung:8.49, toleranz:0.03, tipp:"\\(a\\sqrt 2\\).", loesungsweg:"$$d=6\\sqrt 2\\approx 8{,}49$$" },
       { id:34, level:6, typ:"numerisch", frage:"Dreieck \\(A(0|0), B(6|0), C(3|4)\\). Ist es rechtwinklig? Wenn ja, gib die Hypotenusenlänge, sonst \\(0\\).", loesung:0, toleranz:0, tipp:"Seiten: 6, 5, 5. \\(25+25\\ne 36\\).", loesungsweg:"\\(|AB|=6, |AC|=5, |BC|=5\\). \\(5^2+5^2=50\\ne 36\\). Nicht rechtwinklig: Antwort 0." },
       { id:35, level:6, typ:"numerisch", frage:"Ein gleichseitiges Dreieck hat Flächeninhalt \\(A=\\sqrt 3\\cdot 9\\). Berechne die Seitenlänge.", loesung:6, toleranz:0, tipp:"\\(A=\\frac{a^2\\sqrt 3}{4}\\).", loesungsweg:"\\(\\frac{a^2\\sqrt 3}{4}=9\\sqrt 3 \\Rightarrow a^2=36 \\Rightarrow a=6\\)." },
-      { id:36, level:6, typ:"numerisch", frage:"Pyramide mit quadratischer Grundfläche (Kante 6) und Höhe 4. Länge der Seitenkante?", loesung:5.83, toleranz:0.05, tipp:"Halbe Diagonale \\(3\\sqrt 2\\), dann Pythagoras mit Höhe 4.", loesungsweg:"\\(s=\\sqrt{(3\\sqrt 2)^2+16}=\\sqrt{18+16}=\\sqrt{34}\\approx 5{,}83\\)." }
-    ];
+      { id:36, level:6, typ:"numerisch", frage:"Pyramide mit quadratischer Grundfläche (Kante 6) und Höhe 4. Länge der Seitenkante?", loesung:5.83, toleranz:0.05, tipp:"Halbe Diagonale \\(3\\sqrt 2\\), dann Pythagoras mit Höhe 4.", loesungsweg:"\\(s=\\sqrt{(3\\sqrt 2)^2+16}=\\sqrt{18+16}=\\sqrt{34}\\approx 5{,}83\\)." }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>

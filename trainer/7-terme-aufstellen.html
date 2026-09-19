@@ -65,7 +65,7 @@
         optionen: ["\\(5x\\)", "\\(x - 5\\)", "\\(x + 5\\)", "\\(\\frac{x}{5}\\)"],
         korrekt: 2,
         tipp: "„Vermehrt um\" bedeutet „plus\".",
-        loesungsweg: "„Vermehrt um 5\" bedeutet \\(x + 5\\)."
+        loesungsweg: "„Vermehrt um\" bedeutet, dass etwas hinzukommt — also Addition: $$x + 5$$ Zu unterscheiden von „das Fünffache\" (\\(5x\\)) und „um 5 vermindert\" (\\(x-5\\))."
       },
       {
         id: 6,
@@ -75,7 +75,7 @@
         optionen: ["\\(3 - x\\)", "\\(x + 3\\)", "\\(3x\\)", "\\(x - 3\\)"],
         korrekt: 3,
         tipp: "„Vermindert um\" bedeutet „minus\".",
-        loesungsweg: "„Vermindert um 3\" bedeutet \\(x - 3\\)."
+        loesungsweg: "„Vermindert um\" bedeutet, dass etwas abgezogen wird: $$x - 3$$ Auf die Reihenfolge kommt es an: \\(3 - x\\) hieße „3, vermindert um die Zahl\" — bei der Subtraktion ist das nicht dasselbe."
       },
       // ========== LEVEL 2 -- leicht: Termwerte berechnen ==========
       {
@@ -289,7 +289,7 @@
         optionen: ["\\(1{,}5x + 2y\\)", "\\(1{,}5 + x + 2 + y\\)", "\\(3{,}5xy\\)", "\\(2x + 1{,}5y\\)"],
         korrekt: 0,
         tipp: "Kosten = Anzahl mal Einzelpreis, für jede Sorte.",
-        loesungsweg: "Hefte: \\(1{,}50 \\cdot x\\). Stifte: \\(2 \\cdot y\\). Gesamt: \\(1{,}5x + 2y\\)."
+        loesungsweg: "Für jede Sorte gilt: Kosten gleich Anzahl mal Einzelpreis. Beide Teilbeträge werden addiert: $$1{,}50 \\cdot x + 2 \\cdot y = 1{,}5x + 2y$$ Die Zuordnung muss stimmen — \\(2x + 1{,}5y\\) vertauschte die Preise. Probe mit \\(x = 2\\), \\(y = 1\\): \\(3 + 2 = 5\\,€\\) ✓"
       },
       {
         id: 28,
@@ -319,7 +319,7 @@
         optionen: ["\\(3{,}50 \\cdot k + 1{,}20\\)", "\\(3{,}50 + 1{,}20k\\)", "\\(4{,}70k\\)", "\\(k + 4{,}70\\)"],
         korrekt: 1,
         tipp: "Grundgebühr ist fest, dazu kommt der variable Anteil pro km.",
-        loesungsweg: "Kosten \\(= 3{,}50 + 1{,}20 \\cdot k\\)."
+        loesungsweg: "Die Grundgebühr fällt einmal an, der Kilometerpreis für jeden Kilometer: $$K(k) = 3{,}50 + 1{,}20 \\cdot k$$ Der feste Anteil wird <b>nicht</b> mit \\(k\\) multipliziert. Probe für \\(10\\,\\text{km}\\): \\(3{,}50 + 12 = 15{,}50\\,€\\) ✓ Die Variante \\(4{,}70k\\) würde die Grundgebühr bei jedem Kilometer erneut berechnen."
       },
       // ========== LEVEL 6 -- wagnerisch: Transferaufgaben ==========
       {
@@ -381,8 +381,7 @@
         toleranz: 0,
         tipp: "Löse \\(8x + 6 = 46\\).",
         loesungsweg: "$$8x + 6 = 46 \\implies 8x = 40 \\implies x = 5$$<br>Probe: Anna: \\(25\\)€, Ben: \\(21\\)€. Summe: \\(46\\)€ ✓"
-      }
-    ];
+      }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>
