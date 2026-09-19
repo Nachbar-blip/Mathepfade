@@ -310,17 +310,15 @@
         toleranz: 0,
         tipp: "\\(2x \\leq 14 \\implies x \\leq 7\\). Natürliche Zahlen mit \\(x > 0\\): \\(1, 2, \\ldots, 7\\).",
         loesungsweg: "$$x \\leq 7 \\text{ und } x > 0$$<br>Natürliche Zahlen: \\(1, 2, 3, 4, 5, 6, 7\\) — das sind <b>7</b>."
+      },      {
+        id: 30, level: 5, typ: "numerisch",
+        frage: "Wie viele ganze Zahlen erf\u00fcllen die Ungleichung \\(|x| < 3\\)?",
+        loesung: 5,
+        toleranz: 0,
+        tipp: "Schreibe die Ungleichung ohne Betragsstriche als Doppelungleichung.",
+        loesungsweg: "\\(|x| < 3\\) bedeutet \\(-3 < x < 3\\). Die ganzen Zahlen darin sind \\(-2, -1, 0, 1, 2\\) \u2014 also <b>5</b> St\u00fcck. Die Randwerte \\(-3\\) und \\(3\\) z\u00e4hlen nicht mit, weil das Zeichen \\(<\\) sie ausschlie\u00dft."
       },
-      {
-        id: 30,
-        level: 5,
-        typ: "mc",
-        frage: "Welche Lösungsmenge hat \\(|x| < 3\\)?",
-        optionen: ["\\(x < 3\\)", "\\(-3 < x < 3\\)", "\\(x > -3\\)", "\\(x < -3\\) oder \\(x > 3\\)"],
-        korrekt: 1,
-        tipp: "Der Betrag von \\(x\\) muss kleiner als 3 sein — das gilt für Zahlen zwischen \\(-3\\) und \\(3\\).",
-        loesungsweg: "\\(|x| < 3\\) bedeutet: \\(-3 < x < 3\\). Intervall: \\((-3; 3)\\)."
-      },
+
       // ========== LEVEL 6 -- wagnerisch: Textaufgaben und Transfer ==========
       {
         id: 31,
@@ -381,8 +379,7 @@
         korrekt: 0,
         tipp: "\\(7 - 0{,}1P < 3 \\implies -0{,}1P < -4 \\implies P > 40\\).",
         loesungsweg: "$$7 - 0{,}1P < 3 \\implies -0{,}1P < -4 \\implies P > 40$$<br>Tim braucht <b>mehr als 40 Punkte</b>."
-      }
-    ];
+      }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>

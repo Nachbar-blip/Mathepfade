@@ -214,10 +214,10 @@
         id: 20,
         level: 4,
         typ: "numerisch",
-        frage: "Berechne \\(27 \\cdot 33\\) mit der 3. binomischen Formel: \\((30 - 3)(30 + 3)\\).",
+        frage: "Berechne \\(27 \\cdot 33\\) im Kopf.",
         loesung: 891,
         toleranz: 0,
-        tipp: "\\(30^2 - 3^2 = 900 - 9\\).",
+        tipp: "Beide Zahlen liegen gleich weit von 30 entfernt \u2014 welche binomische Formel passt dazu?",
         loesungsweg: "$$27 \\cdot 33 = (30 - 3)(30 + 3) = 900 - 9 = 891$$"
       },
       {
@@ -280,17 +280,15 @@
         korrekt: 1,
         tipp: "\\(49 = 7^2\\) und \\(14a = 2 \\cdot a \\cdot 7\\). Welche Formel mit Minus?",
         loesungsweg: "$$a^2 - 14a + 49 = a^2 - 2 \\cdot a \\cdot 7 + 7^2 = (a - 7)^2$$"
+      },      {
+        id: 27, level: 5, typ: "numerisch",
+        frage: "Es gilt \\(4x^2 - 9 = (2x - a)(2x + a)\\). Welchen Wert hat \\(a\\)?",
+        loesung: 3,
+        toleranz: 0,
+        tipp: "Welche Zahl ergibt quadriert \\(9\\)?",
+        loesungsweg: "Nach der 3. binomischen Formel ist \\((2x-a)(2x+a) = 4x^2 - a^2\\). Aus \\(a^2 = 9\\) folgt \\(a = 3\\): $$4x^2 - 9 = (2x-3)(2x+3)$$"
       },
-      {
-        id: 27,
-        level: 5,
-        typ: "mc",
-        frage: "Faktorisiere: \\(4x^2 - 9\\)",
-        optionen: ["\\((2x - 3)^2\\)", "\\((2x + 3)^2\\)", "\\((2x + 3)(2x - 3)\\)", "\\((4x + 9)(4x - 9)\\)"],
-        korrekt: 2,
-        tipp: "\\(4x^2 = (2x)^2\\) und \\(9 = 3^2\\). Differenz zweier Quadrate → 3. binomische Formel.",
-        loesungsweg: "$$4x^2 - 9 = (2x)^2 - 3^2 = (2x + 3)(2x - 3)$$"
-      },
+
       {
         id: 28,
         level: 5,
@@ -381,8 +379,7 @@
         toleranz: 0,
         tipp: "Vereinfache allgemein: Zähler \\(= 4ab\\). Dann durch 4 teilen.",
         loesungsweg: "$$(a+b)^2 - (a-b)^2 = 4ab$$<br>$$\\frac{4ab}{4} = ab = 7 \\cdot 3 = 21$$"
-      }
-    ];
+      }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>

@@ -352,54 +352,31 @@
         toleranz: 0,
         tipp: "In jeder Periode \\(2\\pi\\) gibt es genau einen Tiefpunkt.",
         loesungsweg: "Tiefpunkte bei \\(\\frac{3\\pi}{2}\\) und \\(\\frac{7\\pi}{2}\\). Das sind \\(2\\) Tiefpunkte."
+      },      {
+        id: 25, level: 5, typ: "numerisch",
+        frage: "L\u00f6se \\(\\sin(x) = 0{,}5\\) im Intervall \\([0;\\,2\\pi]\\). Gib die KLEINERE L\u00f6sung als Dezimalzahl an.",
+        loesung: 0.5236,
+        toleranz: 0.01,
+        tipp: "Denke an den Sinuswert von \\(30°\\) im Bogenma\u00df.",
+        loesungsweg: "$$\\sin\\left(\\frac{\\pi}{6}\\right) = 0{,}5 \\;\\Rightarrow\\; x = \\frac{\\pi}{6} \\approx 0{,}5236$$ Die zweite L\u00f6sung im Intervall ist \\(x = \\frac{5\\pi}{6} \\approx 2{,}618\\)."
+      },
+      {
+        id: 26, level: 5, typ: "numerisch",
+        frage: "L\u00f6se \\(\\sin(x) = 1\\) im Intervall \\([0;\\,2\\pi]\\). Gib den Wert als Dezimalzahl an.",
+        loesung: 1.5708,
+        toleranz: 0.01,
+        tipp: "An welcher Stelle erreicht die Sinuskurve ihren Hochpunkt?",
+        loesungsweg: "$$x = \\frac{\\pi}{2} \\approx 1{,}5708$$ Der Sinus erreicht den Wert \\(1\\) im Intervall genau einmal."
+      },
+      {
+        id: 27, level: 5, typ: "numerisch",
+        frage: "L\u00f6se \\(\\sin(x) = -1\\) im Intervall \\([0;\\,2\\pi]\\). Gib den Wert als Dezimalzahl an.",
+        loesung: 4.7124,
+        toleranz: 0.01,
+        tipp: "An welcher Stelle liegt der Tiefpunkt der Sinuskurve?",
+        loesungsweg: "$$x = \\frac{3\\pi}{2} \\approx 4{,}7124$$"
       },
 
-      // ========== LEVEL 5 — Gleichung sin(x) = c in [0, 2π] (6 Aufgaben) ==========
-      {
-        id: 25,
-        level: 5,
-        typ: "mc",
-        frage: "Löse \\(\\sin(x) = 0{,}5\\) im Intervall \\([0;\\, 2\\pi]\\).",
-        optionen: [
-          "\\(x = \\frac{\\pi}{6}\\)",
-          "\\(x = \\frac{\\pi}{6}\\) und \\(x = \\frac{5\\pi}{6}\\)",
-          "\\(x = \\frac{\\pi}{4}\\) und \\(x = \\frac{3\\pi}{4}\\)",
-          "\\(x = \\frac{\\pi}{3}\\) und \\(x = \\frac{2\\pi}{3}\\)"
-        ],
-        korrekt: 1,
-        tipp: "Eine Lösung ist \\(\\frac{\\pi}{6}\\). Wegen Symmetrie: zweite Lösung \\(\\pi - \\frac{\\pi}{6}\\).",
-        loesungsweg: "\\(\\sin\\!\\left(\\frac{\\pi}{6}\\right) = 0{,}5\\). Zweite Lösung: \\(\\pi - \\frac{\\pi}{6} = \\frac{5\\pi}{6}\\). Also \\(x_1 = \\frac{\\pi}{6},\\ x_2 = \\frac{5\\pi}{6}\\)."
-      },
-      {
-        id: 26,
-        level: 5,
-        typ: "mc",
-        frage: "Löse \\(\\sin(x) = 1\\) im Intervall \\([0;\\, 2\\pi]\\).",
-        optionen: [
-          "\\(x = 0\\)",
-          "\\(x = \\frac{\\pi}{2}\\)",
-          "\\(x = \\pi\\)",
-          "\\(x = \\frac{\\pi}{2}\\) und \\(x = \\frac{3\\pi}{2}\\)"
-        ],
-        korrekt: 1,
-        tipp: "Das Maximum \\(1\\) wird genau einmal im Intervall erreicht.",
-        loesungsweg: "Das Maximum \\(\\sin(x) = 1\\) wird im Intervall \\([0;\\, 2\\pi]\\) nur bei \\(x = \\frac{\\pi}{2}\\) angenommen."
-      },
-      {
-        id: 27,
-        level: 5,
-        typ: "mc",
-        frage: "Löse \\(\\sin(x) = -1\\) im Intervall \\([0;\\, 2\\pi]\\).",
-        optionen: [
-          "\\(x = \\pi\\)",
-          "\\(x = \\frac{3\\pi}{2}\\)",
-          "\\(x = 2\\pi\\)",
-          "keine Lösung"
-        ],
-        korrekt: 1,
-        tipp: "Das Minimum \\(-1\\) wird am Tiefpunkt erreicht.",
-        loesungsweg: "Das Minimum \\(\\sin(x) = -1\\) wird bei \\(x = \\frac{3\\pi}{2}\\) angenommen."
-      },
       {
         id: 28,
         level: 5,
@@ -476,37 +453,23 @@
         korrekt: 1,
         tipp: "Der maximale Wert von \\(\\sin(t)\\) ist \\(1\\).",
         loesungsweg: "Der Maximalwert \\(1\\) entspricht dem höchsten Punkt des Sitzes über der Mitte der Kreisbahn."
+      },      {
+        id: 33, level: 6, typ: "numerisch",
+        frage: "Die Temperaturschwankung an einem Tag wird vereinfacht durch \\(T(t) = \\sin(t)\\) modelliert. Nach welcher Zeit ist der Verlauf wieder am Ausgangswert (eine volle Periode)? Gib den Wert als Dezimalzahl an.",
+        loesung: 6.2832,
+        toleranz: 0.02,
+        tipp: "Wie lang ist die Periode der unver\u00e4nderten Sinusfunktion?",
+        loesungsweg: "Die Sinusfunktion hat die Periode $$2\\pi \\approx 6{,}2832$$ Erst danach wiederholt sich der Verlauf vollst\u00e4ndig."
       },
       {
-        id: 33,
-        level: 6,
-        typ: "mc",
-        frage: "Die Temperaturschwankung an einem Tag wird vereinfacht durch \\(T(t) = \\sin(t)\\) modelliert. Nach welcher Zeit ist der Temperaturverlauf wieder am Ausgangswert (eine volle Periode)?",
-        optionen: [
-          "\\(\\pi\\)",
-          "\\(\\frac{\\pi}{2}\\)",
-          "\\(2\\pi\\)",
-          "\\(4\\pi\\)"
-        ],
-        korrekt: 2,
-        tipp: "Die Periode der Sinusfunktion ist \\(2\\pi\\).",
-        loesungsweg: "Die Grundperiode von \\(\\sin(t)\\) beträgt \\(2\\pi\\). Nach \\(2\\pi\\) beginnt der Verlauf von vorn."
+        id: 34, level: 6, typ: "numerisch",
+        frage: "Eine Welle wird durch \\(y(x) = \\sin(x)\\) beschrieben. Wie gro\u00df ist die gr\u00f6\u00dfte Auslenkung?",
+        loesung: 1,
+        toleranz: 0.01,
+        tipp: "Welchen gr\u00f6\u00dften Wert nimmt der Sinus \u00fcberhaupt an?",
+        loesungsweg: "Der Sinus schwankt zwischen \\(-1\\) und \\(1\\); die gr\u00f6\u00dfte Auslenkung betr\u00e4gt also \\(1\\). Die Schwankungsbreite insgesamt ist \\(2\\)."
       },
-      {
-        id: 34,
-        level: 6,
-        typ: "mc",
-        frage: "Eine Welle wird durch \\(y(x) = \\sin(x)\\) beschrieben. Zwischen welchen Werten schwankt die Auslenkung?",
-        optionen: [
-          "zwischen \\(0\\) und \\(1\\)",
-          "zwischen \\(-1\\) und \\(1\\)",
-          "zwischen \\(-\\pi\\) und \\(\\pi\\)",
-          "zwischen \\(-2\\) und \\(2\\)"
-        ],
-        korrekt: 1,
-        tipp: "Der Wertebereich der Sinusfunktion.",
-        loesungsweg: "Der Wertebereich ist \\(W = [-1;\\, 1]\\). Die Auslenkung schwankt also zwischen \\(-1\\) und \\(1\\)."
-      },
+
       {
         id: 35,
         level: 6,
@@ -531,8 +494,7 @@
         korrekt: 3,
         tipp: "Der Tiefpunkt der Sinusfunktion liegt bei \\(\\frac{3\\pi}{2}\\).",
         loesungsweg: "Der niedrigste Wert von \\(\\sin(t)\\) im Intervall \\([0;\\, 2\\pi]\\) wird bei \\(t = \\frac{3\\pi}{2}\\) mit \\(w = -1\\) angenommen."
-      }
-    ];
+      }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>
