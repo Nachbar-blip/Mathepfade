@@ -22,42 +22,42 @@
         optionen:["1","\\(\\pi\\)","\\(\\sigma\\)","\\(\\mu\\)"],
         korrekt:0,
         tipp:"Gesamtwahrscheinlichkeit.",
-        loesungsweg:"\\(\\int_{-\\infty}^{\\infty}\\varphi(x)\\,dx=1\\)."
+        loesungsweg:"Die Dichtefunktion beschreibt eine Wahrscheinlichkeitsverteilung. Die Fläche unter dem Graphen ist die Wahrscheinlichkeit, dass <b>irgendein</b> Wert angenommen wird — und die beträgt stets $$\\int_{-\\infty}^{\\infty}\\varphi(x)\\,dx = 1$$ Deshalb wird die Kurve mit wachsendem \\(\\sigma\\) flacher: Die Fläche bleibt gleich und verteilt sich breiter."
       },
       { id:2, level:1, typ:"mc",
         frage:"Wendepunkte der Normalverteilungskurve liegen bei:",
         optionen:["\\(\\mu\\pm\\sigma\\)","\\(\\mu\\pm 2\\sigma\\)","\\(\\mu\\pm\\sigma^2\\)","\\(0\\)"],
         korrekt:0,
         tipp:"Ein Sigma Abstand.",
-        loesungsweg:"Wendepunkte bei \\(\\mu\\pm\\sigma\\)."
+        loesungsweg:"Die Glockenkurve ist um \\(\\mu\\) herum rechtsgekrümmt und weiter außen linksgekrümmt. Der Wechsel — der Wendepunkt — liegt genau eine Standardabweichung vom Mittelwert entfernt: $$x = \\mu \\pm \\sigma$$ Damit lässt sich \\(\\sigma\\) direkt aus einer gezeichneten Kurve ablesen."
       },
       { id:3, level:1, typ:"mc",
         frage:"Die 1-\\(\\sigma\\)-Umgebung \\([\\mu-\\sigma;\\mu+\\sigma]\\) enthält ca.:",
         optionen:["50 %","68,3 %","95,4 %","99,7 %"],
         korrekt:1,
         tipp:"Erste Sigma-Regel.",
-        loesungsweg:"Ca. 68,3 %."
+        loesungsweg:"Das ist die erste Sigma-Regel: Im Intervall von einer Standardabweichung um den Mittelwert liegen rund $$68{,}3\\,\\%$$ aller Werte. Gut zwei Drittel also — der Rest verteilt sich je zur Hälfte auf die beiden Ränder."
       },
       { id:4, level:1, typ:"mc",
         frage:"Die 2-\\(\\sigma\\)-Umgebung enthält ca.:",
         optionen:["68 %","95,4 %","99,7 %","50 %"],
         korrekt:1,
         tipp:"Zweite Sigma-Regel.",
-        loesungsweg:"Ca. 95,4 %."
+        loesungsweg:"Zweite Sigma-Regel: $$P(\\mu - 2\\sigma \\leq X \\leq \\mu + 2\\sigma) \\approx 95{,}4\\,\\%$$ Außerhalb liegen damit nur noch rund \\(4{,}6\\,\\%\\), je Seite gut \\(2\\,\\%\\). Die dritte Regel liefert \\(99{,}7\\,\\%\\)."
       },
       { id:5, level:1, typ:"mc",
         frage:"Die Standardnormalverteilung hat:",
         optionen:["\\(\\mu=0, \\sigma=1\\)","\\(\\mu=1,\\sigma=0\\)","\\(\\mu=0,\\sigma=0\\)","beliebig"],
         korrekt:0,
         tipp:"Standardisiert.",
-        loesungsweg:"\\(Z\\sim N(0,1)\\)."
+        loesungsweg:"Die Standardnormalverteilung ist der auf Mittelwert \\(0\\) und Standardabweichung \\(1\\) normierte Fall: $$Z \\sim N(0;1)$$ Jede andere Normalverteilung lässt sich mit \\(z = \\frac{x-\\mu}{\\sigma}\\) darauf zurückführen — deshalb genügt eine einzige Tabelle für alle Fälle."
       },
       { id:6, level:1, typ:"mc",
         frage:"Laplace-Bedingung für Näherung Binomial→Normal:",
         optionen:["\\(\\sigma>3\\)","\\(n>30\\)","\\(np>5\\)","\\(p<0{,}5\\)"],
         korrekt:0,
         tipp:"Faustregel.",
-        loesungsweg:"\\(\\sigma=\\sqrt{np(1-p)}>3\\)."
+        loesungsweg:"Die Näherung der Binomial- durch die Normalverteilung ist brauchbar, wenn die Verteilung breit genug ist. Als Faustregel gilt $$\\sigma = \\sqrt{np(1-p)} > 3$$ Bei kleinerem \\(\\sigma\\) ist die Binomialverteilung zu grobstufig, als dass eine glatte Kurve sie gut wiedergäbe."
       },
       // ===== LEVEL 2 — μ, σ berechnen =====
       { id:7, level:2, typ:"numerisch",
@@ -76,7 +76,7 @@
         frage:"\\(X\\sim B(400;0{,}25)\\). \\(\\mu=?\\)",
         loesung:100, toleranz:0.01,
         tipp:"\\(np\\).",
-        loesungsweg:"\\(400\\cdot0{,}25=100\\)."
+        loesungsweg:"$$\\mu = n \\cdot p = 400 \\cdot 0{,}25 = 100$$"
       },
       { id:10, level:2, typ:"numerisch",
         frage:"\\(X\\sim B(400;0{,}25)\\). \\(\\sigma\\approx?\\)",
@@ -89,7 +89,7 @@
         optionen:["ja","nein"],
         korrekt:0,
         tipp:"\\(\\sigma=5>3\\).",
-        loesungsweg:"Ja, \\(\\sigma=5>3\\)."
+        loesungsweg:"$$\\sigma = \\sqrt{np(1-p)} = \\sqrt{100 \\cdot 0{,}5 \\cdot 0{,}5} = \\sqrt{25} = 5$$ Wegen \\(5 > 3\\) ist die Laplace-Bedingung erfüllt, die Normalnäherung also zulässig."
       },
       { id:12, level:2, typ:"numerisch",
         frage:"Bestimme \\(\\sigma\\) für \\(n=1000, p=0{,}1\\).",
@@ -114,62 +114,62 @@
         frage:"\\(\\Phi(1)\\approx?\\) (Standardnormal-Tabelle)",
         loesung:0.8413, toleranz:0.005,
         tipp:"Tabellenwert.",
-        loesungsweg:"\\(\\Phi(1)\\approx0{,}8413\\)."
+        loesungsweg:"\\(\\Phi(1)\\) ist die Fläche links von \\(z = 1\\), also \\(P(Z \\leq 1)\\). Der Tabellenwert lautet $$\\Phi(1) \\approx 0{,}8413$$ Das passt zur ersten Sigma-Regel: \\(0{,}8413 - 0{,}1587 \\approx 0{,}683\\)."
       },
       { id:16, level:3, typ:"numerisch",
         frage:"\\(\\Phi(2)\\approx?\\)",
         loesung:0.9772, toleranz:0.005,
         tipp:"Tabellenwert.",
-        loesungsweg:"\\(\\approx0{,}9772\\)."
+        loesungsweg:"$$\\Phi(2) \\approx 0{,}9772$$ Rechts von \\(z=2\\) liegen also nur noch rund \\(2{,}3\\,\\%\\)."
       },
       { id:17, level:3, typ:"numerisch",
         frage:"\\(\\Phi(-1)\\approx?\\)",
         loesung:0.1587, toleranz:0.005,
         tipp:"\\(1-\\Phi(1)\\).",
-        loesungsweg:"\\(1-0{,}8413=0{,}1587\\)."
+        loesungsweg:"Die Glockenkurve ist symmetrisch zu \\(0\\); die Fläche links von \\(-1\\) ist so groß wie die rechts von \\(1\\): $$\\Phi(-1) = 1 - \\Phi(1) = 1 - 0{,}8413 = 0{,}1587$$ Deshalb enthalten Tabellen meist nur positive \\(z\\)-Werte."
       },
       { id:18, level:3, typ:"numerisch",
         frage:"\\(P(-1\\le Z\\le 1)\\approx?\\)",
         loesung:0.6827, toleranz:0.005,
         tipp:"\\(\\Phi(1)-\\Phi(-1)\\).",
-        loesungsweg:"\\(0{,}8413-0{,}1587=0{,}6826\\)."
+        loesungsweg:"$$P(-1 \\leq Z \\leq 1) = \\Phi(1) - \\Phi(-1) = 0{,}8413 - 0{,}1587 = 0{,}6827$$ Das ist genau die erste Sigma-Regel."
       },
       // ===== LEVEL 4 — Wahrscheinlichkeiten mit Näherung =====
       { id:19, level:4, typ:"numerisch",
         frage:"\\(X\\sim B(100;0{,}5)\\). \\(P(X\\le 55)\\) Normalnäherung ohne Stetigkeitskorrektur?",
         loesung:0.8413, toleranz:0.01,
         tipp:"\\(z=(55-50)/5=1\\).",
-        loesungsweg:"\\(P\\approx\\Phi(1)\\approx0{,}8413\\)."
+        loesungsweg:"Mit \\(\\mu = 50\\) und \\(\\sigma = \\sqrt{100 \\cdot 0{,}5 \\cdot 0{,}5} = 5\\) wird standardisiert: $$z = \\frac{55-50}{5} = 1$$ $$P(X \\leq 55) \\approx \\Phi(1) = 0{,}8413$$"
       },
       { id:20, level:4, typ:"numerisch",
         frage:"\\(X\\sim B(100;0{,}5)\\). \\(P(X\\le 55)\\) mit Stetigkeitskorrektur \\(\\Phi(\\frac{55{,}5-50}{5})\\).",
         loesung:0.8643, toleranz:0.01,
         tipp:"\\(z=1{,}1\\), \\(\\Phi(1{,}1)\\).",
-        loesungsweg:"\\(\\Phi(1{,}1)\\approx0{,}8643\\)."
+        loesungsweg:"Die Binomialverteilung ist stufig, die Normalverteilung glatt. Die Stetigkeitskorrektur verschiebt die Grenze um \\(0{,}5\\) nach außen, damit der ganze Balken erfasst wird: $$z = \\frac{55{,}5-50}{5} = 1{,}1$$ $$P(X \\leq 55) \\approx \\Phi(1{,}1) = 0{,}8643$$ Der Wert liegt näher am exakten Binomialergebnis als die Näherung ohne Korrektur."
       },
       { id:21, level:4, typ:"numerisch",
         frage:"\\(X\\sim B(400;0{,}5), \\mu=200, \\sigma=10\\). \\(P(X\\ge 220)\\) Näherung?",
         loesung:0.0228, toleranz:0.005,
         tipp:"\\(z=2\\), \\(1-\\Phi(2)\\).",
-        loesungsweg:"\\(1-0{,}9772=0{,}0228\\)."
+        loesungsweg:"$$z = \\frac{220-200}{10} = 2$$ Gesucht ist die Fläche rechts davon: $$P(X \\geq 220) \\approx 1 - \\Phi(2) = 1 - 0{,}9772 = 0{,}0228$$"
       },
       { id:22, level:4, typ:"numerisch",
         frage:"\\(X\\sim N(100;100)\\). \\(P(90\\le X\\le 110)\\)?",
         loesung:0.6827, toleranz:0.01,
         tipp:"1-\\(\\sigma\\)-Intervall.",
-        loesungsweg:"\\(\\approx68{,}27\\,\\%\\)."
+        loesungsweg:"Aus \\(N(100;100)\\) folgt \\(\\sigma = \\sqrt{100} = 10\\). Das Intervall \\([90;110]\\) ist damit genau \\([\\mu-\\sigma;\\mu+\\sigma]\\): $$P \\approx 68{,}27\\,\\%$$ Achtung: In der Schreibweise \\(N(\\mu;\\sigma^2)\\) steht die <b>Varianz</b>, nicht die Standardabweichung."
       },
       { id:23, level:4, typ:"numerisch",
         frage:"\\(X\\sim N(50;25)\\). \\(P(X\\ge 60)\\)?",
         loesung:0.0228, toleranz:0.005,
         tipp:"\\(z=2\\).",
-        loesungsweg:"\\(1-\\Phi(2)=0{,}0228\\)."
+        loesungsweg:"Aus \\(N(50;25)\\) folgt \\(\\sigma = 5\\): $$z = \\frac{60-50}{5} = 2$$ $$P(X \\geq 60) \\approx 1 - \\Phi(2) = 0{,}0228$$"
       },
       { id:24, level:4, typ:"numerisch",
         frage:"\\(X\\sim N(0;1)\\). \\(P(|Z|\\le 1{,}96)\\)?",
         loesung:0.95, toleranz:0.005,
         tipp:"95 %-Quantil.",
-        loesungsweg:"\\(\\Phi(1{,}96)-\\Phi(-1{,}96)\\approx0{,}95\\)."
+        loesungsweg:"$$P(|Z| \\leq 1{,}96) = \\Phi(1{,}96) - \\Phi(-1{,}96) = 2\\Phi(1{,}96) - 1$$ $$\\approx 2 \\cdot 0{,}975 - 1 = 0{,}95$$ Der Wert \\(1{,}96\\) ist deshalb die Standardgröße für \\(95\\,\\%\\)-Intervalle."
       },
       // ===== LEVEL 5 — Quantile, Umkehraufgaben =====
       { id:25, level:5, typ:"numerisch",
@@ -182,70 +182,69 @@
         frage:"\\(X\\sim N(50;25)\\). \\(P(X\\le c)=0{,}975\\). \\(c\\)?",
         loesung:59.8, toleranz:0.3,
         tipp:"\\(z=1{,}96\\).",
-        loesungsweg:"\\(c=50+1{,}96\\cdot5\\approx59{,}8\\)."
+        loesungsweg:"Zu \\(\\Phi(z) = 0{,}975\\) gehört \\(z = 1{,}96\\). Rücktransformation mit \\(\\sigma = 5\\): $$c = \\mu + z\\sigma = 50 + 1{,}96 \\cdot 5 = 59{,}8$$"
       },
       { id:27, level:5, typ:"numerisch",
         frage:"\\(X\\sim N(0;1)\\). Für welches \\(z\\) gilt \\(\\Phi(z)=0{,}5\\)?",
         loesung:0, toleranz:0.01,
         tipp:"Symmetrie.",
-        loesungsweg:"\\(z=0\\)."
+        loesungsweg:"Die Standardnormalverteilung ist symmetrisch zu \\(0\\); links und rechts davon liegt je die Hälfte der Fläche: $$\\Phi(0) = 0{,}5 \\;\\Rightarrow\\; z = 0$$"
       },
       { id:28, level:5, typ:"numerisch",
         frage:"\\(X\\sim N(100;100)\\). Zentrale Mindestumgebung \\([100-d;100+d]\\) mit Wahrscheinlichkeit \\(0{,}95\\). \\(d=?\\)",
         loesung:19.6, toleranz:0.5,
         tipp:"\\(d=1{,}96\\sigma\\).",
-        loesungsweg:"\\(d=19{,}6\\)."
+        loesungsweg:"Aus \\(N(100;100)\\) folgt \\(\\sigma = 10\\). Für eine zentrale \\(95\\,\\%\\)-Umgebung gilt \\(z = 1{,}96\\): $$d = 1{,}96 \\cdot \\sigma = 1{,}96 \\cdot 10 = 19{,}6$$"
       },
       { id:29, level:5, typ:"numerisch",
         frage:"\\(X\\sim N(\\mu;16)\\), \\(P(X\\le 10)=0{,}5\\). Bestimme \\(\\mu\\).",
         loesung:10, toleranz:0.01,
         tipp:"Symmetrie: Median=μ.",
-        loesungsweg:"\\(\\mu=10\\)."
+        loesungsweg:"Bei der Normalverteilung fallen Mittelwert, Median und Modalwert zusammen. \\(P(X \\leq 10) = 0{,}5\\) bedeutet also, dass \\(10\\) der Median ist: $$\\mu = 10$$ Die Varianz \\(16\\) wird dafür nicht gebraucht."
       },
       { id:30, level:5, typ:"numerisch",
         frage:"\\(X\\sim N(50;\\sigma^2)\\), \\(P(X\\le 60)=0{,}8413\\). \\(\\sigma=?\\)",
         loesung:10, toleranz:0.1,
         tipp:"\\(z=1\\), also \\(10=\\sigma\\).",
-        loesungsweg:"\\(\\sigma=10\\)."
+        loesungsweg:"Zu \\(\\Phi(z) = 0{,}8413\\) gehört \\(z = 1\\). Also liegt \\(60\\) genau eine Standardabweichung über dem Mittelwert: $$\\frac{60-50}{\\sigma} = 1 \\;\\Rightarrow\\; \\sigma = 10$$"
       },
       // ===== LEVEL 6 — Abi =====
       { id:31, level:6, typ:"numerisch",
         frage:"Bei einer Produktion sind 4 % Ausschuss. Stichprobe \\(n=2500\\). \\(P(X\\le 110)\\) Näherung? \\(\\mu=100, \\sigma=\\sqrt{96}\\approx9{,}80\\).",
         loesung:0.8461, toleranz:0.02,
         tipp:"\\(z=(110-100)/9{,}80\\approx1{,}02\\).",
-        loesungsweg:"\\(\\Phi(1{,}02)\\approx0{,}8461\\)."
+        loesungsweg:"$$\\mu = np = 2500 \\cdot 0{,}04 = 100, \\quad \\sigma = \\sqrt{2500 \\cdot 0{,}04 \\cdot 0{,}96} = \\sqrt{96} \\approx 9{,}80$$ $$z = \\frac{110-100}{9{,}80} \\approx 1{,}02 \\;\\Rightarrow\\; \\Phi(1{,}02) \\approx 0{,}8461$$"
       },
       { id:32, level:6, typ:"numerisch",
         frage:"Wahlumfrage: \\(n=1000\\), Anteil \\(p=0{,}4\\). \\(\\sigma\\) der Anzahl?",
         loesung:15.49, toleranz:0.1,
         tipp:"\\(\\sqrt{240}\\).",
-        loesungsweg:"\\(\\sigma=\\sqrt{240}\\approx15{,}49\\)."
+        loesungsweg:"Gefragt ist die Streuung der <b>Anzahl</b>, nicht des Anteils: $$\\sigma = \\sqrt{np(1-p)} = \\sqrt{1000 \\cdot 0{,}4 \\cdot 0{,}6} = \\sqrt{240} \\approx 15{,}49$$"
       },
       { id:33, level:6, typ:"numerisch",
         frage:"\\(X\\sim B(1000;0{,}4)\\). \\(P(380\\le X\\le 420)\\) mit Stetigkeitskorrektur \\(\\Phi(\\frac{20{,}5}{15{,}49})-\\Phi(\\frac{-20{,}5}{15{,}49})\\).",
         loesung:0.8132, toleranz:0.02,
         tipp:"\\(z\\approx\\pm1{,}32\\).",
-        loesungsweg:"\\(2\\Phi(1{,}32)-1\\approx2\\cdot0{,}9066-1=0{,}8132\\) (exakter Binomialwert \\(\\approx0{,}8143\\))."
+        loesungsweg:"Mit \\(\\mu = 400\\) und \\(\\sigma \\approx 15{,}49\\) und der Stetigkeitskorrektur: $$z = \\frac{20{,}5}{15{,}49} \\approx 1{,}32$$ Wegen der Symmetrie des Intervalls um \\(\\mu\\): $$P \\approx 2\\Phi(1{,}32) - 1 \\approx 2 \\cdot 0{,}9066 - 1 = 0{,}8132$$ Der exakte Binomialwert liegt bei rund \\(0{,}8143\\) — die Näherung ist also gut."
       },
       { id:34, level:6, typ:"numerisch",
         frage:"Mindeststichprobe \\(n\\) so, dass \\(\\sigma(X)=\\sqrt{n\\cdot 0{,}25}\\ge 5\\). Gib kleinstes \\(n\\).",
         loesung:100, toleranz:1,
         tipp:"\\(n\\ge 100\\).",
-        loesungsweg:"\\(n\\ge 100\\)."
+        loesungsweg:"$$\\sqrt{n \\cdot 0{,}25} \\geq 5 \\;\\Rightarrow\\; n \\cdot 0{,}25 \\geq 25 \\;\\Rightarrow\\; n \\geq 100$$ Das kleinste zulässige \\(n\\) ist also \\(100\\)."
       },
       { id:35, level:6, typ:"numerisch",
         frage:"IQ normalverteilt mit \\(\\mu=100,\\sigma=15\\). Anteil der Personen mit IQ>130?",
         loesung:0.0228, toleranz:0.005,
         tipp:"\\(z=2\\).",
-        loesungsweg:"\\(1-\\Phi(2)\\approx0{,}0228\\)."
+        loesungsweg:"$$z = \\frac{130-100}{15} = 2$$ $$P(X > 130) \\approx 1 - \\Phi(2) = 0{,}0228$$ Rund \\(2{,}3\\,\\%\\) der Bevölkerung erreichen also einen IQ über \\(130\\)."
       },
       { id:36, level:6, typ:"numerisch",
         frage:"Füllmenge einer Flasche \\(\\sim N(500;4)\\) ml. Welcher Anteil unter 498 ml?",
         loesung:0.1587, toleranz:0.01,
         tipp:"\\(\\sigma=2\\), \\(z=-1\\).",
-        loesungsweg:"\\(\\Phi(-1)\\approx0{,}1587\\)."
-      }
-    ];
+        loesungsweg:"Aus \\(N(500;4)\\) folgt \\(\\sigma = \\sqrt{4} = 2\\): $$z = \\frac{498-500}{2} = -1$$ $$P(X < 498) \\approx \\Phi(-1) = 0{,}1587$$ Gut ein Sechstel der Flaschen ist also unterfüllt."
+      }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>
