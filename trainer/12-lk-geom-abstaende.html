@@ -50,7 +50,7 @@
         optionen:["\\(d(P,E)=\\frac{|ap_1+bp_2+cp_3-d|}{\\sqrt{a^2+b^2+c^2}}\\)","\\(d(P,E)=ap_1+bp_2+cp_3-d\\)","\\(d(P,E)=\\sqrt{a^2+b^2+c^2}\\)","\\(d(P,E)=|ap_1+bp_2+cp_3|\\)"],
         korrekt:0,
         tipp:"HNF: Zähler = Einsetzen, Nenner = Normalenbetrag.",
-        loesungsweg:"\\(d(P,E)=\\frac{|ap_1+bp_2+cp_3-d|}{\\sqrt{a^2+b^2+c^2}}\\)."
+        loesungsweg:"Die Hessesche Normalform entsteht, indem man die Normalenform durch den Betrag des Normalenvektors teilt. Einsetzen des Punktes liefert dann den Abstand: $$d(P,E) = \\frac{|ap_1+bp_2+cp_3-d|}{\\sqrt{a^2+b^2+c^2}}$$ Die Betragsstriche sind nötig, damit kein negativer Abstand entsteht; ohne den Nenner käme nur ein Vielfaches des Abstands heraus."
       },
       { id:6, level:1, typ:"mc",
         frage:"Wozu dient das Kreuzprodukt bei Abstandsberechnungen windschiefer Geraden?",
@@ -70,19 +70,19 @@
         frage:"Abstand \\(A(2|-1|4)\\) und \\(B(2|3|1)\\).",
         loesung:5, toleranz:0.01,
         tipp:"\\(\\vec{AB}=(0,4,-3)^T\\).",
-        loesungsweg:"\\(\\sqrt{0+16+9}=5\\)."
+        loesungsweg:"$$\\vec{AB} = \\begin{pmatrix}0\\\\4\\\\-3\\end{pmatrix} \\;\\Rightarrow\\; |\\vec{AB}| = \\sqrt{0+16+9} = \\sqrt{25} = 5$$ Der Pythagoras gilt im Raum mit drei Summanden ebenso wie in der Ebene mit zweien."
       },
       { id:9, level:2, typ:"numerisch",
         frage:"Abstand \\(P(1|1|1)\\) vom Ursprung.",
         loesung:1.732, toleranz:0.01,
         tipp:"\\(\\sqrt{1+1+1}=\\sqrt{3}\\).",
-        loesungsweg:"\\(|\\vec{OP}|=\\sqrt{3}\\approx 1{,}732\\)."
+        loesungsweg:"Der Abstand vom Ursprung ist der Betrag des Ortsvektors: $$|\\vec{OP}| = \\sqrt{1+1+1} = \\sqrt3 \\approx 1{,}732$$ Das ist zugleich die Raumdiagonale des Einheitswürfels."
       },
       { id:10, level:2, typ:"numerisch",
         frage:"Abstand \\(A(3|0|0)\\), \\(B(0|4|0)\\).",
         loesung:5, toleranz:0.01,
         tipp:"Pythagoras im \\(\\mathbb{R}^2\\)-Ausschnitt.",
-        loesungsweg:"\\(\\sqrt{9+16}=5\\)."
+        loesungsweg:"$$\\vec{AB} = \\begin{pmatrix}-3\\\\4\\\\0\\end{pmatrix} \\;\\Rightarrow\\; |\\vec{AB}| = \\sqrt{9+16} = 5$$ Beide Punkte liegen in der \\(xy\\)-Ebene, die dritte Komponente trägt also nichts bei — es ist das bekannte Tripel \\((3;4;5)\\)."
       },
       { id:11, level:2, typ:"mc",
         frage:"Für welches \\(t\\) hat \\(P_t(1|t|2)\\) minimalen Abstand vom Ursprung?",
@@ -140,7 +140,7 @@
         frage:"Abstand \\(P(1|2|3)\\) von \\(g:\\vec{x}=(0,0,0)^T+t(1,0,0)^T\\).",
         loesung:3.606, toleranz:0.02,
         tipp:"Lotfuß \\(F(1|0|0)\\), \\(|\\vec{PF}|=\\sqrt{0+4+9}\\).",
-        loesungsweg:"\\(d=\\sqrt{13}\\approx3{,}606\\)."
+        loesungsweg:"Die Gerade ist die \\(x\\)-Achse; der Lotfußpunkt hat dieselbe \\(x\\)-Koordinate wie \\(P\\), also \\(F(1|0|0)\\). $$d = |\\vec{PF}| = \\sqrt{0+4+9} = \\sqrt{13} \\approx 3{,}606$$ Bei einer Koordinatenachse lässt sich der Lotfußpunkt direkt ablesen — die allgemeine Formel wird hier nicht gebraucht."
       },
       { id:20, level:4, typ:"numerisch",
         frage:"Abstand \\(P(2|3|1)\\) von \\(g:\\vec{x}=(1,1,0)^T+t(1,1,0)^T\\).",
@@ -159,7 +159,7 @@
         optionen:["\\(\\frac{|\\vec{AP}\\times\\vec{u}|}{|\\vec{u}|}\\)","\\(\\frac{|\\vec{AP}\\cdot\\vec{u}|}{|\\vec{u}|}\\)","\\(|\\vec{AP}|\\cdot|\\vec{u}|\\)","\\(\\frac{|\\vec{AP}|}{|\\vec{u}|}\\)"],
         korrekt:0,
         tipp:"Kreuzprodukt liefert Parallelogrammfläche, Division durch Basis ergibt Höhe.",
-        loesungsweg:"\\(d(P,g)=\\frac{|\\vec{AP}\\times\\vec{u}|}{|\\vec{u}|}\\)."
+        loesungsweg:"Das Kreuzprodukt \\(\\vec{AP} \\times \\vec u\\) hat als Betrag den Flächeninhalt des von beiden Vektoren aufgespannten Parallelogramms. Dividiert man ihn durch die Grundseite \\(|\\vec u|\\), bleibt die Höhe — und das ist gerade der Abstand: $$d(P,g) = \\frac{|\\vec{AP} \\times \\vec u|}{|\\vec u|}$$ Mit dem <b>Skalarprodukt</b> im Zähler käme stattdessen die Projektion <i>auf</i> die Gerade heraus, also genau die falsche Richtung."
       },
       { id:23, level:4, typ:"numerisch",
         frage:"Abstand \\(P(3|0|0)\\) von \\(g:\\vec{x}=(0,0,0)^T+t(0,1,0)^T\\).",
@@ -171,7 +171,7 @@
         frage:"\\(g:\\vec{x}=(1,0,0)^T+t(0,1,1)^T\\). Abstand \\(P(1|1|3)\\)?",
         loesung:1.414, toleranz:0.02,
         tipp:"\\(\\vec{AP}=(0,1,3)\\), \\(\\vec{u}=(0,1,1)\\). Kreuzprodukt: \\((-2,0,0)\\). \\(d=\\frac{2}{\\sqrt{2}}=\\sqrt{2}\\).",
-        loesungsweg:"\\(d=\\sqrt{2}\\approx1{,}414\\)."
+        loesungsweg:"Mit \\(\\vec{AP} = (0;1;3)\\) und \\(\\vec u = (0;1;1)\\): $$\\vec{AP} \\times \\vec u = \\begin{pmatrix}-2\\\\0\\\\0\\end{pmatrix} \\;\\Rightarrow\\; |\\vec{AP} \\times \\vec u| = 2$$ $$d = \\frac{2}{\\sqrt2} = \\sqrt2 \\approx 1{,}414$$"
       },
       // ===== LEVEL 5 — Windschiefe Geraden =====
       { id:25, level:5, typ:"mc",
@@ -179,7 +179,7 @@
         optionen:["\\(\\frac{|(\\vec{a}_2-\\vec{a}_1)\\cdot(\\vec{u}_1\\times\\vec{u}_2)|}{|\\vec{u}_1\\times\\vec{u}_2|}\\)","\\(|\\vec{u}_1|+|\\vec{u}_2|\\)","\\(|\\vec{a}_2-\\vec{a}_1|\\)","\\(\\vec{u}_1\\cdot\\vec{u}_2\\)"],
         korrekt:0,
         tipp:"Spatprodukt durch Flächeninhalt des Spannparallelogramms.",
-        loesungsweg:"\\(d=\\frac{|[\\vec{a}_2-\\vec{a}_1,\\vec{u}_1,\\vec{u}_2]|}{|\\vec{u}_1\\times\\vec{u}_2|}\\)."
+        loesungsweg:"Der Vektor \\(\\vec u_1 \\times \\vec u_2\\) steht senkrecht auf beiden Geraden — in seiner Richtung wird der Abstand gemessen. Projiziert man den Verbindungsvektor der Aufpunkte darauf, ergibt sich $$d = \\frac{|(\\vec a_2-\\vec a_1) \\cdot (\\vec u_1 \\times \\vec u_2)|}{|\\vec u_1 \\times \\vec u_2|}$$ Der Zähler ist das Spatprodukt, also das Volumen des aufgespannten Spats; geteilt durch die Grundfläche bleibt die Höhe. Für parallele Geraden versagt die Formel, denn dann ist das Kreuzprodukt der Nullvektor."
       },
       { id:26, level:5, typ:"numerisch",
         frage:"\\(g_1:\\vec{x}=(0,0,0)^T+s(1,0,0)^T\\), \\(g_2:\\vec{x}=(0,0,1)^T+t(0,1,0)^T\\). Abstand?",
@@ -249,8 +249,7 @@
         loesung:1, toleranz:0.01,
         tipp:"Der Abstand von \\(g\\) zur z-Achse beträgt \\(|k|\\).",
         loesungsweg:"Der zur z-Achse nächste Punkt von \\(g\\) ist \\((k,0,0)\\) mit Abstand \\(\\sqrt{k^2}=|k|\\). \\(|k|=1, k>0 \\Rightarrow k=1\\)."
-      }
-    ];
+      }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>
