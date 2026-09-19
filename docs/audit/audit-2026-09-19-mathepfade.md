@@ -215,3 +215,36 @@ Stand nach der laufenden Überarbeitung, mit dem endgültigen Kriterium:
    15  9-potenzen-rational.html
    14  10-graphen-transformationen.html
 ```
+
+## Abschluss Punkt 1 (19.09.2026)
+
+Alle dünnen Lösungswege sind ersetzt.
+
+```
+Mathepfade:  0 von 3240 (vorher ~1180, 36 %)
+Ref4OHG:     0 von 2736 (vorher 31, 1 %)
+```
+
+Jeder neue Lösungsweg nennt den Ansatz, führt die Rechnung in KaTeX vor und
+schließt — wo es trägt — mit Probe, Begründung oder dem typischen Fehler ab.
+Alle Zahlenwerte sind mit Wolfram geprüft.
+
+Nebenbefunde, die dabei aufgefallen und mitbehoben wurden:
+
+| Befund | Umfang |
+|---|---|
+| ASCII-Umschreibungen statt Umlauten (Flaeche, Hoehe, fuer …) | 205 Stellen in 10 Mathepfade-Trainern, 2 in Ref4OHG |
+| Rückverweise auf die Vorgängeraufgabe (die Engine wählt frei) | 6 Aufgaben: 10-stoch-mehrstufig #24/#32, 10-stoch-bedingte-wsk #30/#32, 9-quadratische-funktionen #30, 12-stoch-hypothesentests #27, dazu ein Tipp in 10-substitution #5 |
+| Aufgabe auf Stufe 6 inhaltlich identisch mit einer auf Stufe 5 | 12-lk-integral-rotationskoerper #35 — ersetzt durch eine Umkehraufgabe (Volumen gegeben, Integrationsgrenze gesucht) |
+| Falscher Zahlwert im Tipp | 12-lk-integral-rotationskoerper #24: 0,0803 → 0,0808 |
+| KaTeX-Fehler, den nur das Render-Gate findet | 11-extremwertaufgaben #17: `V_\max` → `V_{\max}` |
+
+Offen (nicht Teil von Punkt 1, zur Entscheidung):
+
+- `11-ableitungsregeln` (Mathepfade): 10 Aufgaben ab Stufe 4 werden an der
+  Stelle \(x = 0\) ausgewertet und trivialisieren damit die Produkt- bzw.
+  Kettenregel. Das Level-Gate meldet das, die Aufgaben müssten neu gestellt
+  werden.
+- 18 Doppelungen zwischen Trainern (Level-Gate: „identisch mit …"). Die
+  meisten sind unkritisch (Grundwissen in zwei Themen), ein paar Paare auf
+  gleicher Stufe wären einen Austausch wert.
