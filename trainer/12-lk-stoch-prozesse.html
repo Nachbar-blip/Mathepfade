@@ -22,7 +22,7 @@
         optionen:["Zeilen/Spalten-Summen = 1 und Einträge \\(\\ge 0\\)","Determinante 1","Einträge \\(\\le 1\\) beliebig","keine Nullen"],
         korrekt:0,
         tipp:"Spaltensumme = 1 (bei spaltenweiser Konvention).",
-        loesungsweg:"Alle Einträge in \\([0,1]\\), Spaltensummen = 1."
+        loesungsweg:"Jeder Eintrag ist eine Wahrscheinlichkeit, liegt also zwischen \\(0\\) und \\(1\\). Eine Spalte beschreibt, wohin ein bestimmter Zustand übergeht — und irgendwohin geht er sicher. Deshalb muss jede Spaltensumme \\(1\\) ergeben. Diese Eigenschaft ist zugleich die beste Kontrolle für eine aufgestellte Matrix."
       },
       { id:2, level:1, typ:"mc",
         frage:"Eine Markov-Kette ist …",
@@ -36,7 +36,7 @@
         optionen:["\\(M^n\\cdot\\vec{v}_0\\)","\\(M+\\vec{v}_0\\)","\\(M^{-n}\\vec{v}_0\\)","\\(\\vec{v}_0\\)"],
         korrekt:0,
         tipp:"Wiederholte Multiplikation.",
-        loesungsweg:"\\(\\vec{v}_n=M^n\\vec{v}_0\\)."
+        loesungsweg:"Ein Schritt bedeutet eine Multiplikation mit \\(M\\). Nach \\(n\\) Schritten also: $$\\vec{v}_n = M \\cdot M \\cdots M \\cdot \\vec{v}_0 = M^n \\vec{v}_0$$ Addiert wird nie — die Matrix beschreibt eine Umverteilung, keine Zunahme."
       },
       { id:4, level:1, typ:"mc",
         frage:"Ein stationärer Verteilungsvektor \\(\\vec{s}\\) erfüllt:",
@@ -64,19 +64,19 @@
         frage:"\\(M=\\begin{pmatrix}0{,}8&0{,}3\\\\0{,}2&0{,}7\\end{pmatrix}\\), \\(\\vec{v}_0=\\begin{pmatrix}1\\\\0\\end{pmatrix}\\). Erste Komponente von \\(\\vec{v}_1=M\\vec{v}_0\\)?",
         loesung:0.8, toleranz:0.01,
         tipp:"Erste Spalte.",
-        loesungsweg:"\\(0{,}8\\cdot1+0{,}3\\cdot0=0{,}8\\)."
+        loesungsweg:"Erste Zeile mal Vektor: $$0{,}8 \\cdot 1 + 0{,}3 \\cdot 0 = 0{,}8$$ Weil \\(\\vec{v}_0\\) der erste Einheitsvektor ist, liest man das Ergebnis direkt als erste Spalte von \\(M\\) ab."
       },
       { id:8, level:2, typ:"numerisch",
         frage:"\\(M=\\begin{pmatrix}0{,}8&0{,}3\\\\0{,}2&0{,}7\\end{pmatrix}\\), \\(\\vec{v}_0=(0{,}5;0{,}5)^T\\). Erste Komponente von \\(\\vec{v}_1\\)?",
         loesung:0.55, toleranz:0.01,
         tipp:"\\(0{,}8\\cdot0{,}5+0{,}3\\cdot0{,}5\\).",
-        loesungsweg:"\\(0{,}4+0{,}15=0{,}55\\)."
+        loesungsweg:"$$0{,}8 \\cdot 0{,}5 + 0{,}3 \\cdot 0{,}5 = 0{,}40 + 0{,}15 = 0{,}55$$ Aus der Gleichverteilung wird also eine leichte Mehrheit für Zustand 1."
       },
       { id:9, level:2, typ:"numerisch",
         frage:"Welche Summe haben die Einträge eines Verteilungsvektors?",
         loesung:1, toleranz:0.01,
         tipp:"Wahrscheinlichkeiten.",
-        loesungsweg:"Summe = 1."
+        loesungsweg:"Ein Verteilungsvektor gibt an, welcher Anteil sich in welchem Zustand befindet. Da jedes Objekt in genau einem Zustand ist, müssen sich die Anteile zu \\(1\\) ergänzen — also \\(100\\,\\%\\). Diese Summe bleibt bei jedem Schritt erhalten, weil die Matrix spaltenstochastisch ist."
       },
       { id:10, level:2, typ:"numerisch",
         frage:"\\(M=\\begin{pmatrix}0{,}6&0{,}4\\\\0{,}4&0{,}6\\end{pmatrix}\\), \\(\\vec{v}_0=(1;0)^T\\). Erste Komponente von \\(\\vec{v}_2\\)?",
@@ -89,38 +89,38 @@
         optionen:["keine Zustandsänderung","alles ändert sich","Drehung","Spiegelung"],
         korrekt:0,
         tipp:"Einheitsmatrix.",
-        loesungsweg:"Zustände bleiben unverändert."
+        loesungsweg:"Die Einheitsmatrix bildet jeden Vektor auf sich selbst ab: $$I \\cdot \\vec v = \\vec v$$ Jeder Zustand bleibt also mit Wahrscheinlichkeit \\(1\\) dort, wo er ist — nichts wechselt. Alle Zustände sind hier absorbierend."
       },
       { id:12, level:2, typ:"numerisch",
         frage:"\\(M=\\begin{pmatrix}0{,}9&0{,}1\\\\0{,}1&0{,}9\\end{pmatrix}\\). Erste Komponente \\(M^2\\vec{e}_1\\)?",
         loesung:0.82, toleranz:0.01,
         tipp:"\\(0{,}9\\cdot0{,}9+0{,}1\\cdot0{,}1\\).",
-        loesungsweg:"\\(0{,}81+0{,}01=0{,}82\\)."
+        loesungsweg:"Zwei Schritte bedeuten zweimal multiplizieren. Erster Schritt: \\(M\\vec e_1 = (0{,}9;\\,0{,}1)\\). Zweiter Schritt, erste Zeile: $$0{,}9 \\cdot 0{,}9 + 0{,}1 \\cdot 0{,}1 = 0{,}81 + 0{,}01 = 0{,}82$$ Der Anteil sinkt von \\(0{,}9\\) auf \\(0{,}82\\) — die Verteilung nähert sich langsam dem Gleichgewicht."
       },
       // ===== LEVEL 3 — Baumdiagramme/Übergänge =====
       { id:13, level:3, typ:"numerisch",
         frage:"Wetter: Sonne→Sonne 0,8; Sonne→Regen 0,2. Heute Sonne. \\(P(\\text{morgen Sonne})=?\\)",
         loesung:0.8, toleranz:0.01,
         tipp:"Direkte Übergangswahrscheinlichkeit.",
-        loesungsweg:"0,8."
+        loesungsweg:"Die Übergangswahrscheinlichkeit lässt sich direkt ablesen, ohne Rechnung: $$P(\\text{Sonne} \\to \\text{Sonne}) = 0{,}8$$ Für einen einzelnen Schritt ab einem sicheren Zustand ist das immer so."
       },
       { id:14, level:3, typ:"numerisch",
         frage:"Sonne→Sonne 0,8; Regen→Sonne 0,4. Heute Sonne. \\(P(\\text{übermorgen Sonne})\\)?",
         loesung:0.72, toleranz:0.01,
         tipp:"\\(0{,}8\\cdot 0{,}8+0{,}2\\cdot 0{,}4\\).",
-        loesungsweg:"\\(0{,}64+0{,}08=0{,}72\\)."
+        loesungsweg:"Übermorgen Sonne kann auf zwei Wegen zustande kommen: über Sonne oder über Regen. Beide Pfade werden addiert: $$0{,}8 \\cdot 0{,}8 + 0{,}2 \\cdot 0{,}4 = 0{,}64 + 0{,}08 = 0{,}72$$ Der zweite Pfad wird leicht übersehen — er ist der Grund, warum sich die Verteilung einpendelt."
       },
       { id:15, level:3, typ:"numerisch",
         frage:"Übergangsmatrix \\(\\begin{pmatrix}0{,}7&0{,}2\\\\0{,}3&0{,}8\\end{pmatrix}\\). \\(\\vec{v}_0=(1;0)\\). 2. Komponente \\(\\vec{v}_1\\)?",
         loesung:0.3, toleranz:0.01,
         tipp:"Untere Zeile.",
-        loesungsweg:"\\(0{,}3\\)."
+        loesungsweg:"Zweite Zeile mal Vektor: $$0{,}3 \\cdot 1 + 0{,}8 \\cdot 0 = 0{,}3$$"
       },
       { id:16, level:3, typ:"numerisch",
         frage:"\u00dcbergangsmatrix \\(\\begin{pmatrix}0{,}7&0{,}2\\\\0{,}3&0{,}8\\end{pmatrix}\\). Was ist die Spaltensumme jeder Spalte?",
         loesung:1, toleranz:0.01,
         tipp:"Stochastisch.",
-        loesungsweg:"1."
+        loesungsweg:"Bei einer spaltenstochastischen Matrix ergibt jede Spalte zusammen \\(1\\): $$0{,}7 + 0{,}3 = 1 \\qquad 0{,}2 + 0{,}8 = 1$$ Inhaltlich: Was einen Zustand verlässt oder darin bleibt, muss zusammen den ganzen Zustand ausmachen."
       },
       { id:17, level:3, typ:"mc",
         frage:"Eine absorbierende Zustand bedeutet:",
@@ -133,26 +133,26 @@
         frage:"\\(M=\\begin{pmatrix}0{,}5&0\\\\0{,}5&1\\end{pmatrix}\\). Ist Zustand 2 absorbierend? (1=ja, 0=nein)",
         loesung:1, toleranz:0.01,
         tipp:"\\(M_{22}=1\\).",
-        loesungsweg:"Ja."
+        loesungsweg:"Ein Zustand heißt absorbierend, wenn man ihn nicht mehr verlässt — also wenn der Eintrag auf der Diagonalen \\(1\\) ist. Hier ist \\(M_{22} = 1\\), also <b>ja</b>. Wer einmal in Zustand 2 ist, bleibt dort für immer."
       },
       // ===== LEVEL 4 — Matrixpotenz =====
       { id:19, level:4, typ:"numerisch",
         frage:"\\(M=\\begin{pmatrix}0{,}5&0{,}5\\\\0{,}5&0{,}5\\end{pmatrix}\\). \\(M^2\\): Eintrag oben links?",
         loesung:0.5, toleranz:0.01,
         tipp:"\\(0{,}25+0{,}25\\).",
-        loesungsweg:"\\(0{,}5\\cdot0{,}5+0{,}5\\cdot0{,}5=0{,}5\\)."
+        loesungsweg:"Erste Zeile mal erste Spalte: $$0{,}5 \\cdot 0{,}5 + 0{,}5 \\cdot 0{,}5 = 0{,}25 + 0{,}25 = 0{,}5$$ Bei dieser Matrix ändert sich durch Potenzieren nichts — sie führt schon nach einem Schritt ins Gleichgewicht."
       },
       { id:20, level:4, typ:"numerisch",
         frage:"\\(M=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}\\). \\(M^{100}\\): Spur?",
         loesung:2, toleranz:0.01,
         tipp:"\\(M^n=M\\).",
-        loesungsweg:"Spur = 2."
+        loesungsweg:"Die Einheitsmatrix bleibt bei jeder Potenz sie selbst: \\(I^{100} = I\\). Die Spur ist die Summe der Diagonaleinträge: $$1 + 1 = 2$$"
       },
       { id:21, level:4, typ:"numerisch",
         frage:"\\(M=\\begin{pmatrix}0{,}9&0{,}1\\\\0{,}1&0{,}9\\end{pmatrix}\\). \\(M^2\\) Eintrag oben links?",
         loesung:0.82, toleranz:0.01,
         tipp:"\\(0{,}9^2+0{,}1^2\\).",
-        loesungsweg:"\\(0{,}81+0{,}01=0{,}82\\)."
+        loesungsweg:"Erste Zeile mal erste Spalte: $$0{,}9 \\cdot 0{,}9 + 0{,}1 \\cdot 0{,}1 = 0{,}81 + 0{,}01 = 0{,}82$$"
       },
       { id:22, level:4, typ:"mc",
         frage:"Welcher Grenzwert besitzt \\(M^n\\) bei einer regulären stochastischen Matrix \\(2\\times2\\)?",
@@ -165,32 +165,32 @@
         frage:"\\(M=\\begin{pmatrix}0{,}7&0{,}2\\\\0{,}3&0{,}8\\end{pmatrix}\\). Stationärer Verteilungsvektor: erste Komponente?",
         loesung:0.4, toleranz:0.01,
         tipp:"\\(s_1=\\frac{0{,}2}{0{,}3+0{,}2}=0{,}4\\).",
-        loesungsweg:"\\(\\vec{s}=(0{,}4;0{,}6)\\)."
+        loesungsweg:"Im stationären Zustand gleichen sich die Wechsel aus: Was von 1 nach 2 geht, muss von 2 nach 1 zurückkommen. $$0{,}3 \\cdot s_1 = 0{,}2 \\cdot s_2 \\quad\\text{mit}\\quad s_1 + s_2 = 1$$ $$s_1 = \\frac{0{,}2}{0{,}3+0{,}2} = 0{,}4$$ Der stationäre Vektor ist \\((0{,}4;\\,0{,}6)\\)."
       },
       { id:24, level:4, typ:"numerisch",
         frage:"\\(M=\\begin{pmatrix}0{,}6&0{,}5\\\\0{,}4&0{,}5\\end{pmatrix}\\). Stationäre 1. Komponente?",
         loesung:0.556, toleranz:0.01,
         tipp:"\\(s_1=\\frac{0{,}5}{0{,}4+0{,}5}=\\frac{5}{9}\\).",
-        loesungsweg:"\\(s_1\\approx 0{,}556\\)."
+        loesungsweg:"$$s_1 = \\frac{0{,}5}{0{,}4+0{,}5} = \\frac{5}{9} \\approx 0{,}556$$ Im Zähler steht stets die Rückflussrate in den gesuchten Zustand, im Nenner die Summe beider Wechselraten."
       },
       // ===== LEVEL 5 — Fixvektor, Gleichgewicht =====
       { id:25, level:5, typ:"numerisch",
         frage:"\\(M=\\begin{pmatrix}0{,}8&0{,}3\\\\0{,}2&0{,}7\\end{pmatrix}\\). Stationärer 1. Eintrag?",
         loesung:0.6, toleranz:0.01,
         tipp:"\\(s_1=\\frac{0{,}3}{0{,}2+0{,}3}=0{,}6\\).",
-        loesungsweg:"\\((0{,}6;0{,}4)\\)."
+        loesungsweg:"$$s_1 = \\frac{0{,}3}{0{,}2+0{,}3} = \\frac{0{,}3}{0{,}5} = 0{,}6$$"
       },
       { id:26, level:5, typ:"numerisch",
         frage:"\\(M=\\begin{pmatrix}0{,}8&0{,}3\\\\0{,}2&0{,}7\\end{pmatrix}\\). Station\u00e4rer Vektor: 2. Eintrag?",
         loesung:0.4, toleranz:0.01,
         tipp:"Ergänzung auf 1.",
-        loesungsweg:"0,4."
+        loesungsweg:"Die Komponenten eines Verteilungsvektors ergänzen sich zu \\(1\\): $$s_2 = 1 - 0{,}6 = 0{,}4$$ Bei zwei Zuständen genügt es also, eine Komponente zu berechnen."
       },
       { id:27, level:5, typ:"numerisch",
         frage:"\\(M=\\begin{pmatrix}0{,}2&0{,}4\\\\0{,}8&0{,}6\\end{pmatrix}\\). Stationärer 1. Eintrag?",
         loesung:0.333, toleranz:0.01,
         tipp:"\\(s_1=\\frac{0{,}4}{0{,}8+0{,}4}=1/3\\).",
-        loesungsweg:"\\(1/3\\approx0{,}333\\)."
+        loesungsweg:"$$s_1 = \\frac{0{,}4}{0{,}8+0{,}4} = \\frac{0{,}4}{1{,}2} = \\frac13 \\approx 0{,}333$$"
       },
       { id:28, level:5, typ:"mc",
         frage:"Wie findet man den Fixvektor algebraisch?",
@@ -203,26 +203,26 @@
         frage:"\\(M=\\begin{pmatrix}0{,}5&0{,}25\\\\0{,}5&0{,}75\\end{pmatrix}\\). Stationärer 1. Eintrag?",
         loesung:0.333, toleranz:0.01,
         tipp:"\\(s_1=\\frac{0{,}25}{0{,}5+0{,}25}=1/3\\).",
-        loesungsweg:"\\(1/3\\)."
+        loesungsweg:"$$s_1 = \\frac{0{,}25}{0{,}5+0{,}25} = \\frac{0{,}25}{0{,}75} = \\frac13 \\approx 0{,}333$$"
       },
       { id:30, level:5, typ:"numerisch",
         frage:"Für Matrix \\(\\begin{pmatrix}a&1-b\\\\1-a&b\\end{pmatrix}\\) (spaltenstochastisch) ist \\(s_1=\\frac{1-b}{2-a-b}\\). Für \\(a=0{,}7, b=0{,}9\\): \\(s_1\\)?",
         loesung:0.25, toleranz:0.01,
         tipp:"\\(\\frac{0{,}1}{0{,}4}\\).",
-        loesungsweg:"\\(0{,}25\\)."
+        loesungsweg:"$$s_1 = \\frac{1-b}{2-a-b} = \\frac{1-0{,}9}{2-0{,}7-0{,}9} = \\frac{0{,}1}{0{,}4} = 0{,}25$$ Die Formel ist die allgemeine Fassung derselben Gleichgewichtsbedingung."
       },
       // ===== LEVEL 6 — Abi =====
       { id:31, level:6, typ:"numerisch",
         frage:"Stadt A/B: 90 % bleiben in A, 80 % bleiben in B. Start 1000 A, 0 B. Nach 1 Jahr A-Bevölkerung?",
         loesung:900, toleranz:1,
         tipp:"\\(0{,}9\\cdot1000\\).",
-        loesungsweg:"900 in A."
+        loesungsweg:"Von den \\(1000\\) Einwohnern in A bleiben \\(90\\,\\%\\); aus B kommt niemand dazu, weil B leer ist: $$0{,}9 \\cdot 1000 + 0{,}2 \\cdot 0 = 900$$"
       },
       { id:32, level:6, typ:"numerisch",
         frage:"Stadt A/B: 90 % bleiben in A, 80 % bleiben in B. Langfristiger Anteil in A (station\u00e4r)?",
         loesung:0.667, toleranz:0.01,
         tipp:"\\(\\vec{s}:\\ s_1=\\frac{0{,}2}{0{,}1+0{,}2}=2/3\\).",
-        loesungsweg:"\\(2/3\\approx0{,}667\\)."
+        loesungsweg:"Aus A wandern \\(10\\,\\%\\) ab, aus B kommen \\(20\\,\\%\\) zurück. Im Gleichgewicht gilt: $$0{,}1 \\cdot s_A = 0{,}2 \\cdot s_B \\quad\\text{mit}\\quad s_A + s_B = 1$$ $$s_A = \\frac{0{,}2}{0{,}1+0{,}2} = \\frac23 \\approx 0{,}667$$ Die Startverteilung spielt für den Langzeitwert keine Rolle."
       },
       { id:33, level:6, typ:"numerisch",
         frage:"3-Zustands-Kette: Absorptionsmatrix \\(M=\\begin{pmatrix}0{,}5&0&0\\\\0{,}5&1&0\\\\0&0&1\\end{pmatrix}\\). Start Zustand 1. \\(P(\\text{absorbiert in 2})\\) langfristig?",
@@ -234,19 +234,19 @@
         frage:"Markenwechsel: 3 Marken, Matrix \\(M=\\begin{pmatrix}0{,}7&0{,}1&0{,}2\\\\0{,}2&0{,}8&0{,}1\\\\0{,}1&0{,}1&0{,}7\\end{pmatrix}\\). Spaltensumme Spalte 1?",
         loesung:1, toleranz:0.01,
         tipp:"Stochastisch.",
-        loesungsweg:"\\(0{,}7+0{,}2+0{,}1=1\\)."
+        loesungsweg:"$$0{,}7 + 0{,}2 + 0{,}1 = 1$$ Auch bei drei Zuständen muss jede Spalte \\(1\\) ergeben — Kunden der Marke 1 bleiben entweder dort oder wechseln zu einer der anderen beiden."
       },
       { id:35, level:6, typ:"numerisch",
         frage:"Matrix \\(\\begin{pmatrix}0{,}9&0{,}2\\\\0{,}1&0{,}8\\end{pmatrix}\\). Nach 10 Schritten Start (1,0). Approx 1. Eintrag nähert sich stationärem Wert \\(s_1=\\frac{0{,}2}{0{,}3}\\). \\(s_1=?\\)",
         loesung:0.667, toleranz:0.01,
         tipp:"\\(2/3\\).",
-        loesungsweg:"\\(0{,}667\\)."
+        loesungsweg:"$$s_1 = \\frac{0{,}2}{0{,}1+0{,}2} = \\frac{0{,}2}{0{,}3} = \\frac23 \\approx 0{,}667$$ Nach zehn Schritten liegt der tatsächliche Wert bereits sehr nah an diesem Grenzwert."
       },
       { id:36, level:6, typ:"numerisch",
         frage:"Firmenwechsel A↔B: Aus A 15 % nach B, aus B 10 % nach A. Langzeitanteil A?",
         loesung:0.4, toleranz:0.01,
         tipp:"\\(s_A=\\frac{0{,}10}{0{,}15+0{,}10}=0{,}4\\).",
-        loesungsweg:"\\(40\\,\\%\\)."
+        loesungsweg:"Aus A gehen \\(15\\,\\%\\) weg, aus B kommen \\(10\\,\\%\\) zurück: $$s_A = \\frac{0{,}10}{0{,}15+0{,}10} = \\frac{0{,}10}{0{,}25} = 0{,}4$$ Langfristig entfallen also \\(40\\,\\%\\) auf A — obwohl A die höhere Bindungsrate hätte, verliert es netto."
       }];
     </script>
     <script src="../spirale-engine.js"></script>
