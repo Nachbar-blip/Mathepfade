@@ -126,7 +126,7 @@
         optionen: ["\\(b^{12}\\)", "\\(b^4\\)", "\\(b^8\\)", "\\(2b^8\\)"],
         korrekt: 2,
         tipp: "Exponenten addieren: \\(2 + 6\\).",
-        loesungsweg: "$$b^2 \\cdot b^6 = b^{8}$$"
+        loesungsweg: "Beim Multiplizieren gleicher Basen werden die Exponenten addiert: $$b^2 \\cdot b^6 = b^{2+6} = b^8$$ Ausgeschrieben stehen zwei plus sechs Faktoren \\(b\\) nebeneinander — zusammen acht. Multipliziert werden die Exponenten dagegen beim Potenzieren einer Potenz."
       },
       {
         id: 12,
@@ -248,7 +248,7 @@
         optionen: ["\\(\\left(\\frac{a}{b}\\right)^5\\)", "\\(\\frac{a}{b}\\)", "\\(\\left(\\frac{a}{b}\\right)^{25}\\)", "\\(a^5 - b^5\\)"],
         korrekt: 0,
         tipp: "Gleiche Exponenten bei Bruch: Basis ist der Bruch.",
-        loesungsweg: "$$\\frac{a^5}{b^5} = \\left(\\frac{a}{b}\\right)^5$$"
+        loesungsweg: "Stehen im Zähler und Nenner dieselben Exponenten, lässt sich der Bruch als Basis zusammenfassen: $$\\frac{a^5}{b^5} = \\left(\\frac ab\\right)^5$$ Denn beim Potenzieren eines Bruchs wird ohnehin jeder Teil einzeln potenziert. Die Exponenten werden dabei <b>nicht</b> multipliziert."
       },
       {
         id: 24,
@@ -309,7 +309,7 @@
         optionen: ["\\(a^2 \\cdot a^3\\)", "\\((a^2)^3\\)", "\\(a^3 + a^3\\)", "\\(\\frac{a^{10}}{a^5}\\)"],
         korrekt: 1,
         tipp: "\\((a^2)^3 = a^{2\\cdot3}\\).",
-        loesungsweg: "\\((a^2)^3 = a^6\\). Die anderen ergeben \\(a^5\\), \\(2a^3\\), \\(a^5\\)."
+        loesungsweg: "$$\\left(a^2\\right)^3 = a^{2 \\cdot 3} = a^6$$ Die anderen Angebote ergeben etwas anderes: \\(a^2 \\cdot a^3 = a^5\\) (Exponenten addiert), \\(a^3+a^3 = 2a^3\\) (gleichartige Terme, keine Potenzregel) und \\(\\tfrac{a^{10}}{a^5} = a^5\\) (Exponenten subtrahiert). Jede Rechenart hat ihre eigene Regel."
       },
       {
         id: 30,
@@ -330,7 +330,7 @@
         optionen: ["\\(5 \\cdot 10^7\\)", "\\(6 \\cdot 10^7\\)", "\\(6 \\cdot 10^{12}\\)", "\\(5 \\cdot 10^{12}\\)"],
         korrekt: 1,
         tipp: "Zahlen multiplizieren, Zehnerpotenzen addieren.",
-        loesungsweg: "$$3 \\cdot 2 \\cdot 10^{4+3} = 6 \\cdot 10^7$$"
+        loesungsweg: "Vorfaktoren und Zehnerpotenzen getrennt behandeln: $$3 \\cdot 2 \\cdot 10^{4+3} = 6 \\cdot 10^7$$ Die Exponenten werden addiert, nicht multipliziert — \\(10^{12}\\) wäre der typische Fehler."
       },
       {
         id: 32,
@@ -370,7 +370,7 @@
         optionen: ["\\(a^2 b^3\\)", "\\(a^3 b^3\\)", "\\(a^2 b^7\\)", "\\(a^4 b^7\\)"],
         korrekt: 0,
         tipp: "Getrennt: \\(\\frac{a^3}{a} \\cdot \\frac{b^5}{b^2}\\).",
-        loesungsweg: "$$\\frac{a^3}{a^1} \\cdot \\frac{b^5}{b^2} = a^2 \\cdot b^3$$"
+        loesungsweg: "Gleiche Basen einzeln kürzen, die Exponenten also subtrahieren: $$\\frac{a^3}{a^1} \\cdot \\frac{b^5}{b^2} = a^{3-1} \\cdot b^{5-2} = a^2 b^3$$ Das einzelne \\(a\\) im Nenner zählt als \\(a^1\\)."
       },
       {
         id: 36,
@@ -380,9 +380,8 @@
         loesung: 1024,
         toleranz: 0,
         tipp: "\\(2^{10} = 2^5 \\cdot 2^5 = 32 \\cdot 32\\).",
-        loesungsweg: "$$2^{10} = 1024$$"
-      }
-    ];
+        loesungsweg: "Zehn Verdopplungen bedeuten den Faktor \\(2\\) zehnmal: $$2^{10} = 2^5 \\cdot 2^5 = 32 \\cdot 32 = 1024$$ Aus einem einzigen Bakterium werden so in zehn Stunden über tausend — exponentielles Wachstum wird rasch unanschaulich groß. Nach zwanzig Stunden wären es bereits mehr als eine Million."
+      }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>
