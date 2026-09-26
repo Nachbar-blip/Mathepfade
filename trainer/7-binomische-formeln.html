@@ -172,12 +172,12 @@
       {
         id: 16,
         level: 3,
-        typ: "numerisch",
-        frage: "Berechne \\((y - 5)^2\\) für \\(y = 8\\).",
-        loesung: 9,
-        toleranz: 0,
-        tipp: "\\((8 - 5)^2 = 3^2\\).",
-        loesungsweg: "$$(8 - 5)^2 = 3^2 = 9$$"
+        typ: "mc",
+        frage: "Berechne \((x + 6)(x - 6)\).",
+        optionen: ["\(x^2 + 36\)", "\(x^2 - 36\)", "\(x^2 - 12x + 36\)", "\(x^2 + 12x - 36\)"],
+        korrekt: 1,
+        tipp: "3. binomische Formel: \((a + b)(a - b) = a^2 - b^2\).",
+        loesungsweg: "Dritte binomische Formel: $$(a+b)(a-b) = a^2 - b^2$$ $$(x+6)(x-6) = x^2 - 36$$ Die gemischten Terme \(+6x\) und \(-6x\) heben einander auf — deshalb bleibt kein linearer Term übrig."
       },
       {
         id: 17,
@@ -193,193 +193,196 @@
         id: 18,
         level: 3,
         typ: "numerisch",
-        frage: "Berechne \\(98^2\\) mit der 2. binomischen Formel: \\((100 - 2)^2\\).",
-        loesung: 9604,
+        frage: "Berechne \(48 \cdot 52\) mit der 3. binomischen Formel.",
+        loesung: 2496,
         toleranz: 0,
-        tipp: "\\(100^2 - 2 \\cdot 100 \\cdot 2 + 2^2 = 10000 - 400 + 4\\).",
-        loesungsweg: "$$98^2 = (100 - 2)^2 = 10000 - 400 + 4 = 9604$$"
+        tipp: "\(48 \cdot 52 = (50 - 2)(50 + 2) = 50^2 - 2^2\).",
+        loesungsweg: "$$48 \cdot 52 = (50 - 2)(50 + 2) = 2500 - 4 = 2496$$"
       },
-      // ========== LEVEL 4 -- mittel: 3. binomische Formel ==========
+      // ========== LEVEL 4 -- mittel: Verfahren selbst wählen, Umkehraufgaben ==========
       {
         id: 19,
         level: 4,
-        typ: "mc",
-        frage: "Berechne \\((x + 6)(x - 6)\\).",
-        optionen: ["\\(x^2 + 36\\)", "\\(x^2 - 36\\)", "\\(x^2 - 12x + 36\\)", "\\(x^2 + 12x - 36\\)"],
-        korrekt: 1,
-        tipp: "3. binomische Formel: \\((a + b)(a - b) = a^2 - b^2\\).",
-        loesungsweg: "Dritte binomische Formel: $$(a+b)(a-b) = a^2 - b^2$$ $$(x+6)(x-6) = x^2 - 36$$ Die gemischten Terme \\(+6x\\) und \\(-6x\\) heben einander auf — deshalb bleibt kein linearer Term übrig."
+        typ: "numerisch",
+        frage: "Berechne \\(38 \\cdot 42\\) ohne schriftliche Multiplikation und ohne Taschenrechner.",
+        loesung: 1596,
+        toleranz: 0,
+        tipp: "Beide Faktoren liegen gleich weit von \\(40\\) entfernt.",
+        loesungsweg: "Beide Faktoren liegen um \\(2\\) neben \\(40\\) — das ist die Form \\((a-b)(a+b)\\): $$38 \\cdot 42 = (40 - 2)(40 + 2) = 40^2 - 2^2 = 1600 - 4 = 1596$$"
       },
       {
         id: 20,
         level: 4,
         typ: "numerisch",
-        frage: "Berechne \\(27 \\cdot 33\\) im Kopf.",
-        loesung: 891,
+        frage: "Für welchen Wert von \\(c\\) lässt sich \\(x^2 + 16x + c\\) mit einer binomischen Formel als Quadrat \\((x + k)^2\\) schreiben?",
+        loesung: 64,
         toleranz: 0,
-        tipp: "Beide Zahlen liegen gleich weit von 30 entfernt \u2014 welche binomische Formel passt dazu?",
-        loesungsweg: "$$27 \\cdot 33 = (30 - 3)(30 + 3) = 900 - 9 = 891$$"
+        tipp: "Der mittlere Term ist \\(2 \\cdot x \\cdot k\\).",
+        loesungsweg: "Vergleich mit \\((x+k)^2 = x^2 + 2kx + k^2\\): Aus \\(2k = 16\\) folgt \\(k = 8\\), also \\(c = k^2 = 64\\): $$x^2 + 16x + 64 = (x + 8)^2$$"
       },
       {
         id: 21,
         level: 4,
-        typ: "mc",
-        frage: "Berechne \\((2a + 5)(2a - 5)\\).",
-        optionen: ["\\(4a^2 + 25\\)", "\\(4a^2 - 25\\)", "\\(2a^2 - 25\\)", "\\(4a^2 - 10a + 25\\)"],
-        korrekt: 1,
-        tipp: "\\(a = 2a\\), \\(b = 5\\). Also \\((2a)^2 - 5^2\\).",
-        loesungsweg: "Mit \\(a = 2a\\) und \\(b = 5\\): $$(2a)^2 - 5^2 = 4a^2 - 25$$ Auch hier wird der Faktor \\(2\\) mitquadriert. Die Formel arbeitet in beide Richtungen: \\(4a^2-25\\) lässt sich ebenso wieder in \\((2a+5)(2a-5)\\) zerlegen — nützlich beim Nullstellensuchen."
+        typ: "numerisch",
+        frage: "Aus einem Quadrat mit Seitenlänge \\(a\\) wird ein Rechteck: Eine Seite wird um \\(4\\,\\text{cm}\\) verlängert, die andere um \\(4\\,\\text{cm}\\) verkürzt. Um wie viele \\(\\text{cm}^2\\) ist das Rechteck kleiner als das Quadrat?",
+        loesung: 16,
+        toleranz: 0,
+        tipp: "Stelle die Rechteckfläche als Term in \\(a\\) auf und vergleiche mit \\(a^2\\).",
+        loesungsweg: "Rechteck: \\((a + 4)(a - 4) = a^2 - 16\\). Das Quadrat hat \\(a^2\\). $$a^2 - (a^2 - 16) = 16$$ Das Rechteck ist also für jedes \\(a\\) um \\(16\\,\\text{cm}^2\\) kleiner."
       },
       {
         id: 22,
         level: 4,
         typ: "numerisch",
-        frage: "Berechne \\(48 \\cdot 52\\) mit der 3. binomischen Formel.",
-        loesung: 2496,
+        frage: "Es gilt \\((x + b)^2 = x^2 + 18x + 81\\). Welchen Wert hat \\(b\\)?",
+        loesung: 9,
         toleranz: 0,
-        tipp: "\\(48 \\cdot 52 = (50 - 2)(50 + 2) = 50^2 - 2^2\\).",
-        loesungsweg: "$$48 \\cdot 52 = (50 - 2)(50 + 2) = 2500 - 4 = 2496$$"
+        tipp: "Vergleiche den mittleren Term und das letzte Glied mit der Formel.",
+        loesungsweg: "\\((x+b)^2 = x^2 + 2bx + b^2\\). Vergleich: \\(2b = 18\\) gibt \\(b = 9\\), und tatsächlich ist \\(9^2 = 81\\) ✓ $$x^2 + 18x + 81 = (x + 9)^2$$"
       },
       {
         id: 23,
         level: 4,
         typ: "mc",
-        frage: "Welches Produkt passt zur 3. binomischen Formel für \\(x^2 - 9\\)?",
-        optionen: ["\\((x + 9)(x - 9)\\)", "\\((x + 3)(x - 3)\\)", "\\((x - 3)^2\\)", "\\((x + 3)^2\\)"],
-        korrekt: 1,
-        tipp: "\\(9 = 3^2\\). Also \\(x^2 - 3^2\\).",
-        loesungsweg: "$$x^2 - 9 = x^2 - 3^2 = (x + 3)(x - 3)$$"
+        frage: "Welcher dieser Terme lässt sich mit einer binomischen Formel als Produkt schreiben?",
+        optionen: ["\\(x^2 + 6x + 9\\)", "\\(x^2 + 6x + 6\\)", "\\(x^2 + 9\\)", "\\(x^2 + 3x + 9\\)"],
+        korrekt: 0,
+        tipp: "Prüfe bei jedem Term: Sind zwei Summanden Quadrate, und passt der mittlere Term als \\(2ab\\)?",
+        loesungsweg: "\\(x^2 + 6x + 9 = x^2 + 2 \\cdot x \\cdot 3 + 3^2 = (x+3)^2\\) ✓<br>\\(x^2 + 6x + 6\\): \\(6\\) ist kein Quadrat.<br>\\(x^2 + 9\\): eine <b>Summe</b> von Quadraten hat keine binomische Zerlegung (nur die Differenz \\(x^2 - 9\\)).<br>\\(x^2 + 3x + 9\\): der mittlere Term müsste \\(6x\\) sein."
       },
       {
         id: 24,
         level: 4,
         typ: "numerisch",
-        frage: "Berechne \\((3x + 4)(3x - 4)\\) für \\(x = 2\\).",
-        loesung: 20,
+        frage: "Ein Quadrat mit Seitenlänge \\(20\\,\\text{cm}\\) wird zu einem Quadrat mit Seitenlänge \\(23\\,\\text{cm}\\) vergrößert. Um wie viele \\(\\text{cm}^2\\) wächst der Flächeninhalt?",
+        loesung: 129,
         toleranz: 0,
-        tipp: "\\(9x^2 - 16\\). Für \\(x = 2\\): \\(36 - 16\\).",
-        loesungsweg: "$$(3x + 4)(3x - 4) = 9x^2 - 16$$<br>Für \\(x = 2\\): \\(36 - 16 = 20\\)."
+        tipp: "\\(23^2 - 20^2\\) — welche Formel spart das Ausrechnen der Quadrate?",
+        loesungsweg: "$$23^2 - 20^2 = (23 + 20)(23 - 20) = 43 \\cdot 3 = 129$$ Probe direkt: \\(529 - 400 = 129\\) ✓"
       },
-      // ========== LEVEL 5 -- anspruchsvoll: Rückwärts anwenden (Faktorisieren) ==========
+      // ========== LEVEL 5 -- anspruchsvoll: Fehler finden, Parameter, zweischrittig ==========
       {
         id: 25,
         level: 5,
         typ: "mc",
-        frage: "Faktorisiere: \\(x^2 + 10x + 25\\)",
-        optionen: ["\\((x + 5)^2\\)", "\\((x - 5)^2\\)", "\\((x + 5)(x - 5)\\)", "\\((x + 25)(x + 1)\\)"],
+        frage: "Mia rechnet: \\((2x - 3)^2 = 4x^2 - 6x + 9\\). Was ist dazu zu sagen?",
+        optionen: ["Falsch — der mittlere Term ist \\(2 \\cdot 2x \\cdot 3 = 12x\\), richtig ist \\(4x^2 - 12x + 9\\)", "Richtig, die Rechnung stimmt", "Falsch — vorn müsste \\(2x^2\\) stehen, richtig ist \\(2x^2 - 6x + 9\\)", "Falsch — das letzte Glied muss \\(-9\\) sein, richtig ist \\(4x^2 - 6x - 9\\)"],
         korrekt: 0,
-        tipp: "Ist \\(25 = 5^2\\) und \\(10x = 2 \\cdot x \\cdot 5\\)? Dann 1. binomische Formel rückwärts.",
-        loesungsweg: "$$x^2 + 10x + 25 = x^2 + 2 \\cdot x \\cdot 5 + 5^2 = (x + 5)^2$$"
+        tipp: "Setze \\(x = 1\\) ein: links \\((2-3)^2 = 1\\). Was liefert Mias Term?",
+        loesungsweg: "\\((a-b)^2 = a^2 - 2ab + b^2\\) mit \\(a = 2x\\), \\(b = 3\\): $$(2x)^2 - 2 \\cdot 2x \\cdot 3 + 3^2 = 4x^2 - 12x + 9$$ Mia hat beim mittleren Term den Faktor \\(2\\) von \\(2x\\) vergessen. Probe mit \\(x = 1\\): \\((2-3)^2 = 1\\), und \\(4 - 12 + 9 = 1\\) ✓, aber \\(4 - 6 + 9 = 7\\) ✗."
       },
       {
         id: 26,
         level: 5,
-        typ: "mc",
-        frage: "Faktorisiere: \\(a^2 - 14a + 49\\)",
-        optionen: ["\\((a + 7)^2\\)", "\\((a - 7)^2\\)", "\\((a + 7)(a - 7)\\)", "\\((a - 49)(a + 1)\\)"],
-        korrekt: 1,
-        tipp: "\\(49 = 7^2\\) und \\(14a = 2 \\cdot a \\cdot 7\\). Welche Formel mit Minus?",
-        loesungsweg: "$$a^2 - 14a + 49 = a^2 - 2 \\cdot a \\cdot 7 + 7^2 = (a - 7)^2$$"
-      },      {
-        id: 27, level: 5, typ: "numerisch",
-        frage: "Es gilt \\(4x^2 - 9 = (2x - a)(2x + a)\\). Welchen Wert hat \\(a\\)?",
-        loesung: 3,
+        typ: "numerisch",
+        frage: "Es gilt \\((ax + b)^2 = 9x^2 + 30x + 25\\) mit positiven Zahlen \\(a\\) und \\(b\\). Berechne das Produkt \\(a \\cdot b\\).",
+        loesung: 15,
         toleranz: 0,
-        tipp: "Welche Zahl ergibt quadriert \\(9\\)?",
-        loesungsweg: "Nach der 3. binomischen Formel ist \\((2x-a)(2x+a) = 4x^2 - a^2\\). Aus \\(a^2 = 9\\) folgt \\(a = 3\\): $$4x^2 - 9 = (2x-3)(2x+3)$$"
+        tipp: "Welche Quadrate stecken in \\(9x^2\\) und \\(25\\)? Prüfe dann den mittleren Term.",
+        loesungsweg: "\\((ax+b)^2 = a^2x^2 + 2abx + b^2\\). Aus \\(a^2 = 9\\) folgt \\(a = 3\\), aus \\(b^2 = 25\\) folgt \\(b = 5\\). Kontrolle mit dem mittleren Term: \\(2ab = 2 \\cdot 3 \\cdot 5 = 30\\) ✓ Also \\(a \\cdot b = 15\\): $$9x^2 + 30x + 25 = (3x + 5)^2$$"
       },
-
+      {
+        id: 27,
+        level: 5,
+        typ: "numerisch",
+        frage: "Vereinfache \\((x + 4)^2 - (x - 2)(x + 2)\\) so weit wie möglich und berechne dann den Wert für \\(x = 5\\).",
+        loesung: 60,
+        toleranz: 0,
+        tipp: "Zwei verschiedene binomische Formeln; die \\(x^2\\) heben sich auf.",
+        loesungsweg: "$$(x+4)^2 = x^2 + 8x + 16, \\qquad (x-2)(x+2) = x^2 - 4$$ $$x^2 + 8x + 16 - (x^2 - 4) = 8x + 20$$ Typischer Fehler: beim Subtrahieren nur das \\(x^2\\) mit Minus nehmen und \\(-4\\) stehen lassen. Für \\(x = 5\\): \\(8 \\cdot 5 + 20 = 60\\)."
+      },
       {
         id: 28,
         level: 5,
         typ: "mc",
-        frage: "Faktorisiere: \\(9a^2 + 12a + 4\\)",
-        optionen: ["\\((3a + 2)^2\\)", "\\((9a + 4)^2\\)", "\\((3a - 2)^2\\)", "\\((3a + 4)(3a + 1)\\)"],
+        frage: "Ben vereinfacht: \\((x + 3)^2 - (x - 3)^2 = x^2 + 9 - x^2 - 9 = 0\\). Was ist dazu zu sagen?",
+        optionen: ["Falsch — beide Quadrate haben einen mittleren Term \\(\\pm 6x\\); richtig ist \\(12x\\)", "Richtig, der Term ist immer \\(0\\)", "Falsch — das Ergebnis ist \\(18\\), denn \\(9 - (-9) = 18\\)", "Falsch — das Ergebnis ist \\(2x^2\\), die Zahlen heben sich auf"],
         korrekt: 0,
-        tipp: "\\(9a^2 = (3a)^2\\), \\(4 = 2^2\\), \\(12a = 2 \\cdot 3a \\cdot 2\\).",
-        loesungsweg: "$$9a^2 + 12a + 4 = (3a)^2 + 2 \\cdot 3a \\cdot 2 + 2^2 = (3a + 2)^2$$"
+        tipp: "Setze \\(x = 1\\) ein: \\(4^2 - (-2)^2 = 16 - 4\\).",
+        loesungsweg: "Ben hat bei beiden Quadraten den Term \\(2ab\\) vergessen: $$(x+3)^2 = x^2 + 6x + 9, \\qquad (x-3)^2 = x^2 - 6x + 9$$ $$x^2 + 6x + 9 - (x^2 - 6x + 9) = 12x$$ Probe mit \\(x = 1\\): \\(16 - 4 = 12 = 12 \\cdot 1\\) ✓"
       },
       {
         id: 29,
         level: 5,
         typ: "numerisch",
-        frage: "Faktorisiere \\(x^2 - 16\\) und berechne den Wert für \\(x = 5\\).",
+        frage: "Zwei Quadrate haben Seitenlängen, die sich um \\(4\\,\\text{cm}\\) unterscheiden. Ihre Flächeninhalte unterscheiden sich um \\(88\\,\\text{cm}^2\\). Wie lang ist die Seite des kleineren Quadrats in cm?",
         loesung: 9,
         toleranz: 0,
-        tipp: "\\(x^2 - 16 = (x + 4)(x - 4)\\). Einsetzen.",
-        loesungsweg: "$$x^2 - 16 = (x + 4)(x - 4)$$<br>Für \\(x = 5\\): \\(9 \\cdot 1 = 9\\)."
+        tipp: "Nenne die kleinere Seite \\(a\\), die größere \\(a + 4\\), und stelle die Flächendifferenz als Term auf.",
+        loesungsweg: "Kleinere Seite \\(a\\), größere \\(a + 4\\): $$(a+4)^2 - a^2 = a^2 + 8a + 16 - a^2 = 8a + 16$$ $$8a + 16 = 88 \\;\\Rightarrow\\; 8a = 72 \\;\\Rightarrow\\; a = 9$$ Probe: \\(13^2 - 9^2 = 169 - 81 = 88\\) ✓"
       },
       {
         id: 30,
         level: 5,
         typ: "numerisch",
-        frage: "Berechne \\(103^2 - 97^2\\) mithilfe der 3. binomischen Formel.",
-        loesung: 1200,
+        frage: "Für welche Zahl \\(x\\) gilt \\((x + 3)^2 = (x - 5)^2\\)?",
+        loesung: 1,
         toleranz: 0,
-        tipp: "\\(a^2 - b^2 = (a + b)(a - b)\\) mit \\(a = 103\\), \\(b = 97\\).",
-        loesungsweg: "$$103^2 - 97^2 = (103 + 97)(103 - 97) = 200 \\cdot 6 = 1200$$"
+        tipp: "Beide Seiten ausmultiplizieren — was passiert mit \\(x^2\\)?",
+        loesungsweg: "$$x^2 + 6x + 9 = x^2 - 10x + 25$$ Die \\(x^2\\) heben sich auf, übrig bleibt eine lineare Gleichung: $$6x + 9 = -10x + 25 \\;\\Rightarrow\\; 16x = 16 \\;\\Rightarrow\\; x = 1$$ Probe: \\(4^2 = 16\\) und \\((-4)^2 = 16\\) ✓"
       },
-      // ========== LEVEL 6 -- wagnerisch: Transferaufgaben ==========
+      // ========== LEVEL 6 -- wagnerisch: Behauptungen prüfen, Zahlenrätsel, Sonderfälle ==========
       {
         id: 31,
         level: 6,
-        typ: "numerisch",
-        frage: "Vereinfache \\((x + 3)^2 - (x - 3)^2\\). Das Ergebnis hat die Form \\(kx\\) — gib den Koeffizienten \\(k\\) an.",
-        loesung: 12,
-        toleranz: 0,
-        tipp: "Nutze die 3. binomische Formel: \\(A^2 - B^2 = (A + B)(A - B)\\) mit \\(A = x+3\\), \\(B = x-3\\).",
-        loesungsweg: "$$((x+3) + (x-3))((x+3) - (x-3)) = 2x \\cdot 6 = 12x$$<br>Achtung: Das Ergebnis ist \\(12x\\), nicht eine Zahl! Alternativ direkt: \\(x^2 + 6x + 9 - x^2 + 6x - 9 = 12x\\).<br>Die Aufgabe fragt nach dem <b>Koeffizienten</b>: \\(12\\)."
+        typ: "mc",
+        frage: "Lea behauptet: „Für jede natürliche Zahl \\(n\\) ist die Differenz \\((n+1)^2 - n^2\\) eine ungerade Zahl.“ Stimmt das?",
+        optionen: ["Ja — der Term vereinfacht sich zu \\(2n + 1\\), und das ist für jedes \\(n\\) ungerade", "Nein — für gerade \\(n\\) ist die Differenz gerade, z. B. \\(n = 2\\)", "Ja — weil Quadratzahlen immer ungerade sind", "Nein — die Differenz ist immer \\(1\\), das gilt nur für \\(n = 0\\)"],
+        korrekt: 0,
+        tipp: "Vereinfache den Term allgemein, nicht nur an Beispielen.",
+        loesungsweg: "$$(n+1)^2 - n^2 = n^2 + 2n + 1 - n^2 = 2n + 1$$ \\(2n\\) ist gerade, \\(2n + 1\\) also ungerade — für jedes \\(n\\). Beispiel: \\(n = 2\\): \\(9 - 4 = 5\\) ✓. Ein einzelnes Beispiel beweist die Behauptung nicht, der Term für alle \\(n\\) schon."
       },
       {
         id: 32,
         level: 6,
-        typ: "mc",
-        frage: "Welche binomische Formel steckt in \\(a^2 - 2a + 1\\)?",
-        optionen: ["1. binomische Formel: \\((a + 1)^2\\)", "2. binomische Formel: \\((a - 1)^2\\)", "3. binomische Formel: \\((a + 1)(a - 1)\\)", "Keine binomische Formel"],
-        korrekt: 1,
-        tipp: "\\(1 = 1^2\\) und \\(2a = 2 \\cdot a \\cdot 1\\). Das Minuszeichen deutet auf die 2. Formel.",
-        loesungsweg: "$$a^2 - 2a + 1 = a^2 - 2 \\cdot a \\cdot 1 + 1^2 = (a - 1)^2$$"
+        typ: "numerisch",
+        frage: "Zahlenrätsel: Ich denke mir eine natürliche Zahl und quadriere sie. Dann quadriere ich die um \\(1\\) größere Zahl. Die Differenz der beiden Quadrate ist \\(45\\). Welche Zahl habe ich mir gedacht?",
+        loesung: 22,
+        toleranz: 0,
+        tipp: "Nenne die Zahl \\(n\\) und stelle die Differenz der Quadrate als Term auf.",
+        loesungsweg: "Gedachte Zahl \\(n\\): $$(n+1)^2 - n^2 = 2n + 1 = 45 \\;\\Rightarrow\\; 2n = 44 \\;\\Rightarrow\\; n = 22$$ Probe: \\(23^2 - 22^2 = 529 - 484 = 45\\) ✓"
       },
       {
         id: 33,
         level: 6,
-        typ: "numerisch",
-        frage: "Berechne \\(99^2\\) im Kopf mithilfe der 2. binomischen Formel.",
-        loesung: 9801,
-        toleranz: 0,
-        tipp: "\\(99 = 100 - 1\\). Also \\((100 - 1)^2 = 10000 - 200 + 1\\).",
-        loesungsweg: "$$99^2 = (100 - 1)^2 = 10000 - 200 + 1 = 9801$$"
+        typ: "mc",
+        frage: "Tom sagt: „Wenn ich bei einem Quadrat eine Seite um \\(5\\,\\text{cm}\\) verlängere und die andere um \\(5\\,\\text{cm}\\) verkürze, bleibt der Flächeninhalt gleich — was ich dazugebe, nehme ich ja wieder weg.“ Stimmt das?",
+        optionen: ["Nein — das Rechteck ist immer um \\(25\\,\\text{cm}^2\\) kleiner, unabhängig von der Seitenlänge", "Ja — Verlängern und Verkürzen um denselben Betrag gleichen sich aus", "Nein — das Rechteck ist immer um \\(25\\,\\text{cm}^2\\) größer", "Das hängt von der Seitenlänge ab: bei großen Quadraten stimmt es, bei kleinen nicht"],
+        korrekt: 0,
+        tipp: "Rechteckfläche als Term in der Seitenlänge \\(a\\) aufstellen.",
+        loesungsweg: "Seitenlänge \\(a\\): Rechteck \\((a+5)(a-5) = a^2 - 25\\). Das ist für <b>jedes</b> \\(a\\) um \\(25\\,\\text{cm}^2\\) weniger als \\(a^2\\). Beispiel \\(a = 10\\): \\(15 \\cdot 5 = 75 < 100\\) ✓ Der Fehler in Toms Überlegung: Die \\(5\\,\\text{cm}\\) werden an verschieden langen Seiten angesetzt."
       },
       {
         id: 34,
         level: 6,
         typ: "numerisch",
-        frage: "Faktorisiere \\(x^4 - 1\\) vollständig. Wie viele Faktoren (Klammern) ergeben sich?",
-        loesung: 3,
+        frage: "Für welchen Wert von \\(c\\) hat die Gleichung \\((x + 2)^2 = x^2 + 4x + c\\) unendlich viele Lösungen?",
+        loesung: 4,
         toleranz: 0,
-        tipp: "Erst 3. binomische Formel: \\((x^2 + 1)(x^2 - 1)\\). Dann \\(x^2 - 1\\) weiter faktorisieren.",
-        loesungsweg: "$$x^4 - 1 = (x^2 + 1)(x^2 - 1) = (x^2 + 1)(x + 1)(x - 1)$$<br>Das sind <b>3 Faktoren</b>."
+        tipp: "Wann sind beide Seiten für jedes \\(x\\) gleich?",
+        loesungsweg: "Linke Seite ausmultiplizieren: \\((x+2)^2 = x^2 + 4x + 4\\). Die Gleichung lautet also \\(x^2 + 4x + 4 = x^2 + 4x + c\\), nach Vereinfachen \\(4 = c\\). Für \\(c = 4\\) ist sie für <b>jedes</b> \\(x\\) wahr (unendlich viele Lösungen), für jedes andere \\(c\\) für <b>kein</b> \\(x\\)."
       },
       {
         id: 35,
         level: 6,
-        typ: "mc",
-        frage: "Vereinfache: \\((a + b)^2 + (a - b)^2\\)",
-        optionen: ["\\(2a^2 + 2b^2\\)", "\\(4ab\\)", "\\(2(a + b)^2\\)", "\\(a^2 + b^2\\)"],
-        korrekt: 0,
-        tipp: "Beide Formeln anwenden und addieren.",
-        loesungsweg: "$$(a+b)^2 = a^2 + 2ab + b^2$$<br>$$(a-b)^2 = a^2 - 2ab + b^2$$<br>Summe: \\(2a^2 + 2b^2\\)."
+        typ: "numerisch",
+        frage: "Löse die Gleichung \\((x - 3)^2 - (x + 3)^2 = 24\\).",
+        loesung: -2,
+        toleranz: 0,
+        tipp: "Erst beide Quadrate auflösen, dann fällt \\(x^2\\) weg.",
+        loesungsweg: "$$(x-3)^2 - (x+3)^2 = x^2 - 6x + 9 - (x^2 + 6x + 9) = -12x$$ $$-12x = 24 \\;\\Rightarrow\\; x = -2$$ Probe: \\((-5)^2 - 1^2 = 25 - 1 = 24\\) ✓"
       },
       {
         id: 36,
         level: 6,
         typ: "numerisch",
-        frage: "Berechne \\(\\frac{(a + b)^2 - (a - b)^2}{4}\\) für \\(a = 7\\), \\(b = 3\\).",
-        loesung: 21,
+        frage: "Die Quadrate zweier aufeinanderfolgender ungerader Zahlen unterscheiden sich um \\(56\\). Wie heißt die kleinere der beiden Zahlen?",
+        loesung: 13,
         toleranz: 0,
-        tipp: "Vereinfache allgemein: Zähler \\(= 4ab\\). Dann durch 4 teilen.",
-        loesungsweg: "$$(a+b)^2 - (a-b)^2 = 4ab$$<br>$$\\frac{4ab}{4} = ab = 7 \\cdot 3 = 21$$"
-      }];
+        tipp: "Aufeinanderfolgende ungerade Zahlen: \\(n\\) und \\(n + 2\\).",
+        loesungsweg: "Kleinere Zahl \\(n\\), größere \\(n + 2\\): $$(n+2)^2 - n^2 = 4n + 4 = 56 \\;\\Rightarrow\\; 4n = 52 \\;\\Rightarrow\\; n = 13$$ Probe: \\(15^2 - 13^2 = 225 - 169 = 56\\) ✓"
+      }
+    ];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>

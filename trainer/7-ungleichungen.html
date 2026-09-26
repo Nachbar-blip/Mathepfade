@@ -260,126 +260,129 @@
         tipp: "\\(4x - 4 < 2x + 6 \\implies 2x < 10\\).",
         loesungsweg: "$$4x - 4 < 2x + 6 \\implies 2x < 10 \\implies x < 5$$"
       },
-      // ========== LEVEL 5 -- anspruchsvoll: Komplexere Ungleichungen ==========
+      // ========== LEVEL 5 -- anspruchsvoll: Fehler finden, Sachaufgaben, Parameter ==========
       {
         id: 25,
         level: 5,
         typ: "mc",
-        frage: "Löse: \\(\\frac{x}{3} + 1 > \\frac{x}{2}\\).",
-        optionen: ["\\(x < 6\\)", "\\(x > 6\\)", "\\(x < -6\\)", "\\(x > -6\\)"],
+        frage: "Lea löst \\(-2x + 6 > 0\\) so: „\\(-2x > -6\\), also \\(x > 3\\).“ Was ist dazu zu sagen?",
+        optionen: ["Falsch — beim Teilen durch \\(-2\\) dreht sich das Zeichen um: \\(x < 3\\)", "Richtig, \\(x > 3\\)", "Falsch — richtig ist \\(x > -3\\)", "Falsch — richtig ist \\(x < -3\\)"],
         korrekt: 0,
-        tipp: "Hauptnenner 6: \\(2x + 6 > 3x \\implies 6 > x\\).",
-        loesungsweg: "$$2x + 6 > 3x \\implies 6 > x \\implies x < 6$$"
+        tipp: "Probe mit \\(x = 4\\): \\(-8 + 6 = -2\\). Ist das größer als \\(0\\)?",
+        loesungsweg: "Der erste Schritt (\\(-6\\) auf beiden Seiten) ist richtig. Beim Dividieren durch die <b>negative</b> Zahl \\(-2\\) dreht sich das Ungleichheitszeichen: $$-2x > -6 \\;\\mid\\; : (-2) \\quad\\Rightarrow\\quad x < 3$$ Probe: \\(x = 0\\): \\(6 > 0\\) ✓; \\(x = 4\\): \\(-2 > 0\\) ✗."
       },
       {
         id: 26,
         level: 5,
-        typ: "mc",
-        frage: "Löse die Doppelungleichung: \\(1 \\leq \\frac{x + 3}{2} < 5\\). Gib das Intervall an.",
-        optionen: ["\\([-1; 7)\\)", "\\((-1; 7]\\)", "\\([1; 5)\\)", "\\([-1; 7]\\)"],
-        korrekt: 0,
-        tipp: "Alles mal 2: \\(2 \\leq x + 3 < 10\\). Dann \\(-3\\).",
-        loesungsweg: "$$2 \\leq x + 3 < 10 \\implies -1 \\leq x < 7$$<br>Intervall: \\([-1; 7)\\)."
+        typ: "numerisch",
+        frage: "Ein Kino verlangt \\(8\\,€\\) pro Ticket. Für einen Filmabend fallen \\(1200\\,€\\) Kosten an. Ab wie vielen verkauften Tickets macht das Kino an diesem Abend Gewinn?",
+        loesung: 151,
+        toleranz: 0,
+        tipp: "Gewinn heißt: Einnahmen sind größer als die Kosten. Stelle das als Ungleichung auf.",
+        loesungsweg: "Tickets \\(n\\), Einnahmen \\(8n\\): $$8n > 1200 \\;\\Rightarrow\\; n > 150$$ Bei genau \\(150\\) Tickets sind Einnahmen und Kosten gleich (kein Gewinn). Ab \\(151\\) Tickets: \\(8 \\cdot 151 = 1208 > 1200\\) ✓"
       },
       {
         id: 27,
         level: 5,
         typ: "numerisch",
-        frage: "Für welchen größten ganzzahligen Wert von \\(x\\) gilt \\(3x - 5 < 2x + 4\\)?",
-        loesung: 8,
+        frage: "Wie viele ganze Zahlen \\(x\\) erfüllen beide Bedingungen zugleich: \\(2(x - 1) < x + 4\\) und \\(x \\geq -3\\)?",
+        loesung: 9,
         toleranz: 0,
-        tipp: "\\(x < 9\\). Die größte ganze Zahl kleiner als 9 ist …",
-        loesungsweg: "$$3x - 5 < 2x + 4 \\implies x < 9$$<br>Größte ganze Zahl: \\(x = 8\\)."
+        tipp: "Löse die erste Ungleichung; dann zähle die ganzen Zahlen zwischen beiden Grenzen — Grenzen genau prüfen.",
+        loesungsweg: "$$2(x - 1) < x + 4 \\;\\Rightarrow\\; 2x - 2 < x + 4 \\;\\Rightarrow\\; x < 6$$ Zusammen mit \\(x \\geq -3\\): \\(-3 \\leq x < 6\\). Ganze Zahlen: \\(-3, -2, -1, 0, 1, 2, 3, 4, 5\\) — das sind \\(9\\). Die \\(6\\) gehört nicht dazu (echt kleiner)."
       },
       {
         id: 28,
         level: 5,
         typ: "mc",
-        frage: "Löse: \\(-3(x + 2) \\geq 2(1 - x)\\).",
-        optionen: ["\\(x \\leq -8\\)", "\\(x \\geq -8\\)", "\\(x \\leq 8\\)", "\\(x \\geq 8\\)"],
+        frage: "Jan behauptet, die Lösungsmenge von \\(3x + 5 \\leq 2x + 7\\) sei \\(x \\leq 12\\). Was ist dazu zu sagen?",
+        optionen: ["Falsch — die \\(5\\) muss subtrahiert werden, nicht addiert: \\(x \\leq 2\\)", "Richtig, \\(x \\leq 12\\)", "Falsch — richtig ist \\(x \\geq 2\\)", "Falsch — richtig ist \\(x \\leq -2\\)"],
         korrekt: 0,
-        tipp: "\\(-3x - 6 \\geq 2 - 2x \\implies -x \\geq 8 \\implies x \\leq -8\\).",
-        loesungsweg: "$$-3x - 6 \\geq 2 - 2x \\implies -x \\geq 8 \\implies x \\leq -8$$"
+        tipp: "Probe mit \\(x = 10\\): \\(35 \\leq 27\\)?",
+        loesungsweg: "$$3x + 5 \\leq 2x + 7 \\;\\mid\\; -2x \\;\\Rightarrow\\; x + 5 \\leq 7 \\;\\mid\\; -5 \\;\\Rightarrow\\; x \\leq 2$$ Jan hat \\(7 + 5\\) statt \\(7 - 5\\) gerechnet. Probe: \\(x = 2\\): \\(11 \\leq 11\\) ✓; \\(x = 10\\): \\(35 \\leq 27\\) ✗."
       },
       {
         id: 29,
         level: 5,
         typ: "numerisch",
-        frage: "Wie viele natürliche Zahlen erfüllen \\(2x + 1 \\leq 15\\) und \\(x > 0\\)?",
-        loesung: 7,
+        frage: "Für welchen Wert von \\(a\\) hat die Ungleichung \\(4x - a > 2x + 6\\) genau die Lösungsmenge \\(x > 5\\)?",
+        loesung: 4,
         toleranz: 0,
-        tipp: "\\(2x \\leq 14 \\implies x \\leq 7\\). Natürliche Zahlen mit \\(x > 0\\): \\(1, 2, \\ldots, 7\\).",
-        loesungsweg: "$$x \\leq 7 \\text{ und } x > 0$$<br>Natürliche Zahlen: \\(1, 2, 3, 4, 5, 6, 7\\) — das sind <b>7</b>."
-      },      {
-        id: 30, level: 5, typ: "numerisch",
-        frage: "Wie viele ganze Zahlen erf\u00fcllen die Ungleichung \\(|x| < 3\\)?",
-        loesung: 5,
-        toleranz: 0,
-        tipp: "Schreibe die Ungleichung ohne Betragsstriche als Doppelungleichung.",
-        loesungsweg: "\\(|x| < 3\\) bedeutet \\(-3 < x < 3\\). Die ganzen Zahlen darin sind \\(-2, -1, 0, 1, 2\\) \u2014 also <b>5</b> St\u00fcck. Die Randwerte \\(-3\\) und \\(3\\) z\u00e4hlen nicht mit, weil das Zeichen \\(<\\) sie ausschlie\u00dft."
+        tipp: "Löse die Ungleichung allgemein mit \\(a\\) und vergleiche die Grenze mit \\(5\\).",
+        loesungsweg: "$$4x - a > 2x + 6 \\;\\Rightarrow\\; 2x > 6 + a \\;\\Rightarrow\\; x > \\frac{6 + a}{2}$$ Die Grenze soll \\(5\\) sein: \\(\\frac{6 + a}{2} = 5\\), also \\(6 + a = 10\\), \\(a = 4\\). Probe: \\(4x - 4 > 2x + 6\\) gibt \\(2x > 10\\), \\(x > 5\\) ✓"
       },
-
-      // ========== LEVEL 6 -- wagnerisch: Textaufgaben und Transfer ==========
+      {
+        id: 30,
+        level: 5,
+        typ: "numerisch",
+        frage: "Mia hat in drei Tests die Noten \\(3\\), \\(2\\) und \\(3\\). Ihr Durchschnitt aus vier Tests soll höchstens \\(2{,}5\\) sein. Welche Note darf sie im vierten Test höchstens haben?",
+        loesung: 2,
+        toleranz: 0,
+        tipp: "Der Durchschnitt ist die Summe aller vier Noten geteilt durch \\(4\\).",
+        loesungsweg: "Vierte Note \\(x\\): $$\\frac{3 + 2 + 3 + x}{4} \\leq 2{,}5 \\;\\Rightarrow\\; 8 + x \\leq 10 \\;\\Rightarrow\\; x \\leq 2$$ Sie braucht mindestens eine \\(2\\). Probe: \\((3 + 2 + 3 + 2) : 4 = 2{,}5\\) ✓; mit einer \\(3\\) wäre es \\(2{,}75\\) ✗."
+      },
+      // ========== LEVEL 6 -- wagnerisch: Sonderfälle, Behauptungen, Grundbereich ==========
       {
         id: 31,
         level: 6,
-        typ: "numerisch",
-        frage: "Ein Taxi kostet 3 € Grundgebühr plus 1,50 € pro km. Du hast höchstens 18 €. Wie viele volle Kilometer kannst du maximal fahren?",
-        loesung: 10,
-        toleranz: 0,
-        tipp: "\\(3 + 1{,}5k \\leq 18 \\implies 1{,}5k \\leq 15\\).",
-        loesungsweg: "$$1{,}5k \\leq 15 \\implies k \\leq 10$$<br>Du kannst maximal <b>10 km</b> fahren."
+        typ: "mc",
+        frage: "Welche Lösungsmenge hat die Ungleichung \\(2(x + 3) > 2x + 1\\)?",
+        optionen: ["Alle Zahlen — nach dem Umformen bleibt die wahre Aussage \\(6 > 1\\)", "Keine Zahl — nach dem Umformen bleibt \\(6 > 1\\), und \\(x\\) ist verschwunden", "\\(x > 2\\)", "\\(x > -1\\)"],
+        korrekt: 0,
+        tipp: "Löse die Klammer auf und bringe alle \\(x\\) auf eine Seite.",
+        loesungsweg: "$$2x + 6 > 2x + 1 \\;\\mid\\; -2x \\quad\\Rightarrow\\quad 6 > 1$$ Das ist wahr, egal welchen Wert \\(x\\) hat — jede Zahl ist Lösung. Wäre eine <b>falsche</b> Aussage übrig geblieben (etwa \\(6 > 8\\)), gäbe es keine Lösung."
       },
       {
         id: 32,
         level: 6,
-        typ: "mc",
-        frage: "Für welche Werte von \\(x\\) gilt gleichzeitig \\(x + 2 > 0\\) und \\(3x - 6 < 0\\)?",
-        optionen: ["\\(-2 < x < 2\\)", "\\(x > 2\\)", "\\(x < -2\\)", "\\(-2 < x < 0\\)"],
-        korrekt: 0,
-        tipp: "Löse jede Ungleichung einzeln: \\(x > -2\\) und \\(x < 2\\). Schnittmenge!",
-        loesungsweg: "\\(x > -2\\) und \\(x < 2\\). Schnittmenge: \\(-2 < x < 2\\)."
+        typ: "numerisch",
+        frage: "Für welchen Wert von \\(a\\) hat die Ungleichung \\(3x + 5 < ax + 3\\) keine einzige Lösung?",
+        loesung: 3,
+        toleranz: 0,
+        tipp: "Wann fällt \\(x\\) beim Umformen weg — und was bleibt dann stehen?",
+        loesungsweg: "Für \\(a = 3\\) steht auf beiden Seiten \\(3x\\): $$3x + 5 < 3x + 3 \\;\\Rightarrow\\; 5 < 3$$ Das ist falsch — keine Zahl erfüllt die Ungleichung. Für jedes andere \\(a\\) bleibt ein Term mit \\(x\\) übrig, und es gibt Lösungen (\\(x > \\frac{2}{a-3}\\) bzw. \\(x < \\frac{2}{a-3}\\), je nach Vorzeichen von \\(a - 3\\))."
       },
       {
         id: 33,
         level: 6,
         typ: "numerisch",
-        frage: "Ein Rechteck hat den Umfang höchstens 40 cm. Die Länge ist doppelt so groß wie die Breite \\(b\\). Wie groß darf \\(b\\) maximal sein (in cm, ganze Zahl)?",
-        loesung: 6,
+        frage: "Die Ungleichung \\(x + b \\leq 10\\) hat im Grundbereich der natürlichen Zahlen (die \\(0\\) zählt mit) genau \\(4\\) Lösungen. Welchen Wert hat \\(b\\)?",
+        loesung: 7,
         toleranz: 0,
-        tipp: "\\(U = 2(2b + b) = 6b \\leq 40 \\implies b \\leq 6{,}\\overline{6}\\).",
-        loesungsweg: "$$6b \\leq 40 \\implies b \\leq 6{,}\\overline{6}$$<br>Größte ganze Zahl: \\(b = 6\\) cm."
+        tipp: "Die Lösungen sind \\(0, 1, 2, \\ldots\\) bis zur Grenze. Wie groß muss die Grenze sein?",
+        loesungsweg: "Umformen: \\(x \\leq 10 - b\\). In \\(\\mathbb{N}\\) sind das die Zahlen \\(0, 1, \\ldots, 10 - b\\), also \\(11 - b\\) Stück. $$11 - b = 4 \\;\\Rightarrow\\; b = 7$$ Probe: \\(x + 7 \\leq 10\\) gibt \\(x \\leq 3\\): Lösungen \\(0, 1, 2, 3\\) — vier ✓"
       },
       {
         id: 34,
         level: 6,
         typ: "mc",
-        frage: "Welche der folgenden Mengen ist die Lösungsmenge von \\(|2x - 4| \\leq 6\\)?",
-        optionen: ["\\([-1; 5]\\)", "\\((-1; 5)\\)", "\\([-5; 1]\\)", "\\([1; 5]\\)"],
+        frage: "Ole behauptet: „Wenn ich beide Seiten einer Ungleichung mit derselben Zahl multipliziere, bleibt das Ungleichheitszeichen erhalten.“ Stimmt das?",
+        optionen: ["Nur für positive Zahlen — bei negativen dreht es sich um: aus \\(2 < 3\\) wird \\((-1) \\cdot 2 > (-1) \\cdot 3\\)", "Ja, immer — Multiplizieren ist eine Äquivalenzumformung", "Nein — es dreht sich immer um", "Nur für ganze Zahlen — bei Brüchen dreht es sich um"],
         korrekt: 0,
-        tipp: "\\(|2x - 4| \\leq 6\\) bedeutet \\(-6 \\leq 2x - 4 \\leq 6\\). Löse die Doppelungleichung.",
-        loesungsweg: "$$-6 \\leq 2x - 4 \\leq 6 \\implies -2 \\leq 2x \\leq 10 \\implies -1 \\leq x \\leq 5$$<br>Intervall: \\([-1; 5]\\)."
+        tipp: "Probiere \\(2 < 3\\) mit dem Faktor \\(-1\\).",
+        loesungsweg: "Beispiel: \\(2 < 3\\). Mit \\(2\\) multipliziert: \\(4 < 6\\) ✓ (bleibt). Mit \\(-1\\) multipliziert: \\(-2\\) und \\(-3\\), und es gilt \\(-2 > -3\\) — das Zeichen hat sich gedreht. Oles Regel gilt also nur für <b>positive</b> Faktoren; für negative muss das Zeichen umgedreht werden (mit \\(0\\) darf man gar nicht multiplizieren, die Ungleichung ginge verloren)."
       },
       {
         id: 35,
         level: 6,
         typ: "numerisch",
-        frage: "Finde die größte ganze Zahl \\(n\\), für die \\(n^2 < 50\\) gilt.",
-        loesung: 7,
+        frage: "Wie viele Lösungen hat die Ungleichung \\(-3x + 4 > -5\\) im Grundbereich der natürlichen Zahlen (die \\(0\\) zählt mit)?",
+        loesung: 3,
         toleranz: 0,
-        tipp: "\\(7^2 = 49 < 50\\), aber \\(8^2 = 64 > 50\\).",
-        loesungsweg: "$$7^2 = 49 < 50 \\quad \\checkmark$$ $$8^2 = 64 > 50 \\quad \\times$$<br>Größte ganze Zahl: \\(n = 7\\)."
+        tipp: "Erst lösen (Vorzeichen beachten), dann die passenden natürlichen Zahlen zählen.",
+        loesungsweg: "$$-3x + 4 > -5 \\;\\Rightarrow\\; -3x > -9 \\;\\mid\\; : (-3) \\;\\Rightarrow\\; x < 3$$ Natürliche Zahlen kleiner als \\(3\\): \\(0, 1, 2\\) — also \\(3\\) Lösungen. Ohne das Umdrehen des Zeichens käme \\(x > 3\\) heraus, unendlich viele — die Probe mit \\(x = 4\\) (\\(-8 > -5\\)?) entlarvt das."
       },
       {
         id: 36,
         level: 6,
         typ: "mc",
-        frage: "Tim schreibt einen Mathetest. Die Note errechnet sich aus \\(N = 7 - 0{,}1P\\) (\\(P\\) = Punkte). Für eine Note besser als 3 muss \\(N < 3\\) gelten. Wie viele Punkte braucht Tim mindestens?",
-        optionen: ["Mehr als 40 Punkte", "Mehr als 30 Punkte", "Mindestens 40 Punkte", "Genau 40 Punkte"],
+        frage: "Ein Rechteck hat die Breite \\(b\\) und ist \\(1\\,\\text{cm}\\) länger als das Doppelte der Breite. Sein Umfang soll höchstens \\(50\\,\\text{cm}\\) betragen. Welche Werte darf \\(b\\) (in cm) annehmen?",
+        optionen: ["\\(0 < b \\leq 8\\)", "\\(b \\leq 8\\)", "\\(0 < b < 8\\)", "\\(0 < b \\leq 16\\)"],
         korrekt: 0,
-        tipp: "\\(7 - 0{,}1P < 3 \\implies -0{,}1P < -4 \\implies P > 40\\).",
-        loesungsweg: "$$7 - 0{,}1P < 3 \\implies -0{,}1P < -4 \\implies P > 40$$<br>Tim braucht <b>mehr als 40 Punkte</b>."
-      }];
+        tipp: "Stelle den Umfang als Term in \\(b\\) auf. Welche \\(b\\) sind bei einem Rechteck überhaupt sinnvoll?",
+        loesungsweg: "Länge \\(2b + 1\\), Umfang \\(2b + 2(2b + 1) = 6b + 2\\): $$6b + 2 \\leq 50 \\;\\Rightarrow\\; 6b \\leq 48 \\;\\Rightarrow\\; b \\leq 8$$ Da eine Breite positiv sein muss, lautet die Lösungsmenge \\(0 < b \\leq 8\\). Bei \\(b = 8\\) ist der Umfang genau \\(50\\,\\text{cm}\\) — erlaubt, weil „höchstens“."
+      }
+    ];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>

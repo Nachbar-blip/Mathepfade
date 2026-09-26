@@ -260,128 +260,129 @@
         tipp: "Die beiden gemischten Produkte zusammenfassen.",
         loesungsweg: "Jeder Term der ersten Klammer mal jedem der zweiten: $$2x \\cdot x + 2x \\cdot 3 + 1 \\cdot x + 1 \\cdot 3 = 2x^2 + 6x + x + 3$$ $$= 2x^2 + 7x + 3$$ Der gesuchte Koeffizient ist \\(7\\) — er entsteht aus <b>zwei</b> Produkten, nicht aus einem."
       },
-      // ========== LEVEL 5 -- anspruchsvoll: Komplexere Umformungen ==========
+      // ========== LEVEL 5 -- anspruchsvoll: Fehler finden, Parameter, zweischrittig ==========
       {
         id: 25,
         level: 5,
         typ: "mc",
-        frage: "Vereinfache: \\(2x(x + 3) - x(2x - 1)\\)",
-        optionen: ["\\(4x^2 + 5x\\)", "\\(7x\\)", "\\(4x^2 + 7x\\)", "\\(x\\)"],
-        korrekt: 1,
-        tipp: "Erst ausmultiplizieren: \\(2x^2 + 6x - 2x^2 + x\\).",
-        loesungsweg: "Erst beide Produkte ausmultiplizieren, dabei das Minus auf beide Terme der zweiten Klammer anwenden: $$2x^2 + 6x - 2x^2 + x$$ Die quadratischen Terme heben einander auf: $$= 7x$$ Dass \\(x^2\\) verschwindet, ist hier kein Rechenfehler, sondern das Ergebnis."
+        frage: "Finn vereinfacht \\(5x - (2x - 3)\\) zu \\(3x - 3\\). Was ist dazu zu sagen?",
+        optionen: ["Falsch — das Minus vor der Klammer dreht beide Vorzeichen um: \\(5x - 2x + 3 = 3x + 3\\)", "Richtig, die Klammer kann einfach weggelassen werden", "Falsch — richtig ist \\(7x - 3\\)", "Falsch — richtig ist \\(3x - 6\\)"],
+        korrekt: 0,
+        tipp: "Probe mit \\(x = 1\\): \\(5 - (2 - 3) = 5 - (-1) = 6\\). Was liefert \\(3x - 3\\)?",
+        loesungsweg: "Ein Minus vor der Klammer wirkt auf <b>jeden</b> Summanden: $$5x - (2x - 3) = 5x - 2x + 3 = 3x + 3$$ Finn hat nur das erste Vorzeichen gedreht. Probe mit \\(x = 1\\): \\(6 = 3 + 3\\) ✓, aber \\(3 - 3 = 0\\) ✗."
       },
       {
         id: 26,
         level: 5,
         typ: "numerisch",
-        frage: "Vereinfache \\((x + 4)^2 - (x + 2)(x + 6)\\) und gib das Ergebnis an.",
+        frage: "Der Term \\(3(x + a) - 2x\\) vereinfacht sich zu \\(x + 12\\). Welchen Wert hat \\(a\\)?",
         loesung: 4,
         toleranz: 0,
-        tipp: "Multipliziere beide Ausdrücke aus und subtrahiere.",
-        loesungsweg: "$$(x + 4)^2 = x^2 + 8x + 16$$<br>$$(x + 2)(x + 6) = x^2 + 8x + 12$$<br>$$x^2 + 8x + 16 - x^2 - 8x - 12 = 4$$"
+        tipp: "Vereinfache den Term zuerst allgemein mit \\(a\\) und vergleiche dann.",
+        loesungsweg: "$$3(x + a) - 2x = 3x + 3a - 2x = x + 3a$$ Vergleich mit \\(x + 12\\): \\(3a = 12\\), also \\(a = 4\\). Probe: \\(3(x + 4) - 2x = 3x + 12 - 2x = x + 12\\) ✓"
       },
       {
         id: 27,
         level: 5,
-        typ: "mc",
-        frage: "Klammere vollständig aus: \\(12a^2b - 8ab^2\\)",
-        optionen: ["\\(4ab(3a - 2b)\\)", "\\(4a(3ab - 2b^2)\\)", "\\(2ab(6a - 4b)\\)", "\\(12ab(a - b)\\)"],
-        korrekt: 0,
-        tipp: "GGT der Koeffizienten: 4. Gemeinsame Variablen: \\(a\\) und \\(b\\).",
-        loesungsweg: "GGT der Zahlen \\(12\\) und \\(8\\) ist \\(4\\); \\(a\\) und \\(b\\) kommen in beiden Summanden vor, also \\(4ab\\) ausklammern: $$12a^2b - 8ab^2 = 4ab(3a-2b)$$ Probe: \\(4ab \\cdot 3a = 12a^2b\\) und \\(4ab \\cdot 2b = 8ab^2\\) ✓ Bei \\(2ab(6a-4b)\\) ließe sich noch \\(2\\) ausklammern — also nicht vollständig."
+        typ: "numerisch",
+        frage: "Vereinfache \\(4(2x - 1) - 3(x + 2)\\) so weit wie möglich und berechne dann den Wert für \\(x = -2\\).",
+        loesung: -20,
+        toleranz: 0,
+        tipp: "Erst beide Klammern auflösen, zusammenfassen, dann einsetzen — Vorzeichen beim Einsetzen beachten.",
+        loesungsweg: "$$4(2x - 1) - 3(x + 2) = 8x - 4 - 3x - 6 = 5x - 10$$ Für \\(x = -2\\): \\(5 \\cdot (-2) - 10 = -10 - 10 = -20\\). Typischer Fehler: \\(-3 \\cdot 2 = -6\\) als \\(+6\\) schreiben."
       },
       {
         id: 28,
         level: 5,
-        typ: "numerisch",
-        frage: "Vereinfache: \\(3(2a - 1)^2 - 3(4a^2 - 4a + 1)\\). Was ergibt sich?",
-        loesung: 0,
-        toleranz: 0,
-        tipp: "\\((2a - 1)^2 = 4a^2 - 4a + 1\\). Also: \\(3(4a^2 - 4a + 1) - 3(4a^2 - 4a + 1)\\).",
-        loesungsweg: "$$(2a - 1)^2 = 4a^2 - 4a + 1$$<br>$$3(4a^2 - 4a + 1) - 3(4a^2 - 4a + 1) = 0$$"
+        typ: "mc",
+        frage: "Elif klammert aus: \\(6x^2 + 9x = 3(2x^2 + 3x)\\). Was ist dazu zu sagen?",
+        optionen: ["Richtig gerechnet, aber nicht vollständig ausgeklammert — auch \\(x\\) ist gemeinsamer Faktor: \\(3x(2x + 3)\\)", "Vollständig richtig, mehr lässt sich nicht ausklammern", "Falsch — richtig ist \\(3(2x^2 + 9x)\\)", "Falsch — bei einer Summe kann man nichts ausklammern"],
+        korrekt: 0,
+        tipp: "Steckt in beiden Summanden noch etwas Gemeinsames außer der \\(3\\)?",
+        loesungsweg: "Beide Summanden enthalten den Faktor \\(3\\) <b>und</b> den Faktor \\(x\\): $$6x^2 + 9x = 3x \\cdot 2x + 3x \\cdot 3 = 3x(2x + 3)$$ Elifs Umformung ist nicht falsch, aber in der Klammer \\(2x^2 + 3x\\) steckt noch \\(x\\). Probe: \\(3x \\cdot 2x + 3x \\cdot 3 = 6x^2 + 9x\\) ✓"
       },
       {
         id: 29,
         level: 5,
-        typ: "mc",
-        frage: "Welcher Term ist gleichwertig zu \\((2x - 3)(x + 4)\\)?",
-        optionen: ["\\(2x^2 + 5x - 12\\)", "\\(2x^2 + 11x - 12\\)", "\\(2x^2 - x - 12\\)", "\\(2x^2 + x + 12\\)"],
-        korrekt: 0,
-        tipp: "\\(2x \\cdot x + 2x \\cdot 4 + (-3) \\cdot x + (-3) \\cdot 4\\).",
-        loesungsweg: "$$2x \\cdot x + 2x \\cdot 4 - 3 \\cdot x - 3 \\cdot 4 = 2x^2 + 8x - 3x - 12$$ $$= 2x^2 + 5x - 12$$ Die mittleren Terme werden <b>subtrahiert</b>, nicht addiert: \\(8x - 3x = 5x\\), nicht \\(11x\\)."
+        typ: "numerisch",
+        frage: "Für welchen Wert von \\(k\\) gilt \\((x + k)(x + 3) = x^2 + 8x + 15\\)?",
+        loesung: 5,
+        toleranz: 0,
+        tipp: "Multipliziere die linke Seite mit \\(k\\) aus und vergleiche die Koeffizienten.",
+        loesungsweg: "$$(x + k)(x + 3) = x^2 + 3x + kx + 3k = x^2 + (3 + k)x + 3k$$ Vergleich: \\(3 + k = 8\\) gibt \\(k = 5\\); Kontrolle mit dem letzten Glied: \\(3 \\cdot 5 = 15\\) ✓ Beide Bedingungen passen."
       },
       {
         id: 30,
         level: 5,
         typ: "numerisch",
-        frage: "Vereinfache: \\((a + b)(a - b) + b^2\\). Berechne für \\(a = 5\\), \\(b = 3\\).",
-        loesung: 25,
+        frage: "Von einem Rechteck mit den Seitenlängen \\(x + 4\\) und \\(x + 2\\) wird ein Quadrat mit der Seitenlänge \\(x\\) abgeschnitten. Welchen Flächeninhalt hat das Reststück für \\(x = 5\\)?",
+        loesung: 38,
         toleranz: 0,
-        tipp: "\\((a + b)(a - b) = a^2 - b^2\\). Dann \\(+ b^2\\).",
-        loesungsweg: "$$a^2 - b^2 + b^2 = a^2$$<br>Für \\(a = 5\\): \\(5^2 = 25\\)."
+        tipp: "Stelle den Rest als Term auf und vereinfache ihn, bevor du einsetzt.",
+        loesungsweg: "$$(x + 4)(x + 2) - x^2 = x^2 + 6x + 8 - x^2 = 6x + 8$$ Für \\(x = 5\\): \\(6 \\cdot 5 + 8 = 38\\). Probe direkt: \\(9 \\cdot 7 - 25 = 63 - 25 = 38\\) ✓"
       },
-      // ========== LEVEL 6 -- wagnerisch: Transferaufgaben ==========
+      // ========== LEVEL 6 -- wagnerisch: Behauptungen prüfen, Sonderfälle, Zahlenrätsel ==========
       {
         id: 31,
         level: 6,
-        typ: "numerisch",
-        frage: "Zeige, dass \\((n + 1)^2 - (n - 1)^2\\) stets durch 4 teilbar ist. Berechne den vereinfachten Term für \\(n = 7\\).",
-        loesung: 28,
-        toleranz: 0,
-        tipp: "Ausmultiplizieren: \\(n^2 + 2n + 1 - (n^2 - 2n + 1) = 4n\\).",
-        loesungsweg: "$$(n+1)^2 - (n-1)^2 = n^2 + 2n + 1 - n^2 + 2n - 1 = 4n$$<br>Für \\(n = 7\\): \\(4 \\cdot 7 = 28\\). Stets durch 4 teilbar ✓."
+        typ: "mc",
+        frage: "Lina behauptet: „\\(x^2 + x^2 = x^4\\), denn gleiche Basen, also Exponenten addieren.“ Stimmt das?",
+        optionen: ["Nein — \\(x^2 + x^2\\) ist eine Summe gleichartiger Terme: \\(2x^2\\). Probe \\(x = 2\\): \\(8 \\neq 16\\)", "Ja — bei gleicher Basis werden die Exponenten addiert", "Nein — richtig ist \\(x^2\\), die Summanden fallen zusammen", "Ja — aber nur für positive \\(x\\)"],
+        korrekt: 0,
+        tipp: "Setze \\(x = 2\\) ein und vergleiche beide Seiten.",
+        loesungsweg: "\\(x^2\\) und \\(x^2\\) sind gleichartige Terme, sie werden <b>addiert</b>, nicht multipliziert: $$x^2 + x^2 = 2x^2$$ Probe mit \\(x = 2\\): links \\(4 + 4 = 8\\), rechts \\(2^4 = 16\\) ✗. Linas Regel würde für \\(x^2 \\cdot x^2\\) gelten, nicht für die Summe."
       },
       {
         id: 32,
         level: 6,
-        typ: "mc",
-        frage: "Welcher Term ist äquivalent zu \\((x + y)^2 - 2xy\\)?",
-        optionen: ["\\(x^2 + y^2\\)", "\\(x^2 - y^2\\)", "\\((x - y)^2\\)", "\\(x^2 + 2xy + y^2\\)"],
-        korrekt: 0,
-        tipp: "\\((x + y)^2 = x^2 + 2xy + y^2\\). Davon \\(2xy\\) abziehen.",
-        loesungsweg: "$$(x + y)^2 - 2xy = x^2 + 2xy + y^2 - 2xy = x^2 + y^2$$"
+        typ: "numerisch",
+        frage: "Der Term \\(a \\cdot x + 5 - 2x\\) soll für <b>jeden</b> Wert von \\(x\\) denselben Wert haben. Welchen Wert muss \\(a\\) haben?",
+        loesung: 2,
+        toleranz: 0,
+        tipp: "Fasse die Terme mit \\(x\\) zusammen. Wann verschwindet \\(x\\) ganz?",
+        loesungsweg: "$$ax + 5 - 2x = (a - 2)x + 5$$ Der Term hängt nur dann nicht von \\(x\\) ab, wenn der Koeffizient vor \\(x\\) null ist: \\(a - 2 = 0\\), also \\(a = 2\\). Dann bleibt konstant \\(5\\)."
       },
       {
         id: 33,
         level: 6,
         typ: "numerisch",
-        frage: "Vereinfache \\((3x + 2)(3x - 2) - (3x - 1)^2\\) und berechne für \\(x = 1\\).",
-        loesung: 1,
+        frage: "Zahlenrätsel: Ich denke mir eine Zahl, multipliziere sie mit \\(4\\), subtrahiere \\(6\\), halbiere das Ergebnis und ziehe zum Schluss die gedachte Zahl ab. Ich erhalte \\(5\\). Welche Zahl habe ich mir gedacht?",
+        loesung: 8,
         toleranz: 0,
-        tipp: "\\((3x+2)(3x-2) = 9x^2 - 4\\). \\((3x-1)^2 = 9x^2 - 6x + 1\\). Subtrahieren.",
-        loesungsweg: "$$9x^2 - 4 - (9x^2 - 6x + 1) = 6x - 5$$<br>Für \\(x = 1\\): \\(6 - 5 = 1\\)."
+        tipp: "Schreibe alle Schritte als einen Term in \\(x\\) und vereinfache ihn — er wird sehr einfach.",
+        loesungsweg: "$$\\frac{4x - 6}{2} - x = 2x - 3 - x = x - 3$$ $$x - 3 = 5 \\;\\Rightarrow\\; x = 8$$ Probe: \\(8 \\cdot 4 = 32\\), \\(32 - 6 = 26\\), \\(26 : 2 = 13\\), \\(13 - 8 = 5\\) ✓"
       },
       {
         id: 34,
         level: 6,
         typ: "mc",
-        frage: "Welche Aussage ist richtig? \\((a + b)^2\\) ist …",
-        optionen: ["… gleich \\(a^2 + b^2\\)", "… gleich \\(a^2 + 2ab + b^2\\)", "… gleich \\(a^2 - 2ab + b^2\\)", "… gleich \\(2a + 2b\\)"],
-        korrekt: 1,
-        tipp: "Multipliziere \\((a + b)(a + b)\\) aus.",
-        loesungsweg: "$$(a + b)^2 = (a + b)(a + b) = a^2 + ab + ba + b^2 = a^2 + 2ab + b^2$$"
+        frage: "Für welche Zahlen \\(x\\) gilt \\(3(x - 2) + 6 = 3x\\)?",
+        optionen: ["Für alle Zahlen — die linke Seite vereinfacht sich zu \\(3x\\)", "Nur für \\(x = 0\\)", "Nur für \\(x = 2\\)", "Für keine Zahl — links steht immer \\(6\\) mehr"],
+        korrekt: 0,
+        tipp: "Vereinfache die linke Seite vollständig.",
+        loesungsweg: "$$3(x - 2) + 6 = 3x - 6 + 6 = 3x$$ Beide Seiten sind derselbe Term — die Gleichung ist für <b>jedes</b> \\(x\\) wahr. Probe: \\(x = 5\\): \\(3 \\cdot 3 + 6 = 15 = 3 \\cdot 5\\) ✓; \\(x = -1\\): \\(3 \\cdot (-3) + 6 = -3 = 3 \\cdot (-1)\\) ✓"
       },
       {
         id: 35,
         level: 6,
         typ: "numerisch",
-        frage: "Berechne ohne Taschenrechner: \\(47 \\cdot 53\\).",
-        loesung: 2491,
+        frage: "Bei einem Quadrat mit der Seitenlänge \\(x\\) wird eine Seite um \\(3\\) verlängert und die andere um \\(2\\) verkürzt. Für welchen Wert von \\(x\\) hat das entstehende Rechteck denselben Flächeninhalt wie das Quadrat?",
+        loesung: 6,
         toleranz: 0,
-        tipp: "Beide Zahlen liegen gleich weit von 50 entfernt: \\(47 \\cdot 53 = (50-3)(50+3)\\).",
-        loesungsweg: "$$47 \\cdot 53 = (50 - 3)(50 + 3) = 2500 - 9 = 2491$$"
+        tipp: "Rechteckfläche als Produkt zweier Klammern aufstellen und ausmultiplizieren.",
+        loesungsweg: "$$(x + 3)(x - 2) = x^2 + x - 6$$ Gleichsetzen mit \\(x^2\\): \\(x^2 + x - 6 = x^2\\), also \\(x - 6 = 0\\), \\(x = 6\\). Probe: \\(9 \\cdot 4 = 36 = 6^2\\) ✓"
       },
       {
         id: 36,
         level: 6,
         typ: "numerisch",
-        frage: "Klammere aus und vereinfache: \\(x(x + 1)(x + 2) - x(x^2 + 3x + 2)\\). Was ergibt sich?",
-        loesung: 0,
+        frage: "Für welchen Wert von \\(x\\) hat der Term \\((2x + 1)(x + 3) - 2x(x + 3)\\) den Wert \\(10\\)?",
+        loesung: 7,
         toleranz: 0,
-        tipp: "Multipliziere \\((x+1)(x+2) = x^2 + 3x + 2\\) aus. Was fällt auf?",
-        loesungsweg: "$$(x+1)(x+2) = x^2 + 3x + 2$$<br>Also: \\(x(x^2 + 3x + 2) - x(x^2 + 3x + 2) = 0\\)."
-      }];
+        tipp: "Erst vereinfachen — fast alles hebt sich auf.",
+        loesungsweg: "$$(2x + 1)(x + 3) = 2x^2 + 7x + 3, \\qquad 2x(x + 3) = 2x^2 + 6x$$ $$2x^2 + 7x + 3 - 2x^2 - 6x = x + 3$$ $$x + 3 = 10 \\;\\Rightarrow\\; x = 7$$ Probe: \\(15 \\cdot 10 - 14 \\cdot 10 = 10\\) ✓"
+      }
+    ];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>
