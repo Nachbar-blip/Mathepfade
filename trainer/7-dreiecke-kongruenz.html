@@ -205,7 +205,7 @@
         level: 4,
         typ: "mc",
         frage: "Zwei Dreiecke sind kongruent, wenn sie in … übereinstimmen.",
-        optionen: ["allen Winkeln", "allen drei Seiten (SSS)", "einer Seite", "zwei Winkeln"],
+        optionen: ["allen drei Winkeln (WWW)", "allen drei Seiten (SSS)", "einer Seite und einem Winkel", "zwei Winkeln (WW)"],
         korrekt: 1,
         tipp: "Kongruenz = deckungsgleich. Gleiche Winkel reichen nicht (nur ähnlich).",
         loesungsweg: "<b>Kongruenzsatz SSS</b>: Stimmen zwei Dreiecke in allen drei Seitenlängen überein, sind sie kongruent."
@@ -235,7 +235,7 @@
         level: 4,
         typ: "mc",
         frage: "Reicht die Übereinstimmung von drei Winkeln (WWW), um Kongruenz zu zeigen?",
-        optionen: ["Ja, WWW ist ein Kongruenzsatz", "Nein, die Dreiecke sind nur ähnlich, nicht zwingend kongruent", "Nur bei rechtwinkligen Dreiecken", "Nur bei gleichseitigen Dreiecken"],
+        optionen: ["Ja — WWW ist ein Kongruenzsatz wie SSS oder SWS", "Nein — die Dreiecke sind nur ähnlich, nicht zwingend kongruent", "Nur bei rechtwinkligen Dreiecken, dort legt der rechte Winkel die Größe fest", "Nur bei gleichseitigen Dreiecken, dort sind alle Winkel \\(60°\\)"],
         korrekt: 1,
         tipp: "Vergrößerte Dreiecke haben die gleichen Winkel, sind aber nicht deckungsgleich.",
         loesungsweg: "Drei gleiche Winkel bedeuten <b>Ähnlichkeit</b>, nicht Kongruenz. WWW ist kein Kongruenzsatz."
@@ -276,7 +276,7 @@
         level: 5,
         typ: "mc",
         frage: "Zwei Dreiecke stimmen überein in \\(a = 5\\,\\text{cm}\\), \\(b = 7\\,\\text{cm}\\) und \\(\\alpha = 30°\\) (der Winkel liegt der kürzeren Seite \\(a\\) gegenüber). Ein Schüler sagt: „Zwei Seiten und ein Winkel — die Dreiecke sind kongruent.“ Was ist dazu zu sagen?",
-        optionen: ["Falsch — der Winkel liegt der <b>kürzeren</b> Seite gegenüber, dann sind zwei verschiedene Dreiecke möglich", "Richtig, zwei Seiten und ein beliebiger Winkel reichen immer", "Falsch — für Kongruenz braucht man immer alle drei Seiten", "Richtig, weil \\(\\alpha\\) ein spitzer Winkel ist"],
+        optionen: ["Falsch — der Winkel liegt der kürzeren Seite gegenüber, dann sind zwei Dreiecke möglich", "Richtig — zwei Seiten und ein beliebiger Winkel legen ein Dreieck immer eindeutig fest", "Falsch — für Kongruenz braucht man immer alle drei Seiten, Winkel reichen dafür nie", "Richtig — \\(\\alpha = 30°\\) ist ein spitzer Winkel, da gibt es keine zweite Lösung"],
         korrekt: 0,
         tipp: "Der Kongruenzsatz SsW verlangt, dass der Winkel der <b>längeren</b> Seite gegenüberliegt.",
         loesungsweg: "Konstruiert man \\(b = 7\\,\\text{cm}\\) und trägt \\(\\alpha = 30°\\) an, schneidet der Kreis um \\(C\\) mit Radius \\(a = 5\\,\\text{cm}\\) den freien Schenkel <b>zweimal</b> — es gibt zwei nicht kongruente Dreiecke. Der Satz <b>SsW</b> gilt nur, wenn der gegebene Winkel der längeren der beiden Seiten gegenüberliegt; dann schneidet der Kreis nur einmal auf der richtigen Seite. Hier liegt \\(\\alpha\\) der kürzeren Seite \\(a\\) gegenüber, also folgt aus den Angaben keine Kongruenz."
@@ -347,7 +347,7 @@
         level: 6,
         typ: "mc",
         frage: "Ein Dreieck soll aus \\(a = 5\\,\\text{cm}\\), \\(b = 8\\,\\text{cm}\\) und \\(\\beta = 40°\\) konstruiert werden (\\(\\beta\\) liegt der längeren Seite \\(b\\) gegenüber). Behauptung: „Die Konstruktion ist nicht eindeutig, weil der Winkel nicht zwischen den beiden Seiten liegt.“ Stimmt das?",
-        optionen: ["Nein — der Kreis um \\(C\\) mit Radius \\(8\\,\\text{cm}\\) schneidet den freien Schenkel nur einmal auf der richtigen Seite; es gibt genau ein Dreieck (SsW)", "Ja — es entstehen immer zwei Dreiecke, wenn der Winkel nicht eingeschlossen ist", "Ja — ohne eingeschlossenen Winkel ist überhaupt keine Konstruktion möglich", "Nein — zwei Seiten legen ein Dreieck immer eindeutig fest, der Winkel ist überflüssig"],
+        optionen: ["Nein — der Kreis um \\(C\\) mit Radius \\(8\\,\\text{cm}\\) trifft den Schenkel nur einmal: genau ein Dreieck (SsW)", "Ja — ohne eingeschlossenen Winkel entstehen immer zwei Dreiecke, egal welche der Seiten länger ist", "Ja — ohne eingeschlossenen Winkel ist eine Konstruktion mit Zirkel und Lineal gar nicht möglich", "Nein — zwei Seiten legen ein Dreieck immer eindeutig fest, der Winkel ist dabei überflüssig"],
         korrekt: 0,
         tipp: "Entscheidend ist, ob der gegebene Winkel der längeren oder der kürzeren Seite gegenüberliegt.",
         loesungsweg: "<b>Konstruktion:</b> Seite \\(a = BC = 5\\,\\text{cm}\\) zeichnen, in \\(B\\) den Winkel \\(\\beta = 40°\\) antragen, dann Kreis um \\(C\\) mit Radius \\(b = 8\\,\\text{cm}\\). Weil \\(b > a\\), ist der Radius größer als der Abstand \\(BC\\): Der Kreis schneidet den freien Schenkel <b>einmal</b> auf der Seite von \\(B\\), die zum Winkel gehört (der zweite Schnittpunkt liegt auf der Verlängerung hinter \\(B\\) und liefert kein Dreieck mit dem Winkel \\(40°\\)). Das ist genau der Kongruenzsatz <b>SsW</b>: Winkel gegenüber der längeren Seite → eindeutig. Zwei Lösungen gäbe es nur, wenn der Winkel der kürzeren Seite gegenüberläge."
@@ -377,7 +377,7 @@
         level: 6,
         typ: "mc",
         frage: "\\(AB\\) ist der Durchmesser eines Kreises mit Mittelpunkt \\(M\\); \\(C\\) ist ein beliebiger weiterer Punkt auf dem Kreis. Behauptung: „Das Dreieck \\(ABC\\) hat bei \\(C\\) immer einen rechten Winkel.“ Stimmt das, und warum?",
-        optionen: ["Ja — \\(MA = MB = MC\\) (Radien), also sind \\(AMC\\) und \\(BMC\\) gleichschenklig; aus der Winkelsumme folgt \\(\\gamma = \\alpha + \\beta = 90°\\)", "Nur, wenn \\(C\\) genau senkrecht über \\(M\\) liegt", "Nein — das Dreieck ist gleichschenklig, aber nicht rechtwinklig", "Ja — aber der rechte Winkel liegt bei \\(A\\), nicht bei \\(C\\)"],
+        optionen: ["Ja — \\(MA = MB = MC\\) sind Radien; mit der Winkelsumme folgt \\(\\gamma = \\alpha + \\beta = 90°\\)", "Nur, wenn \\(C\\) genau senkrecht über \\(M\\) liegt; sonst ist \\(\\gamma\\) kleiner oder größer als \\(90°\\)", "Nein — das Dreieck \\(AMC\\) ist zwar gleichschenklig, aber \\(ABC\\) ist deshalb nicht rechtwinklig", "Ja — aber der rechte Winkel liegt bei \\(A\\) oder \\(B\\), nicht bei \\(C\\), weil dort der Durchmesser endet"],
         korrekt: 0,
         tipp: "Verbinde \\(M\\) mit \\(C\\) — dann entstehen zwei gleichschenklige Dreiecke.",
         loesungsweg: "<b>Satz des Thales.</b> Begründung: \\(MC\\) ist ein Radius wie \\(MA\\) und \\(MB\\). Im gleichschenkligen Dreieck \\(AMC\\) ist der Winkel bei \\(C\\) gleich \\(\\alpha\\), im gleichschenkligen Dreieck \\(BMC\\) gleich \\(\\beta\\). Also \\(\\gamma = \\alpha + \\beta\\). Winkelsumme: $$\\alpha + \\beta + \\gamma = 2\\gamma = 180° \\implies \\gamma = 90°$$ Das gilt für <b>jeden</b> Punkt \\(C\\) auf dem Kreis (außer \\(A\\) und \\(B\\) selbst), nicht nur für den Punkt über \\(M\\)."

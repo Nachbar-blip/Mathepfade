@@ -245,7 +245,7 @@
         level: 4,
         typ: "mc",
         frage: "Beim rechtwinkligen Dreieck liegt der Umkreismittelpunkt …",
-        optionen: ["in der rechten Ecke", "auf der Mitte der Hypotenuse", "außerhalb", "im Schwerpunkt"],
+        optionen: ["in der Ecke mit dem rechten Winkel", "auf der Mitte der Hypotenuse", "außerhalb des Dreiecks", "im Schwerpunkt des Dreiecks"],
         korrekt: 1,
         tipp: "Satz des Thales.",
         loesungsweg: "Nach dem <b>Satz des Thales</b> liegt der Umkreismittelpunkt auf der Mitte der Hypotenuse."
@@ -306,7 +306,7 @@
         level: 5,
         typ: "mc",
         frage: "Mia soll den Inkreis eines Dreiecks zeichnen. Sie konstruiert die drei Mittelsenkrechten und nimmt ihren Schnittpunkt als Mittelpunkt des Kreises. Was ist dazu zu sagen?",
-        optionen: ["Falsch — die Mittelsenkrechten liefern den <b>Umkreis</b>mittelpunkt; für den Inkreis braucht sie die Winkelhalbierenden", "Richtig, der Schnittpunkt der Mittelsenkrechten ist der Inkreismittelpunkt", "Falsch — sie müsste die drei Höhen schneiden", "Falsch — sie müsste die drei Seitenhalbierenden schneiden"],
+        optionen: ["Falsch — Mittelsenkrechten liefern den Umkreismittelpunkt; sie braucht die Winkelhalbierenden", "Richtig — der Schnittpunkt der Mittelsenkrechten hat zu allen drei Seiten denselben Abstand", "Falsch — sie müsste die drei Höhen schneiden, deren Schnittpunkt liegt in der Mitte des Dreiecks", "Falsch — sie müsste die drei Seitenhalbierenden schneiden, der Schwerpunkt ist die Mitte"],
         korrekt: 0,
         tipp: "Der Inkreismittelpunkt hat zu allen drei Seiten denselben Abstand.",
         loesungsweg: "Der Inkreis berührt alle drei Seiten, sein Mittelpunkt hat also zu allen Seiten den <b>gleichen Abstand</b>. Genau das leisten die Winkelhalbierenden (jeder Punkt darauf hat gleichen Abstand zu beiden Schenkeln). Die Mittelsenkrechten sammeln dagegen Punkte mit gleichem Abstand zu den <b>Ecken</b> — ihr Schnittpunkt ist der Umkreismittelpunkt. Höhen schneiden sich im Höhenschnittpunkt, Seitenhalbierende im Schwerpunkt; beide haben mit Kreisen nichts zu tun."
@@ -327,7 +327,7 @@
         level: 6,
         typ: "mc",
         frage: "Ein Dreieck soll aus \\(a = 3\\,\\text{cm}\\), \\(b = 4\\,\\text{cm}\\) und \\(c = 8\\,\\text{cm}\\) konstruiert werden. Was stellt man bei der Konstruktion fest?",
-        optionen: ["Die Kreise um \\(A\\) (Radius \\(4\\,\\text{cm}\\)) und um \\(B\\) (Radius \\(3\\,\\text{cm}\\)) schneiden sich nicht — kein Dreieck", "Es gibt genau ein Dreieck, wie immer bei SSS", "Die Kreise berühren sich, es entsteht ein sehr flaches Dreieck", "Es gibt zwei verschiedene, nicht kongruente Dreiecke"],
+        optionen: ["Die Kreise um \\(A\\) (Radius \\(4\\,\\text{cm}\\)) und \\(B\\) (Radius \\(3\\,\\text{cm}\\)) schneiden sich nicht", "Es gibt genau ein Dreieck — drei Seiten legen nach SSS immer ein Dreieck eindeutig fest", "Die Kreise berühren sich in genau einem Punkt, es entsteht ein sehr flaches Dreieck", "Die Kreise schneiden sich zweimal, es gibt zwei verschiedene, nicht kongruente Dreiecke"],
         korrekt: 0,
         tipp: "Vergleiche \\(a + b\\) mit \\(c\\).",
         loesungsweg: "Nach dem Zeichnen von \\(c = 8\\,\\text{cm}\\) müsste \\(C\\) auf dem Kreis um \\(A\\) mit Radius \\(b = 4\\,\\text{cm}\\) <b>und</b> auf dem Kreis um \\(B\\) mit Radius \\(a = 3\\,\\text{cm}\\) liegen. Die Kreise reichen zusammen nur \\(4 + 3 = 7\\,\\text{cm}\\) weit, zwischen ihnen bleibt \\(1\\,\\text{cm}\\) Lücke — kein Schnittpunkt. Das ist die Dreiecksungleichung: \\(a + b > c\\) ist verletzt. SSS liefert nur dann ein Dreieck, wenn diese Bedingung erfüllt ist; „berühren“ träte bei \\(a + b = c\\) ein."
@@ -357,7 +357,7 @@
         level: 6,
         typ: "mc",
         frage: "Behauptung: „In jedem Dreieck liegt der Höhenschnittpunkt im Inneren des Dreiecks.“ Stimmt das?",
-        optionen: ["Nein — beim stumpfwinkligen Dreieck liegt er außerhalb, beim rechtwinkligen in der Ecke des rechten Winkels", "Ja — Höhen verlaufen immer durch das Innere, also auch ihr Schnittpunkt", "Nein — er liegt immer außerhalb des Dreiecks", "Ja, außer beim gleichseitigen Dreieck, dort fällt er mit dem Schwerpunkt zusammen"],
+        optionen: ["Nein — beim stumpfwinkligen Dreieck liegt er außerhalb, beim rechtwinkligen in einer Ecke", "Ja — Höhen verlaufen immer durch das Innere des Dreiecks, also auch ihr Schnittpunkt", "Nein — er liegt immer außerhalb, weil die Höhen auf den Verlängerungen der Seiten stehen", "Ja, außer beim gleichseitigen Dreieck — dort fällt er mit dem Schwerpunkt zusammen"],
         korrekt: 0,
         tipp: "Zeichne ein Dreieck mit einem \\(120°\\)-Winkel und fälle die Höhen — wohin führt das Lot?",
         loesungsweg: "<b>Fallunterscheidung nach der Dreiecksart:</b><br>• spitzwinklig: alle drei Höhen liegen innen, der Höhenschnittpunkt auch;<br>• rechtwinklig: zwei Höhen sind die Katheten selbst, der Schnittpunkt ist die Ecke mit dem rechten Winkel;<br>• stumpfwinklig: die Höhen auf die beiden kürzeren Seiten treffen erst auf deren <b>Verlängerungen</b>, der Höhenschnittpunkt liegt <b>außerhalb</b>.<br>Die Behauptung ist also falsch. Beim gleichseitigen Dreieck fällt er zwar mit dem Schwerpunkt zusammen, liegt aber innen — das ist keine Ausnahme."

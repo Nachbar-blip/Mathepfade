@@ -266,7 +266,7 @@
         level: 5,
         typ: "mc",
         frage: "Finn vereinfacht \\(5x - (2x - 3)\\) zu \\(3x - 3\\). Was ist dazu zu sagen?",
-        optionen: ["Falsch — das Minus vor der Klammer dreht beide Vorzeichen um: \\(5x - 2x + 3 = 3x + 3\\)", "Richtig, die Klammer kann einfach weggelassen werden", "Falsch — richtig ist \\(7x - 3\\)", "Falsch — richtig ist \\(3x - 6\\)"],
+        optionen: ["Falsch — das Minus dreht beide Vorzeichen in der Klammer um: \\(5x - 2x + 3 = 3x + 3\\)", "Richtig — die Klammer kann einfach weggelassen werden, weil nur ein Minus davor steht", "Falsch — richtig ist \\(7x - 3\\), weil \\(5x - (-2x)\\) gerechnet werden muss", "Falsch — richtig ist \\(3x - 6\\), weil das Minus die \\(3\\) verdoppelt"],
         korrekt: 0,
         tipp: "Probe mit \\(x = 1\\): \\(5 - (2 - 3) = 5 - (-1) = 6\\). Was liefert \\(3x - 3\\)?",
         loesungsweg: "Ein Minus vor der Klammer wirkt auf <b>jeden</b> Summanden: $$5x - (2x - 3) = 5x - 2x + 3 = 3x + 3$$ Finn hat nur das erste Vorzeichen gedreht. Probe mit \\(x = 1\\): \\(6 = 3 + 3\\) ✓, aber \\(3 - 3 = 0\\) ✗."
@@ -296,7 +296,7 @@
         level: 5,
         typ: "mc",
         frage: "Elif klammert aus: \\(6x^2 + 9x = 3(2x^2 + 3x)\\). Was ist dazu zu sagen?",
-        optionen: ["Richtig gerechnet, aber nicht vollständig ausgeklammert — auch \\(x\\) ist gemeinsamer Faktor: \\(3x(2x + 3)\\)", "Vollständig richtig, mehr lässt sich nicht ausklammern", "Falsch — richtig ist \\(3(2x^2 + 9x)\\)", "Falsch — bei einer Summe kann man nichts ausklammern"],
+        optionen: ["Richtig, aber nicht vollständig — auch \\(x\\) ist gemeinsamer Faktor: \\(3x(2x + 3)\\)", "Vollständig richtig — mehr lässt sich nicht ausklammern, weil \\(x^2\\) und \\(x\\) verschieden sind", "Falsch — richtig ist \\(3(2x^2 + 9x)\\), die \\(9\\) darf nicht durch \\(3\\) geteilt werden", "Falsch — bei einer Summe kann man nichts ausklammern, nur bei einem Produkt"],
         korrekt: 0,
         tipp: "Steckt in beiden Summanden noch etwas Gemeinsames außer der \\(3\\)?",
         loesungsweg: "Beide Summanden enthalten den Faktor \\(3\\) <b>und</b> den Faktor \\(x\\): $$6x^2 + 9x = 3x \\cdot 2x + 3x \\cdot 3 = 3x(2x + 3)$$ Elifs Umformung ist nicht falsch, aber in der Klammer \\(2x^2 + 3x\\) steckt noch \\(x\\). Probe: \\(3x \\cdot 2x + 3x \\cdot 3 = 6x^2 + 9x\\) ✓"
@@ -327,7 +327,7 @@
         level: 6,
         typ: "mc",
         frage: "Lina behauptet: „\\(x^2 + x^2 = x^4\\), denn gleiche Basen, also Exponenten addieren.“ Stimmt das?",
-        optionen: ["Nein — \\(x^2 + x^2\\) ist eine Summe gleichartiger Terme: \\(2x^2\\). Probe \\(x = 2\\): \\(8 \\neq 16\\)", "Ja — bei gleicher Basis werden die Exponenten addiert", "Nein — richtig ist \\(x^2\\), die Summanden fallen zusammen", "Ja — aber nur für positive \\(x\\)"],
+        optionen: ["Nein — \\(x^2 + x^2\\) ist eine Summe gleichartiger Terme: \\(2x^2\\); Probe \\(x = 2\\): \\(8 \\neq 16\\)", "Ja — bei gleicher Basis werden die Exponenten addiert, das ist das erste Potenzgesetz", "Nein — richtig ist \\(x^2\\), die beiden gleichen Summanden fallen zu einem zusammen", "Ja — aber nur für positive \\(x\\), bei negativen \\(x\\) gilt das Potenzgesetz nicht"],
         korrekt: 0,
         tipp: "Setze \\(x = 2\\) ein und vergleiche beide Seiten.",
         loesungsweg: "\\(x^2\\) und \\(x^2\\) sind gleichartige Terme, sie werden <b>addiert</b>, nicht multipliziert: $$x^2 + x^2 = 2x^2$$ Probe mit \\(x = 2\\): links \\(4 + 4 = 8\\), rechts \\(2^4 = 16\\) ✗. Linas Regel würde für \\(x^2 \\cdot x^2\\) gelten, nicht für die Summe."
@@ -357,7 +357,7 @@
         level: 6,
         typ: "mc",
         frage: "Für welche Zahlen \\(x\\) gilt \\(3(x - 2) + 6 = 3x\\)?",
-        optionen: ["Für alle Zahlen — die linke Seite vereinfacht sich zu \\(3x\\)", "Nur für \\(x = 0\\)", "Nur für \\(x = 2\\)", "Für keine Zahl — links steht immer \\(6\\) mehr"],
+        optionen: ["Für alle Zahlen — die linke Seite vereinfacht sich zu \\(3x\\)", "Nur für \\(x = 0\\), weil dann beide Seiten \\(0\\) ergeben", "Nur für \\(x = 2\\), weil dann die Klammer \\(0\\) wird", "Für keine Zahl — links steht wegen \\(+6\\) immer mehr als rechts"],
         korrekt: 0,
         tipp: "Vereinfache die linke Seite vollständig.",
         loesungsweg: "$$3(x - 2) + 6 = 3x - 6 + 6 = 3x$$ Beide Seiten sind derselbe Term — die Gleichung ist für <b>jedes</b> \\(x\\) wahr. Probe: \\(x = 5\\): \\(3 \\cdot 3 + 6 = 15 = 3 \\cdot 5\\) ✓; \\(x = -1\\): \\(3 \\cdot (-3) + 6 = -3 = 3 \\cdot (-1)\\) ✓"

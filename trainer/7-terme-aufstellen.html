@@ -266,7 +266,7 @@
         level: 5,
         typ: "mc",
         frage: "Lara übersetzt „das Dreifache der Summe aus \\(x\\) und \\(4\\)“ in den Term \\(3x + 4\\). Was ist dazu zu sagen?",
-        optionen: ["Falsch — erst die Summe, dann das Dreifache: \\(3(x + 4) = 3x + 12\\)", "Richtig, der Term passt zum Text", "Falsch — richtig ist \\(x + 4 \\cdot 3 = x + 12\\)", "Falsch — richtig ist \\(3x \\cdot 4 = 12x\\)"],
+        optionen: ["Falsch — erst die Summe, dann das Dreifache: \\(3(x + 4) = 3x + 12\\)", "Richtig — der Term passt zum Text, \\(3x + 4\\) ist das Dreifache plus \\(4\\)", "Falsch — richtig ist \\(x + 4 \\cdot 3 = x + 12\\), die \\(4\\) wird verdreifacht", "Falsch — richtig ist \\(3x \\cdot 4 = 12x\\), alles wird multipliziert"],
         korrekt: 0,
         tipp: "Probe mit \\(x = 1\\): Die Summe ist \\(5\\), ihr Dreifaches \\(15\\). Was liefert \\(3x + 4\\)?",
         loesungsweg: "„Das Dreifache <b>der Summe</b>“ — die Summe muss zuerst gebildet werden, also in Klammern: $$3(x + 4) = 3x + 12$$ Bei \\(3x + 4\\) wird nur \\(x\\) verdreifacht. Probe mit \\(x = 1\\): \\(3 \\cdot 5 = 15\\), aber \\(3 \\cdot 1 + 4 = 7\\) ✗."
@@ -296,7 +296,7 @@
         level: 5,
         typ: "mc",
         frage: "Ein Kinoticket kostet \\(p\\) Euro, Kinder zahlen \\(2\\,€\\) weniger. Max stellt für \\(2\\) Erwachsene und \\(3\\) Kinder den Term \\(2p + 3p - 2\\) auf. Was ist dazu zu sagen?",
-        optionen: ["Falsch — jedes Kinderticket ist \\(2\\,€\\) billiger: \\(2p + 3(p - 2) = 5p - 6\\)", "Richtig, der Term ergibt \\(5p - 2\\)", "Falsch — richtig ist \\(2p + 3p - 6 \\cdot 3 = 5p - 18\\)", "Falsch — richtig ist \\(5(p - 2) = 5p - 10\\)"],
+        optionen: ["Falsch — jedes Kinderticket ist \\(2\\,€\\) billiger: \\(2p + 3(p - 2) = 5p - 6\\)", "Richtig — der Term ergibt \\(5p - 2\\), die \\(2\\,€\\) werden einmal abgezogen", "Falsch — richtig ist \\(2p + 3p - 6 \\cdot 3 = 5p - 18\\), drei Kinder, dreimal \\(6\\)", "Falsch — richtig ist \\(5(p - 2) = 5p - 10\\), alle fünf zahlen weniger"],
         korrekt: 0,
         tipp: "Was kostet <b>ein</b> Kinderticket? Wie viele davon?",
         loesungsweg: "Kinderticket \\(p - 2\\), davon drei: \\(3(p - 2)\\). Gesamt: $$2p + 3(p - 2) = 2p + 3p - 6 = 5p - 6$$ Max hat den Rabatt nur einmal statt dreimal abgezogen. Probe mit \\(p = 10\\): \\(2 \\cdot 10 + 3 \\cdot 8 = 44 = 5 \\cdot 10 - 6\\) ✓"
@@ -327,7 +327,7 @@
         level: 6,
         typ: "mc",
         frage: "Nora behauptet: „Für jede natürliche Zahl \\(n\\) ist das Produkt \\(n \\cdot (n + 1)\\) eine gerade Zahl.“ Stimmt das?",
-        optionen: ["Ja — von zwei aufeinanderfolgenden Zahlen ist immer eine gerade, und ein Produkt mit einem geraden Faktor ist gerade", "Nein — für ungerade \\(n\\) ist das Produkt ungerade", "Ja — weil \\(n + 1\\) immer gerade ist", "Nein — das gilt nur, wenn \\(n\\) gerade ist"],
+        optionen: ["Ja — eine von zwei aufeinanderfolgenden Zahlen ist gerade, also ist das Produkt gerade", "Nein — für ungerade \\(n\\) ist das Produkt ungerade, z. B. bei \\(n = 3\\) oder \\(n = 5\\)", "Ja — weil \\(n + 1\\) immer gerade ist, ist auch das Produkt immer eine gerade Zahl", "Nein — das gilt nur, wenn \\(n\\) gerade ist, denn dann ist der erste Faktor gerade"],
         korrekt: 0,
         tipp: "Was weißt du über \\(n\\) und \\(n + 1\\), egal welche Zahl \\(n\\) ist?",
         loesungsweg: "\\(n\\) und \\(n + 1\\) sind aufeinanderfolgende Zahlen — eine davon ist gerade. Ist \\(n\\) gerade, ist das Produkt gerade; ist \\(n\\) ungerade, ist \\(n + 1\\) gerade und das Produkt ebenfalls. Beispiele: \\(3 \\cdot 4 = 12\\), \\(4 \\cdot 5 = 20\\). Die Begründung gilt für <b>alle</b> \\(n\\), nicht nur für die Beispiele."
@@ -347,7 +347,7 @@
         level: 6,
         typ: "mc",
         frage: "Ben behauptet: „Die Terme \\(2(x + 3)\\) und \\(2x + 3\\) sind gleichwertig, man lässt ja nur die Klammer weg.“ Stimmt das?",
-        optionen: ["Nein — \\(2(x + 3) = 2x + 6\\); die Terme unterscheiden sich für jedes \\(x\\) um \\(3\\)", "Ja — Klammern ändern den Wert eines Terms nicht", "Nein — aber für \\(x = 0\\) sind beide gleich", "Nein — aber für \\(x = 3\\) sind beide gleich"],
+        optionen: ["Nein — \\(2(x + 3) = 2x + 6\\); die Terme unterscheiden sich für jedes \\(x\\) um \\(3\\)", "Ja — Klammern ändern den Wert eines Terms nicht, sie sind nur eine andere Schreibweise", "Nein — aber für \\(x = 0\\) sind beide gleich, weil dann \\(2x\\) wegfällt", "Nein — aber für \\(x = 3\\) sind beide gleich, weil \\(x\\) und \\(3\\) dann übereinstimmen"],
         korrekt: 0,
         tipp: "Löse die Klammer richtig auf und bilde die Differenz der beiden Terme.",
         loesungsweg: "$$2(x + 3) = 2x + 6$$ Differenz zu \\(2x + 3\\): \\((2x + 6) - (2x + 3) = 3\\) — unabhängig von \\(x\\). Es gibt also <b>keinen</b> Wert, für den beide Terme gleich sind. Probe \\(x = 0\\): \\(6 \\neq 3\\); \\(x = 3\\): \\(12 \\neq 9\\)."
@@ -377,7 +377,7 @@
         level: 6,
         typ: "mc",
         frage: "Ida behauptet: „Wenn ich die Seitenlänge eines Quadrats verdopple, verdoppelt sich auch sein Flächeninhalt.“ Stimmt das?",
-        optionen: ["Nein — der Flächeninhalt vervierfacht sich: \\((2a)^2 = 4a^2\\)", "Ja — aus \\(a^2\\) wird \\(2a^2\\)", "Nein — der Flächeninhalt verdreifacht sich", "Das gilt nur für \\(a = 2\\)"],
+        optionen: ["Nein — der Flächeninhalt vervierfacht sich: \\((2a)^2 = 4a^2\\)", "Ja — aus \\(a^2\\) wird \\(2a^2\\), der Faktor \\(2\\) kommt einfach dazu", "Nein — der Flächeninhalt verdreifacht sich: \\(a^2 + 2a^2 = 3a^2\\)", "Das gilt nur für \\(a = 2\\), denn dort ist \\(2a = a^2\\)"],
         korrekt: 0,
         tipp: "Stelle den Flächeninhalt des neuen Quadrats als Term in \\(a\\) auf.",
         loesungsweg: "Altes Quadrat: \\(a^2\\). Neue Seite \\(2a\\): $$(2a)^2 = 2a \\cdot 2a = 4a^2$$ Der Flächeninhalt wird <b>viermal</b> so groß. Beispiel: \\(a = 3\\): \\(9\\,\\text{cm}^2\\), nach Verdopplung \\(6^2 = 36\\,\\text{cm}^2\\)."

@@ -235,7 +235,7 @@
         level: 4,
         typ: "mc",
         frage: "Was zeigt ein Säulendiagramm am besten?",
-        optionen: ["Zeitlichen Verlauf", "Vergleich von Werten verschiedener Kategorien", "Anteil am Ganzen", "Korrelation"],
+        optionen: ["Zeitlichen Verlauf einer Größe über Monate oder Jahre", "Vergleich von Werten verschiedener Kategorien", "Anteile der Kategorien am Ganzen in Prozent", "Zusammenhang zwischen zwei Messgrößen"],
         korrekt: 1,
         tipp: "Gleich breite Säulen für verschiedene Kategorien.",
         loesungsweg: "Ein <b>Säulendiagramm</b> eignet sich am besten, um Werte verschiedener Kategorien zu vergleichen."
@@ -327,7 +327,7 @@
         level: 6,
         typ: "mc",
         frage: "Behauptung: „Wenn der Notendurchschnitt einer Klassenarbeit genau \\(2{,}0\\) beträgt, hat mindestens ein Schüler die Note \\(2\\) geschrieben.“ Stimmt das?",
-        optionen: ["Nein — z. B. die Hälfte der Klasse Note \\(1\\), die andere Hälfte Note \\(3\\): Durchschnitt \\(2{,}0\\), aber niemand hat eine \\(2\\)", "Ja — der Durchschnitt ist immer eine der vorkommenden Noten", "Ja — bei einem glatten Durchschnitt muss die Note selbst vorkommen", "Nein — der Durchschnitt \\(2{,}0\\) bedeutet, dass alle eine \\(2\\) haben"],
+        optionen: ["Nein — halbe Klasse Note \\(1\\), halbe Klasse Note \\(3\\): Durchschnitt \\(2{,}0\\), aber keine \\(2\\)", "Ja — der Durchschnitt ist immer eine Note, die auch wirklich in der Klasse vorkommt", "Ja — bei einem glatten Durchschnitt muss die Note selbst mindestens einmal vorkommen", "Nein — der Durchschnitt \\(2{,}0\\) bedeutet, dass alle Schüler eine \\(2\\) geschrieben haben"],
         korrekt: 0,
         tipp: "Suche eine Notenverteilung mit Mittelwert \\(2\\), in der keine \\(2\\) vorkommt.",
         loesungsweg: "Ein <b>Gegenbeispiel</b> widerlegt die Behauptung: \\(10\\) Schüler mit Note \\(1\\) und \\(10\\) Schüler mit Note \\(3\\) ergeben $$\\bar{x} = \\frac{10 \\cdot 1 + 10 \\cdot 3}{20} = \\frac{40}{20} = 2{,}0$$ — ohne eine einzige \\(2\\). Der Mittelwert muss kein Wert der Liste sein; er gleicht Werte oberhalb und unterhalb aus. Auch „alle haben eine 2“ ist nur <b>eine</b> von vielen Möglichkeiten."
@@ -357,7 +357,7 @@
         level: 6,
         typ: "mc",
         frage: "Behauptung: „Fügt man einer Datenreihe einen Wert hinzu, der größer als der bisherige Mittelwert ist, dann steigt der Mittelwert.“ Stimmt das?",
-        optionen: ["Ja — der neue Wert liegt oberhalb des Ausgleichspunkts und zieht ihn nach oben, egal wie viele Werte es schon gibt", "Nein — der Mittelwert steigt nur, wenn der neue Wert größer als alle bisherigen ist", "Nein — bei vielen Werten bleibt der Mittelwert unverändert", "Ja — aber nur, wenn auch der Median steigt"],
+        optionen: ["Ja — der neue Wert liegt über dem Mittelwert und zieht ihn nach oben, wenn auch nur wenig", "Nein — der Mittelwert steigt nur, wenn der neue Wert größer als alle bisherigen Werte ist", "Nein — bei vielen Werten fällt ein einzelner Wert nicht ins Gewicht, der Mittelwert bleibt", "Ja — aber nur, wenn gleichzeitig auch der Median der Datenreihe nach oben wandert"],
         korrekt: 0,
         tipp: "Denke an eine Waage: Der Mittelwert ist der Punkt, an dem die Werte im Gleichgewicht sind.",
         loesungsweg: "<b>Begründung:</b> Sei \\(\\bar{x}\\) der alte Mittelwert von \\(n\\) Werten (Summe \\(n \\cdot \\bar{x}\\)). Neuer Wert \\(y > \\bar{x}\\). Neuer Mittelwert: $$\\frac{n\\bar{x} + y}{n + 1} > \\frac{n\\bar{x} + \\bar{x}}{n + 1} = \\bar{x}$$ Der Mittelwert steigt <b>immer</b> — bei vielen Werten nur wenig, aber nie um null. Beispiel: \\(4, 6\\) (Mittelwert \\(5\\)), dazu \\(5{,}5\\): neuer Mittelwert \\(\\frac{15{,}5}{3} \\approx 5{,}17 > 5\\), obwohl \\(5{,}5\\) nicht der größte Wert ist. Der Median kann dabei gleich bleiben."
@@ -377,7 +377,7 @@
         level: 6,
         typ: "mc",
         frage: "In einem kleinen Betrieb verdienen fünf Angestellte je \\(2\\,200\\,€\\) im Monat, der Chef \\(14\\,000\\,€\\). Welche Kenngröße beschreibt das „typische“ Gehalt im Betrieb besser, und warum?",
-        optionen: ["Der Median \\(2\\,200\\,€\\) — der Mittelwert (\\(\\approx 4\\,167\\,€\\)) wird vom einen hohen Gehalt nach oben gezogen und passt zu niemandem", "Der Mittelwert, weil er alle sechs Gehälter berücksichtigt", "Die Spannweite \\(11\\,800\\,€\\), weil sie den Unterschied zeigt", "Beide Kenngrößen sind gleich gut, da sie nahe beieinander liegen"],
+        optionen: ["Der Median \\(2\\,200\\,€\\) — der Mittelwert wird vom einen hohen Gehalt nach oben gezogen", "Der Mittelwert \\(\\approx 4\\,167\\,€\\), weil er alle sechs Gehälter gleichermaßen berücksichtigt", "Die Spannweite \\(11\\,800\\,€\\), weil sie den Unterschied zwischen Chef und Angestellten zeigt", "Beide Kenngrößen sind gleich gut, weil Median und Mittelwert nahe beieinander liegen"],
         korrekt: 0,
         tipp: "Berechne beide Kenngrößen und vergleiche sie mit den tatsächlichen Gehältern.",
         loesungsweg: "<b>Mittelwert:</b> $$\\frac{5 \\cdot 2\\,200 + 14\\,000}{6} = \\frac{25\\,000}{6} \\approx 4\\,167\\,€$$ — kein einziger Mitarbeiter verdient auch nur annähernd so viel.<br><b>Median:</b> geordnet \\(2\\,200\\) (fünfmal), \\(14\\,000\\); die beiden mittleren Werte sind \\(2\\,200\\) und \\(2\\,200\\), Median \\(2\\,200\\,€\\) — das Gehalt, das tatsächlich fast alle bekommen.<br>Bei einem <b>Ausreißer</b> ist der Median die robustere Kenngröße; die Spannweite beschreibt die Streuung, nicht den typischen Wert."
