@@ -240,16 +240,16 @@ Scheitelpunktform/Symmetrie/Koeffizienten bestimmt.
 | 23 | 4 | L4: Transformation — Nullstellen nach Verschiebung |
 | 24 | 4 | L4: Umkehraufgabe — b aus Scheitelstelle |
 | 25 | 5 | L5: Sachaufgabe zweischrittig — Brückenbogen |
-| 26 | 5 | L5: Sachaufgabe zweischrittig — Scheitelzeit und Aufprall |
+| 26 | 5 | L5: Sachaufgabe zweischrittig — Tunnelprofil, Lkw-Höhe |
 | 27 | 5 | L5: Fehler finden — Vorzeichen des Scheitels (MC) |
 | 28 | 5 | L5: Parameter aus zwei Bedingungen — a und c |
 | 29 | 5 | L5: Sachaufgabe — Zaun an Hauswand, Maximum |
 | 30 | 5 | L5: Sachaufgabe — Wasserstrahl, Nullstelle |
 | 31 | 6 | L6: Behauptung prüfen — Scheitel unter Achse (MC) |
-| 32 | 6 | L6: Fallunterscheidung — Anzahl Nullstellen je c |
+| 32 | 6 | L6: Fallunterscheidung nach Vorzeichen von a — Nullstellen bei festem Scheitel (MC) |
 | 33 | 6 | L6: Umkehraufgabe — Term aus Symmetrieachse und Punkten |
 | 34 | 6 | L6: Monotonie — Bereich bestimmen (MC) |
-| 35 | 6 | L6: Umkehraufgabe — c aus Scheitel |
+| 35 | 6 | L6: Parabelschar — t, für das der Scheitel auf y = −4 liegt |
 | 36 | 6 | L6: Sonderfall — Berührung Parabel/Gerade |
 
 ### 9-quadratische-gleichungen
@@ -264,7 +264,7 @@ Scheitelpunktform/Symmetrie/Koeffizienten bestimmt.
 | 24 | 4 | L4: Modell aus Text — Rechteckfläche |
 | 25 | 5 | L5: Fehler in Kette — −q bei negativem q (MC) |
 | 26 | 5 | L5: Sachaufgabe zweischrittig — Aufprall, dann Höhe |
-| 27 | 5 | L5: Parameter aus zwei Bedingungen — p aus Lösungen |
+| 27 | 5 | L5: Sachaufgabe zweischrittig — Rechteck aus Umfang und Fläche |
 | 28 | 5 | L5: Zahlenrätsel — Summe und Produkt |
 | 29 | 5 | L5: Fehler finden — Division durch x |
 | 30 | 5 | L5: Sachaufgabe — Rahmenbreite |
@@ -295,7 +295,7 @@ Scheitelpunktform/Symmetrie/Koeffizienten bestimmt.
 | 32 | 6 | L6: Umkehraufgabe — Jahresrate aus Verdreifachung |
 | 33 | 6 | L6: Vergleich zweier Bestände — Tabelle |
 | 34 | 6 | L6: Behauptung prüfen — Zerfall endet nie (MC) |
-| 35 | 6 | L6: Umkehraufgabe — Zinssatz aus drei Perioden |
+| 35 | 6 | L6: Umkehraufgabe — Faktor aus t = 2 und t = 5, Wert bei t = 7 |
 | 36 | 6 | L6: Parameter, dann Schwelle — q aus N(3) |
 
 ### 8-lgs (Umzug nach Kl. 9)
@@ -317,9 +317,9 @@ Scheitelpunktform/Symmetrie/Koeffizienten bestimmt.
 | 31 | 6 | L6: Behauptung prüfen — immer genau eine Lösung (MC) |
 | 32 | 6 | L6: Fallunterscheidung — a = ±2 |
 | 33 | 6 | L6: Sonderfall — identische Geraden grafisch (MC) |
-| 34 | 6 | L6: Umkehraufgabe — b aus Lösungspaar |
-| 35 | 6 | L6: Transfer — Parabel durch zwei Punkte |
-| 36 | 6 | L6: Sonderfall — c für unendlich viele Lösungen |
+| 34 | 6 | L6: Sachaufgabe mit Widerspruch — passender Betrag (Sonderfall) |
+| 35 | 6 | L6: Modell aus Text — Altersrätsel mit Zeitverschiebung |
+| 36 | 6 | L6: Fallunterscheidung — Anzahl a mit genau einer Lösung (a = ±1 gesondert) |
 
 ### 8-bruchgleichungen (Umzug nach Kl. 9)
 
@@ -335,10 +335,12 @@ Scheitelpunktform/Symmetrie/Koeffizienten bestimmt.
 | 32 | 6 | L6: Sonderfall — Definitionslücke, unendlich viele (MC) |
 | 33 | 6 | L6: Umkehraufgabe — b für Scheinlösung |
 | 34 | 6 | L6: Fallunterscheidung — a für unendlich viele Lösungen |
-| 35 | 6 | L6: Sachaufgabe — zwei Drucker, Umkehr |
+| 35 | 6 | L6: Fallunterscheidung — b für genau eine Lösung (quadratischer Kern) |
 | 36 | 6 | L6: Parameter aus zwei Bedingungen — a mit LGS |
 
 Prüfung Block A2: `level_check --strict` ok ohne Warnung (inkl. neuer MC-Längen-Warnung; Befund
 8-bruchgleichungen #21 durch gleich lange Optionen behoben), `lehrplan_check --strict` 0 Befunde,
 `katex_check` 0 Fehler, `pytest -k <stem>` je 7 passed, Bilder L5/L6 angesehen, alle Lösungen mit
 Wolfram|Alpha nachgerechnet.
+
+Review 2026-09-27 (Block A2): Dubletten entfernt (qf #26 Ballwurf → Tunnel, qf #32 → Vorzeichen-Fallunterscheidung, qg #27 → Rechteck statt Doppel zu #17, lgs #35 → Altersrätsel, bg #35 → b für genau eine Lösung), L6 auf AFB III (qf #35 Parabelschar, lgs #34/#36 Widerspruch bzw. Anzahl a, ew #35 Faktor aus zwei nicht benachbarten Werten), MC-Optionen angeglichen (bg #32, qg #35, lgs #31). Gates erneut grün, Bilder L6 angesehen, neue Zahlen mit Wolfram.
