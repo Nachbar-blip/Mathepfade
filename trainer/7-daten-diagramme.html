@@ -153,7 +153,7 @@
         id: 14,
         level: 3,
         typ: "numerisch",
-        frage: "Relative Häufigkeit = Anzahl / Gesamtzahl. 12 von 30 wählen Blau. Gib die relative Häufigkeit als Dezimalzahl an.",
+        frage: "Bei einer Umfrage wählen 12 von 30 Befragten die Farbe Blau. Gib die relative Häufigkeit von Blau als Dezimalzahl an.",
         loesung: 0.4,
         toleranz: 0.01,
         tipp: "\\(12/30\\).",
@@ -260,127 +260,127 @@
         tipp: "\\(\\frac{108}{360} \\cdot 100\\).",
         loesungsweg: "$$\\frac{108°}{360°} = 0{,}3 = 30\\,\\%$$"
       },
-      // ========== LEVEL 5 -- anspruchsvoll: Kombinierte Berechnungen ==========
+      // ========== LEVEL 5 -- anspruchsvoll: zweischrittig, Fehler in Diagrammen, Umkehr ==========
       {
         id: 25,
         level: 5,
         typ: "numerisch",
-        frage: "Der Mittelwert von 5 Zahlen ist \\(12\\). Vier der Zahlen sind \\(10, 11, 13, 14\\). Wie groß ist die fünfte?",
-        loesung: 12,
-        toleranz: 0,
-        tipp: "Summe aller 5 = \\(5 \\cdot 12 = 60\\). Summe der 4 = \\(48\\).",
-        loesungsweg: "$$\\text{Summe} = 5 \\cdot 12 = 60; \\quad 60 - 48 = 12$$"
+        frage: "In einer Klasse haben die \\(12\\) Mädchen den Notendurchschnitt \\(2{,}5\\) und die \\(8\\) Jungen den Notendurchschnitt \\(3{,}0\\). Wie groß ist der Notendurchschnitt der ganzen Klasse?",
+        loesung: 2.7,
+        toleranz: 0.01,
+        tipp: "Ein Mittelwert aus zwei Mittelwerten — die Gruppen sind verschieden groß.",
+        loesungsweg: "<b>Ansatz:</b> Zurück zu den Notensummen. Mädchen: \\(12 \\cdot 2{,}5 = 30\\); Jungen: \\(8 \\cdot 3{,}0 = 24\\). Gesamt \\(54\\) Notenpunkte auf \\(20\\) Schüler: $$\\bar{x} = \\frac{30 + 24}{20} = 2{,}7$$ <b>Typischer Fehler:</b> \\(\\frac{2{,}5 + 3{,}0}{2} = 2{,}75\\) — das ignoriert, dass die Mädchengruppe größer ist."
       },
       {
         id: 26,
         level: 5,
-        typ: "numerisch",
-        frage: "In einer Klasse schreiben 20 Schüler eine Arbeit. Mittelwert ist \\(3{,}0\\). Ein Schüler mit Note \\(1\\) kommt dazu (21 Schüler). Neuer Mittelwert?",
-        loesung: 2.9,
-        toleranz: 0.01,
-        tipp: "Neue Summe = \\(60 + 1 = 61\\), \\(\\div 21\\).",
-        loesungsweg: "$$\\text{alte Summe} = 20 \\cdot 3 = 60; \\quad \\text{neu} = \\frac{61}{21} \\approx 2{,}9$$"
+        typ: "mc",
+        frage: "Jan zeichnet ein Kreisdiagramm. Für einen Anteil von \\(30\\,\\%\\) zeichnet er einen Sektor mit dem Mittelpunktswinkel \\(30°\\). Was ist dazu zu sagen?",
+        optionen: ["Falsch — \\(30\\,\\%\\) des Vollkreises sind \\(0{,}3 \\cdot 360° = 108°\\)", "Richtig, Prozent und Grad stimmen im Kreisdiagramm überein", "Falsch — richtig wären \\(30 \\cdot 3{,}6° = 10{,}8°\\)", "Falsch — richtig wären \\(180° \\cdot 0{,}3 = 54°\\)"],
+        korrekt: 0,
+        tipp: "\\(100\\,\\%\\) entsprechen dem ganzen Kreis — wie viel Grad sind das?",
+        loesungsweg: "Der ganze Kreis (\\(100\\,\\%\\)) hat \\(360°\\), also entspricht \\(1\\,\\%\\) genau \\(3{,}6°\\): $$30 \\cdot 3{,}6° = 108°$$ Jans Sektor mit \\(30°\\) wäre nur \\(30 : 3{,}6 \\approx 8{,}3\\,\\%\\) — der Anteil sähe im Diagramm viel zu klein aus. Der Halbkreis (\\(180°\\)) entspricht \\(50\\,\\%\\), nicht \\(100\\,\\%\\)."
       },
       {
         id: 27,
         level: 5,
         typ: "numerisch",
-        frage: "Eine Klasse hat Noten: \\(1 (\\times 3), 2 (\\times 8), 3 (\\times 6), 4 (\\times 3)\\). Berechne den Notendurchschnitt.",
-        loesung: 2.45,
-        toleranz: 0.01,
-        tipp: "Summe \\(= 3 + 16 + 18 + 12 = 49\\). Gesamtschüler \\(= 20\\).",
-        loesungsweg: "$$\\bar{x} = \\frac{3 \\cdot 1 + 8 \\cdot 2 + 6 \\cdot 3 + 3 \\cdot 4}{20} = \\frac{49}{20} = 2{,}45$$"
+        frage: "Der Mittelwert von sechs Zahlen beträgt \\(9\\). Streicht man eine der Zahlen, haben die übrigen fünf den Mittelwert \\(8\\). Welche Zahl wurde gestrichen?",
+        loesung: 14,
+        toleranz: 0,
+        tipp: "Arbeite mit den Summen: Summe vorher, Summe nachher.",
+        loesungsweg: "<b>Schritt 1:</b> Summe der sechs Zahlen: \\(6 \\cdot 9 = 54\\).<br><b>Schritt 2:</b> Summe der fünf verbleibenden: \\(5 \\cdot 8 = 40\\).<br><b>Schritt 3:</b> Gestrichene Zahl \\(54 - 40 = 14\\).<br>Plausibel: Eine Zahl über dem Mittelwert wurde entfernt, deshalb sinkt der Mittelwert."
       },
       {
         id: 28,
         level: 5,
         typ: "numerisch",
-        frage: "Boxplot: Eine Datenreihe hat Minimum \\(2\\), unteres Quartil \\(5\\), Median \\(7\\), oberes Quartil \\(9\\), Maximum \\(12\\). Wie groß ist der Interquartilsabstand (IQR)?",
-        loesung: 4,
+        frage: "Die fünf Werte \\(3,\\ 5,\\ 7,\\ x,\\ 15\\) haben den Mittelwert \\(8\\). Wie groß ist \\(x\\)?",
+        loesung: 10,
         toleranz: 0,
-        tipp: "IQR = oberes Q − unteres Q.",
-        loesungsweg: "$$\\text{IQR} = 9 - 5 = 4$$"
+        tipp: "Wie groß muss die Summe aller fünf Werte sein?",
+        loesungsweg: "<b>Ansatz:</b> Mittelwert \\(8\\) bei \\(5\\) Werten heißt Summe \\(5 \\cdot 8 = 40\\). Die bekannten Werte ergeben \\(3 + 5 + 7 + 15 = 30\\): $$x = 40 - 30 = 10$$ Probe: \\(\\frac{3 + 5 + 7 + 10 + 15}{5} = \\frac{40}{5} = 8\\) ✓. Der Median dieser Reihe ist übrigens \\(7\\), unabhängig von \\(x\\), solange \\(x \\ge 7\\)."
       },
       {
         id: 29,
         level: 5,
         typ: "mc",
-        frage: "Welcher Wert ist am stärksten von Ausreißern beeinflusst?",
-        optionen: ["Modus", "Median", "Arithmetisches Mittel", "Interquartilsabstand"],
-        korrekt: 2,
-        tipp: "Die Summe ändert sich bei einem Ausreißer stark.",
-        loesungsweg: "Das <b>arithmetische Mittel</b> ist stark von Ausreißern beeinflusst — jeder Wert zählt mit seiner Größe."
+        frage: "Ein Säulendiagramm zeigt die Verkaufszahlen zweier Produkte: Säule A reicht bis \\(100\\), Säule B bis \\(95\\). Die senkrechte Achse beginnt aber erst bei \\(90\\), sodass Säule A doppelt so hoch aussieht wie Säule B. Lea sagt: „A verkauft sich doppelt so gut wie B.“ Was ist dazu zu sagen?",
+        optionen: ["Falsch — die Achse beginnt nicht bei \\(0\\); tatsächlich sind es \\(100\\) gegenüber \\(95\\), also nur etwa \\(5\\,\\%\\) mehr", "Richtig, die Säulenhöhe zeigt das Verhältnis direkt", "Falsch — A verkauft sich dreimal so gut, weil \\(10 : 5 = 2\\) plus die Grundlinie", "Richtig, aber nur wenn beide Säulen gleich breit sind"],
+        korrekt: 0,
+        tipp: "Lies die Werte ab, nicht die Säulenhöhen — wo beginnt die Achse?",
+        loesungsweg: "Die Säulen zeigen nur den Bereich <b>oberhalb von \\(90\\)</b>: A ragt \\(10\\) Einheiten heraus, B nur \\(5\\). Das Verhältnis der Säulenhöhen (\\(2 : 1\\)) hat mit dem Verhältnis der Werte (\\(100 : 95\\)) nichts zu tun. Ein abgeschnittener Achsenanfang <b>übertreibt</b> Unterschiede — ein häufiger Trick in Werbung und Zeitungen. Richtig gelesen: A verkauft sich um \\(5\\) Stück (etwa \\(5\\,\\%\\)) besser."
       },
       {
         id: 30,
         level: 5,
         typ: "numerisch",
-        frage: "Eine Klasse hat 25 Schüler. Der Mittelwert einer Arbeit ist \\(2{,}8\\). Wie hoch ist die Gesamtsumme der Noten?",
-        loesung: 70,
+        frage: "Ein Kreisdiagramm zeigt das Ergebnis einer Umfrage unter \\(200\\) Personen mit vier Antworten. Drei Sektoren haben die Mittelpunktswinkel \\(90°\\), \\(72°\\) und \\(54°\\). Wie viele Personen haben die vierte Antwort gewählt?",
+        loesung: 80,
         toleranz: 0,
-        tipp: "Summe = \\(n \\cdot \\bar{x}\\).",
-        loesungsweg: "$$\\text{Summe} = 25 \\cdot 2{,}8 = 70$$"
+        tipp: "Erst den Winkel des vierten Sektors, dann seinen Anteil an \\(360°\\).",
+        loesungsweg: "<b>Schritt 1:</b> Vierter Sektor: \\(360° - 90° - 72° - 54° = 144°\\).<br><b>Schritt 2:</b> Anteil \\(\\frac{144°}{360°} = 0{,}4 = 40\\,\\%\\).<br><b>Schritt 3:</b> \\(0{,}4 \\cdot 200 = 80\\) Personen.<br>Kontrolle der anderen: \\(90° \\to 50\\), \\(72° \\to 40\\), \\(54° \\to 30\\); zusammen \\(50 + 40 + 30 + 80 = 200\\) ✓."
       },
-      // ========== LEVEL 6 -- wagnerisch: Transferaufgaben ==========
+      // ========== LEVEL 6 -- wagnerisch: Behauptungen, Umkehraufgaben, Kenngrößen beurteilen ==========
       {
         id: 31,
         level: 6,
-        typ: "numerisch",
-        frage: "Eine Firma hat 10 Angestellte mit Gehältern, Mittelwert \\(3000\\,€\\). Der Chef hat \\(20{\\,}000\\,€\\). Wie groß ist der Mittelwert der 11 Personen?",
-        loesung: 4545.45,
-        toleranz: 1,
-        tipp: "Gesamtsumme: \\(10 \\cdot 3000 + 20000 = 50000\\). \\(\\div 11\\).",
-        loesungsweg: "$$\\bar{x} = \\frac{30000 + 20000}{11} = \\frac{50000}{11} \\approx 4545{,}45\\,€$$"
+        typ: "mc",
+        frage: "Behauptung: „Wenn der Notendurchschnitt einer Klassenarbeit genau \\(2{,}0\\) beträgt, hat mindestens ein Schüler die Note \\(2\\) geschrieben.“ Stimmt das?",
+        optionen: ["Nein — z. B. die Hälfte der Klasse Note \\(1\\), die andere Hälfte Note \\(3\\): Durchschnitt \\(2{,}0\\), aber niemand hat eine \\(2\\)", "Ja — der Durchschnitt ist immer eine der vorkommenden Noten", "Ja — bei einem glatten Durchschnitt muss die Note selbst vorkommen", "Nein — der Durchschnitt \\(2{,}0\\) bedeutet, dass alle eine \\(2\\) haben"],
+        korrekt: 0,
+        tipp: "Suche eine Notenverteilung mit Mittelwert \\(2\\), in der keine \\(2\\) vorkommt.",
+        loesungsweg: "Ein <b>Gegenbeispiel</b> widerlegt die Behauptung: \\(10\\) Schüler mit Note \\(1\\) und \\(10\\) Schüler mit Note \\(3\\) ergeben $$\\bar{x} = \\frac{10 \\cdot 1 + 10 \\cdot 3}{20} = \\frac{40}{20} = 2{,}0$$ — ohne eine einzige \\(2\\). Der Mittelwert muss kein Wert der Liste sein; er gleicht Werte oberhalb und unterhalb aus. Auch „alle haben eine 2“ ist nur <b>eine</b> von vielen Möglichkeiten."
       },
       {
         id: 32,
         level: 6,
-        typ: "mc",
-        frage: "In einem Kreisdiagramm haben zwei Sektoren \\(90°\\) und \\(120°\\). Wie viele Grad entfallen auf die übrigen Sektoren zusammen?",
-        optionen: ["\\(100°\\)", "\\(120°\\)", "\\(150°\\)", "\\(180°\\)"],
-        korrekt: 2,
-        tipp: "\\(360° - 90° - 120°\\).",
-        loesungsweg: "Alle Sektoren ergeben zusammen den Vollkreis: $$360° - 90° - 120° = 150°$$ Die beiden genannten Sektoren entsprechen \\(25\\,\\%\\) und \\(33{,}3\\,\\%\\), auf den Rest entfallen also rund \\(41{,}7\\,\\%\\)."
+        typ: "numerisch",
+        frage: "Von fünf ganzen Zahlen ist bekannt: Die kleinste ist \\(3\\), die zweitkleinste \\(5\\), der Median \\(7\\), die Spannweite \\(10\\) und der Mittelwert \\(8\\). Wie groß ist die zweitgrößte Zahl?",
+        loesung: 12,
+        toleranz: 0,
+        tipp: "Aus Minimum und Spannweite folgt das Maximum; aus dem Mittelwert die Summe.",
+        loesungsweg: "<b>Schritt 1:</b> Maximum \\(= 3 + 10 = 13\\).<br><b>Schritt 2:</b> Geordnet: \\(3,\\ 5,\\ 7,\\ x,\\ 13\\) — der Median \\(7\\) ist der dritte Wert.<br><b>Schritt 3:</b> Summe \\(5 \\cdot 8 = 40\\), also $$x = 40 - (3 + 5 + 7 + 13) = 12$$ Probe: \\(7 \\le 12 \\le 13\\) passt zur Ordnung ✓."
       },
       {
         id: 33,
         level: 6,
         typ: "numerisch",
-        frage: "Die Summe von 7 Zahlen ist \\(56\\). Eine Zahl \\(8\\) wird durch \\(15\\) ersetzt. Wie groß ist der neue Mittelwert?",
-        loesung: 9,
-        toleranz: 0.01,
-        tipp: "Neue Summe = \\(56 - 8 + 15 = 63\\). \\(\\div 7\\).",
-        loesungsweg: "$$\\bar{x}_{\\text{neu}} = \\frac{63}{7} = 9$$"
+        frage: "Nach vier Klassenarbeiten hat Emre den Durchschnitt \\(2{,}5\\). Welche Note braucht er in der fünften Arbeit, damit sein Durchschnitt auf \\(2{,}2\\) sinkt?",
+        loesung: 1,
+        toleranz: 0,
+        tipp: "Welche Notensumme hat er jetzt, welche braucht er nach fünf Arbeiten?",
+        loesungsweg: "<b>Umkehraufgabe:</b> Summe jetzt \\(4 \\cdot 2{,}5 = 10\\). Ziel: \\(5 \\cdot 2{,}2 = 11\\). Fünfte Note: $$11 - 10 = 1$$ Er braucht eine \\(1\\). Mit einer \\(2\\) käme er nur auf \\(\\frac{12}{5} = 2{,}4\\)."
       },
       {
         id: 34,
         level: 6,
-        typ: "numerisch",
-        frage: "Ein Würfel wird 60-mal geworfen, die \\(6\\) kommt 12-mal. Wie groß ist die relative Häufigkeit der Sechs als Prozent?",
-        loesung: 20,
-        toleranz: 0.1,
-        tipp: "\\(\\frac{12}{60} \\cdot 100\\).",
-        loesungsweg: "$$\\frac{12}{60} = 0{,}2 = 20\\,\\%$$"
+        typ: "mc",
+        frage: "Behauptung: „Fügt man einer Datenreihe einen Wert hinzu, der größer als der bisherige Mittelwert ist, dann steigt der Mittelwert.“ Stimmt das?",
+        optionen: ["Ja — der neue Wert liegt oberhalb des Ausgleichspunkts und zieht ihn nach oben, egal wie viele Werte es schon gibt", "Nein — der Mittelwert steigt nur, wenn der neue Wert größer als alle bisherigen ist", "Nein — bei vielen Werten bleibt der Mittelwert unverändert", "Ja — aber nur, wenn auch der Median steigt"],
+        korrekt: 0,
+        tipp: "Denke an eine Waage: Der Mittelwert ist der Punkt, an dem die Werte im Gleichgewicht sind.",
+        loesungsweg: "<b>Begründung:</b> Sei \\(\\bar{x}\\) der alte Mittelwert von \\(n\\) Werten (Summe \\(n \\cdot \\bar{x}\\)). Neuer Wert \\(y > \\bar{x}\\). Neuer Mittelwert: $$\\frac{n\\bar{x} + y}{n + 1} > \\frac{n\\bar{x} + \\bar{x}}{n + 1} = \\bar{x}$$ Der Mittelwert steigt <b>immer</b> — bei vielen Werten nur wenig, aber nie um null. Beispiel: \\(4, 6\\) (Mittelwert \\(5\\)), dazu \\(5{,}5\\): neuer Mittelwert \\(\\frac{15{,}5}{3} \\approx 5{,}17 > 5\\), obwohl \\(5{,}5\\) nicht der größte Wert ist. Der Median kann dabei gleich bleiben."
       },
       {
         id: 35,
         level: 6,
-        typ: "mc",
-        frage: "Welche Aussage über Mittelwert, Median und Spannweite ist falsch?",
-        optionen: ["Der Mittelwert kann größer als der Median sein", "Modus und Median können gleich sein", "Die Spannweite ist nie negativ", "Der Median ist immer eine Zahl aus der Liste"],
-        korrekt: 3,
-        tipp: "Bei gerader Anzahl ist der Median Mittelwert zweier Werte.",
-        loesungsweg: "Bei gerader Anzahl ist der <b>Median</b> der Mittelwert zweier Werte — und muss nicht in der Liste stehen. Die Aussage ist falsch."
+        typ: "numerisch",
+        frage: "Acht Messwerte haben den Mittelwert \\(15\\). Dann fällt auf: Ein Wert wurde falsch als \\(40\\) statt \\(4\\) eingetragen. Wie groß ist der richtige Mittelwert?",
+        loesung: 10.5,
+        toleranz: 0.01,
+        tipp: "Wie ändert sich die Summe durch die Korrektur?",
+        loesungsweg: "<b>Schritt 1:</b> Falsche Summe \\(8 \\cdot 15 = 120\\).<br><b>Schritt 2:</b> Korrektur: \\(120 - 40 + 4 = 84\\).<br><b>Schritt 3:</b> Richtiger Mittelwert $$\\frac{84}{8} = 10{,}5$$ Ein einziger Tippfehler hat den Mittelwert um \\(4{,}5\\) verfälscht — der Mittelwert reagiert empfindlich auf Ausreißer."
       },
       {
         id: 36,
         level: 6,
-        typ: "numerisch",
-        frage: "Eine Datenreihe hat Mittelwert \\(50\\) und Umfang \\(n = 20\\). Wie ändert sich der Mittelwert, wenn zu jedem Wert \\(3\\) addiert wird? Gib den neuen Mittelwert an.",
-        loesung: 53,
-        toleranz: 0,
-        tipp: "Beim Addieren einer Konstanten verschiebt sich der Mittelwert um dieselbe Konstante.",
-        loesungsweg: "Addition von 3 zu jedem Wert erhöht den Mittelwert um 3: \\(50 + 3 = 53\\)."
+        typ: "mc",
+        frage: "In einem kleinen Betrieb verdienen fünf Angestellte je \\(2\\,200\\,€\\) im Monat, der Chef \\(14\\,000\\,€\\). Welche Kenngröße beschreibt das „typische“ Gehalt im Betrieb besser, und warum?",
+        optionen: ["Der Median \\(2\\,200\\,€\\) — der Mittelwert (\\(\\approx 4\\,167\\,€\\)) wird vom einen hohen Gehalt nach oben gezogen und passt zu niemandem", "Der Mittelwert, weil er alle sechs Gehälter berücksichtigt", "Die Spannweite \\(11\\,800\\,€\\), weil sie den Unterschied zeigt", "Beide Kenngrößen sind gleich gut, da sie nahe beieinander liegen"],
+        korrekt: 0,
+        tipp: "Berechne beide Kenngrößen und vergleiche sie mit den tatsächlichen Gehältern.",
+        loesungsweg: "<b>Mittelwert:</b> $$\\frac{5 \\cdot 2\\,200 + 14\\,000}{6} = \\frac{25\\,000}{6} \\approx 4\\,167\\,€$$ — kein einziger Mitarbeiter verdient auch nur annähernd so viel.<br><b>Median:</b> geordnet \\(2\\,200\\) (fünfmal), \\(14\\,000\\); die beiden mittleren Werte sind \\(2\\,200\\) und \\(2\\,200\\), Median \\(2\\,200\\,€\\) — das Gehalt, das tatsächlich fast alle bekommen.<br>Bei einem <b>Ausreißer</b> ist der Median die robustere Kenngröße; die Spannweite beschreibt die Streuung, nicht den typischen Wert."
       }];
     </script>
     <script src="../spirale-engine.js"></script>

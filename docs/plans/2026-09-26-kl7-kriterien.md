@@ -118,3 +118,124 @@ Blöcke: **A Terme/Gleichungen (5)** → **B Geometrie (5)** → **C Daten (1)**
 | 34 | 6 | L6: Behauptung begründen — Multiplikation mit negativer Zahl (MC) |
 | 35 | 6 | L6: Grundbereich ℕ — Lösungen zählen nach Vorzeichenwechsel |
 | 36 | 6 | L6: Fallunterscheidung — Lösungsmenge mit Sinnbedingung b > 0 (MC) |
+
+## Block B — Geometrie
+
+| Trainer | Audit-Befund | Geändert |
+|---|---|---|
+| 7-dreiecke-kongruenz | KEIN_AFB3 L5/L6 (L5 = Verhältnisrechnung, L6 = Außenwinkel-Standard, Pythagoras in #35 — nicht Kl. 7) | L5/L6 neu: Winkel aus zwei Bedingungen, SsW-Fehlschluss, Anzahl ganzzahliger Dreiecke, Basiswinkel-Fehler, Außenwinkel mit Differenz; entarteter SSS-Fall, Winkelhalbierenden-Umkehr, Lösbarkeit SsW, Fallunterscheidung gleichschenklig (100°/50°), Thales begründen |
+| 7-konstruktionen | KEIN_AFB3 L5/L6; KOLLAPS L2/L3 (bleibt); L6 #36 mit √3 — nicht Kl. 7 | L5/L6 neu: Radius zu klein für Mittelsenkrechte, zwei gleichseitige Dreiecke, dritter Winkel vor WSW, Umkreis rechtwinklig, Inkreis-Fehler, Schwerpunkt-Umkehr; nicht konstruierbar (SSS), α+β = 180°, Umkreismittelpunkt auf Seite → Thales, Höhenschnittpunkt außen, Kreis berührt Gerade, Winkelhalbierende als Höhe |
+| 7-symmetrie | KEIN_AFB3 L5/L6 (L5/L6 = Merkwissen und Ablesen) | L5/L6 neu: Verkettung Drehung+Spiegelung, Achsenverwechslung, Drehwinkel aus Achsenzahl, Achse aus Punkt und Bild, unvollständige Konstruktion, a aus Abstand; kein Dreieck punktsymmetrisch, Punktspiegelung rückwärts, Zacken aus dritter Deckung, doppelter Achsenabstand, zwei Spiegelungen = Drehung 180°, Achse aus Bildpunkt. Negative Koordinaten nach dem Trennstrich in `{…}` gesetzt (KaTeX setzte das Minus binär) |
+| 7-vierecke | KEIN_AFB3 L5/L6; KOLLAPS L2/L3 (bleibt); L4 #24 und L5 #26/#28 mit Wurzeln — nicht Kl. 7 | L5/L6 neu: Rechteck aus Umfang und Differenz, Höhe statt Nachbarseite, Trapezhöhe, Parallelogrammwinkel 1:3, Quadrat flächengleich, Dreieck in Trapez; gleich lange Diagonalen ≠ Rechteck, Seiten aus Fläche und Umfang, gleichschenkliges Trapez, genau drei rechte Winkel, Quadrat vs. Rechteck bei gleichem Umfang, Raute aus Eigenschaften. L4 #24 (a√2) durch Umkehraufgabe Grundseite aus Fläche ersetzt |
+| 7-winkel-winkelsumme | KEIN_AFB3 L6 (L6 = n-Eck-Formeln im Text) | L5/L6 neu: Nebenwinkel 1:3, Wechselwinkel-Fehler, Winkel aus zwei Bedingungen, Außenwinkel 3:4, Vierecks-Winkelsumme-Fehler, Komplement→Nebenwinkel; zwei stumpfe Winkel, n aus Innenwinkel über Außenwinkel, Hilfsparallele (Zickzack), Stufenwinkel ohne Parallelität, drei Winkel = 290°, größter Winkel aus Termen. L4 #19: Formelansage „Winkelsumme: 180°“ aus dem Text entfernt |
+
+### 7-dreiecke-kongruenz
+
+| id | Level | Kriterium |
+|---|---|---|
+| 25 | 5 | L5: Größe aus zwei Bedingungen — γ aus β = α+20°, γ = 2α |
+| 26 | 5 | L5: Fehler finden — Kongruenz aus zwei Seiten und nicht eingeschlossenem Winkel gegenüber der kürzeren Seite (MC) |
+| 27 | 5 | L5: zwei Bedingungen — Basis aus Umfang und Schenkel = Basis + 4 |
+| 28 | 5 | L5: zweischrittig — Dreiecksungleichung, dann ganzzahlige Werte zählen |
+| 29 | 5 | L5: Fehler in Rechnung — Basiswinkel nicht halbiert (MC) |
+| 30 | 5 | L5: Außenwinkel und Differenz der Innenwinkel, Weg nicht vorgegeben |
+| 31 | 6 | L6: Sonderfall — a + b = c, entartetes Dreieck (MC) |
+| 32 | 6 | L6: Umkehraufgabe — α aus Winkel zwischen den Winkelhalbierenden |
+| 33 | 6 | L6: Lösbarkeit/Lösungsvielfalt — SsW mit Winkel gegenüber der längeren Seite (MC) |
+| 34 | 6 | L6: Fallunterscheidung — 100° kann kein Basiswinkel sein |
+| 35 | 6 | L6: Fallunterscheidung — 50° an Spitze oder Basis, beide Fälle rechnen |
+| 36 | 6 | L6: Behauptung begründen — Thales über zwei gleichschenklige Dreiecke (MC) |
+
+### 7-konstruktionen
+
+| id | Level | Kriterium |
+|---|---|---|
+| 25 | 5 | L5: Fehler in Konstruktion — Radius kleiner als halbe Strecke (MC) |
+| 26 | 5 | L5: Lösungsvielfalt — zwei Lagen für gleichseitiges Dreieck über AB |
+| 27 | 5 | L5: zweischrittig — β berechnen, dann WSW (kein Weg vorgegeben) |
+| 28 | 5 | L5: zweischrittig — Umkreismittelpunkt auf Hypotenuse, Durchmesser |
+| 29 | 5 | L5: Fehler finden — Mittelsenkrechten statt Winkelhalbierende für Inkreis (MC) |
+| 30 | 5 | L5: Umkehr über Teilverhältnis 2:1 ohne Nennung im Text |
+| 31 | 6 | L6: Lösbarkeit — SSS mit a + b < c, Kreise schneiden sich nicht (MC) |
+| 32 | 6 | L6: Sonderfall — α + β = 180°, parallele Schenkel, 0 Dreiecke |
+| 33 | 6 | L6: Umkehrung Thales — Umkreismittelpunkt auf c ⇒ γ = 90° |
+| 34 | 6 | L6: Behauptung prüfen — Höhenschnittpunkt nach Dreiecksart (MC) |
+| 35 | 6 | L6: Sonderfall — Kreis berührt Gerade, genau ein Punkt, mit Fallunterscheidung |
+| 36 | 6 | L6: zweischrittig — Winkel im Teildreieck, Winkelhalbierende wird Höhe |
+
+### 7-symmetrie
+
+| id | Level | Kriterium |
+|---|---|---|
+| 25 | 5 | L5: zweischrittig — Drehung 180°, dann Spiegelung an x-Achse |
+| 26 | 5 | L5: Fehler finden — Achsen verwechselt (MC) |
+| 27 | 5 | L5: zweischrittig — Eckenzahl aus Achsenzahl, dann Drehwinkel |
+| 28 | 5 | L5: Umkehr — Achse als Mittelsenkrechte von AA′ |
+| 29 | 5 | L5: Fehler in Konstruktion — Abstandsbedingung fehlt (MC) |
+| 30 | 5 | L5: Größe aus Bedingung — a aus Abstand zum Spiegelbild |
+| 31 | 6 | L6: Behauptung begründen — kein Dreieck punktsymmetrisch (MC) |
+| 32 | 6 | L6: Umkehraufgabe — Urbild aus Zentrum und Bildpunkt |
+| 33 | 6 | L6: Umkehraufgabe — Zackenzahl aus dritter Deckung bei 216° |
+| 34 | 6 | L6: Behauptung prüfen — Verschiebung um doppelten Achsenabstand (MC) |
+| 35 | 6 | L6: Begründung — zwei Spiegelungen an senkrechten Achsen = Drehung 180° |
+| 36 | 6 | L6: Umkehraufgabe — Achse y = −2 aus Punkt und Bild |
+
+### 7-vierecke
+
+| id | Level | Kriterium |
+|---|---|---|
+| 24 | 4 | L4: Umkehraufgabe — Grundseite aus Fläche und Höhe (ersetzt a√2) |
+| 25 | 5 | L5: zwei Bedingungen — Seiten aus Umfang und Differenz, dann Fläche |
+| 26 | 5 | L5: Fehler finden — Nachbarseite statt Höhe (MC) |
+| 27 | 5 | L5: Umkehr zweischrittig — Trapezhöhe aus Fläche |
+| 28 | 5 | L5: zwei Bedingungen — Nachbarwinkel 1:3 im Parallelogramm |
+| 29 | 5 | L5: zweischrittig — Fläche → Quadratseite → Umfang |
+| 30 | 5 | L5: zusammengesetzt — Höhe des Teildreiecks erkennen |
+| 31 | 6 | L6: Behauptung prüfen — gleich lange Diagonalen, Gegenbeispiel Trapez (MC) |
+| 32 | 6 | L6: Umkehraufgabe — Seiten aus Fläche und Umfang |
+| 33 | 6 | L6: Fallunterscheidung — Winkel im gleichschenkligen Trapez |
+| 34 | 6 | L6: Sonderfall — genau drei rechte Winkel unmöglich (MC) |
+| 35 | 6 | L6: Vergleich — Quadrat vs. Rechteck bei gleichem Umfang |
+| 36 | 6 | L6: Fallunterscheidung — genaueste Bezeichnung aus Eigenschaften (MC) |
+
+### 7-winkel-winkelsumme
+
+| id | Level | Kriterium |
+|---|---|---|
+| 19 | 4 | L4: Formelansage entfernt, Aufgabe sonst unverändert |
+| 25 | 5 | L5: zwei Bedingungen — Nebenwinkel 1:3 |
+| 26 | 5 | L5: Fehler finden — Wechselwinkel als Nebenwinkel berechnet (MC) |
+| 27 | 5 | L5: Größe aus zwei Bedingungen — α aus β = α+30°, γ = α+β |
+| 28 | 5 | L5: Außenwinkel mit Verhältnis 3:4 |
+| 29 | 5 | L5: Fehler in Rechnung — Dreieckssumme im Viereck (MC) |
+| 30 | 5 | L5: zweischrittig — Komplement, dann Nebenwinkel |
+| 31 | 6 | L6: Behauptung begründen — zwei stumpfe Winkel unmöglich (MC) |
+| 32 | 6 | L6: Umkehraufgabe — n aus Innenwinkel über Außenwinkelsumme |
+| 33 | 6 | L6: Hilfslinie selbst finden — Zickzack zwischen Parallelen |
+| 34 | 6 | L6: Sonderfall — Stufenwinkelsatz braucht Parallelität (MC) |
+| 35 | 6 | L6: zweischrittig — vierter Winkel aus 360°, Scheitel/Neben |
+| 36 | 6 | L6: zweischrittig — x bestimmen, dann größten Winkel vergleichen |
+
+## Block C — Daten und Diagramme
+
+| Trainer | Audit-Befund | Geändert |
+|---|---|---|
+| 7-daten-diagramme | KEIN_AFB3 L5 (Boxplot/IQR über Kl. 7, sonst Standard); L6 gemischt | L5/L6 neu: gewichteter Mittelwert, Kreisdiagramm-Fehler, gestrichener Wert, x aus Mittelwert, abgeschnittene Achse, Sektorwinkel → Personen; Durchschnitt 2,0 ohne Note 2, fünf Kenngrößen kombinieren, Zielnote, Mittelwert steigt (Begründung), Tippfehler-Korrektur, Median vs. Mittelwert bei Ausreißer. L3 #14: Formel „Anzahl / Gesamtzahl“ aus dem Text entfernt |
+
+### 7-daten-diagramme
+
+| id | Level | Kriterium |
+|---|---|---|
+| 14 | 3 | L3: Formel im Text entfernt, Aufgabe sonst unverändert |
+| 25 | 5 | L5: zweischrittig — Mittelwert zweier ungleich großer Gruppen |
+| 26 | 5 | L5: Fehler im Diagramm — Prozent als Grad gezeichnet (MC) |
+| 27 | 5 | L5: Umkehr über Summen — gestrichener Wert |
+| 28 | 5 | L5: Größe aus Bedingung — x aus Mittelwert |
+| 29 | 5 | L5: Fehler im Diagramm — abgeschnittene Achse (MC) |
+| 30 | 5 | L5: zweischrittig — Restsektor, Anteil, Anzahl |
+| 31 | 6 | L6: Behauptung prüfen — Gegenbeispiel zum Mittelwert (MC) |
+| 32 | 6 | L6: Umkehraufgabe — Wert aus Minimum, Spannweite, Median, Mittelwert |
+| 33 | 6 | L6: Umkehraufgabe — Note für Zieldurchschnitt |
+| 34 | 6 | L6: Behauptung begründen — neuer Wert über Mittelwert (MC) |
+| 35 | 6 | L6: Fehlerkorrektur — Summe berichtigen, Mittelwert neu |
+| 36 | 6 | L6: Kenngröße beurteilen — Median vs. Mittelwert bei Ausreißer (MC) |
