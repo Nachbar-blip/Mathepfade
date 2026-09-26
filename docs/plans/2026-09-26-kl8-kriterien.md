@@ -148,3 +148,133 @@ Blöcke: **A Algebra & Funktionen (5)** → **B Geometrie** → **C Stochastik**
 | 34 | 6 | L6: Umkehraufgabe — Zinsen aus Endkapital |
 | 35 | 6 | L6: Umkehraufgabe — p für Rückkehr zum Ausgangspreis |
 | 36 | 6 | L6: Angebote vergleichen mit Fallunterscheidung — Zinssatz vs. Gebühr (MC) |
+
+## Block B — Geometrie (inkl. Umzug aus Kl. 9 nach TH 2.2.3)
+
+Kreisteile (Sektor/Bogen) bewusst aus `8-kreise` herausgenommen (eigener Trainer `10-kreissektor`); Halb-/Viertelkreis bleiben. Bei den drei Umzug-Trainern L1–L3 auf Kl.-8-Vorwissen geprüft: √ nur als Taschenrechner-Operation, keine Wurzelgesetze (a√2, a/2·√3, 6√3 entfernt), keine Trigonometrie (Neigungswinkel raus), keine Strahlensätze, keine quadratischen Gleichungen. Kugel nach TH in `9-raumgeometrie-pyramide-kegel` eingebaut (L2 #9, L5 #27, L6 #31/#35).
+
+| Trainer | Audit-Befund | Geändert |
+|---|---|---|
+| 8-kreise | KEIN_AFB3 L5/L6; KOLLAPS L3/L4; DUENNER_WEG L1 | L4–L6 neu (18): Umfang↔Fläche-Umkehr, Tischdecke, Rechnung wählen (MC), Radumdrehungen, Kiesweg-Ring; Fehler d statt r (MC), Halbkreisrahmen rückwärts, Düngerbeutel, Fehler r² im Umfang (MC), r aus Summe zweier Umfänge, Laufbahn; Flächenaddition 3/4/7 (MC), U = A, halbe Fläche im Ring, Halbkreisumfang (MC), Äquatorseil, Pizzapreis pro cm² (MC). L1 #4 (π-Wert MC) → numerisch, damit MC ≤ 50 %; L3 #16 „Aussenradius" → „Außenradius" |
+| 8-raumgeometrie-grund | KEIN_AFB3 L5/L6; DUENNER_WEG L1, L2 | L5/L6 neu (12): Fehler d statt r beim Zylinder (MC), Wasserhöhe im Aquarium, Quader 1:1:3 aus Volumen, Fehler 4 statt 6 Würfelflächen (MC), Regentonne Restvolumen, Volumen aus Mantel; Kanten ×2 → Oberfläche ×4 (MC), Würfeloberfläche aus Quadervolumen, Radienverhältnis bei 1 L / vierfacher Höhe, „2·8 = 4·2"-Begründung (MC), größter Zylinder im Würfel, Firsthöhe aus Dachvolumen. L1 #4 (Einheit MC) → Würfeloberfläche numerisch (MC ≤ 50 %); Wege L1 #5/#6, L2 #7/#8/#9/#10 ausgeführt |
+| 9-pythagoras (Umzug) | KEIN_AFB3 L5/L6; KOLLAPS L3/L4, L4/L5; DUENNER_WEG L2–L5 | L4–L6 neu (18). Kl.-8-Vorwissen: L1 #3 (MC „Was ist c") → numerisch 8/15/17; L3 #15 Tipp „d = a√2" → d² = 4²+4²; L3 #17 Tipp „h = a/2·√3" → Höhe halbiert Grundseite; Höhensatz/Kathetensatz (alt L5 #30, L6 #32), Trigonometrie und Koordinatenabstände entfernt; Wege L1/L2/L3 ausgeführt |
+| 9-raumgeometrie-prisma-zylinder (Umzug) | KEIN_AFB3 L5/L6; KOLLAPS L3/L4, L4/L5; DUENNER_WEG alle | L4–L6 neu (18). Kl.-8-Vorwissen: L3 #15 Sechseckprisma mit 6√3 → Trapezprisma (168); L1 #6 „π ≈ 3,14" bei exakter Lösung entfernt; gleichseitiges Dreieck (√3, alt L5 #25) und Raumdiagonale-Formel (alt L5 #26) raus; Wege L1 #4/#5, L2 #9/#12, L3 #13 ausgeführt |
+| 9-raumgeometrie-pyramide-kegel (Umzug) | KEIN_AFB3 L5; KOLLAPS L4/L5; DUENNER_WEG L1, L3, L5, L6 | L4–L6 neu (18). Kl.-8-Vorwissen: L2 #9 (Höhe über 4√2) → Kugelvolumen r = 4; Neigungswinkel mit tan (alt L6 #33), Kegelstumpf-Formel (alt L5 #27), Sechseckpyramide 24√3 (alt L5 #26), Sektorwinkel des Mantels (alt L6 #34) raus; L3 #14 Cheops-Frage mit Einheiten präzisiert; Wege L1 #4, L2 #11/#12, L3 #17 ausgeführt |
+
+### 8-kreise
+
+| id | Level | Kriterium |
+|---|---|---|
+| 4 | 1 | L1: Radius aus Durchmesser 9 cm (ersetzt π-Wert-MC) |
+| 19 | 4 | L4: Umkehraufgabe — Umfang aus Fläche |
+| 20 | 4 | L4: Modell aus Text — Tischdecke, Überhang vergrößert den Radius |
+| 21 | 4 | L4: Rechnung wählen — Beeteinfassung, U aus d (MC, Auswahl ist die Leistung) |
+| 22 | 4 | L4: Umkehraufgabe — Fläche aus Umfang |
+| 23 | 4 | L4: Modell aus Text — vollständige Radumdrehungen auf 100 m |
+| 24 | 4 | L4: Modell aus Text — Kiesweg als Kreisring erkennen |
+| 25 | 5 | L5: Fehler finden — Durchmesser in die Flächenformel eingesetzt (MC) |
+| 26 | 5 | L5: Größe aus Umfang — Halbkreisrahmen (Bogen + Durchmesser) rückwärts |
+| 27 | 5 | L5: zweischrittig — Radius aus Umfang, Fläche, Beutel aufrunden |
+| 28 | 5 | L5: Fehler finden — Radius im Umfang quadriert (MC) |
+| 29 | 5 | L5: Größe aus zwei Bedingungen — r aus Summe der Umfänge und Verhältnis 1:3 |
+| 30 | 5 | L5: Sachaufgabe zweischrittig — Laufbahn mit zwei Halbkreisen |
+| 31 | 6 | L6: Behauptung prüfen — Flächen addieren sich über r², nicht über r (MC) |
+| 32 | 6 | L6: Sonderfall — U = A zahlenmäßig, r = 2 |
+| 33 | 6 | L6: Umkehraufgabe — Innenradius für halbe Fläche (√50) |
+| 34 | 6 | L6: Behauptung prüfen — Halbkreisumfang ≠ halber Umfang (MC) |
+| 35 | 6 | L6: Sonderfall — Äquatorseil, Ergebnis unabhängig vom Radius |
+| 36 | 6 | L6: Fallunterscheidung — Pizzapreis pro cm² (MC) |
+
+### 8-raumgeometrie-grund
+
+| id | Level | Kriterium |
+|---|---|---|
+| 4 | 1 | L1: Würfeloberfläche Kante 2 (ersetzt Einheiten-MC) |
+| 25 | 5 | L5: Fehler finden — Durchmesser statt Radius im Zylindervolumen (MC) |
+| 26 | 5 | L5: zweischrittig — Wasserhöhe aus Litern und Grundfläche |
+| 27 | 5 | L5: Größe aus zwei Bedingungen — Quader a·a·3a = 375 |
+| 28 | 5 | L5: Fehler finden — vier statt sechs Würfelflächen (MC) |
+| 29 | 5 | L5: Sachaufgabe zweischrittig — Regentonne, Restvolumen |
+| 30 | 5 | L5: zweischrittig — Radius aus Mantel, dann Volumen |
+| 31 | 6 | L6: Behauptung prüfen — Kanten ×2 → Oberfläche ×4, Volumen ×8 (MC) |
+| 32 | 6 | L6: Umkehraufgabe — Würfelkante aus Quadervolumen, dann Oberfläche |
+| 33 | 6 | L6: Fallunterscheidung — Radienverhältnis bei gleichem Volumen, vierfacher Höhe |
+| 34 | 6 | L6: Behauptung prüfen — gleiche Volumina, falsche Begründung r·h statt r²·h (MC) |
+| 35 | 6 | L6: Sonderfall — Abfall beim größten Zylinder im Würfel, unabhängig von a |
+| 36 | 6 | L6: Umkehraufgabe — Firsthöhe aus Dachvolumen (zwei Schritte) |
+
+### 9-pythagoras (Umzug)
+
+| id | Level | Kriterium |
+|---|---|---|
+| 3 | 1 | L1: c aus 8 und 15 (ersetzt MC „Was ist c") |
+| 15 | 3 | L3: Quadratdiagonale ohne a√2 (Tipp/Weg umgestellt) |
+| 17 | 3 | L3: Höhe im gleichseitigen Dreieck ohne √3-Formel |
+| 19 | 4 | L4: Modell aus Text — Drachenhöhe (Kathete) |
+| 20 | 4 | L4: Umkehraufgabe — Rechteckfläche aus Diagonale und Breite |
+| 21 | 4 | L4: Verfahren wählen — Kathete aus Hypotenuse und Kathete (MC) |
+| 22 | 4 | L4: Modell aus Text — Fußballplatz-Diagonale |
+| 23 | 4 | L4: Umkehraufgabe — Quadratseite aus Diagonale |
+| 24 | 4 | L4: Modell aus Text — Rampenlänge |
+| 25 | 5 | L5: Fehler finden — Kathete länger als Hypotenuse (MC) |
+| 26 | 5 | L5: Sachaufgabe zweischrittig — geknickter Baum, Höhe = Stumpf + Hypotenuse |
+| 27 | 5 | L5: Größe aus zwei Bedingungen — Höhe aus Umfang und Basis |
+| 28 | 5 | L5: Fehler finden — „fast gleich" beim Kehrsatz (MC) |
+| 29 | 5 | L5: zweischrittig — Kabel über Straße, Höhendifferenz zuerst |
+| 30 | 5 | L5: Kathete über Höhe — Umfang eines gleichschenkligen Dreiecks |
+| 31 | 6 | L6: Behauptung prüfen — Katheten ×2 → Hypotenuse ×2 (MC) |
+| 32 | 6 | L6: Umkehraufgabe — Fläche aus Umfang und Diagonale (binomische Formel) |
+| 33 | 6 | L6: Fallunterscheidung — dritte Seite als Hypotenuse oder Kathete |
+| 34 | 6 | L6: Behauptung prüfen — a² + b² < c² ⇒ stumpfwinklig (MC) |
+| 35 | 6 | L6: Umkehraufgabe — Quaderhöhe aus Raumdiagonale (zweimal Pythagoras) |
+| 36 | 6 | L6: Sonderfall — Seite des gleichseitigen Dreiecks aus der Höhe |
+
+### 9-raumgeometrie-prisma-zylinder (Umzug)
+
+| id | Level | Kriterium |
+|---|---|---|
+| 6 | 1 | L1: Zylindervolumen, „π ≈ 3,14" entfernt (Lösung exakt) |
+| 15 | 3 | L3: Trapezprisma (ersetzt Sechseckprisma mit 6√3) |
+| 19 | 4 | L4: Rechnung wählen — Zeltdach als Dreiecksprisma (MC) |
+| 20 | 4 | L4: Umkehraufgabe — Durchmesser aus Volumen und Höhe |
+| 21 | 4 | L4: Modell aus Text — Rohrinhalt in Litern |
+| 22 | 4 | L4: Umkehraufgabe — Würfelvolumen aus Oberfläche |
+| 23 | 4 | L4: Modell aus Text — Blech für Dreiecksprisma, Hypotenuse via Pythagoras |
+| 24 | 4 | L4: Umkehraufgabe — Quaderhöhe aus Oberfläche |
+| 25 | 5 | L5: Fehler finden — Mantel als Oberfläche (MC) |
+| 26 | 5 | L5: zweischrittig — Steinvolumen aus Wasseranstieg |
+| 27 | 5 | L5: Größe aus zwei Bedingungen — h = d und Mantel → Volumen |
+| 28 | 5 | L5: Fehler finden — Quaderoberfläche als 2·V (MC) |
+| 29 | 5 | L5: Sachaufgabe zweischrittig — Kerzen aus Wachsblock, abrunden |
+| 30 | 5 | L5: zweischrittig — Quaderhöhe bei gleichem Volumen wie Würfel |
+| 31 | 6 | L6: Behauptung prüfen — r/2 und 2h halbiert das Volumen (MC) |
+| 32 | 6 | L6: Sonderfall — Mantel = Boden + Deckel ⇔ h = r |
+| 33 | 6 | L6: Fallunterscheidung — Blatt um kurze oder lange Seite rollen |
+| 34 | 6 | L6: Behauptung prüfen — O = V nur bei a = 6 (MC) |
+| 35 | 6 | L6: Umkehraufgabe — Hypotenuse des Querschnitts aus Volumen |
+| 36 | 6 | L6: Sonderfall — Oberfläche beim Zersägen ×4 (+300 %) |
+
+### 9-raumgeometrie-pyramide-kegel (Umzug)
+
+| id | Level | Kriterium |
+|---|---|---|
+| 9 | 2 | L2: Kugelvolumen r = 4 (TH nennt Kugel explizit; ersetzt Höhe über 4√2) |
+| 14 | 3 | L3: Cheops-Pyramide, Einheiten präzisiert |
+| 19 | 4 | L4: Umkehraufgabe — Grundkante aus Volumen und Höhe |
+| 20 | 4 | L4: Rechnung wählen — Sektglas, d statt r (MC) |
+| 21 | 4 | L4: Modell aus Text — Zeltstoff = vier Dreiecke (Seitenhöhe gegeben) |
+| 22 | 4 | L4: Umkehraufgabe — Kegelhöhe aus Volumen |
+| 23 | 4 | L4: Verfahren wählen — Radius aus Mantellinie und Höhe, dann Volumen |
+| 24 | 4 | L4: Modell aus Text — Partyhut nur Mantel |
+| 25 | 5 | L5: Fehler finden — Faktor 1/3 vergessen (MC) |
+| 26 | 5 | L5: zweischrittig — Kegeloberfläche, s zuerst |
+| 27 | 5 | L5: Kugel — Volumen aus Umfang des Großkreises |
+| 28 | 5 | L5: Fehler finden — h statt s im Kegelmantel (MC) |
+| 29 | 5 | L5: Sachaufgabe zweischrittig — Sandhaufen, Fahrten aufrunden |
+| 30 | 5 | L5: Größe aus zwei Bedingungen — Volumen aus Seitenkante und Höhe (a² = d²/2) |
+| 31 | 6 | L6: Behauptung prüfen — Kugelradius ×2 → Oberfläche ×4 (MC) |
+| 32 | 6 | L6: Umkehraufgabe — Kegelhöhe bei Volumen der Halbkugel |
+| 33 | 6 | L6: Sonderfall — Abfall bei Pyramide im Würfel, unabhängig von a |
+| 34 | 6 | L6: Behauptung prüfen — größerer Radius bei gleicher Mantellinie, Begründung (MC) |
+| 35 | 6 | L6: Kugel — Volumen aus Oberfläche |
+| 36 | 6 | L6: Sonderfall — Pyramide mit gleichseitigen Seitenflächen (halbes Oktaeder) |
