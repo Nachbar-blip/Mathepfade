@@ -278,3 +278,52 @@ Kreisteile (Sektor/Bogen) bewusst aus `8-kreise` herausgenommen (eigener Trainer
 | 34 | 6 | L6: Behauptung prüfen — größerer Radius bei gleicher Mantellinie, Begründung (MC) |
 | 35 | 6 | L6: Kugel — Volumen aus Oberfläche |
 | 36 | 6 | L6: Sonderfall — Pyramide mit gleichseitigen Seitenflächen (halbes Oktaeder) |
+
+## Block C — Stochastik (TH 2.2.4)
+
+Kein Binomialkoeffizient als Formel (alt `8-stoch-laplace` L6 #31/#32/#35 mit 6 aus 49 und (n über k) entfernt), keine bedingte Wahrscheinlichkeit; Mengenschreibweise (A ∪ B, A ∩ B) auf L6 eingeführt.
+
+| Trainer | Audit-Befund | Geändert |
+|---|---|---|
+| 8-stoch-laplace | KEIN_AFB3 L6; KOLLAPS L2/L3 (bleibt), L3/L4; DUENNER_WEG L2, L3 | L4–L6 neu (18): rote Kugeln aus P, Augensumme 9, MISSISSIPPI (MC), Felder aus Gegenereignis, Münze+Würfel, Vielfache von 4; „drei Ergebnisse" bei zwei Münzen (MC), Bonbon gegessen, Urne aus Differenz und P, Summe 5 vs. 10 (MC), Summe ≥ 6 über Gegenereignis, Junge ohne Brille; Summen nicht laplace (MC), Felderzahl aus 3 Gewinnfeldern, P(A ∪ B) mit Mengen, Lotto 1–6 (MC), blaue Kugeln für P = 1/4, P(A ∩ B) = 0 (Pasch und Summe 7). Wege L1 #1/#5, L2 #10/#12, L3 #16/#17 ausgeführt; typografische Anführungszeichen |
+| 8-stoch-zaehlprinzip | KEIN_AFB3 L5; DUENNER_WEG alle | L5/L6 neu (12): ohne Zurücklegen wie mit gerechnet (MC), genau einmal grün, Ringziffern aus 512, genau 3 Kopf bei 4 Würfen (MC), höchstens ein Treffer, zweite Kugel rot; 3·½ = 1,5 (MC), blaue Kugeln aus P(rot,rot) = 1/16, gleiche Farbe ohne Zurücklegen, „zwei von vier Pfaden" (MC), p aus (1−p)² = 0,49, Anna neben Ben. Wege L1 #5/#6 ausgeführt; „schiessen" → „schießen", „80%" → „80 %" |
+
+### 8-stoch-laplace
+
+| id | Level | Kriterium |
+|---|---|---|
+| 19 | 4 | L4: Umkehraufgabe — Anzahl aus P und Gesamtzahl |
+| 20 | 4 | L4: Modell aus Text — Augensumme 9, Paare zählen |
+| 21 | 4 | L4: Verfahren erkennen — MISSISSIPPI, Mehrfachbuchstaben zählen (MC) |
+| 22 | 4 | L4: Umkehraufgabe über Gegenereignis — blaue Felder |
+| 23 | 4 | L4: Modell aus Text — Münze und Würfel, 12 Paare |
+| 24 | 4 | L4: Modell aus Text — Vielfache von 4 bis 30 |
+| 25 | 5 | L5: Fehler finden — ungleich wahrscheinliche „Ergebnisse" (MC) |
+| 26 | 5 | L5: zweischrittig — Grundgesamtheit nach Entnahme |
+| 27 | 5 | L5: Größe aus zwei Bedingungen — Kugelzahl aus Differenz und P (lineare Gleichung) |
+| 28 | 5 | L5: Fehler finden — Zerlegungen statt Paare, Pasch zählt einmal (MC) |
+| 29 | 5 | L5: zweischrittig — Summe ≥ 6 über Gegenereignis |
+| 30 | 5 | L5: Sachaufgabe — Teilgruppe abzählen (Junge ohne Brille) |
+| 31 | 6 | L6: Behauptung prüfen — Augensummen sind nicht laplace (MC) |
+| 32 | 6 | L6: Umkehraufgabe — Felderzahl aus 3 Gewinnfeldern |
+| 33 | 6 | L6: Mengenschreibweise — P(A ∪ B), Doppelzählung vermeiden |
+| 34 | 6 | L6: Behauptung prüfen — Lotto 1–6 gleich wahrscheinlich (MC) |
+| 35 | 6 | L6: Umkehraufgabe — blaue Kugeln für P(rot) = 1/4 |
+| 36 | 6 | L6: Sonderfall — unvereinbare Ereignisse, P(A ∩ B) = 0 |
+
+### 8-stoch-zaehlprinzip
+
+| id | Level | Kriterium |
+|---|---|---|
+| 25 | 5 | L5: Fehler finden — ohne Zurücklegen wie mit gerechnet (MC) |
+| 26 | 5 | L5: zweischrittig — zwei Pfade für „genau einmal grün" |
+| 27 | 5 | L5: Umkehraufgabe — Ringziffern aus n³ = 512 |
+| 28 | 5 | L5: Fehler finden — vierter Wurf im Pfad vergessen, Pfade nicht gezählt (MC) |
+| 29 | 5 | L5: Sachaufgabe — „höchstens ein Treffer" über Gegenereignis |
+| 30 | 5 | L5: zweischrittig — zweite Kugel rot über zwei Pfade |
+| 31 | 6 | L6: Behauptung prüfen — 3·½ = 1,5, Wahrscheinlichkeit > 1 (MC) |
+| 32 | 6 | L6: Umkehraufgabe — blaue Kugeln aus p² = 1/16 |
+| 33 | 6 | L6: Fallunterscheidung — beide rot oder beide blau |
+| 34 | 6 | L6: Behauptung prüfen — Pfade ohne Zurücklegen nicht gleich wahrscheinlich (MC) |
+| 35 | 6 | L6: Umkehraufgabe — p aus (1−p)² = 0,49 |
+| 36 | 6 | L6: Sonderfall — Nachbarpaar in 4! Sitzordnungen |
