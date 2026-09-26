@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotationskörper (LK) - Mathepfade</title>
+    <title>Rotationskörper (eA) - Mathepfade</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-lk-integral-rotationskoerper';
-    const THEMA_CONFIG = { name: 'Rotationskörper (LK)', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Rotationskörper (eA)', bereich: 'analysis' };
     const AUFGABEN = [
       // ========== LEVEL 1 — Formel & Grundverständnis ==========
       { id:1, level:1, typ:"mc", frage:"Welche Formel beschreibt das Volumen eines Rotationskörpers um die x-Achse?", optionen:["\\(V=\\pi\\int_a^b f(x)\\,dx\\)","\\(V=\\pi\\int_a^b (f(x))^2\\,dx\\)","\\(V=\\int_a^b f(x)\\,dx\\)","\\(V=2\\pi\\int_a^b f(x)\\,dx\\)"], korrekt:1, tipp:"Kreisscheibenmethode.", loesungsweg:"Man zerlegt den Körper in dünne Kreisscheiben senkrecht zur Drehachse. Eine Scheibe an der Stelle \\(x\\) hat den Radius \\(f(x)\\), also die Fläche \\(\\pi f(x)^2\\) und das Volumen \\(\\pi f(x)^2\\,dx\\). Aufsummiert: $$V = \\pi\\int_a^b \\left[f(x)\\right]^2 dx$$ Das Quadrat ist entscheidend — es stammt aus der Kreisflächenformel und darf nicht fehlen." },

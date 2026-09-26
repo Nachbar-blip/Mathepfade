@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LK: Newton-Verfahren - Mathepfade</title>
+    <title>eA: Newton-Verfahren - Mathepfade</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-lk-newton';
-    const THEMA_CONFIG = { name: 'LK: Newton-Verfahren', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'eA: Newton-Verfahren', bereich: 'analysis' };
     const AUFGABEN = [
       // L1
       { id:1, level:1, typ:"mc", frage:"Newton-Iteration:", optionen:["\\(x_{n+1}=x_n-f(x_n)\\)","\\(x_{n+1}=x_n-\\frac{f(x_n)}{f'(x_n)}\\)","\\(x_{n+1}=x_n+f(x_n)\\)","\\(x_{n+1}=\\frac{f'(x_n)}{f(x_n)}\\)"], korrekt:1, tipp:"Standardformel.", loesungsweg:"Man ersetzt die Funktion an der Stelle \\(x_n\\) durch ihre Tangente und nimmt deren Nullstelle als nächste Näherung. Die Tangente \\(y = f(x_n) + f'(x_n)(x - x_n)\\) wird null bei $$x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$$ Die Ableitung im Nenner ist also kein Zufall, sondern die Steigung der Tangente." },
