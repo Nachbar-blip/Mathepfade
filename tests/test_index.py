@@ -2,19 +2,13 @@
 import re
 from pathlib import Path
 
+from lehrplan_check import klassen_aus_index
+
 ROOT = Path(__file__).resolve().parent.parent
 INDEX = (ROOT / "index.html").read_text(encoding="utf-8")
 
 
-def spalten():
-    """{dateiname: klasse} aus den .col-N-Bloecken von index.html."""
-    out = {}
-    for m in re.finditer(r'<div class="col col-(\d+)">(.*?)(?=<div class="col col-|</div>\s*<!-- /grid|\Z)',
-                         INDEX, re.S):
-        klasse = int(m.group(1))
-        for h in re.findall(r'href="trainer/([^"]+\.html)"', m.group(2)):
-            out[h] = klasse
-    return out
+spalten = klassen_aus_index   # {dateiname: klasse}, Regex lebt im Lehrplan-Gate
 
 
 ERWARTET = {
