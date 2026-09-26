@@ -199,189 +199,27 @@
         tipp: "\\(7^2\\).",
         loesungsweg: "$$\\frac{7^4}{7^2} = 7^2 = 49$$"
       },
-      // ========== LEVEL 4 -- mittel: Potenzregel und gleiche Exponenten ==========
-      {
-        id: 19,
-        level: 4,
-        typ: "mc",
-        frage: "Vereinfache: \\((a^3)^4\\).",
-        optionen: ["\\(a^7\\)", "\\(a^{12}\\)", "\\(a^{81}\\)", "\\(4a^3\\)"],
-        korrekt: 1,
-        tipp: "Potenz einer Potenz: Exponenten multiplizieren.",
-        loesungsweg: "$$(a^3)^4 = a^{3 \\cdot 4} = a^{12}$$"
-      },
-      {
-        id: 20,
-        level: 4,
-        typ: "numerisch",
-        frage: "Berechne \\((2^2)^3\\).",
-        loesung: 64,
-        toleranz: 0,
-        tipp: "\\(2^6\\).",
-        loesungsweg: "$$(2^2)^3 = 2^{2 \\cdot 3} = 2^6 = 64$$"
-      },
-      {
-        id: 21,
-        level: 4,
-        typ: "mc",
-        frage: "Vereinfache: \\(a^3 \\cdot b^3\\).",
-        optionen: ["\\((ab)^3\\)", "\\((ab)^6\\)", "\\(a^3 + b^3\\)", "\\((a+b)^3\\)"],
-        korrekt: 0,
-        tipp: "Gleiche Exponenten: Basen multiplizieren.",
-        loesungsweg: "$$a^3 \\cdot b^3 = (a \\cdot b)^3 = (ab)^3$$"
-      },
-      {
-        id: 22,
-        level: 4,
-        typ: "numerisch",
-        frage: "Berechne \\(2^3 \\cdot 5^3\\) mit der Potenzregel.",
-        loesung: 1000,
-        toleranz: 0,
-        tipp: "\\((2 \\cdot 5)^3 = 10^3\\).",
-        loesungsweg: "$$2^3 \\cdot 5^3 = (2 \\cdot 5)^3 = 10^3 = 1000$$"
-      },
-      {
-        id: 23,
-        level: 4,
-        typ: "mc",
-        frage: "Vereinfache: \\(\\frac{a^5}{b^5}\\).",
-        optionen: ["\\(\\left(\\frac{a}{b}\\right)^5\\)", "\\(\\frac{a}{b}\\)", "\\(\\left(\\frac{a}{b}\\right)^{25}\\)", "\\(a^5 - b^5\\)"],
-        korrekt: 0,
-        tipp: "Gleiche Exponenten bei Bruch: Basis ist der Bruch.",
-        loesungsweg: "Stehen im Zähler und Nenner dieselben Exponenten, lässt sich der Bruch als Basis zusammenfassen: $$\\frac{a^5}{b^5} = \\left(\\frac ab\\right)^5$$ Denn beim Potenzieren eines Bruchs wird ohnehin jeder Teil einzeln potenziert. Die Exponenten werden dabei <b>nicht</b> multipliziert."
-      },
-      {
-        id: 24,
-        level: 4,
-        typ: "numerisch",
-        frage: "Berechne \\((3^2)^2\\).",
-        loesung: 81,
-        toleranz: 0,
-        tipp: "\\(3^4\\).",
-        loesungsweg: "$$(3^2)^2 = 3^4 = 81$$"
-      },
-      // ========== LEVEL 5 -- anspruchsvoll: Kombinierte Regeln ==========
-      {
-        id: 25,
-        level: 5,
-        typ: "mc",
-        frage: "Vereinfache: \\(\\frac{(a^2)^3 \\cdot a^4}{a^5}\\).",
-        optionen: ["\\(a^2\\)", "\\(a^5\\)", "\\(a^{10}\\)", "\\(a^{15}\\)"],
-        korrekt: 1,
-        tipp: "\\((a^2)^3 = a^6\\). Dann \\(\\frac{a^6 \\cdot a^4}{a^5}\\).",
-        loesungsweg: "$$\\frac{a^6 \\cdot a^4}{a^5} = \\frac{a^{10}}{a^5} = a^5$$"
-      },
-      {
-        id: 26,
-        level: 5,
-        typ: "numerisch",
-        frage: "Berechne \\(\\frac{2^7 \\cdot 2^3}{2^5}\\).",
-        loesung: 32,
-        toleranz: 0,
-        tipp: "\\(2^{7+3-5} = 2^5\\).",
-        loesungsweg: "$$\\frac{2^{10}}{2^5} = 2^5 = 32$$"
-      },
-      {
-        id: 27,
-        level: 5,
-        typ: "mc",
-        frage: "Vereinfache: \\((2a^3)^2\\).",
-        optionen: ["\\(2a^6\\)", "\\(4a^5\\)", "\\(4a^6\\)", "\\(2a^5\\)"],
-        korrekt: 2,
-        tipp: "Jeder Faktor hoch 2: \\(2^2 \\cdot (a^3)^2\\).",
-        loesungsweg: "$$(2a^3)^2 = 2^2 \\cdot a^{6} = 4a^6$$"
-      },
-      {
-        id: 28,
-        level: 5,
-        typ: "numerisch",
-        frage: "Berechne \\((2 \\cdot 3)^3\\).",
-        loesung: 216,
-        toleranz: 0,
-        tipp: "\\(6^3\\).",
-        loesungsweg: "$$(2 \\cdot 3)^3 = 6^3 = 216$$"
-      },
-      {
-        id: 29,
-        level: 5,
-        typ: "mc",
-        frage: "Welcher Ausdruck ist gleich \\(a^6\\)?",
-        optionen: ["\\(a^2 \\cdot a^3\\)", "\\((a^2)^3\\)", "\\(a^3 + a^3\\)", "\\(\\frac{a^{10}}{a^5}\\)"],
-        korrekt: 1,
-        tipp: "\\((a^2)^3 = a^{2\\cdot3}\\).",
-        loesungsweg: "$$\\left(a^2\\right)^3 = a^{2 \\cdot 3} = a^6$$ Die anderen Angebote ergeben etwas anderes: \\(a^2 \\cdot a^3 = a^5\\) (Exponenten addiert), \\(a^3+a^3 = 2a^3\\) (gleichartige Terme, keine Potenzregel) und \\(\\tfrac{a^{10}}{a^5} = a^5\\) (Exponenten subtrahiert). Jede Rechenart hat ihre eigene Regel."
-      },
-      {
-        id: 30,
-        level: 5,
-        typ: "numerisch",
-        frage: "Berechne \\(\\frac{5^4 \\cdot 5^2}{5^3}\\).",
-        loesung: 125,
-        toleranz: 0,
-        tipp: "\\(5^{4+2-3} = 5^3\\).",
-        loesungsweg: "$$\\frac{5^6}{5^3} = 5^3 = 125$$"
-      },
-      // ========== LEVEL 6 -- wagnerisch: Transfer und Zehnerpotenzen ==========
-      {
-        id: 31,
-        level: 6,
-        typ: "mc",
-        frage: "In wissenschaftlicher Schreibweise: \\(3 \\cdot 10^4 \\cdot 2 \\cdot 10^3\\) = ?",
-        optionen: ["\\(5 \\cdot 10^7\\)", "\\(6 \\cdot 10^7\\)", "\\(6 \\cdot 10^{12}\\)", "\\(5 \\cdot 10^{12}\\)"],
-        korrekt: 1,
-        tipp: "Zahlen multiplizieren, Zehnerpotenzen addieren.",
-        loesungsweg: "Vorfaktoren und Zehnerpotenzen getrennt behandeln: $$3 \\cdot 2 \\cdot 10^{4+3} = 6 \\cdot 10^7$$ Die Exponenten werden addiert, nicht multipliziert — \\(10^{12}\\) wäre der typische Fehler."
-      },
-      {
-        id: 32,
-        level: 6,
-        typ: "numerisch",
-        frage: "Berechne \\(\\frac{(3a^2)^3}{9a^4}\\) für \\(a = 2\\). Vereinfache zuerst zu \\(3a^2\\).",
-        loesung: 12,
-        toleranz: 0,
-        tipp: "\\((3a^2)^3 = 27a^6\\). Durch \\(9a^4\\) ergibt \\(3a^2\\). Dann \\(a = 2\\).",
-        loesungsweg: "$$\\frac{27a^6}{9a^4} = 3a^2$$ Für \\(a = 2\\): \\(3 \\cdot 4 = 12\\)."
-      },
-      {
-        id: 33,
-        level: 6,
-        typ: "mc",
-        frage: "Welche Gleichung ist falsch?",
-        optionen: ["\\(a^m \\cdot a^n = a^{m+n}\\)", "\\((a^m)^n = a^{m \\cdot n}\\)", "\\(a^m + a^n = a^{m+n}\\)", "\\(a^0 = 1\\) für \\(a \\ne 0\\)"],
-        korrekt: 2,
-        tipp: "Addition von Potenzen hat KEINE einfache Regel.",
-        loesungsweg: "\\(a^m + a^n \\ne a^{m+n}\\). Beispiel: \\(2^2 + 2^3 = 4 + 8 = 12 \\ne 32\\)."
-      },
-      {
-        id: 34,
-        level: 6,
-        typ: "numerisch",
-        frage: "Berechne \\(\\frac{8^3}{2^6}\\). Hinweis: \\(8 = 2^3\\).",
-        loesung: 8,
-        toleranz: 0,
-        tipp: "\\(8^3 = (2^3)^3 = 2^9\\). Dann \\(\\frac{2^9}{2^6}\\).",
-        loesungsweg: "$$\\frac{(2^3)^3}{2^6} = \\frac{2^9}{2^6} = 2^3 = 8$$"
-      },
-      {
-        id: 35,
-        level: 6,
-        typ: "mc",
-        frage: "Vereinfache: \\(\\frac{a^3 b^5}{a b^2}\\).",
-        optionen: ["\\(a^2 b^3\\)", "\\(a^3 b^3\\)", "\\(a^2 b^7\\)", "\\(a^4 b^7\\)"],
-        korrekt: 0,
-        tipp: "Getrennt: \\(\\frac{a^3}{a} \\cdot \\frac{b^5}{b^2}\\).",
-        loesungsweg: "Gleiche Basen einzeln kürzen, die Exponenten also subtrahieren: $$\\frac{a^3}{a^1} \\cdot \\frac{b^5}{b^2} = a^{3-1} \\cdot b^{5-2} = a^2 b^3$$ Das einzelne \\(a\\) im Nenner zählt als \\(a^1\\)."
-      },
-      {
-        id: 36,
-        level: 6,
-        typ: "numerisch",
-        frage: "Ein Bakterium teilt sich jede Stunde. Nach 10 Stunden sind es \\(2^{10}\\) Bakterien. Wie viele sind das?",
-        loesung: 1024,
-        toleranz: 0,
-        tipp: "\\(2^{10} = 2^5 \\cdot 2^5 = 32 \\cdot 32\\).",
-        loesungsweg: "Zehn Verdopplungen bedeuten den Faktor \\(2\\) zehnmal: $$2^{10} = 2^5 \\cdot 2^5 = 32 \\cdot 32 = 1024$$ Aus einem einzigen Bakterium werden so in zehn Stunden über tausend — exponentielles Wachstum wird rasch unanschaulich groß. Nach zwanzig Stunden wären es bereits mehr als eine Million."
-      }];
+      // ========== LEVEL 4 -- Potenzgesetz selbst wählen, Umkehraufgaben ==========
+      { id: 19, level: 4, typ: "numerisch", frage: "Vereinfache \\(\\frac{(x^2)^3 \\cdot x^4}{x^5}\\) zu einer Potenz \\(x^k\\). Gib \\(k\\) an.", loesung: 5, toleranz: 0, tipp: "Zuerst die Klammer auflösen, dann Zähler und Nenner getrennt betrachten.", loesungsweg: "Drei Potenzgesetze greifen nacheinander: Potenz einer Potenz, Produkt und Quotient gleicher Basis. $$\\frac{(x^2)^3 \\cdot x^4}{x^5} = \\frac{x^6 \\cdot x^4}{x^5} = \\frac{x^{10}}{x^5} = x^{10-5} = x^5$$ Also \\(k = 5\\)." },
+      { id: 20, level: 4, typ: "numerisch", frage: "Für welche natürliche Zahl \\(n\\) gilt \\(3^n \\cdot 3^4 = 3^{10}\\)?", loesung: 6, toleranz: 0, tipp: "Was passiert mit den Exponenten beim Multiplizieren gleicher Basen?", loesungsweg: "Links stehen zwei Potenzen mit gleicher Basis, ihre Exponenten addieren sich: $$3^n \\cdot 3^4 = 3^{n+4}$$ Zwei Potenzen mit gleicher Basis sind genau dann gleich, wenn die Exponenten übereinstimmen: $$n + 4 = 10 \\;\\Rightarrow\\; n = 6$$ Probe: \\(3^6 \\cdot 3^4 = 729 \\cdot 81 = 59\\,049 = 3^{10}\\) ✓" },
+      { id: 21, level: 4, typ: "numerisch", frage: "Schreibe \\((2a^3)^2\\) in der Form \\(k \\cdot a^m\\). Gib den Koeffizienten \\(k\\) an.", loesung: 4, toleranz: 0, tipp: "Der Exponent außen wirkt auf jeden Faktor in der Klammer.", loesungsweg: "Ein Produkt wird potenziert, indem jeder Faktor potenziert wird: $$(2a^3)^2 = 2^2 \\cdot (a^3)^2 = 4 \\cdot a^6$$ Also \\(k = 4\\) und \\(m = 6\\). Der häufigste Fehler ist, die \\(2\\) unpotenziert zu lassen und \\(2a^6\\) zu schreiben." },
+      { id: 22, level: 4, typ: "numerisch", frage: "Berechne \\(\\frac{4^5}{2^7}\\) ohne Taschenrechner.", loesung: 8, toleranz: 0, tipp: "Beide Potenzen lassen sich auf dieselbe Basis bringen.", loesungsweg: "Die Basen sind verschieden, aber \\(4 = 2^2\\). Damit wird der Zähler zu einer Zweierpotenz: $$4^5 = (2^2)^5 = 2^{10}$$ Jetzt greift das Quotientengesetz: $$\\frac{2^{10}}{2^7} = 2^{10-7} = 2^3 = 8$$ Ohne diese Umformung müsste man \\(1024 : 128\\) rechnen — dasselbe Ergebnis, aber mit unhandlichen Zahlen." },
+      { id: 23, level: 4, typ: "numerisch", frage: "Ein Quadrat hat die Seitenlänge \\(2^5\\,\\text{cm}\\). Sein Flächeninhalt ist eine Zweierpotenz \\(2^k\\,\\text{cm}^2\\). Gib \\(k\\) an.", loesung: 10, toleranz: 0, tipp: "Flächeninhalt eines Quadrats: Seite mal Seite.", loesungsweg: "Der Flächeninhalt ist das Quadrat der Seitenlänge: $$A = (2^5)^2 = 2^{5 \\cdot 2} = 2^{10}\\,\\text{cm}^2$$ Also \\(k = 10\\). Ausgerechnet: \\(32\\,\\text{cm} \\cdot 32\\,\\text{cm} = 1024\\,\\text{cm}^2\\) ✓" },
+      { id: 24, level: 4, typ: "numerisch", frage: "Berechne \\(\\frac{6^4}{3^4}\\) ohne Taschenrechner.", loesung: 16, toleranz: 0, tipp: "Die Exponenten sind gleich, die Basen nicht.", loesungsweg: "Bei gleichem Exponenten darf man die Basen zuerst dividieren: $$\\frac{6^4}{3^4} = \\left(\\frac63\\right)^4 = 2^4 = 16$$ Probe: \\(\\frac{1296}{81} = 16\\) ✓ Der Umweg über die großen Zahlen ist unnötig." },
+      // ========== LEVEL 5 -- Fehler finden, Parameter aus zwei Bedingungen, Sachaufgaben ==========
+      { id: 25, level: 5, typ: "mc", frage: "Ein Schüler vereinfacht:<br>Schritt 1: \\((a^2)^3 \\cdot a^4 = a^6 \\cdot a^4\\)<br>Schritt 2: \\(a^6 \\cdot a^4 = a^{24}\\)<br>Schritt 3: \\(a^{24} : a^4 = a^{20}\\)<br>Welcher Schritt ist der erste fehlerhafte?", optionen: ["Schritt 2 — beim Multiplizieren gleicher Basen werden die Exponenten addiert: \\(a^{10}\\)", "Schritt 1 — es müsste \\((a^2)^3 = a^5\\) heißen", "Schritt 3 — beim Dividieren werden die Exponenten dividiert: \\(a^6\\)", "Kein Schritt ist fehlerhaft"], korrekt: 0, tipp: "Prüfe jeden Schritt mit einer konkreten Zahl, etwa \\(a = 2\\).", loesungsweg: "Schritt 1 ist richtig: Beim Potenzieren einer Potenz werden die Exponenten multipliziert, \\((a^2)^3 = a^6\\). In Schritt 2 wurde dieselbe Regel fälschlich auf ein Produkt angewendet — dort werden die Exponenten <b>addiert</b>: $$a^6 \\cdot a^4 = a^{6+4} = a^{10}, \\quad \\text{nicht } a^{24}$$ Kontrolle mit \\(a = 2\\): \\(64 \\cdot 16 = 1024 = 2^{10}\\), aber \\(2^{24}\\) wäre über \\(16\\) Millionen. Schritt 3 ist für sich genommen richtig gerechnet, baut aber auf dem falschen Wert auf; korrekt wäre \\(a^{10} : a^4 = a^6\\)." },
+      { id: 26, level: 5, typ: "numerisch", frage: "Für natürliche Zahlen \\(a > 1\\) und \\(n\\) gilt \\(a^n \\cdot a^3 = 256\\) und \\((a^n)^2 = 1024\\). Bestimme \\(a + n\\).", loesung: 7, toleranz: 0, tipp: "Schreibe beide Ergebnisse als Potenzen derselben kleinen Basis.", loesungsweg: "Beide Zahlen sind Zweierpotenzen: \\(256 = 2^8\\) und \\(1024 = 2^{10}\\). Mit den Potenzgesetzen werden die Bedingungen zu $$a^{n+3} = 2^8 \\qquad\\text{und}\\qquad a^{2n} = 2^{10}$$ Versuch \\(a = 2\\): Aus der zweiten Gleichung folgt \\(2n = 10\\), also \\(n = 5\\); die erste ergibt \\(n + 3 = 8\\), also ebenfalls \\(n = 5\\) ✓ Andere Basen scheitern: Für \\(a = 4\\) müsste \\(4^{2n} = 4^5\\) sein, \\(n\\) wäre nicht ganzzahlig. Also \\(a = 2\\), \\(n = 5\\) und \\(a + n = 7\\)." },
+      { id: 27, level: 5, typ: "numerisch", frage: "Ein Würfel hat die Kantenlänge \\(3^2\\,\\text{cm}\\). Wie viele Würfel mit der Kantenlänge \\(3\\,\\text{cm}\\) haben zusammen dasselbe Volumen?", loesung: 27, toleranz: 0, tipp: "Vergleiche die beiden Volumina als Dreierpotenzen.", loesungsweg: "Volumen des großen Würfels: $$V = (3^2)^3 = 3^6\\,\\text{cm}^3$$ Volumen eines kleinen Würfels: \\(3^3\\,\\text{cm}^3\\). Der Quotient gibt die Anzahl: $$\\frac{3^6}{3^3} = 3^{6-3} = 3^3 = 27$$ Anschaulich: Entlang jeder Kante passen \\(9 : 3 = 3\\) kleine Würfel, insgesamt \\(3 \\cdot 3 \\cdot 3 = 27\\)." },
+      { id: 28, level: 5, typ: "mc", frage: "Eine Schülerin rechnet \\(2^3 \\cdot 3^2 = 6^5\\). Was ist dazu zu sagen?", optionen: ["Falsch — die Potenzgesetze verlangen gleiche Basen oder gleiche Exponenten, hier trifft beides nicht zu; richtig ist \\(8 \\cdot 9 = 72\\)", "Falsch — die Basen dürfen multipliziert werden, aber die Exponenten auch: \\(6^6\\)", "Richtig — Basen und Exponenten werden jeweils zusammengefasst", "Falsch — richtig wäre \\(5^5\\), weil Basis und Exponent vertauscht sind"], korrekt: 0, tipp: "Wie groß ist \\(6^5\\) ungefähr, wie groß \\(2^3 \\cdot 3^2\\)?", loesungsweg: "Für \\(a^m \\cdot a^n\\) braucht man gleiche Basen, für \\(a^n \\cdot b^n\\) gleiche Exponenten. Bei \\(2^3 \\cdot 3^2\\) ist beides verschieden — es gibt kein Potenzgesetz, das hier greift. Man muss ausrechnen: $$2^3 \\cdot 3^2 = 8 \\cdot 9 = 72$$ Dagegen ist \\(6^5 = 7776\\). Die Größenordnung entlarvt den Fehler sofort." },
+      { id: 29, level: 5, typ: "numerisch", frage: "Für welche Zahl \\(x\\) gilt \\(8^x = 2^{12}\\)?", loesung: 4, toleranz: 0, tipp: "Schreibe die \\(8\\) als Zweierpotenz.", loesungsweg: "Damit man Exponenten vergleichen kann, müssen die Basen gleich sein. Mit \\(8 = 2^3\\): $$8^x = (2^3)^x = 2^{3x}$$ Gleiche Basis, also gleiche Exponenten: $$3x = 12 \\;\\Rightarrow\\; x = 4$$ Probe: \\(8^4 = 4096 = 2^{12}\\) ✓" },
+      { id: 30, level: 5, typ: "numerisch", frage: "Ein Schüler meint: „\\(2^{10}\\) ist ungefähr tausend, also ist \\(2^{20}\\) ungefähr zweitausend.\" Um welchen Faktor ist \\(2^{20}\\) tatsächlich größer als \\(2^{10}\\)?", loesung: 1024, toleranz: 0, tipp: "Bilde den Quotienten der beiden Potenzen.", loesungsweg: "Der Faktor ist der Quotient: $$\\frac{2^{20}}{2^{10}} = 2^{20-10} = 2^{10} = 1024$$ Die Verdopplung des Exponenten verdoppelt nicht den Wert, sondern quadriert ihn: \\(2^{20} = (2^{10})^2 \\approx 1000^2 = 1\\,000\\,000\\). Der Schüler verwechselt Multiplikation im Exponenten mit Multiplikation des Werts." },
+      // ========== LEVEL 6 -- Gesetze begründen, Behauptungen prüfen, Sonderfälle ==========
+      { id: 31, level: 6, typ: "mc", frage: "Warum gilt \\(a^m \\cdot a^n = a^{m+n}\\) für natürliche Zahlen \\(m\\) und \\(n\\)?", optionen: ["\\(a^m\\) ist ein Produkt aus \\(m\\) Faktoren \\(a\\), \\(a^n\\) eines aus \\(n\\) Faktoren \\(a\\); zusammen sind es \\(m + n\\) Faktoren \\(a\\)", "Weil Exponenten immer addiert werden, sobald zwei Potenzen nebeneinander stehen", "Weil \\(a^m \\cdot a^n = (a \\cdot a)^{m \\cdot n}\\) gilt und sich das kürzen lässt", "Das lässt sich nicht begründen, es ist eine Vereinbarung wie \\(a^0 = 1\\)"], korrekt: 0, tipp: "Schreibe \\(a^2 \\cdot a^3\\) als Produkt einzelner Faktoren.", loesungsweg: "Die Begründung steckt in der Definition der Potenz als wiederholtes Produkt: $$a^m \\cdot a^n = \\underbrace{a \\cdot \\ldots \\cdot a}_{m\\ \\text{Faktoren}} \\cdot \\underbrace{a \\cdot \\ldots \\cdot a}_{n\\ \\text{Faktoren}} = \\underbrace{a \\cdot \\ldots \\cdot a}_{m+n\\ \\text{Faktoren}} = a^{m+n}$$ Beispiel: \\(a^2 \\cdot a^3 = (a \\cdot a)(a \\cdot a \\cdot a) = a^5\\). Die Regel „Exponenten addieren\" gilt nur bei <b>gleicher Basis</b> und beim <b>Multiplizieren</b> — sie ist eine Folge der Definition, keine Vereinbarung." },
+      { id: 32, level: 6, typ: "mc", frage: "Behauptung: „Für alle natürlichen Zahlen gilt \\((a^m)^n = a^{(m^n)}\\).\" Stimmt das?", optionen: ["Nein — Gegenbeispiel \\(a = 2\\), \\(m = 3\\), \\(n = 2\\): \\((2^3)^2 = 64\\), aber \\(2^{(3^2)} = 512\\); richtig ist \\(a^{m \\cdot n}\\)", "Ja — beim Potenzieren einer Potenz wird der Exponent potenziert", "Ja, aber nur wenn \\(m = n\\) ist", "Nein — richtig wäre \\((a^m)^n = a^{m+n}\\)"], korrekt: 0, tipp: "Rechne beide Seiten für kleine Zahlen aus.", loesungsweg: "Ein Gegenbeispiel widerlegt die Behauptung: $$(2^3)^2 = 8^2 = 64, \\qquad 2^{(3^2)} = 2^9 = 512$$ Richtig ist \\((a^m)^n = a^{m \\cdot n}\\), denn \\(a^m\\) wird \\(n\\)-mal als Faktor genommen, das sind \\(m \\cdot n\\) Faktoren \\(a\\). Für \\(m = n = 2\\) fallen beide Formeln zufällig zusammen (\\(2 \\cdot 2 = 2^2\\)), das ist aber kein Beleg für die Behauptung." },
+      { id: 33, level: 6, typ: "mc", frage: "Welche Zahl ist größer: \\(2^{300}\\) oder \\(3^{200}\\)? Begründe ohne Taschenrechner.", optionen: ["\\(3^{200}\\), denn \\(2^{300} = (2^3)^{100} = 8^{100}\\) und \\(3^{200} = (3^2)^{100} = 9^{100}\\), und \\(8^{100} < 9^{100}\\)", "\\(2^{300}\\), weil der Exponent \\(300\\) deutlich größer ist als \\(200\\)", "Beide sind gleich groß, weil \\(2 \\cdot 300 = 3 \\cdot 200\\) ist", "Das lässt sich ohne Taschenrechner nicht entscheiden"], korrekt: 0, tipp: "Bringe beide Potenzen auf denselben Exponenten.", loesungsweg: "Der größte gemeinsame Teiler der Exponenten ist \\(100\\). Beide Potenzen lassen sich darauf umschreiben: $$2^{300} = (2^3)^{100} = 8^{100}, \\qquad 3^{200} = (3^2)^{100} = 9^{100}$$ Bei gleichem Exponenten entscheidet die Basis: \\(8 < 9\\), also \\(2^{300} < 3^{200}\\). Ein größerer Exponent allein sagt nichts — er muss gegen die kleinere Basis abgewogen werden." },
+      { id: 34, level: 6, typ: "numerisch", frage: "Ein Schüler behauptet: \\(2^n + 2^n = 2^{2n}\\). Für welche natürliche Zahl \\(n\\) stimmt diese Gleichung?", loesung: 1, toleranz: 0, tipp: "Fasse die linke Seite zuerst richtig zusammen.", loesungsweg: "Die linke Seite ist eine Summe gleicher Summanden, kein Produkt: $$2^n + 2^n = 2 \\cdot 2^n = 2^{n+1}$$ Die Behauptung stimmt also genau dann, wenn \\(n + 1 = 2n\\), also für \\(n = 1\\): \\(2 + 2 = 4 = 2^2\\) ✓ Für alle anderen \\(n\\) ist sie falsch, etwa \\(n = 3\\): \\(8 + 8 = 16\\), aber \\(2^6 = 64\\). Potenzgesetze gelten für Produkte, nicht für Summen." },
+      { id: 35, level: 6, typ: "numerisch", frage: "Wie viele Ziffern hat die Zahl \\(2^{10} \\cdot 5^8\\)? Bestimme die Anzahl ohne Taschenrechner.", loesung: 9, toleranz: 0, tipp: "Zerlege \\(2^{10}\\) so, dass ein Faktor denselben Exponenten wie \\(5^8\\) hat.", loesungsweg: "Gleiche Exponenten erlauben das Zusammenfassen der Basen: $$2^{10} \\cdot 5^8 = 2^2 \\cdot 2^8 \\cdot 5^8 = 4 \\cdot (2 \\cdot 5)^8 = 4 \\cdot 10^8$$ Das ist eine \\(4\\) mit acht Nullen: \\(400\\,000\\,000\\), also \\(9\\) Ziffern. Die Aufgabe steht und fällt mit der Idee, aus \\(2^{10}\\) den Anteil \\(2^8\\) abzuspalten." },
+      { id: 36, level: 6, typ: "numerisch", frage: "Ein Bakterium teilt sich alle \\(20\\) Minuten in zwei. Nach wie vielen Stunden sind aus einem Bakterium \\(2^{12}\\) Bakterien geworden?", loesung: 4, toleranz: 0, tipp: "Wie viele Teilungen sind nötig, und wie lange dauern sie zusammen?", loesungsweg: "Nach \\(k\\) Teilungen gibt es \\(2^k\\) Bakterien. Für \\(2^{12}\\) sind also \\(12\\) Teilungen nötig — hier wird der Exponent gesucht, nicht der Wert. $$12 \\cdot 20\\,\\text{min} = 240\\,\\text{min} = 4\\,\\text{h}$$ Zur Einordnung: \\(2^{12} = 4096\\) Bakterien nach nur vier Stunden; nach acht Stunden wären es bereits \\(2^{24}\\), über \\(16\\) Millionen." }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>
