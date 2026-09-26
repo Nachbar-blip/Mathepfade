@@ -344,3 +344,190 @@ Prüfung Block A2: `level_check --strict` ok ohne Warnung (inkl. neuer MC-Länge
 Wolfram|Alpha nachgerechnet.
 
 Review 2026-09-27 (Block A2): Dubletten entfernt (qf #26 Ballwurf → Tunnel, qf #32 → Vorzeichen-Fallunterscheidung, qg #27 → Rechteck statt Doppel zu #17, lgs #35 → Altersrätsel, bg #35 → b für genau eine Lösung), L6 auf AFB III (qf #35 Parabelschar, lgs #34/#36 Widerspruch bzw. Anzahl a, ew #35 Faktor aus zwei nicht benachbarten Werten), MC-Optionen angeglichen (bg #32, qg #35, lgs #31). Gates erneut grün, Bilder L6 angesehen, neue Zahlen mit Wolfram.
+
+## Block B — Geometrie und Stochastik (Commits bfc611e Geometrie, s. u. Stochastik)
+
+Lesart Kl. 9 Geometrie/Stochastik: L4 = Verfahren selbst wählen (sin/cos/tan; 1./2. Strahlensatz;
+Zerlegen oder ½·a·b·sin γ), Modell aus Text- oder Skizzenbeschreibung, Umkehraufgabe (Winkel aus
+Seiten, Streckfaktor aus Flächen, Radius aus Volumen); L5 = zweischrittige Sachaufgabe ohne Weg
+(Höhe über zwei Winkel, zusammengesetzter Körper), Fehler in vorgelegter Rechnung (sin/cos
+vertauscht, Strahlensatz mit AA' statt SA', Quartil falsch, r² statt r³), Größe aus zwei
+Bedingungen; L6 = Behauptung begründet prüfen (MC mit Gegenbeispiel), Sonderfall (X-Figur,
+k = 1, Median bei gerader Anzahl, Q₁ = Median, Fläche 0), Umkehraufgabe (Daten aus Boxplot,
+Streckfaktor aus Flächen), Fallunterscheidung k² gegen k³. Niveau: TH-Lehrplan 2.3.3/2.3.4 —
+kein Sinussatz/Kosinussatz, keine Vektoren, keine Standardabweichung/Varianz/Erwartungswert.
+Jede Lösung mit Wolfram|Alpha nachgerechnet; Bilder L5/L6 per `tests/bild.py` angesehen.
+
+Abgrenzung: 9-trig-rechtwinkliges-dreieck = Definitionen, Seiten/Winkel im rechtwinkligen
+Dreieck, Höhe über zwei Winkel; 9-flaechenberechnung-determinante (jetzt „Flächen im
+Koordinatensystem") = Flächen aus Punkten (achsenparallel, Zerlegen), ½·a·b·sin γ, Parameter;
+9-raumgeometrie-anwendungen = zusammengesetzte Körper, Einheiten, k³; 8-strahlensatz = 1./2.
+Strahlensatz, Umkehrung, X-Figur, Schatten/Fluss; 8-aehnlichkeit-streckung = Streckfaktor,
+k/k²-Regeln, Ähnlichkeit von Figuren; 9-stoch-boxplot = Median, Quartile, IQR, Ausreißer;
+9-stoch-haeufigkeiten = absolute/relative Häufigkeit als Schätzung, Mittelwert/Median/Modalwert.
+
+| Trainer | Audit-Befund | Geändert |
+|---|---|---|
+| 9-raumgeometrie-anwendungen | KEIN_AFB3 L5/L6; KOLLAPS L2/L3, L3/L4, L4/L5; DUENNER_WEG L1/L2/L4/L5 | L4–L6 neu: Durchmesser aus 300 l und Höhe (Umkehr), Halle mit Satteldach (Modell aus Text), Würfelkante aus 512 l, Säule streichen ohne Boden (Teilflächen wählen), Trichter leerlaufen (Zeit aus Volumen), Wachsmengen Zylinder gegen Kegel (MC, Vergleich als Leistung); Fehler r² statt r³ (MC), Silo Zylinder + Kegel mit Dichte, Oberfläche aus V = 2a³ (zwei Bedingungen), Fehler Mantel ohne Deckflächen (MC), Aquarium mit Steinen (Verdrängung), Zylinderhöhe bei Kugelvolumen; „doppelter Radius, halbe Höhe" (MC, Behauptung), Tankmodell 1:20 (k³), Lackfläche 1:25 (k²), Kugelradius aus Wasseranstieg (Umkehr), „Kegel größer als Pyramide, weil rund" (MC), ähnliche Kegel k³. L1–L3 unverändert |
+| 9-trig-rechtwinkliges-dreieck | KEIN_AFB3 L5/L6; DUENNER_WEG L2–L4; L5 #25–#30 = L2/L3-Muster mit Formel im Tipp, L6 #33/#36 Einschritt | L5/L6 neu: Fehler sin statt cos für Ankathete (MC), Turmhöhe über zwei Höhenwinkel 28°/42°, Rampe 8 % über 25 m (Winkel dann Höhe), Fehler Katheten im Tangens vertauscht (MC), Sparrenlänge aus Hausbreite und Neigung, Dreiecksfläche aus c und α; „sin α = cos β" begründen (MC), tan α = 3 sin α (Gleichung, cos α = 1/3), Ballonhöhe zwischen zwei Beobachtern, Basis des gleichschenkligen Dreiecks aus Schenkel und Spitzenwinkel, „sin α = 1,2 möglich?" (MC, Sonderfall), Drachenhöhe mit Handhöhe. L1–L4 unverändert (L4 bereits Anwendungen) |
+| 9-flaechenberechnung-determinante → „Flächen im Koordinatensystem" | KEIN_AFB3 L5/L6; KOLLAPS L2/L3, L3/L4, L4/L5; DUENNER_WEG L2/L5/L6; Bestand war Sinussatz/Kosinussatz/Heron/Umkreis (Kl. 10, TH 2.3.3 nicht Kl. 9) | Alle 36 neu nach Plan: L1 achsenparallele Rechtecke/Dreiecke aus Gitterpunkten; L2 Grundseite auf Achse oder achsenparallel, Höhe ablesen, Parallelogramm, Trapez; L3 Zerlegen (umgebendes Rechteck minus Eckdreiecke), Viereck über Diagonale; L4 ½·a·b·sin γ (spitz und stumpf), b aus Fläche, Trapez aus Punkten erkennen, allgemeines Viereck zerlegen, Parallelogramm mit Winkel (MC); L5 fehlende Koordinate aus Fläche, Fehler „drittes Eckdreieck vergessen" (MC), Seite aus Fläche und Winkel, Trapezparameter c, Fehler „Winkel nicht eingeschlossen" (MC), Viereck mit negativen Koordinaten; L6 „drei Punkte bilden ein Dreieck?" (Fläche 0, MC), t für gleiche Fläche wie Rechteck, x mit Fläche 0 (Punkt auf Gerade), „Koordinaten verdoppeln = Fläche verdoppeln?" (k², MC), Winkel aus Fläche mit Sonderfall 150°, k aus Vierecksfläche. Titel, THEMA_CONFIG.name, Kommentar Zeile 3, Index-Name geändert; Dateiname bleibt |
+| 8-strahlensatz (Umzug 8 → 9) | KEIN_AFB3 L5/L6; KOLLAPS L4/L5; L4–L6 = Einsetzen mit Ansatz im Tipp, L4 #23 unlesbar | L4–L6 neu: Schattenlänge bei Laterne (Gleichung mit s auf beiden Seiten), A'B' mit SA' = SA + AA' (Falle AA'), AB aus Streckfaktor (Umkehr), Flussbreite über Peilung (Modell aus Text), Parallele im Dreieck mit Scheitel C, richtiger Ansatz wählen (MC); Fehler AA' statt SA' (MC), Leitersprosse (Scheitel oben), Diagonalenabschnitt im Trapez (zwei Bedingungen), Fehler AA'/SA' im 2. Strahlensatz (MC), Sektglas (Kegelquerschnitt), x aus x/(x+8) = 1/3; dritte Form AA'/BB' = SA/SB begründen (MC), X-Figur (Sonderfall Scheitel zwischen Parallelen), Trapezfläche über k² (Fallunterscheidung), Mittelparallele begründen (MC), Abstand zur Laterne aus Schattenlänge (Umkehr), x für Parallelität (Umkehrung des Strahlensatzes). Für Kl. 9 angehoben: Gleichungen mit Unbekannter auf beiden Seiten, k²-Bezug, Umkehrsatz; L1–L3 unverändert, „schliessen" → „schließen" |
+| 8-aehnlichkeit-streckung (Umzug 8 → 9) | KEIN_AFB3 L5; DUENNER_WEG L2/L4; L5/L6 = Einsetzen von k oder k² mit Formel im Tipp | L5/L6 neu: Fehler „Fläche mal k" (MC), Fläche aus zwei Umfängen (zwei Bedingungen), 5-12-13-Dreieck über Umfang zu Fläche, Fehler „Winkel verdoppeln sich" (MC), Posterbreite aus Fläche (k aus k²), dritte Seite für Ähnlichkeit; „gleicher Umfang ⇒ kongruent" (k = 1, MC), Umfang bei vervierfachter Fläche (Umkehr), Bildpunkt bei Streckung vom Ursprung (k aus P und P'), „alle Rechtecke ähnlich?" (MC, Gegenbeispiel), kürzeste Seite aus Flächenverhältnis 18:50, Umfang bei Verkleinerung 48 → 27 (k < 1). Für Kl. 9 angehoben: Rückrechnung k aus k², Ähnlichkeitskriterien, Koordinaten; L1–L4 unverändert bis auf echte Umlaute (Ähnlich, groß, Maßstab, heißt; THEMA_KEY bleibt ASCII) |
+| 9-stoch-boxplot | KEIN_AFB3 L5; DUENNER_WEG L1–L6; L5 = L2/L3-Muster mit Hälften im Text, L6 #32/#35 Einschritt; #11 Rückverweis „Gleiche:"; L4 #19/#20 mit Tukey-Formel im Text, #23 Tipp mit Lösungswert | L5/L6 neu: IQR aus ungeordneter Reihe, Fehler „Median zur unteren Hälfte gezählt" (MC), Anzahl Ausreißer aus Rohdaten (Regel nur benannt), x aus Median bei gerader Anzahl, Boxplot-Vergleich zweier Klassen (MC, Auswahl als Leistung), Mittelwert minus Median aus ungeordneter Reihe; „gleicher Boxplot ⇒ gleiche Daten?" (MC, Gegenbeispiel), x mit Median = Mittelwert (Gleichung), Mittelwert aus den fünf Kennwerten eines Boxplots (Umkehr, Rückrechnung der Werte), Q₁ = Median (Sonderfall, MC), Robustheit des Medians gegen Ausreißer (Differenz der Anstiege), „symmetrischer Boxplot ⇒ Median = Mittelwert?" (MC, Gegenbeispiel). #11 mit vollständiger Datenreihe; L4 #19/#20 ohne Formel im Text, #23 Tipp ohne Lösungswert |
+| 9-stoch-haeufigkeiten | KEIN_AFB3 L5/L6; KOLLAPS L4/L5; DUENNER_WEG L1/L2/L4–L6; L4 #20/#24, L5 #27/#29, L6 #33 = Standardabweichung/Varianz/Erwartungswert (nicht TH Kl. 9); #16/#17 Rückverweis „wie oben" | L4–L6 neu: n aus H und h (Umkehr), Hochrechnen mit relativer Häufigkeit als Schätzwert, Anzahl Fünfen aus Durchschnitt 3,0 (Gleichung), Kenngröße für „typisches Alter" wählen (MC), Anteil aus Klassen zusammenfassen, Bestehensquote zweier Kurse (nicht mitteln); Fehler 0,4 = 4 % (MC), rote Felder aus 620/2000 (Schätzung → Modell), fehlender Wert aus Mittelwert, Fehler Median ohne Ordnen (MC), Klassengröße aus zwei relativen Häufigkeiten (Gleichung), gewichteter Durchschnitt zweier Klassen; Ausgleichs-Fehlschluss beim Münzwurf (MC), 0 weitere Sechsen für h = 1/6 (Sonderfall), Umfang der zweiten Umfrage aus Gesamtanteil (Gleichung), „Mittelwert ist immer ein Wert der Reihe?" (MC, Gegenbeispiel), Median nach Rückrechnung des sechsten Werts, Anzahl Einsen aus drei Bedingungen. #16/#17 mit vollständiger Notenverteilung |
+
+### 9-raumgeometrie-anwendungen
+
+| id | Level | Kriterium |
+|---|---|---|
+| 19 | 4 | L4: Umkehraufgabe — Durchmesser aus Volumen und Höhe |
+| 20 | 4 | L4: Modell aus Text — Quader plus Dreiecksprisma |
+| 21 | 4 | L4: Umkehraufgabe — Kante aus Würfelvolumen in Litern |
+| 22 | 4 | L4: Verfahren wählen — Mantel plus eine Deckfläche |
+| 23 | 4 | L4: Modell aus Text — Kegelvolumen, dann Zeit |
+| 24 | 4 | L4: Vergleich Zylinder/Kegel (MC, Auswahl als Leistung) |
+| 25 | 5 | L5: Fehler in Rechnung — r² statt r³ (MC) |
+| 26 | 5 | L5: zusammengesetzter Körper mit Dichte |
+| 27 | 5 | L5: Größe aus zwei Bedingungen — Oberfläche aus V = 2a³ |
+| 28 | 5 | L5: Fehler in Rechnung — Deckflächen vergessen (MC) |
+| 29 | 5 | L5: zweischrittig — Wasserstand nach Verdrängung |
+| 30 | 5 | L5: Größe aus zwei Bedingungen — Zylinderhöhe bei Kugelvolumen |
+| 31 | 6 | L6: Behauptung prüfen — 2r und h/2 (MC) |
+| 32 | 6 | L6: Fallunterscheidung — Volumen mit k³ |
+| 33 | 6 | L6: Fallunterscheidung — Fläche mit k² |
+| 34 | 6 | L6: Umkehraufgabe — Kugelradius aus Wasseranstieg |
+| 35 | 6 | L6: Behauptung prüfen — Kegel gegen Pyramide (MC) |
+| 36 | 6 | L6: ähnliche Körper — Volumen mit k³ aus Höhen |
+
+### 9-trig-rechtwinkliges-dreieck
+
+| id | Level | Kriterium |
+|---|---|---|
+| 25 | 5 | L5: Fehler in Rechnung — sin statt cos (MC) |
+| 26 | 5 | L5: Höhe über zwei Winkel |
+| 27 | 5 | L5: zweischrittig — Steigung in Winkel, dann Höhe |
+| 28 | 5 | L5: Fehler in Rechnung — Katheten im Tangens vertauscht (MC) |
+| 29 | 5 | L5: Sachaufgabe ohne Weg — Sparren aus Hausbreite |
+| 30 | 5 | L5: zweischrittig — beide Katheten, dann Fläche |
+| 31 | 6 | L6: Behauptung begründen — sin α = cos β (MC) |
+| 32 | 6 | L6: Gleichung — tan α = 3 sin α |
+| 33 | 6 | L6: Höhe zwischen zwei Beobachtern |
+| 34 | 6 | L6: Verfahren übertragen — gleichschenkliges Dreieck |
+| 35 | 6 | L6: Sonderfall — sin α > 1 unmöglich (MC) |
+| 36 | 6 | L6: Sachaufgabe — Schnur plus Handhöhe |
+
+### 9-flaechenberechnung-determinante (Flächen im Koordinatensystem)
+
+| id | Level | Kriterium |
+|---|---|---|
+| 1–6 | 1 | L1: achsenparallele Figuren aus Gitterpunkten, ein Schritt (2 MC) |
+| 7–12 | 2 | L2: Grundseite auf Achse/achsenparallel, Höhe ablesen; Parallelogramm, Trapez (1 MC) |
+| 13–18 | 3 | L3: Zerlegen — umgebendes Rechteck minus Eckdreiecke; Viereck über Diagonale (1 MC) |
+| 19 | 4 | L4: Verfahren wählen — ½·a·b·sin γ |
+| 20 | 4 | L4: Umkehraufgabe — Grundseite aus Fläche |
+| 21 | 4 | L4: Trapez aus Punkten erkennen |
+| 22 | 4 | L4: allgemeines Viereck zerlegen |
+| 23 | 4 | L4: ½·a·b·sin γ mit stumpfem Winkel |
+| 24 | 4 | L4: Parallelogramm mit Winkel (MC) |
+| 25 | 5 | L5: fehlende Koordinate aus Fläche |
+| 26 | 5 | L5: Fehler in vorgelegter Zerlegung (MC) |
+| 27 | 5 | L5: Seite aus Fläche und eingeschlossenem Winkel |
+| 28 | 5 | L5: Trapezparameter aus Fläche |
+| 29 | 5 | L5: Fehler — Winkel nicht eingeschlossen (MC) |
+| 30 | 5 | L5: Viereck mit negativen Koordinaten zerlegen |
+| 31 | 6 | L6: Behauptung prüfen — Fläche 0, Punkte auf Gerade (MC) |
+| 32 | 6 | L6: Parameter für gleiche Flächen |
+| 33 | 6 | L6: Punkt auf Gerade ⇔ Fläche 0 |
+| 34 | 6 | L6: Behauptung prüfen — Koordinaten verdoppeln, k² (MC) |
+| 35 | 6 | L6: Winkel aus Fläche, Sonderfall zweier Lösungen |
+| 36 | 6 | L6: Parameter aus Vierecksfläche |
+
+### 8-strahlensatz (Umzug nach Kl. 9)
+
+| id | Level | Kriterium |
+|---|---|---|
+| 19 | 4 | L4: Modell aus Text — Schattenlänge, Unbekannte auf beiden Seiten |
+| 20 | 4 | L4: Verfahren wählen — 2. Strahlensatz mit SA' = SA + AA' |
+| 21 | 4 | L4: Umkehraufgabe — Urbildstrecke aus Streckfaktor |
+| 22 | 4 | L4: Modell aus Text — Flussbreite über Peilung |
+| 23 | 4 | L4: Scheitel erkennen — Parallele im Dreieck |
+| 24 | 4 | L4: Ansatz wählen (MC, Auswahl als Leistung) |
+| 25 | 5 | L5: Fehler in Rechnung — AA' statt SA' (MC) |
+| 26 | 5 | L5: Sachaufgabe ohne Weg — Leitersprosse |
+| 27 | 5 | L5: Größe aus zwei Bedingungen — Diagonalenabschnitt im Trapez |
+| 28 | 5 | L5: Fehler in Rechnung — 2. Strahlensatz falsch angesetzt (MC) |
+| 29 | 5 | L5: Sachaufgabe ohne Weg — Sektglas |
+| 30 | 5 | L5: Parameter — x/(x+8) = 1/3 |
+| 31 | 6 | L6: Behauptung begründen — dritte Form des Strahlensatzes (MC) |
+| 32 | 6 | L6: Sonderfall — X-Figur |
+| 33 | 6 | L6: Fallunterscheidung — Trapezfläche über k² |
+| 34 | 6 | L6: Behauptung begründen — Mittelparallele (MC) |
+| 35 | 6 | L6: Umkehraufgabe — Abstand aus Schattenlänge |
+| 36 | 6 | L6: Umkehrung des Strahlensatzes — x für Parallelität |
+
+### 8-aehnlichkeit-streckung (Umzug nach Kl. 9)
+
+| id | Level | Kriterium |
+|---|---|---|
+| 25 | 5 | L5: Fehler in Rechnung — Fläche mit k statt k² (MC) |
+| 26 | 5 | L5: Größe aus zwei Bedingungen — Fläche aus zwei Umfängen |
+| 27 | 5 | L5: zweischrittig — Umfang zu k, Fläche mit k² |
+| 28 | 5 | L5: Fehler — Winkel bei Streckung (MC) |
+| 29 | 5 | L5: Sachaufgabe ohne Weg — Posterbreite aus Fläche |
+| 30 | 5 | L5: Ähnlichkeitsbedingung — dritte Seite |
+| 31 | 6 | L6: Sonderfall k = 1 — gleicher Umfang (MC) |
+| 32 | 6 | L6: Umkehraufgabe — Umfang aus Flächenfaktor |
+| 33 | 6 | L6: Streckung im Koordinatensystem — k aus Punktpaar |
+| 34 | 6 | L6: Behauptung prüfen — Rechtecke ähnlich? (MC) |
+| 35 | 6 | L6: Umkehraufgabe — Seite aus Flächenverhältnis |
+| 36 | 6 | L6: Fallunterscheidung k < 1 — Umfang bei Verkleinerung |
+
+### 9-stoch-boxplot
+
+| id | Level | Kriterium |
+|---|---|---|
+| 25 | 5 | L5: zweischrittig — ordnen, beide Quartile, IQR |
+| 26 | 5 | L5: Fehler in Rechnung — Quartil bei ungerader Anzahl (MC) |
+| 27 | 5 | L5: Ausreißer aus Rohdaten ohne gelieferte Kenngrößen |
+| 28 | 5 | L5: Größe aus Bedingung — x aus Median |
+| 29 | 5 | L5: Boxplots vergleichen (MC, Auswahl als Leistung) |
+| 30 | 5 | L5: zweischrittig — Mittelwert gegen Median |
+| 31 | 6 | L6: Behauptung prüfen — gleicher Boxplot (MC, Gegenbeispiel) |
+| 32 | 6 | L6: Sonderfall — Median = Mittelwert, Gleichung |
+| 33 | 6 | L6: Umkehraufgabe — Werte aus Boxplot rekonstruieren |
+| 34 | 6 | L6: Sonderfall — Q₁ = Median (MC) |
+| 35 | 6 | L6: Robustheit des Medians — Differenz der Anstiege |
+| 36 | 6 | L6: Behauptung prüfen — symmetrischer Boxplot (MC, Gegenbeispiel) |
+
+### 9-stoch-haeufigkeiten
+
+| id | Level | Kriterium |
+|---|---|---|
+| 19 | 4 | L4: Umkehraufgabe — n aus H und h |
+| 20 | 4 | L4: Modell — relative Häufigkeit als Schätzwert, Hochrechnen |
+| 21 | 4 | L4: Modell aus Text — Anzahl aus Durchschnitt (Gleichung) |
+| 22 | 4 | L4: Kenngröße wählen (MC, Auswahl als Leistung) |
+| 23 | 4 | L4: klassierte Daten zusammenfassen |
+| 24 | 4 | L4: Häufigkeiten zusammenfassen statt mitteln |
+| 25 | 5 | L5: Fehler in Rechnung — 0,4 = 4 % (MC) |
+| 26 | 5 | L5: zweischrittig — Schätzung, dann Modell (Felder) |
+| 27 | 5 | L5: fehlender Wert aus Mittelwert |
+| 28 | 5 | L5: Fehler in Rechnung — Median ohne Ordnen (MC) |
+| 29 | 5 | L5: Größe aus zwei Bedingungen — Klassengröße |
+| 30 | 5 | L5: gewichteter Durchschnitt |
+| 31 | 6 | L6: Behauptung prüfen — Ausgleichs-Fehlschluss (MC) |
+| 32 | 6 | L6: Sonderfall — 0 weitere Sechsen |
+| 33 | 6 | L6: Umkehraufgabe — Stichprobenumfang aus Gesamtanteil |
+| 34 | 6 | L6: Behauptung prüfen — Mittelwert in der Reihe? (MC, Gegenbeispiel) |
+| 35 | 6 | L6: zwei Bedingungen — sechster Wert, dann Median |
+| 36 | 6 | L6: drei Bedingungen — Anzahl Einsen |
+
+### Prüfung Block B
+
+`level_check.py --strict` je Trainer Exit 0 ohne Warnung; `lehrplan_check.py --strict` 0 Befunde;
+`katex_check.py` ok; `pytest tests/test_trainer.py -k <stem>` grün (7 je Trainer); `test_index.py`
+grün nach Umbenennung; Bilder L5/L6 je Trainer angesehen (MC-Optionen gleich lang, KaTeX sauber).
+
+Befund beim Umzug 8-aehnlichkeit-streckung: eine pauschale Ersetzung „aehnlich → ähnlich" traf
+auch `THEMA_KEY` und ließ den Fortschritt (localStorage, Index-`data-key`) leerlaufen — der
+`katex_check` fand die MC-Optionen nicht mehr. THEMA_KEY zurückgesetzt; Regel: THEMA_KEY bleibt ASCII.
