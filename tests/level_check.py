@@ -31,6 +31,10 @@ NULL_AUSWERTUNG = re.compile(r"f'\(0\)|f\\'\(0\)|an der Stelle\s*(x\s*=\s*)?0\b"
 # Die Engine rendert kein Markdown: **fett** erscheint woertlich (Sichtpruefung 2026-09-18).
 MARKDOWN_FETT = re.compile(r"\*\*[^*\r\n]+\*\*")
 KETTEN_TRAINER = re.compile(r"ableitungsregeln|kettenregel")
+# KaTeX-Befehlswoerter, die nach dem JS-Auswerten ohne Backslash dastehen (=> im Quelltext stand "\cdot").
+KATEX_OHNE_BACKSLASH = re.compile(
+    r"(?<![A-Za-z\\])(cdot|frac|tfrac|dfrac|sqrt|times|Rightarrow|implies|approx|neq|leq|geq|"
+    r"ldots|infty|overline|mathbb|quad|left\(|right\))(?![A-Za-z])")
 
 
 def lade_aufgaben(pfad: Path) -> list:
@@ -94,6 +98,17 @@ def pruefe_trainer(pfad: Path, aufgaben: list):
         for feld in ("frage", "tipp", "loesungsweg"):
             if MARKDOWN_FETT.search(a.get(feld) or ""):
                 hart.append(f"{k}: Markdown-Sternchen in '{feld}' (bitte <b>…</b>)")
+        # Einfacher Backslash im JS-String frisst den KaTeX-Befehl: "\cdot" -> "cdot".
+        # Sichtbar erst im Browser, katex_check meldet es nicht (Befund 2026-09-26, 7-binomische #16/#18).
+        for feld in ("frage", "tipp", "loesungsweg"):
+            texte = [a.get(feld) or ""]
+            if feld == "frage":
+                texte += list(a.get("optionen") or [])
+            for t in texte:
+                if KATEX_OHNE_BACKSLASH.search(t):
+                    hart.append(f"{k}: KaTeX-Befehl ohne Backslash in '{feld}' "
+                                f"(einfacher statt doppelter Backslash im JS-String)")
+                    break
 
         if lv >= 4 and FORMEL_ANSAGE.search(frage):
             hart.append(f"{k}: Formel-/Rechenweg-Ansage in Level >= 4")
