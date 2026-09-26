@@ -260,125 +260,127 @@
         tipp: "Eine pro Innenwinkel.",
         loesungsweg: "Drei Winkelhalbierende — eine für jeden Innenwinkel. Sie schneiden sich im Inkreismittelpunkt."
       },
-      // ========== LEVEL 5 -- anspruchsvoll: Höhen, Schwerpunkt ==========
+      // ========== LEVEL 5 -- anspruchsvoll: Fehler in Konstruktionen, zweischrittig ==========
       {
         id: 25,
         level: 5,
         typ: "mc",
-        frage: "Eine Höhe im Dreieck ist das Lot von …",
-        optionen: ["einer Ecke auf die gegenüberliegende Seite", "der Mitte einer Seite zur gegenüberliegenden Ecke", "einem Schenkel zur Basis", "dem Scheitel zum Schwerpunkt"],
+        frage: "Ein Schüler will die Mittelsenkrechte der Strecke \\(AB\\) mit \\(|AB| = 6\\,\\text{cm}\\) konstruieren. Er schlägt um \\(A\\) und um \\(B\\) je einen Kreis mit Radius \\(2{,}5\\,\\text{cm}\\). Was passiert?",
+        optionen: ["Die Kreise schneiden sich nicht, weil \\(2{,}5 + 2{,}5 < 6\\) — der Radius muss größer als die halbe Strecke sein", "Die Konstruktion gelingt, der Radius ist beliebig", "Die Kreise berühren sich genau im Mittelpunkt von \\(AB\\), das reicht für die Mittelsenkrechte", "Es entsteht statt der Mittelsenkrechten die Winkelhalbierende"],
         korrekt: 0,
-        tipp: "„Lot\" = senkrecht.",
-        loesungsweg: "Die <b>Höhe</b> ist das Lot von einer Ecke auf die gegenüberliegende Seite (bzw. deren Verlängerung)."
+        tipp: "Wie weit kommen die beiden Kreise aufeinander zu?",
+        loesungsweg: "Die Mittelsenkrechte braucht <b>zwei</b> Schnittpunkte der beiden Kreise. Zwei Kreise mit den Radien \\(r_1\\), \\(r_2\\) schneiden sich nur, wenn \\(r_1 + r_2\\) größer als der Abstand der Mittelpunkte ist. Hier: \\(2{,}5 + 2{,}5 = 5 < 6\\) — zwischen den Kreisen bleibt eine Lücke von \\(1\\,\\text{cm}\\). Der Radius muss größer als \\(3\\,\\text{cm}\\) (halbe Strecke) sein; bei genau \\(3\\,\\text{cm}\\) berühren sich die Kreise nur in einem Punkt, das legt noch keine Gerade fest."
       },
       {
         id: 26,
         level: 5,
-        typ: "mc",
-        frage: "Die Schwerlinien (Seitenhalbierenden) verbinden …",
-        optionen: ["Ecke mit Mitte der gegenüberliegenden Seite", "zwei Seitenmitten", "zwei Ecken", "Mittelpunkt des Umkreises mit einer Ecke"],
-        korrekt: 0,
-        tipp: "Von der Ecke zur Seitenmitte.",
-        loesungsweg: "Eine <b>Seitenhalbierende</b> verbindet eine Ecke mit der Mitte der gegenüberliegenden Seite. Sie schneiden sich im Schwerpunkt."
-      },      {
-        id: 27, level: 5, typ: "numerisch",
-        frage: "Der Schwerpunkt teilt jede Seitenhalbierende im Verh\u00e4ltnis \\(n : 1\\), von der Ecke aus gemessen. Wie gro\u00df ist \\(n\\)?",
+        typ: "numerisch",
+        frage: "Gegeben sind zwei Punkte \\(A\\) und \\(B\\) mit \\(|AB| = 5\\,\\text{cm}\\). Wie viele Punkte \\(C\\) gibt es, sodass das Dreieck \\(ABC\\) gleichseitig ist?",
         loesung: 2,
         toleranz: 0,
-        tipp: "Welcher Teil der Seitenhalbierenden liegt zwischen Ecke und Schwerpunkt?",
-        loesungsweg: "Der Schwerpunkt liegt doppelt so weit von der Ecke entfernt wie von der Seitenmitte, das Verh\u00e4ltnis ist also \\(2 : 1\\). Von der Ecke aus gemessen entf\u00e4llt damit \\(\\tfrac23\\) der Seitenhalbierenden auf das erste St\u00fcck."
+        tipp: "\\(C\\) muss von \\(A\\) und von \\(B\\) je \\(5\\,\\text{cm}\\) entfernt sein — Kreise!",
+        loesungsweg: "<b>Ansatz:</b> \\(C\\) liegt auf dem Kreis um \\(A\\) mit Radius \\(5\\,\\text{cm}\\) <b>und</b> auf dem Kreis um \\(B\\) mit Radius \\(5\\,\\text{cm}\\). Zwei Kreise mit gleichem Radius, deren Mittelpunkte \\(5\\,\\text{cm}\\) auseinanderliegen, schneiden sich in <b>zwei</b> Punkten — einer oberhalb, einer unterhalb von \\(AB\\). Beide Dreiecke sind kongruent, aber es sind zwei verschiedene Lagen."
       },
-
+      {
+        id: 27,
+        level: 5,
+        typ: "numerisch",
+        frage: "Ein Dreieck soll aus \\(c = 7\\,\\text{cm}\\), \\(\\alpha = 65°\\) und \\(\\gamma = 50°\\) konstruiert werden. Welchen Winkel muss man bei der Konstruktion an \\(B\\) antragen (in Grad)?",
+        loesung: 65,
+        toleranz: 0,
+        tipp: "An der Seite \\(c\\) liegen die Winkel \\(\\alpha\\) und \\(\\beta\\) — \\(\\gamma\\) liegt gegenüber.",
+        loesungsweg: "Die Angaben \\(c, \\alpha, \\gamma\\) sind kein WSW-Fall, weil \\(\\gamma\\) nicht an \\(c\\) anliegt. <b>Schritt 1:</b> Den fehlenden anliegenden Winkel berechnen: $$\\beta = 180° - 65° - 50° = 65°$$ <b>Schritt 2:</b> \\(c\\) zeichnen, in \\(A\\) den Winkel \\(65°\\) und in \\(B\\) den Winkel \\(65°\\) antragen (WSW). Das Dreieck ist gleichschenklig mit Basis \\(c\\)."
+      },
       {
         id: 28,
         level: 5,
         typ: "numerisch",
-        frage: "Eine Seitenhalbierende ist \\(9\\,\\text{cm}\\) lang. Wie weit ist der Schwerpunkt von der Ecke entfernt (in cm)?",
-        loesung: 6,
+        frage: "Ein rechtwinkliges Dreieck hat den Umkreisradius \\(4{,}5\\,\\text{cm}\\). Wie lang ist seine längste Seite (in cm)?",
+        loesung: 9,
         toleranz: 0,
-        tipp: "\\(\\frac{2}{3}\\) der Länge.",
-        loesungsweg: "Der Schwerpunkt teilt jede Seitenhalbierende im Verhältnis \\(2:1\\), gemessen von der Ecke aus. Auf die Ecke entfallen also zwei Drittel: $$\\frac23 \\cdot 9\\,\\text{cm} = 6\\,\\text{cm}$$ Das restliche Drittel (\\(3\\,\\text{cm}\\)) liegt zwischen Schwerpunkt und Seitenmitte."
+        tipp: "Wo liegt der Umkreismittelpunkt eines rechtwinkligen Dreiecks?",
+        loesungsweg: "<b>Satz des Thales (Umkehrung):</b> Im rechtwinkligen Dreieck ist der Umkreismittelpunkt der Mittelpunkt der Hypotenuse — die Hypotenuse ist also ein <b>Durchmesser</b> des Umkreises: $$c = 2r = 2 \\cdot 4{,}5 = 9\\,\\text{cm}$$ Die Hypotenuse ist stets die längste Seite."
       },
       {
         id: 29,
         level: 5,
         typ: "mc",
-        frage: "Welcher Punkt liegt bei einem gleichseitigen Dreieck zusammen?",
-        optionen: ["Nur Umkreismittelpunkt und Schwerpunkt", "Nur Umkreis- und Inkreismittelpunkt", "Alle vier besonderen Punkte (Schwerpunkt, Umkreis-, Inkreismittelpunkt, Höhenschnittpunkt)", "Keiner"],
-        korrekt: 2,
-        tipp: "Symmetrie macht alles gleich.",
-        loesungsweg: "Beim <b>gleichseitigen Dreieck</b> fallen Schwerpunkt, Umkreis-, Inkreismittelpunkt und Höhenschnittpunkt zu einem Punkt zusammen."
+        frage: "Mia soll den Inkreis eines Dreiecks zeichnen. Sie konstruiert die drei Mittelsenkrechten und nimmt ihren Schnittpunkt als Mittelpunkt des Kreises. Was ist dazu zu sagen?",
+        optionen: ["Falsch — die Mittelsenkrechten liefern den <b>Umkreis</b>mittelpunkt; für den Inkreis braucht sie die Winkelhalbierenden", "Richtig, der Schnittpunkt der Mittelsenkrechten ist der Inkreismittelpunkt", "Falsch — sie müsste die drei Höhen schneiden", "Falsch — sie müsste die drei Seitenhalbierenden schneiden"],
+        korrekt: 0,
+        tipp: "Der Inkreismittelpunkt hat zu allen drei Seiten denselben Abstand.",
+        loesungsweg: "Der Inkreis berührt alle drei Seiten, sein Mittelpunkt hat also zu allen Seiten den <b>gleichen Abstand</b>. Genau das leisten die Winkelhalbierenden (jeder Punkt darauf hat gleichen Abstand zu beiden Schenkeln). Die Mittelsenkrechten sammeln dagegen Punkte mit gleichem Abstand zu den <b>Ecken</b> — ihr Schnittpunkt ist der Umkreismittelpunkt. Höhen schneiden sich im Höhenschnittpunkt, Seitenhalbierende im Schwerpunkt; beide haben mit Kreisen nichts zu tun."
       },
       {
         id: 30,
         level: 5,
         typ: "numerisch",
-        frage: "Einem Kreis mit Durchmesser \\(14\\,\\text{cm}\\) wird ein Quadrat einbeschrieben. Wie lang ist seine Diagonale (in cm)?",
-        loesung: 14,
+        frage: "Im Dreieck \\(ABC\\) ist der Schwerpunkt \\(S\\) genau \\(4\\,\\text{cm}\\) von der Ecke \\(A\\) entfernt. Wie lang ist die Seitenhalbierende \\(s_a\\) (in cm)?",
+        loesung: 6,
         toleranz: 0,
-        tipp: "Die Diagonale des einbeschriebenen Quadrats ist gleich dem Durchmesser.",
-        loesungsweg: "Die Diagonale = Durchmesser = \\(14\\,\\text{cm}\\)."
+        tipp: "Der Schwerpunkt teilt jede Seitenhalbierende in zwei ungleiche Teile — welcher ist der längere?",
+        loesungsweg: "<b>Ansatz:</b> Der Schwerpunkt teilt jede Seitenhalbierende im Verhältnis \\(2 : 1\\), der längere Teil liegt an der Ecke. Die \\(4\\,\\text{cm}\\) sind also \\(\\frac{2}{3}\\) von \\(s_a\\): $$s_a = 4 \\cdot \\frac{3}{2} = 6\\,\\text{cm}$$ Der Rest von \\(S\\) bis zur Seitenmitte beträgt \\(2\\,\\text{cm}\\). <b>Typischer Fehler:</b> \\(4 \\cdot 2 = 8\\) rechnen (dann wäre das Verhältnis \\(1 : 1\\)… nicht \\(2 : 1\\))."
       },
-      // ========== LEVEL 6 -- wagnerisch: Komplexe Konstruktionen ==========
+      // ========== LEVEL 6 -- wagnerisch: Lösbarkeit, Lösungsvielfalt, Behauptungen ==========
       {
         id: 31,
         level: 6,
         typ: "mc",
-        frage: "Ein Dreieck mit \\(c = 6\\,\\text{cm}\\), \\(\\alpha = 50°\\), \\(\\beta = 70°\\) soll konstruiert werden. Welcher Kongruenzsatz?",
-        optionen: ["SSS", "SWS", "WSW", "Nicht konstruierbar"],
-        korrekt: 2,
-        tipp: "Ein Seite zwischen zwei Winkeln.",
-        loesungsweg: "Seite \\(c\\) liegt zwischen \\(\\alpha\\) und \\(\\beta\\) → <b>WSW</b>."
+        frage: "Ein Dreieck soll aus \\(a = 3\\,\\text{cm}\\), \\(b = 4\\,\\text{cm}\\) und \\(c = 8\\,\\text{cm}\\) konstruiert werden. Was stellt man bei der Konstruktion fest?",
+        optionen: ["Die Kreise um \\(A\\) (Radius \\(4\\,\\text{cm}\\)) und um \\(B\\) (Radius \\(3\\,\\text{cm}\\)) schneiden sich nicht — kein Dreieck", "Es gibt genau ein Dreieck, wie immer bei SSS", "Die Kreise berühren sich, es entsteht ein sehr flaches Dreieck", "Es gibt zwei verschiedene, nicht kongruente Dreiecke"],
+        korrekt: 0,
+        tipp: "Vergleiche \\(a + b\\) mit \\(c\\).",
+        loesungsweg: "Nach dem Zeichnen von \\(c = 8\\,\\text{cm}\\) müsste \\(C\\) auf dem Kreis um \\(A\\) mit Radius \\(b = 4\\,\\text{cm}\\) <b>und</b> auf dem Kreis um \\(B\\) mit Radius \\(a = 3\\,\\text{cm}\\) liegen. Die Kreise reichen zusammen nur \\(4 + 3 = 7\\,\\text{cm}\\) weit, zwischen ihnen bleibt \\(1\\,\\text{cm}\\) Lücke — kein Schnittpunkt. Das ist die Dreiecksungleichung: \\(a + b > c\\) ist verletzt. SSS liefert nur dann ein Dreieck, wenn diese Bedingung erfüllt ist; „berühren“ träte bei \\(a + b = c\\) ein."
       },
       {
         id: 32,
         level: 6,
         typ: "numerisch",
-        frage: "Ein Dreieck hat die Winkel \\(\\alpha = 50°, \\beta = 70°\\). Wie groß ist \\(\\gamma\\) vor der Konstruktion (in Grad)?",
-        loesung: 60,
+        frage: "Ein Dreieck soll aus \\(c = 6\\,\\text{cm}\\), \\(\\alpha = 40°\\) und \\(\\beta = 140°\\) konstruiert werden. Wie viele Dreiecke gibt es?",
+        loesung: 0,
         toleranz: 0,
-        tipp: "\\(180° - 50° - 70°\\).",
-        loesungsweg: "$$\\gamma = 180° - 120° = 60°$$"
+        tipp: "Wie groß wäre der dritte Winkel?",
+        loesungsweg: "<b>Sonderfall:</b> \\(\\alpha + \\beta = 40° + 140° = 180°\\). Für \\(\\gamma\\) bliebe \\(0°\\) — die beiden freien Schenkel an \\(A\\) und \\(B\\) verlaufen <b>parallel</b> und schneiden sich nie. Es gibt <b>kein</b> Dreieck. Bei WSW muss die Summe der beiden angetragenen Winkel kleiner als \\(180°\\) sein."
       },
       {
         id: 33,
         level: 6,
-        typ: "mc",
-        frage: "Wie konstruiert man einen \\(30°\\)-Winkel mit Zirkel und Lineal?",
-        optionen: ["Mit dem Geodreieck", "Zuerst \\(60°\\) (gleichseitig), dann halbieren", "\\(45°\\) halbieren", "Man braucht einen Winkelmesser"],
-        korrekt: 1,
-        tipp: "\\(60° : 2 = 30°\\).",
-        loesungsweg: "\\(60°\\)-Winkel durch gleichseitiges Dreieck konstruieren, dann mit Winkelhalbierender halbieren → \\(30°\\)."
+        typ: "numerisch",
+        frage: "Von einem Dreieck \\(ABC\\) ist bekannt: Der Umkreismittelpunkt liegt genau auf der Seite \\(c = AB\\). Wie groß ist der Winkel \\(\\gamma\\) (in Grad)?",
+        loesung: 90,
+        toleranz: 0,
+        tipp: "Wenn der Mittelpunkt auf \\(AB\\) liegt, ist \\(AB\\) ein Durchmesser des Umkreises.",
+        loesungsweg: "<b>Umkehrung:</b> Der Umkreismittelpunkt \\(M\\) hat zu \\(A\\) und \\(B\\) denselben Abstand (Radius). Liegt \\(M\\) auf \\(AB\\), ist \\(M\\) der Mittelpunkt von \\(AB\\), und \\(AB\\) ist ein <b>Durchmesser</b>. Der Punkt \\(C\\) liegt auf dem Kreis über diesem Durchmesser — nach dem <b>Satz des Thales</b> ist \\(\\gamma = 90°\\). Allgemein: Umkreismittelpunkt auf einer Seite ⇔ rechtwinklig bei der gegenüberliegenden Ecke."
       },
       {
         id: 34,
         level: 6,
-        typ: "numerisch",
-        frage: "Ein Kreis hat Radius \\(5\\,\\text{cm}\\). Er ist Umkreis eines Dreiecks. In welchem Verhältnis steht der Abstand jeder Ecke zum Mittelpunkt? Gib diesen Abstand in cm an.",
-        loesung: 5,
-        toleranz: 0,
-        tipp: "Umkreis → alle Ecken auf dem Kreis → Abstand = Radius.",
-        loesungsweg: "Jede Ecke hat vom Umkreismittelpunkt den Abstand \\(r = 5\\,\\text{cm}\\)."
+        typ: "mc",
+        frage: "Behauptung: „In jedem Dreieck liegt der Höhenschnittpunkt im Inneren des Dreiecks.“ Stimmt das?",
+        optionen: ["Nein — beim stumpfwinkligen Dreieck liegt er außerhalb, beim rechtwinkligen in der Ecke des rechten Winkels", "Ja — Höhen verlaufen immer durch das Innere, also auch ihr Schnittpunkt", "Nein — er liegt immer außerhalb des Dreiecks", "Ja, außer beim gleichseitigen Dreieck, dort fällt er mit dem Schwerpunkt zusammen"],
+        korrekt: 0,
+        tipp: "Zeichne ein Dreieck mit einem \\(120°\\)-Winkel und fälle die Höhen — wohin führt das Lot?",
+        loesungsweg: "<b>Fallunterscheidung nach der Dreiecksart:</b><br>• spitzwinklig: alle drei Höhen liegen innen, der Höhenschnittpunkt auch;<br>• rechtwinklig: zwei Höhen sind die Katheten selbst, der Schnittpunkt ist die Ecke mit dem rechten Winkel;<br>• stumpfwinklig: die Höhen auf die beiden kürzeren Seiten treffen erst auf deren <b>Verlängerungen</b>, der Höhenschnittpunkt liegt <b>außerhalb</b>.<br>Die Behauptung ist also falsch. Beim gleichseitigen Dreieck fällt er zwar mit dem Schwerpunkt zusammen, liegt aber innen — das ist keine Ausnahme."
       },
       {
         id: 35,
         level: 6,
-        typ: "mc",
-        frage: "Welche Konstruktion ergibt eine Parallele zu einer Geraden \\(g\\) durch einen Punkt \\(P\\) außerhalb von \\(g\\)?",
-        optionen: ["Senkrechte in \\(P\\) zu \\(g\\), dann Senkrechte dazu in \\(P\\)", "Kreis um \\(P\\) mit beliebigem Radius", "Zwei Kreise mit gleichem Radius", "Winkelhalbierende"],
-        korrekt: 0,
-        tipp: "Zweimal senkrecht = parallel.",
-        loesungsweg: "Konstruiere das Lot von \\(P\\) auf \\(g\\), dann das Lot auf dieses Lot in \\(P\\) → <b>Parallele</b> zu \\(g\\) durch \\(P\\)."
+        typ: "numerisch",
+        frage: "Der Punkt \\(P\\) hat von der Geraden \\(g\\) den Abstand \\(3\\,\\text{cm}\\). Wie viele Punkte auf \\(g\\) haben von \\(P\\) genau den Abstand \\(3\\,\\text{cm}\\)?",
+        loesung: 1,
+        toleranz: 0,
+        tipp: "Alle Punkte mit Abstand \\(3\\,\\text{cm}\\) von \\(P\\) bilden einen Kreis. Wie liegt dieser Kreis zu \\(g\\)?",
+        loesungsweg: "Die gesuchten Punkte liegen auf dem Kreis um \\(P\\) mit Radius \\(3\\,\\text{cm}\\) <b>und</b> auf \\(g\\). Der Abstand von \\(P\\) zu \\(g\\) ist genau der Radius, also <b>berührt</b> der Kreis die Gerade im Lotfußpunkt — <b>ein</b> Punkt.<br><b>Fallunterscheidung:</b> Radius kleiner als der Abstand (z. B. \\(2\\,\\text{cm}\\)) → kein Punkt; Radius größer (z. B. \\(5\\,\\text{cm}\\)) → zwei Punkte."
       },
       {
         id: 36,
         level: 6,
         typ: "numerisch",
-        frage: "Ein gleichseitiges Dreieck mit Seite \\(6\\,\\text{cm}\\) wird konstruiert. Die Höhe beträgt \\(h = \\frac{a\\sqrt{3}}{2}\\). Berechne die Höhe gerundet auf eine Dezimale in cm.",
-        loesung: 5.2,
-        toleranz: 0.1,
-        tipp: "\\(h = \\frac{6 \\cdot 1{,}732}{2}\\).",
-        loesungsweg: "$$h = \\frac{6\\sqrt{3}}{2} = 3\\sqrt{3} \\approx 5{,}196\\,\\text{cm} \\approx 5{,}2\\,\\text{cm}$$"
+        frage: "Im Dreieck \\(ABC\\) gilt \\(\\alpha = 50°\\) und \\(\\gamma = 80°\\). Die Winkelhalbierende von \\(\\gamma\\) schneidet die Seite \\(AB\\) im Punkt \\(D\\). Wie groß ist der Winkel \\(\\angle ADC\\) (in Grad)?",
+        loesung: 90,
+        toleranz: 0,
+        tipp: "Betrachte das Teildreieck \\(ADC\\): Zwei seiner Winkel kennst du.",
+        loesungsweg: "<b>Ansatz:</b> Die Winkelhalbierende teilt \\(\\gamma\\) in zwei Winkel zu je \\(40°\\). Im Teildreieck \\(ADC\\) sind die Winkel bei \\(A\\) gleich \\(\\alpha = 50°\\) und bei \\(C\\) gleich \\(40°\\): $$\\angle ADC = 180° - 50° - 40° = 90°$$ Die Winkelhalbierende steht hier also senkrecht auf \\(AB\\) — das liegt daran, dass das Dreieck gleichschenklig ist (\\(\\beta = 180° - 50° - 80° = 50° = \\alpha\\)): In einem gleichschenkligen Dreieck ist die Winkelhalbierende der Spitze zugleich Höhe und Mittelsenkrechte der Basis."
       }];
     </script>
     <script src="../spirale-engine.js"></script>

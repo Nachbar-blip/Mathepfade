@@ -260,127 +260,127 @@
         tipp: "Vier Grundsätze.",
         loesungsweg: "Es gibt die 4 Kongruenzsätze: <b>SSS, SWS, WSW, SsW</b>."
       },
-      // ========== LEVEL 5 -- anspruchsvoll: Transfer Winkel ==========
+      // ========== LEVEL 5 -- anspruchsvoll: zwei Bedingungen, Fehler finden, Lösbarkeit ==========
       {
         id: 25,
         level: 5,
         typ: "numerisch",
-        frage: "In einem Dreieck verhalten sich die Winkel wie \\(2:3:4\\). Wie groß ist der größte Winkel (in Grad)?",
+        frage: "In einem Dreieck ist \\(\\beta\\) um \\(20°\\) größer als \\(\\alpha\\), und \\(\\gamma\\) ist doppelt so groß wie \\(\\alpha\\). Wie groß ist \\(\\gamma\\) (in Grad)?",
         loesung: 80,
         toleranz: 0,
-        tipp: "Teile \\(180°\\) in \\(2+3+4=9\\) Teile.",
-        loesungsweg: "$$180° : 9 = 20°$$ Größter Winkel: \\(4 \\cdot 20° = 80°\\)."
+        tipp: "Drücke alle drei Winkel durch \\(\\alpha\\) aus und nutze die Winkelsumme.",
+        loesungsweg: "<b>Ansatz:</b> \\(\\beta = \\alpha + 20°\\), \\(\\gamma = 2\\alpha\\). Winkelsumme: $$\\alpha + (\\alpha + 20°) + 2\\alpha = 180° \\implies 4\\alpha = 160° \\implies \\alpha = 40°$$ Damit \\(\\gamma = 2 \\cdot 40° = 80°\\) (und \\(\\beta = 60°\\), Probe: \\(40° + 60° + 80° = 180°\\) ✓). <b>Typischer Fehler:</b> \\(\\alpha = 40°\\) als Ergebnis angeben — gefragt war \\(\\gamma\\)."
       },
       {
         id: 26,
         level: 5,
-        typ: "numerisch",
-        frage: "In einem gleichschenkligen Dreieck ist ein Basiswinkel \\(35°\\). Wie groß ist der Winkel an der Spitze (in Grad)?",
-        loesung: 110,
-        toleranz: 0,
-        tipp: "Beide Basiswinkel gleich. \\(180° - 2 \\cdot 35°\\).",
-        loesungsweg: "$$\\gamma = 180° - 70° = 110°$$"
+        typ: "mc",
+        frage: "Zwei Dreiecke stimmen überein in \\(a = 5\\,\\text{cm}\\), \\(b = 7\\,\\text{cm}\\) und \\(\\alpha = 30°\\) (der Winkel liegt der kürzeren Seite \\(a\\) gegenüber). Ein Schüler sagt: „Zwei Seiten und ein Winkel — die Dreiecke sind kongruent.“ Was ist dazu zu sagen?",
+        optionen: ["Falsch — der Winkel liegt der <b>kürzeren</b> Seite gegenüber, dann sind zwei verschiedene Dreiecke möglich", "Richtig, zwei Seiten und ein beliebiger Winkel reichen immer", "Falsch — für Kongruenz braucht man immer alle drei Seiten", "Richtig, weil \\(\\alpha\\) ein spitzer Winkel ist"],
+        korrekt: 0,
+        tipp: "Der Kongruenzsatz SsW verlangt, dass der Winkel der <b>längeren</b> Seite gegenüberliegt.",
+        loesungsweg: "Konstruiert man \\(b = 7\\,\\text{cm}\\) und trägt \\(\\alpha = 30°\\) an, schneidet der Kreis um \\(C\\) mit Radius \\(a = 5\\,\\text{cm}\\) den freien Schenkel <b>zweimal</b> — es gibt zwei nicht kongruente Dreiecke. Der Satz <b>SsW</b> gilt nur, wenn der gegebene Winkel der längeren der beiden Seiten gegenüberliegt; dann schneidet der Kreis nur einmal auf der richtigen Seite. Hier liegt \\(\\alpha\\) der kürzeren Seite \\(a\\) gegenüber, also folgt aus den Angaben keine Kongruenz."
       },
       {
         id: 27,
         level: 5,
-        typ: "mc",
-        frage: "Welche Angabe reicht NICHT, um ein Dreieck eindeutig zu konstruieren?",
-        optionen: ["\\(a = 5, b = 6, c = 7\\) (SSS)", "\\(a = 5, b = 6, \\gamma = 70°\\) (SWS)", "\\(\\alpha = 50°, \\beta = 60°, \\gamma = 70°\\) (WWW)", "\\(a = 5, \\alpha = 40°, \\beta = 60°\\) (WSW)"],
-        korrekt: 2,
-        tipp: "Drei Winkel → Ähnlichkeit, keine Größe.",
-        loesungsweg: "WWW reicht nicht — es gibt unendlich viele ähnliche Dreiecke mit diesen Winkeln, aber verschiedener Größe."
+        typ: "numerisch",
+        frage: "Ein gleichschenkliges Dreieck hat den Umfang \\(32\\,\\text{cm}\\). Jeder Schenkel ist \\(4\\,\\text{cm}\\) länger als die Basis. Wie lang ist die Basis (in cm)?",
+        loesung: 8,
+        toleranz: 0,
+        tipp: "Basis \\(b\\), Schenkel \\(b + 4\\). Der Umfang besteht aus einer Basis und zwei Schenkeln.",
+        loesungsweg: "<b>Ansatz:</b> Basis \\(b\\), jeder Schenkel \\(b + 4\\). $$b + 2(b + 4) = 32 \\implies 3b + 8 = 32 \\implies b = 8$$ Basis \\(8\\,\\text{cm}\\), Schenkel je \\(12\\,\\text{cm}\\); Probe: \\(8 + 12 + 12 = 32\\) ✓. <b>Typischer Fehler:</b> nur einen Schenkel im Umfang mitzählen."
       },
       {
         id: 28,
         level: 5,
         typ: "numerisch",
-        frage: "Ein Dreieck hat \\(\\alpha = x\\), \\(\\beta = 2x\\), \\(\\gamma = 3x\\). Bestimme \\(x\\) in Grad.",
-        loesung: 30,
+        frage: "Zwei Seiten eines Dreiecks sind \\(5\\,\\text{cm}\\) und \\(9\\,\\text{cm}\\) lang, die dritte Seite ist eine ganze Zahl in cm. Wie viele verschiedene Dreiecke sind möglich?",
+        loesung: 9,
         toleranz: 0,
-        tipp: "\\(x + 2x + 3x = 180°\\).",
-        loesungsweg: "$$6x = 180° \\implies x = 30°$$"
+        tipp: "Die dritte Seite muss kleiner als die Summe und größer als die Differenz der beiden anderen sein.",
+        loesungsweg: "<b>Dreiecksungleichung:</b> \\(9 - 5 < c < 9 + 5\\), also \\(4 < c < 14\\). Ganzzahlig: \\(c \\in \\{5, 6, 7, 8, 9, 10, 11, 12, 13\\}\\) — das sind <b>9</b> Möglichkeiten. <b>Typischer Fehler:</b> die Grenzen \\(4\\) und \\(14\\) mitzählen — bei \\(c = 4\\) oder \\(c = 14\\) liegen die Punkte auf einer Geraden, es entsteht kein Dreieck."
       },
       {
         id: 29,
         level: 5,
-        typ: "numerisch",
-        frage: "Ein gleichschenkliges Dreieck hat den Umfang \\(28\\,\\text{cm}\\). Die Basis ist \\(8\\,\\text{cm}\\). Wie lang ist ein Schenkel (in cm)?",
-        loesung: 10,
-        toleranz: 0,
-        tipp: "\\(U = 2s + b\\), also \\(28 = 2s + 8\\).",
-        loesungsweg: "$$2s = 28 - 8 = 20 \\implies s = 10\\,\\text{cm}$$"
+        typ: "mc",
+        frage: "In einem gleichschenkligen Dreieck beträgt der Winkel an der Spitze \\(40°\\). Ein Schüler rechnet: „Basiswinkel \\(= 180° - 40° = 140°\\).“ Was ist dazu zu sagen?",
+        optionen: ["Falsch — \\(140°\\) ist die Summe <b>beider</b> Basiswinkel, jeder einzelne beträgt \\(70°\\)", "Richtig, der Rest der Winkelsumme ist der Basiswinkel", "Falsch — die Basiswinkel sind ebenfalls \\(40°\\), weil das Dreieck gleichschenklig ist", "Falsch — richtig wäre \\(180° - 2 \\cdot 40° = 100°\\)"],
+        korrekt: 0,
+        tipp: "Im gleichschenkligen Dreieck gibt es zwei gleich große Basiswinkel.",
+        loesungsweg: "Die Winkelsumme lässt für die beiden Basiswinkel zusammen \\(180° - 40° = 140°\\). Da sie gleich groß sind: $$\\frac{140°}{2} = 70°$$ Probe: \\(40° + 70° + 70° = 180°\\) ✓. Der Schüler hat den letzten Schritt (Halbieren) vergessen — ein Winkel von \\(140°\\) wäre allein schon größer als die Summe der beiden anderen."
       },
       {
         id: 30,
         level: 5,
-        typ: "mc",
-        frage: "Zwei Dreiecke haben: \\(a=5, b=7\\), eingeschlossener Winkel \\(\\gamma = 40°\\). Sind sie kongruent?",
-        optionen: ["Ja, nach SWS", "Nein, zu wenig Angaben", "Nur, wenn die dritte Seite gleich ist", "Nur, wenn sie rechtwinklig sind"],
-        korrekt: 0,
-        tipp: "Zwei Seiten und der <b>eingeschlossene</b> Winkel.",
-        loesungsweg: "Nach dem Kongruenzsatz <b>SWS</b> sind die Dreiecke kongruent."
+        typ: "numerisch",
+        frage: "Ein Außenwinkel eines Dreiecks beträgt \\(125°\\). Die beiden nicht anliegenden Innenwinkel unterscheiden sich um \\(15°\\). Wie groß ist der größere dieser beiden Innenwinkel (in Grad)?",
+        loesung: 70,
+        toleranz: 0,
+        tipp: "Der Außenwinkel ist so groß wie die beiden nicht anliegenden Innenwinkel zusammen.",
+        loesungsweg: "<b>Außenwinkelsatz:</b> Die beiden nicht anliegenden Innenwinkel ergeben zusammen \\(125°\\). Größerer Winkel \\(x\\), kleinerer \\(x - 15°\\): $$x + (x - 15°) = 125° \\implies 2x = 140° \\implies x = 70°$$ Die Winkel sind \\(70°\\) und \\(55°\\); der dritte Innenwinkel ist \\(180° - 125° = 55°\\). Probe: \\(70° + 55° + 55° = 180°\\) ✓."
       },
-      // ========== LEVEL 6 -- wagnerisch: Außenwinkel und Transfer ==========
+      // ========== LEVEL 6 -- wagnerisch: Behauptungen, Sonderfälle, Fallunterscheidung ==========
       {
         id: 31,
         level: 6,
-        typ: "numerisch",
-        frage: "Außenwinkelsatz: Der Außenwinkel eines Dreiecks ist die Summe der beiden nicht anliegenden Innenwinkel. Wenn \\(\\alpha = 40°\\) und \\(\\beta = 70°\\), wie groß ist der Außenwinkel an \\(C\\) (in Grad)?",
-        loesung: 110,
-        toleranz: 0,
-        tipp: "Außenwinkel an \\(C\\) = \\(\\alpha + \\beta\\).",
-        loesungsweg: "$$\\text{Außenwinkel an } C = \\alpha + \\beta = 40° + 70° = 110°$$"
+        typ: "mc",
+        frage: "Behauptung: „Ein Dreieck mit den Seiten \\(a = 4\\,\\text{cm}\\), \\(b = 6\\,\\text{cm}\\) und \\(c = 10\\,\\text{cm}\\) lässt sich nicht konstruieren.“ Stimmt das?",
+        optionen: ["Ja — wegen \\(4 + 6 = 10\\) liegen die drei Punkte auf einer Geraden, es entsteht kein Dreieck", "Nein — \\(4 + 6 = 10\\) reicht gerade aus, das Dreieck ist nur sehr flach", "Nein — aus drei beliebigen Längen lässt sich immer ein Dreieck konstruieren", "Ja — weil \\(c\\) mehr als doppelt so lang wie \\(a\\) ist"],
+        korrekt: 0,
+        tipp: "Die Kreise um \\(A\\) (Radius \\(b\\)) und um \\(B\\) (Radius \\(a\\)) müssen sich in einem Punkt außerhalb von \\(AB\\) schneiden.",
+        loesungsweg: "Bei der Konstruktion nach SSS zeichnet man \\(c = 10\\,\\text{cm}\\) und schlägt Kreise um \\(A\\) mit Radius \\(6\\,\\text{cm}\\) und um \\(B\\) mit Radius \\(4\\,\\text{cm}\\). Da \\(6 + 4 = 10\\) genau der Abstand der Mittelpunkte ist, <b>berühren</b> sich die Kreise nur in einem Punkt auf der Strecke \\(AB\\). Die drei Punkte liegen auf einer Geraden — der Sonderfall der Dreiecksungleichung: Es muss <b>strikt</b> \\(a + b > c\\) gelten. „Mehr als doppelt so lang“ ist kein Kriterium (\\(3, 4, 6\\) ist ein Dreieck, obwohl \\(6 = 2 \\cdot 3\\))."
       },
       {
         id: 32,
         level: 6,
         typ: "numerisch",
-        frage: "Die Winkel eines Dreiecks sind \\(\\alpha, \\alpha+10°, \\alpha+20°\\). Bestimme \\(\\alpha\\) in Grad.",
+        frage: "Im Dreieck \\(ABC\\) schneiden sich die Winkelhalbierenden von \\(\\beta\\) und \\(\\gamma\\) im Punkt \\(P\\). Der Winkel \\(\\angle BPC\\) beträgt \\(115°\\). Wie groß ist \\(\\alpha\\) (in Grad)?",
         loesung: 50,
         toleranz: 0,
-        tipp: "\\(3\\alpha + 30° = 180°\\).",
-        loesungsweg: "$$3\\alpha = 150° \\implies \\alpha = 50°$$"
+        tipp: "Betrachte das Dreieck \\(BPC\\): Seine Winkel bei \\(B\\) und \\(C\\) sind halb so groß wie \\(\\beta\\) und \\(\\gamma\\).",
+        loesungsweg: "<b>Ansatz:</b> Im Dreieck \\(BPC\\) gilt \\(\\frac{\\beta}{2} + \\frac{\\gamma}{2} + 115° = 180°\\), also $$\\frac{\\beta + \\gamma}{2} = 65° \\implies \\beta + \\gamma = 130°$$ Winkelsumme im Dreieck \\(ABC\\): \\(\\alpha = 180° - 130° = 50°\\). <b>Umkehrung:</b> Allgemein gilt \\(\\angle BPC = 90° + \\frac{\\alpha}{2}\\); mit \\(115°\\) folgt ebenfalls \\(\\alpha = 50°\\)."
       },
       {
         id: 33,
         level: 6,
         typ: "mc",
-        frage: "Im gleichschenkligen Dreieck mit \\(a = c\\) gilt für die Winkel:",
-        optionen: ["\\(\\alpha = \\beta\\)", "\\(\\alpha = \\gamma\\)", "\\(\\beta = \\gamma\\)", "alle drei sind gleich"],
-        korrekt: 1,
-        tipp: "Gleichen Seiten liegen gleiche Gegenwinkel gegenüber. \\(a\\) liegt gegenüber \\(\\alpha\\), \\(c\\) gegenüber \\(\\gamma\\).",
-        loesungsweg: "\\(a = c\\) → \\(\\alpha = \\gamma\\) (Basiswinkelsatz)."
+        frage: "Ein Dreieck soll aus \\(a = 5\\,\\text{cm}\\), \\(b = 8\\,\\text{cm}\\) und \\(\\beta = 40°\\) konstruiert werden (\\(\\beta\\) liegt der längeren Seite \\(b\\) gegenüber). Behauptung: „Die Konstruktion ist nicht eindeutig, weil der Winkel nicht zwischen den beiden Seiten liegt.“ Stimmt das?",
+        optionen: ["Nein — der Kreis um \\(A\\) mit Radius \\(8\\,\\text{cm}\\) schneidet den freien Schenkel nur einmal auf der richtigen Seite; es gibt genau ein Dreieck (SsW)", "Ja — es entstehen immer zwei Dreiecke, wenn der Winkel nicht eingeschlossen ist", "Ja — ohne eingeschlossenen Winkel ist überhaupt keine Konstruktion möglich", "Nein — zwei Seiten legen ein Dreieck immer eindeutig fest, der Winkel ist überflüssig"],
+        korrekt: 0,
+        tipp: "Entscheidend ist, ob der gegebene Winkel der längeren oder der kürzeren Seite gegenüberliegt.",
+        loesungsweg: "<b>Konstruktion:</b> Seite \\(a = BC = 5\\,\\text{cm}\\) zeichnen, in \\(B\\) den Winkel \\(\\beta = 40°\\) antragen, dann Kreis um \\(C\\) mit Radius \\(b = 8\\,\\text{cm}\\). Weil \\(b > a\\), ist der Radius größer als der Abstand \\(BC\\): Der Kreis schneidet den freien Schenkel <b>einmal</b> auf der Seite von \\(B\\), die zum Winkel gehört (der zweite Schnittpunkt liegt auf der Verlängerung hinter \\(B\\) und liefert kein Dreieck mit dem Winkel \\(40°\\)). Das ist genau der Kongruenzsatz <b>SsW</b>: Winkel gegenüber der längeren Seite → eindeutig. Zwei Lösungen gäbe es nur, wenn der Winkel der kürzeren Seite gegenüberläge."
       },
       {
         id: 34,
         level: 6,
         typ: "numerisch",
-        frage: "Zwei Außenwinkel eines Dreiecks sind \\(110°\\) und \\(130°\\). Wie groß ist der dritte Außenwinkel (in Grad)?",
-        loesung: 120,
+        frage: "Ein gleichschenkliges Dreieck hat einen Innenwinkel von \\(100°\\). Wie groß ist der kleinste Innenwinkel (in Grad)?",
+        loesung: 40,
         toleranz: 0,
-        tipp: "Die Summe der Außenwinkel beträgt \\(360°\\).",
-        loesungsweg: "Die Außenwinkel eines Dreiecks ergänzen sich immer zu \\(360°\\): $$360° - 110° - 130° = 120°$$ Zur Kontrolle über die Innenwinkel: \\(70°\\), \\(50°\\) und \\(60°\\) — Summe \\(180°\\) ✓"
+        tipp: "Kann ein Winkel von \\(100°\\) ein Basiswinkel sein? Die beiden Basiswinkel sind gleich groß.",
+        loesungsweg: "<b>Fallunterscheidung:</b> Wäre \\(100°\\) ein Basiswinkel, hätte das Dreieck zwei Winkel zu je \\(100°\\) — zusammen \\(200° > 180°\\), unmöglich. Also ist \\(100°\\) der Winkel an der Spitze: $$\\text{Basiswinkel} = \\frac{180° - 100°}{2} = 40°$$ Beide anderen Winkel sind \\(40°\\), das ist zugleich der kleinste."
       },
       {
         id: 35,
         level: 6,
-        typ: "mc",
-        frage: "Ein rechtwinkliges Dreieck hat die Kathete \\(a = 3\\) und \\(b = 4\\). Welcher Satz liefert \\(c\\)?",
-        optionen: ["Winkelsumme", "Dreiecksungleichung", "Satz des Pythagoras \\(a^2+b^2=c^2\\)", "Kongruenzsatz SSS"],
-        korrekt: 2,
-        tipp: "Pythagoras verbindet die drei Seiten im rechtwinkligen Dreieck.",
-        loesungsweg: "Mit dem <b>Satz des Pythagoras</b>: \\(c^2 = 9 + 16 = 25\\), \\(c = 5\\)."
+        typ: "numerisch",
+        frage: "Ein gleichschenkliges Dreieck hat einen Innenwinkel von \\(50°\\). Für den größten Innenwinkel gibt es zwei mögliche Werte. Gib den größeren der beiden an (in Grad).",
+        loesung: 80,
+        toleranz: 0,
+        tipp: "Der \\(50°\\)-Winkel kann an der Spitze oder an der Basis liegen — rechne beide Fälle.",
+        loesungsweg: "<b>Fall 1:</b> \\(50°\\) ist der Winkel an der Spitze. Basiswinkel je \\(\\frac{180° - 50°}{2} = 65°\\); größter Winkel \\(65°\\).<br><b>Fall 2:</b> \\(50°\\) ist ein Basiswinkel. Dann ist auch der zweite Basiswinkel \\(50°\\), und die Spitze hat \\(180° - 2 \\cdot 50° = 80°\\); größter Winkel \\(80°\\).<br>Beide Fälle sind möglich (anders als bei \\(100°\\)), der größere Wert ist <b>\\(80°\\)</b>."
       },
       {
         id: 36,
         level: 6,
-        typ: "numerisch",
-        frage: "Konstruktionsaufgabe: Für welche Seite \\(c\\) (ganzzahlig) ist ein Dreieck mit \\(a=4\\) und \\(b=9\\) möglich? Gib den größten möglichen Wert für \\(c\\) an.",
-        loesung: 12,
-        toleranz: 0,
-        tipp: "\\(|9-4| < c < 9+4\\), also \\(5 < c < 13\\).",
-        loesungsweg: "$$5 < c < 13 \\implies c \\in \\{6,7,8,9,10,11,12\\}$$ Größter ganzzahliger Wert: \\(c = 12\\)."
+        typ: "mc",
+        frage: "\\(AB\\) ist der Durchmesser eines Kreises mit Mittelpunkt \\(M\\); \\(C\\) ist ein beliebiger weiterer Punkt auf dem Kreis. Behauptung: „Das Dreieck \\(ABC\\) hat bei \\(C\\) immer einen rechten Winkel.“ Stimmt das, und warum?",
+        optionen: ["Ja — \\(MA = MB = MC\\) (Radien), also sind \\(AMC\\) und \\(BMC\\) gleichschenklig; aus der Winkelsumme folgt \\(\\gamma = \\alpha + \\beta = 90°\\)", "Nur, wenn \\(C\\) genau senkrecht über \\(M\\) liegt", "Nein — das Dreieck ist gleichschenklig, aber nicht rechtwinklig", "Ja — aber der rechte Winkel liegt bei \\(A\\), nicht bei \\(C\\)"],
+        korrekt: 0,
+        tipp: "Verbinde \\(M\\) mit \\(C\\) — dann entstehen zwei gleichschenklige Dreiecke.",
+        loesungsweg: "<b>Satz des Thales.</b> Begründung: \\(MC\\) ist ein Radius wie \\(MA\\) und \\(MB\\). Im gleichschenkligen Dreieck \\(AMC\\) ist der Winkel bei \\(C\\) gleich \\(\\alpha\\), im gleichschenkligen Dreieck \\(BMC\\) gleich \\(\\beta\\). Also \\(\\gamma = \\alpha + \\beta\\). Winkelsumme: $$\\alpha + \\beta + \\gamma = 2\\gamma = 180° \\implies \\gamma = 90°$$ Das gilt für <b>jeden</b> Punkt \\(C\\) auf dem Kreis (außer \\(A\\) und \\(B\\) selbst), nicht nur für den Punkt über \\(M\\)."
       }];
     </script>
     <script src="../spirale-engine.js"></script>

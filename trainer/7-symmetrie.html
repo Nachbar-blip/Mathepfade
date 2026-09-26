@@ -167,7 +167,7 @@
         loesung: -4,
         toleranz: 0,
         tipp: "\\(y\\)-Koordinate wird mit \\(-1\\) multipliziert.",
-        loesungsweg: "Spiegelung an der \\(x\\)-Achse: \\((x|y) \\mapsto (x|-y)\\). Also \\(P'(3|-4)\\), \\(y = -4\\)."
+        loesungsweg: "Spiegelung an der \\(x\\)-Achse: \\((x|y) \\mapsto (x|-y)\\). Also \\(P'(3|{-4})\\), \\(y = -4\\)."
       },
       {
         id: 16,
@@ -187,7 +187,7 @@
         loesung: -3,
         toleranz: 0,
         tipp: "Beide Koordinaten negieren.",
-        loesungsweg: "Bei der Punktspiegelung am Ursprung kehren <b>beide</b> Koordinaten ihr Vorzeichen um: $$(x|y) \\mapsto (-x|-y) \\;\\Rightarrow\\; P'(-3|-4)$$ Die gesuchte \\(x\\)-Koordinate ist \\(-3\\). Der Ursprung liegt dabei genau in der Mitte zwischen \\(P\\) und \\(P'\\)."
+        loesungsweg: "Bei der Punktspiegelung am Ursprung kehren <b>beide</b> Koordinaten ihr Vorzeichen um: $$(x|y) \\mapsto (-x|-y) \\;\\Rightarrow\\; P'(-3|{-4})$$ Die gesuchte \\(x\\)-Koordinate ist \\(-3\\). Der Ursprung liegt dabei genau in der Mitte zwischen \\(P\\) und \\(P'\\)."
       },
       {
         id: 18,
@@ -260,127 +260,127 @@
         tipp: "Ein schiefes Parallelogramm.",
         loesungsweg: "Ein <b>Parallelogramm</b> (ohne besondere Eigenschaften) ist nur punktsymmetrisch."
       },
-      // ========== LEVEL 5 -- anspruchsvoll: Kombinierte Abbildungen ==========
+      // ========== LEVEL 5 -- anspruchsvoll: Verkettungen, Fehler finden, zwei Bedingungen ==========
       {
         id: 25,
         level: 5,
         typ: "numerisch",
-        frage: "Punkt \\(P(4|-3)\\) wird zuerst an \\(x\\)-Achse gespiegelt, dann an \\(y\\)-Achse. Welche \\(x\\)-Koordinate hat \\(P''\\)?",
+        frage: "Der Punkt \\(P(3|{-4})\\) wird um \\(180°\\) um den Ursprung gedreht und das Bild anschließend an der \\(x\\)-Achse gespiegelt. Welche \\(y\\)-Koordinate hat der Endpunkt?",
         loesung: -4,
         toleranz: 0,
-        tipp: "Erst \\(y \\mapsto -y\\), dann \\(x \\mapsto -x\\).",
-        loesungsweg: "Nach 1. Spiegelung: \\((4|3)\\). Nach 2. Spiegelung: \\((-4|3)\\). Das ist gleich einer Punktspiegelung am Ursprung."
+        tipp: "Führe die beiden Abbildungen nacheinander aus und notiere jeweils beide Koordinaten.",
+        loesungsweg: "<b>Schritt 1 (Drehung um \\(180°\\) = Punktspiegelung am Ursprung):</b> beide Koordinaten wechseln das Vorzeichen: \\(P(3|{-4}) \\to P'(-3|4)\\).<br><b>Schritt 2 (Spiegelung an der \\(x\\)-Achse):</b> nur die \\(y\\)-Koordinate wechselt das Vorzeichen: \\(P'(-3|4) \\to P''(-3|{-4})\\).<br>Die \\(y\\)-Koordinate ist \\(-4\\). Insgesamt wirkt die Verkettung wie eine Spiegelung an der \\(y\\)-Achse."
       },
       {
         id: 26,
         level: 5,
         typ: "mc",
-        frage: "Zwei Achsenspiegelungen an parallelen Achsen ergeben …",
-        optionen: ["Eine weitere Achsenspiegelung", "Eine Parallelverschiebung", "Eine Drehung", "Eine Punktspiegelung"],
-        korrekt: 1,
-        tipp: "Das Ergebnis bewegt die Figur in gleicher Richtung.",
-        loesungsweg: "Zwei Spiegelungen an <b>parallelen</b> Achsen ergeben eine <b>Parallelverschiebung</b> um das Doppelte des Achsenabstands."
+        frage: "Lena spiegelt den Punkt \\(P(4|1)\\) an der \\(x\\)-Achse und erhält \\(P'(-4|1)\\). Was ist dazu zu sagen?",
+        optionen: ["Falsch — bei der Spiegelung an der \\(x\\)-Achse ändert die \\(y\\)-Koordinate das Vorzeichen: \\(P'(4|{-1})\\)", "Richtig", "Falsch — beide Koordinaten wechseln das Vorzeichen: \\(P'(-4|{-1})\\)", "Falsch — die Koordinaten werden vertauscht: \\(P'(1|4)\\)"],
+        korrekt: 0,
+        tipp: "Die Spiegelachse ist die \\(x\\)-Achse — welche Koordinate misst den Abstand zu ihr?",
+        loesungsweg: "Die \\(x\\)-Achse ist die Spiegelachse. Punkte auf ihr bleiben fest, jeder andere Punkt wandert senkrecht zur Achse auf die andere Seite: Der Abstand zur Achse (die \\(y\\)-Koordinate) bleibt gleich groß, aber mit umgekehrtem Vorzeichen; die \\(x\\)-Koordinate ändert sich nicht. Also \\(P'(4|{-1})\\). Lenas Ergebnis \\((-4|1)\\) wäre die Spiegelung an der \\(y\\)-Achse — die Achsen wurden verwechselt."
       },
       {
         id: 27,
         level: 5,
-        typ: "mc",
-        frage: "Zwei Achsenspiegelungen an sich schneidenden Achsen ergeben …",
-        optionen: ["Parallelverschiebung", "Drehung um den Schnittpunkt", "Identität", "Punktspiegelung an einer Achse"],
-        korrekt: 1,
-        tipp: "Schnittpunkt = Drehzentrum.",
-        loesungsweg: "Zwei Spiegelungen an sich schneidenden Achsen ergeben eine <b>Drehung</b> um den Schnittpunkt (doppelter Achsenwinkel)."
+        typ: "numerisch",
+        frage: "Ein regelmäßiges Vieleck hat genau \\(9\\) Symmetrieachsen. Wie groß ist sein kleinster Drehwinkel (in Grad), bei dem es auf sich selbst abgebildet wird?",
+        loesung: 40,
+        toleranz: 0,
+        tipp: "Wie viele Ecken hat ein regelmäßiges Vieleck mit \\(9\\) Symmetrieachsen?",
+        loesungsweg: "<b>Schritt 1:</b> Ein regelmäßiges \\(n\\)-Eck hat genau \\(n\\) Symmetrieachsen, also \\(n = 9\\).<br><b>Schritt 2:</b> Der kleinste Drehwinkel ist \\(\\frac{360°}{n} = \\frac{360°}{9} = 40°\\).<br><b>Typischer Fehler:</b> \\(180° : 9 = 20°\\) — eine Drehung um \\(20°\\) bildet das Neuneck nicht auf sich ab."
       },
       {
         id: 28,
         level: 5,
         typ: "numerisch",
-        frage: "Eine Figur ist 5-fach drehsymmetrisch (kleinster Drehwinkel). Wie groß ist dieser Winkel in Grad?",
-        loesung: 72,
+        frage: "Die Punkte \\(A(1|2)\\) und \\(A'(7|2)\\) sind Punkt und Bildpunkt einer Achsenspiegelung. Die Achse verläuft parallel zur \\(y\\)-Achse. Bei welchem \\(x\\)-Wert liegt sie?",
+        loesung: 4,
         toleranz: 0,
-        tipp: "\\(360° : 5\\).",
-        loesungsweg: "Fünf Deckdrehungen teilen die volle Drehung in fünf gleiche Teile: $$\\frac{360°}{5} = 72°$$ Die weiteren Drehwinkel sind Vielfache davon: \\(144°\\), \\(216°\\), \\(288°\\)."
+        tipp: "Die Achse ist die Mittelsenkrechte der Strecke \\(AA'\\).",
+        loesungsweg: "<b>Ansatz:</b> Die Spiegelachse ist die Mittelsenkrechte von \\(AA'\\). Da beide Punkte dieselbe \\(y\\)-Koordinate haben, liegt \\(AA'\\) waagerecht, die Achse also senkrecht — durch den Mittelpunkt: $$x = \\frac{1 + 7}{2} = 4$$ Die Achse ist die Gerade \\(x = 4\\); beide Punkte haben von ihr den Abstand \\(3\\)."
       },
       {
         id: 29,
         level: 5,
         typ: "mc",
-        frage: "Welche Raute ist zusätzlich achsensymmetrisch zu den Diagonalen?",
-        optionen: ["Nur Raute mit rechten Winkeln (Quadrat)", "Jede Raute", "Keine Raute", "Nur sehr schmale Rauten"],
-        korrekt: 1,
-        tipp: "Eine Raute hat 2 Symmetrieachsen.",
-        loesungsweg: "<b>Jede Raute</b> ist achsensymmetrisch zu beiden Diagonalen (2 Symmetrieachsen)."
+        frage: "Tom konstruiert zu \\(P\\) den Spiegelpunkt \\(P'\\) an der Achse \\(a\\): Er zeichnet das Lot von \\(P\\) auf \\(a\\), verlängert es über \\(a\\) hinaus und markiert dort irgendwo \\(P'\\). Was fehlt in seiner Konstruktion?",
+        optionen: ["Der Abstand von \\(P'\\) zur Achse muss genauso groß sein wie der von \\(P\\) — mit dem Zirkel abtragen", "Nichts — jeder Punkt auf der Verlängerung des Lots ist ein Spiegelpunkt", "Er muss statt des Lots eine Parallele zu \\(a\\) durch \\(P\\) zeichnen", "Er muss \\(P'\\) auf der gleichen Seite der Achse wie \\(P\\) wählen"],
+        korrekt: 0,
+        tipp: "Was gilt bei einer Spiegelung für die Abstände zur Achse?",
+        loesungsweg: "Eine Achsenspiegelung ist durch <b>zwei</b> Bedingungen festgelegt: (1) \\(PP'\\) steht senkrecht auf der Achse — das hat Tom mit dem Lot erfüllt; (2) die Achse <b>halbiert</b> die Strecke \\(PP'\\), d. h. \\(P\\) und \\(P'\\) haben denselben Abstand zur Achse. Diesen Abstand überträgt man mit dem Zirkel (Kreis um den Lotfußpunkt durch \\(P\\)). Ohne Bedingung (2) ist \\(P'\\) nicht eindeutig."
       },
       {
         id: 30,
         level: 5,
         typ: "numerisch",
-        frage: "Punkt \\(A(2|5)\\) wird um den Ursprung um \\(180°\\) gedreht. Welche \\(y\\)-Koordinate hat \\(A'\\)?",
-        loesung: -5,
+        frage: "Der Punkt \\(P(a|3)\\) mit \\(a > 0\\) und sein Spiegelbild an der \\(y\\)-Achse haben voneinander den Abstand \\(10\\). Wie groß ist \\(a\\)?",
+        loesung: 5,
         toleranz: 0,
-        tipp: "\\(180°\\)-Drehung = Punktspiegelung.",
-        loesungsweg: "Eine Drehung um \\(180°\\) ist dasselbe wie die Punktspiegelung am Drehzentrum: $$(2|5) \\mapsto (-2|-5)$$ Die gesuchte \\(y\\)-Koordinate ist \\(-5\\)."
+        tipp: "Wie lauten die Koordinaten des Spiegelbilds?",
+        loesungsweg: "<b>Ansatz:</b> Spiegelbild \\(P'(-a|3)\\). Beide Punkte liegen auf derselben Höhe, ihr Abstand ist die Differenz der \\(x\\)-Koordinaten: $$a - (-a) = 2a = 10 \\implies a = 5$$ \\(P(5|3)\\) und \\(P'(-5|3)\\) haben je den Abstand \\(5\\) zur Achse, zusammen \\(10\\)."
       },
-      // ========== LEVEL 6 -- wagnerisch: Transfer und Beweise ==========
+      // ========== LEVEL 6 -- wagnerisch: Behauptungen, Umkehraufgaben, Sonderfälle ==========
       {
         id: 31,
         level: 6,
-        typ: "numerisch",
-        frage: "Eine gleichschenkliges Trapez hat wie viele Symmetrieachsen?",
-        loesung: 1,
-        toleranz: 0,
-        tipp: "Durch die Mitten der parallelen Seiten.",
-        loesungsweg: "Ein gleichschenkliges Trapez hat <b>1 Symmetrieachse</b> — senkrecht zu den Parallelen durch ihre Mittelpunkte."
+        typ: "mc",
+        frage: "Behauptung: „Kein Dreieck ist punktsymmetrisch.“ Stimmt das?",
+        optionen: ["Ja — bei einer Punktspiegelung braucht jede Ecke eine gegenüberliegende Partnerecke; mit drei Ecken geht das nicht auf", "Nein — das gleichseitige Dreieck ist punktsymmetrisch zu seinem Mittelpunkt", "Nein — jedes gleichschenklige Dreieck ist punktsymmetrisch zur Mitte seiner Höhe", "Ja — Dreiecke haben überhaupt keine Symmetrien"],
+        korrekt: 0,
+        tipp: "Drehe ein gleichseitiges Dreieck um \\(180°\\) um seinen Mittelpunkt — liegt es wieder auf sich?",
+        loesungsweg: "Eine Punktspiegelung (Drehung um \\(180°\\)) bildet jede Ecke auf einen Punkt ab, der vom Zentrum gleich weit entfernt auf der anderen Seite liegt. Damit die Figur auf sich selbst fällt, müssen die Ecken sich <b>paarweise</b> gegenüberliegen — das geht nur bei einer geraden Anzahl von Ecken (Parallelogramm, regelmäßiges Sechseck…). Ein Dreieck hat drei Ecken, also bleibt eine übrig. Das gleichseitige Dreieck zeigt beim Drehen um \\(180°\\) die Spitze nach unten — es ist dreh- (um \\(120°\\)) und achsensymmetrisch, aber nicht punktsymmetrisch."
       },
       {
         id: 32,
         level: 6,
-        typ: "mc",
-        frage: "Ein Drachenviereck (Drachen) ist …",
-        optionen: ["nur punktsymmetrisch", "achsensymmetrisch zu einer Diagonalen", "achsensymmetrisch zu beiden Diagonalen", "nicht symmetrisch"],
-        korrekt: 1,
-        tipp: "Nur eine Diagonale ist Symmetrieachse.",
-        loesungsweg: "Ein <b>Drachen</b> ist achsensymmetrisch zur Symmetriediagonale (die die spitzen Winkel halbiert)."
+        typ: "numerisch",
+        frage: "Ein Punkt \\(P\\) wird am Zentrum \\(Z(2|3)\\) gespiegelt; der Bildpunkt ist \\(P'(7|1)\\). Welche \\(x\\)-Koordinate hat \\(P\\)?",
+        loesung: -3,
+        toleranz: 0,
+        tipp: "Bei einer Punktspiegelung ist \\(Z\\) der Mittelpunkt der Strecke \\(PP'\\).",
+        loesungsweg: "<b>Umkehraufgabe:</b> \\(Z\\) liegt in der Mitte zwischen \\(P\\) und \\(P'\\). Von \\(P'\\) nach \\(Z\\) geht man \\(7 - 2 = 5\\) nach links; ebenso weit geht es von \\(Z\\) weiter zu \\(P\\): $$x_P = 2 - 5 = -3$$ Ebenso \\(y_P = 3 + 2 = 5\\), also \\(P(-3|5)\\). Probe: Mittelpunkt von \\((-3|5)\\) und \\((7|1)\\) ist \\((2|3) = Z\\) ✓."
       },
       {
         id: 33,
         level: 6,
         typ: "numerisch",
-        frage: "Ein Punkt \\(P(a|b)\\) wird an der Geraden \\(y = x\\) gespiegelt. Der Bildpunkt ist \\((b|a)\\). Bestimme die \\(x\\)-Koordinate des Bildes von \\(P(3|7)\\).",
-        loesung: 7,
+        frage: "Ein Stern wird um sein Zentrum gedreht. Nach \\(216°\\) liegt er zum <b>dritten</b> Mal wieder auf sich selbst (die Ausgangslage nicht mitgezählt). Wie viele Zacken hat der Stern?",
+        loesung: 5,
         toleranz: 0,
-        tipp: "Koordinaten vertauschen.",
-        loesungsweg: "Bei der Spiegelung an der Winkelhalbierenden \\(y = x\\) werden die Koordinaten vertauscht: $$(3|7) \\mapsto (7|3)$$ Die \\(x\\)-Koordinate des Bildes ist also \\(7\\). Anschaulich: Die Gerade \\(y = x\\) besteht genau aus den Punkten, bei denen dieses Vertauschen nichts ändert — sie bleiben fest."
+        tipp: "Wie groß ist dann der kleinste Drehwinkel?",
+        loesungsweg: "<b>Schritt 1:</b> Drei Deckungen nach \\(216°\\) heißt: der kleinste Drehwinkel ist \\(\\frac{216°}{3} = 72°\\).<br><b>Schritt 2:</b> Ein Stern mit \\(n\\) Zacken kommt beim Drehen um \\(\\frac{360°}{n}\\) auf sich selbst: $$\\frac{360°}{n} = 72° \\implies n = 5$$ Ein fünfzackiger Stern."
       },
       {
         id: 34,
         level: 6,
         typ: "mc",
-        frage: "Welche der Aussagen ist WAHR?",
-        optionen: ["Jede achsensymmetrische Figur ist auch punktsymmetrisch", "Jede punktsymmetrische Figur ist auch achsensymmetrisch", "Eine Figur kann beide Symmetrien, eine oder keine haben", "Kreise haben nur Punktsymmetrie"],
-        korrekt: 2,
-        tipp: "Die Beziehung ist unabhängig.",
-        loesungsweg: "Achsen- und Punktsymmetrie sind unabhängig. Beispiel: Gleichseitiges Dreieck hat nur Achsensymmetrie, Parallelogramm nur Punktsymmetrie."
+        frage: "Behauptung: „Spiegelt man eine Figur erst an der Geraden \\(a\\) und das Bild dann an der dazu parallelen Geraden \\(b\\) (Abstand \\(3\\,\\text{cm}\\)), so wurde die Figur insgesamt um \\(3\\,\\text{cm}\\) verschoben.“ Stimmt das?",
+        optionen: ["Nein — die Figur wurde um \\(6\\,\\text{cm}\\) verschoben, den doppelten Achsenabstand", "Ja", "Nein — es ist keine Verschiebung, sondern eine Drehung um \\(180°\\)", "Nein — die Figur wurde um \\(1{,}5\\,\\text{cm}\\) verschoben"],
+        korrekt: 0,
+        tipp: "Verfolge einen Punkt, der \\(1\\,\\text{cm}\\) vor \\(a\\) liegt: Wo landet er nach beiden Spiegelungen?",
+        loesungsweg: "Nimm einen Punkt \\(P\\) mit Abstand \\(d\\) vor der Achse \\(a\\) (in Richtung \\(b\\) gemessen). Nach der Spiegelung an \\(a\\) liegt er \\(d\\) hinter \\(a\\), also \\(3 + d\\) vor \\(b\\). Nach der Spiegelung an \\(b\\) liegt er \\(3 + d\\) hinter \\(b\\). Insgesamt: von \\(d\\) vor \\(a\\) nach \\(3 + 3 + d\\) — Verschiebung um $$2 \\cdot 3\\,\\text{cm} = 6\\,\\text{cm}$$ senkrecht zu den Achsen. Zwei Spiegelungen an <b>parallelen</b> Achsen ergeben stets eine Verschiebung um den doppelten Achsenabstand; eine Drehung entstünde bei sich schneidenden Achsen."
       },
       {
         id: 35,
         level: 6,
         typ: "numerisch",
-        frage: "Ein regelmäßiges \\(n\\)-Eck hat \\(8\\) Symmetrieachsen. Wie viele Ecken hat es?",
-        loesung: 8,
+        frage: "Der Punkt \\(P(1|4)\\) wird an der \\(x\\)-Achse und danach an der \\(y\\)-Achse gespiegelt. Um wie viel Grad müsste man \\(P\\) stattdessen um den Ursprung drehen, um direkt denselben Endpunkt zu erhalten?",
+        loesung: 180,
         toleranz: 0,
-        tipp: "Regelmäßiges \\(n\\)-Eck: \\(n\\) Symmetrieachsen.",
-        loesungsweg: "Ein regelmäßiges \\(n\\)-Eck hat genau \\(n\\) Symmetrieachsen. Also \\(n = 8\\)."
+        tipp: "Bestimme zuerst den Endpunkt — wie liegt er zu \\(P\\)?",
+        loesungsweg: "<b>Schritt 1:</b> \\(P(1|4) \\to (1|{-4}) \\to (-1|{-4})\\).<br><b>Schritt 2:</b> Der Endpunkt \\((-1|{-4})\\) ist das Spiegelbild von \\(P\\) am Ursprung, und eine Punktspiegelung ist eine Drehung um \\(180°\\).<br><b>Begründung allgemein:</b> Zwei Spiegelungen an sich schneidenden Achsen ergeben eine Drehung um den <b>doppelten</b> Winkel zwischen den Achsen; die Koordinatenachsen schließen \\(90°\\) ein, also \\(2 \\cdot 90° = 180°\\)."
       },
       {
         id: 36,
         level: 6,
         typ: "numerisch",
-        frage: "Ein Stern ist 5-fach drehsymmetrisch. Nach wie vielen Grad Drehung kommt er zum zweiten Mal in Ausgangslage (außer \\(360°\\))? Gib diesen Winkel an.",
-        loesung: 144,
+        frage: "Der Punkt \\(P(5|2)\\) soll durch eine Achsenspiegelung auf \\(P'(5|{-6})\\) abgebildet werden. Bei welchem \\(y\\)-Wert verläuft die Spiegelachse?",
+        loesung: -2,
         toleranz: 0,
-        tipp: "\\(2 \\cdot \\frac{360°}{5}\\).",
-        loesungsweg: "Kleinster Drehwinkel: \\(72°\\). Zweite Übereinstimmung: \\(2 \\cdot 72° = 144°\\)."
+        tipp: "\\(P\\) und \\(P'\\) haben dieselbe \\(x\\)-Koordinate — wie muss die Achse also verlaufen?",
+        loesungsweg: "<b>Umkehraufgabe:</b> \\(PP'\\) verläuft senkrecht (gleiche \\(x\\)-Koordinate), die Achse steht senkrecht darauf, ist also parallel zur \\(x\\)-Achse: \\(y = \\text{const}\\). Sie halbiert \\(PP'\\): $$y = \\frac{2 + (-6)}{2} = -2$$ Probe: \\(P\\) liegt \\(4\\) über der Achse \\(y = -2\\), \\(P'\\) liegt \\(4\\) darunter ✓. <b>Typischer Fehler:</b> die \\(x\\)-Achse (\\(y = 0\\)) als Achse annehmen — sie würde \\(P\\) auf \\((5|{-2})\\) abbilden."
       }];
     </script>
     <script src="../spirale-engine.js"></script>

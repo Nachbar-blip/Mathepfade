@@ -204,7 +204,7 @@
         id: 19,
         level: 4,
         typ: "numerisch",
-        frage: "Winkelsumme im Dreieck: \\(180°\\). Wenn zwei Winkel \\(65°\\) und \\(75°\\) sind, wie groß ist der dritte (in Grad)?",
+        frage: "In einem Dreieck sind zwei Winkel \\(65°\\) und \\(75°\\) groß. Wie groß ist der dritte Winkel (in Grad)?",
         loesung: 40,
         toleranz: 0,
         tipp: "\\(180° - 65° - 75°\\).",
@@ -260,127 +260,127 @@
         tipp: "\\(360° - 80° - 95° - 105°\\).",
         loesungsweg: "$$360° - 80° - 95° - 105° = 80°$$ Probe: \\(80° + 95° + 105° + 80° = 360°\\) ✓"
       },
-      // ========== LEVEL 5 -- anspruchsvoll: Gleichungen mit Winkeln ==========
+      // ========== LEVEL 5 -- anspruchsvoll: zwei Bedingungen, Fehler finden, zweischrittig ==========
       {
         id: 25,
         level: 5,
         typ: "numerisch",
-        frage: "Die Winkel eines Dreiecks verhalten sich wie \\(1:2:3\\). Wie groß ist der größte Winkel (in Grad)?",
-        loesung: 90,
+        frage: "Zwei Geraden schneiden sich. Einer der entstehenden Winkel ist dreimal so groß wie sein Nebenwinkel. Wie groß ist der größere der beiden Winkel (in Grad)?",
+        loesung: 135,
         toleranz: 0,
-        tipp: "\\(1 + 2 + 3 = 6\\) Teile, \\(180° : 6 = 30°\\).",
-        loesungsweg: "$$180° : 6 = 30°$$ Größter Winkel: \\(3 \\cdot 30° = 90°\\). Das Dreieck ist rechtwinklig."
+        tipp: "Nebenwinkel ergänzen sich zu \\(180°\\).",
+        loesungsweg: "<b>Ansatz:</b> Kleinerer Winkel \\(x\\), größerer \\(3x\\); als Nebenwinkel gilt $$x + 3x = 180° \\implies 4x = 180° \\implies x = 45°$$ Der größere Winkel ist \\(3 \\cdot 45° = 135°\\). Die vier Winkel am Schnittpunkt sind \\(45°, 135°, 45°, 135°\\) (Scheitelwinkel paarweise gleich)."
       },
       {
         id: 26,
         level: 5,
-        typ: "numerisch",
-        frage: "In einem Dreieck gilt \\(\\alpha = 2\\beta\\) und \\(\\gamma = 3\\beta\\). Bestimme \\(\\beta\\) in Grad.",
-        loesung: 30,
-        toleranz: 0,
-        tipp: "\\(2\\beta + \\beta + 3\\beta = 180°\\).",
-        loesungsweg: "$$6\\beta = 180° \\implies \\beta = 30°$$"
+        typ: "mc",
+        frage: "Zwei parallele Geraden werden von einer dritten geschnitten. Ein Winkel misst \\(65°\\). Ben sagt: „Der Wechselwinkel dazu beträgt \\(115°\\).“ Was ist dazu zu sagen?",
+        optionen: ["Falsch — Wechselwinkel an Parallelen sind gleich groß, also \\(65°\\); \\(115°\\) ist der Nebenwinkel", "Richtig, Wechselwinkel ergänzen sich zu \\(180°\\)", "Falsch — der Wechselwinkel beträgt \\(90° - 65° = 25°\\)", "Richtig, aber nur weil die Geraden parallel sind"],
+        korrekt: 0,
+        tipp: "Welche Winkelpaare an Parallelen sind gleich, welche ergänzen sich?",
+        loesungsweg: "An geschnittenen <b>Parallelen</b> sind Stufenwinkel und Wechselwinkel jeweils <b>gleich groß</b>; nur Nachbarwinkel (und Nebenwinkel) ergänzen sich zu \\(180°\\). Der Wechselwinkel zu \\(65°\\) ist also \\(65°\\). Ben hat den Nebenwinkel \\(180° - 65° = 115°\\) berechnet — der liegt am selben Schnittpunkt, nicht an der anderen Parallelen."
       },
       {
         id: 27,
         level: 5,
         typ: "numerisch",
-        frage: "Ein Winkel und sein Nebenwinkel unterscheiden sich um \\(40°\\). Wie groß ist der kleinere (in Grad)?",
-        loesung: 70,
+        frage: "In einem Dreieck ist \\(\\beta\\) um \\(30°\\) größer als \\(\\alpha\\), und \\(\\gamma\\) ist so groß wie \\(\\alpha\\) und \\(\\beta\\) zusammen. Wie groß ist \\(\\alpha\\) (in Grad)?",
+        loesung: 30,
         toleranz: 0,
-        tipp: "\\(x + (x + 40°) = 180°\\).",
-        loesungsweg: "$$2x + 40° = 180° \\implies x = 70°$$"
+        tipp: "Drücke \\(\\beta\\) und \\(\\gamma\\) durch \\(\\alpha\\) aus.",
+        loesungsweg: "<b>Ansatz:</b> \\(\\beta = \\alpha + 30°\\), \\(\\gamma = \\alpha + \\beta = 2\\alpha + 30°\\). Winkelsumme: $$\\alpha + (\\alpha + 30°) + (2\\alpha + 30°) = 180° \\implies 4\\alpha + 60° = 180° \\implies \\alpha = 30°$$ Also \\(\\beta = 60°\\), \\(\\gamma = 90°\\) — das Dreieck ist rechtwinklig (immer, wenn ein Winkel so groß ist wie die beiden anderen zusammen)."
       },
       {
         id: 28,
         level: 5,
         typ: "numerisch",
-        frage: "Zwei Winkel sind Stufenwinkel an Parallelen. Ein Winkel ist \\(3x\\), der andere \\(x + 40°\\). Bestimme \\(x\\) in Grad.",
-        loesung: 20,
+        frage: "Ein Außenwinkel eines Dreiecks beträgt \\(140°\\). Die beiden nicht anliegenden Innenwinkel verhalten sich wie \\(3 : 4\\). Wie groß ist der größere von ihnen (in Grad)?",
+        loesung: 80,
         toleranz: 0,
-        tipp: "Stufenwinkel sind gleich: \\(3x = x + 40°\\).",
-        loesungsweg: "$$3x = x + 40° \\implies 2x = 40° \\implies x = 20°$$"
+        tipp: "Der Außenwinkel ist so groß wie die beiden nicht anliegenden Innenwinkel zusammen.",
+        loesungsweg: "<b>Außenwinkelsatz:</b> Die beiden nicht anliegenden Innenwinkel ergeben zusammen \\(140°\\). Verhältnis \\(3 : 4\\) → \\(7\\) Teile: $$140° : 7 = 20° \\quad\\Rightarrow\\quad 3 \\cdot 20° = 60°,\\ 4 \\cdot 20° = 80°$$ Der größere ist \\(80°\\). Der anliegende Innenwinkel ist \\(180° - 140° = 40°\\); Probe: \\(60° + 80° + 40° = 180°\\) ✓."
       },
       {
         id: 29,
         level: 5,
-        typ: "numerisch",
-        frage: "In einem gleichschenkligen Dreieck ist ein Basiswinkel \\(3\\) mal so groß wie der Winkel an der Spitze. Wie groß ist der Spitzenwinkel (in Grad)?",
-        loesung: 25.71,
-        toleranz: 0.1,
-        tipp: "\\(\\gamma + 2 \\cdot 3\\gamma = 180°\\), also \\(7\\gamma = 180°\\).",
-        loesungsweg: "$$\\gamma + 6\\gamma = 180° \\implies \\gamma = \\frac{180°}{7} \\approx 25{,}71°$$"
+        typ: "mc",
+        frage: "In einem Viereck sind drei Winkel \\(95°\\), \\(85°\\) und \\(120°\\). Mara rechnet: „\\(180° - 95° - 85° - 120° = -120°\\) — das geht nicht, die Angabe ist fehlerhaft.“ Was ist dazu zu sagen?",
+        optionen: ["Falsch — im Viereck beträgt die Winkelsumme \\(360°\\); der vierte Winkel ist \\(60°\\)", "Richtig, ein negativer Winkel zeigt einen Fehler in der Angabe", "Falsch — sie hätte die drei Winkel zu \\(300°\\) addieren und dann \\(180°\\) davon abziehen müssen", "Richtig, denn \\(120°\\) ist in einem Viereck nicht möglich"],
+        korrekt: 0,
+        tipp: "Teile das Viereck durch eine Diagonale in zwei Dreiecke.",
+        loesungsweg: "Mara hat die Winkelsumme des <b>Dreiecks</b> benutzt. Eine Diagonale zerlegt jedes Viereck in zwei Dreiecke, also ist die Winkelsumme \\(2 \\cdot 180° = 360°\\): $$360° - 95° - 85° - 120° = 60°$$ Die Angabe ist in Ordnung. \\(300° - 180° = 120°\\) wäre eine sinnlose Rechnung, und \\(120°\\) ist als Viereckswinkel völlig normal."
       },
       {
         id: 30,
         level: 5,
-        typ: "mc",
-        frage: "An Parallelen bilden Wechsel-, Stufen- und Nachbarwinkel bestimmte Beziehungen. Welche Aussage ist FALSCH?",
-        optionen: ["Stufenwinkel sind gleich groß", "Wechselwinkel sind gleich groß", "Nachbarwinkel sind gleich groß", "Nachbarwinkel ergänzen sich zu \\(180°\\)"],
-        korrekt: 2,
-        tipp: "Nachbarwinkel ergänzen sich — sie sind nicht gleich.",
-        loesungsweg: "Nachbarwinkel ergänzen sich zu \\(180°\\) — sie sind nicht gleich (falsch!)."
+        typ: "numerisch",
+        frage: "Ein Winkel ist doppelt so groß wie sein Komplementwinkel. Wie groß ist sein Nebenwinkel (in Grad)?",
+        loesung: 120,
+        toleranz: 0,
+        tipp: "Erst den Winkel selbst bestimmen (Komplement: Ergänzung zu \\(90°\\)), dann den Nebenwinkel.",
+        loesungsweg: "<b>Schritt 1:</b> Komplementwinkel \\(x\\), gesuchter Winkel \\(2x\\): $$x + 2x = 90° \\implies x = 30°$$ Der Winkel beträgt \\(60°\\).<br><b>Schritt 2:</b> Nebenwinkel \\(180° - 60° = 120°\\).<br><b>Typischer Fehler:</b> Komplement und Nebenwinkel verwechseln — \\(x + 2x = 180°\\) ergäbe \\(120°\\) für den Winkel selbst und \\(60°\\) für den Nebenwinkel."
       },
-      // ========== LEVEL 6 -- wagnerisch: Vielecke und Transfer ==========
+      // ========== LEVEL 6 -- wagnerisch: Behauptungen, Umkehraufgaben, Hilfslinien ==========
       {
         id: 31,
         level: 6,
-        typ: "numerisch",
-        frage: "Winkelsumme im \\(n\\)-Eck: \\((n-2) \\cdot 180°\\). Berechne die Winkelsumme im Fünfeck (in Grad).",
-        loesung: 540,
-        toleranz: 0,
-        tipp: "\\((5-2) \\cdot 180°\\).",
-        loesungsweg: "$$(5-2) \\cdot 180° = 3 \\cdot 180° = 540°$$"
+        typ: "mc",
+        frage: "Behauptung: „Ein Dreieck kann zwei stumpfe Winkel haben, wenn der dritte Winkel nur klein genug ist.“ Stimmt das?",
+        optionen: ["Nein — zwei stumpfe Winkel sind zusammen schon größer als \\(180°\\), egal wie klein der dritte ist", "Ja — z. B. \\(91°\\), \\(91°\\) und ein sehr kleiner dritter Winkel", "Nein — ein Dreieck hat überhaupt keine stumpfen Winkel", "Ja — aber nur, wenn das Dreieck gleichschenklig ist"],
+        korrekt: 0,
+        tipp: "Was ist die kleinste mögliche Summe zweier stumpfer Winkel?",
+        loesungsweg: "Ein stumpfer Winkel ist <b>größer als \\(90°\\)</b>. Zwei stumpfe Winkel ergeben zusammen mehr als \\(90° + 90° = 180°\\) — schon damit ist die Winkelsumme überschritten, für den dritten Winkel bliebe ein negativer Wert. Auch \\(91° + 91° = 182° > 180°\\). Ein Dreieck hat also <b>höchstens einen</b> stumpfen (und höchstens einen rechten) Winkel; die beiden anderen sind stets spitz."
       },
       {
         id: 32,
         level: 6,
         typ: "numerisch",
-        frage: "Wie groß ist jeder Innenwinkel eines regelmäßigen Sechsecks (in Grad)?",
-        loesung: 120,
+        frage: "In einem regelmäßigen Vieleck beträgt jeder Innenwinkel \\(140°\\). Wie viele Ecken hat es?",
+        loesung: 9,
         toleranz: 0,
-        tipp: "\\((6-2) \\cdot 180° = 720°\\), dann durch 6 teilen.",
-        loesungsweg: "$$\\frac{(6-2) \\cdot 180°}{6} = \\frac{720°}{6} = 120°$$"
+        tipp: "Betrachte die Außenwinkel: Wie groß ist einer, und wie groß sind alle zusammen?",
+        loesungsweg: "<b>Umkehraufgabe über die Außenwinkel:</b> Jeder Außenwinkel ist der Nebenwinkel eines Innenwinkels: \\(180° - 140° = 40°\\). Läuft man einmal um das Vieleck herum, dreht man sich insgesamt um \\(360°\\) — die Außenwinkel summieren sich zu \\(360°\\): $$n = \\frac{360°}{40°} = 9$$ Ein regelmäßiges Neuneck. Probe über die Innenwinkelsumme: \\((9 - 2) \\cdot 180° = 1260°\\), \\(1260° : 9 = 140°\\) ✓."
       },
       {
         id: 33,
         level: 6,
-        typ: "mc",
-        frage: "Zwei Winkel sind komplementär und verhalten sich wie \\(2:7\\). Wie groß ist der kleinere?",
-        optionen: ["\\(10°\\)", "\\(20°\\)", "\\(30°\\)", "\\(40°\\)"],
-        korrekt: 1,
-        tipp: "\\(2x + 7x = 90°\\).",
-        loesungsweg: "$$9x = 90° \\implies x = 10°$$ Kleinerer: \\(2 \\cdot 10° = 20°\\)."
+        typ: "numerisch",
+        frage: "Die Geraden \\(g\\) und \\(h\\) sind parallel. Ein Streckenzug führt von einem Punkt auf \\(g\\) zu einem Punkt \\(P\\) zwischen den Parallelen und von dort weiter zu einem Punkt auf \\(h\\). Der erste Abschnitt schließt mit \\(g\\) einen Winkel von \\(35°\\) ein, der zweite mit \\(h\\) einen Winkel von \\(48°\\) (jeweils der Winkel auf der Innenseite, zwischen Parallele und Abschnitt). Wie groß ist der Winkel des Streckenzugs bei \\(P\\) (in Grad)?",
+        loesung: 83,
+        toleranz: 0,
+        tipp: "Zeichne durch \\(P\\) eine Hilfsparallele zu \\(g\\) und \\(h\\).",
+        loesungsweg: "<b>Hilfslinie:</b> Eine Parallele zu \\(g\\) und \\(h\\) durch \\(P\\) zerlegt den Winkel bei \\(P\\) in zwei Teile. Der obere Teil ist Wechselwinkel zum \\(35°\\)-Winkel an \\(g\\), der untere Wechselwinkel zum \\(48°\\)-Winkel an \\(h\\): $$\\angle P = 35° + 48° = 83°$$ Ohne die Hilfsparallele ist der Winkel nicht direkt zu sehen — das Einzeichnen ist der entscheidende Schritt."
       },
       {
         id: 34,
         level: 6,
-        typ: "numerisch",
-        frage: "Außenwinkelsumme in jedem konvexen Vieleck beträgt wie viele Grad?",
-        loesung: 360,
-        toleranz: 0,
-        tipp: "Unabhängig von der Eckenzahl!",
-        loesungsweg: "Die Summe der Außenwinkel in jedem konvexen Vieleck beträgt stets \\(360°\\)."
+        typ: "mc",
+        frage: "Behauptung: „Stufenwinkel sind immer gleich groß.“ Stimmt das?",
+        optionen: ["Nein — nur wenn die beiden geschnittenen Geraden parallel sind; sonst unterscheiden sich Stufenwinkel", "Ja — das ist der Stufenwinkelsatz, er gilt ohne Voraussetzung", "Nein — Stufenwinkel ergänzen sich immer zu \\(180°\\)", "Ja — Stufenwinkel sind dasselbe wie Scheitelwinkel"],
+        korrekt: 0,
+        tipp: "Zeichne zwei nicht parallele Geraden und eine Schnittgerade — vergleiche die Stufenwinkel.",
+        loesungsweg: "Der Stufenwinkelsatz hat eine <b>Voraussetzung</b>: die beiden geschnittenen Geraden müssen parallel sein. Schneidet die dritte Gerade zwei Geraden, die sich selbst irgendwo schneiden, sind die Stufenwinkel verschieden — der Unterschied ist genau der Winkel, unter dem sich die beiden Geraden schneiden (Außenwinkel im entstehenden Dreieck). Es gilt sogar die Umkehrung: Sind Stufenwinkel gleich groß, dann sind die Geraden parallel. Scheitelwinkel sind dagegen immer gleich (ohne Parallelität), weil sie am selben Schnittpunkt liegen."
       },
       {
         id: 35,
         level: 6,
         typ: "numerisch",
-        frage: "Ein Dreieck hat Außenwinkel \\(100°, 130°\\). Wie groß ist der dritte Außenwinkel (in Grad)?",
-        loesung: 130,
+        frage: "Zwei Geraden schneiden sich. Drei der vier entstehenden Winkel ergeben zusammen \\(290°\\). Wie groß ist der kleinste der vier Winkel (in Grad)?",
+        loesung: 70,
         toleranz: 0,
-        tipp: "Außenwinkelsumme = \\(360°\\).",
-        loesungsweg: "Die Außenwinkel eines Dreiecks ergänzen sich stets zu \\(360°\\) — anschaulich: Wer das Dreieck einmal umläuft, dreht sich insgesamt genau einmal um sich selbst. $$360° - 100° - 130° = 130°$$ Zur Kontrolle über die Innenwinkel: \\(80°\\), \\(50°\\), \\(50°\\) — Summe \\(180°\\) ✓"
+        tipp: "Alle vier Winkel zusammen bilden einen Vollwinkel.",
+        loesungsweg: "<b>Schritt 1:</b> Die vier Winkel ergeben \\(360°\\), der fehlende vierte ist \\(360° - 290° = 70°\\).<br><b>Schritt 2:</b> Sein Scheitelwinkel ist ebenfalls \\(70°\\), die beiden Nebenwinkel sind je \\(180° - 70° = 110°\\). Probe: \\(70 + 110 + 110 = 290\\) ✓ (die drei gegebenen Winkel).<br>Der kleinste Winkel ist \\(70°\\)."
       },
       {
         id: 36,
         level: 6,
         typ: "numerisch",
-        frage: "In einem regelmäßigen \\(n\\)-Eck ist jeder Innenwinkel \\(150°\\). Bestimme \\(n\\).",
-        loesung: 12,
+        frage: "Ein Dreieck hat die Winkel \\(\\alpha = 3x\\), \\(\\beta = 2x + 10°\\) und \\(\\gamma = x + 20°\\). Wie groß ist der größte Winkel (in Grad)?",
+        loesung: 75,
         toleranz: 0,
-        tipp: "\\(\\frac{(n-2) \\cdot 180°}{n} = 150°\\).",
-        loesungsweg: "$$(n-2) \\cdot 180 = 150n \\implies 180n - 360 = 150n \\implies 30n = 360 \\implies n = 12$$"
+        tipp: "Erst \\(x\\) über die Winkelsumme bestimmen, dann alle drei Winkel berechnen und vergleichen.",
+        loesungsweg: "<b>Schritt 1:</b> $$3x + (2x + 10°) + (x + 20°) = 180° \\implies 6x + 30° = 180° \\implies x = 25°$$ <b>Schritt 2:</b> \\(\\alpha = 75°\\), \\(\\beta = 60°\\), \\(\\gamma = 45°\\); Probe: Summe \\(180°\\) ✓. Der größte Winkel ist \\(\\alpha = 75°\\). <b>Typischer Fehler:</b> \\(x = 25°\\) als Antwort angeben."
       }];
     </script>
     <script src="../spirale-engine.js"></script>

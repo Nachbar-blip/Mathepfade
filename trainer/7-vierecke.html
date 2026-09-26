@@ -254,133 +254,133 @@
         id: 24,
         level: 4,
         typ: "numerisch",
-        frage: "Ein Quadrat hat Diagonale \\(d\\). Für \\(a = 5\\) gilt \\(d = a\\sqrt{2}\\). Berechne \\(d\\) gerundet auf 2 Dezimalstellen.",
-        loesung: 7.07,
-        toleranz: 0.01,
-        tipp: "\\(5 \\cdot 1{,}414\\).",
-        loesungsweg: "$$d = 5\\sqrt{2} \\approx 7{,}07$$"
+        frage: "Ein Parallelogramm hat den Flächeninhalt \\(42\\,\\text{cm}^2\\) und die Höhe \\(6\\,\\text{cm}\\). Wie lang ist die zugehörige Grundseite (in cm)?",
+        loesung: 7,
+        toleranz: 0,
+        tipp: "Fläche = Grundseite mal Höhe — hier ist die Grundseite gesucht.",
+        loesungsweg: "<b>Umkehraufgabe:</b> Aus \\(A = g \\cdot h\\) folgt $$g = \\frac{A}{h} = \\frac{42}{6} = 7\\,\\text{cm}$$ Probe: \\(7 \\cdot 6 = 42\\) ✓."
       },
-      // ========== LEVEL 5 -- anspruchsvoll: Gemischte Aufgaben ==========
+      // ========== LEVEL 5 -- anspruchsvoll: zwei Bedingungen, Fehler finden, zusammengesetzt ==========
       {
         id: 25,
         level: 5,
         typ: "numerisch",
-        frage: "Ein Rechteck hat Umfang \\(40\\,\\text{cm}\\) und Flächeninhalt \\(96\\,\\text{cm}^2\\). Wie lang ist die längere Seite (in cm)?",
-        loesung: 12,
+        frage: "Ein Rechteck hat den Umfang \\(34\\,\\text{cm}\\). Die Länge ist um \\(5\\,\\text{cm}\\) größer als die Breite. Wie groß ist der Flächeninhalt (in cm²)?",
+        loesung: 66,
         toleranz: 0,
-        tipp: "\\(a + b = 20\\), \\(ab = 96\\). Probiere \\(a = 12\\).",
-        loesungsweg: "$$a + b = 20, a \\cdot b = 96$$ \\(a=12, b=8\\): \\(12+8=20\\) ✓, \\(96\\) ✓."
+        tipp: "Breite \\(b\\), Länge \\(b + 5\\). Bestimme erst die Seiten, dann die Fläche.",
+        loesungsweg: "<b>Schritt 1 — Seiten:</b> Breite \\(b\\), Länge \\(b + 5\\). Der halbe Umfang ist Länge + Breite: $$b + (b + 5) = 17 \\implies 2b = 12 \\implies b = 6$$ Länge \\(11\\,\\text{cm}\\), Breite \\(6\\,\\text{cm}\\).<br><b>Schritt 2 — Fläche:</b> \\(A = 11 \\cdot 6 = 66\\,\\text{cm}^2\\).<br><b>Typischer Fehler:</b> \\(b + (b + 5) = 34\\) ansetzen (ganzer statt halber Umfang)."
       },
       {
         id: 26,
         level: 5,
-        typ: "numerisch",
-        frage: "Eine Raute hat Diagonalen \\(e = 12\\) und \\(f = 16\\). Die Seite berechnet sich zu \\(a = \\sqrt{(\\frac{e}{2})^2 + (\\frac{f}{2})^2}\\). Berechne \\(a\\) in cm.",
-        loesung: 10,
-        toleranz: 0,
-        tipp: "\\(a = \\sqrt{6^2 + 8^2} = \\sqrt{100}\\).",
-        loesungsweg: "$$a = \\sqrt{36 + 64} = \\sqrt{100} = 10\\,\\text{cm}$$"
+        typ: "mc",
+        frage: "Ein Parallelogramm hat die Grundseite \\(8\\,\\text{cm}\\), die schräge Nachbarseite \\(6\\,\\text{cm}\\) und die Höhe \\(5\\,\\text{cm}\\). Ein Schüler rechnet: \\(A = 8 \\cdot 6 = 48\\,\\text{cm}^2\\). Was ist dazu zu sagen?",
+        optionen: ["Falsch — die Fläche ist Grundseite mal <b>Höhe</b>: \\(8 \\cdot 5 = 40\\,\\text{cm}^2\\)", "Richtig, beim Parallelogramm multipliziert man die beiden Seiten", "Falsch — richtig wäre \\(6 \\cdot 5 = 30\\,\\text{cm}^2\\)", "Falsch — richtig wäre \\(8 \\cdot 6 : 2 = 24\\,\\text{cm}^2\\)"],
+        korrekt: 0,
+        tipp: "Schneide das Dreieck an einer Seite ab und setze es an der anderen an — was für ein Rechteck entsteht?",
+        loesungsweg: "Ein Parallelogramm lässt sich in ein Rechteck mit derselben Grundseite und derselben <b>Höhe</b> umlegen. Die schräge Seite ist länger als die Höhe und darf nicht als Rechteckseite verwendet werden: $$A = g \\cdot h = 8 \\cdot 5 = 40\\,\\text{cm}^2$$ Nur beim Rechteck fallen Nachbarseite und Höhe zusammen. \\(6 \\cdot 5\\) wäre die Höhe zur falschen Grundseite kombiniert (die Höhe \\(5\\) gehört zur Seite \\(8\\)), und halbieren gilt für Dreiecke."
       },
       {
         id: 27,
         level: 5,
         typ: "numerisch",
-        frage: "Ein Trapez hat \\(a = 12\\), \\(c = 6\\), \\(h = 4\\). Ein zweites Trapez mit gleicher Höhe hat \\(a = 10\\), \\(c = 8\\). Welches hat die größere Fläche (in cm²)? Gib die größere Fläche an.",
-        loesung: 36,
+        frage: "Ein Trapez mit den parallelen Seiten \\(8\\,\\text{cm}\\) und \\(10\\,\\text{cm}\\) hat den Flächeninhalt \\(45\\,\\text{cm}^2\\). Wie hoch ist es (in cm)?",
+        loesung: 5,
         toleranz: 0,
-        tipp: "Beide haben \\((a+c) \\cdot h/2\\). Berechne beide.",
-        loesungsweg: "1: \\(\\frac{18 \\cdot 4}{2} = 36\\). 2: \\(\\frac{18 \\cdot 4}{2} = 36\\). Beide gleich: \\(36\\,\\text{cm}^2\\)."
+        tipp: "Die Fläche eines Trapezes ist Mittellinie mal Höhe.",
+        loesungsweg: "<b>Ansatz:</b> Die Mittellinie hat die Länge \\(\\frac{8 + 10}{2} = 9\\,\\text{cm}\\); die Fläche ist Mittellinie mal Höhe: $$9 \\cdot h = 45 \\implies h = 5\\,\\text{cm}$$ Probe: \\(\\frac{(8 + 10) \\cdot 5}{2} = 45\\) ✓. <b>Typischer Fehler:</b> \\(18 \\cdot h = 45\\) rechnen (Halbieren vergessen), das ergäbe \\(2{,}5\\)."
       },
       {
         id: 28,
         level: 5,
         typ: "numerisch",
-        frage: "Ein Quadrat hat Diagonale \\(d = 10\\). Berechne die Seitenlänge gerundet auf 2 Dezimalstellen.",
-        loesung: 7.07,
-        toleranz: 0.02,
-        tipp: "\\(a = d / \\sqrt{2}\\).",
-        loesungsweg: "$$a = \\frac{10}{\\sqrt{2}} = \\frac{10\\sqrt{2}}{2} \\approx 7{,}07$$"
+        frage: "In einem Parallelogramm ist ein Winkel dreimal so groß wie sein Nachbarwinkel. Wie groß ist der größere Winkel (in Grad)?",
+        loesung: 135,
+        toleranz: 0,
+        tipp: "Nachbarwinkel im Parallelogramm ergänzen sich zu \\(180°\\).",
+        loesungsweg: "<b>Ansatz:</b> Kleinerer Winkel \\(x\\), größerer \\(3x\\). Nachbarwinkel im Parallelogramm ergänzen sich zu \\(180°\\) (sie sind Nachbarwinkel an den parallelen Seiten): $$x + 3x = 180° \\implies 4x = 180° \\implies x = 45°$$ Größerer Winkel: \\(3 \\cdot 45° = 135°\\). Alle vier Winkel: \\(45°, 135°, 45°, 135°\\), Summe \\(360°\\) ✓."
       },
       {
         id: 29,
         level: 5,
-        typ: "mc",
-        frage: "Welches Viereck ist KEIN Parallelogramm?",
-        optionen: ["Rechteck", "Raute", "Quadrat", "Trapez (allgemein)"],
-        korrekt: 3,
-        tipp: "Parallelogramm: beide Paare paralleler Seiten.",
-        loesungsweg: "Ein allgemeines <b>Trapez</b> hat nur ein Paar paralleler Seiten — es ist kein Parallelogramm."
+        typ: "numerisch",
+        frage: "Ein Quadrat hat denselben Flächeninhalt wie ein Rechteck mit den Seiten \\(16\\,\\text{cm}\\) und \\(4\\,\\text{cm}\\). Wie groß ist der Umfang des Quadrats (in cm)?",
+        loesung: 32,
+        toleranz: 0,
+        tipp: "Erst die Fläche, dann die Seite des Quadrats, dann der Umfang.",
+        loesungsweg: "<b>Schritt 1:</b> Fläche des Rechtecks \\(16 \\cdot 4 = 64\\,\\text{cm}^2\\).<br><b>Schritt 2:</b> Quadrat mit \\(a \\cdot a = 64\\) → \\(a = 8\\,\\text{cm}\\).<br><b>Schritt 3:</b> Umfang \\(4 \\cdot 8 = 32\\,\\text{cm}\\).<br>Zum Vergleich: Das Rechteck hat den Umfang \\(2 \\cdot (16 + 4) = 40\\,\\text{cm}\\) — bei gleicher Fläche hat das Quadrat den kleineren Umfang."
       },
       {
         id: 30,
         level: 5,
         typ: "numerisch",
-        frage: "Ein Parallelogramm hat \\(A = 54\\,\\text{cm}^2\\) und \\(g = 9\\,\\text{cm}\\). Berechne die Höhe in cm.",
-        loesung: 6,
+        frage: "Ein Trapez hat die parallelen Seiten \\(a = 14\\,\\text{cm}\\) und \\(c = 8\\,\\text{cm}\\) sowie die Höhe \\(6\\,\\text{cm}\\). Eine Diagonale teilt es in zwei Dreiecke. Wie groß ist der Flächeninhalt des Dreiecks, das die Seite \\(a\\) enthält (in cm²)?",
+        loesung: 42,
         toleranz: 0,
-        tipp: "\\(h = A/g\\).",
-        loesungsweg: "$$h = \\frac{54}{9} = 6\\,\\text{cm}$$"
+        tipp: "Welche Höhe hat dieses Dreieck über der Grundseite \\(a\\)?",
+        loesungsweg: "<b>Ansatz:</b> Das Dreieck hat die Grundseite \\(a = 14\\,\\text{cm}\\); seine dritte Ecke liegt auf der Seite \\(c\\), also im Abstand \\(6\\,\\text{cm}\\) (Trapezhöhe) von \\(a\\): $$A = \\frac{14 \\cdot 6}{2} = 42\\,\\text{cm}^2$$ Probe: Das zweite Dreieck hat die Grundseite \\(c = 8\\) und dieselbe Höhe, \\(\\frac{8 \\cdot 6}{2} = 24\\); zusammen \\(66 = \\frac{(14 + 8) \\cdot 6}{2}\\) ✓."
       },
-      // ========== LEVEL 6 -- wagnerisch: Haus der Vierecke und Transfer ==========
+      // ========== LEVEL 6 -- wagnerisch: Behauptungen, Umkehraufgaben, Sonderfälle ==========
       {
         id: 31,
         level: 6,
         typ: "mc",
-        frage: "Im „Haus der Vierecke\" steht das Quadrat …",
-        optionen: ["ganz unten als allgemeinstes", "ganz oben als speziellstes", "seitlich", "als Raute"],
-        korrekt: 1,
-        tipp: "Speziell = alle Eigenschaften kombiniert.",
-        loesungsweg: "Das <b>Quadrat</b> steht oben — es ist gleichzeitig Rechteck, Raute, Parallelogramm und Trapez."
+        frage: "Behauptung: „Wenn in einem Viereck die beiden Diagonalen gleich lang sind, ist es ein Rechteck.“ Stimmt das?",
+        optionen: ["Nein — auch ein gleichschenkliges Trapez hat gleich lange Diagonalen, ist aber kein Rechteck", "Ja — gleich lange Diagonalen gibt es nur bei Rechteck und Quadrat", "Nein — auch jede Raute hat gleich lange Diagonalen", "Ja — denn gleich lange Diagonalen halbieren sich immer"],
+        korrekt: 0,
+        tipp: "Suche ein Viereck mit gleich langen Diagonalen, das keine rechten Winkel hat.",
+        loesungsweg: "Ein <b>Gegenbeispiel</b> genügt: Das gleichschenklige Trapez (z. B. die Seitenansicht eines Eimers) hat wegen seiner Symmetrieachse zwei gleich lange Diagonalen, aber keine rechten Winkel. Die Behauptung ist falsch. Umgekehrt gilt: Ein <b>Parallelogramm</b> mit gleich langen Diagonalen ist ein Rechteck — dort halbieren sich die Diagonalen, beim Trapez nicht. Die Raute taugt nicht als Gegenbeispiel: Ihre Diagonalen sind verschieden lang (gleich lang nur beim Quadrat)."
       },
       {
         id: 32,
         level: 6,
-        typ: "mc",
-        frage: "Ein Viereck mit genau zwei Paaren gleich langer benachbarter Seiten (und nicht Parallelogramm) ist …",
-        optionen: ["Raute", "Drachen", "Rechteck", "Trapez"],
-        korrekt: 1,
-        tipp: "Wie ein Fluggerät.",
-        loesungsweg: "Ein <b>Drachenviereck</b> hat zwei Paare gleich langer benachbarter Seiten."
+        typ: "numerisch",
+        frage: "Ein Rechteck hat den Flächeninhalt \\(48\\,\\text{cm}^2\\) und den Umfang \\(28\\,\\text{cm}\\). Wie lang ist die kürzere Seite (in cm)?",
+        loesung: 6,
+        toleranz: 0,
+        tipp: "Welche zwei Zahlen haben die Summe \\(14\\) und das Produkt \\(48\\)?",
+        loesungsweg: "<b>Umkehraufgabe:</b> Aus dem Umfang: \\(a + b = 28 : 2 = 14\\). Aus der Fläche: \\(a \\cdot b = 48\\). Gesucht sind zwei Zahlen mit Summe \\(14\\) und Produkt \\(48\\) — systematisch probieren: \\(1 \\cdot 13, 2 \\cdot 12, 3 \\cdot 11, 4 \\cdot 10, 5 \\cdot 9, 6 \\cdot 8 = 48\\) ✓. Die Seiten sind \\(8\\,\\text{cm}\\) und \\(6\\,\\text{cm}\\); die kürzere ist \\(6\\,\\text{cm}\\)."
       },
       {
         id: 33,
         level: 6,
         typ: "numerisch",
-        frage: "Ein Grundstück ist trapezförmig mit \\(a = 25\\,\\text{m}\\), \\(c = 15\\,\\text{m}\\), \\(h = 12\\,\\text{m}\\). Berechne die Fläche in m².",
-        loesung: 240,
+        frage: "In einem gleichschenkligen Trapez beträgt ein Innenwinkel \\(70°\\). Wie groß ist der größte Innenwinkel (in Grad)?",
+        loesung: 110,
         toleranz: 0,
-        tipp: "\\(\\frac{(a+c) \\cdot h}{2}\\).",
-        loesungsweg: "$$A = \\frac{(25+15) \\cdot 12}{2} = \\frac{480}{2} = 240\\,\\text{m}^2$$"
+        tipp: "Welche Winkel sind im gleichschenkligen Trapez gleich groß, welche ergänzen sich zu \\(180°\\)?",
+        loesungsweg: "<b>Fallunterscheidung:</b> Im gleichschenkligen Trapez sind die beiden Winkel an jeder parallelen Seite gleich groß (Symmetrieachse). Die Winkel an einem Schenkel ergänzen sich zu \\(180°\\), weil die Grundseiten parallel sind. Ist \\(70°\\) ein Winkel an der einen Grundseite, dann gibt es ihn zweimal, und die beiden anderen betragen je \\(180° - 70° = 110°\\). Der größte Winkel ist \\(110°\\) — unabhängig davon, an welcher Grundseite der \\(70°\\)-Winkel liegt. Probe: \\(70 + 70 + 110 + 110 = 360\\) ✓."
       },
       {
         id: 34,
         level: 6,
-        typ: "numerisch",
-        frage: "In einem Viereck sind drei Winkel \\(80°, 100°, 110°\\). Wie groß ist der vierte Winkel (in Grad)?",
-        loesung: 70,
-        toleranz: 0,
-        tipp: "\\(360° - 80° - 100° - 110°\\).",
-        loesungsweg: "Die Winkelsumme im Viereck beträgt \\(360°\\): $$360° - (80°+100°+110°) = 360° - 290° = 70°$$ Probe: \\(80°+100°+110°+70° = 360°\\) ✓"
+        typ: "mc",
+        frage: "Behauptung: „Es gibt ein Viereck mit <b>genau</b> drei rechten Winkeln.“ Stimmt das?",
+        optionen: ["Nein — der vierte Winkel hätte dann \\(360° - 3 \\cdot 90° = 90°\\), es wären automatisch vier rechte Winkel", "Ja — zum Beispiel ein Trapez mit einer schrägen Seite", "Nein — ein Viereck kann höchstens zwei rechte Winkel haben", "Ja — der vierte Winkel wäre dann \\(180°\\)"],
+        korrekt: 0,
+        tipp: "Winkelsumme im Viereck.",
+        loesungsweg: "<b>Sonderfall über die Winkelsumme:</b> Drei rechte Winkel verbrauchen \\(270°\\), für den vierten bleibt $$360° - 270° = 90°$$ Er ist also ebenfalls ein rechter Winkel — das Viereck ist ein Rechteck mit <b>vier</b> rechten Winkeln. „Genau drei“ ist unmöglich. Ein Trapez mit einer schrägen Seite hat nur <b>zwei</b> rechte Winkel (die anderen beiden ergänzen sich zu \\(180°\\), z. B. \\(60°\\) und \\(120°\\))."
       },
       {
         id: 35,
         level: 6,
-        typ: "mc",
-        frage: "Welcher Schluss stimmt?",
-        optionen: ["Jedes Rechteck ist ein Quadrat", "Jedes Quadrat ist ein Rechteck", "Jede Raute ist ein Rechteck", "Jedes Trapez ist ein Parallelogramm"],
-        korrekt: 1,
-        tipp: "Ein Quadrat ist ein Rechteck mit gleichen Seiten.",
-        loesungsweg: "<b>Jedes Quadrat ist ein Rechteck</b> — es hat 4 rechte Winkel. Umgekehrt nicht."
+        typ: "numerisch",
+        frage: "Ein Quadrat und ein Rechteck haben beide den Umfang \\(36\\,\\text{cm}\\). Das Rechteck ist \\(12\\,\\text{cm}\\) lang. Um wie viele cm² ist die Fläche des Quadrats größer als die des Rechtecks?",
+        loesung: 9,
+        toleranz: 0,
+        tipp: "Bestimme aus dem Umfang die fehlenden Seiten beider Figuren.",
+        loesungsweg: "<b>Quadrat:</b> Seite \\(36 : 4 = 9\\,\\text{cm}\\), Fläche \\(9 \\cdot 9 = 81\\,\\text{cm}^2\\).<br><b>Rechteck:</b> Breite \\(36 : 2 - 12 = 6\\,\\text{cm}\\), Fläche \\(12 \\cdot 6 = 72\\,\\text{cm}^2\\).<br><b>Differenz:</b> \\(81 - 72 = 9\\,\\text{cm}^2\\).<br>Allgemein hat unter allen Rechtecken mit gleichem Umfang das Quadrat die größte Fläche."
       },
       {
         id: 36,
         level: 6,
-        typ: "numerisch",
-        frage: "Ein Rechteck \\(5 \\times 12\\) wird entlang der Diagonale in zwei Dreiecke geteilt. Wie lang ist die Diagonale (in cm)?",
-        loesung: 13,
-        toleranz: 0,
-        tipp: "Pythagoras: \\(\\sqrt{5^2 + 12^2}\\).",
-        loesungsweg: "$$d = \\sqrt{25 + 144} = \\sqrt{169} = 13\\,\\text{cm}$$"
+        typ: "mc",
+        frage: "Von einem Viereck ist bekannt: Beide Paare gegenüberliegender Seiten sind parallel, und die Diagonalen stehen senkrecht aufeinander. Welche Bezeichnung ist die <b>genaueste</b>, die sich daraus sicher ergibt?",
+        optionen: ["Raute", "Quadrat", "Rechteck", "Drachenviereck (allgemein)"],
+        korrekt: 0,
+        tipp: "Welche Eigenschaft bräuchte man zusätzlich, um auf ein Quadrat zu schließen?",
+        loesungsweg: "<b>Schluss:</b> Zwei Paare paralleler Seiten → Parallelogramm. Ein Parallelogramm, dessen Diagonalen senkrecht aufeinander stehen, ist eine <b>Raute</b> (die Diagonalen halbieren sich, und mit dem rechten Winkel sind alle vier Teildreiecke kongruent, also alle Seiten gleich lang). Ein Quadrat wäre es nur, wenn zusätzlich die Diagonalen gleich lang oder die Winkel rechte wären — das ist nicht gegeben. Ein Rechteck hat im Allgemeinen keine senkrechten Diagonalen. Jede Raute ist zwar ein Drachenviereck, aber „Raute“ ist die genauere Bezeichnung."
       }];
     </script>
     <script src="../spirale-engine.js"></script>
