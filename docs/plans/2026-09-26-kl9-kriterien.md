@@ -208,3 +208,137 @@ je 7 passed, Bilder L5/L6 angesehen.
   9-wurzelgleichungen bleibt laut Auftrag bestehen (Stufe 1–3 nicht neu geschrieben).
 - Bei MC-Aufgaben ist die richtige Option meist die längste (Begründung enthalten); die
   Engine mischt die Reihenfolge, aber die Länge bleibt ein Hinweis.
+
+## Block A2 — Quadratische Funktionen/Gleichungen, Wachstum, LGS, Bruchgleichungen
+
+Abgrenzung der fünf Trainer: 9-quadratische-gleichungen = Gleichungen lösen, Lösbarkeit,
+Sachaufgaben mit Gleichung; 9-quadratische-funktionen = Graph, Scheitel, Term, Transformation,
+Sachfunktion; 8-lgs (Umzug 8 → 9) = 2×2-Systeme, Sonderfälle, Sachaufgaben mit zwei Unbekannten;
+8-bruchgleichungen (Umzug 8 → 9) = Definitionsmenge, Scheinlösung, Sachaufgaben
+(Geschwindigkeit/Arbeit); 9-exponentielles-wachstum = Faktor, Prozent, Verdopplung/Halbwertszeit
+über Tabelle, Vergleich linear/exponentiell (kein Logarithmus, kein e).
+Pflicht-Fix Lehrplan-Gate: 9-quadratische-funktionen #22 (alt) machte die „Probe über die
+Ableitung f'(x) = 4x − 8“ — die Aufgabe ist mit L4 komplett neu; Scheitel wird überall über
+Scheitelpunktform/Symmetrie/Koeffizienten bestimmt.
+
+| Trainer | Audit-Befund | Geändert |
+|---|---|---|
+| 9-quadratische-funktionen | KEIN_AFB3 L5/L6; KOLLAPS L3/L4; DUENNER_WEG L1–L4/L6; #22 Ableitung; #30 Rückverweis; L3 #16 Formel im Text | L4–L6 neu: a aus Scheitel und Punkt, y-Achsenabschnitt aus Nullstellen, Maximum ohne Verfahrensansage, Term aus Wertetabelle (MC), Nullstellen nach Verschiebung, b aus Scheitelstelle; Brückenbogen 40 m/20 m → Höhe bei 10 m, Wurf von Plattform (Scheitelzeit und Aufprall), Fehler in Scheitelrechnung (Vorzeichen, MC), a und c aus zwei Punkten, Zaun an Hauswand (450 m²), Wasserstrahl trifft Boden; „Scheitel unter Achse ⇒ zwei Nullstellen?“ (MC), kleinstes c ohne Nullstelle (Fallunterscheidung), f(4) aus Symmetrieachse + Nullstelle + Achsenabschnitt, Monotoniebereich (MC), c aus Scheitel, k für Berührung Parabel/Gerade. L1 #5 entdoppelt (x²+1), L3 #16 ohne Formelansage, L3 #17 andere Funktion |
+| 9-quadratische-gleichungen | KEIN_AFB3 L5/L6; DUENNER_WEG L1; L3 #13 „mit pq-Formel“, #17 Formel-Abfrage; L4 #21 „Zuerst durch 2 teilen“ | L4–L6 neu: x²−x−12 (Verfahren frei), (x−3)² = 2x−3 (erst ordnen), Produkt aufeinanderfolgender Zahlen 132, p aus Lösung x = 2, 3x²+6x = 0 (MC, Lösung 0 nicht verlieren), Rechteck 5 cm länger; Fehler in pq-Kette (−q bei negativem q, MC), Ball vom Turm eine Sekunde vor Aufprall, p aus Lösungen 2 und −5, Summe 14/Produkt 45, „durch x geteilt — welche Lösung fehlt?“, Bilderrahmen 20×30 → 1200 cm²; „q < 0 ⇒ zwei Lösungen?“ (MC), Anzahl c ∈ [−3; 5] mit zwei Lösungen (Fallunterscheidung), c aus Lösungen −3 und 0,5 bei 2x², (2x−1)² = (x+3)² ohne Ausmultiplizieren, (x+3)² = 0 gegen = 1 (MC), m für genau eine Lösung (Parameter aus Diskriminante). L1 #2 entdoppelt (Textform), L3 #13 ohne Formelansage, #17 Formel-MC → Gleichung x²+3x−10 |
+| 9-exponentielles-wachstum | KEIN_AFB3 L5; KOLLAPS L4/L5; DUENNER_WEG L1–L3/L5; L2 #8, L3 #13 Formel im Text; L3 #15 Rückverweis „wie Aufg. 14“; L6 #34/#35 Logarithmus bzw. 72er-Regel | L4–L6 neu: q aus 200 → 288 in 2 Jahren, Term aus Tabelle 5/15/45/135 (MC), Anfangskapital aus 5408 € rückwärts, Prozentsatz aus 1000 → 512 in 3 Jahren, linear 100+30n gegen 100·1,2ⁿ (Tabelle), 96 mg → 12 mg bei HWZ 6 h; Fehler „Wurzel halbiert“ (MC), Medikament 20 % Abbau erstmals unter 200 mg, Anfangswert aus t = 1 und t = 3, Zuwachs im dritten Jahr (2205), Zinseszins gegen einfache Zinsen (5,45 €), Halbwertszeit aus 12,5 % nach 24 Tagen; „100 % in 10 Jahren = 10 % pro Jahr?“ (MC, 1,1¹⁰ ≈ 2,59), Jahresrate bei Verdreifachung in 4 Jahren (31,6 %), Stadt A überholt Stadt B (Tabelle), „4 × 25 % = weg?“ (MC, 0,75⁴), Zinssatz aus 1000 → 1728 in 3 Jahren, q aus N(3) = 27 und erstes t unter 20. L1 #6 → Faktor bei Verdreifachung, L2 #8/#10 und L3 #13 ohne Formel im Text, L3 #15 eigenständig (Motorrad 8000 €, 20 %) |
+| 8-lgs (Umzug 8 → 9) | KEIN_AFB3 L5/L6; KOLLAPS L3/L4; L4–L6 nur Rechenroutinen mit Verfahrensansage („Addition liefert“, „Einsetzen x = y+1“), L6 #31/#32 Definitionsfragen | L4–L6 neu: 3x+2y = 16 / 5x−2y = 8 (Verfahren frei), 2x+5y = 1 / 3x−2y = 11 (Vervielfachen), Eiskugeln/Waffeln, a aus Lösung x = 9, LGS aus Zahlenrätsel aufstellen (MC), y = 2x−1 / 3x+2y = 12; Fehler in Additionskette (Vorzeichen, MC), Boot 36 km (Eigengeschwindigkeit), a für keine Lösung, Saftmischung 20 %/60 % → 45 %, zweistellige Zahl mit Quersumme 11, Tarifvergleich 200 Minuten; „immer genau eine Lösung?“ (MC), a mit keiner Lösung bei x+ay = 1 / ax+4y = 2 (Fallunterscheidung a = ±2), identische Geraden grafisch deuten (MC), b aus Lösungspaar, Parabel ax²+bx durch zwei Punkte → f(3), c für unendlich viele Lösungen. Für Kl. 9 angehoben: Parameter-LGS, Lösbarkeit/Lösungsvielfalt, Mischungs- und Bewegungsaufgaben; L1–L3 unverändert |
+| 8-bruchgleichungen (Umzug 8 → 9) | KEIN_AFB3 L5/L6; KOLLAPS L2/L3; L2 #7 Verfahrensfrage, L3 #13/#14 gleiche Gleichung; L4 #21 MC-Antwort an Länge erkennbar; L5 nur Routinen, L6 #34/#35 Wurzelausdrücke | L5/L6 neu: Fehler beim Ausmultiplizieren (MC), Scheinlösung → 0 Lösungen, zwei Pumpen (6 h/3 h), Radfahrer 60 km mit 5 km/h mehr (quadratisch), a aus Lösung x = 5, „Mia oder Nils?“ (Probe entscheidet); „höchstens eine Lösung?“ (MC, Gegenbeispiel x/2 = 2/x), (x²−9)/(x−3) = x+3 → Q \ {3} (MC), b für Scheinlösung x = 3, a für unendlich viele Lösungen (Fallunterscheidung), zwei Drucker (12 min / 20 min), a aus Lösung x = 4 und a+b = 6 (LGS). Für Kl. 9 angehoben: Bruchgleichungen mit quadratischem Kern, Definitionslücke als Lösungsfall, Parameter. L2 #7 → Gleichung lösen, L3 #13 → x/4 + x/6 = 5, L4 #21 Optionen gleich lang, #24 Lösungsweg bereinigt |
+
+### 9-quadratische-funktionen
+
+| id | Level | Kriterium |
+|---|---|---|
+| 19 | 4 | L4: Umkehraufgabe — Streckfaktor aus Scheitel und Punkt |
+| 20 | 4 | L4: Term aus Nullstellen, y-Achsenabschnitt |
+| 21 | 4 | L4: Verfahren wählen — größter Funktionswert |
+| 22 | 4 | L4: Modell aus Tabelle — Term erkennen (MC) |
+| 23 | 4 | L4: Transformation — Nullstellen nach Verschiebung |
+| 24 | 4 | L4: Umkehraufgabe — b aus Scheitelstelle |
+| 25 | 5 | L5: Sachaufgabe zweischrittig — Brückenbogen |
+| 26 | 5 | L5: Sachaufgabe zweischrittig — Scheitelzeit und Aufprall |
+| 27 | 5 | L5: Fehler finden — Vorzeichen des Scheitels (MC) |
+| 28 | 5 | L5: Parameter aus zwei Bedingungen — a und c |
+| 29 | 5 | L5: Sachaufgabe — Zaun an Hauswand, Maximum |
+| 30 | 5 | L5: Sachaufgabe — Wasserstrahl, Nullstelle |
+| 31 | 6 | L6: Behauptung prüfen — Scheitel unter Achse (MC) |
+| 32 | 6 | L6: Fallunterscheidung — Anzahl Nullstellen je c |
+| 33 | 6 | L6: Umkehraufgabe — Term aus Symmetrieachse und Punkten |
+| 34 | 6 | L6: Monotonie — Bereich bestimmen (MC) |
+| 35 | 6 | L6: Umkehraufgabe — c aus Scheitel |
+| 36 | 6 | L6: Sonderfall — Berührung Parabel/Gerade |
+
+### 9-quadratische-gleichungen
+
+| id | Level | Kriterium |
+|---|---|---|
+| 19 | 4 | L4: Verfahren wählen — Faktorisieren oder Formel |
+| 20 | 4 | L4: Verfahren wählen — erst ordnen |
+| 21 | 4 | L4: Modell aus Text — Produkt aufeinanderfolgender Zahlen |
+| 22 | 4 | L4: Umkehraufgabe — p aus Lösung |
+| 23 | 4 | L4: Verfahren wählen — Ausklammern (MC) |
+| 24 | 4 | L4: Modell aus Text — Rechteckfläche |
+| 25 | 5 | L5: Fehler in Kette — −q bei negativem q (MC) |
+| 26 | 5 | L5: Sachaufgabe zweischrittig — Aufprall, dann Höhe |
+| 27 | 5 | L5: Parameter aus zwei Bedingungen — p aus Lösungen |
+| 28 | 5 | L5: Zahlenrätsel — Summe und Produkt |
+| 29 | 5 | L5: Fehler finden — Division durch x |
+| 30 | 5 | L5: Sachaufgabe — Rahmenbreite |
+| 31 | 6 | L6: Behauptung prüfen — q < 0 (MC) |
+| 32 | 6 | L6: Fallunterscheidung — Anzahl c mit zwei Lösungen |
+| 33 | 6 | L6: Umkehraufgabe — c aus Lösungen bei a = 2 |
+| 34 | 6 | L6: Verfahren übertragen — gleiche Quadrate |
+| 35 | 6 | L6: Sonderfall — doppelte Lösung gegen zwei (MC) |
+| 36 | 6 | L6: Parameter — m für genau eine Lösung |
+
+### 9-exponentielles-wachstum
+
+| id | Level | Kriterium |
+|---|---|---|
+| 19 | 4 | L4: Umkehraufgabe — Faktor aus zwei Werten |
+| 20 | 4 | L4: Modell aus Tabelle — Term erkennen (MC) |
+| 21 | 4 | L4: Umkehraufgabe — Anfangskapital |
+| 22 | 4 | L4: Umkehraufgabe — Prozentsatz aus drei Perioden |
+| 23 | 4 | L4: Vergleich linear/exponentiell — Tabelle |
+| 24 | 4 | L4: Halbwertszeit — Zeitpunkt aus Halbierungen |
+| 25 | 5 | L5: Fehler in Kette — Wurzel statt Hälfte (MC) |
+| 26 | 5 | L5: Sachaufgabe zweischrittig — erstmals unter Schwelle |
+| 27 | 5 | L5: Parameter aus zwei Bedingungen — Anfangswert |
+| 28 | 5 | L5: Sachaufgabe zweischrittig — Zuwachs im dritten Jahr |
+| 29 | 5 | L5: Vergleich — Zinseszins gegen einfache Zinsen |
+| 30 | 5 | L5: Umkehraufgabe — Halbwertszeit aus Restanteil |
+| 31 | 6 | L6: Behauptung prüfen — Prozentsätze addieren (MC) |
+| 32 | 6 | L6: Umkehraufgabe — Jahresrate aus Verdreifachung |
+| 33 | 6 | L6: Vergleich zweier Bestände — Tabelle |
+| 34 | 6 | L6: Behauptung prüfen — Zerfall endet nie (MC) |
+| 35 | 6 | L6: Umkehraufgabe — Zinssatz aus drei Perioden |
+| 36 | 6 | L6: Parameter, dann Schwelle — q aus N(3) |
+
+### 8-lgs (Umzug nach Kl. 9)
+
+| id | Level | Kriterium |
+|---|---|---|
+| 19 | 4 | L4: Verfahren wählen — Addition |
+| 20 | 4 | L4: Verfahren wählen — Vervielfachen |
+| 21 | 4 | L4: Modell aus Text — Preise |
+| 22 | 4 | L4: Umkehraufgabe — a aus Lösung |
+| 23 | 4 | L4: Modell aus Text — LGS aufstellen (MC) |
+| 24 | 4 | L4: Verfahren wählen — Einsetzen |
+| 25 | 5 | L5: Fehler in Kette — Vorzeichen (MC) |
+| 26 | 5 | L5: Sachaufgabe zweischrittig — Boot |
+| 27 | 5 | L5: Parameter — a für keine Lösung |
+| 28 | 5 | L5: Sachaufgabe — Mischung |
+| 29 | 5 | L5: Zahlenrätsel — Ziffern vertauschen |
+| 30 | 5 | L5: Sachaufgabe — Tarifvergleich |
+| 31 | 6 | L6: Behauptung prüfen — immer genau eine Lösung (MC) |
+| 32 | 6 | L6: Fallunterscheidung — a = ±2 |
+| 33 | 6 | L6: Sonderfall — identische Geraden grafisch (MC) |
+| 34 | 6 | L6: Umkehraufgabe — b aus Lösungspaar |
+| 35 | 6 | L6: Transfer — Parabel durch zwei Punkte |
+| 36 | 6 | L6: Sonderfall — c für unendlich viele Lösungen |
+
+### 8-bruchgleichungen (Umzug nach Kl. 9)
+
+| id | Level | Kriterium |
+|---|---|---|
+| 25 | 5 | L5: Fehler in Kette — Klammer ausmultiplizieren (MC) |
+| 26 | 5 | L5: Scheinlösung — Anzahl Lösungen |
+| 27 | 5 | L5: Sachaufgabe — zwei Pumpen |
+| 28 | 5 | L5: Sachaufgabe zweischrittig — Radfahrer (quadratisch) |
+| 29 | 5 | L5: Umkehraufgabe — a aus Lösung |
+| 30 | 5 | L5: Fehler finden — Probe entscheidet |
+| 31 | 6 | L6: Behauptung prüfen — höchstens eine Lösung (MC) |
+| 32 | 6 | L6: Sonderfall — Definitionslücke, unendlich viele (MC) |
+| 33 | 6 | L6: Umkehraufgabe — b für Scheinlösung |
+| 34 | 6 | L6: Fallunterscheidung — a für unendlich viele Lösungen |
+| 35 | 6 | L6: Sachaufgabe — zwei Drucker, Umkehr |
+| 36 | 6 | L6: Parameter aus zwei Bedingungen — a mit LGS |
+
+Prüfung Block A2: `level_check --strict` ok ohne Warnung (inkl. neuer MC-Längen-Warnung; Befund
+8-bruchgleichungen #21 durch gleich lange Optionen behoben), `lehrplan_check --strict` 0 Befunde,
+`katex_check` 0 Fehler, `pytest -k <stem>` je 7 passed, Bilder L5/L6 angesehen, alle Lösungen mit
+Wolfram|Alpha nachgerechnet.
