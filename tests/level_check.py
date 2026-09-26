@@ -54,6 +54,19 @@ process.exit(2);
     return json.loads(r.stdout)
 
 
+def tipp_verraet_loesung(tipp: str, loesung) -> bool:
+    """Warnung, wenn der Loesungswert (ab Betrag 10, sonst zu viele Zufallstreffer) im Tipp steht.
+    Review-Befund 2026-09-26: Tipps wie '30000 cm³ = 30 l' nehmen die Antwort vorweg."""
+    x = float(loesung)
+    if abs(x) < 10:
+        return False
+    kompakt = re.sub(r"\\[,;]|\s|\{,\}", lambda m: "," if m.group(0) == "{,}" else "", tipp or "")
+    formen = {str(x).replace(".", ",")}
+    if x == int(x):
+        formen.add(str(int(x)))
+    return any(re.search(r"(?<![\d,.])" + re.escape(z) + r"(?![\d])", kompakt) for z in formen)
+
+
 def normalisiere(frage: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", frage)).strip().lower()
 
@@ -92,6 +105,8 @@ def pruefe_trainer(pfad: Path, aufgaben: list):
                 hart.append(f"{k}: loesung fehlt")
             elif float(loes) != int(loes) and not a.get("toleranz"):
                 hart.append(f"{k}: Dezimal-Loesung ohne toleranz")
+            elif tipp_verraet_loesung(a.get("tipp", ""), loes):
+                warn.append(f"{k}: Tipp enthaelt den Loesungswert {loes}")
         else:
             hart.append(f"{k}: typ ungueltig ({typ})")
 
