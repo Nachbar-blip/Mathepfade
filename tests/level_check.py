@@ -67,6 +67,17 @@ def tipp_verraet_loesung(tipp: str, loesung) -> bool:
     return any(re.search(r"(?<![\d,.])" + re.escape(z) + r"(?![\d])", kompakt) for z in formen)
 
 
+def richtige_option_zu_lang(optionen: list, korrekt: int) -> bool:
+    """True, wenn die richtige Option laenger ist als jede andere und mehr als 1,3-mal so lang
+    wie die laengste Ablenker-Option (gemessen am sichtbaren Text ohne KaTeX-Steuerzeichen)."""
+    def sichtbar(s):
+        return len(re.sub(r"\\[a-zA-Z]+|[\\{}$()]", "", str(s)))
+    laengen = [sichtbar(o) for o in optionen]
+    r = laengen[korrekt]
+    andere = [l for i, l in enumerate(laengen) if i != korrekt]
+    return bool(andere) and r > max(andere) * 1.3
+
+
 def normalisiere(frage: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", frage)).strip().lower()
 
@@ -99,6 +110,10 @@ def pruefe_trainer(pfad: Path, aufgaben: list):
                 hart.append(f"{k}: MC-Optionen/korrekt ungueltig")
             elif len(set(opt)) < len(opt):
                 hart.append(f"{k}: identische MC-Optionen")
+            elif lv >= 4 and richtige_option_zu_lang(opt, a["korrekt"]):
+                # Review 2026-09-26: in 31 von 35 MC war die richtige Option die laengste (Begruendung
+                # nur dort). Die Laenge darf die Antwort nicht verraten.
+                warn.append(f"{k}: richtige MC-Option deutlich laenger als die Distraktoren")
         elif typ == "numerisch":
             loes = a.get("loesung")
             if not isinstance(loes, (int, float)):
