@@ -405,7 +405,7 @@ k/k²-Regeln, Ähnlichkeit von Figuren; 9-stoch-boxplot = Median, Quartile, IQR,
 |---|---|---|
 | 25 | 5 | L5: Fehler in Rechnung — sin statt cos (MC) |
 | 26 | 5 | L5: Höhe über zwei Winkel |
-| 27 | 5 | L5: zweischrittig — Steigung in Winkel, dann Höhe |
+| 27 | 5 | L5: zweischrittig — Steigung in Winkel, dann Höhe (Toleranz 0,005: 25·0,08 zählt nicht) |
 | 28 | 5 | L5: Fehler in Rechnung — Katheten im Tangens vertauscht (MC) |
 | 29 | 5 | L5: Sachaufgabe ohne Weg — Sparren aus Hausbreite |
 | 30 | 5 | L5: zweischrittig — beide Katheten, dann Fläche |
@@ -426,10 +426,10 @@ k/k²-Regeln, Ähnlichkeit von Figuren; 9-stoch-boxplot = Median, Quartile, IQR,
 | 19 | 4 | L4: Verfahren wählen — ½·a·b·sin γ |
 | 20 | 4 | L4: Umkehraufgabe — Grundseite aus Fläche |
 | 21 | 4 | L4: Trapez aus Punkten erkennen |
-| 22 | 4 | L4: allgemeines Viereck zerlegen |
+| 22 | 4 | L4: allgemeines Viereck zerlegen (Tipp und Lösungsweg: drei Randstücke, eines kein Dreieck) |
 | 23 | 4 | L4: ½·a·b·sin γ mit stumpfem Winkel |
 | 24 | 4 | L4: Parallelogramm mit Winkel (MC) |
-| 25 | 5 | L5: fehlende Koordinate aus Fläche |
+| 25 | 5 | L5: zweischrittig — Fläche über AB, dann Höhe auf AC (Pythagoras) |
 | 26 | 5 | L5: Fehler in vorgelegter Zerlegung (MC) |
 | 27 | 5 | L5: Seite aus Fläche und eingeschlossenem Winkel |
 | 28 | 5 | L5: Trapezparameter aus Fläche |
@@ -451,11 +451,11 @@ k/k²-Regeln, Ähnlichkeit von Figuren; 9-stoch-boxplot = Median, Quartile, IQR,
 | 21 | 4 | L4: Umkehraufgabe — Urbildstrecke aus Streckfaktor |
 | 22 | 4 | L4: Modell aus Text — Flussbreite über Peilung |
 | 23 | 4 | L4: Scheitel erkennen — Parallele im Dreieck |
-| 24 | 4 | L4: Ansatz wählen (MC, Auswahl als Leistung) |
+| 24 | 4 | L4: Ansatz wählen (MC; Distraktoren: Seiten vertauscht, Scheitel- mit Parallelenabschnitt vermischt) |
 | 25 | 5 | L5: Fehler in Rechnung — AA' statt SA' (MC) |
 | 26 | 5 | L5: Sachaufgabe ohne Weg — Leitersprosse |
 | 27 | 5 | L5: Größe aus zwei Bedingungen — Diagonalenabschnitt im Trapez |
-| 28 | 5 | L5: Fehler in Rechnung — 2. Strahlensatz falsch angesetzt (MC) |
+| 28 | 5 | L5: Fehler in Rechnung — Verhältnis verkehrt angesetzt (MC) |
 | 29 | 5 | L5: Sachaufgabe ohne Weg — Sektglas |
 | 30 | 5 | L5: Parameter — x/(x+8) = 1/3 |
 | 31 | 6 | L6: Behauptung begründen — dritte Form des Strahlensatzes (MC) |
@@ -475,12 +475,12 @@ k/k²-Regeln, Ähnlichkeit von Figuren; 9-stoch-boxplot = Median, Quartile, IQR,
 | 28 | 5 | L5: Fehler — Winkel bei Streckung (MC) |
 | 29 | 5 | L5: Sachaufgabe ohne Weg — Posterbreite aus Fläche |
 | 30 | 5 | L5: Ähnlichkeitsbedingung — dritte Seite |
-| 31 | 6 | L6: Sonderfall k = 1 — gleicher Umfang (MC) |
+| 31 | 6 | L6: Sonderfall k = 1 — gleicher Umfang (MC, Optionen gleich lang, Begründung im Lösungsweg) |
 | 32 | 6 | L6: Umkehraufgabe — Umfang aus Flächenfaktor |
 | 33 | 6 | L6: Streckung im Koordinatensystem — k aus Punktpaar |
 | 34 | 6 | L6: Behauptung prüfen — Rechtecke ähnlich? (MC) |
-| 35 | 6 | L6: Umkehraufgabe — Seite aus Flächenverhältnis |
-| 36 | 6 | L6: Fallunterscheidung k < 1 — Umfang bei Verkleinerung |
+| 35 | 6 | L6: Umkehraufgabe — Streckzentrum aus Punkt und Bildpunkt |
+| 36 | 6 | L6: Umkehraufgabe — k aus zwei Umfängen, gefragt ist der Flächenfaktor |
 
 ### 9-stoch-boxplot
 
@@ -517,9 +517,9 @@ k/k²-Regeln, Ähnlichkeit von Figuren; 9-stoch-boxplot = Median, Quartile, IQR,
 | 30 | 5 | L5: gewichteter Durchschnitt |
 | 31 | 6 | L6: Behauptung prüfen — Ausgleichs-Fehlschluss (MC) |
 | 32 | 6 | L6: Sonderfall — 0 weitere Sechsen |
-| 33 | 6 | L6: Umkehraufgabe — Stichprobenumfang aus Gesamtanteil |
+| 33 | 6 | L6: Sonderfall h = 0 — Behauptung „Wahrscheinlichkeit 0" prüfen (MC) |
 | 34 | 6 | L6: Behauptung prüfen — Mittelwert in der Reihe? (MC, Gegenbeispiel) |
-| 35 | 6 | L6: zwei Bedingungen — sechster Wert, dann Median |
+| 35 | 6 | L6: Fallunterscheidung — Anzahl ganzer x mit Median 9 |
 | 36 | 6 | L6: drei Bedingungen — Anzahl Einsen |
 
 ### Prüfung Block B
@@ -531,6 +531,41 @@ grün nach Umbenennung; Bilder L5/L6 je Trainer angesehen (MC-Optionen gleich la
 Befund beim Umzug 8-aehnlichkeit-streckung: eine pauschale Ersetzung „aehnlich → ähnlich" traf
 auch `THEMA_KEY` und ließ den Fortschritt (localStorage, Index-`data-key`) leerlaufen — der
 `katex_check` fand die MC-Optionen nicht mehr. THEMA_KEY zurückgesetzt; Regel: THEMA_KEY bleibt ASCII.
+### Review-Nachtrag Block B (2026-09-27)
+
+Zweiter Review-Durchgang über die sieben Kl.-9-Trainer aus bfc611e/6b21bc5. Behoben:
+
+- **Sinngleiche Paare aufgelöst.** Flächen im Koordinatensystem #25 war Motiv und
+  Zahlen von #28 (Trapezparameter c = 8) und nur einschrittig — jetzt Höhe auf AC über
+  Fläche und Pythagoras (7,59). Strahlensatz: Motiv „AA' statt SA'" stand viermal
+  (#20-Tipp, #24-Distraktor, #25, #28); #28 prüft jetzt ein verkehrt herum angesetztes
+  Verhältnis (3/12 = A'B'/5 statt 3/12 = 5/A'B'), #24 hat statt 3/6 den Distraktor
+  3/5 = x/9 (Scheitel- mit Parallelenabschnitt vermischt). Ähnlichkeit: „k aus k²" stand
+  viermal (#29, #32, #35, #36); #35 ist jetzt Streckzentrum aus P(5|4) und P'(7|2) bei
+  k = 2 (Z(3|6)), #36 die Gegenrichtung k aus zwei Umfängen mit gefragtem Flächenfaktor
+  (18 → 27, also 2,25). Häufigkeiten: #33 war sinngleich zu #29 (Anteilsgleichung mit n
+  im Nenner), #35 zu #27 (fehlender Wert aus Mittelwert); jetzt Sonderfall h = 0 bei der
+  Qualitätskontrolle (MC, kein Ausgleichs-Fehlschluss — der steht schon in #31) und
+  Fallunterscheidung „für wie viele ganze x hat 3, 8, 10, x den Median 9?" (11).
+- **Toleranz.** Trigonometrie #27: 0,02 ließ den Fehlweg 25·0,08 = 2,00 durchgehen;
+  jetzt 0,005 bei Lösung 1,99 (25·sin(arctan 0,08) = 1,9936), Rundung steht in der Frage.
+- **Tipp und Lösungsweg konsistent.** Flächen #22: der Tipp sprach von „vier
+  Randstücken", der Lösungsweg zieht drei ab (3; 2; 5, letzteres ein Viereck aus
+  2,5 + 2,5) — Tipp nennt jetzt die Randstücke ohne Anzahl und den Hinweis, dass nicht
+  jedes ein Dreieck ist.
+- **Boxplot.** #31: das Gegenbeispiel ist jetzt als zwei ausgeschriebene Reihen
+  formuliert (1,2,3,4,5,6,7 und 1,2,3,4,6,6,7 — gleiche fünf Kennwerte, Mittelwerte 4
+  gegen 29/7). #14: der Tipp nannte den Lösungswert und nennt jetzt nur das Vorgehen.
+- **MC-Fairness.** Ähnlichkeit #31: die richtige Option war deutlich länger als die
+  Distraktoren; alle vier sind nun etwa gleich lang, die Begründung steht im Lösungsweg.
+
+Gates je geänderter Datei: `level_check --strict` Exit 0 ohne Warnung, `lehrplan_check
+--strict` 0 Befunde, `katex_check` ok, `pytest -k <stem>` grün. Alle neuen Zahlen mit
+Wolfram|Alpha nachgerechnet. Sichtprüfung nicht nur über `bild.py` (zufällige Aufgabe je
+Level), sondern gezielt je geänderter id: Aufgabe erzwungen über `answered`, Tipp geöffnet
+und beantwortet, PNG angesehen. Dabei zusätzlich gefunden und behoben: in Ähnlichkeit #35
+rendere KaTeX `(2|-2)` mit Abstand um das Minus — die Probe ist jetzt in Worten formuliert.
+
 # Kl. 9 Block A1 — Review-Befunde behoben (2026-09-26)
 
 Sieben Trainer (Potenzen/Wurzeln). Alle Zahlen mit Wolfram nachgerechnet; Gates
