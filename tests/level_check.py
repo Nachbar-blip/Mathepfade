@@ -35,6 +35,20 @@ KETTEN_TRAINER = re.compile(r"ableitungsregeln|kettenregel")
 KATEX_OHNE_BACKSLASH = re.compile(
     r"(?<![A-Za-z\\])(cdot|frac|tfrac|dfrac|sqrt|times|Rightarrow|implies|approx|neq|leq|geq|"
     r"ldots|infty|overline|mathbb|quad|left\(|right\))(?![A-Za-z])")
+# Mathe-Umgebungen: was hier drin steht, rendert KaTeX. Alles ausserhalb erscheint woertlich.
+MATHE_UMGEBUNG = re.compile(r"\\\(.*?\\\)|\\\[.*?\\\]|\$\$.*?\$\$", re.S)
+# Markup, das nur innerhalb einer Mathe-Umgebung etwas bedeutet (Dezimalkomma, Befehl, Index/Exponent).
+MATHE_MARKUP = re.compile(r"\{,\}|\\[a-zA-Z]{2,}|\^\{|_\{")
+
+
+def mathe_markup_ausserhalb(a: dict) -> list:
+    """Felder, die KaTeX-Markup ausserhalb von \\(...\\)/$$...$$ tragen — das rendert woertlich.
+    Befund 2026-09-30 (Review Kl. 10 Block C): MC-Option '0{,}5' stand im Klartext und war
+    im Browser als '0{,}5' zu lesen; katex_check rendert nicht, was ausserhalb der Umgebung
+    steht, und level_check kannte nur fehlende Backslaesche. Nur die Sichtpruefung fand es."""
+    felder = [(f, str(a.get(f) or "")) for f in ("frage", "tipp", "loesungsweg")]
+    felder += [(f"optionen[{i}]", str(o)) for i, o in enumerate(a.get("optionen") or [])]
+    return [f for f, text in felder if MATHE_MARKUP.search(MATHE_UMGEBUNG.sub(" ", text))]
 
 
 def lade_aufgaben(pfad: Path) -> list:
@@ -139,6 +153,9 @@ def pruefe_trainer(pfad: Path, aufgaben: list):
                     hart.append(f"{k}: KaTeX-Befehl ohne Backslash in '{feld}' "
                                 f"(einfacher statt doppelter Backslash im JS-String)")
                     break
+        for feld in mathe_markup_ausserhalb(a):
+            hart.append(f"{k}: Mathe-Markup ausserhalb von \\(…\\) in '{feld}' "
+                        f"(rendert woertlich, z. B. '0{{,}}5')")
 
         if lv >= 4 and FORMEL_ANSAGE.search(frage):
             hart.append(f"{k}: Formel-/Rechenweg-Ansage in Level >= 4")
