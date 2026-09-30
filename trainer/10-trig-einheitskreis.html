@@ -344,151 +344,143 @@
         loesungsweg: "\\(210°\\) liegt im III. Quadranten. Referenzwinkel zur \\(x\\)-Achse: \\(210° - 180° = 30°\\). Da der Sinus im III. Quadranten negativ ist: $$\\sin(210°) = -\\sin(30°) = -\\frac{1}{2} = -0{,}5$$"
       },
 
-      // ========== LEVEL 5 — Grundbeziehung sin²+cos²=1 (6 Aufgaben) ==========
+      // ========== LEVEL 5 — zwei Schritte am Einheitskreis (6 Aufgaben) ==========
       {
         id: 25,
         level: 5,
         typ: "mc",
-        frage: "Welche Gleichung ist die trigonometrische Grundbeziehung?",
+        frage: "Ein Schüler rechnet: „\\(\\sin\\alpha = 0{,}8\\), \\(\\alpha\\) liegt im II. Quadranten, also \\(\\cos\\alpha = \\sqrt{1 - 0{,}64} = 0{,}6\\).“ Welcher Fehler steckt darin?",
         optionen: [
-          "\\(\\sin x + \\cos x = 1\\)",
-          "\\(\\sin^2 x + \\cos^2 x = 1\\)",
-          "\\(\\sin^2 x - \\cos^2 x = 1\\)",
-          "\\(\\sin x \\cdot \\cos x = 1\\)"
+          "kein Fehler, die Rechnung stimmt",
+          "das Vorzeichen des Ergebnisses ist falsch",
+          "es müsste \\(1 + 0{,}64\\) heißen",
+          "die Wurzel gehört um \\(0{,}8\\) gezogen"
         ],
         korrekt: 1,
-        tipp: "Pythagoras am Einheitskreis: \\(x^2 + y^2 = 1\\).",
-        loesungsweg: "Am Einheitskreis liegen alle Punkte \\((x\\mid y)\\) auf dem Kreis mit \\(x^2 + y^2 = 1\\). Mit \\(x = \\cos\\alpha\\) und \\(y = \\sin\\alpha\\): $$\\sin^2\\alpha + \\cos^2\\alpha = 1$$"
+        tipp: "Prüfe zuerst den Rechenschritt und danach, welches Vorzeichen die \\(x\\)-Koordinate im II. Quadranten hat.",
+        loesungsweg: "Der Rechenschritt \\(\\cos^2\\alpha = 1 - \\sin^2\\alpha = 1 - 0{,}64 = 0{,}36\\) ist richtig, ebenso \\(\\sqrt{0{,}36} = 0{,}6\\). Im II. Quadranten liegt der Punkt aber links der \\(y\\)-Achse, seine \\(x\\)-Koordinate ist negativ. Richtig ist deshalb $$\\cos\\alpha = -0{,}6$$ Der Schüler hat die Quadrantenlage nicht ausgewertet."
       },
       {
         id: 26,
         level: 5,
         typ: "numerisch",
-        frage: "Gegeben: \\(\\sin\\alpha = 0{,}6\\) und \\(\\alpha\\) liegt im I. Quadranten. Bestimme \\(\\cos\\alpha\\).",
-        loesung: 0.8,
-        toleranz: 0.01,
-        tipp: "Aus \\(\\sin^2\\alpha + \\cos^2\\alpha = 1\\) folgt \\(\\cos\\alpha = \\sqrt{1 - \\sin^2\\alpha}\\). Im I. Quadranten ist der Kosinus positiv.",
-        loesungsweg: "Aus der Grundbeziehung: $$\\cos^2\\alpha = 1 - \\sin^2\\alpha = 1 - 0{,}36 = 0{,}64$$ Da \\(\\alpha\\) im I. Quadranten liegt, ist \\(\\cos\\alpha > 0\\): $$\\cos\\alpha = \\sqrt{0{,}64} = 0{,}8$$"
+        frage: "Der Punkt \\(P(-0{,}28 \\mid y)\\) liegt auf dem Einheitskreis im III. Quadranten. Bestimme \\(y\\).",
+        loesung: -0.96,
+        toleranz: 0.005,
+        tipp: "Für jeden Punkt des Einheitskreises gilt \\(x^2 + y^2 = 1\\); danach entscheidet die Quadrantenlage über das Vorzeichen.",
+        loesungsweg: "Aus \\(x^2 + y^2 = 1\\) folgt $$y^2 = 1 - (-0{,}28)^2 = 1 - 0{,}0784 = 0{,}9216$$ also \\(|y| = \\sqrt{0{,}9216} = 0{,}96\\). Im III. Quadranten ist die \\(y\\)-Koordinate negativ: $$y = -0{,}96$$"
       },
       {
         id: 27,
         level: 5,
         typ: "numerisch",
-        frage: "Gegeben: \\(\\cos\\alpha = 0{,}8\\) und \\(\\alpha\\) liegt im IV. Quadranten. Bestimme \\(\\sin\\alpha\\).",
-        loesung: -0.6,
-        toleranz: 0.01,
-        tipp: "Im IV. Quadranten ist der Sinus negativ.",
-        loesungsweg: "Aus der Grundbeziehung: $$\\sin^2\\alpha = 1 - \\cos^2\\alpha = 1 - 0{,}64 = 0{,}36$$ Im IV. Quadranten ist \\(\\sin\\alpha < 0\\): $$\\sin\\alpha = -\\sqrt{0{,}36} = -0{,}6$$"
+        frage: "Für einen Winkel \\(\\alpha\\) gilt \\(\\sin\\alpha = \\cos\\alpha\\), und \\(\\alpha\\) liegt im III. Quadranten. Gib \\(\\alpha\\) in Grad an.",
+        loesung: 225,
+        toleranz: 0.1,
+        tipp: "Gleiche Koordinaten bedeuten, dass der Punkt auf der Winkelhalbierenden liegt; dann entscheidet der Quadrant, welche der beiden Halbgeraden gemeint ist.",
+        loesungsweg: "\\(\\sin\\alpha = \\cos\\alpha\\) heißt \\(y = x\\): der Punkt liegt auf der Winkelhalbierenden des I. und III. Quadranten. Im I. Quadranten gehört dazu \\(45°\\), im III. Quadranten der gegenüberliegende Punkt: $$\\alpha = 180° + 45° = 225°$$ Kontrolle: \\(\\sin(225°) = \\cos(225°) = -\\frac{\\sqrt{2}}{2}\\)."
       },
       {
         id: 28,
         level: 5,
-        typ: "mc",
-        frage: "Ein Punkt \\(P\\) liegt auf dem Einheitskreis mit \\(x\\)-Koordinate \\(\\frac{1}{2}\\) im I. Quadranten. Welche \\(y\\)-Koordinate hat \\(P\\)?",
-        optionen: [
-          "\\(\\frac{1}{2}\\)",
-          "\\(\\frac{\\sqrt{3}}{2}\\)",
-          "\\(\\frac{\\sqrt{2}}{2}\\)",
-          "\\(1\\)"
-        ],
-        korrekt: 1,
-        tipp: "Aus \\(x^2 + y^2 = 1\\) folgt \\(y^2 = 1 - x^2\\).",
-        loesungsweg: "Mit \\(x = \\frac{1}{2}\\): $$y^2 = 1 - \\left(\\frac{1}{2}\\right)^2 = 1 - \\frac{1}{4} = \\frac{3}{4}$$ Im I. Quadranten ist \\(y > 0\\): $$y = \\sqrt{\\frac{3}{4}} = \\frac{\\sqrt{3}}{2}$$"
+        typ: "numerisch",
+        frage: "Berechne \\(\\sin\\left(\\frac{7\\pi}{6}\\right) + \\cos\\left(\\frac{4\\pi}{3}\\right)\\) als Dezimalzahl.",
+        loesung: -1,
+        toleranz: 0.01,
+        tipp: "Rechne beide Bogenmaße zuerst in Grad um und bestimme dann je Winkel Quadrant und Referenzwinkel.",
+        loesungsweg: "Umrechnung: \\(\\frac{7\\pi}{6} = 210°\\) (III. Quadrant, Referenzwinkel \\(30°\\)) und \\(\\frac{4\\pi}{3} = 240°\\) (III. Quadrant, Referenzwinkel \\(60°\\)). Im III. Quadranten sind beide Koordinaten negativ: $$\\sin(210°) = -\\frac{1}{2},\\qquad \\cos(240°) = -\\frac{1}{2}$$ Summe: \\(-0{,}5 + (-0{,}5) = -1\\)."
       },
       {
         id: 29,
         level: 5,
         typ: "numerisch",
-        frage: "Gegeben: \\(\\sin\\alpha = \\frac{3}{5}\\) und \\(\\alpha\\) im II. Quadranten. Bestimme \\(\\cos\\alpha\\) als Dezimalzahl.",
-        loesung: -0.8,
-        toleranz: 0.01,
-        tipp: "Im II. Quadranten ist der Kosinus negativ.",
-        loesungsweg: "$$\\cos^2\\alpha = 1 - \\sin^2\\alpha = 1 - \\frac{9}{25} = \\frac{16}{25}$$ Im II. Quadranten ist \\(\\cos\\alpha < 0\\): $$\\cos\\alpha = -\\sqrt{\\frac{16}{25}} = -\\frac{4}{5} = -0{,}8$$"
+        frage: "Ein Punkt wandert vom Punkt \\((1 \\mid 0)\\) gegen den Uhrzeigersinn auf dem Einheitskreis und legt dabei die Bogenlänge \\(2{,}5\\) zurück. Welchen Winkel in Grad hat er überstrichen?",
+        loesung: 143.2394,
+        toleranz: 0.1,
+        tipp: "Auf dem Einheitskreis ist die zurückgelegte Bogenlänge genau das Bogenmaß des Winkels; danach bleibt die Umrechnung ins Gradmaß.",
+        loesungsweg: "Weil der Radius 1 ist, stimmt die Bogenlänge mit dem Bogenmaß überein: \\(x = 2{,}5\\). Umrechnung ins Gradmaß über \\(\\pi \\,\\widehat{=}\\, 180°\\): $$\\alpha = 2{,}5 \\cdot \\frac{180°}{\\pi} \\approx 143{,}24°$$"
       },
       {
         id: 30,
         level: 5,
         typ: "numerisch",
-        frage: "Berechne den Wert von \\(\\sin^2(37°) + \\cos^2(37°)\\).",
-        loesung: 1,
-        toleranz: 0,
-        tipp: "Denke an die trigonometrische Grundbeziehung — für jeden Winkel.",
-        loesungsweg: "Die trigonometrische Grundbeziehung gilt für <b>jeden</b> Winkel: $$\\sin^2\\alpha + \\cos^2\\alpha = 1$$ Also auch für \\(\\alpha = 37°\\): $$\\sin^2(37°) + \\cos^2(37°) = 1$$"
+        frage: "Der Punkt \\(P(a \\mid 2a)\\) liegt auf dem Einheitskreis im I. Quadranten. Bestimme \\(a\\) auf drei Dezimalen.",
+        loesung: 0.447,
+        toleranz: 0.002,
+        tipp: "Setze die beiden Koordinaten in die Kreisgleichung ein; es entsteht eine Gleichung mit nur einer Unbekannten.",
+        loesungsweg: "Einsetzen in \\(x^2 + y^2 = 1\\): $$a^2 + (2a)^2 = 1 \\;\\Rightarrow\\; 5a^2 = 1 \\;\\Rightarrow\\; a^2 = \\frac{1}{5}$$ Im I. Quadranten ist \\(a > 0\\): $$a = \\frac{1}{\\sqrt{5}} \\approx 0{,}447$$ Kontrolle: \\(0{,}447^2 + 0{,}894^2 \\approx 1\\)."
       },
 
-      // ========== LEVEL 6 — Winkel aus Wert bestimmen (6 Aufgaben) ==========
+      // ========== LEVEL 6 — Behauptungen und Sonderfälle am Kreis (6 Aufgaben) ==========
       {
         id: 31,
         level: 6,
         typ: "mc",
-        frage: "Für welche Winkel \\(x \\in [0, 2\\pi]\\) gilt \\(\\sin x = \\frac{1}{2}\\)?",
+        frage: "Behauptung: „Für jeden Winkel \\(\\alpha\\) gilt \\(\\sin(\\alpha + 180°) = \\sin\\alpha\\).“ Trifft das zu?",
         optionen: [
-          "nur \\(\\frac{\\pi}{6}\\)",
-          "\\(\\frac{\\pi}{6}\\) und \\(\\frac{5\\pi}{6}\\)",
-          "\\(\\frac{\\pi}{6}\\) und \\(\\frac{7\\pi}{6}\\)",
-          "\\(\\frac{\\pi}{3}\\) und \\(\\frac{2\\pi}{3}\\)"
+          "richtig für jeden Winkel",
+          "falsch, das Vorzeichen kehrt sich um",
+          "richtig nur im I. Quadranten",
+          "falsch, der Kosinus kommt heraus"
         ],
         korrekt: 1,
-        tipp: "Sinus ist positiv in den ersten beiden Quadranten. Zweite Lösung: \\(\\pi - x_1\\).",
-        loesungsweg: "Der Sinus ist positiv im I. und II. Quadranten. Erste Lösung: \\(x_1 = \\frac{\\pi}{6}\\) (entspricht \\(30°\\)). Zweite Lösung: $$x_2 = \\pi - \\frac{\\pi}{6} = \\frac{6\\pi - \\pi}{6} = \\frac{5\\pi}{6}$$ (entspricht \\(150°\\))."
+        tipp: "Zeichne zu einem Winkel den Punkt und den um \\(180°\\) weitergedrehten Punkt ein und vergleiche beide Koordinaten.",
+        loesungsweg: "Eine Drehung um \\(180°\\) führt den Punkt \\((\\cos\\alpha \\mid \\sin\\alpha)\\) in den Gegenpunkt \\((-\\cos\\alpha \\mid -\\sin\\alpha)\\) über. Die \\(y\\)-Koordinate wechselt also das Vorzeichen: $$\\sin(\\alpha + 180°) = -\\sin\\alpha$$ Probe mit \\(\\alpha = 30°\\): \\(\\sin(210°) = -0{,}5\\), aber \\(\\sin(30°) = 0{,}5\\). Die Behauptung ist falsch; sie gilt nur für die Winkel mit \\(\\sin\\alpha = 0\\)."
       },
       {
         id: 32,
         level: 6,
-        typ: "mc",
-        frage: "Für welche Winkel \\(x \\in [0, 2\\pi]\\) gilt \\(\\cos x = \\frac{1}{2}\\)?",
-        optionen: [
-          "\\(\\frac{\\pi}{3}\\) und \\(\\frac{2\\pi}{3}\\)",
-          "\\(\\frac{\\pi}{3}\\) und \\(\\frac{5\\pi}{3}\\)",
-          "\\(\\frac{\\pi}{6}\\) und \\(\\frac{11\\pi}{6}\\)",
-          "\\(\\frac{\\pi}{4}\\) und \\(\\frac{7\\pi}{4}\\)"
-        ],
-        korrekt: 1,
-        tipp: "Kosinus ist positiv in den Quadranten I und IV. Zweite Lösung: \\(2\\pi - x_1\\).",
-        loesungsweg: "Der Kosinus ist positiv im I. und IV. Quadranten. Erste Lösung: \\(x_1 = \\frac{\\pi}{3}\\) (\\(60°\\)). Zweite Lösung: $$x_2 = 2\\pi - \\frac{\\pi}{3} = \\frac{6\\pi - \\pi}{3} = \\frac{5\\pi}{3}$$ (\\(300°\\))."
+        typ: "numerisch",
+        frage: "Bestimme die Anzahl der Winkel \\(\\alpha\\) mit \\(0° \\le \\alpha < 360°\\), für die \\(\\sin\\alpha = \\cos\\alpha\\) gilt.",
+        loesung: 2,
+        toleranz: 0,
+        tipp: "Übersetze die Bedingung in eine Aussage über die Koordinaten des Punktes und überlege, wie oft der Einheitskreis die zugehörige Gerade trifft.",
+        loesungsweg: "\\(\\sin\\alpha = \\cos\\alpha\\) bedeutet \\(y = x\\). Der Einheitskreis schneidet die Gerade \\(y = x\\) in zwei Punkten: einmal im I. Quadranten (\\(45°\\)), einmal im III. Quadranten (\\(225°\\)). Auf den Achsen gibt es keine Lösung, weil dort eine Koordinate 0 und die andere \\(\\pm 1\\) ist. Also gibt es genau <b>2</b> solche Winkel."
       },
       {
         id: 33,
         level: 6,
-        typ: "mc",
-        frage: "Für welche Winkel \\(x \\in [0, 2\\pi]\\) gilt \\(\\sin x = -\\frac{\\sqrt{2}}{2}\\)?",
-        optionen: [
-          "\\(\\frac{\\pi}{4}\\) und \\(\\frac{3\\pi}{4}\\)",
-          "\\(\\frac{5\\pi}{4}\\) und \\(\\frac{7\\pi}{4}\\)",
-          "\\(\\frac{\\pi}{4}\\) und \\(\\frac{7\\pi}{4}\\)",
-          "nur \\(\\frac{3\\pi}{2}\\)"
-        ],
-        korrekt: 1,
-        tipp: "Sinus ist negativ im III. und IV. Quadranten. Referenzwinkel: \\(\\frac{\\pi}{4}\\).",
-        loesungsweg: "Der Sinus ist negativ im III. und IV. Quadranten. Referenzwinkel: \\(\\frac{\\pi}{4}\\) (da \\(\\sin(\\pi/4) = \\frac{\\sqrt{2}}{2}\\)). III. Quadrant: $$x_1 = \\pi + \\frac{\\pi}{4} = \\frac{5\\pi}{4}$$ IV. Quadrant: $$x_2 = 2\\pi - \\frac{\\pi}{4} = \\frac{7\\pi}{4}$$"
+        typ: "numerisch",
+        frage: "Behauptung: „Der Term \\(\\sin^4\\alpha + \\cos^4\\alpha\\) hat für jeden Winkel denselben Wert.“ Berechne den Wert für \\(\\alpha = 45°\\) und entscheide damit über die Behauptung.",
+        loesung: 0.5,
+        toleranz: 0.005,
+        tipp: "Setze einen zweiten, besonders bequemen Winkel ein und vergleiche die beiden Ergebnisse miteinander.",
+        loesungsweg: "Für \\(\\alpha = 45°\\) ist \\(\\sin 45° = \\cos 45° = \\frac{\\sqrt{2}}{2}\\), also $$\\sin^4 45° + \\cos^4 45° = 2 \\cdot \\left(\\frac{\\sqrt{2}}{2}\\right)^4 = 2 \\cdot \\frac{4}{16} = \\frac{1}{2} = 0{,}5$$ Für \\(\\alpha = 0°\\) ergibt sich dagegen \\(0^4 + 1^4 = 1\\). Zwei verschiedene Werte — die Behauptung ist <b>falsch</b>. Konstant ist nur \\(\\sin^2\\alpha + \\cos^2\\alpha\\)."
       },
       {
         id: 34,
         level: 6,
         typ: "numerisch",
-        frage: "Bestimme den kleinsten positiven Winkel \\(x\\) (im Bogenmaß) mit \\(\\cos x = 0\\). Gib das Ergebnis als Dezimalzahl an.",
-        loesung: 1.5708,
-        toleranz: 0.01,
-        tipp: "\\(\\cos x = 0\\) an der Stelle \\(x = \\frac{\\pi}{2}\\).",
-        loesungsweg: "Der Kosinus wird 0, wenn der Punkt am Einheitskreis auf der \\(y\\)-Achse liegt. Kleinster positiver Wert: $$x = \\frac{\\pi}{2} \\approx 1{,}5708$$"
-      },      {
-        id: 35, level: 6, typ: "numerisch",
-        frage: "F\u00fcr welches \\(x \\in [0;\\,2\\pi]\\) gilt \\(\\cos x = -1\\)? Gib den Wert als Dezimalzahl an (\\(\\pi \\approx 3{,}1416\\)).",
-        loesung: 3.1416,
-        toleranz: 0.01,
-        tipp: "Wo liegt der Punkt auf dem Einheitskreis, dessen \\(x\\)-Koordinate \\(-1\\) betr\u00e4gt?",
-        loesungsweg: "Der Kosinus ist die \\(x\\)-Koordinate auf dem Einheitskreis. Sie betr\u00e4gt genau dann \\(-1\\), wenn der Punkt ganz links liegt \u2014 also bei $$x = \\pi \\approx 3{,}1416$$ Im angegebenen Intervall ist das die einzige L\u00f6sung."
+        frage: "Zum Winkel \\(-1000°\\) gehört ein Punkt auf dem Einheitskreis. Gib den kleinsten nichtnegativen Winkel in Grad an, der zum selben Punkt gehört.",
+        loesung: 80,
+        toleranz: 0.1,
+        tipp: "Volle Umläufe ändern den Punkt nicht; addiere so viele Umläufe, bis der Winkel im Bereich von \\(0°\\) bis unter \\(360°\\) landet.",
+        loesungsweg: "Eine volle Drehung um \\(360°\\) führt auf denselben Punkt zurück. Wir addieren drei Umläufe: $$-1000° + 3 \\cdot 360° = -1000° + 1080° = 80°$$ Der Wert liegt im Bereich \\(0° \\le \\alpha < 360°\\) und ist damit der gesuchte Winkel. Kontrolle: \\(80° - 1080° = -1000°\\)."
       },
-
+      {
+        id: 35,
+        level: 6,
+        typ: "numerisch",
+        frage: "Bestimme den größten Wert, den die Summe \\(\\sin\\alpha + \\cos\\alpha\\) annehmen kann, auf vier Dezimalen.",
+        loesung: 1.4142,
+        toleranz: 0.002,
+        tipp: "Quadriere die Summe und setze im entstehenden Term die Grundbeziehung ein; überlege dann, wie groß das übrige Produkt höchstens werden kann.",
+        loesungsweg: "Quadrieren liefert $$(\\sin\\alpha + \\cos\\alpha)^2 = \\sin^2\\alpha + \\cos^2\\alpha + 2\\sin\\alpha\\cos\\alpha = 1 + 2\\sin\\alpha\\cos\\alpha$$ Das Produkt \\(\\sin\\alpha\\cos\\alpha\\) wird am größten, wenn beide Koordinaten gleich und positiv sind, also bei \\(\\alpha = 45°\\): \\(\\sin\\alpha\\cos\\alpha = \\frac{1}{2}\\). Dann ist das Quadrat \\(1 + 1 = 2\\) und die Summe selbst $$\\sqrt{2} \\approx 1{,}4142$$"
+      },
       {
         id: 36,
         level: 6,
-        typ: "numerisch",
-        frage: "Bestimme die Anzahl der Lösungen der Gleichung \\(\\sin x = 0\\) im Intervall \\([0, 2\\pi]\\).",
-        loesung: 3,
-        toleranz: 0,
-        tipp: "Der Sinus ist 0 an allen Nulldurchgängen auf der \\(x\\)-Achse. Denke an \\(x = 0\\), \\(\\pi\\) und \\(2\\pi\\).",
-        loesungsweg: "Der Sinus ist die \\(y\\)-Koordinate am Einheitskreis und wird 0, wenn der Punkt auf der \\(x\\)-Achse liegt. Im Intervall \\([0, 2\\pi]\\) gilt das für: $$x_1 = 0,\\quad x_2 = \\pi,\\quad x_3 = 2\\pi$$ Das sind <b>3 Lösungen</b>."
+        typ: "mc",
+        frage: "Behauptung: „Sind \\(\\alpha\\) und \\(\\beta\\) zwei verschiedene Winkel aus \\([0°;\\,360°]\\) mit \\(\\sin\\alpha = \\sin\\beta\\), so gilt \\(\\beta = 180° - \\alpha\\).“ Wie ist das zu bewerten?",
+        optionen: [
+          "richtig, das folgt aus der Symmetrie",
+          "falsch, Gegenbeispiel \\(0°\\) und \\(360°\\)",
+          "falsch, es gilt stets \\(360° - \\alpha\\)",
+          "richtig nur für spitze Winkel \\(\\alpha\\)"
+        ],
+        korrekt: 1,
+        tipp: "Suche nach Winkelpaaren an den Rändern des Intervalls, bei denen die Sinuswerte übereinstimmen.",
+        loesungsweg: "Die Spiegelung an der \\(y\\)-Achse liefert zwar zu jedem \\(\\alpha\\) den Partner \\(180° - \\alpha\\) mit gleichem Sinuswert, aber nicht nur diesen. Für \\(\\alpha = 0°\\) und \\(\\beta = 360°\\) gilt \\(\\sin\\alpha = \\sin\\beta = 0\\), obwohl \\(180° - 0° = 180°\\) ist und nicht \\(360°\\). Die Behauptung ist damit <b>falsch</b>: sie erfasst nur die Partner innerhalb eines Umlaufs, nicht die durch die Periode \\(360°\\) hinzukommenden."
       }];
     </script>
     <script src="../spirale-engine.js"></script>

@@ -294,9 +294,9 @@
         typ: "mc",
         frage: "Welche Menge gibt alle Nullstellen von \\(f(x) = \\sin(x)\\) im Intervall \\([0;\\, 4\\pi]\\) an?",
         optionen: [
-          "\\(\\{0;\\ \\pi;\\ 2\\pi\\}\\)",
+          "\\(\\{0;\\ \\pi;\\ 2\\pi;\\ 3\\pi;\\ 5\\pi\\}\\)",
           "\\(\\{0;\\ \\pi;\\ 2\\pi;\\ 3\\pi;\\ 4\\pi\\}\\)",
-          "\\(\\{\\pi;\\ 2\\pi;\\ 3\\pi\\}\\)",
+          "\\(\\{\\pi;\\ 2\\pi;\\ 3\\pi;\\ 4\\pi;\\ 5\\pi\\}\\)",
           "\\(\\left\\{\\frac{\\pi}{2};\\ \\frac{3\\pi}{2};\\ \\frac{5\\pi}{2}\\right\\}\\)"
         ],
         korrekt: 1,
@@ -352,148 +352,145 @@
         toleranz: 0,
         tipp: "In jeder Periode \\(2\\pi\\) gibt es genau einen Tiefpunkt.",
         loesungsweg: "Tiefpunkte bei \\(\\frac{3\\pi}{2}\\) und \\(\\frac{7\\pi}{2}\\). Das sind \\(2\\) Tiefpunkte."
-      },      {
-        id: 25, level: 5, typ: "numerisch",
-        frage: "L\u00f6se \\(\\sin(x) = 0{,}5\\) im Intervall \\([0;\\,2\\pi]\\). Gib die KLEINERE L\u00f6sung als Dezimalzahl an.",
-        loesung: 0.5236,
-        toleranz: 0.01,
-        tipp: "Denke an den Sinuswert von \\(30°\\) im Bogenma\u00df.",
-        loesungsweg: "$$\\sin\\left(\\frac{\\pi}{6}\\right) = 0{,}5 \\;\\Rightarrow\\; x = \\frac{\\pi}{6} \\approx 0{,}5236$$ Die zweite L\u00f6sung im Intervall ist \\(x = \\frac{5\\pi}{6} \\approx 2{,}618\\)."
-      },
-      {
-        id: 26, level: 5, typ: "numerisch",
-        frage: "L\u00f6se \\(\\sin(x) = 1\\) im Intervall \\([0;\\,2\\pi]\\). Gib den Wert als Dezimalzahl an.",
-        loesung: 1.5708,
-        toleranz: 0.01,
-        tipp: "An welcher Stelle erreicht die Sinuskurve ihren Hochpunkt?",
-        loesungsweg: "$$x = \\frac{\\pi}{2} \\approx 1{,}5708$$ Der Sinus erreicht den Wert \\(1\\) im Intervall genau einmal."
-      },
-      {
-        id: 27, level: 5, typ: "numerisch",
-        frage: "L\u00f6se \\(\\sin(x) = -1\\) im Intervall \\([0;\\,2\\pi]\\). Gib den Wert als Dezimalzahl an.",
-        loesung: 4.7124,
-        toleranz: 0.01,
-        tipp: "An welcher Stelle liegt der Tiefpunkt der Sinuskurve?",
-        loesungsweg: "Der Sinus nimmt seinen kleinsten Wert \\(-1\\) im Tiefpunkt an, also nach drei Vierteln der Periode: $$x = \\frac{3\\pi}{2} \\approx 4{,}7124$$ Im Intervall \\([0;2\\pi]\\) ist das die einzige Lösung — anders als bei Werten zwischen \\(-1\\) und \\(1\\), zu denen stets zwei Stellen gehören."
       },
 
+      // ========== LEVEL 5 — Parameter aus Graph und Sachtext (6 Aufgaben) ==========
+      {
+        id: 25,
+        level: 5,
+        typ: "numerisch",
+        frage: "Der Graph von \\(f(x) = a \\cdot \\sin(b \\cdot x)\\) mit \\(a > 0\\) und \\(b > 0\\) hat den größten Funktionswert 4 und die Periode \\(\\pi\\). Bestimme \\(b\\).",
+        loesung: 2,
+        toleranz: 0.01,
+        tipp: "Der größte Funktionswert hängt nur vom Streckfaktor vor dem Sinus ab, die Periodenlänge nur vom Faktor im Argument.",
+        loesungsweg: "Der größte Funktionswert liefert \\(a = 4\\), für \\(b\\) ist er ohne Bedeutung. Die Periode einer Sinusfunktion mit innerem Faktor \\(b\\) beträgt \\(\\frac{2\\pi}{b}\\). Aus $$\\frac{2\\pi}{b} = \\pi \\;\\Rightarrow\\; b = \\frac{2\\pi}{\\pi} = 2$$ Die Funktion lautet also \\(f(x) = 4\\sin(2x)\\)."
+      },
+      {
+        id: 26,
+        level: 5,
+        typ: "numerisch",
+        frage: "Der Wasserstand in einem Hafen schwankt gleichmäßig zwischen \\(1{,}20\\,\\text{m}\\) und \\(3{,}80\\,\\text{m}\\). Beschreibt man ihn durch eine Sinusfunktion, wie groß ist deren Amplitude in Metern?",
+        loesung: 1.3,
+        toleranz: 0.02,
+        tipp: "Die Amplitude misst den Abstand vom mittleren Wert bis zum höchsten Wert, nicht den gesamten Höhenunterschied.",
+        loesungsweg: "Der gesamte Unterschied beträgt \\(3{,}80 - 1{,}20 = 2{,}60\\) Meter. Die Sinuskurve schwingt um ihre Mittellage jeweils zur Hälfte nach oben und nach unten: $$a = \\frac{2{,}60}{2} = 1{,}30$$ Die Mittellage liegt bei \\(\\frac{1{,}20 + 3{,}80}{2} = 2{,}50\\) Metern."
+      },
+      {
+        id: 27,
+        level: 5,
+        typ: "numerisch",
+        frage: "An einer Küste vergehen zwischen einem Höchststand des Wassers und dem darauf folgenden Tiefststand \\(6{,}2\\) Stunden. Der Verlauf wird durch \\(w(t) = a \\cdot \\sin(b \\cdot t) + d\\) mit \\(t\\) in Stunden beschrieben. Bestimme \\(b\\) auf vier Dezimalen.",
+        loesung: 0.5067,
+        toleranz: 0.002,
+        tipp: "Zwischen Höchst- und Tiefststand liegt nur ein halber Durchlauf; bestimme daraus zuerst die vollständige Periodenlänge.",
+        loesungsweg: "Höchst- und Tiefststand liegen eine halbe Periode auseinander, also ist die Periode $$T = 2 \\cdot 6{,}2 = 12{,}4 \\text{ Stunden}$$ Aus \\(T = \\frac{2\\pi}{b}\\) folgt $$b = \\frac{2\\pi}{12{,}4} \\approx 0{,}5067$$"
+      },
       {
         id: 28,
         level: 5,
         typ: "mc",
-        frage: "Löse \\(\\sin(x) = 0\\) im Intervall \\([0;\\, 2\\pi]\\).",
+        frage: "Ein Schüler bestimmt die Periode von \\(f(x) = 2\\sin(0{,}5x)\\) als \\(0{,}5 \\cdot 2\\pi = \\pi\\). Wie ist das zu bewerten?",
         optionen: [
-          "\\(x = 0\\)",
-          "\\(x = 0\\) und \\(x = \\pi\\)",
-          "\\(x = 0,\\ x = \\pi,\\ x = 2\\pi\\)",
-          "\\(x = \\pi\\)"
+          "richtig, die Periode beträgt \\(\\pi\\)",
+          "falsch, es wird geteilt statt multipliziert",
+          "falsch, die Amplitude gehört hinein",
+          "falsch, die Periode ist immer \\(2\\pi\\)"
         ],
-        korrekt: 2,
-        tipp: "Alle Nullstellen in \\([0;\\, 2\\pi]\\).",
-        loesungsweg: "Nullstellen sind \\(x = k\\pi\\). Im Intervall \\([0;\\, 2\\pi]\\) liegen \\(x = 0,\\ x = \\pi,\\ x = 2\\pi\\)."
+        korrekt: 1,
+        tipp: "Überlege am Graphen, ob ein innerer Faktor kleiner als 1 die Kurve streckt oder staucht, und vergleiche das mit dem Ergebnis des Schülers.",
+        loesungsweg: "Der innere Faktor \\(0{,}5\\) streckt den Graphen in \\(x\\)-Richtung, die Periode wird also <b>größer</b> als \\(2\\pi\\). Richtig ist $$T = \\frac{2\\pi}{b} = \\frac{2\\pi}{0{,}5} = 4\\pi$$ Der Schüler hat multipliziert statt dividiert und erhält mit \\(\\pi\\) sogar eine kürzere Periode. Die Amplitude 2 spielt für die Periode keine Rolle."
       },
       {
         id: 29,
         level: 5,
-        typ: "mc",
-        frage: "Löse \\(\\sin(x) = \\frac{\\sqrt{2}}{2}\\) im Intervall \\([0;\\, 2\\pi]\\).",
-        optionen: [
-          "\\(x = \\frac{\\pi}{6},\\ \\frac{5\\pi}{6}\\)",
-          "\\(x = \\frac{\\pi}{4},\\ \\frac{3\\pi}{4}\\)",
-          "\\(x = \\frac{\\pi}{3},\\ \\frac{2\\pi}{3}\\)",
-          "\\(x = \\frac{\\pi}{4}\\)"
-        ],
-        korrekt: 1,
-        tipp: "\\(\\sin\\!\\left(\\frac{\\pi}{4}\\right) = \\frac{\\sqrt{2}}{2} \\approx 0{,}7071\\).",
-        loesungsweg: "Erste Lösung: \\(x_1 = \\frac{\\pi}{4}\\). Zweite Lösung: \\(x_2 = \\pi - \\frac{\\pi}{4} = \\frac{3\\pi}{4}\\)."
+        typ: "numerisch",
+        frage: "Der Graph von \\(f(x) = \\sin(x - c)\\) mit \\(0 \\le c < 2\\pi\\) steigt bei \\(x = \\frac{\\pi}{3}\\) durch die \\(x\\)-Achse. Bestimme \\(c\\) als Dezimalzahl auf vier Stellen.",
+        loesung: 1.0472,
+        toleranz: 0.005,
+        tipp: "Überlege, an welcher Stelle die unverschobene Sinuskurve steigend durch die \\(x\\)-Achse geht, und vergleiche beide Stellen.",
+        loesungsweg: "Die unverschobene Sinuskurve steigt bei \\(x = 0\\) durch die \\(x\\)-Achse. Beim verschobenen Graphen geschieht das, wenn das Argument null wird: $$x - c = 0 \\;\\Rightarrow\\; x = c$$ Die steigende Nullstelle liegt also bei \\(x = c\\), damit $$c = \\frac{\\pi}{3} \\approx 1{,}0472$$"
       },
       {
         id: 30,
         level: 5,
-        typ: "mc",
-        frage: "Löse \\(\\sin(x) = -0{,}5\\) im Intervall \\([0;\\, 2\\pi]\\).",
-        optionen: [
-          "\\(x = \\frac{\\pi}{6},\\ \\frac{5\\pi}{6}\\)",
-          "\\(x = \\frac{7\\pi}{6},\\ \\frac{11\\pi}{6}\\)",
-          "\\(x = \\frac{7\\pi}{6},\\ \\frac{5\\pi}{6}\\)",
-          "keine Lösung"
-        ],
-        korrekt: 1,
-        tipp: "Negative Werte liegen im Bereich \\([\\pi;\\, 2\\pi]\\). Nutze \\(x = \\pi + \\frac{\\pi}{6}\\) und \\(x = 2\\pi - \\frac{\\pi}{6}\\).",
-        loesungsweg: "Da \\(\\sin\\!\\left(\\frac{\\pi}{6}\\right) = 0{,}5\\), sind die Lösungen von \\(\\sin(x) = -0{,}5\\) im Intervall \\([0;\\, 2\\pi]\\): \\(x_1 = \\pi + \\frac{\\pi}{6} = \\frac{7\\pi}{6}\\) und \\(x_2 = 2\\pi - \\frac{\\pi}{6} = \\frac{11\\pi}{6}\\)."
+        typ: "numerisch",
+        frage: "Bestimme die Anzahl der Hochpunkte des Graphen von \\(f(x) = 3\\sin(2x) + 1\\) im Intervall \\([0;\\, 4\\pi]\\).",
+        loesung: 4,
+        toleranz: 0,
+        tipp: "Bestimme zuerst die Periodenlänge und überlege dann, wie oft sie in das angegebene Intervall passt.",
+        loesungsweg: "Die Periode beträgt \\(T = \\frac{2\\pi}{2} = \\pi\\). Der erste Hochpunkt einer Sinuskurve liegt nach einem Viertel der Periode, also bei \\(x = \\frac{\\pi}{4}\\), danach wiederholt er sich alle \\(\\pi\\): $$x = \\frac{\\pi}{4} + k\\pi$$ Im Intervall \\([0;\\, 4\\pi]\\) sind das \\(\\frac{\\pi}{4},\\ \\frac{5\\pi}{4},\\ \\frac{9\\pi}{4},\\ \\frac{13\\pi}{4}\\); der nächste Wert \\(\\frac{17\\pi}{4}\\) liegt bereits außerhalb. Also <b>4</b> Hochpunkte. Die Verschiebung um 1 nach oben ändert daran nichts."
       },
 
-      // ========== LEVEL 6 — Anwendungen (6 Aufgaben) ==========
+      // ========== LEVEL 6 — Behauptungen und Modellierung (6 Aufgaben) ==========
       {
         id: 31,
         level: 6,
         typ: "mc",
-        frage: "Die Tageslänge an einem bestimmten Ort lässt sich näherungsweise durch eine Sinusfunktion beschreiben. Welche Eigenschaft der Sinusfunktion bildet den jährlichen Wechsel von Sommer und Winter ab?",
+        frage: "Behauptung: „Verdoppelt man in \\(f(x) = \\sin(b x)\\) den Wert von \\(b\\), so verdoppelt sich auch die Periodenlänge.“ Wie ist das zu bewerten?",
         optionen: [
-          "der Definitionsbereich",
-          "die Periodizität",
-          "die Nullstellen",
-          "der Wertebereich"
+          "richtig, beide Größen wachsen gleich",
+          "falsch, die Periode wird halbiert",
+          "falsch, die Periode bleibt gleich",
+          "richtig, aber nur für \\(b > 1\\)"
         ],
         korrekt: 1,
-        tipp: "Was wiederholt sich jedes Jahr?",
-        loesungsweg: "Die Periodizität sorgt dafür, dass sich das Muster (Sommer/Winter) regelmäßig wiederholt. Ein Jahr entspricht einer Periode."
+        tipp: "Stelle die Periodenlänge als Bruch mit \\(b\\) im Nenner dar und überlege, was ein größerer Nenner bewirkt.",
+        loesungsweg: "Für \\(f(x) = \\sin(bx)\\) gilt \\(T = \\frac{2\\pi}{b}\\). Der Faktor \\(b\\) steht im <b>Nenner</b>: $$T_{\\text{neu}} = \\frac{2\\pi}{2b} = \\frac{1}{2} \\cdot \\frac{2\\pi}{b} = \\frac{T}{2}$$ Die Periode wird also halbiert, die Kurve schwingt doppelt so schnell. Beispiel: \\(\\sin(x)\\) hat \\(T = 2\\pi\\), \\(\\sin(2x)\\) hat \\(T = \\pi\\)."
       },
       {
         id: 32,
         level: 6,
-        typ: "mc",
-        frage: "Ein Riesenrad-Sitz bewegt sich auf einer Kreisbahn. Die Höhe über der Mitte wird näherungsweise durch \\(h(t) = \\sin(t)\\) beschrieben. Welche Bedeutung hat der Wert \\(1\\) des Wertebereichs?",
-        optionen: [
-          "die Umlaufzeit",
-          "die höchste Position über der Mitte",
-          "die Startposition",
-          "die Geschwindigkeit"
-        ],
-        korrekt: 1,
-        tipp: "Der maximale Wert von \\(\\sin(t)\\) ist \\(1\\).",
-        loesungsweg: "Der Maximalwert \\(1\\) entspricht dem höchsten Punkt des Sitzes über der Mitte der Kreisbahn."
-      },      {
-        id: 33, level: 6, typ: "numerisch",
-        frage: "Die Temperaturschwankung an einem Tag wird vereinfacht durch \\(T(t) = \\sin(t)\\) modelliert. Nach welcher Zeit ist der Verlauf wieder am Ausgangswert (eine volle Periode)? Gib den Wert als Dezimalzahl an.",
-        loesung: 6.2832,
-        toleranz: 0.02,
-        tipp: "Wie lang ist die Periode der unver\u00e4nderten Sinusfunktion?",
-        loesungsweg: "Die Sinusfunktion hat die Periode $$2\\pi \\approx 6{,}2832$$ Erst danach wiederholt sich der Verlauf vollst\u00e4ndig."
+        typ: "numerisch",
+        frage: "Die Tageslänge an einem Ort wird durch \\(L(t) = 12 + 4\\sin\\!\\left(\\frac{2\\pi}{365}(t - 80)\\right)\\) beschrieben (\\(L\\) in Stunden, \\(t\\) als Tag des Jahres). Bestimme den Tag mit der größten Tageslänge, auf ganze Tage gerundet.",
+        loesung: 171,
+        toleranz: 0.5,
+        tipp: "Überlege, an welcher Stelle ihrer Periode eine Sinuskurve ihren Höchstwert erreicht, und übersetze das in eine Bedingung für das Argument.",
+        loesungsweg: "Der Sinus wird am größten, wenn sein Argument einem Viertel des vollen Umlaufs entspricht: $$\\frac{2\\pi}{365}(t - 80) = \\frac{\\pi}{2}$$ Auflösen nach \\(t\\): $$t - 80 = \\frac{365}{4} = 91{,}25 \\;\\Rightarrow\\; t = 171{,}25$$ Gerundet ist das der <b>171. Tag</b>; die Tageslänge beträgt dort \\(12 + 4 = 16\\) Stunden."
       },
       {
-        id: 34, level: 6, typ: "numerisch",
-        frage: "Eine Welle wird durch \\(y(x) = \\sin(x)\\) beschrieben. Wie gro\u00df ist die gr\u00f6\u00dfte Auslenkung?",
-        loesung: 1,
+        id: 33,
+        level: 6,
+        typ: "numerisch",
+        frage: "Der Graph von \\(f(x) = a \\cdot \\sin(x) + d\\) hat den Hochpunkt \\(\\left(\\frac{\\pi}{2} \\mid 7\\right)\\) und den Tiefpunkt \\(\\left(\\frac{3\\pi}{2} \\mid -3\\right)\\). Bestimme \\(d\\).",
+        loesung: 2,
         toleranz: 0.01,
-        tipp: "Welchen gr\u00f6\u00dften Wert nimmt der Sinus \u00fcberhaupt an?",
-        loesungsweg: "Der Sinus schwankt zwischen \\(-1\\) und \\(1\\); die gr\u00f6\u00dfte Auslenkung betr\u00e4gt also \\(1\\). Die Schwankungsbreite insgesamt ist \\(2\\)."
+        tipp: "Setze beide Punkte ein; es entsteht ein Gleichungssystem aus zwei Gleichungen für die beiden Unbekannten.",
+        loesungsweg: "Mit \\(\\sin\\!\\left(\\frac{\\pi}{2}\\right) = 1\\) und \\(\\sin\\!\\left(\\frac{3\\pi}{2}\\right) = -1\\) entsteht $$a + d = 7 \\qquad\\text{und}\\qquad -a + d = -3$$ Addition beider Gleichungen: \\(2d = 4\\), also \\(d = 2\\); damit \\(a = 5\\). Die Mittellage liegt bei \\(y = 2\\), die Amplitude beträgt 5."
       },
-
+      {
+        id: 34,
+        level: 6,
+        typ: "numerisch",
+        frage: "Für welche natürliche Zahl \\(a\\) hat der Graph von \\(f(x) = \\sin(a \\cdot x)\\) im Intervall \\([0;\\, 2\\pi]\\) genau sieben Nullstellen?",
+        loesung: 3,
+        toleranz: 0,
+        tipp: "Zähle die Nullstellen zunächst für kleine Werte von \\(a\\) und suche nach dem Zusammenhang zwischen \\(a\\) und der Anzahl.",
+        loesungsweg: "Nullstellen liegen dort, wo das Argument ein ganzzahliges Vielfaches von \\(\\pi\\) ist: \\(ax = k\\pi\\), also \\(x = \\frac{k\\pi}{a}\\). Im Intervall \\([0;\\, 2\\pi]\\) gehören dazu \\(k = 0;\\,1;\\,\\ldots;\\,2a\\), das sind \\(2a + 1\\) Stellen. Aus $$2a + 1 = 7 \\;\\Rightarrow\\; a = 3$$ Probe: \\(\\sin(3x)\\) hat dort die Nullstellen \\(0,\\ \\frac{\\pi}{3},\\ \\frac{2\\pi}{3},\\ \\pi,\\ \\frac{4\\pi}{3},\\ \\frac{5\\pi}{3},\\ 2\\pi\\)."
+      },
       {
         id: 35,
         level: 6,
-        typ: "numerisch",
-        frage: "Die Höhe eines schaukelnden Pendels (in Metern) wird durch \\(h(t) = \\sin(t)\\) beschrieben. Welche Höhe hat das Pendel zum Zeitpunkt \\(t = \\frac{\\pi}{2}\\)?",
-        loesung: 1,
-        toleranz: 0.001,
-        tipp: "Setze \\(t = \\frac{\\pi}{2}\\) in \\(h(t)\\) ein.",
-        loesungsweg: "\\(h\\!\\left(\\frac{\\pi}{2}\\right) = \\sin\\!\\left(\\frac{\\pi}{2}\\right) = 1\\). Das Pendel ist auf Höhe \\(1\\,\\text{m}\\)."
+        typ: "mc",
+        frage: "Behauptung: „Der Graph von \\(g(x) = \\sin\\!\\left(x + \\frac{\\pi}{2}\\right)\\) fällt mit dem Graphen der Kosinusfunktion zusammen.“ Wie ist das zu bewerten?",
+        optionen: [
+          "ja, die Kurven stimmen überein",
+          "nein, der Graph ist gespiegelt",
+          "nein, die Periode ändert sich",
+          "nein, die Amplitude wird größer"
+        ],
+        korrekt: 0,
+        tipp: "Vergleiche für einige bequeme Stellen die Funktionswerte beider Kurven, etwa dort, wo eine der beiden ihren Höchstwert hat.",
+        loesungsweg: "Das Plus im Argument verschiebt die Sinuskurve um \\(\\frac{\\pi}{2}\\) nach <b>links</b>. Ihr Hochpunkt wandert damit von \\(\\frac{\\pi}{2}\\) nach \\(0\\) — genau dort liegt der Hochpunkt der Kosinuskurve. Probe an weiteren Stellen: $$g(0) = \\sin\\!\\left(\\frac{\\pi}{2}\\right) = 1 = \\cos(0), \\qquad g(\\pi) = \\sin\\!\\left(\\frac{3\\pi}{2}\\right) = -1 = \\cos(\\pi)$$ Amplitude und Periode bleiben unverändert. Die Behauptung ist richtig."
       },
       {
         id: 36,
         level: 6,
-        typ: "mc",
-        frage: "Der Wasserstand in einem Hafen wird vereinfacht durch \\(w(t) = \\sin(t)\\) beschrieben (in Metern, \\(t\\) in Stunden). Zu welchem Zeitpunkt im Intervall \\([0;\\, 2\\pi]\\) ist der Wasserstand am niedrigsten?",
-        optionen: [
-          "\\(t = 0\\)",
-          "\\(t = \\frac{\\pi}{2}\\)",
-          "\\(t = \\pi\\)",
-          "\\(t = \\frac{3\\pi}{2}\\)"
-        ],
-        korrekt: 3,
-        tipp: "Der Tiefpunkt der Sinusfunktion liegt bei \\(\\frac{3\\pi}{2}\\).",
-        loesungsweg: "Der niedrigste Wert von \\(\\sin(t)\\) im Intervall \\([0;\\, 2\\pi]\\) wird bei \\(t = \\frac{3\\pi}{2}\\) mit \\(w = -1\\) angenommen."
+        typ: "numerisch",
+        frage: "Von einer Sinuskurve ist bekannt: Sie steigt bei \\(x = 1\\) durch die Mittellage, der nächste Hochpunkt liegt bei \\(x = 4\\). Bestimme die Periodenlänge.",
+        loesung: 12,
+        toleranz: 0.05,
+        tipp: "Überlege, welcher Bruchteil eines vollen Durchlaufs zwischen dem Aufsteigen durch die Mittellage und dem darauf folgenden Hochpunkt liegt.",
+        loesungsweg: "Vom Aufsteigen durch die Mittellage bis zum nächsten Hochpunkt vergeht genau ein <b>Viertel</b> der Periode. Dieses Viertel ist hier \\(4 - 1 = 3\\) lang, also $$T = 4 \\cdot 3 = 12$$ Probe: Der nächste Tiefpunkt läge bei \\(4 + 6 = 10\\), die nächste steigende Stelle bei \\(1 + 12 = 13\\)."
       }];
     </script>
     <script src="../spirale-engine.js"></script>
