@@ -146,15 +146,15 @@
       { id:19, level:4, typ:"numerisch",
         frage:"Schnittgerade \\(g\\) von \\(E_1:x+y+z=2\\) und \\(E_2:2x-y+z=1\\). Für Stützpunkt \\((x_0|y_0|0)\\) mit \\(z=0\\): Gib \\(x_0\\) an.",
         loesung:1, toleranz:0.01,
-        tipp:"\\(x+y=2\\), \\(2x-y=1\\). Addieren: \\(3x=3\\).",
-        loesungsweg:"\\(x_0=1\\), \\(y_0=1\\)."
+        tipp:"Setze \\(z=0\\) in beide Ebenengleichungen ein; es bleibt ein System aus zwei Gleichungen mit zwei Unbekannten.",
+        loesungsweg:"Mit \\(z=0\\) werden aus den beiden Ebenengleichungen $$x+y = 2 \\qquad\\text{und}\\qquad 2x-y = 1$$ Addition der beiden Zeilen beseitigt \\(y\\): \\(3x = 3\\), also \\(x_0 = 1\\) und daraus \\(y_0 = 1\\). Der Stützpunkt ist \\(P(1|1|0)\\). Probe: \\(1+1+0 = 2\\) ✓ und \\(2-1+0 = 1\\) ✓ Er liegt also tatsächlich auf beiden Ebenen und damit auf der Schnittgeraden."
       },
       { id:20, level:4, typ:"mc",
         frage:"\\(E_1:x+2y-z=0\\), \\(E_2:3x+y+z=4\\). Richtungsvektor der Schnittgeraden?",
         optionen:["\\((3,-4,-5)^T\\)","\\((1,2,-1)^T\\)","\\((3,1,1)^T\\)","\\((0,0,1)^T\\)"],
         korrekt:0,
-        tipp:"\\((1,2,-1)\\times(3,1,1)\\).",
-        loesungsweg:"\\((1,2,-1)\\times(3,1,1)=(2\\cdot1-(-1)\\cdot1,\\,(-1)\\cdot3-1\\cdot1,\\,1\\cdot1-2\\cdot3)=(3,-4,-5)\\)."
+        tipp:"Lies beide Normalenvektoren ab; die Richtung der Schnittgeraden steht auf beiden senkrecht.",
+        loesungsweg:"Die Normalenvektoren sind \\(\\vec n_1 = \\begin{pmatrix}1\\\\2\\\\-1\\end{pmatrix}\\) und \\(\\vec n_2 = \\begin{pmatrix}3\\\\1\\\\1\\end{pmatrix}\\). Die Schnittgerade liegt in beiden Ebenen, ihre Richtung steht also auf beiden Normalen senkrecht — das leistet das Kreuzprodukt: $$\\vec n_1 \\times \\vec n_2 = \\begin{pmatrix}2\\cdot1-(-1)\\cdot1\\\\(-1)\\cdot3-1\\cdot1\\\\1\\cdot1-2\\cdot3\\end{pmatrix} = \\begin{pmatrix}3\\\\-4\\\\-5\\end{pmatrix}$$ Probe: \\(3-8+5 = 0\\) ✓ und \\(9-4-5 = 0\\) ✓ Jedes Vielfache dieses Vektors beschreibt dieselbe Richtung."
       },
       { id:21, level:4, typ:"numerisch",
         frage:"Schnittpunkt der Ebene \\(E:x+y+z=6\\) mit der x-Achse: Gib die x-Koordinate.",
@@ -165,8 +165,8 @@
       { id:22, level:4, typ:"numerisch",
         frage:"\\(E_1:x+y-z=0\\), \\(E_2:x-y+z=2\\). Stützpunkt mit \\(z=1\\): \\(y=\\)?",
         loesung:0, toleranz:0.01,
-        tipp:"Setze \\(z=1\\): \\(x+y=1\\) und \\(x-y=1\\).",
-        loesungsweg:"\\(x+y=1\\), \\(x-y=1 \\Rightarrow x=1, y=0\\)."
+        tipp:"Setze \\(z=1\\) in beide Gleichungen ein und löse das entstehende System nach \\(x\\) und \\(y\\).",
+        loesungsweg:"Mit \\(z=1\\) wird aus \\(E_1: x+y-z=0\\) die Gleichung \\(x+y = 1\\) und aus \\(E_2: x-y+z=2\\) die Gleichung \\(x-y = 1\\). $$x+y = 1, \\quad x-y = 1$$ Addition liefert \\(2x = 2\\), also \\(x = 1\\), und Subtraktion \\(2y = 0\\), also \\(y = 0\\). Der gesuchte Stützpunkt ist \\(P(1|0|1)\\). Probe in \\(E_1\\): \\(1+0-1 = 0\\) ✓"
       },
       { id:23, level:4, typ:"mc",
         frage:"Die Ebenen \\(E_1:x-2y+z=0\\) und \\(E_2:2x-4y+2z=0\\) sind:",
@@ -181,84 +181,82 @@
         tipp:"\\(\\vec{n}_2=2\\vec{n}_1\\Rightarrow k=2\\).",
         loesungsweg:"Parallelität verlangt kollineare Normalenvektoren. Aus \\(\\vec n_1 = (1;1;-1)\\) und \\(\\vec n_2 = (2;k;-2)\\) liest man den Faktor \\(2\\) an der ersten und dritten Komponente ab: $$\\vec n_2 = 2\\vec n_1 \\;\\Rightarrow\\; k = 2 \\cdot 1 = 2$$ Die rechten Seiten \\(1\\) und \\(4\\) passen dazu nicht (\\(2 \\cdot 1 \\ne 4\\)) — die Ebenen sind also <b>echt</b> parallel und nicht identisch."
       },
-      // ===== LEVEL 5 — Gerade–Ebene =====
-      { id:25, level:5, typ:"mc",
-        frage:"Wann schneidet eine Gerade eine Ebene in genau einem Punkt?",
-        optionen:["\\(\\vec{u}\\cdot\\vec{n}\\neq 0\\)","\\(\\vec{u}\\cdot\\vec{n}=0\\)","\\(\\vec{u}\\parallel\\vec{n}\\)","immer"],
-        korrekt:0,
-        tipp:"Richtungsvektor nicht parallel zur Ebene.",
-        loesungsweg:"\\(\\vec{u}\\cdot\\vec{n}\\neq 0\\) bedeutet \\(\\vec{u}\\) nicht in Ebene → genau ein Schnittpunkt."
-      },
-      { id:26, level:5, typ:"numerisch",
-        frage:"\\(g:\\vec{x}=(0,0,0)+t(1,1,1)\\) und \\(E:x+y+z=6\\). Schnittpunktparameter \\(t\\)?",
+      // ===== LEVEL 5 — Vollständige Lagediskussion =====
+      { id:25, level:5, typ:"numerisch",
+        frage:"Für welchen Wert von \\(a\\) liegt die Gerade \\(g:\\vec{x}=\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}2\\\\a\\\\1\\end{pmatrix}\\) vollständig in der Ebene \\(E: x-2y+2z=-1\\)?",
         loesung:2, toleranz:0.01,
-        tipp:"\\(3t=6\\).",
-        loesungsweg:"Die Geradengleichung in die Ebenengleichung einsetzen: $$t + t + t = 6 \\;\\Rightarrow\\; 3t = 6 \\;\\Rightarrow\\; t = 2$$ Der Schnittpunkt ist \\(S(2|2|2)\\). Probe: \\(2+2+2 = 6\\) ✓ Hätte sich ein Widerspruch ergeben, verliefe die Gerade parallel zur Ebene."
+        tipp:"„Vollständig in der Ebene“ verlangt zwei Dinge zugleich — prüfe erst den Aufpunkt, dann die Richtung.",
+        loesungsweg:"Erste Bedingung — der Aufpunkt \\(A(1|1|0)\\) muss in \\(E\\) liegen: $$1-2\\cdot1+2\\cdot0 = -1 \\ \\checkmark$$ Das gilt unabhängig von \\(a\\). Zweite Bedingung — die Richtung muss parallel zur Ebene verlaufen, also senkrecht auf \\(\\vec n = \\begin{pmatrix}1\\\\-2\\\\2\\end{pmatrix}\\) stehen: $$\\begin{pmatrix}2\\\\a\\\\1\\end{pmatrix}\\cdot\\begin{pmatrix}1\\\\-2\\\\2\\end{pmatrix} = 2-2a+2 = 0 \\;\\Rightarrow\\; a = 2$$ Für jedes andere \\(a\\) schneidet \\(g\\) die Ebene in genau einem Punkt; echt parallel kann \\(g\\) hier nie sein, weil der Aufpunkt stets in \\(E\\) liegt."
       },
-      { id:27, level:5, typ:"mc",
-        frage:"\\(g:\\vec{x}=(1,0,0)+t(1,1,0)\\) und \\(E:z=5\\). Schnittpunkt?",
-        optionen:["existiert nicht","\\((1|0|0)\\)","\\((6|5|0)\\)","unendlich viele"],
+      { id:26, level:5, typ:"mc",
+        frage:"Jemand untersucht die Lage von \\(g:\\vec{x}=\\begin{pmatrix}2\\\\1\\\\1\\end{pmatrix}+t\\begin{pmatrix}1\\\\1\\\\-1\\end{pmatrix}\\) und \\(E: x+2y+3z=7\\) und schreibt: „Wegen \\(1+2-3=0\\) ist \\(g\\) echt parallel zu \\(E\\).“ Welche Lage liegt wirklich vor?",
+        optionen:["\\(g\\) liegt vollständig in \\(E\\)","\\(g\\) ist echt parallel zu \\(E\\)","\\(g\\) schneidet \\(E\\) in einem Punkt","\\(g\\) steht senkrecht auf \\(E\\)"],
         korrekt:0,
-        tipp:"\\(z=0\\) konstant.",
-        loesungsweg:"\\(z\\) auf \\(g\\) ist stets 0 \\(\\neq 5\\): kein Schnittpunkt, \\(g\\) echt parallel zu \\(E\\)."
+        tipp:"Das Skalarprodukt aus Richtung und Normale entscheidet nur, ob es überhaupt einen Schnittpunkt gibt — eine zweite Prüfung fehlt hier.",
+        loesungsweg:"Die Rechnung \\(\\vec u\\cdot\\vec n = 1+2-3 = 0\\) ist richtig; sie zeigt nur, dass \\(g\\) die Ebene nicht schneidet. Ob die Gerade daneben herläuft oder in der Ebene liegt, entscheidet erst die Punktprobe mit dem Aufpunkt \\(A(2|1|1)\\): $$2 + 2\\cdot1 + 3\\cdot1 = 7 \\ \\checkmark$$ \\(A\\) erfüllt die Ebenengleichung, also liegt die ganze Gerade in \\(E\\). Der Schluss auf „echt parallel“ war voreilig — er hätte eine Ungleichung an dieser Stelle gebraucht."
+      },
+      { id:27, level:5, typ:"numerisch",
+        frage:"Die Ebenen \\(E_1: x+2y+az=4\\) und \\(E_2: 2x+by+6z=8\\) sind identisch. Bestimme \\(a\\).",
+        loesung:3, toleranz:0.01,
+        tipp:"Identische Ebenen haben kollineare Normalenvektoren <b>und</b> passend mitskalierte rechte Seiten; bestimme zuerst den Streckfaktor.",
+        loesungsweg:"Aus den rechten Seiten \\(8 = k\\cdot 4\\) folgt der Faktor \\(k = 2\\). Damit muss gelten $$\\vec n_2 = 2\\,\\vec n_1 \\;\\Rightarrow\\; \\begin{pmatrix}2\\\\b\\\\6\\end{pmatrix} = 2\\begin{pmatrix}1\\\\2\\\\a\\end{pmatrix}$$ Die erste Komponente bestätigt \\(k=2\\), die zweite liefert \\(b = 4\\), die dritte \\(6 = 2a\\), also \\(a = 3\\). Probe: \\(E_2: 2x+4y+6z=8\\) ist genau das Doppelte von \\(E_1: x+2y+3z=4\\) ✓ Stimmte die rechte Seite nicht, wären die Ebenen nur echt parallel."
       },
       { id:28, level:5, typ:"numerisch",
-        frage:"\\(g:\\vec{x}=(1,2,3)+t(0,1,1)\\), \\(E:y+z=7\\). Schnittpunktparameter \\(t\\)?",
-        loesung:1, toleranz:0.01,
-        tipp:"\\((2+t)+(3+t)=7\\).",
-        loesungsweg:"\\((2+t)+(3+t)=7\\Rightarrow 5+2t=7\\Rightarrow t=1\\)."
+        frage:"\\(g_1:\\vec{x}=\\begin{pmatrix}0\\\\1\\\\2\\end{pmatrix}+s\\begin{pmatrix}2\\\\1\\\\0\\end{pmatrix}\\) und \\(g_2:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}+t\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix}\\). Zeige, dass sich die Geraden schneiden, und gib die \\(z\\)-Koordinate des Schnittpunkts an.",
+        loesung:2, toleranz:0.01,
+        tipp:"Setze die beiden Gleichungen gleich; eine der drei Zeilen enthält nur eine Unbekannte und liefert den Einstieg.",
+        loesungsweg:"Die Richtungen sind nicht kollinear, parallel scheidet also aus. Gleichsetzen ergibt das System $$2s = 1+t, \\qquad 1+s = 2t, \\qquad 2 = 1+t$$ Die dritte Zeile liefert sofort \\(t = 1\\), die erste damit \\(s = 1\\). Die zweite Zeile ist die <b>Probe</b>: \\(1+1 = 2\\cdot1\\) ✓ Das System ist lösbar, die Geraden schneiden sich also (statt windschief zu sein). Der Schnittpunkt ist \\(S(2|2|2)\\), seine \\(z\\)-Koordinate ist \\(2\\)."
       },
-      { id:29, level:5, typ:"mc",
-        frage:"Eine Gerade liegt genau dann in einer Ebene, wenn:",
-        optionen:["\\(\\vec{u}\\cdot\\vec{n}=0\\) und Stützpunkt in E","\\(\\vec{u}\\cdot\\vec{n}\\neq 0\\)","\\(\\vec{u}\\cdot\\vec{n}=0\\)","Stützpunkt in E"],
-        korrekt:0,
-        tipp:"Beide Bedingungen nötig.",
-        loesungsweg:"Richtungsvektor parallel zu E UND Stützpunkt in E."
+      { id:29, level:5, typ:"numerisch",
+        frage:"Für welchen Wert von \\(k\\) schneiden sich \\(g:\\vec{x}=\\begin{pmatrix}1\\\\2\\\\0\\end{pmatrix}+s\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}\\) und \\(h:\\vec{x}=\\begin{pmatrix}0\\\\1\\\\k\\end{pmatrix}+t\\begin{pmatrix}2\\\\1\\\\3\\end{pmatrix}\\)?",
+        loesung:-2, toleranz:0.01,
+        tipp:"Die drei Gleichungen enthalten drei Unbekannte; zwei davon lassen sich aus den ersten beiden Zeilen bestimmen.",
+        loesungsweg:"Gleichsetzen liefert $$1+s = 2t, \\qquad 2 = 1+t, \\qquad s = k+3t$$ Aus der zweiten Zeile folgt \\(t = 1\\), aus der ersten \\(s = 1\\). Einsetzen in die dritte Zeile: $$1 = k + 3 \\;\\Rightarrow\\; k = -2$$ Nur für diesen Wert haben die Geraden einen gemeinsamen Punkt, nämlich \\(S(2|2|1)\\); für jedes andere \\(k\\) sind sie windschief, denn parallel können sie wegen der verschiedenen Richtungen nie sein."
       },
       { id:30, level:5, typ:"numerisch",
-        frage:"\\(g:\\vec{x}=(2,0,1)+t(1,2,-1)\\), \\(E:x+y+z=5\\). Welcher Parameter \\(t\\) liefert den Schnittpunkt?",
-        loesung:1, toleranz:0.01,
-        tipp:"\\((2+t)+2t+(1-t)=5\\Rightarrow 3+2t=5\\).",
-        loesungsweg:"\\(2t=2\\Rightarrow t=1\\). Schnittpunkt \\((3|2|0)\\)."
+        frage:"Zeige, dass die Ebenen \\(E_1: x+y+z=6\\), \\(E_2: x-y+2z=5\\) und \\(E_3: 2x+y-z=1\\) genau einen gemeinsamen Punkt haben, und gib dessen \\(y\\)-Koordinate an.",
+        loesung:2, toleranz:0.01,
+        tipp:"Eine geschickte Summe zweier Gleichungen beseitigt eine Variable; suche das Paar, bei dem sich \\(y\\) aufhebt.",
+        loesungsweg:"Addition von \\(E_2\\) und \\(E_3\\) beseitigt \\(y\\): $$3x + z = 6 \\;\\Rightarrow\\; z = 6-3x$$ Addition von \\(E_1\\) und \\(E_2\\) ergibt \\(2x+3z = 11\\). Einsetzen: $$2x + 3(6-3x) = 11 \\;\\Rightarrow\\; -7x = -7 \\;\\Rightarrow\\; x = 1$$ Daraus \\(z = 3\\) und aus \\(E_1\\) schließlich \\(y = 6-1-3 = 2\\). Probe in \\(E_3\\): \\(2+2-3 = 1\\) ✓ Weil das System eindeutig lösbar ist, schneiden sich die drei Ebenen in dem einen Punkt \\(S(1|2|3)\\) — hätte sich eine Zeile zu \\(0=0\\) verdichtet, gäbe es stattdessen eine gemeinsame Gerade."
       },
-      // ===== LEVEL 6 — Abi-Niveau =====
+      // ===== LEVEL 6 — Abi-Format (eA) =====
       { id:31, level:6, typ:"numerisch",
-        frage:"Ebene \\(E_1\\) durch \\(A(1|0|0), B(0|1|0), C(0|0|1)\\); Ebene \\(E_2:x+y=0\\). Richtungsvektor der Schnittgeraden hat y-Komponente \\(-1\\). Welche x-Komponente?",
-        loesung:1, toleranz:0.01,
-        tipp:"\\(E_1:x+y+z=1\\), \\(\\vec{n}_1\\times\\vec{n}_2=(1,1,1)\\times(1,1,0)=(-1,1,0)\\). Normiert: (1,-1,0).",
-        loesungsweg:"Die drei Punkte sind die Spurpunkte mit den Achsenabschnitten \\(1\\), also \\(E_1: x+y+z = 1\\) mit \\(\\vec n_1 = (1;1;1)\\). Für \\(E_2\\) ist \\(\\vec n_2 = (1;1;0)\\). $$\\vec n_1 \\times \\vec n_2 = \\begin{pmatrix}-1\\\\1\\\\0\\end{pmatrix}$$ Gefordert ist die \\(y\\)-Komponente \\(-1\\); der Gegenvektor \\((1;-1;0)\\) erfüllt das und beschreibt dieselbe Richtung. Die gesuchte \\(x\\)-Komponente ist damit \\(1\\)."
+        frage:"Die beiden Flächen eines Satteldachs liegen in den Ebenen \\(E_1: 2x+3z=12\\) und \\(E_2: -2x+3z=12\\) (Angaben in Metern). Begründen Sie, dass sich die Dachflächen in einer Geraden — dem First — schneiden, und bestimmen Sie die Höhe des Firstes über dem Boden \\(z=0\\).",
+        loesung:4, toleranz:0.02,
+        tipp:"Eine Schnittgerade gibt es, wenn die Normalenvektoren nicht kollinear sind; die Höhe findest du, indem du beide Gleichungen geschickt verbindest.",
+        loesungsweg:"Die Normalenvektoren \\(\\begin{pmatrix}2\\\\0\\\\3\\end{pmatrix}\\) und \\(\\begin{pmatrix}-2\\\\0\\\\3\\end{pmatrix}\\) sind keine Vielfachen voneinander — die Ebenen sind also weder parallel noch identisch und schneiden sich in einer Geraden. Addition beider Gleichungen: $$6z = 24 \\;\\Rightarrow\\; z = 4$$ Subtraktion liefert \\(4x = 0\\), also \\(x = 0\\); \\(y\\) bleibt frei. Der First ist die Gerade \\(\\vec x = \\begin{pmatrix}0\\\\0\\\\4\\end{pmatrix} + t\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}\\) und verläuft in \\(4\\,\\mathrm{m}\\) Höhe."
       },
       { id:32, level:6, typ:"numerisch",
-        frage:"\\(E_1:x+y+z=6\\), \\(E_2:2x-y+z=3\\). Schnittgerade hat Stützpunkt mit \\(z=0\\). Welches \\(x\\)?",
-        loesung:3, toleranz:0.01,
-        tipp:"\\(x+y=6\\), \\(2x-y=3\\), Addition \\(3x=9\\).",
-        loesungsweg:"\\(x=3, y=3\\)."
+        frage:"Die Punkte \\(A(1|0|0)\\), \\(B(0|2|0)\\) und \\(C(0|0|4)\\) spannen eine Ebene \\(E\\) auf. Zeigen Sie, dass \\(g:\\vec{x}=\\begin{pmatrix}1\\\\2\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\2\\\\4\\end{pmatrix}\\) die Ebene schneidet, und bestimmen Sie den Parameter \\(t\\) des Schnittpunkts. (3 Dez.)",
+        loesung:-0.333, toleranz:0.02,
+        tipp:"Aus den drei Achsenschnittpunkten lässt sich die Ebenengleichung unmittelbar hinschreiben, ohne ein Kreuzprodukt zu bilden.",
+        loesungsweg:"Die drei Punkte sind die Spurpunkte mit den Achsenabschnitten \\(1\\), \\(2\\) und \\(4\\), also $$\\frac{x}{1}+\\frac{y}{2}+\\frac{z}{4} = 1 \\;\\Longleftrightarrow\\; 4x+2y+z = 4, \\quad \\vec n = \\begin{pmatrix}4\\\\2\\\\1\\end{pmatrix}$$ Nachweis des Schnitts: \\(\\vec u\\cdot\\vec n = 4+4+4 = 12 \\ne 0\\), die Gerade ist also nicht parallel zur Ebene und trifft sie in genau einem Punkt. Einsetzen: $$4(1+t)+2(2+2t)+4t = 4 \\;\\Rightarrow\\; 8+12t = 4 \\;\\Rightarrow\\; t = -\\frac13 \\approx -0{,}333$$ Das negative Vorzeichen bedeutet nur, dass der Schnittpunkt entgegen der Richtung des Richtungsvektors vom Aufpunkt aus liegt."
       },
       { id:33, level:6, typ:"mc",
-        frage:"Eine Ebenenschar \\(E_a:ax+y+z=1\\) und \\(E:x+y+z=2\\). Für welches \\(a\\) sind sie parallel?",
-        optionen:["\\(a=0\\)","\\(a=1\\)","\\(a=-1\\)","\\(a=2\\)"],
-        korrekt:1,
-        tipp:"\\(\\vec{n}_a=(a,1,1), \\vec{n}=(1,1,1)\\). Parallel iff \\(a=1\\).",
-        loesungsweg:"Bei \\(a=1\\) sind Normalen identisch, Ebenen echt parallel (da \\(1\\neq2\\))."
+        frage:"Beurteilen Sie: „Zwei Ebenen, deren Normalenvektoren senkrecht aufeinander stehen, haben keinen gemeinsamen Punkt.“",
+        optionen:["Falsch, sie schneiden sich stets in einer Geraden","Richtig, senkrechte Normalen schließen das aus","Falsch, sie sind dann zueinander echt parallel","Richtig, außer wenn beide den Ursprung enthalten"],
+        korrekt:0,
+        tipp:"Denke an zwei Koordinatenebenen und überlege, wie ihre Normalenvektoren zueinander stehen.",
+        loesungsweg:"Zwei Ebenen haben genau dann keinen gemeinsamen Punkt, wenn sie <b>echt parallel</b> sind — und das verlangt kollineare Normalenvektoren. Stehen die Normalen senkrecht aufeinander, sind sie insbesondere nicht kollinear; die Ebenen schneiden sich also in einer Geraden, und zwar unter dem Winkel \\(90°\\). Das Standardbeispiel sind die Koordinatenebenen \\(x=0\\) und \\(z=0\\) mit den Normalen \\(\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}\\) und \\(\\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}\\): Sie schneiden sich in der \\(y\\)-Achse."
       },
       { id:34, level:6, typ:"numerisch",
-        frage:"Die Gerade \\(g:\\vec{x}=(1,1,1)+t(2,-1,1)\\) schneidet \\(E:x-y+2z=4\\) in welchem \\(t\\)?",
-        loesung:0.4, toleranz:0.05,
-        tipp:"\\((1+2t)-(1-t)+2(1+t)=4\\Rightarrow 2+5t=4\\).",
-        loesungsweg:"Einsetzen von \\(g\\) in \\(E\\): \\((1+2t)-(1-t)+2(1+t)=2+5t=4\\Rightarrow 5t=2\\Rightarrow t=0{,}4\\)."
+        frage:"Für welchen Wert von \\(c\\) liegt die Schnittgerade von \\(E_1: x+y+z=4\\) und \\(E_2: x-y=0\\) vollständig in der Ebene \\(E_3: 2x+z=c\\)?",
+        loesung:4, toleranz:0.01,
+        tipp:"Beschreibe die Schnittgerade zuerst mit einem Parameter und setze diese Darstellung in \\(E_3\\) ein.",
+        loesungsweg:"Aus \\(E_2\\) folgt \\(y = x\\), aus \\(E_1\\) dann \\(2x + z = 4\\), also \\(z = 4-2x\\). Mit \\(x = t\\) lautet die Schnittgerade $$\\vec x = \\begin{pmatrix}0\\\\0\\\\4\\end{pmatrix} + t\\begin{pmatrix}1\\\\1\\\\-2\\end{pmatrix}$$ Einsetzen in \\(E_3\\): $$2t + (4-2t) = 4$$ Die linke Seite ist von \\(t\\) unabhängig — sie hat für <b>jeden</b> Geradenpunkt den Wert \\(4\\). Damit liegt die Gerade genau für \\(c = 4\\) ganz in \\(E_3\\); für jedes andere \\(c\\) hat sie mit \\(E_3\\) keinen einzigen Punkt gemeinsam, ist also echt parallel dazu."
       },
       { id:35, level:6, typ:"mc",
-        frage:"Ebenen \\(E_1\\) und \\(E_2\\) mit Normalen \\(\\vec{n}_1,\\vec{n}_2\\) sind identisch, wenn:",
-        optionen:["\\(\\vec{n}_1\\parallel\\vec{n}_2\\) und ein Punkt \\(P\\in E_1\\) liegt auch in \\(E_2\\)","\\(\\vec{n}_1\\cdot\\vec{n}_2=0\\)","\\(\\vec{n}_1=\\vec{n}_2\\) immer","nie"],
+        frage:"Drei paarweise verschiedene Ebenen haben keinen gemeinsamen Punkt, und keine zwei von ihnen sind parallel. Welche Lage liegt dann vor?",
+        optionen:["Je zwei schneiden sich in parallelen Geraden","Alle drei schneiden sich in einer Geraden","Alle drei stehen paarweise senkrecht","Je zwei schneiden sich in derselben Geraden"],
         korrekt:0,
-        tipp:"Parallel + gemeinsamer Punkt.",
-        loesungsweg:"Kollineare Normalenvektoren garantieren nur, dass die Ebenen <b>parallel</b> sind — sie könnten immer noch nebeneinander herlaufen. Erst ein gemeinsamer Punkt macht sie identisch: $$\\vec n_1 \\parallel \\vec n_2 \\quad\\text{und}\\quad P \\in E_1 \\cap E_2$$ Beide Bedingungen zusammen sind nötig. Die Forderung \\(\\vec n_1 = \\vec n_2\\) wäre dagegen zu eng, denn Vielfache beschreiben dieselbe Ebene."
+        tipp:"Skizziere gedanklich die drei Seitenflächen eines dreiseitigen Prismas und überlege, wo sich je zwei davon treffen.",
+        loesungsweg:"Da keine zwei Ebenen parallel sind, entsteht zu jedem Paar eine Schnittgerade — drei Geraden insgesamt. Gäbe es einen gemeinsamen Punkt, müssten alle drei Geraden durch ihn laufen. Weil es ihn nicht gibt, bleibt nur: die drei Schnittgeraden sind zueinander parallel und verschieden. Das ist die Lage der drei Seitenflächen eines dreiseitigen Prismas („Prismenlage“). Die Antwort „alle drei schneiden sich in einer Geraden“ beschreibt gerade den Fall mit unendlich vielen gemeinsamen Punkten."
       },
       { id:36, level:6, typ:"numerisch",
-        frage:"Abi-LK: \\(E_1:x+y+az=1\\), \\(E_2:ax+y+z=1\\). Für welches \\(a\\) sind \\(E_1\\) und \\(E_2\\) identisch?",
-        loesung:1, toleranz:0.01,
-        tipp:"Koeffizientenvergleich: \\(a=1\\).",
-        loesungsweg:"\\(a=1\\) macht \\(E_1=E_2:x+y+z=1\\); dann fallen auch \\(E_3:x+y+z=1\\) und alle drei zusammen."
+        frage:"Abi eA: Ein Laserstrahl verläuft entlang \\(g:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\20\\end{pmatrix}+t\\begin{pmatrix}3\\\\4\\\\-2\\end{pmatrix}\\) (Angaben in Metern) und trifft auf die Spiegelfläche \\(E: 2x-y+2z=30\\). Weisen Sie nach, dass der Strahl die Fläche trifft, und bestimmen Sie die Höhe des Auftreffpunkts über dem Boden \\(z=0\\).",
+        loesung:10, toleranz:0.05,
+        tipp:"Prüfe zuerst über Richtungs- und Normalenvektor, ob es überhaupt einen Treffer geben kann, und setze dann die Geradengleichung ein.",
+        loesungsweg:"Nachweis: $$\\begin{pmatrix}3\\\\4\\\\-2\\end{pmatrix}\\cdot\\begin{pmatrix}2\\\\-1\\\\2\\end{pmatrix} = 6-4-4 = -2 \\ne 0$$ Der Strahl verläuft also nicht parallel zur Spiegelfläche und trifft sie in genau einem Punkt. Einsetzen der Geradengleichung: $$2\\cdot 3t - 4t + 2(20-2t) = 30 \\;\\Rightarrow\\; -2t + 40 = 30 \\;\\Rightarrow\\; t = 5$$ Der Auftreffpunkt ist \\(P(15|20|10)\\); er liegt \\(10\\,\\mathrm{m}\\) über dem Boden. Der Wert \\(t = 5\\) ist positiv, der Treffer liegt also in Ausbreitungsrichtung des Strahls und nicht hinter der Quelle."
       }];
     </script>
     <script src="../spirale-engine.js"></script>

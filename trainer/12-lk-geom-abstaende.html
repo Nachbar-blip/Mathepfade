@@ -63,8 +63,8 @@
       { id:7, level:2, typ:"numerisch",
         frage:"Berechne den Abstand \\(|\\vec{AB}|\\) für \\(A(1|2|3)\\), \\(B(4|6|3)\\).",
         loesung:5, toleranz:0.01,
-        tipp:"\\(\\vec{AB}=(3,4,0)^T\\).",
-        loesungsweg:"\\(|\\vec{AB}|=\\sqrt{9+16+0}=\\sqrt{25}=5\\)."
+        tipp:"Bilde zuerst den Verbindungsvektor komponentenweise, dann seinen Betrag.",
+        loesungsweg:"Der Verbindungsvektor entsteht als „Spitze minus Anfang“: $$\\vec{AB} = \\begin{pmatrix}4-1\\\\6-2\\\\3-3\\end{pmatrix} = \\begin{pmatrix}3\\\\4\\\\0\\end{pmatrix}$$ Sein Betrag ist der gesuchte Abstand: $$|\\vec{AB}| = \\sqrt{3^2+4^2+0^2} = \\sqrt{25} = 5$$ Die dritte Komponente ist null, weil beide Punkte dieselbe Höhe haben."
       },
       { id:8, level:2, typ:"numerisch",
         frage:"Abstand \\(A(2|-1|4)\\) und \\(B(2|3|1)\\).",
@@ -88,14 +88,14 @@
         frage:"Für welches \\(t\\) hat \\(P_t(1|t|2)\\) minimalen Abstand vom Ursprung?",
         optionen:["\\(t=0\\)","\\(t=1\\)","\\(t=2\\)","\\(t=-1\\)"],
         korrekt:0,
-        tipp:"\\(f(t)=1+t^2+4\\) minimal bei \\(t=0\\).",
-        loesungsweg:"\\(|\\vec{OP}_t|^2=5+t^2\\), minimal bei \\(t=0\\)."
+        tipp:"Stelle das Quadrat des Abstands als Term in \\(t\\) auf; ein Quadrat wird minimal, wenn der veränderliche Anteil verschwindet.",
+        loesungsweg:"Für den Ortsvektor gilt $$|\\vec{OP_t}|^2 = 1^2 + t^2 + 2^2 = 5 + t^2$$ Der Abstand selbst ist \\(\\sqrt{5+t^2}\\). Weil die Wurzel monoton wächst, wird der Abstand genau dann am kleinsten, wenn \\(5+t^2\\) am kleinsten ist — und \\(t^2 \\ge 0\\) ist für \\(t = 0\\) minimal. Der nächstliegende Punkt ist also \\(P_0(1|0|2)\\) mit dem Abstand \\(\\sqrt5\\)."
       },
       { id:12, level:2, typ:"numerisch",
         frage:"Länge des Vektors \\(\\vec{v}=(2,-2,1)^T\\).",
         loesung:3, toleranz:0.01,
-        tipp:"\\(\\sqrt{4+4+1}\\).",
-        loesungsweg:"\\(|\\vec{v}|=\\sqrt{9}=3\\)."
+        tipp:"Quadriere jede Komponente einzeln und ziehe am Ende die Wurzel aus der Summe.",
+        loesungsweg:"$$|\\vec v| = \\sqrt{2^2 + (-2)^2 + 1^2} = \\sqrt{4+4+1} = \\sqrt9 = 3$$ Das Minuszeichen verschwindet beim Quadrieren — ein Betrag ist nie negativ. Ein Vektor der Länge \\(3\\) lässt sich durch Division mit \\(3\\) auf die Länge \\(1\\) bringen; solche Einheitsvektoren braucht man in der Hesse'schen Normalenform."
       },
       // ===== LEVEL 3 — Punkt–Ebene (HNF) =====
       { id:13, level:3, typ:"numerisch",
@@ -135,120 +135,119 @@
         tipp:"\\(\\frac{|4-2+k|}{3}=1\\Rightarrow |k+2|=3\\).",
         loesungsweg:"\\(|k+2|=3\\Rightarrow k=1\\) oder \\(k=-5\\). Kleinster positiver: \\(k=1\\)."
       },
-      // ===== LEVEL 4 — Punkt–Gerade =====
+      // ===== LEVEL 4 — Punkt–Gerade, Verfahren selbst wählen =====
       { id:19, level:4, typ:"numerisch",
-        frage:"Abstand \\(P(1|2|3)\\) von \\(g:\\vec{x}=(0,0,0)^T+t(1,0,0)^T\\).",
-        loesung:3.606, toleranz:0.02,
-        tipp:"Lotfuß \\(F(1|0|0)\\), \\(|\\vec{PF}|=\\sqrt{0+4+9}\\).",
-        loesungsweg:"Die Gerade ist die \\(x\\)-Achse; der Lotfußpunkt hat dieselbe \\(x\\)-Koordinate wie \\(P\\), also \\(F(1|0|0)\\). $$d = |\\vec{PF}| = \\sqrt{0+4+9} = \\sqrt{13} \\approx 3{,}606$$ Bei einer Koordinatenachse lässt sich der Lotfußpunkt direkt ablesen — die allgemeine Formel wird hier nicht gebraucht."
+        frage:"Auf der Geraden \\(g:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\2\\end{pmatrix}+t\\begin{pmatrix}2\\\\1\\\\2\\end{pmatrix}\\) gibt es genau einen Punkt, der von \\(P(3|4|4)\\) am wenigsten weit entfernt ist. Wie groß ist diese kleinste Entfernung? (3 Dez.)",
+        loesung:2.828, toleranz:0.02,
+        tipp:"Der gesuchte Geradenpunkt ist der Fußpunkt des Lotes von \\(P\\) auf \\(g\\); dort steht der Verbindungsvektor senkrecht auf dem Richtungsvektor.",
+        loesungsweg:"Mit \\(A(1|0|2)\\) ist \\(\\vec{AP} = \\begin{pmatrix}2\\\\4\\\\2\\end{pmatrix}\\) und \\(\\vec u = \\begin{pmatrix}2\\\\1\\\\2\\end{pmatrix}\\), \\(|\\vec u|^2 = 9\\). Die Senkrechtbedingung \\((\\vec{AP}-t\\vec u)\\cdot\\vec u = 0\\) liefert $$t = \\frac{\\vec{AP}\\cdot\\vec u}{|\\vec u|^2} = \\frac{4+4+4}{9} = \\frac43$$ Der Fußpunkt ist \\(F\\left(\\tfrac{11}{3}\\left|\\tfrac43\\right|\\tfrac{14}{3}\\right)\\), also $$d = |\\vec{PF}| = \\frac13\\sqrt{4+64+4} = \\frac{6\\sqrt2}{3} = 2\\sqrt2 \\approx 2{,}828$$ Dasselbe Ergebnis liefert die Kreuzproduktformel — welchen der beiden Wege man geht, ist hier frei."
       },
       { id:20, level:4, typ:"numerisch",
-        frage:"Abstand \\(P(2|3|1)\\) von \\(g:\\vec{x}=(1,1,0)^T+t(1,1,0)^T\\).",
-        loesung:1.225, toleranz:0.02,
-        tipp:"Minimiere \\(|\\vec{OP}-\\vec{x}(t)|^2\\) oder nutze Kreuzproduktformel.",
-        loesungsweg:"\\(\\vec{AP}=(1,2,1)\\), \\(\\vec{u}=(1,1,0)\\), \\(\\vec{AP}\\times\\vec{u}=(-1,1,-1)\\), \\(d=\\frac{|\\vec{AP}\\times\\vec{u}|}{|\\vec{u}|}=\\frac{\\sqrt{3}}{\\sqrt{2}}=\\sqrt{1{,}5}\\approx1{,}225\\)."
+        frage:"Ein Punkt \\(P\\) liegt auf der \\(z\\)-Achse und hat von der Geraden \\(g:\\vec{x}=\\begin{pmatrix}3\\\\0\\\\0\\end{pmatrix}+t\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}\\) den Abstand \\(5\\). Wie groß ist seine positive \\(z\\)-Koordinate?",
+        loesung:4, toleranz:0.01,
+        tipp:"Setze \\(P(0|0|c)\\) an und drücke den Abstand durch \\(c\\) aus; die Gerade verläuft parallel zur \\(y\\)-Achse.",
+        loesungsweg:"Ansatz \\(P(0|0|c)\\), Aufpunkt \\(A(3|0|0)\\), also \\(\\vec{AP} = \\begin{pmatrix}-3\\\\0\\\\c\\end{pmatrix}\\). Mit \\(\\vec u = \\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}\\), \\(|\\vec u| = 1\\): $$\\vec{AP}\\times\\vec u = \\begin{pmatrix}-c\\\\0\\\\-3\\end{pmatrix} \\;\\Rightarrow\\; d = \\sqrt{c^2+9}$$ Aus \\(\\sqrt{c^2+9} = 5\\) folgt \\(c^2 = 16\\), also \\(c = 4\\) oder \\(c = -4\\). Gefragt ist der positive Wert: \\(c = 4\\)."
       },
       { id:21, level:4, typ:"numerisch",
-        frage:"Abstand \\(P(0|0|2)\\) von \\(g:\\vec{x}=(0,0,0)^T+t(0,0,1)^T\\).",
-        loesung:0, toleranz:0.01,
-        tipp:"\\(P\\) liegt auf \\(g\\) (z-Achse).",
-        loesungsweg:"\\(P=g(2)\\), also \\(d=0\\)."
+        frage:"Eine Rohrleitung verläuft geradlinig entlang \\(g:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\4\\end{pmatrix}+t\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}\\) (Angaben in Metern). Ein Sensor sitzt im Punkt \\(S(6|3|0)\\). Wie viele Meter liegt der Sensor von der Leitung entfernt?",
+        loesung:5, toleranz:0.02,
+        tipp:"Die Leitung verläuft parallel zur \\(x\\)-Achse; überlege, welche Koordinate des Fußpunktes dadurch schon feststeht.",
+        loesungsweg:"Alle Punkte der Leitung haben \\(y = 0\\) und \\(z = 4\\); die \\(x\\)-Koordinate ist frei. Der nächstliegende Punkt hat deshalb dieselbe \\(x\\)-Koordinate wie \\(S\\), also \\(F(6|0|4)\\). $$d = |\\vec{SF}| = \\left|\\begin{pmatrix}0\\\\-3\\\\4\\end{pmatrix}\\right| = \\sqrt{9+16} = 5$$ Der Sensor liegt \\(5\\,\\mathrm{m}\\) von der Leitung entfernt."
       },
       { id:22, level:4, typ:"mc",
-        frage:"Welche Formel berechnet den Abstand Punkt \\(P\\) zur Geraden \\(g:\\vec{x}=\\vec{a}+t\\vec{u}\\)?",
-        optionen:["\\(\\frac{|\\vec{AP}\\times\\vec{u}|}{|\\vec{u}|}\\)","\\(\\frac{|\\vec{AP}\\cdot\\vec{u}|}{|\\vec{u}|}\\)","\\(|\\vec{AP}|\\cdot|\\vec{u}|\\)","\\(\\frac{|\\vec{AP}|}{|\\vec{u}|}\\)"],
+        frage:"Von einem Punkt \\(P\\) soll der Abstand zu einer Ebene bestimmt werden, die nur durch drei Punkte \\(A\\), \\(B\\), \\(C\\) gegeben ist. Welcher Arbeitsschritt ist dafür zuerst nötig?",
+        optionen:["eine Normalengleichung der Ebene aufstellen","den Schwerpunkt der drei Punkte berechnen","die drei Abstände von \\(P\\) zu \\(A\\), \\(B\\), \\(C\\) mitteln","den Vektor \\(\\vec{AP}\\) auf den Vektor \\(\\vec{AB}\\) projizieren"],
         korrekt:0,
-        tipp:"Kreuzprodukt liefert Parallelogrammfläche, Division durch Basis ergibt Höhe.",
-        loesungsweg:"Das Kreuzprodukt \\(\\vec{AP} \\times \\vec u\\) hat als Betrag den Flächeninhalt des von beiden Vektoren aufgespannten Parallelogramms. Dividiert man ihn durch die Grundseite \\(|\\vec u|\\), bleibt die Höhe — und das ist gerade der Abstand: $$d(P,g) = \\frac{|\\vec{AP} \\times \\vec u|}{|\\vec u|}$$ Mit dem <b>Skalarprodukt</b> im Zähler käme stattdessen die Projektion <i>auf</i> die Gerade heraus, also genau die falsche Richtung."
+        tipp:"Die Abstandsformel für Punkt und Ebene braucht eine bestimmte Darstellung der Ebene — überlege, welche Größe darin vorkommt.",
+        loesungsweg:"Die Abstandsformel \\(d = \\frac{|\\vec n\\cdot\\vec x - d_0|}{|\\vec n|}\\) setzt einen Normalenvektor voraus. Aus drei Punkten gewinnt man ihn über $$\\vec n = \\vec{AB}\\times\\vec{AC}$$ und daraus die Normalen- bzw. Koordinatengleichung. Der Schwerpunkt und die drei Einzelabstände sagen über den Abstand zur Ebene nichts aus, und eine Projektion auf \\(\\vec{AB}\\) bleibt <b>innerhalb</b> der Ebene."
       },
       { id:23, level:4, typ:"numerisch",
-        frage:"Abstand \\(P(3|0|0)\\) von \\(g:\\vec{x}=(0,0,0)^T+t(0,1,0)^T\\).",
-        loesung:3, toleranz:0.01,
-        tipp:"Lotfuß ist \\(F(0|0|0)\\).",
-        loesungsweg:"\\(d=|\\vec{OP}|=3\\) (nach Projektion)."
+        frage:"Die Geraden \\(g_1:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}+s\\begin{pmatrix}2\\\\1\\\\2\\end{pmatrix}\\) und \\(g_2:\\vec{x}=\\begin{pmatrix}2\\\\4\\\\1\\end{pmatrix}+t\\begin{pmatrix}4\\\\2\\\\4\\end{pmatrix}\\) verlaufen parallel. Wie groß ist ihr Abstand? (3 Dez.)",
+        loesung:3.3, toleranz:0.03,
+        tipp:"Bei parallelen Geraden genügt <b>ein</b> Punkt der einen Geraden; der Abstand zur anderen ist für jeden Punkt gleich.",
+        loesungsweg:"Wegen \\(\\begin{pmatrix}4\\\\2\\\\4\\end{pmatrix} = 2\\begin{pmatrix}2\\\\1\\\\2\\end{pmatrix}\\) sind die Richtungen kollinear, die Geraden also parallel. Man wählt den Aufpunkt \\(B(2|4|1)\\) von \\(g_2\\) und bestimmt seinen Abstand zu \\(g_1\\). Mit \\(\\vec{AB} = \\begin{pmatrix}1\\\\4\\\\1\\end{pmatrix}\\) und \\(\\vec u = \\begin{pmatrix}2\\\\1\\\\2\\end{pmatrix}\\), \\(|\\vec u| = 3\\): $$\\vec{AB}\\times\\vec u = \\begin{pmatrix}7\\\\0\\\\-7\\end{pmatrix} \\;\\Rightarrow\\; d = \\frac{7\\sqrt2}{3} \\approx 3{,}300$$ Da \\(d \\ne 0\\) ist, sind die Geraden echt parallel und nicht identisch."
       },
       { id:24, level:4, typ:"numerisch",
-        frage:"\\(g:\\vec{x}=(1,0,0)^T+t(0,1,1)^T\\). Abstand \\(P(1|1|3)\\)?",
-        loesung:1.414, toleranz:0.02,
-        tipp:"\\(\\vec{AP}=(0,1,3)\\), \\(\\vec{u}=(0,1,1)\\). Kreuzprodukt: \\((-2,0,0)\\). \\(d=\\frac{2}{\\sqrt{2}}=\\sqrt{2}\\).",
-        loesungsweg:"Mit \\(\\vec{AP} = (0;1;3)\\) und \\(\\vec u = (0;1;1)\\): $$\\vec{AP} \\times \\vec u = \\begin{pmatrix}-2\\\\0\\\\0\\end{pmatrix} \\;\\Rightarrow\\; |\\vec{AP} \\times \\vec u| = 2$$ $$d = \\frac{2}{\\sqrt2} = \\sqrt2 \\approx 1{,}414$$"
+        frage:"Die Ebenen \\(E_1: x+2y+2z=9\\) und \\(E_2: x+2y+2z=3\\) sind parallel. Wie groß ist ihr Abstand?",
+        loesung:2, toleranz:0.01,
+        tipp:"Wähle einen bequemen Punkt der einen Ebene und bestimme dessen Abstand zur anderen.",
+        loesungsweg:"Die linken Seiten stimmen überein, die Normalenvektoren sind also gleich — die Ebenen sind parallel. Der Punkt \\(P(9|0|0)\\) liegt in \\(E_1\\); sein Abstand zu \\(E_2\\) ist $$d = \\frac{|9+0+0-3|}{\\sqrt{1+4+4}} = \\frac{6}{3} = 2$$ Allgemein gilt bei gleichem \\(\\vec n\\): \\(d = \\frac{|d_1-d_2|}{|\\vec n|}\\)."
       },
-      // ===== LEVEL 5 — Windschiefe Geraden =====
-      { id:25, level:5, typ:"mc",
-        frage:"Der Abstand zweier windschiefer Geraden berechnet sich über:",
-        optionen:["\\(\\frac{|(\\vec{a}_2-\\vec{a}_1)\\cdot(\\vec{u}_1\\times\\vec{u}_2)|}{|\\vec{u}_1\\times\\vec{u}_2|}\\)","\\(|\\vec{u}_1|+|\\vec{u}_2|\\)","\\(|\\vec{a}_2-\\vec{a}_1|\\)","\\(\\vec{u}_1\\cdot\\vec{u}_2\\)"],
-        korrekt:0,
-        tipp:"Spatprodukt durch Flächeninhalt des Spannparallelogramms.",
-        loesungsweg:"Der Vektor \\(\\vec u_1 \\times \\vec u_2\\) steht senkrecht auf beiden Geraden — in seiner Richtung wird der Abstand gemessen. Projiziert man den Verbindungsvektor der Aufpunkte darauf, ergibt sich $$d = \\frac{|(\\vec a_2-\\vec a_1) \\cdot (\\vec u_1 \\times \\vec u_2)|}{|\\vec u_1 \\times \\vec u_2|}$$ Der Zähler ist das Spatprodukt, also das Volumen des aufgespannten Spats; geteilt durch die Grundfläche bleibt die Höhe. Für parallele Geraden versagt die Formel, denn dann ist das Kreuzprodukt der Nullvektor."
+      // ===== LEVEL 5 — Kombinierte Abstandsbestimmungen =====
+      { id:25, level:5, typ:"numerisch",
+        frage:"\\(g_1:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}+s\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}\\), \\(g_2:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\3\\end{pmatrix}+t\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}\\). Weise nach, dass die Geraden windschief sind, und bestimme ihren Abstand. (3 Dez.)",
+        loesung:1.155, toleranz:0.02,
+        tipp:"Bestimme zuerst einen Vektor, der auf beiden Richtungen senkrecht steht, und projiziere anschließend die Verbindung der Aufpunkte darauf.",
+        loesungsweg:"Die Richtungen sind nicht kollinear, also sind die Geraden nicht parallel. $$\\vec n = \\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}\\times\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix} = \\begin{pmatrix}1\\\\-1\\\\1\\end{pmatrix}, \\quad |\\vec n| = \\sqrt3$$ Mit \\(\\vec{a}_2-\\vec{a}_1 = \\begin{pmatrix}-1\\\\0\\\\3\\end{pmatrix}\\): $$d = \\frac{|-1-0+3|}{\\sqrt3} = \\frac{2}{\\sqrt3} \\approx 1{,}155$$ Weil \\(d \\ne 0\\) ist, schneiden sich die Geraden nicht — zusammen mit der Nichtparallelität sind sie damit windschief."
       },
-      { id:26, level:5, typ:"numerisch",
-        frage:"\\(g_1:\\vec{x}=(0,0,0)^T+s(1,0,0)^T\\), \\(g_2:\\vec{x}=(0,0,1)^T+t(0,1,0)^T\\). Abstand?",
-        loesung:1, toleranz:0.01,
-        tipp:"\\(\\vec{u}_1\\times\\vec{u}_2=(0,0,1)\\), Zähler \\(|1|\\).",
-        loesungsweg:"\\(d=\\frac{|(0,0,1)\\cdot(0,0,1)|}{1}=1\\)."
+      { id:26, level:5, typ:"mc",
+        frage:"Für \\(g_1:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+s\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}\\) und \\(g_2:\\vec{x}=\\begin{pmatrix}0\\\\4\\\\3\\end{pmatrix}+t\\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}\\) rechnet jemand: „Die Geraden sind windschief, also ist ihr Abstand gleich dem Abstand der beiden Aufpunkte, nämlich \\(5\\).“ Welcher Wert ist richtig?",
+        optionen:["\\(3\\)","\\(4\\)","\\(5\\)","\\(7\\)"],
+        korrekt:1,
+        tipp:"Der Abstand wird nur in der Richtung gemessen, die auf beiden Geraden senkrecht steht — nicht in Richtung der Aufpunktverbindung.",
+        loesungsweg:"Der Abstand der Aufpunkte ist nur eine <b>obere Schranke</b>; gemessen wird längs der gemeinsamen Lotrichtung. $$\\vec n = \\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}\\times\\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix} = \\begin{pmatrix}0\\\\-1\\\\0\\end{pmatrix}, \\quad |\\vec n| = 1$$ $$d = \\frac{\\left|\\begin{pmatrix}0\\\\4\\\\3\\end{pmatrix}\\cdot\\begin{pmatrix}0\\\\-1\\\\0\\end{pmatrix}\\right|}{1} = 4$$ Der Anteil \\(3\\) in \\(z\\)-Richtung verläuft längs \\(g_2\\) und trägt deshalb nichts bei. Der gerechnete Wert \\(5\\) ist zu groß."
       },
       { id:27, level:5, typ:"numerisch",
-        frage:"\\(g_1:\\vec{x}=(1,0,0)^T+s(1,1,0)^T\\), \\(g_2:\\vec{x}=(0,1,2)^T+t(1,-1,0)^T\\). Abstand?",
-        loesung:2, toleranz:0.01,
-        tipp:"\\(\\vec{u}_1\\times\\vec{u}_2=(0,0,-2)\\), \\(\\vec{a}_2-\\vec{a}_1=(-1,1,2)\\).",
-        loesungsweg:"Zähler \\(|0+0-4|=4\\), Nenner \\(2\\Rightarrow d=2\\)."
+        frage:"Ein Punkt \\(P\\) liegt auf der Geraden \\(h:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+r\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}\\) und hat von der Ebene \\(E: 2x-y+2z=6\\) den Abstand \\(2\\). Welche \\(x\\)-Koordinate hat der weiter vom Ursprung entfernte der beiden möglichen Punkte?",
+        loesung:12, toleranz:0.01,
+        tipp:"Setze den Punkt mit einem Parameter an und übersetze die Abstandsforderung in eine Betragsgleichung.",
+        loesungsweg:"Auf \\(h\\) gilt \\(P(r|r|0)\\). Damit $$d = \\frac{|2r-r+0-6|}{\\sqrt{4+1+4}} = \\frac{|r-6|}{3} = 2 \\;\\Rightarrow\\; |r-6| = 6$$ Also \\(r = 12\\) oder \\(r = 0\\). Beide Punkte sind zulässig: \\(P_1(12|12|0)\\) und \\(P_2(0|0|0)\\) — auch der Ursprung hat den Abstand \\(\\tfrac{6}{3} = 2\\). Der weiter entfernte ist \\(P_1\\) mit \\(x = 12\\)."
       },
-      { id:28, level:5, typ:"mc",
-        frage:"Wenn \\(\\vec{u}_1\\times\\vec{u}_2=\\vec{0}\\), dann sind die Geraden …",
-        optionen:["windschief","parallel oder identisch","senkrecht","schneidend"],
-        korrekt:1,
-        tipp:"Paralleles Kreuzprodukt verschwindet.",
-        loesungsweg:"\\(\\vec{u}_1\\parallel\\vec{u}_2\\). Weitere Prüfung Punkt auf \\(g_1\\) bezüglich \\(g_2\\) nötig."
+      { id:28, level:5, typ:"numerisch",
+        frage:"Zeige, dass \\(g:\\vec{x}=\\begin{pmatrix}1\\\\2\\\\0\\end{pmatrix}+t\\begin{pmatrix}2\\\\-2\\\\1\\end{pmatrix}\\) und \\(E: x+2y+2z=10\\) keinen gemeinsamen Punkt haben, und bestimme den Abstand von \\(g\\) zu \\(E\\). (3 Dez.)",
+        loesung:1.667, toleranz:0.02,
+        tipp:"Prüfe zuerst die Lage über Richtungs- und Normalenvektor, dann genügt ein einziger Geradenpunkt.",
+        loesungsweg:"Erster Schritt — Lage: $$\\begin{pmatrix}2\\\\-2\\\\1\\end{pmatrix}\\cdot\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix} = 2-4+2 = 0$$ Die Richtung ist also parallel zur Ebene. Der Aufpunkt \\(A(1|2|0)\\) erfüllt \\(1+4+0 = 5 \\ne 10\\), liegt demnach nicht in \\(E\\) — die Gerade verläuft echt parallel und trifft \\(E\\) nirgends. Zweiter Schritt — Abstand: alle Punkte von \\(g\\) haben denselben Abstand, also $$d = \\frac{|1+4+0-10|}{3} = \\frac{5}{3} \\approx 1{,}667$$"
       },
       { id:29, level:5, typ:"numerisch",
-        frage:"\\(g_1:\\vec{x}=(0,0,0)+s(2,0,0)\\), \\(g_2:\\vec{x}=(0,3,4)+t(0,1,0)\\). Kürzester Abstand?",
-        loesung:4, toleranz:0.01,
-        tipp:"\\(\\vec{u}_1\\times\\vec{u}_2=(0,0,2)\\), Verbindung \\((0,3,4)\\).",
-        loesungsweg:"\\(d=\\frac{|0+0+8|}{2}=4\\)."
+        frage:"Die Gerade \\(g\\) verläuft durch \\(A(1|1|1)\\) und \\(B(3|1|2)\\). Wie groß ist der Abstand des Punktes \\(P(5|4|3)\\) von \\(g\\)?",
+        loesung:3, toleranz:0.02,
+        tipp:"Die Gerade ist nicht in Parameterform gegeben — den Richtungsvektor musst du selbst aus den beiden Punkten gewinnen.",
+        loesungsweg:"Richtungsvektor: \\(\\vec u = \\vec{AB} = \\begin{pmatrix}2\\\\0\\\\1\\end{pmatrix}\\), \\(|\\vec u| = \\sqrt5\\). Weiter \\(\\vec{AP} = \\begin{pmatrix}4\\\\3\\\\2\\end{pmatrix}\\): $$\\vec{AP}\\times\\vec u = \\begin{pmatrix}3\\\\0\\\\-6\\end{pmatrix}, \\quad |\\vec{AP}\\times\\vec u| = \\sqrt{9+36} = 3\\sqrt5$$ $$d = \\frac{3\\sqrt5}{\\sqrt5} = 3$$ Dass sich die Wurzel heraushebt, ist Zufall der Zahlen — verlassen darf man sich darauf nicht."
       },
       { id:30, level:5, typ:"numerisch",
-        frage:"Lotfußpunkt-Verfahren: \\(g:\\vec{x}=(0,0,0)+t(1,2,2)\\), \\(P(3|3|0)\\). Bestimme \\(t^*\\) (skalar).",
-        loesung:1, toleranz:0.01,
-        tipp:"\\(t^*=\\frac{\\vec{AP}\\cdot\\vec{u}}{|\\vec{u}|^2}=\\frac{3+6+0}{9}=1\\).",
-        loesungsweg:"\\(t^*=\\frac{9}{9}=1\\). Lotfuß \\(F(1|2|2)\\)."
+        frage:"\\(g_1:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+s\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}\\) und \\(g_2:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\c\\end{pmatrix}+t\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}\\). Für welches \\(c>0\\) beträgt der Abstand der beiden Geraden genau \\(3\\)? (3 Dez.)",
+        loesung:5.196, toleranz:0.02,
+        tipp:"Stelle den Abstand als Term in \\(c\\) auf und löse die entstehende Gleichung nach \\(c\\).",
+        loesungsweg:"Mit \\(\\vec n = \\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}\\times\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix} = \\begin{pmatrix}1\\\\-1\\\\1\\end{pmatrix}\\) und \\(|\\vec n| = \\sqrt3\\) sowie \\(\\vec{a}_2-\\vec{a}_1 = \\begin{pmatrix}0\\\\0\\\\c\\end{pmatrix}\\): $$d(c) = \\frac{|c|}{\\sqrt3}$$ Aus \\(\\frac{c}{\\sqrt3} = 3\\) folgt \\(c = 3\\sqrt3 \\approx 5{,}196\\). Der Abstand wächst also proportional zu \\(c\\); für \\(c = 0\\) schneiden sich die Geraden im Ursprung."
       },
-      // ===== LEVEL 6 — Abi-Niveau =====
+      // ===== LEVEL 6 — Abi-Format (eA) =====
       { id:31, level:6, typ:"numerisch",
-        frage:"Abstand \\(P(4|-2|1)\\) zur Ebene durch \\(A(1|0|0)\\), \\(B(0|2|0)\\), \\(C(0|0|3)\\).",
-        loesung:2, toleranz:0.05,
-        tipp:"Ebene: \\(6x+3y+2z=6\\), \\(|\\vec{n}|=7\\).",
-        loesungsweg:"Normalenform \\(6x+3y+2z=6\\), \\(|\\vec{n}|=\\sqrt{6^2+3^2+2^2}=7\\). \\(d=\\frac{|6\\cdot4+3\\cdot(-2)+2\\cdot1-6|}{7}=\\frac{|24-6+2-6|}{7}=\\frac{14}{7}=2\\)."
+        frage:"Ein Zeltdach hat die quadratische Grundfläche \\(A(0|0|0)\\), \\(B(6|0|0)\\), \\(C(6|6|0)\\), \\(D(0|6|0)\\) und die Spitze \\(S(3|3|4)\\) (Angaben in Metern). Zeigen Sie, dass alle vier Dachkanten \\(SA\\), \\(SB\\), \\(SC\\), \\(SD\\) gleich lang sind, und bestimmen Sie den Abstand der Spitze von der Grundkante \\(AB\\).",
+        loesung:5, toleranz:0.02,
+        tipp:"Für die Gleichheit genügt ein Blick auf die Beträge der vier Vektoren; die Grundkante \\(AB\\) liegt auf einer Koordinatenachse.",
+        loesungsweg:"Erster Teil: \\(\\vec{SA} = \\begin{pmatrix}-3\\\\-3\\\\-4\\end{pmatrix}\\), \\(\\vec{SB} = \\begin{pmatrix}3\\\\-3\\\\-4\\end{pmatrix}\\), \\(\\vec{SC} = \\begin{pmatrix}3\\\\3\\\\-4\\end{pmatrix}\\), \\(\\vec{SD} = \\begin{pmatrix}-3\\\\3\\\\-4\\end{pmatrix}\\). In allen vier Beträgen werden die Komponenten quadriert, die Vorzeichen fallen also heraus: jeder Betrag ist \\(\\sqrt{9+9+16} = \\sqrt{34}\\). Damit sind die Kanten gleich lang.<br>Zweiter Teil: \\(AB\\) liegt auf der \\(x\\)-Achse. Der Lotfußpunkt hat dieselbe \\(x\\)-Koordinate wie \\(S\\), also \\(F(3|0|0)\\), und $$d = \\left|\\begin{pmatrix}0\\\\3\\\\4\\end{pmatrix}\\right| = 5$$ Die Spitze liegt \\(5\\,\\mathrm{m}\\) über der Grundkante — der Abstand ist größer als die Dachhöhe \\(4\\,\\mathrm{m}\\), weil er schräg über die Dachfläche gemessen wird."
       },
       { id:32, level:6, typ:"numerisch",
-        frage:"\\(g_1:\\vec{x}=(1,2,3)+s(1,0,1)\\), \\(g_2:\\vec{x}=(0,1,0)+t(0,1,1)\\). Abstand.",
-        loesung:0.577, toleranz:0.05,
-        tipp:"\\(\\vec{u}_1\\times\\vec{u}_2=(-1,-1,1)\\), \\(|\\ldots|=\\sqrt{3}\\), \\(\\vec{a}_2-\\vec{a}_1=(-1,-1,-3)\\).",
-        loesungsweg:"\\(\\vec{n}=\\vec{u}_1\\times\\vec{u}_2=(-1,-1,1)\\), \\(|\\vec{n}|=\\sqrt{3}\\). Zähler: \\(|(\\vec{a}_2-\\vec{a}_1)\\cdot\\vec{n}|=|1+1-3|=1\\). \\(d=\\frac{1}{\\sqrt{3}}\\approx0{,}577\\)."
+        frage:"Zwei Seilbahntrassen verlaufen entlang \\(g_1:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\20\\end{pmatrix}+s\\begin{pmatrix}4\\\\3\\\\0\\end{pmatrix}\\) und \\(g_2:\\vec{x}=\\begin{pmatrix}60\\\\0\\\\35\\end{pmatrix}+t\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}\\) (Angaben in Metern). Begründen Sie, dass die Trassen sich nicht berühren, und bestimmen Sie ihren kleinsten Abstand in Metern.",
+        loesung:15, toleranz:0.05,
+        tipp:"Die beiden Richtungen sind nicht kollinear; bestimme die gemeinsame Lotrichtung und projiziere die Aufpunktverbindung darauf.",
+        loesungsweg:"Die Richtungen \\(\\begin{pmatrix}4\\\\3\\\\0\\end{pmatrix}\\) und \\(\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}\\) sind nicht Vielfache voneinander, die Trassen also nicht parallel. $$\\vec n = \\begin{pmatrix}4\\\\3\\\\0\\end{pmatrix}\\times\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix} = \\begin{pmatrix}0\\\\0\\\\4\\end{pmatrix}, \\quad |\\vec n| = 4$$ Mit \\(\\vec{a}_2-\\vec{a}_1 = \\begin{pmatrix}60\\\\0\\\\15\\end{pmatrix}\\): $$d = \\frac{|0+0+60|}{4} = 15$$ Wegen \\(d \\ne 0\\) haben die Trassen keinen gemeinsamen Punkt; sie verlaufen windschief und halten überall mindestens \\(15\\,\\mathrm{m}\\) Abstand. Anschaulich ist das der Höhenunterschied \\(35-20 = 15\\), denn die Lotrichtung zeigt genau senkrecht nach oben."
       },
       { id:33, level:6, typ:"numerisch",
-        frage:"Mindestabstand zweier Flugrouten: \\(g_1:\\vec{x}=(0,0,1000)+s(1,0,0)\\), \\(g_2:\\vec{x}=(500,0,1200)+t(0,1,0)\\). Abstand in Metern.",
-        loesung:200, toleranz:1,
-        tipp:"\\(\\vec{u}_1\\times\\vec{u}_2=(0,0,1)\\), Verbindung \\((500,0,200)\\).",
-        loesungsweg:"\\(d=|200|=200\\,\\text{m}\\)."
+        frage:"Der Ursprung soll von der Ebene \\(E_a: 2x+ay-2z=6\\) den Abstand \\(2\\) haben. Bestimmen Sie alle Werte von \\(a\\) und geben Sie den positiven an.",
+        loesung:1, toleranz:0.01,
+        tipp:"Der Parameter steht nur im Nenner der Abstandsformel; stelle die Gleichung auf und löse nach \\(a^2\\) auf.",
+        loesungsweg:"Für \\(P(0|0|0)\\) ist der Zähler der Abstandsformel konstant: $$d(a) = \\frac{|0+0-0-6|}{\\sqrt{4+a^2+4}} = \\frac{6}{\\sqrt{8+a^2}} = 2$$ $$\\Rightarrow\\; \\sqrt{8+a^2} = 3 \\;\\Rightarrow\\; a^2 = 1 \\;\\Rightarrow\\; a = 1 \\ \\text{oder}\\ a = -1$$ Beide Werte leisten dasselbe, weil nur \\(a^2\\) eingeht; die beiden Ebenen sind an der \\(xz\\)-Ebene gespiegelt. Gefragt ist \\(a = 1\\). Für \\(|a|>1\\) wird der Nenner größer, der Abstand also kleiner als \\(2\\)."
       },
-      { id:34, level:6, typ:"numerisch",
-        frage:"Parameter \\(a\\) so bestimmen, dass \\(P(a|1|1)\\) Abstand \\(1\\) zur Ebene \\(E: x+2y+2z=6\\) hat. Bestimme den kleinsten positiven \\(a\\).",
-        loesung:5, toleranz:0.01,
-        tipp:"\\(\\frac{|a+2+2-6|}{3}=1\\Rightarrow|a-2|=3\\).",
-        loesungsweg:"\\(\\frac{|a+2+2-6|}{3}=1\\Rightarrow|a-2|=3\\). Also \\(a-2=3\\Rightarrow a=5\\) oder \\(a-2=-3\\Rightarrow a=-1\\). Kleinster positiver Wert: \\(a=5\\)."
-      },
-      { id:35, level:6, typ:"mc",
-        frage:"Welche Aussage zur Lotfuß-Minimierung ist korrekt?",
-        optionen:["\\(|\\vec{PX}(t)|^2\\) minimieren und \\(t\\) aus \\(\\frac{d}{dt}=0\\) bestimmen","Integrieren","\\(t\\) beliebig wählen","Das Kreuzprodukt gleich Null setzen"],
+      { id:34, level:6, typ:"mc",
+        frage:"Beurteilen Sie die Behauptung: „Wenn zwei Geraden im Raum den Abstand \\(0\\) haben, dann schneiden sie sich in genau einem Punkt.“",
+        optionen:["Falsch, denn sie können auch identisch sein","Richtig, der Abstand null erzwingt einen Punkt","Falsch, denn windschiefe Geraden haben Abstand null","Richtig, denn parallele Geraden haben Abstand null"],
         korrekt:0,
-        tipp:"Extremwertaufgabe einer quadratischen Funktion.",
-        loesungsweg:"\\(f(t)=|\\vec{AP}-t\\vec{u}|^2\\) quadratisch in \\(t\\); Ableitung =0 liefert \\(t^*\\)."
+        tipp:"Überlege, welche Lagen zweier Geraden überhaupt gemeinsame Punkte zulassen — und wie viele es dabei jeweils sind.",
+        loesungsweg:"Der Abstand \\(0\\) bedeutet, dass es gemeinsame Punkte gibt. Das trifft auf zwei Lagen zu: <b>schneidend</b> (genau ein Punkt) und <b>identisch</b> (unendlich viele Punkte). Die Behauptung schließt den zweiten Fall zu Unrecht aus und ist damit falsch. Windschiefe Geraden haben stets einen Abstand größer als \\(0\\), echt parallele ebenfalls — beide Begründungen in den übrigen Antworten treffen also nicht zu."
+      },
+      { id:35, level:6, typ:"numerisch",
+        frage:"Auf \\(g:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}+t\\begin{pmatrix}2\\\\1\\\\1\\end{pmatrix}\\) gibt es Punkte, die von \\(E: x-2y+2z=3\\) den Abstand \\(3\\) haben. Bestimmen Sie beide und geben Sie die größere \\(x\\)-Koordinate an.",
+        loesung:12, toleranz:0.05,
+        tipp:"Setze den allgemeinen Geradenpunkt in die Abstandsformel ein; der Betrag liefert zwei Fälle.",
+        loesungsweg:"Allgemeiner Geradenpunkt: \\(X(1+2t\\,|\\,t\\,|\\,t)\\). Einsetzen: $$d(t) = \\frac{|(1+2t)-2t+2t-3|}{\\sqrt{1+4+4}} = \\frac{|2t-2|}{3} = 3$$ $$\\Rightarrow\\; |t-1| = 4{,}5 \\;\\Rightarrow\\; t = 5{,}5 \\ \\text{oder}\\ t = -3{,}5$$ Die zugehörigen Punkte sind \\(X_1(12|5{,}5|5{,}5)\\) und \\(X_2(-6|-3{,}5|-3{,}5)\\); sie liegen auf verschiedenen Seiten der Ebene. Gefragt ist \\(x = 12\\). Dass es überhaupt zwei Lösungen gibt, liegt daran, dass \\(g\\) die Ebene schneidet: \\(\\begin{pmatrix}2\\\\1\\\\1\\end{pmatrix}\\cdot\\begin{pmatrix}1\\\\-2\\\\2\\end{pmatrix} = 2 \\ne 0\\)."
       },
       { id:36, level:6, typ:"numerisch",
-        frage:"Die Gerade \\(g:\\vec{x}=(k,0,0)+t(0,1,0)\\) verläuft parallel zur y-Achse. Für welches \\(k>0\\) hat \\(g\\) den Abstand \\(1\\) zur z-Achse?",
-        loesung:1, toleranz:0.01,
-        tipp:"Der Abstand von \\(g\\) zur z-Achse beträgt \\(|k|\\).",
-        loesungsweg:"Der zur z-Achse nächste Punkt von \\(g\\) ist \\((k,0,0)\\) mit Abstand \\(\\sqrt{k^2}=|k|\\). \\(|k|=1, k>0 \\Rightarrow k=1\\)."
+        frage:"Ein Punkt \\(P_t(t|t|t)\\) durchläuft die Raumdiagonale des ersten Oktanten. Untersuchen Sie, wie sein Abstand zur Ebene \\(E: x+y-2z=6\\) von \\(t\\) abhängt, und geben Sie den kleinsten auftretenden Abstand an. (3 Dez.)",
+        loesung:2.449, toleranz:0.02,
+        tipp:"Setze \\(P_t\\) in die Abstandsformel ein und vereinfache den Zähler, bevor du über das Minimum nachdenkst.",
+        loesungsweg:"Einsetzen in die Abstandsformel: $$d(t) = \\frac{|t+t-2t-6|}{\\sqrt{1+1+4}} = \\frac{|-6|}{\\sqrt6} = \\frac{6}{\\sqrt6} = \\sqrt6 \\approx 2{,}449$$ Der Parameter \\(t\\) fällt vollständig heraus — der Abstand ist für <b>jeden</b> Punkt der Diagonalen derselbe. Der Grund steht im Richtungsvektor: \\(\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}\\cdot\\begin{pmatrix}1\\\\1\\\\-2\\end{pmatrix} = 0\\), die Diagonale verläuft also parallel zur Ebene. Ein kleinster Abstand wird damit überall angenommen, er beträgt \\(\\sqrt6\\)."
       }];
     </script>
     <script src="../spirale-engine.js"></script>
