@@ -28,7 +28,7 @@ Spaltenvektoren erscheinen als Matrizen, kein abgeschnittener Text, MC-Optionen 
 | Trainer | Inhalt |
 |---|---|
 | 12-vektoren-grundlagen | Vektorbegriff, Rechnen mit Vektoren, Betrag, Linearkombination, Kollinearität, Mittel- und Teilpunkte, Schwerpunkt |
-| 12-geraden-raum | Geradengleichung aufstellen, Punktprobe, Lagebeziehung zweier Geraden (parallel / identisch / schneidend / windschief), Spurpunkte |
+| 12-geraden-raum | Geradengleichung aufstellen, Punktprobe, Schnittpunkt, Lage zweier Geraden in gA-Tiefe (parallel / identisch / schneidend), Spurpunkte |
 | 12-ebenen | Parameter-, Normalen- und Koordinatenform, Umwandlung zwischen ihnen, Lage Gerade/Ebene, Lage zweier Ebenen |
 | 12-skalarprodukt | Skalarprodukt, Orthogonalität, Winkel zwischen Vektoren, Projektionslänge |
 
@@ -36,8 +36,9 @@ Abstände (Punkt–Ebene, Punkt–Gerade, windschiefe Geraden), Schnittwinkel vo
 die vollständige Lagediskussion mit Parameterscharen gehören in die eA-Trainer
 `12-lk-geom-abstaende`, `12-lk-geom-lagebeziehungen`, `12-lk-geom-schnittwinkel` und bleiben hier
 außen vor. Deshalb sind in `12-ebenen` die alten Abstandsaufgaben der Stufen 5 und 6 (Hesse-Form,
-Abstand paralleler Ebenen) mit dem neuen Block entfallen; die Hesse-Normalenform bleibt nur auf
-Stufe 4 als Begriff stehen.
+Abstand paralleler Ebenen) mit dem neuen Block entfallen. Auch die vollständige Lagediskussion mit
+windschiefen Geraden gehört nach dem Review nicht mehr in `12-geraden-raum`: dort wird windschief
+allenfalls festgestellt, nicht zum Ziel der Aufgabe gemacht.
 
 ---
 
@@ -72,16 +73,16 @@ Gate-Warnungen #29 und #32 sind mit dem neuen Block entfallen.
 |---|---|---|
 | 25 | 5 | Schnittpunkt: zwei Zeilen bestimmen die Parameter, die dritte ist die Probe (ohne sie keine Aussage) |
 | 26 | 5 | Fehlersuche: unvollständige Punktprobe (nur zwei Zeilen geprüft). Der falsche Schluss ist nachweislich falsch, \(P\) liegt nicht auf \(g\) |
-| 27 | 5 | Parameter, für den aus windschief schneidend wird; im Lösungsweg begründet, warum parallel ausscheidet |
+| 27 | 5 | Spurpunkt mit der \(xy\)-Ebene: Parameter aus der vorgegebenen ersten Koordinate, dann Aufpunkt-Parameter aus der Spurbedingung |
 | 28 | 5 | Identität nachweisen: kollineare Richtungen **und** Punktprobe — zwei Bedingungen |
 | 29 | 5 | Gerade aus zwei Punkten aufstellen und fehlende Koordinate eines Geradenpunkts bestimmen |
 | 30 | 5 | Punkt in vorgegebenem Abstand vom Aufpunkt: Betrag des Richtungsvektors als Maßstab des Parameters |
 | 31 | 6 | Abi-Format, Flugbahnen: Kreuzungspunkt **und** Zeitvergleich \(t = s\) als Begründung der Kollisionsgefahr |
-| 32 | 6 | Lagebeziehung vollständig entscheiden (Richtungen, dann System): windschief. MC, weil die Einordnung selbst die Leistung ist |
+| 32 | 6 | Abi-Format, Kranhaken: vollständige Punktprobe als Nachweis (alle drei Zeilen), danach Weglänge über den Betrag des Richtungsvektors |
 | 33 | 6 | Abi-Format, Sichtlinie und Traverse: Schnitt **plus** Randbedingung \(0 \le u \le 1\) — ohne sie kein gesicherter Treffer |
-| 34 | 6 | Fallunterscheidung parallel/identisch: \(a = \pm 1\), Punktprobe entscheidet je Fall |
+| 34 | 6 | Spurpunkt mit Fallunterscheidung: gesuchter Wert \(a = -1\); für \(a = 0\) verläuft \(g\) parallel zur \(xy\)-Ebene und hat gar keinen Spurpunkt |
 | 35 | 6 | Abi-Format, Straßenkreuzung: beide Geraden selbst aufstellen, dann Schnittpunkt |
-| 36 | 6 | Behauptung prüfen: kollineare Richtungen schließen gemeinsame Punkte nicht aus (identisch) |
+| 36 | 6 | Behauptung prüfen: dieselbe Gerade hat unendlich viele Parametergleichungen (Aufpunkt und Vielfache der Richtung frei) |
 
 ## 12-ebenen
 
@@ -101,9 +102,9 @@ Die Abstandsaufgaben der alten Stufen 5/6 sind entfallen (gehören in den eA-Blo
 | 31 | 6 | Abi-Format, Pultdach: Ebene aus drei Ecken, vierte Ecke per Punktprobe — Ebenheit wird bewiesen, nicht behauptet |
 | 32 | 6 | Behauptung prüfen: fehlendes \(z\) bedeutet parallel zur \(z\)-Achse; \(d = 0\) unterscheidet „enthält“ von „echt parallel“ |
 | 33 | 6 | Abi-Format, Drohne trifft Hangebene: Gerade in Koordinatenform einsetzen, Höhe ablesen |
-| 34 | 6 | Fallunterscheidung: Richtung immer parallel, der Aufpunkt entscheidet zwischen „in \(E\)“ und „echt parallel“ |
+| 34 | 6 | Gerade ganz in \(E\), von der anderen Seite her: Aufpunkt ist nachzuweisen, gesucht ist der Parameter in der **Richtung** (Sachkontext Förderband) |
 | 35 | 6 | Abi-Format, Schattenwurf: Strahl als Gerade modellieren, Schnitt mit der Panelebene |
-| 36 | 6 | Abi-Format, Satteldach: Schnittgerade zweier Ebenen durch Addition/Subtraktion, freie \(x\)-Koordinate gedeutet |
+| 36 | 6 | Abi-Format, Entwässerungsgraben: Schnittgerade zweier Ebenen durch Addition/Subtraktion, freie \(y\)-Koordinate gedeutet |
 
 ## 12-skalarprodukt
 
@@ -148,5 +149,27 @@ vollständig und gemischt (keine Buchstabenverweise im Lösungsweg).
 - `12-ebenen` nutzt auf Stufe 4 (#26) weiterhin das Kreuzprodukt zur Normalenbestimmung. In den neuen
   Aufgaben wird der Normalenvektor stattdessen über Orthogonalitätsbedingungen gewonnen, was zur
   gA-Tiefe besser passt; die Altaufgabe blieb unangetastet.
-- Die Hesse-Normalenform steht in `12-ebenen` noch als Begriff auf Stufe 4 (#29 alt). Sie wird in den
-  neuen Stufen nicht mehr gebraucht; ob sie in den gA-Trainer gehört, wäre beim Abschluss zu klären.
+- `12-skalarprodukt` #30 (Projektionslänge) ist im TH-Kanon für gA nicht ausdrücklich genannt.
+  Die Aufgabe bleibt bewusst stehen: die Projektionslänge ist hier reine Rechentechnik aus
+  Skalarprodukt und Betrag, sie wird nirgends zu einem Abstandsverfahren ausgebaut (das bleibt eA),
+  und sie macht anschaulich, was das Skalarprodukt geometrisch misst. Auf Stufe 4 steht bereits der
+  einfache Achsenfall, #30 ist dessen Fortsetzung.
+
+## Review-Nachtrag (2026-09-30)
+
+Der Prüf-Agent hat Geometrie gA und eA gemeinsam geprüft. **Kein Rechenfehler** in den vier
+Trainern; alle drei Fehlersuchaufgaben enden nachweislich falsch; Spaltenvektoren im Bild
+durchgehend als Matrix. Behoben wurden Abgrenzungs- und Kontextbefunde:
+
+| Fundstelle | Befund | Behebung |
+|---|---|---|
+| `12-geraden-raum` #27, #32, #34, #36 | vollständige Lagediskussion inklusive windschief — das ist eA (`12-lk-geom-lagebeziehungen` #28/#29) | alle vier zurückgezogen und durch gA-Aufgaben ersetzt: #27 Spurpunkt mit Parameter aus zwei Bedingungen, #32 Abi-Format Kranhaken (vollständige Punktprobe als Nachweis, dann Weglänge), #34 Spurpunkt-Fallunterscheidung (kein Spurpunkt für \(a = 0\)), #36 Behauptung zur Vieldeutigkeit der Parameterform |
+| `12-ebenen` #34 | „Für welchen Parameter liegt \(g\) ganz in \(E\)“ stand dreifach im Block | umakzentuiert: der **Aufpunkt** ist jetzt gegeben und nachzuweisen, gesucht ist der Parameter in der **Richtung**; dazu Sachkontext Förderband |
+| `12-ebenen` #36 | Satteldach-Kontext und Gleichungspaar zu nah an zwei eA-Aufgaben; Dachkontext im Block fünffach | Kontext auf Entwässerungsgraben gewechselt, Gleichungen \(2x+z = 14\) / \(-2x+z = 2\), Schnittgerade in der Höhe \(z = 8\) |
+| `12-vektoren-grundlagen` #6, `12-skalarprodukt` #19 | deutsche Anführung unten mit geradem `"` geschlossen (die Falle, die anderswo einen JS-String beendet hat) | auf `“` umgestellt |
+| alle vier Trainer | Stufenkommentare (`// LEVEL 5 -- Spurpunkte` usw.) passten nicht mehr zum Inhalt | nachgezogen für Stufe 5 und 6 |
+
+Die Zeltdach-Aufgabe `12-vektoren-grundlagen` #31 bleibt unverändert; das gleichlautende eA-Pendant
+wird dort ersetzt. Die neuen Werte wurden erneut mit Wolfram nachgerechnet (\(a = -2\); \(t = 4\) und
+\(4\sqrt{26} \approx 20{,}40\); \(a = -1\) mit Sonderfall \(a = 0\); \(a = 1\) bei erfülltem Aufpunkt;
+\(z = 8\), \(x = 3\)).
