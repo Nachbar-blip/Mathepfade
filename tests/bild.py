@@ -4,6 +4,7 @@
     python tests/bild.py trainer/7-vierecke.html            -> tests/reports/bild-7-vierecke.png
     python tests/bild.py trainer/7-vierecke.html --level 5  -> tests/reports/bild-7-vierecke-L5.png
     python tests/bild.py index.html                         -> tests/reports/bild-index.png
+    python tests/bild.py trainer/7-vierecke.html --aufgabe 33 -> genau Aufgabe 33
 
 Braucht einen lokalen Server im Projektordner: python -m http.server 8765
 (KaTeX kommt per CDN, die Trainer laden spirale-engine.js relativ).
@@ -27,17 +28,41 @@ def _katex_abwarten(seite, ms=4000):
         seite.wait_for_timeout(800)
 
 
-def bild(rel, level=None):
-    """Schreibt tests/reports/bild-<name>[-L<level>].png und gibt den Pfad zurueck."""
+def bild(rel, level=None, aufgabe=None):
+    """Schreibt tests/reports/bild-<name>[-L<level>|-A<id>].png und gibt den Pfad zurueck.
+
+    Mit `aufgabe` wird genau diese Aufgaben-id gezeigt. Die Engine waehlt sonst zufaellig
+    aus der Stufe, sodass eine bestimmte Aufgabe nur durch wiederholtes Laden zu sehen war;
+    die Agenten der Wellen Kl. 10/11 haben sich mit Kopien in trainer/ beholfen, die im
+    Dubletten-Vergleich falsche Warnungen ausgeloest haben. Der Weg hier fasst die Engine
+    nicht an: alle uebrigen Aufgaben der Stufe gelten als beantwortet, dann bleibt eine uebrig.
+    """
     from playwright.sync_api import sync_playwright
-    name = f"bild-{Path(rel).stem}" + (f"-L{level}" if level else "") + ".png"
+    marke = f"-A{aufgabe}" if aufgabe else (f"-L{level}" if level else "")
+    name = f"bild-{Path(rel).stem}{marke}.png"
     ziel = ROOT / "tests" / "reports" / name
     ziel.parent.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as pw:
         browser = pw.chromium.launch()
         seite = browser.new_page(viewport={"width": 1240, "height": 900})
         seite.goto(f"{BASE}/{rel}", wait_until="networkidle")
-        if level:
+        if aufgabe is not None:
+            key = seite.evaluate("typeof THEMA_KEY !== 'undefined' ? THEMA_KEY : null")
+            if not key:
+                raise SystemExit(f"{rel}: kein THEMA_KEY - ist das ein Trainer?")
+            treffer = seite.evaluate("id => AUFGABEN.find(a => a.id === id) || null", aufgabe)
+            if not treffer:
+                raise SystemExit(f"{rel}: keine Aufgabe mit id {aufgabe}")
+            lvl = treffer["level"]
+            andere = seite.evaluate(
+                "([l, id]) => AUFGABEN.filter(a => a.level === l && a.id !== id).map(a => a.id)",
+                [lvl, aufgabe])
+            seite.evaluate(
+                "([k, l, ids]) => localStorage.setItem('spirale-' + k,"
+                " JSON.stringify({level: l, answered: ids}))",
+                [key, lvl, andere])
+            seite.reload(wait_until="networkidle")
+        elif level:
             # Die Engine liest 'spirale-<THEMA_KEY>' und ergaenzt fehlende Felder
             # aus DEFAULT_STATE - level allein reicht, damit initApp() nach dem
             # Reload direkt eine Aufgabe dieses Levels rendert (kein Startbildschirm).
@@ -59,4 +84,5 @@ if __name__ == "__main__":
     if not args:
         raise SystemExit(__doc__)
     lvl = int(args[args.index("--level") + 1]) if "--level" in args else None
-    print(bild(args[0], lvl))
+    auf = int(args[args.index("--aufgabe") + 1]) if "--aufgabe" in args else None
+    print(bild(args[0], lvl, auf))

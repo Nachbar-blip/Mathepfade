@@ -54,6 +54,25 @@ def mathe_markup_ausserhalb(a: dict) -> list:
     return [f for f, text in felder if MATHE_MARKUP.search(MATHE_UMGEBUNG.sub(" ", text))]
 
 
+# Auszeichnung, die die Engine bewusst rendern soll (CLAUDE.md: Fettdruck als <b>…</b>).
+ERLAUBTE_TAGS = re.compile(r"</?(b|i|br|sub|sup|em|strong)\s*/?>", re.I)
+# '<' unmittelbar vor Buchstabe oder '/' startet fuer den HTML-Parser ein Tag.
+# '< ' und '<0' sind harmlos: dort liest der Parser Text.
+TAG_START = re.compile(r"<[a-zA-Z/]")
+
+
+def html_frisst_text(a: dict) -> list:
+    """Felder, in denen '<' direkt vor einem Buchstaben steht — die Engine setzt diese Felder
+    per innerHTML, der HTML-Parser haelt das fuer einen Tag-Anfang und verschluckt den Text bis
+    zum naechsten '>'. Befund 2026-09-30 (Review Kl. 11 Block A2): In zwei Traineren fehlte im
+    Bild dadurch die Fallunterscheidung, die den Kern der Aufgabe ausmachte. level_check sah es
+    nicht (gueltiger String), katex_check auch nicht (er rendert, was uebrig bleibt).
+    Abhilfe im Text: Leerzeichen setzen (\\(1 < x < 5\\)) oder \\lt benutzen."""
+    felder = [(f, str(a.get(f) or "")) for f in ("frage", "tipp", "loesungsweg")]
+    felder += [(f"optionen[{i}]", str(o)) for i, o in enumerate(a.get("optionen") or [])]
+    return [f for f, text in felder if TAG_START.search(ERLAUBTE_TAGS.sub(" ", text))]
+
+
 def lade_aufgaben(pfad: Path) -> list:
     js = r"""
 const fs=require('fs');const h=fs.readFileSync(process.argv[1],'utf8');
@@ -156,6 +175,9 @@ def pruefe_trainer(pfad: Path, aufgaben: list):
                     hart.append(f"{k}: KaTeX-Befehl ohne Backslash in '{feld}' "
                                 f"(einfacher statt doppelter Backslash im JS-String)")
                     break
+        for feld in html_frisst_text(a):
+            hart.append(f"{k}: '<' direkt vor Buchstabe in '{feld}' "
+                        f"(innerHTML frisst den Text bis '>'; Leerzeichen setzen oder \\lt)")
         for feld in mathe_markup_ausserhalb(a):
             hart.append(f"{k}: Mathe-Markup ausserhalb von \\(…\\) in '{feld}' "
                         f"(rendert woertlich, z. B. '0{{,}}5')")

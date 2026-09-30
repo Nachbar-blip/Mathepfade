@@ -60,6 +60,26 @@ def test_null_auswertung_greift_nicht_bei_fremden_trainern():
     assert not lk.KETTEN_TRAINER.search("12-skalarprodukt.html")
 
 
+def test_kleinerzeichen_vor_buchstabe_ist_hart():
+    """Befund 2026-09-30 (Review Kl. 11 Block A2): Die Engine setzt frage/optionen/tipp/
+    loesungsweg per innerHTML. Ein '<' unmittelbar vor einem Buchstaben startet fuer den
+    HTML-Parser ein Tag und frisst den Text bis zum naechsten '>' - im Bild fehlte dadurch
+    die halbe Fallunterscheidung. Weder level_check noch katex_check sahen das."""
+    assert lk.html_frisst_text(_aufgabe(loesungsweg="Fuer \\(a<e\\) gibt es keinen.")) == ["loesungsweg"]
+    assert lk.html_frisst_text(_aufgabe(frage="Es gilt \\(1<x<5\\).")) == ["frage"]
+
+
+def test_kleinerzeichen_mit_abstand_ist_erlaubt():
+    """'< ' und '<0' starten kein Tag - der HTML-Parser liest sie als Text."""
+    assert lk.html_frisst_text(_aufgabe(frage="Es gilt \\(2 < x < 7\\).")) == []
+    assert lk.html_frisst_text(_aufgabe(loesungsweg="Hier ist \\(f'(x)<0\\).")) == []
+
+
+def test_erlaubte_auszeichnung_bleibt_still():
+    """<b>…</b> ist ausdruecklich erlaubt (Fettdruck-Regel aus CLAUDE.md)."""
+    assert lk.html_frisst_text(_aufgabe(frage="Das ist <b>wichtig</b>.")) == []
+
+
 def test_gate_meldet_den_befund_als_harten_fehler():
     """Der Check haengt im Gate und landet in der Fehlerliste, nicht in den Warnungen."""
     from pathlib import Path

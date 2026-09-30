@@ -5,7 +5,13 @@ from pathlib import Path
 import pytest
 from playwright.sync_api import sync_playwright
 
-BASE_URL = "https://nachbar-blip.github.io/Mathepfade"
+import os
+
+# Befund 2026-09-30: Die Suite lief fest gegen die deployte GitHub-Pages-Seite. Lokal geaenderte
+# Aufgaben wurden damit nie geprueft - "pytest gruen" war falsche Sicherheit, solange das Repo
+# der Veroeffentlichung voraus war. Vorgabe ist jetzt der lokale Server (wie in tests/bild.py);
+# die deployte Seite testet man ausdruecklich per MATHEPFADE_BASE_URL.
+BASE_URL = os.environ.get("MATHEPFADE_BASE_URL", "http://127.0.0.1:8765")
 
 # Dynamisch alle HTML-Trainer aus trainer/ einlesen (90 Dateien).
 _TRAINER_DIR = Path(__file__).resolve().parent.parent / "trainer"
