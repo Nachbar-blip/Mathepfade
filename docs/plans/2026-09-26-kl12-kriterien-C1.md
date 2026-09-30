@@ -204,6 +204,37 @@ MC in Stufe 6: 2 (#32, #35).
 
 ---
 
+---
+
+## Review-Nachtrag (Prüf-Agent, 2026-09-30)
+
+Bestätigt wurden: alle kumulierten Binomialwerte, alle σ-Grenzen und Rundungsrichtungen,
+alle E(X)/V(X); die Trennung Prognose- gegen Konfidenzintervall; dass keine Fehlersuchaufgabe
+über den falschen Weg zur richtigen Lösung führt; Stufe 6 als Abi-Format.
+
+**Behobene Befunde:**
+
+| Befund | Behebung |
+|---|---|
+| `hypothesentests #19`: Intervall im Lösungsweg als [82; 119] angegeben — μ ± 2σ = [81,74; 118,26], nach außen also **[81; 119]**; der Beitext lehrte das Gegenteil der eigenen Rundungsregel | Zahl korrigiert und die Rundung ausgeschrieben |
+| `hypothesentests #26` war **buchstäblich** dieselbe Aufgabe wie `sigma-regeln #26` (n = 500, p = 0,3, √(np) statt √(np(1−p)), 10,25) | Ersetzt durch eine Prognose-eigene Fehlersuche: der Prüfer fragt nach „zu hoch“ und berechnet die **untere** Grenze — beide Zahlen sind für sich richtig gerechnet, nur beantwortet die eine die Sachfrage nicht (275) |
+| Identische MC-Sätze über beide Trainer: `hypothesentests #12` ≡ `sigma-regeln #16` (Rundungsregel), `#34` ≡ `sigma-regeln #32` (doppeltes n, sogar dasselbe Zahlenbeispiel), `#35` ≡ Zahlen aus `sigma-regeln #22` | Rundungs-MC steht nur noch in `sigma-regeln`; `hypothesentests #12` ist jetzt eine Rechenaufgabe mit Einordnung, `#34` prüft stattdessen das **Niveau** (99,7 % gegen 95 % → Faktor 1,5 statt 2), `#35` rechnet mit n = 80, p = 0,03 (σ ≈ 1,53) |
+| `zufallsgroessen` #10, #12, #13, #14, #15, #16, #18: Tipps nannten die fertige Rechnung oder das Zwischenergebnis | Alle sieben auf den Weg umgestellt |
+| `sigma-regeln #22`: √(400·0,15·0,85) im Lösungsweg als ≈ 6,96 statt √51 ≈ **7,14** | Zahl korrigiert, Wurzelwert ergänzt |
+| Vier Trainer stellten dieselbe Umkehraufgabe „quadratische Gleichung für p aus σ“; `sigma-regeln #25`/`#33` zusätzlich ein Kollaps L5/L6 | Die Aufgabenform steht jetzt **einmal** im Block, in `sigma-regeln #25` (L5). `sigma-regeln #33` ist eine Umkehraufgabe an der Laplace-Bedingung geworden (kleinstes n bei p = 0,02 → 460, mit Prüfung beider Nachbarn); `hypothesentests #30` erschließt p über die Intervallmitte aus Grenze und Breite |
+| `hypothesentests` Stufen 1–3 waren rechnerisch deckungsgleich mit `sigma-regeln` Stufen 2–4; das Unterscheidungsmerkmal setzte erst ab Stufe 4 ein | Stufen 1–3 neu geschnitten: **L1** liest Grenzen aus einem gegebenen Intervall, misst den Abstand eines Ergebnisses und bestimmt die Breite; **L2** bildet das Intervall aus n und p und hält jeweils ein Ergebnis dagegen (#9 Würfel, #10 Deutung, #12 Beobachtung 268); **L3** ist durchgehend die relative Häufigkeit |
+| `hypothesentests #3` (L1) und `#24` (L4) waren dieselbe Frage, #3 verriet #24 | `#24` fragt jetzt nach dem passenden **Werkzeug** für vier Fragestellungen (Verfahren wählen, AFB II) |
+| Drei bis vier gleichartige Aufgaben je Stufe | `hypothesentests` L2/L3 neu geschnitten (keine zwei Aufgaben mehr mit denselben n und p); `zufallsgroessen` L4 #22 und #24 neu (Modell aus Text mit Restwahrscheinlichkeit; Erwartungswert und Hochrechnung auf 20 Tage) statt zweier weiterer Fairness-Aufgaben; `zufallsgroessen` L6 #36 jetzt Varianzaddition statt eines dritten σ über E(X²) |
+| Rückfälle unter das Stufenniveau: `hypothesentests #17` rein absolut; `zufallsgroessen #22` leichter als #11 (L2); `zufallsgroessen #31` nur eine Multiplikation und eine Subtraktion | #17 rechnet jetzt die relative Grenze; #22 verlangt die Verteilung samt Restwahrscheinlichkeit aus dem Text; #31 bestimmt σ des Jahresgewinns (315,6) und begründet, dass die Prämie als additive Konstante die Streuung nicht ändert |
+| Acht gerade `"` als Schlusszeichen nach korrektem `„` | Alle auf `“` umgestellt; Kontrollzählung `grep -c '\"'` liefert in allen vier Dateien 0 |
+| `zufallsgroessen #16`/`#18`: Lösungsweg nur eine nackte Formelzeile | Beide ausgeführt (Symmetrieargument bzw. Verschiebungssatz mit beiden Erwartungswerten) |
+| `zufallsgroessen #1`/`#2`: richtige MC-Option deutlich die längste | Alle vier Optionen je Aufgabe auf dieselbe Satzform gebracht |
+| `zufallsgroessen #14`/`#15`/`#18`: „(2 Dez.)“ statt „(2 Nachkommastellen)“ | Vereinheitlicht |
+
+Nicht übernommen wurde nichts; alle Befunde sind umgesetzt. Ein neuer Gate-Fehler entstand
+beim Umbau (`hypothesentests #18` sprach eine MC-Option als „die zweite Antwort“ an) und
+wurde vor dem Commit behoben.
+
 ## Gates am Ende des Blocks
 
 ```
