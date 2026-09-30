@@ -194,3 +194,76 @@ Die drei Warnungen aus dem Ausgangsbefund sind damit weg: Funktionsscharen #16
 - `11-lk-newton` #15/#16 (\(\int_1^e \frac1x\) und \(\int_1^e \frac3x\)) nutzen dasselbe
   Muster mit verschiedenem Faktor; bewusst beibehalten, weil der Unterschied
   \(3\ln x\) gegen \(\ln(3x)\) didaktisch trägt.
+
+---
+
+## Review-Nachtrag 2026-09-30
+
+Der Pruef-Agent hat alle 144 Aufgaben nachgerechnet: kein falscher Loesungswert. Behoben
+wurden die folgenden Form- und Dublettenbefunde.
+
+### MUSS
+
+- **`11-lk-gebrochen-rational #17`**: Der Tipp nannte die Antwort („Von rechts strebt es gegen
+  plus unendlich"). Jetzt nur noch das Verfahren (Vorzeichen des Nenners rechts von 1).
+- **`11-lk-kurvendisk-erweitert` Stufe 1-3 komplett neu (18 Aufgaben).** Grund: `#6` war
+  wortgleich `11-kurvendiskussion-ganzrational #15`, `#14` wortgleich dessen `#22`, `#4/#5`
+  Spiegelbilder von dessen `#13/#14`; dazu Stufen-Kollaps (jede Stufe eine ganzrationale
+  Funktion in denselben sechs Teilfragen). Die Stufen tragen jetzt denselben Zuschnitt wie
+  Stufe 4-6: L1 Symmetrie, Werte und Nullstellen zusammengesetzter Terme; L2 Produkt- und
+  Kettenregel bei e- und trigonometrischen Termen; L3 Extrem- und Wendestellen von
+  \(x^{2}e^{-x}\), \(e^{x}-2x\) und \((x-1)e^{x}\). Damit sind Befund 2 und Befund 6 erledigt.
+
+### SOLLTE
+
+- `11-lk-gebrochen-rational #24`: verriet ueber die Frage die Loesung von `#23` (dieselbe
+  Funktion, Extremstelle 2 gegen \(f(2)\)) und war reines Einsetzen. Ersetzt durch eine
+  Umkehraufgabe: Parameter \(c\) aus der vorgegebenen Nullstelle von \(\frac{2x+c}{x-4}\).
+- **Tipps mit fertiger Gleichung** auf den unteren Stufen umgestellt:
+  `11-lk-funktionsscharen #7, #9, #11, #13, #17, #18, #23`;
+  `11-lk-gebrochen-rational #2, #8, #9, #16, #19, #20`;
+  in `11-lk-kurvendisk-erweitert` mit dem Neuschrieb von Stufe 1-3 erledigt.
+  Damit sind auch die Nachbar-Leaks weg (`#15`-Tipp nannte die Loesung von `#14` usw.).
+- `11-lk-funktionsscharen #19-#22`: Vier gleichartige Aufgaben („Stelle, an der der Parameter
+  herausfaellt"). `#20` und `#21` ersetzt — `#20` Umkehraufgabe (Parameter aus der Lage einer
+  waagerechten Tangente), `#21` Punktprobe. Die Stelle wird in keiner Frage mehr mitgeliefert.
+- `11-lk-gebrochen-rational #15`: lag auf derselben Zerlegung wie `#14` und hatte dieselbe
+  Loesung `1`. Jetzt auf \(\frac{x^{2}}{x+2}\) gelegt (Naeherungsgerade \(y=x-2\)).
+- **Ersatz-Trainer L1/L2 entzerrt.** L1 heisst jetzt nicht mehr viermal „\(\ln(e^{a})=a\)",
+  sondern: Definitionsbereich, Nullstelle, Verlauf des Graphen, \(\ln\frac1e\), \(\ln\sqrt{e}\),
+  Vorzeichen zwischen 0 und 1. In L2 ersetzt eine qualitative Aussage ueber \(f'(x)=\frac1x\)
+  die zweite Faktor-Aufgabe.
+- **Aufteilung gegen `11-e-funktion` (Festlegung des Koordinators):** ln als *Werkzeug*
+  (Umkehreigenschaft, Aufloesen von e-Gleichungen) bleibt dort. Im Ersatz-Trainer gestrichen:
+  `#1` \(\ln e\), `#3` „Loese \(e^{x}=5\)", `#5` \(\ln(e^{4})\). Er beginnt jetzt mit
+  Definitionsbereich und Verlauf und fuehrt ueber Ableitung, Kettenregel und Stammfunktion.
+- **`11-lk-gebrochen-rational #17/#18` auf MC umgestellt.** Die alte Kodierung
+  \(\pm\infty\) als \(\pm 1\) in einem numerischen Feld war eine Eingabefalle: Wer fachlich
+  richtig „+unendlich" eintippt, wurde als falsch gewertet. Optionen jetzt: ueber alle Grenzen
+  wachsend / unter jede Schranke fallend / gegen 0 / gegen eine feste Zahl.
+- **MC-Laengen im Altbestand** angeglichen: `11-lk-funktionsscharen #1, #7, #17`,
+  `11-lk-gebrochen-rational #1, #7`, `11-lk-kurvendisk-erweitert #1/#11` (mit dem Neuschrieb).
+  Bei `#17` und `#1` der gebrochen-rationalen wanderte dabei die richtige Antwort auf Index 0.
+
+### KANN
+
+- `11-lk-kurvendisk-erweitert #26`: Der falsche Weg lieferte mit \(x=0\) zufaellig eine echte
+  Extremstelle. Die Aufgabe liegt jetzt auf \((x+3)e^{-x}\) — der falsche Weg fuehrt auf
+  „keine Extremstelle", richtig ist \(x=-2\). Damit ist zugleich die Doppelnutzung von
+  \(x^{2}e^{-x}\) in `#26` und `#31` weg; `#31` prueft jetzt \(x^{3}e^{-x}\).
+- Ersatz-Trainer `#18` rechnete \((x\ln x)'\) vor, was `#27` verlangt — jetzt \(x^{2}\ln x\).
+- `11-lk-funktionsscharen #27` war eine Steckbriefaufgabe ohne Scharbezug; jetzt Zweiparameter-
+  Schar \(ax^{2}+bx\) mit Punkt- und Steigungsbedingung.
+- „ae/ue"-Reste in den JS-Kommentaren beseitigt.
+
+Nachgerechnet mit Wolfram wurden alle geaenderten Werte. Gates nach dem Nachtrag:
+`level_check --strict` und `lehrplan_check --strict` ueber die vier Dateien Exit 0 ohne
+Warnung, `katex_check` ok, `pytest tests/test_trainer.py` 28 passed, `test_index` 3 passed;
+Bilder der Stufen 1 bis 6 erzeugt und angesehen.
+
+### Weiterhin offen
+
+- `11-lk-funktionsscharen` Stufe 1-3 bleibt bei ganzrationalen Scharen; KOLLAPS L2/L3 ist damit
+  nicht vollstaendig aufgeloest (Stufe 1-3 laut Plan nicht im Auftrag, nur entdoppelt).
+- `11-lk-gebrochen-rational #16` (Kuerzen von \(\frac{x^{2}+x}{x}\)) bleibt eine sehr einfache
+  Stufe-3-Aufgabe.
