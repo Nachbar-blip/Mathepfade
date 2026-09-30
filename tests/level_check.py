@@ -17,6 +17,7 @@ import re
 import subprocess
 import sys
 from collections import Counter
+from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -114,17 +115,39 @@ process.exit(2);
     return json.loads(r.stdout)
 
 
-def tipp_verraet_loesung(tipp: str, loesung) -> bool:
-    """Warnung, wenn der Loesungswert (ab Betrag 10, sonst zu viele Zufallstreffer) im Tipp steht.
-    Review-Befund 2026-09-26: Tipps wie '30000 cm³ = 30 l' nehmen die Antwort vorweg."""
+def tipp_verraet_loesung(tipp: str, loesung, level: int = 0) -> bool:
+    """Warnung, wenn der Loesungswert im Tipp steht.
+
+    Bis Stufe 3 nur ab Betrag 10 und dezimal - darunter gaebe es zu viele Zufallstreffer,
+    und ein Merksatz wie 'Jede Zahl hoch 0 = 1' ist auf Stufe 1/2 legitime Didaktik.
+    Ab Stufe 4 verlangt die Rubrik AFB II/III: dort zaehlt jede Schreibweise, auch Brueche
+    und kleine Zahlen. Review-Befund 2026-09-30 (Kl. 12 Block A): Tipps wie '= 1/5', '= e-2'
+    oder '≈ 0,0808' nehmen die Antwort vorweg, rutschten aber durch, weil das Gate erst ab
+    Betrag 10 und nur dezimal prueft."""
     x = float(loesung)
-    if abs(x) < 10:
-        return False
     kompakt = re.sub(r"\\[,;]|\s|\{,\}", lambda m: "," if m.group(0) == "{,}" else "", tipp or "")
-    formen = {str(x).replace(".", ",")}
-    if x == int(x):
-        formen.add(str(int(x)))
-    return any(re.search(r"(?<![\d,.])" + re.escape(z) + r"(?![\d])", kompakt) for z in formen)
+
+    def steht_drin(z, nur_als_ergebnis=False):
+        # Kleine ganze Zahlen stehen staendig zufaellig im Text - als Index (E_2), Exponent (r^2)
+        # oder Nenner (1/3). Sie zaehlen nur, wenn sie als Ergebnis hinter '=' oder '⇒' stehen.
+        vorn = r"(?:=|\\Rightarrow|\\to|⇒)\s*" if nur_als_ergebnis else r"(?<![\d,.])"
+        return re.search(vorn + re.escape(z) + r"(?![\d])", kompakt) is not None
+
+    if abs(x) >= 10:
+        formen = {str(x).replace(".", ",")} | ({str(int(x))} if x == int(x) else set())
+        if any(steht_drin(z) for z in formen):
+            return True
+    if level >= 4 and x != 0:
+        # Brueche und Kommazahlen sind selten zufaellig - sie zaehlen ueberall im Tipp.
+        genau = {f"{round(x, 4):g}".replace(".", ",")}
+        bruch = Fraction(x).limit_denominator(60)
+        if abs(float(bruch) - x) < 1e-9 and bruch.denominator != 1:
+            genau.add(f"{bruch.numerator}/{bruch.denominator}")
+        if any(steht_drin(z) for z in genau if not z.lstrip("-").isdigit()):
+            return True
+        if x == int(x) and steht_drin(str(int(x)), nur_als_ergebnis=True):
+            return True
+    return False
 
 
 def richtige_option_zu_lang(optionen: list, korrekt: int) -> bool:
@@ -180,7 +203,7 @@ def pruefe_trainer(pfad: Path, aufgaben: list):
                 hart.append(f"{k}: loesung fehlt")
             elif float(loes) != int(loes) and not a.get("toleranz"):
                 hart.append(f"{k}: Dezimal-Loesung ohne toleranz")
-            elif tipp_verraet_loesung(a.get("tipp", ""), loes):
+            elif tipp_verraet_loesung(a.get("tipp", ""), loes, lv):
                 warn.append(f"{k}: Tipp enthaelt den Loesungswert {loes}")
         else:
             hart.append(f"{k}: typ ungueltig ({typ})")

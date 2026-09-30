@@ -80,6 +80,28 @@ def test_erlaubte_auszeichnung_bleibt_still():
     assert lk.html_frisst_text(_aufgabe(frage="Das ist <b>wichtig</b>.")) == []
 
 
+def test_tipp_mit_bruch_ab_stufe4():
+    """Befund 2026-09-30 (Review Kl. 12 Block A): Tipps wie '= 1/5' nahmen die Antwort vorweg,
+    rutschten aber durch, weil das Gate nur dezimal und erst ab Betrag 10 prueft."""
+    assert lk.tipp_verraet_loesung(r"\(\sqrt{2} = 2^{1/2}\).", 0.5, 4)
+    assert not lk.tipp_verraet_loesung(r"\(\sqrt{2} = 2^{1/2}\).", 0.5, 2)
+
+
+def test_tipp_mit_kleiner_ganzer_zahl_nur_als_ergebnis():
+    """Kleine ganze Zahlen zaehlen nur hinter '=' oder '⇒'. Als Index (E_2), Exponent (r^2)
+    oder Nenner (1/3) stehen sie staendig zufaellig im Text - ein Gate, das jede 2 meldet,
+    erzieht dazu, Warnungen zu ignorieren."""
+    assert lk.tipp_verraet_loesung(r"\(y=0 \Rightarrow s=0\). Dann \(t=2\).", 2, 4)
+    assert not lk.tipp_verraet_loesung(r"Schnittgerade von \(E_1\) und \(E_2\) bestimmen.", 2, 6)
+    assert not lk.tipp_verraet_loesung(r"Was muss mit \(r^2\) passieren?", 2, 6)
+    assert not lk.tipp_verraet_loesung(r"\(S = \frac{1}{3}(A+B+C)\).", 1, 4)
+
+
+def test_tipp_grosse_zahl_weiterhin_auf_jeder_stufe():
+    """Die bisherige Regel (ab Betrag 10) gilt unveraendert auch unterhalb Stufe 4."""
+    assert lk.tipp_verraet_loesung("30000 cm³ sind 30 l.", 30, 1)
+
+
 def test_optionsbuchstabe_im_loesungsweg_ist_hart():
     """Befund 2026-09-30 (Welle Kl. 11): Die Engine mischt die MC-Optionen. Ein Loesungsweg,
     der sie mit 'Option A' anspricht, zeigt im Bild auf eine andere Option - zwei Renderings
