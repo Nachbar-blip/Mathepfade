@@ -351,10 +351,10 @@
         typ: "mc",
         frage: "Ein Schüler rechnet: „\\(\\sin\\alpha = 0{,}8\\), \\(\\alpha\\) liegt im II. Quadranten, also \\(\\cos\\alpha = \\sqrt{1 - 0{,}64} = 0{,}6\\).“ Welcher Fehler steckt darin?",
         optionen: [
-          "kein Fehler, die Rechnung stimmt",
-          "das Vorzeichen des Ergebnisses ist falsch",
+          "kein Fehler, so ist es richtig",
+          "das Vorzeichen ist hier falsch",
           "es müsste \\(1 + 0{,}64\\) heißen",
-          "die Wurzel gehört um \\(0{,}8\\) gezogen"
+          "die Wurzel wurde falsch gezogen"
         ],
         korrekt: 1,
         tipp: "Prüfe zuerst den Rechenschritt und danach, welches Vorzeichen die \\(x\\)-Koordinate im II. Quadranten hat.",
@@ -364,41 +364,41 @@
         id: 26,
         level: 5,
         typ: "numerisch",
-        frage: "Der Punkt \\(P(-0{,}28 \\mid y)\\) liegt auf dem Einheitskreis im III. Quadranten. Bestimme \\(y\\).",
-        loesung: -0.96,
-        toleranz: 0.005,
-        tipp: "Für jeden Punkt des Einheitskreises gilt \\(x^2 + y^2 = 1\\); danach entscheidet die Quadrantenlage über das Vorzeichen.",
-        loesungsweg: "Aus \\(x^2 + y^2 = 1\\) folgt $$y^2 = 1 - (-0{,}28)^2 = 1 - 0{,}0784 = 0{,}9216$$ also \\(|y| = \\sqrt{0{,}9216} = 0{,}96\\). Im III. Quadranten ist die \\(y\\)-Koordinate negativ: $$y = -0{,}96$$"
+        frage: "Ein Punkt des Einheitskreises im III. Quadranten hat die \\(x\\)-Koordinate \\(-0{,}28\\). Berechne die Summe seiner beiden Koordinaten.",
+        loesung: -1.24,
+        toleranz: 0.01,
+        tipp: "Bestimme die fehlende Koordinate über die Kreisgleichung, entscheide dann anhand des Quadranten über ihr Vorzeichen und addiere erst zum Schluss.",
+        loesungsweg: "Aus \\(x^2 + y^2 = 1\\) folgt $$y^2 = 1 - (-0{,}28)^2 = 1 - 0{,}0784 = 0{,}9216$$ also \\(|y| = 0{,}96\\). Im III. Quadranten ist die \\(y\\)-Koordinate negativ, also \\(y = -0{,}96\\). Summe: $$-0{,}28 + (-0{,}96) = -1{,}24$$"
       },
       {
         id: 27,
         level: 5,
         typ: "numerisch",
-        frage: "Für einen Winkel \\(\\alpha\\) gilt \\(\\sin\\alpha = \\cos\\alpha\\), und \\(\\alpha\\) liegt im III. Quadranten. Gib \\(\\alpha\\) in Grad an.",
-        loesung: 225,
-        toleranz: 0.1,
-        tipp: "Gleiche Koordinaten bedeuten, dass der Punkt auf der Winkelhalbierenden liegt; dann entscheidet der Quadrant, welche der beiden Halbgeraden gemeint ist.",
-        loesungsweg: "\\(\\sin\\alpha = \\cos\\alpha\\) heißt \\(y = x\\): der Punkt liegt auf der Winkelhalbierenden des I. und III. Quadranten. Im I. Quadranten gehört dazu \\(45°\\), im III. Quadranten der gegenüberliegende Punkt: $$\\alpha = 180° + 45° = 225°$$ Kontrolle: \\(\\sin(225°) = \\cos(225°) = -\\frac{\\sqrt{2}}{2}\\)."
+        frage: "Für einen Winkel \\(\\alpha\\) gilt \\(\\sin\\alpha \\cdot \\cos\\alpha = 0{,}48\\), und beide Koordinaten des zugehörigen Punktes sind positiv. Bestimme den größeren der beiden Werte \\(\\sin\\alpha\\) und \\(\\cos\\alpha\\).",
+        loesung: 0.8,
+        toleranz: 0.01,
+        tipp: "Quadriere einmal die Summe und einmal die Differenz der beiden Werte; in beiden Fällen lässt sich die Grundbeziehung einsetzen.",
+        loesungsweg: "Quadrat der Summe: $$(\\sin\\alpha + \\cos\\alpha)^2 = 1 + 2 \\cdot 0{,}48 = 1{,}96 \\;\\Rightarrow\\; \\sin\\alpha + \\cos\\alpha = 1{,}4$$ Quadrat der Differenz: $$(\\sin\\alpha - \\cos\\alpha)^2 = 1 - 2 \\cdot 0{,}48 = 0{,}04 \\;\\Rightarrow\\; |\\sin\\alpha - \\cos\\alpha| = 0{,}2$$ Aus Summe \\(1{,}4\\) und Differenz \\(0{,}2\\) ergeben sich die Werte \\(0{,}8\\) und \\(0{,}6\\). Der größere ist \\(0{,}8\\); Probe: \\(0{,}8 \\cdot 0{,}6 = 0{,}48\\) ✓"
       },
       {
         id: 28,
         level: 5,
         typ: "numerisch",
-        frage: "Berechne \\(\\sin\\left(\\frac{7\\pi}{6}\\right) + \\cos\\left(\\frac{4\\pi}{3}\\right)\\) als Dezimalzahl.",
-        loesung: -1,
-        toleranz: 0.01,
-        tipp: "Rechne beide Bogenmaße zuerst in Grad um und bestimme dann je Winkel Quadrant und Referenzwinkel.",
-        loesungsweg: "Umrechnung: \\(\\frac{7\\pi}{6} = 210°\\) (III. Quadrant, Referenzwinkel \\(30°\\)) und \\(\\frac{4\\pi}{3} = 240°\\) (III. Quadrant, Referenzwinkel \\(60°\\)). Im III. Quadranten sind beide Koordinaten negativ: $$\\sin(210°) = -\\frac{1}{2},\\qquad \\cos(240°) = -\\frac{1}{2}$$ Summe: \\(-0{,}5 + (-0{,}5) = -1\\)."
+        frage: "Berechne \\(\\sin\\left(\\frac{5\\pi}{4}\\right) + \\cos\\left(\\frac{5\\pi}{3}\\right)\\) als Dezimalzahl auf vier Stellen.",
+        loesung: -0.2071,
+        toleranz: 0.005,
+        tipp: "Rechne beide Bogenmaße zuerst in Grad um und bestimme dann je Winkel getrennt Quadrant und Referenzwinkel.",
+        loesungsweg: "Umrechnung: \\(\\frac{5\\pi}{4} = 225°\\) (III. Quadrant, Referenzwinkel \\(45°\\)) und \\(\\frac{5\\pi}{3} = 300°\\) (IV. Quadrant, Referenzwinkel \\(60°\\)). Im III. Quadranten ist der Sinus negativ, im IV. der Kosinus positiv: $$\\sin(225°) = -\\frac{\\sqrt{2}}{2} \\approx -0{,}7071, \\qquad \\cos(300°) = \\frac{1}{2}$$ Summe: \\(-0{,}7071 + 0{,}5 = -0{,}2071\\)."
       },
       {
         id: 29,
         level: 5,
         typ: "numerisch",
-        frage: "Ein Punkt wandert vom Punkt \\((1 \\mid 0)\\) gegen den Uhrzeigersinn auf dem Einheitskreis und legt dabei die Bogenlänge \\(2{,}5\\) zurück. Welchen Winkel in Grad hat er überstrichen?",
-        loesung: 143.2394,
+        frage: "Ein Punkt wandert vom Punkt \\((1 \\mid 0)\\) gegen den Uhrzeigersinn auf dem Einheitskreis und legt dabei die Bogenlänge \\(2{,}5\\) zurück. Um wie viel Grad bleibt der überstrichene Winkel hinter einem Halbkreis zurück? Gib das Ergebnis auf zwei Dezimalen an.",
+        loesung: 36.76,
         toleranz: 0.1,
-        tipp: "Auf dem Einheitskreis ist die zurückgelegte Bogenlänge genau das Bogenmaß des Winkels; danach bleibt die Umrechnung ins Gradmaß.",
-        loesungsweg: "Weil der Radius 1 ist, stimmt die Bogenlänge mit dem Bogenmaß überein: \\(x = 2{,}5\\). Umrechnung ins Gradmaß über \\(\\pi \\,\\widehat{=}\\, 180°\\): $$\\alpha = 2{,}5 \\cdot \\frac{180°}{\\pi} \\approx 143{,}24°$$"
+        tipp: "Auf dem Einheitskreis ist die zurückgelegte Bogenlänge das Bogenmaß des Winkels; rechne erst ins Gradmaß um und vergleiche danach.",
+        loesungsweg: "Weil der Radius 1 ist, stimmt die Bogenlänge mit dem Bogenmaß überein: \\(x = 2{,}5\\). Umrechnung über \\(\\pi \\,\\widehat{=}\\, 180°\\): $$\\alpha = 2{,}5 \\cdot \\frac{180°}{\\pi} \\approx 143{,}24°$$ Der Halbkreis misst \\(180°\\), also fehlen $$180° - 143{,}24° \\approx 36{,}76°$$"
       },
       {
         id: 30,
@@ -431,21 +431,26 @@
         id: 32,
         level: 6,
         typ: "numerisch",
-        frage: "Bestimme die Anzahl der Winkel \\(\\alpha\\) mit \\(0° \\le \\alpha < 360°\\), für die \\(\\sin\\alpha = \\cos\\alpha\\) gilt.",
-        loesung: 2,
+        frage: "Bestimme die Anzahl der Winkel \\(\\alpha\\) mit \\(0° \\le \\alpha < 360°\\), für die \\(\\sin\\alpha \\cdot \\cos\\alpha = 0\\) gilt.",
+        loesung: 4,
         toleranz: 0,
-        tipp: "Übersetze die Bedingung in eine Aussage über die Koordinaten des Punktes und überlege, wie oft der Einheitskreis die zugehörige Gerade trifft.",
-        loesungsweg: "\\(\\sin\\alpha = \\cos\\alpha\\) bedeutet \\(y = x\\). Der Einheitskreis schneidet die Gerade \\(y = x\\) in zwei Punkten: einmal im I. Quadranten (\\(45°\\)), einmal im III. Quadranten (\\(225°\\)). Auf den Achsen gibt es keine Lösung, weil dort eine Koordinate 0 und die andere \\(\\pm 1\\) ist. Also gibt es genau <b>2</b> solche Winkel."
+        tipp: "Ein Produkt wird genau dann null, wenn einer der Faktoren null wird; untersuche beide Fälle getrennt und achte auf gemeinsame Stellen.",
+        loesungsweg: "Fall 1: \\(\\sin\\alpha = 0\\), der Punkt liegt auf der \\(x\\)-Achse, also \\(\\alpha \\in \\{0°;\\,180°\\}\\). Fall 2: \\(\\cos\\alpha = 0\\), der Punkt liegt auf der \\(y\\)-Achse, also \\(\\alpha \\in \\{90°;\\,270°\\}\\). Beide Fälle haben keine Stelle gemeinsam — sonst wären beide Koordinaten null, was auf dem Einheitskreis unmöglich ist. Zusammen $$\\{0°;\\,90°;\\,180°;\\,270°\\}$$ also <b>4</b> Winkel."
       },
       {
         id: 33,
         level: 6,
-        typ: "numerisch",
-        frage: "Behauptung: „Der Term \\(\\sin^4\\alpha + \\cos^4\\alpha\\) hat für jeden Winkel denselben Wert.“ Berechne den Wert für \\(\\alpha = 45°\\) und entscheide damit über die Behauptung.",
-        loesung: 0.5,
-        toleranz: 0.005,
-        tipp: "Setze einen zweiten, besonders bequemen Winkel ein und vergleiche die beiden Ergebnisse miteinander.",
-        loesungsweg: "Für \\(\\alpha = 45°\\) ist \\(\\sin 45° = \\cos 45° = \\frac{\\sqrt{2}}{2}\\), also $$\\sin^4 45° + \\cos^4 45° = 2 \\cdot \\left(\\frac{\\sqrt{2}}{2}\\right)^4 = 2 \\cdot \\frac{4}{16} = \\frac{1}{2} = 0{,}5$$ Für \\(\\alpha = 0°\\) ergibt sich dagegen \\(0^4 + 1^4 = 1\\). Zwei verschiedene Werte — die Behauptung ist <b>falsch</b>. Konstant ist nur \\(\\sin^2\\alpha + \\cos^2\\alpha\\)."
+        typ: "mc",
+        frage: "Behauptung: „Der Term \\(\\sin^4\\alpha + \\cos^4\\alpha\\) hat für jeden Winkel denselben Wert.“ Wie ist das zu bewerten?",
+        optionen: [
+          "richtig, der Wert ist immer 1",
+          "falsch, er hängt vom Winkel ab",
+          "richtig, aber nur für spitze Winkel",
+          "falsch, er ist stets negativ"
+        ],
+        korrekt: 1,
+        tipp: "Setze zwei besonders bequeme Winkel ein und vergleiche die beiden Ergebnisse miteinander.",
+        loesungsweg: "Für \\(\\alpha = 0°\\) ergibt sich \\(0^4 + 1^4 = 1\\). Für \\(\\alpha = 45°\\) ist \\(\\sin 45° = \\cos 45° = \\frac{\\sqrt{2}}{2}\\), also $$\\sin^4 45° + \\cos^4 45° = 2 \\cdot \\left(\\frac{\\sqrt{2}}{2}\\right)^4 = 2 \\cdot \\frac{4}{16} = \\frac{1}{2}$$ Zwei verschiedene Werte — die Behauptung ist <b>falsch</b>. Negativ wird der Term nie, denn beide Summanden sind vierte Potenzen. Konstant ist allein \\(\\sin^2\\alpha + \\cos^2\\alpha\\)."
       },
       {
         id: 34,

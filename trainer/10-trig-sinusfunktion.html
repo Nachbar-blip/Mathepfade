@@ -359,31 +359,31 @@
         id: 25,
         level: 5,
         typ: "numerisch",
-        frage: "Der Graph von \\(f(x) = a \\cdot \\sin(b \\cdot x)\\) mit \\(a > 0\\) und \\(b > 0\\) hat den größten Funktionswert 4 und die Periode \\(\\pi\\). Bestimme \\(b\\).",
-        loesung: 2,
-        toleranz: 0.01,
-        tipp: "Der größte Funktionswert hängt nur vom Streckfaktor vor dem Sinus ab, die Periodenlänge nur vom Faktor im Argument.",
-        loesungsweg: "Der größte Funktionswert liefert \\(a = 4\\), für \\(b\\) ist er ohne Bedeutung. Die Periode einer Sinusfunktion mit innerem Faktor \\(b\\) beträgt \\(\\frac{2\\pi}{b}\\). Aus $$\\frac{2\\pi}{b} = \\pi \\;\\Rightarrow\\; b = \\frac{2\\pi}{\\pi} = 2$$ Die Funktion lautet also \\(f(x) = 4\\sin(2x)\\)."
+        frage: "Der Graph von \\(f(x) = a \\cdot \\sin(b \\cdot x)\\) mit \\(a > 0\\) und \\(b > 0\\) hat bei \\(x = \\frac{\\pi}{4}\\) einen Hochpunkt mit dem Funktionswert 6. Berechne \\(a + b\\).",
+        loesung: 8,
+        toleranz: 0.02,
+        tipp: "Der Funktionswert im Hochpunkt hängt nur vom Streckfaktor vor dem Sinus ab; die Lage des ersten Hochpunkts verrät ein Viertel der Periodenlänge.",
+        loesungsweg: "Im Hochpunkt nimmt der Sinus den Wert 1 an, also \\(a = 6\\). Der erste Hochpunkt liegt ein Viertel der Periode hinter dem Nullpunkt: $$\\frac{T}{4} = \\frac{\\pi}{4} \\;\\Rightarrow\\; T = \\pi$$ Aus \\(T = \\frac{2\\pi}{b}\\) folgt \\(b = 2\\). Damit ist \\(f(x) = 6\\sin(2x)\\) und $$a + b = 6 + 2 = 8$$"
       },
       {
         id: 26,
         level: 5,
         typ: "numerisch",
-        frage: "Der Wasserstand in einem Hafen schwankt gleichmäßig zwischen \\(1{,}20\\,\\text{m}\\) und \\(3{,}80\\,\\text{m}\\). Beschreibt man ihn durch eine Sinusfunktion, wie groß ist deren Amplitude in Metern?",
-        loesung: 1.3,
-        toleranz: 0.02,
-        tipp: "Die Amplitude misst den Abstand vom mittleren Wert bis zum höchsten Wert, nicht den gesamten Höhenunterschied.",
-        loesungsweg: "Der gesamte Unterschied beträgt \\(3{,}80 - 1{,}20 = 2{,}60\\) Meter. Die Sinuskurve schwingt um ihre Mittellage jeweils zur Hälfte nach oben und nach unten: $$a = \\frac{2{,}60}{2} = 1{,}30$$ Die Mittellage liegt bei \\(\\frac{1{,}20 + 3{,}80}{2} = 2{,}50\\) Metern."
+        frage: "Ein Wasserstand schwankt gleichmäßig zwischen \\(1{,}20\\,\\text{m}\\) und \\(3{,}80\\,\\text{m}\\); zwischen einem Höchststand und dem folgenden Tiefststand vergehen \\(6{,}2\\) Stunden. Der Verlauf wird durch \\(w(t) = a \\cdot \\sin(b \\cdot t) + d\\) mit \\(a > 0\\) und \\(t\\) in Stunden beschrieben. Berechne das Produkt \\(a \\cdot b\\) auf vier Dezimalen.",
+        loesung: 0.6587,
+        toleranz: 0.002,
+        tipp: "Die Amplitude misst nur den halben Höhenunterschied; zwischen Höchst- und Tiefststand liegt außerdem erst eine halbe Periode.",
+        loesungsweg: "Amplitude: $$a = \\frac{3{,}80 - 1{,}20}{2} = 1{,}30$$ Höchst- und Tiefststand liegen eine halbe Periode auseinander, also \\(T = 2 \\cdot 6{,}2 = 12{,}4\\) Stunden und $$b = \\frac{2\\pi}{12{,}4} \\approx 0{,}5067$$ Produkt: \\(1{,}30 \\cdot 0{,}5067 \\approx 0{,}6587\\). Die Mittellage \\(d = 2{,}50\\) wird dafür nicht gebraucht."
       },
       {
         id: 27,
         level: 5,
         typ: "numerisch",
-        frage: "An einer Küste vergehen zwischen einem Höchststand des Wassers und dem darauf folgenden Tiefststand \\(6{,}2\\) Stunden. Der Verlauf wird durch \\(w(t) = a \\cdot \\sin(b \\cdot t) + d\\) mit \\(t\\) in Stunden beschrieben. Bestimme \\(b\\) auf vier Dezimalen.",
-        loesung: 0.5067,
-        toleranz: 0.002,
-        tipp: "Zwischen Höchst- und Tiefststand liegt nur ein halber Durchlauf; bestimme daraus zuerst die vollständige Periodenlänge.",
-        loesungsweg: "Höchst- und Tiefststand liegen eine halbe Periode auseinander, also ist die Periode $$T = 2 \\cdot 6{,}2 = 12{,}4 \\text{ Stunden}$$ Aus \\(T = \\frac{2\\pi}{b}\\) folgt $$b = \\frac{2\\pi}{12{,}4} \\approx 0{,}5067$$"
+        frage: "Eine Sinuskurve hat die Amplitude 5 und die Periodenlänge 6. Berechne die Summe aus dem senkrechten und dem waagerechten Abstand zwischen einem Hochpunkt und dem unmittelbar folgenden Tiefpunkt.",
+        loesung: 13,
+        toleranz: 0.05,
+        tipp: "Der senkrechte Abstand umfasst die Schwingung nach oben und nach unten; waagerecht liegt zwischen Hoch- und Tiefpunkt ein fester Bruchteil der Periode.",
+        loesungsweg: "Senkrecht: Der Hochpunkt liegt um die Amplitude über der Mittellage, der Tiefpunkt ebenso weit darunter: $$\\Delta y = 2 \\cdot 5 = 10$$ Waagerecht: Zwischen Hoch- und Tiefpunkt liegt eine halbe Periode: $$\\Delta x = \\frac{6}{2} = 3$$ Summe: \\(10 + 3 = 13\\)."
       },
       {
         id: 28,
@@ -391,10 +391,10 @@
         typ: "mc",
         frage: "Ein Schüler bestimmt die Periode von \\(f(x) = 2\\sin(0{,}5x)\\) als \\(0{,}5 \\cdot 2\\pi = \\pi\\). Wie ist das zu bewerten?",
         optionen: [
-          "richtig, die Periode beträgt \\(\\pi\\)",
-          "falsch, es wird geteilt statt multipliziert",
+          "richtig, so ist die Periode bestimmt",
+          "falsch, es muss geteilt werden",
           "falsch, die Amplitude gehört hinein",
-          "falsch, die Periode ist immer \\(2\\pi\\)"
+          "falsch, die Periode ist stets \\(2\\pi\\)"
         ],
         korrekt: 1,
         tipp: "Überlege am Graphen, ob ein innerer Faktor kleiner als 1 die Kurve streckt oder staucht, und vergleiche das mit dem Ergebnis des Schülers.",

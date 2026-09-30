@@ -30,14 +30,14 @@ Abgrenzung der vier Trigonometrie-Trainer (gegen sinngleiche Aufgaben):
 | id | Level | Kriterium |
 |---|---|---|
 | 25 | 5 | L5: Fehler in vorgelegter Rechnung — Vorzeichen im II. Quadranten (MC) |
-| 26 | 5 | L5: zwei Schritte — Kreisgleichung und Quadrantenlage |
-| 27 | 5 | L5: Bedingung übersetzen — \(\sin\alpha=\cos\alpha\) plus Quadrant |
-| 28 | 5 | L5: zwei Schritte — Bogenmaß in Grad, Quadrant, Referenzwinkel |
-| 29 | 5 | L5: Umkehraufgabe — Bogenlänge als Bogenmaß, Umrechnung |
+| 26 | 5 | L5: drei Schritte — Kreisgleichung, Quadrantenvorzeichen, Summe der Koordinaten |
+| 27 | 5 | L5: zwei Bedingungen — aus \(\sin\alpha\cos\alpha = 0{,}48\) über Summen- und Differenzquadrat (ersetzt die Dublette \(\sin\alpha=\cos\alpha\)) |
+| 28 | 5 | L5: zwei Winkel getrennt — \(\frac{5\pi}{4}\) und \(\frac{5\pi}{3}\) (früher \(\frac{7\pi}{6}\), enthielt L4 #24 als Teilschritt) |
+| 29 | 5 | L5: Bogenlänge als Bogenmaß, Umrechnung, dann Vergleich mit dem Halbkreis |
 | 30 | 5 | L5: Parameter — Punkt \(P(a\mid 2a)\) auf dem Einheitskreis |
 | 31 | 6 | L6: Behauptung prüfen — \(\sin(\alpha+180°)\) (MC, Gegenbeispiel) |
-| 32 | 6 | L6: Anzahl über Schnittpunkte mit \(y=x\) |
-| 33 | 6 | L6: Behauptung widerlegen — \(\sin^4+\cos^4\) nicht konstant |
+| 32 | 6 | L6: Produktform \(\sin\alpha\cos\alpha = 0\), zwei Fälle, Achsenlage |
+| 33 | 6 | L6: Behauptung widerlegen — \(\sin^4+\cos^4\) nicht konstant (MC, damit die Entscheidung selbst bewertet wird) |
 | 34 | 6 | L6: Periodizität — kleinster nichtnegativer Winkel zu \(-1000°\) |
 | 35 | 6 | L6: Maximum von \(\sin\alpha+\cos\alpha\) über Quadrieren |
 | 36 | 6 | L6: Behauptung prüfen — Randfall \(0°/360°\) (MC) |
@@ -65,9 +65,9 @@ Abgrenzung der vier Trigonometrie-Trainer (gegen sinngleiche Aufgaben):
 | id | Level | Kriterium |
 |---|---|---|
 | 20 | 4 | MC-Optionen auf gleiche Länge gebracht |
-| 25 | 5 | L5: Parameter aus zwei Angaben — Höchstwert und Periode |
-| 26 | 5 | L5: Amplitude aus Schwankungsbereich (zwei Schritte) |
-| 27 | 5 | L5: \(b\) aus halber Periode, dann Umrechnung |
+| 25 | 5 | L5: Parameter aus zwei Angaben — Hochpunkt liefert \(a\), seine Lage \(b\); gefragt ist \(a+b\) |
+| 26 | 5 | L5: Amplitude aus dem Schwankungsbereich und \(b\) aus der halben Periode; gefragt ist \(a\cdot b\) |
+| 27 | 5 | L5: senkrechter und waagerechter Abstand Hochpunkt–Tiefpunkt aus Amplitude und Periode |
 | 28 | 5 | L5: Fehler finden — Periode multipliziert statt dividiert (MC) |
 | 29 | 5 | L5: Verschiebung aus steigender Nullstelle |
 | 30 | 5 | L5: Anzahl Hochpunkte im Intervall aus der Periode |
@@ -84,11 +84,11 @@ Abgrenzung der vier Trigonometrie-Trainer (gegen sinngleiche Aufgaben):
 |---|---|---|
 | 13–18 | 3 | L3 entdoppelt: Kosinussatz mit stumpfem Winkel, Winkel aus drei Seiten, Sinussatz erst nach der Winkelsumme — je ein Zwischenergebnis |
 | 19 | 4 | L4: Verfahren wählen und Umfang ergänzen |
-| 20 | 4 | L4: fehlenden Gegenwinkel selbst beschaffen |
+| 20 | 4 | L4: Modell aus Text — Beet, Winkelsumme und Entscheidung, welche Seite die längere ist (ersetzt die zu #16 sinngleiche Rechenaufgabe) |
 | 21 | 4 | L4: Umkehraufgabe — Winkel aus zwei Seiten und Gegenwinkel |
 | 22 | 4 | L4: Modell aus Text (zwei Wege, eingeschlossener Winkel) |
 | 23 | 4 | L4: Satzwahl begründen (MC, Auswahl ist die Leistung) |
-| 24 | 4 | L4: Umkehraufgabe SSS — stumpfer Winkel aus drei Seiten |
+| 24 | 4 | L4: dritte Seite erst aus dem Umfang beschaffen, dann Winkel (ersetzt die zu #14/#17 sinngleiche SSS-Aufgabe) |
 | 25 | 5 | L5: Fehler finden — Vorzeichen von \(\cos 120°\) (MC) |
 | 26 | 5 | L5: zwei Sätze nacheinander (Kosinussatz, dann Winkel) |
 | 27 | 5 | L5: Parameter über quadratische Gleichung, zwei Lösungen |
@@ -98,6 +98,7 @@ Abgrenzung der vier Trigonometrie-Trainer (gegen sinngleiche Aufgaben):
 | 31 | 6 | L6: Fallunterscheidung SSW — zwei Dreiecke |
 | 32 | 6 | L6: Grenzfall \(a = b\sin\alpha\) — genau ein Dreieck |
 | 33 | 6 | L6: Behauptung prüfen — Sinuswert legt Winkel nicht fest (MC) |
+| 17 | 3 | L3: kleinsten Winkel selbst identifizieren (vorher sinngleich zu #14) |
 | 34 | 6 | L6: eindeutiger Bezug ohne Zeichnung (Winkel zwischen \(a\) und \(b\)) |
 | 35 | 6 | L6: Fallunterscheidung SSW — kein Dreieck (\(\sin\beta > 1\)) |
 | 36 | 6 | L6: Behauptung prüfen — negativer Kosinuswert und Stumpfwinkligkeit (MC) |
@@ -108,14 +109,49 @@ Abgrenzung der vier Trigonometrie-Trainer (gegen sinngleiche Aufgaben):
 |---|---|---|
 | 24 | 4 | MC-Optionen auf gleiche Länge gebracht, Tipp ohne Antwort |
 | 25 | 5 | L5: Umkehraufgabe — Winkel aus dem Sektorumfang (zwei Schritte) |
-| 26 | 5 | L5: Bogen aus Fläche über \(A = \frac12 r b\) |
+| 26 | 5 | L5: Bogen aus der Fläche, danach Umfang des Sektors (zwei Schritte) |
 | 27 | 5 | L5: Fehler finden — Umfangs- statt Flächenanteil (MC) |
-| 28 | 5 | L5: Radius aus zwei Angaben (\(A\) und \(b\)) |
+| 28 | 5 | L5: Radius aus Winkel und Bogen, danach Flächeninhalt (ersetzt das zweite Umstellen von \(A=\frac12 r b\)) |
 | 29 | 5 | L5: zusammengesetzte Figur — Sektor minus Dreieck |
-| 30 | 5 | L5: Verhältnisaufgabe — Winkel aus Flächenverhältnis |
+| 30 | 5 | L5: Verhältnis in einen Bruchteil übersetzen, dann Kreisfläche und Sektorfläche |
 | 31 | 6 | L6: Behauptung prüfen — Winkel verdoppeln, Radius halbieren (MC) |
 | 32 | 6 | L6: Grenzfall — \(r = 2\) macht Bogen- und Flächenmaßzahl gleich |
 | 33 | 6 | L6: Ringsektor als Differenz zweier Sektoren |
 | 34 | 6 | L6: Transfer — Kegelabwicklung, Bogen wird Grundkreisumfang |
 | 35 | 6 | L6: Behauptung prüfen — Segmentanteil hängt vom Winkel ab (MC) |
 | 36 | 6 | L6: Umkehraufgabe — Radius aus Flächengleichheit mit einem Quadrat |
+
+## Review-Nachtrag 2026-09-30
+
+Behoben nach der Prüfung durch den Review-Agenten:
+
+- **KOLLAPS L3/L4** in `10-trig-sinussatz-kosinussatz` war noch nicht weg: #20 wiederholte
+  #16 (Winkelsumme, dann Sinussatz) und #24 wiederholte #14/#17 (SSS über den Kosinussatz).
+  Beide ersetzt durch Aufgaben, deren Leistung die Übersetzung aus dem Text bzw. das
+  Beschaffen der fehlenden Seite ist. #17 fragt jetzt nach dem kleinsten Winkel statt
+  wie #14 nach dem Winkel bei C.
+- **Dubletten**: `\(\sin\alpha=\cos\alpha\)` stand in drei Trainern/Stufen — im
+  Einheitskreis (#27) ersetzt. Einheitskreis #28 enthielt #24 als Teilschritt
+  (\(\frac{7\pi}{6} = 210°\)) — anderes Winkelpaar. Kreissektor #26/#28 waren beide ein
+  Umstellen von \(A=\frac12 r b\) — #28 neu.
+- **Stufe 5 angehoben**: Einheitskreis #26/#28/#29, Sinusfunktion #25/#26/#27,
+  Kreissektor #26/#28/#30 verlangen jetzt zwei Schritte bzw. zwei Bedingungen.
+- **Tipps**: gelieferte Formel entfernt in Einheitskreis #26; fertige Gleichung entfernt in
+  Kreissektor #19–#23 und in Trig-Gleichungen #20/#21/#23/#24 (Stufe 4).
+- **MC-Längen** angeglichen: Einheitskreis #25, Trig-Gleichungen #25, Sinusfunktion #28,
+  Kreissektor #24 und #35.
+- **Aufgabenformat**: Einheitskreis #33 ist jetzt MC, damit die Entscheidung über die
+  Behauptung bewertet wird und nicht nur der Zahlenwert.
+
+## Offen (bewusst nicht in dieser Welle)
+
+- `10-trig-gleichungen`: In 6 von 12 Aufgaben auf L5/L6 wird nach der *Anzahl* der Lösungen
+  gefragt — die Formatvielfalt ist zu gering.
+- `10-trig-gleichungen`: L3/L4-Kollaps (#17/#18 gegen #23/#24) — Stufe 3 und 4 dort nicht
+  im Auftrag dieser Welle.
+- Trainerübergreifende L1/L2-Dublette: `10-trig-einheitskreis #3/#6` gegen
+  `10-trig-sinusfunktion #7/#11`.
+- `10-kreissektor #24` ist eine Begriffsabfrage auf einer AFB-II-Stufe.
+- `10-kreissektor`: Stufe 5 setzt \(A = \frac12 r b\) voraus, ohne dass diese Beziehung auf
+  L1–L4 vorkommt (nur #18 nennt sie als MC-Begründung).
+- `10-kreissektor`: KOLLAPS L2/L3 (Stufe 1–3 werden laut Plan nicht neu geschrieben).
