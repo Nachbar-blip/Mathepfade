@@ -75,9 +75,14 @@ def html_frisst_text(a: dict) -> list:
 
 # Verweis auf eine MC-Option ueber ihren Buchstaben. Die Engine mischt die Reihenfolge,
 # der Buchstabe zeigt im Bild also auf etwas anderes als im Quelltext.
+_ZIEL = r"(?:Antwort|Option|Auswahl|Variante|Wahl|Aussage|M[oö]glichkeit)"
+_ORD = r"(?:erste|zweite|dritte|vierte|letzte|obere|untere)"
 OPTIONS_VERWEIS = re.compile(
-    r"(?:Option|Antwort|Auswahl|Variante|Wahl|Aussage)\s+[A-D]\b"
-    r"|(?:^|[.;:!?]\s+)[A-D]\)\s")
+    rf"{_ZIEL}\s+[A-D]\b"
+    r"|(?:^|[.;:!?]\s+)[A-D]\)\s"
+    # ... und ueber die Position: "die dritte Antwort", "Option von oben"
+    rf"|\b(?:die|der|das|den|dem)\s+{_ORD}n?\s+{_ZIEL}"
+    rf"|{_ZIEL}\s+(?:von\s+)?(?:oben|unten)\b", re.I)
 
 
 def optionsbuchstabe(a: dict) -> list:

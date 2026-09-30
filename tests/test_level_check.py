@@ -89,6 +89,21 @@ def test_optionsbuchstabe_im_loesungsweg_ist_hart():
     assert lk.optionsbuchstabe(a) == ["loesungsweg"]
 
 
+def test_optionsposition_im_loesungsweg_ist_hart():
+    """Befund 2026-09-30 (Welle Kl. 12): Statt des Buchstabens wurde die Position genannt
+    ("die dritte Antwort"). Die Engine mischt, also zeigt auch das ins Leere."""
+    a = _aufgabe(typ="mc", optionen=["4", "5", "6", "7"], korrekt=1,
+                 loesungsweg="Die dritte Antwort entsteht, wenn man falsch kuerzt.")
+    assert lk.optionsbuchstabe(a) == ["loesungsweg"]
+
+
+def test_zeile_eines_gleichungssystems_ist_keine_option():
+    """'die dritte Zeile' meint eine Gleichungszeile, keine Antwortmoeglichkeit."""
+    a = _aufgabe(typ="mc", optionen=["ja", "nein", "nur fuer k=1", "nur fuer k=0"], korrekt=0,
+                 loesungsweg="Fuer jedes andere k bleibt die dritte Zeile unerfuellt.")
+    assert lk.optionsbuchstabe(a) == []
+
+
 def test_mathe_mit_buchstaben_schlaegt_nicht_an():
     """P(A|B) und aehnliche Terme sind keine Options-Verweise."""
     a = _aufgabe(typ="mc", optionen=["0,2", "0,3", "0,4", "0,5"], korrekt=0,
