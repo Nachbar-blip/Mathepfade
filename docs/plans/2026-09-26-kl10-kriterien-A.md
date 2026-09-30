@@ -61,10 +61,10 @@ Randverhalten; 10-graphen-transformationen = Verschiebung/Streckung/Spiegelung, 
 |---|---|---|
 | 25 | 5 | L5: Parameter — \(a\) über Produktform aus drei Nullstellen |
 | 26 | 5 | L5: Fehler finden — Division durch \(x\) verliert \(x = 0\) (MC) |
-| 27 | 5 | L5: zwei Verfahren — Vielfachheit in Produktform, dann \(f(0)\) |
+| 27 | 5 | L5: zwei Verfahren — Vielfachheit in Produktform, dann \(f(1)\) (Review: Auswertung bei \(x = 0\) verschoben) |
 | 28 | 5 | L5: Parameter — Bedingung an \(c\) für keine reelle Nullstelle (MC) |
-| 29 | 5 | L5: zweischrittig — Ausklammern und Faktorisieren |
-| 30 | 5 | L5: Umkehraufgabe — Parameter aus einem Funktionswert |
+| 29 | 5 | L5: Parameter aus zwei Nullstellen über Vieta (Review: war reines Faktorisieren) |
+| 30 | 5 | L5: Parameter aus Nullstelle und Punkt — zwei Gleichungen (Review: war eine Bedingung bei \(x = 0\)) |
 | 31 | 6 | L6: Behauptung prüfen — ungerader Grad und Randverhalten (MC) |
 | 32 | 6 | L6: Fallunterscheidung — Symmetrie an vier Funktionen prüfen |
 | 33 | 6 | L6: Parameter aus drei Nullstellen — Absolutglied |
@@ -81,8 +81,8 @@ Randverhalten; 10-graphen-transformationen = Verschiebung/Streckung/Spiegelung, 
 | 26 | 5 | L5: Fehler finden — Richtung der Verschiebung im Argument (MC) |
 | 27 | 5 | L5: zwei Transformationen in fester Reihenfolge |
 | 28 | 5 | L5: Umkehraufgabe — Scheitel aus zwei Nullstellen |
-| 29 | 5 | L5: zweischrittig — Streckfaktor isolieren, dann Wurzel |
-| 30 | 5 | L5: zwei Verfahren — Ausklammern und quadratische Ergänzung |
+| 29 | 5 | L5: Umkehraufgabe — Verschiebungswert aus einem Funktionswert, mit Bedingung (Review: war reines Gleichungslösen) |
+| 30 | 5 | L5: Parameter aus zwei Bedingungen — Scheitel auf der \(y\)-Achse und Punkt (Review: war L3-Standard) |
 | 31 | 6 | L6: Behauptung prüfen — Stauchung in \(x\) gegen Streckung in \(y\) (MC) |
 | 32 | 6 | L6: Fallunterscheidung nach Lage des Scheitels |
 | 33 | 6 | L6: Parameter aus Scheitel und Punkt |
@@ -120,7 +120,7 @@ Randverhalten; 10-graphen-transformationen = Verschiebung/Streckung/Spiegelung, 
 | 31 | 6 | L6: Behauptung prüfen — \(x^3 > x^2\) nur für \(x > 1\) (MC) |
 | 32 | 6 | L6: Fallunterscheidung — Parität des Exponenten bei fünf Funktionen |
 | 33 | 6 | L6: Parameter aus zwei Bedingungen — \(f(1)\) und \(f(2)\) |
-| 34 | 6 | L6: Behauptung prüfen — Umkehrung links von \(x = 1\) (MC) |
+| 34 | 6 | L6: Fallunterscheidung — Monotonie nach Vorzeichen des Exponenten (Review: war wortgleich mit #31) |
 | 35 | 6 | L6: gemeinsame Punkte — Faktorisieren statt Kürzen |
 | 36 | 6 | L6: Umkehraufgabe — negativer Exponent aus einem Punkt |
 
@@ -129,16 +129,20 @@ Randverhalten; 10-graphen-transformationen = Verschiebung/Streckung/Spiegelung, 
 | id | Level | Kriterium |
 |---|---|---|
 | 19 | 4 | L4: Substitution selbst finden (nicht mehr im Text genannt) |
+| 20 | 4 | L4: biquadratische Gleichung ohne Verfahrensansage (Review: nannte vorher die Substitution für #21) |
+| 21 | 4 | L4: geschachtelter Klammerterm als Hilfsvariable; Tipp ohne Zwischenlösungen |
 | 22 | 4 | L4: Wurzelsubstitution; ersetzt das sinngleiche Paar mit #21 |
+| 23 | 4 | L4: Verfahren wählen — welche Gleichung sich überhaupt zurückführen lässt (MC) |
+| 24 | 4 | L4: Ausklammern statt Kürzen; Tipp nennt nur den Weg |
 | 25 | 5 | L5: zwei Schritte — Hilfsvariable und Rückrechnung zählen |
 | 26 | 5 | L5: Exponentialgleichung ohne Nennung der Substitution |
 | 27 | 5 | L5: Anzahl reeller Lösungen nach Rücksubstitution |
 | 28 | 5 | L5: Fehler finden — Rücksubstitution vergessen (MC) |
-| 29 | 5 | L5: Parameter aus gegebener Lösung |
+| 29 | 5 | L5: Parameter aus gegebener Lösung (Review: eigene Gleichung statt der dritten Fassung von \(x^4 - 5x^2 + c\)) |
 | 30 | 5 | L5: zwei Verfahren — Substitution und Wertebereich des Sinus |
 | 31 | 6 | L6: Behauptung prüfen — Anzahl reeller Lösungen (MC, Gegenbeispiel) |
 | 32 | 6 | L6: Summe der Lösungen bei ungerader Rückwurzel |
-| 33 | 6 | L6: Fallunterscheidung nach Vorzeichen der Zwischenlösungen |
+| 33 | 6 | L6: Fallunterscheidung nach Vorzeichen der Zwischenlösungen **und** Grenzfall \(4 - c = 0\) (Review: Lösung war \(-1\), richtig ist \(4\)) |
 | 34 | 6 | L6: Behauptung prüfen — \(u \le 0\) als Ausnahme (MC) |
 | 35 | 6 | L6: Lösung mit ausgeschlossener Zwischenlösung |
 | 36 | 6 | L6: Umkehraufgabe — Parameter aus vier gegebenen Lösungen (Vieta) |
@@ -156,17 +160,17 @@ Alle 36 Aufgaben sind neu.
 | 2 | 1 | L1: Randverhalten von \(x^3\) für \(x \to -\infty\) (MC) |
 | 3 | 1 | L1: Randverhalten von \(1/x\) (MC) |
 | 4 | 1 | L1: ein Funktionswert als Beleg für die Annäherung |
-| 5 | 1 | L1: Wertetabelle deuten — Grenzwert ablesen |
+| 5 | 1 | L1: Grenzwert von \(1/x^2\) an Beispielwerten (Review: war dieselbe Wertetabellen-Aufgabe wie #19) |
 | 6 | 1 | L1: lim-Schreibweise in die Asymptotengleichung übersetzen |
 | 7 | 2 | L2: Glied höchsten Grades entscheidet (MC) |
 | 8 | 2 | L2: negativer Leitkoeffizient bei geradem Grad (MC) |
 | 9 | 2 | L2: senkrechte Asymptote aus der Nennernullstelle |
-| 10 | 2 | L2: Nennernullstelle mit Vorzeichenwechsel |
-| 11 | 2 | L2: Nennernullstelle aus linearer Gleichung |
+| 10 | 2 | L2: negativer Leitkoeffizient bei ungeradem Grad (MC; Review: Stufe entdoppelt) |
+| 11 | 2 | L2: Anzahl senkrechter Asymptoten bei einem Produkt im Nenner (Review: Stufe entdoppelt) |
 | 12 | 2 | L2: waagerechte Asymptote bei additiver Verschiebung |
 | 13 | 3 | L3: waagerechte Asymptote von \((3x+1)/(x-2)\) |
-| 14 | 3 | L3: Verhältnis der Vorfaktoren als Dezimalzahl |
-| 15 | 3 | L3: \(x\) ausklammern und kürzen |
+| 14 | 3 | L3: Nennergrad größer — Asymptote \(y = 0\) (Review: Stufe entdoppelt) |
+| 15 | 3 | L3: senkrechte Asymptoten nach Ausklammern im Nenner (Review: Stufe entdoppelt) |
 | 16 | 3 | L3: verschobene Exponentialfunktion, \(x \to -\infty\) |
 | 17 | 3 | L3: Basis unter \(1\), \(x \to \infty\) |
 | 18 | 3 | L3: Zählergrad größer als Nennergrad (MC) |
@@ -176,15 +180,31 @@ Alle 36 Aufgaben sind neu.
 | 22 | 4 | L4: Grenzwert ohne Nennung des Verfahrens |
 | 23 | 4 | L4: Nenner zerlegen, Asymptote gegen Definitionslücke prüfen |
 | 24 | 4 | L4: Modell aus Text — Sättigung als waagerechte Asymptote (MC) |
-| 25 | 5 | L5: Parameter aus zwei Bedingungen — Asymptote und Achsenschnittpunkt |
+| 25 | 5 | L5: Parameter aus zwei Bedingungen — Asymptote und Punkt \(P(2 \mid 7)\) (Review: Auswertung bei \(x = 0\) ersetzt) |
 | 26 | 5 | L5: Fehler in Grenzwert-Argumentation — „beide wachsen" (MC) |
-| 27 | 5 | L5: Parameter aus Punktprobe bei verschobener Hyperbel |
-| 28 | 5 | L5: Parameter aus Asymptote und Funktionswert |
+| 27 | 5 | L5: drei Bedingungen — beide Asymptoten und eine Nullstelle (Review: war eine einzelne Punktprobe) |
+| 28 | 5 | L5: drei Bedingungen — beide Asymptoten und ein Funktionswert (Review: verschärft) |
 | 29 | 5 | L5: Fehler finden — Nenner wird nie null (MC) |
-| 30 | 5 | L5: höchste Potenz ausklammern, Grenzwert als Dezimalzahl |
+| 30 | 5 | L5: Fehler finden — Vorfaktor-Regel bei ungleichem Grad angewandt (MC; Review: war dasselbe Verfahren wie #15 und #22) |
 | 31 | 6 | L6: Behauptung prüfen — Graph schneidet seine Asymptote (MC) |
 | 32 | 6 | L6: Fallunterscheidung nach Gradvergleich bei vier Funktionen |
 | 33 | 6 | L6: Fallunterscheidung nach dem Exponenten \(n\) |
-| 34 | 6 | L6: Behauptung prüfen — Nennernullstelle ohne Asymptote (MC) |
-| 35 | 6 | L6: drei Bedingungen nacheinander auswerten |
+| 34 | 6 | L6: Behauptung prüfen — waagerechte Asymptote gilt nicht beidseitig (MC; Review: ersetzt die Aufgabe mit hebbarer Lücke) |
+| 35 | 6 | L6: drei Bedingungen nacheinander auswerten (Review: \(f(0)\) durch \(f(3)\) ersetzt) |
 | 36 | 6 | L6: Behauptung prüfen — Exponential- gegen Potenzwachstum (MC) |
+
+## Offen (bewusst stehen gelassen, Review 2026-09-30)
+
+- **Hebbare Lücken bleiben außen vor.** Die frühere Aufgabe #34 des Ersatz-Trainers prüfte die
+  Behauptung „Nennernullstelle ⇒ senkrechte Asymptote" am Gegenbeispiel \((x^2-4)/(x-2)\). Task 7
+  gibt die Vorlage ausdrücklich „ohne Faktorisierung hebbarer Lücken" vor; die Aufgabe ist deshalb
+  ersetzt durch die Behauptung, eine waagerechte Asymptote gelte an beiden Rändern (Gegenbeispiel
+  \(2^x + 2\)). Die Lücken-Aufgabe ist didaktisch gut und gehört in Kl. 11 (`11-lk-gebrochen-rational`).
+- `10-polynomdivision`: Die sechs MC-Aufgaben #1, #2, #3, #7, #8 und #18 haben denselben
+  Optionssatz (→∞, →−∞, →0, →1) und sind nach zwei Begegnungen ratbar. Die Engine mischt zwar die
+  Reihenfolge, ein Austausch einzelner Aufgaben durch numerische Formate wäre trotzdem besser.
+- `10-polynomdivision`: Stufe 4 deckt „Funktionstyp aus **Graph** schließen" nicht ab — ohne Bild
+  im Trainer nur über Wertetabelle und Sachkontext gelöst.
+- `10-substitution`: #19 und #26 nutzen denselben Gleichungstyp \(a^{2x} - b \cdot a^x + c = 0\)
+  (verschiedene Stufen, verschiedene Basen und Fragerichtungen).
+- `10-exponentialfunktionen`: KOLLAPS L1/L2 bleibt — Stufe 1–3 werden laut Plan nicht neu geschrieben.
