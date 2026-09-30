@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<!-- Dateiname historisch (QR-Links); Inhalt seit 2026-09: Geraden- und Ebenenscharen, TH-Lehrplan Kap. 4.2 -->
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Differenzialgleichungen (eA) - Mathepfade</title>
+    <title>Geraden- und Ebenenscharen (eA) - Mathepfade</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
@@ -14,50 +15,239 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-lk-dgl';
-    const THEMA_CONFIG = { name: 'Differenzialgleichungen (eA)', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Geraden- und Ebenenscharen (eA)', bereich: 'geometrie' };
     const AUFGABEN = [
-      // ========== LEVEL 1 — Grundbegriff ==========
-      { id:1, level:1, typ:"mc", frage:"Was ist eine Differenzialgleichung (DGL)?", optionen:["Eine Gleichung mit Ableitung(en) der gesuchten Funktion","Eine Gleichung ohne Ableitung","Eine Ungleichung","Eine Summe"], korrekt:0, tipp:"Enthält Ableitung.", loesungsweg:"Eine DGL verknüpft \\(y\\), \\(y'\\), ggf. \\(y''\\) usw." },
-      { id:2, level:1, typ:"mc", frage:"Welche DGL beschreibt exponentielles Wachstum?", optionen:["\\(y'=k\\)","\\(y'=k\\cdot y\\)","\\(y=ky\\)","\\(y'=y^2\\)"], korrekt:1, tipp:"Wachstumsrate proportional zum Bestand.", loesungsweg:"\\(y'=ky\\) ist die Grundgleichung exp. Wachstums/Zerfalls." },
-      { id:3, level:1, typ:"mc", frage:"Welche Funktion löst \\(y'=y\\)?", optionen:["\\(y=x\\)","\\(y=e^x\\)","\\(y=x^2\\)","\\(y=\\sin x\\)"], korrekt:1, tipp:"Ableitung = Funktion.", loesungsweg:"Gesucht ist eine Funktion, die ihre eigene Ableitung ist. Das leistet genau die natürliche Exponentialfunktion: $$(e^x)' = e^x$$ Bei \\(y = x\\) wäre \\(y' = 1 \\ne x\\), bei \\(y = x^2\\) wäre \\(y' = 2x \\ne x^2\\). Diese Eigenschaft ist der Grund, weshalb \\(e\\) als Basis gewählt wird." },
-      { id:4, level:1, typ:"mc", frage:"Allgemeine Lösung von \\(y'=ky\\)?", optionen:["\\(y=kx+c\\)","\\(y=Ce^{kx}\\)","\\(y=kx^2\\)","\\(y=\\tfrac{1}{kx}\\)"], korrekt:1, tipp:"Trennbare Variablen.", loesungsweg:"Trennung der Variablen: $$\\frac{dy}{y} = k\\,dx \\;\\Rightarrow\\; \\ln|y| = kx + c_0 \\;\\Rightarrow\\; y = Ce^{kx}$$ Die Konstante \\(C = e^{c_0}\\) bleibt frei — erst eine Anfangsbedingung legt sie fest. Für \\(k > 0\\) beschreibt das Wachstum, für \\(k < 0\\) Zerfall." },
-      { id:5, level:1, typ:"mc", frage:"Was ist ein Anfangswertproblem?", optionen:["DGL + Anfangsbedingung \\(y(x_0)=y_0\\)","Eine spezielle DGL","Ein Grenzwert","Eine Reihe"], korrekt:0, tipp:"DGL + Zusatzbedingung.", loesungsweg:"Eine Differentialgleichung allein hat unendlich viele Lösungen, die sich um die Konstante unterscheiden. Ein Anfangswertproblem ergänzt sie um eine Bedingung $$y(x_0) = y_0$$ die genau eine dieser Lösungen auswählt. Anschaulich: Die DGL gibt das Richtungsfeld vor, der Anfangswert den Punkt, durch den die Lösungskurve laufen soll." },
-      { id:6, level:1, typ:"numerisch", frage:"\\(y'=2y\\) mit \\(y(0)=3\\). Welcher Wert hat \\(C\\)?", loesung:3, toleranz:0, tipp:"\\(y=Ce^{2x}\\).", loesungsweg:"\\(y(0)=C=3\\)." },
-      // ========== LEVEL 2 — y'=ky lösen ==========
-      { id:7, level:2, typ:"numerisch", frage:"\\(y'=3y, y(0)=5\\). Bestimme \\(y(1)\\) auf 3 Dez.", loesung:100.428, toleranz:0.5, tipp:"\\(y=5e^{3x}\\).", loesungsweg:"Aus \\(y' = 3y\\) folgt \\(y = Ce^{3x}\\); der Anfangswert \\(y(0) = 5\\) liefert \\(C = 5\\). $$y(1) = 5e^3 \\approx 5 \\cdot 20{,}0855 \\approx 100{,}428$$" },
-      { id:8, level:2, typ:"numerisch", frage:"\\(y'=-0{,}5y, y(0)=100\\). \\(y(2)\\) (2 Dez.)?", loesung:36.79, toleranz:0.1, tipp:"\\(100\\cdot e^{-1}\\).", loesungsweg:"Mit \\(y = 100e^{-0{,}5x}\\): $$y(2) = 100 \\cdot e^{-1} \\approx 100 \\cdot 0{,}36788 \\approx 36{,}79$$ Der negative Faktor \\(k\\) macht daraus Zerfall." },
-      { id:9, level:2, typ:"mc", frage:"Welche Funktion löst \\(y'=-y\\)?", optionen:["\\(y=e^x\\)","\\(y=e^{-x}\\)","\\(y=x\\)","\\(y=-x\\)"], korrekt:1, tipp:"Negative Rate.", loesungsweg:"Nach der Kettenregel liefert die innere Ableitung das Minuszeichen: $$(e^{-x})' = -e^{-x}$$ Das ist genau \\(-y\\). Die Funktion \\(-x\\) erfüllt die Gleichung nicht, denn ihre Ableitung ist \\(-1\\), nicht \\(x\\)." },
-      { id:10, level:2, typ:"numerisch", frage:"Bakterien verdoppeln sich stündlich. \\(k=?\\) in \\(y'=ky\\)? (3 Dez.)", loesung:0.693, toleranz:0.01, tipp:"\\(e^k = 2\\).", loesungsweg:"Verdopplung in einer Stunde heißt \\(y(1) = 2y(0)\\), also \\(e^{k \\cdot 1} = 2\\): $$k = \\ln 2 \\approx 0{,}693$$ Die Wachstumskonstante \\(k\\) ist damit <b>nicht</b> der Faktor \\(2\\), sondern dessen Logarithmus." },
-      { id:11, level:2, typ:"numerisch", frage:"Radioaktiver Zerfall: Halbwertszeit 5h. \\(k\\) auf 3 Dez. (negativ)?", loesung:-0.139, toleranz:0.005, tipp:"\\(e^{5k} = 0{,}5\\).", loesungsweg:"Halbwertszeit \\(5\\) Stunden bedeutet \\(e^{5k} = 0{,}5\\). Logarithmieren: $$k = \\frac{\\ln 0{,}5}{5} = \\frac{-\\ln 2}{5} \\approx -0{,}139$$ Das Vorzeichen muss negativ sein — es handelt sich um Abnahme." },
-      { id:12, level:2, typ:"numerisch", frage:"\\(y'=0{,}1y, y(0)=200\\). \\(y(10)\\) (ganzzahlig)?", loesung:544, toleranz:2, tipp:"\\(200\\cdot e^1\\).", loesungsweg:"Mit \\(y = 200e^{0{,}1x}\\): $$y(10) = 200 \\cdot e^{1} \\approx 200 \\cdot 2{,}71828 \\approx 543{,}66 \\approx 544$$" },
-      // ========== LEVEL 3 — Trennbare Variablen ==========
-      { id:13, level:3, typ:"mc", frage:"Was bedeutet „trennbare DGL\"?", optionen:["\\(y' = f(x)g(y)\\)","\\(y' = ax+b\\)","\\(y' = y^2\\)","\\(y' = 0\\)"], korrekt:0, tipp:"Produkt aus \\(x\\)- und \\(y\\)-Teil.", loesungsweg:"Form \\(y' = f(x)\\cdot g(y)\\) erlaubt Trennung \\(\\tfrac{dy}{g(y)} = f(x)\\,dx\\)." },
-      { id:14, level:3, typ:"mc", frage:"Allgemeine Lösung von \\(y'=x\\)?", optionen:["\\(y=\\tfrac{x^2}{2}+C\\)","\\(y=x+C\\)","\\(y=Ce^x\\)","\\(y=x^2\\)"], korrekt:0, tipp:"Integrieren.", loesungsweg:"Hier steht rechts nur \\(x\\), die DGL lässt sich also direkt integrieren: $$y = \\int x\\,dx = \\frac{x^2}{2} + C$$ Wichtig ist die Integrationskonstante — ohne sie hätte man nur eine einzelne Lösung statt der allgemeinen." },
-      { id:15, level:3, typ:"mc", frage:"Allgemeine Lösung von \\(y'=xy\\)?", optionen:["\\(y=Ce^{x^2/2}\\)","\\(y=Ce^x\\)","\\(y=\\tfrac{x^2}{2}\\)","\\(y=Cx\\)"], korrekt:0, tipp:"Trennen: \\(\\tfrac{dy}{y}=x\\,dx\\).", loesungsweg:"\\(\\ln|y| = \\tfrac{x^2}{2}+c \\Rightarrow y=Ce^{x^2/2}\\)." },
-      { id:16, level:3, typ:"mc", frage:"Allgemeine Lösung von \\(y'=y^2\\)?", optionen:["\\(y=\\tfrac{-1}{x+C}\\)","\\(y=Ce^x\\)","\\(y=x^2\\)","\\(y=\\tfrac{1}{x}\\)"], korrekt:0, tipp:"\\(-\\tfrac{1}{y} = x+c\\).", loesungsweg:"\\(\\int y^{-2}\\,dy = \\int dx \\Rightarrow -\\tfrac{1}{y}=x+c \\Rightarrow y=-\\tfrac{1}{x+C}\\)." },
-      { id:17, level:3, typ:"numerisch", frage:"\\(y'=x, y(0)=1\\). \\(y(2)\\)?", loesung:3, toleranz:0, tipp:"\\(y=\\tfrac{x^2}{2}+1\\).", loesungsweg:"\\(y(2)=2+1=3\\)." },
-      { id:18, level:3, typ:"numerisch", frage:"\\(y'=\\tfrac{1}{y}, y(0)=1\\). \\(y(4)\\) (2 Dez.)", loesung:3, toleranz:0.02, tipp:"\\(y^2/2 = x+C\\).", loesungsweg:"\\(y^2 = 2x+1 \\Rightarrow y(4)=\\sqrt{9}=3\\)." },
-      // ========== LEVEL 4 — Anwendungen ==========
-      { id:19, level:4, typ:"numerisch", frage:"Abkühlung (Newton): \\(T'(t)=-k(T-T_u)\\). \\(T_u=20, T(0)=80, k=0{,}1\\). \\(T(10)\\)? (1 Dez.)", loesung:42.1, toleranz:0.5, tipp:"\\(T=T_u+(T_0-T_u)e^{-kt}\\).", loesungsweg:"Die Lösung des Newtonschen Abkühlungsgesetzes lautet \\(T(t) = T_u + (T_0-T_u)e^{-kt}\\). Mit \\(T_u = 20\\), \\(T_0 - T_u = 60\\) und \\(k = 0{,}1\\): $$T(10) = 20 + 60 \\cdot e^{-1} \\approx 20 + 22{,}07 = 42{,}1\\,°C$$ Der Körper nähert sich der Umgebungstemperatur \\(20\\,°C\\), erreicht sie aber nie." },
-      { id:20, level:4, typ:"numerisch", frage:"Bakterienpopulation verdreifacht sich in 2h. Nach 4h: Faktor?", loesung:9, toleranz:0.1, tipp:"\\(3^2\\).", loesungsweg:"\\(e^{2k}=3 \\Rightarrow e^{4k}=9\\)." },
-      { id:21, level:4, typ:"numerisch", frage:"\\(N(t)\\) radioaktiv, Halbwertszeit 10 Jahre. Nach 30 Jahren: Faktor des Restes?", loesung:0.125, toleranz:0.005, tipp:"\\(0{,}5^3\\).", loesungsweg:"Dreißig Jahre bei einer Halbwertszeit von \\(10\\) Jahren sind drei Halbierungen: $$0{,}5^3 = \\frac18 = 0{,}125$$ Es bleiben also \\(12{,}5\\,\\%\\) übrig." },
-      { id:22, level:4, typ:"mc", frage:"Welche DGL beschreibt beschränktes Wachstum?", optionen:["\\(y'=k(S-y)\\)","\\(y'=ky\\)","\\(y'=k\\)","\\(y'=-ky\\)"], korrekt:0, tipp:"Schranke \\(S\\).", loesungsweg:"Beim beschränkten Wachstum ist die Änderungsrate proportional zum <b>noch freien Rest</b> bis zur Schranke: $$y' = k(S-y)$$ Je näher \\(y\\) an \\(S\\) kommt, desto kleiner wird die Klammer und damit das Wachstum. Bei \\(y' = ky\\) wäre die Rate dagegen proportional zum Bestand — unbeschränktes Wachstum." },
-      { id:23, level:4, typ:"mc", frage:"Lösung von \\(y'=k(S-y), y(0)=y_0\\)?", optionen:["\\(y=S-(S-y_0)e^{-kt}\\)","\\(y=Ce^{kt}\\)","\\(y=kt+y_0\\)","\\(y=S+y_0 e^{kt}\\)"], korrekt:0, tipp:"Grenzwert \\(S\\).", loesungsweg:"Die Substitution \\(z = S - y\\) führt auf \\(z' = -kz\\), also \\(z = (S-y_0)e^{-kt}\\). Rücksubstitution: $$y(t) = S - (S-y_0)e^{-kt}$$ Probe: \\(y(0) = S - (S-y_0) = y_0\\) ✓, und für \\(t \\to \\infty\\) strebt \\(y \\to S\\) ✓" },
-      { id:24, level:4, typ:"numerisch", frage:"\\(y'=0{,}2(100-y), y(0)=10\\). \\(y(5)\\) (1 Dez.)", loesung:66.9, toleranz:1, tipp:"\\(y=100-90\\cdot e^{-1}\\).", loesungsweg:"Mit \\(S = 100\\), \\(y_0 = 10\\), \\(k = 0{,}2\\) ist \\(S - y_0 = 90\\): $$y(5) = 100 - 90 \\cdot e^{-0{,}2 \\cdot 5} = 100 - 90 \\cdot e^{-1} \\approx 100 - 33{,}11 = 66{,}9$$" },
-      // ========== LEVEL 5 — Logistisches Wachstum ==========
-      { id:25, level:5, typ:"mc", frage:"Welche DGL beschreibt logistisches Wachstum?", optionen:["\\(y'=ky(S-y)\\)","\\(y'=ky\\)","\\(y'=kS\\)","\\(y'=y\\)"], korrekt:0, tipp:"Produkt aus Bestand und freier Kapazität.", loesungsweg:"Logistisches Wachstum kombiniert beide Ideen: Es wächst proportional zum Bestand <b>und</b> zur freien Kapazität. $$y' = k \\cdot y \\cdot (S-y)$$ Am Anfang ist \\(y\\) klein und das Wachstum gering, am Ende bremst die Klammer — dazwischen liegt die maximale Rate." },
-      { id:26, level:5, typ:"mc", frage:"Grenzwert \\(\\lim_{t\\to\\infty} y(t)\\) bei logistischem Wachstum?", optionen:["\\(0\\)","\\(\\infty\\)","\\(S\\)","\\(y_0\\)"], korrekt:2, tipp:"Kapazität.", loesungsweg:"Für \\(y \\to S\\) wird der Faktor \\((S-y)\\) null, das Wachstum kommt also zum Erliegen. Die Kapazitätsgrenze ist damit der Grenzwert: $$\\lim_{t\\to\\infty} y(t) = S$$ Sie wird nur asymptotisch erreicht, nie exakt." },      { id:27, level:5, typ:"numerisch", frage:"Logistisches Wachstum mit der Kapazit\u00e4t \\(S = 800\\). Bei welchem Bestand \\(y\\) liegt der Wendepunkt \u2014 also die gr\u00f6\u00dfte Wachstumsrate?", loesung:400, toleranz:0.1, tipp:"Setze \\(y''=0\\); der Wendepunkt liegt stets bei der halben Kapazit\u00e4t.", loesungsweg:"Beim logistischen Wachstum ist die Zunahme proportional zu \\(y \\cdot (S-y)\\); dieses Produkt wird bei \\(y = \\tfrac{S}{2}\\) maximal: $$y = \\frac{800}{2} = 400$$ Danach flacht der Zuwachs wieder ab." },
-
-      { id:28, level:5, typ:"numerisch", frage:"Logistisch: \\(S=1000, k=0{,}002, y_0=100\\). Max. Wachstumsrate bei \\(y=?\\)", loesung:500, toleranz:0, tipp:"\\(S/2\\).", loesungsweg:"Die Rate \\(y' = ky(S-y)\\) ist als Funktion von \\(y\\) eine nach unten geöffnete Parabel mit den Nullstellen \\(0\\) und \\(S\\). Ihr Scheitel liegt genau dazwischen: $$y = \\frac{S}{2} = \\frac{1000}{2} = 500$$ Dort liegt zugleich der Wendepunkt der Lösungskurve." },
-      { id:29, level:5, typ:"numerisch", frage:"Logistisch: Maximale Rate \\(y'=kS^2/4\\). Für \\(k=0{,}01, S=200\\): max. Rate?", loesung:100, toleranz:0.1, tipp:"\\(0{,}01\\cdot 40000/4\\).", loesungsweg:"Einsetzen von \\(y = S/2\\) in die DGL: $$y'_{max} = k \\cdot \\frac{S}{2} \\cdot \\frac{S}{2} = \\frac{kS^2}{4} = \\frac{0{,}01 \\cdot 40\\,000}{4} = 100$$" },
-      { id:30, level:5, typ:"mc", frage:"Allgemeine Lösung logistisch (mit \\(A = (S-y_0)/y_0\\))?", optionen:["\\(y=\\tfrac{S}{1+Ae^{-kSt}}\\)","\\(y=Se^{-kt}\\)","\\(y=Ae^{kt}\\)","\\(y=S-Ae^{kt}\\)"], korrekt:0, tipp:"Standardform.", loesungsweg:"Trennung der Variablen mit Partialbruchzerlegung von \\(\\frac{1}{y(S-y)}\\) liefert $$y(t) = \\frac{S}{1+Ae^{-kSt}}, \\quad A = \\frac{S-y_0}{y_0}$$ Probe für \\(t = 0\\): \\(\\frac{S}{1+A} = \\frac{S}{S/y_0} = y_0\\) ✓, und für \\(t \\to \\infty\\) geht der Exponentialterm gegen null, also \\(y \\to S\\) ✓" },
-      // ========== LEVEL 6 — Transfer ==========
-      { id:31, level:6, typ:"numerisch", frage:"\\(y'=y, y(0)=1\\). \\(y(\\ln 5)\\)?", loesung:5, toleranz:0.01, tipp:"\\(y=e^x\\).", loesungsweg:"Mit \\(y(0) = 1\\) ist \\(C = 1\\), also \\(y = e^x\\). Logarithmus und Exponentialfunktion heben einander auf: $$y(\\ln 5) = e^{\\ln 5} = 5$$" },
-      { id:32, level:6, typ:"numerisch", frage:"\\(y'=-2y, y(0)=10\\). Nach welcher Zeit gilt \\(y=5\\)? (3 Dez.)", loesung:0.347, toleranz:0.01, tipp:"\\(e^{-2t}=0{,}5\\).", loesungsweg:"Aus \\(y = 10e^{-2t}\\) und der Forderung \\(y = 5\\): $$e^{-2t} = 0{,}5 \\;\\Rightarrow\\; -2t = -\\ln 2 \\;\\Rightarrow\\; t = \\frac{\\ln 2}{2} \\approx 0{,}347$$ Das ist die Halbwertszeit; sie hängt nur von \\(k\\) ab, nicht vom Startwert." },
-      { id:33, level:6, typ:"mc", frage:"Was ist die Ordnung von \\(y''+3y'+2y=0\\)?", optionen:["1","2","3","0"], korrekt:1, tipp:"Höchste Ableitung.", loesungsweg:"Höchste Ableitung ist \\(y''\\), also Ordnung 2." },
-      { id:34, level:6, typ:"numerisch", frage:"\\(y'=ky\\) mit \\(y(0)=8, y(3)=1\\). \\(k\\) (3 Dez.)?", loesung:-0.693, toleranz:0.005, tipp:"\\(e^{3k}=1/8\\).", loesungsweg:"\\(k=\\tfrac{\\ln(1/8)}{3} = -\\ln 2 \\approx -0{,}693\\)." },
-      { id:35, level:6, typ:"numerisch", frage:"Beschränktes Wachstum: \\(y'=0{,}5(40-y), y(0)=0\\). \\(y(2)\\) (2 Dez.)", loesung:25.28, toleranz:0.5, tipp:"\\(40(1-e^{-1})\\).", loesungsweg:"Mit \\(S = 40\\), \\(y_0 = 0\\), \\(k = 0{,}5\\) vereinfacht sich die Lösung zu \\(y = 40(1-e^{-0{,}5t})\\): $$y(2) = 40 \\cdot (1 - e^{-1}) \\approx 40 \\cdot 0{,}63212 \\approx 25{,}28$$" },
-      { id:36, level:6, typ:"numerisch", frage:"\\(y'=2xy, y(0)=1\\). \\(y(1)\\) (3 Dez.)", loesung:2.718, toleranz:0.02, tipp:"Trennen: \\(y=Ce^{x^2}\\).", loesungsweg:"\\(y=e^{x^2}, y(1)=e\\approx 2{,}718\\)." }];
+      // ===== LEVEL 1 — Was ist eine Schar? =====
+      { id:1, level:1, typ:"mc",
+        frage:"Was versteht man unter einer Geradenschar?",
+        optionen:["eine Menge von Geraden mit einem Parameter","eine Gerade mit zwei Richtungsvektoren","eine Ebene, die drei Parameter enthält","ein Bündel paarweise windschiefer Geraden"],
+        korrekt:0,
+        tipp:"Achte darauf, wie viele Buchstaben in der Gleichung frei wählbar sind und wofür jeder von ihnen steht.",
+        loesungsweg:"In einer Geradengleichung wie \\(\\vec x = \\vec a + t\\,\\vec u\\) durchläuft \\(t\\) die Punkte <b>einer</b> Geraden. Kommt ein zweiter Buchstabe hinzu, der nicht für Punkte, sondern für die Gerade selbst steht, entsteht eine Schar: zu jedem Wert dieses Parameters gehört eine eigene Gerade."
+      },
+      { id:2, level:1, typ:"numerisch",
+        frage:"\\(g_k:\\vec{x}=\\begin{pmatrix}2\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\2\\\\k\\end{pmatrix}\\). Welche \\(z\\)-Koordinate hat der Punkt, den man für \\(k=4\\) und \\(t=1\\) erhält?",
+        loesung:4, toleranz:0.01,
+        tipp:"Setze erst den Scharparameter ein, danach den Geradenparameter, und lies die dritte Komponente ab.",
+        loesungsweg:"Mit \\(k=4\\) lautet die Gerade $$g_4:\\vec x = \\begin{pmatrix}2\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\2\\\\4\\end{pmatrix}$$ Für \\(t=1\\) ergibt sich \\(\\begin{pmatrix}3\\\\3\\\\4\\end{pmatrix}\\), also der Punkt \\(P(3|3|4)\\) mit der \\(z\\)-Koordinate \\(4\\)."
+      },
+      { id:3, level:1, typ:"mc",
+        frage:"Was haben alle Geraden der Schar \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}+t\\begin{pmatrix}1\\\\k\\\\0\\end{pmatrix}\\) gemeinsam?",
+        optionen:["den gemeinsamen Punkt \\(P(1|2|3)\\)","denselben Richtungsvektor \\(\\vec u\\)","die gesamte \\(z\\)-Achse als Teilmenge","überhaupt keinen gemeinsamen Punkt"],
+        korrekt:0,
+        tipp:"Schau nach, an welcher Stelle der Gleichung der Parameter steht — und an welcher Stelle er fehlt.",
+        loesungsweg:"Der Parameter \\(k\\) steht nur im Richtungsvektor; der Aufpunkt \\(\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}\\) ist für jede Gerade derselbe. Setzt man \\(t = 0\\), erhält man unabhängig von \\(k\\) stets den Punkt \\(P(1|2|3)\\). Alle Geraden der Schar laufen also durch diesen einen Punkt, haben aber verschiedene Richtungen."
+      },
+      { id:4, level:1, typ:"numerisch",
+        frage:"Für welchen Wert von \\(a\\) enthält die Ebene \\(E_a: x+y+az=4\\) den Punkt \\(P(1|1|1)\\)?",
+        loesung:2, toleranz:0.01,
+        tipp:"Setze die Koordinaten des Punktes in die Gleichung ein und löse nach dem Parameter auf.",
+        loesungsweg:"Einsetzen von \\(x=1\\), \\(y=1\\), \\(z=1\\): $$1 + 1 + a\\cdot 1 = 4 \\;\\Rightarrow\\; a = 2$$ Nur die Ebene \\(E_2: x+y+2z=4\\) der Schar geht durch \\(P\\)."
+      },
+      { id:5, level:1, typ:"mc",
+        frage:"Woran erkennt man, dass alle Geraden einer Schar dieselbe Richtung haben?",
+        optionen:["Der Richtungsvektor enthält den Parameter nicht","Der Aufpunkt enthält den Parameter nicht","Der Parameter steht im Nenner eines Bruchs","Die Schar besitzt einen gemeinsamen Punkt"],
+        korrekt:0,
+        tipp:"Überlege, welcher der beiden Vektoren einer Geradengleichung die Richtung festlegt.",
+        loesungsweg:"Die Richtung einer Geraden steckt allein im Richtungsvektor. Hängt dieser nicht vom Scharparameter ab, ist er für alle Geraden derselbe — die Schar besteht dann aus lauter zueinander parallelen Geraden. Steht der Parameter dagegen nur im Aufpunkt, verschieben sich die Geraden lediglich gegeneinander."
+      },
+      { id:6, level:1, typ:"numerisch",
+        frage:"Für welchen Wert von \\(k\\) verläuft \\(g_k:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\k\\end{pmatrix}+t\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}\\) durch den Punkt \\(Q(5|5|2)\\)?",
+        loesung:2, toleranz:0.01,
+        tipp:"Vergleiche die dritte Komponente: sie hängt gar nicht von \\(t\\) ab.",
+        loesungsweg:"Die Punkte der Schargeraden haben die Form \\((t\\,|\\,t\\,|\\,k)\\). Der Vergleich mit \\(Q(5|5|2)\\) liefert \\(t = 5\\) aus den ersten beiden Komponenten und unmittelbar $$k = 2$$ Die dritte Komponente enthält kein \\(t\\); jede Gerade der Schar verläuft in konstanter Höhe."
+      },
+      // ===== LEVEL 2 — Erste Bedingungen an den Parameter =====
+      { id:7, level:2, typ:"numerisch",
+        frage:"Für welchen Wert von \\(k\\) steht der Richtungsvektor von \\(g_k:\\vec{x}=\\begin{pmatrix}2\\\\1\\\\3\\end{pmatrix}+t\\begin{pmatrix}k\\\\1\\\\2\\end{pmatrix}\\) senkrecht auf \\(\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}\\)?",
+        loesung:-8, toleranz:0.01,
+        tipp:"Senkrechte Vektoren erkennt man am Skalarprodukt; stelle damit eine Gleichung für \\(k\\) auf.",
+        loesungsweg:"$$\\begin{pmatrix}k\\\\1\\\\2\\end{pmatrix} \\cdot \\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix} = k + 2 + 6 = 0 \\;\\Rightarrow\\; k = -8$$ Probe: \\(-8+2+6 = 0\\) ✓ Nur die eine Gerade \\(g_{-8}\\) der Schar erfüllt die Bedingung; der Aufpunkt spielt dabei keine Rolle."
+      },
+      { id:8, level:2, typ:"numerisch",
+        frage:"Für welchen Wert von \\(a\\) ist \\(E_a: 2x-y+az=6\\) parallel zur Ebene \\(F: 4x-2y+6z=1\\)?",
+        loesung:3, toleranz:0.01,
+        tipp:"Parallele Ebenen haben kollineare Normalenvektoren; bestimme zuerst den Streckfaktor zwischen beiden.",
+        loesungsweg:"Der Normalenvektor von \\(F\\) ist \\(\\begin{pmatrix}4\\\\-2\\\\6\\end{pmatrix} = 2\\begin{pmatrix}2\\\\-1\\\\3\\end{pmatrix}\\). Damit \\(\\begin{pmatrix}2\\\\-1\\\\a\\end{pmatrix}\\) dazu kollinear ist, muss $$a = 3$$ gelten. Wegen \\(2\\cdot 6 = 12 \\ne 1\\) sind die Ebenen dann <b>echt</b> parallel und nicht identisch."
+      },
+      { id:9, level:2, typ:"numerisch",
+        frage:"Alle Ebenen der Schar \\(E_a: x+ay-az=1\\) schneiden die \\(x\\)-Achse in demselben Punkt. Welche \\(x\\)-Koordinate hat er?",
+        loesung:1, toleranz:0.01,
+        tipp:"Auf der \\(x\\)-Achse sind zwei Koordinaten null — setze sie ein und beobachte, was mit dem Parameter geschieht.",
+        loesungsweg:"Auf der \\(x\\)-Achse gilt \\(y = 0\\) und \\(z = 0\\). Einsetzen: $$x + a\\cdot 0 - a\\cdot 0 = 1 \\;\\Rightarrow\\; x = 1$$ Der Parameter fällt vollständig heraus; der Spurpunkt \\(S_x(1|0|0)\\) gehört daher zu <b>jeder</b> Ebene der Schar."
+      },
+      { id:10, level:2, typ:"mc",
+        frage:"Wie liegen die Geraden der Schar \\(g_k:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}+t\\begin{pmatrix}1\\\\k\\\\0\\end{pmatrix}\\) zueinander?",
+        optionen:["Sie gehen alle durch den Punkt \\((0|0|1)\\)","Sie liegen alle parallel zueinander","Sie liegen alle in der \\(xy\\)-Ebene","Sie sind paarweise windschief zueinander"],
+        korrekt:0,
+        tipp:"Setze in der Scharengleichung \\(t = 0\\) und schau, was übrig bleibt.",
+        loesungsweg:"Für \\(t = 0\\) liefert jede Gerade der Schar den Aufpunkt \\((0|0|1)\\) — unabhängig von \\(k\\). Sie bilden also ein Büschel durch diesen Punkt. Parallel sind sie gerade nicht, denn die Richtungsvektoren \\(\\begin{pmatrix}1\\\\k\\\\0\\end{pmatrix}\\) unterscheiden sich für verschiedene \\(k\\); in der \\(xy\\)-Ebene liegen sie wegen \\(z = 1\\) ebenfalls nicht."
+      },
+      { id:11, level:2, typ:"numerisch",
+        frage:"Für welchen Wert von \\(k\\) trifft \\(g_k:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\1\\\\k\\end{pmatrix}\\) die Ebene \\(z=4\\) in einem Punkt mit \\(x=2\\)?",
+        loesung:2, toleranz:0.01,
+        tipp:"Bestimme zuerst aus der Forderung an \\(x\\) den Wert von \\(t\\), dann erst den Parameter.",
+        loesungsweg:"Die Punkte der Schargeraden haben die Form \\((t\\,|\\,t\\,|\\,kt)\\). Aus \\(x = 2\\) folgt \\(t = 2\\). Die Forderung \\(z = 4\\) ergibt dann $$k \\cdot 2 = 4 \\;\\Rightarrow\\; k = 2$$ Der Durchstoßpunkt ist \\((2|2|4)\\)."
+      },
+      { id:12, level:2, typ:"numerisch",
+        frage:"Welchen Abstand vom Ursprung hat der gemeinsame Punkt aller Geraden der Schar \\(g_k:\\vec{x}=\\begin{pmatrix}3\\\\4\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\k\\\\0\\end{pmatrix}\\)?",
+        loesung:5, toleranz:0.01,
+        tipp:"Bestimme zuerst, welcher Punkt zu jeder Geraden der Schar gehört, und dann seinen Betrag.",
+        loesungsweg:"Der Parameter steht nur im Richtungsvektor, der Aufpunkt ist für alle Geraden derselbe: Für \\(t = 0\\) ergibt sich stets \\(P(3|4|0)\\). Sein Abstand vom Ursprung ist $$|\\vec{OP}| = \\sqrt{9+16+0} = 5$$"
+      },
+      // ===== LEVEL 3 — Feste Gerade, Orthogonalität, Schnitt =====
+      { id:13, level:3, typ:"numerisch",
+        frage:"Alle Ebenen der Schar \\(E_a: x+ay-az=2\\) enthalten dieselbe Gerade. Welche \\(x\\)-Koordinate hat deren Punkt mit \\(y=1\\)?",
+        loesung:2, toleranz:0.01,
+        tipp:"Klammere den Parameter aus und überlege, welche Bedingungen erfüllt sein müssen, damit die Gleichung für <b>jedes</b> \\(a\\) stimmt.",
+        loesungsweg:"Umsortieren nach dem Parameter: $$x + a(y-z) = 2$$ Damit das für jedes \\(a\\) gilt, muss der Vorfaktor von \\(a\\) verschwinden und der Rest stimmen: $$y - z = 0 \\qquad\\text{und}\\qquad x = 2$$ Die gemeinsame Gerade ist also \\(\\vec x = \\begin{pmatrix}2\\\\0\\\\0\\end{pmatrix} + t\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}\\). Ihr Punkt mit \\(y = 1\\) ist \\((2|1|1)\\), die \\(x\\)-Koordinate also \\(2\\)."
+      },
+      { id:14, level:3, typ:"numerisch",
+        frage:"Für welchen Wert von \\(a\\) steht die Ebene \\(E_a: 2x+ay+z=4\\) senkrecht auf \\(F: x-y+z=0\\)?",
+        loesung:3, toleranz:0.01,
+        tipp:"Zwei Ebenen stehen senkrecht aufeinander, wenn ihre Normalenvektoren senkrecht aufeinander stehen.",
+        loesungsweg:"$$\\begin{pmatrix}2\\\\a\\\\1\\end{pmatrix} \\cdot \\begin{pmatrix}1\\\\-1\\\\1\\end{pmatrix} = 2 - a + 1 = 0 \\;\\Rightarrow\\; a = 3$$ Probe: \\(2-3+1 = 0\\) ✓ Die rechten Seiten der Gleichungen spielen keine Rolle — sie verschieben die Ebenen nur, ohne ihre Richtung zu ändern."
+      },
+      { id:15, level:3, typ:"numerisch",
+        frage:"Für welchen Wert von \\(k\\) schneidet \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\k\\end{pmatrix}+t\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}\\) die Gerade \\(h:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+s\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}\\)?",
+        loesung:-1, toleranz:0.01,
+        tipp:"Setze beide Gleichungen gleich; eine der drei Zeilen enthält nur eine einzige Unbekannte.",
+        loesungsweg:"Gleichsetzen ergibt $$1 + t = 0, \\qquad t = s, \\qquad k = s$$ Aus der ersten Zeile folgt \\(t = -1\\), aus der zweiten \\(s = -1\\), aus der dritten $$k = -1$$ Nur \\(g_{-1}\\) trifft die Gerade \\(h\\), und zwar im Punkt \\((0|-1|-1)\\). Für jedes andere \\(k\\) sind die Geraden windschief."
+      },
+      { id:16, level:3, typ:"mc",
+        frage:"Welche Geraden der Schar \\(g_k:\\vec{x}=\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\0\\\\k\\end{pmatrix}\\) stehen senkrecht auf der Ebene \\(E: x+z=0\\)?",
+        optionen:["nur die Gerade \\(g_1\\)","nur die Gerade \\(g_0\\)","alle Geraden der Schar","keine Gerade der Schar"],
+        korrekt:0,
+        tipp:"Senkrecht auf einer Ebene steht eine Gerade, deren Richtungsvektor zum Normalenvektor kollinear ist.",
+        loesungsweg:"Der Normalenvektor von \\(E\\) ist \\(\\vec n = \\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}\\). Kollinearität verlangt $$\\begin{pmatrix}1\\\\0\\\\k\\end{pmatrix} = \\lambda \\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}$$ Die erste Komponente liefert \\(\\lambda = 1\\), die dritte damit \\(k = 1\\). Nur \\(g_1\\) steht senkrecht auf \\(E\\); alle anderen Geraden der Schar treffen die Ebene schräg oder verlaufen parallel dazu."
+      },
+      { id:17, level:3, typ:"numerisch",
+        frage:"Die Ebenen der Schar \\(E_a: ax+y+(1-a)z=1\\) enthalten für jedes \\(a\\) dieselbe Gerade. Welche \\(z\\)-Koordinate hat deren Punkt mit \\(x=1\\)?",
+        loesung:1, toleranz:0.01,
+        tipp:"Sortiere die Gleichung nach Termen mit und ohne \\(a\\); beide Anteile müssen für sich passen.",
+        loesungsweg:"Umsortieren: $$a(x-z) + (y+z) = 1$$ Damit das für jedes \\(a\\) gilt: $$x - z = 0 \\qquad\\text{und}\\qquad y + z = 1$$ Mit \\(x = t\\) lautet die gemeinsame Gerade \\((t\\,|\\,1-t\\,|\\,t)\\). Für \\(x = 1\\) ist \\(t = 1\\) und damit \\(z = 1\\); der Punkt ist \\((1|0|1)\\). Probe in \\(E_a\\): \\(a\\cdot1 + 0 + (1-a)\\cdot1 = 1\\) ✓ für jedes \\(a\\)."
+      },
+      { id:18, level:3, typ:"numerisch",
+        frage:"Für welchen Wert von \\(k\\) steht \\(g_k:\\vec{x}=\\begin{pmatrix}2\\\\0\\\\1\\end{pmatrix}+t\\begin{pmatrix}k\\\\1\\\\2\\end{pmatrix}\\) senkrecht auf \\(h:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+s\\begin{pmatrix}3\\\\-1\\\\1\\end{pmatrix}\\)? (3 Dez.)",
+        loesung:-0.333, toleranz:0.02,
+        tipp:"Für den Winkel zweier Geraden zählen nur die Richtungsvektoren; senkrecht bedeutet Skalarprodukt null.",
+        loesungsweg:"$$\\begin{pmatrix}k\\\\1\\\\2\\end{pmatrix} \\cdot \\begin{pmatrix}3\\\\-1\\\\1\\end{pmatrix} = 3k - 1 + 2 = 0 \\;\\Rightarrow\\; 3k = -1 \\;\\Rightarrow\\; k = -\\frac13 \\approx -0{,}333$$ Ob sich die beiden Geraden dabei überhaupt schneiden, ist für den Winkel unerheblich — auch windschiefe Geraden können orthogonale Richtungen haben."
+      },
+      // ===== LEVEL 4 — Bedingung übersetzen =====
+      { id:19, level:4, typ:"numerisch",
+        frage:"Für genau einen Wert von \\(k\\) haben \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\2\\\\0\\end{pmatrix}+t\\begin{pmatrix}2\\\\k\\\\1\\end{pmatrix}\\) und \\(E: x-y+4z=3\\) keinen gemeinsamen Punkt. Bestimme \\(k\\).",
+        loesung:6, toleranz:0.01,
+        tipp:"Überlege, welche Beziehung zwischen Richtungs- und Normalenvektor bestehen muss, damit es zu keinem Treffer kommen kann — und prüfe danach den Aufpunkt.",
+        loesungsweg:"Einen Schnittpunkt gibt es genau dann nicht, wenn die Richtung parallel zur Ebene liegt: $$\\begin{pmatrix}2\\\\k\\\\1\\end{pmatrix} \\cdot \\begin{pmatrix}1\\\\-1\\\\4\\end{pmatrix} = 2 - k + 4 = 0 \\;\\Rightarrow\\; k = 6$$ Zweiter Schritt: Der Aufpunkt \\(A(1|2|0)\\) erfüllt \\(1-2+0 = -1 \\ne 3\\), liegt also nicht in \\(E\\). Damit ist \\(g_6\\) echt parallel und hat wirklich keinen gemeinsamen Punkt mit \\(E\\) — läge \\(A\\) in \\(E\\), wären es sogar unendlich viele."
+      },
+      { id:20, level:4, typ:"numerisch",
+        frage:"Für welchen Wert von \\(a\\) liegt \\(P(2|1|3)\\) auf der Schnittgeraden von \\(E_a: x+ay-z=1\\) und \\(F: 2x-y+z=6\\)?",
+        loesung:2, toleranz:0.01,
+        tipp:"Ein Punkt liegt auf der Schnittgeraden, wenn er beide Ebenengleichungen erfüllt — eine davon enthält den Parameter gar nicht.",
+        loesungsweg:"Zuerst die parameterfreie Ebene prüfen: $$2\\cdot2 - 1 + 3 = 6 \\ \\checkmark$$ \\(P\\) liegt also in \\(F\\). Nun \\(E_a\\): $$2 + a\\cdot1 - 3 = 1 \\;\\Rightarrow\\; a = 2$$ Nur \\(E_2\\) geht durch \\(P\\); dann liegt \\(P\\) auf beiden Ebenen und damit auf ihrer Schnittgeraden."
+      },
+      { id:21, level:4, typ:"mc",
+        frage:"Von einer Geradenschar ist bekannt, dass alle Geraden durch einen gemeinsamen Punkt verlaufen. Wie findet man diesen Punkt?",
+        optionen:["Man sucht ein \\(t\\), für das \\(k\\) herausfällt","Man setzt den Parameter \\(k\\) gleich null","Man bildet den Mittelwert zweier Geraden","Man schneidet die Schar mit der \\(z\\)-Achse"],
+        korrekt:0,
+        tipp:"Der gesuchte Punkt muss zu jeder einzelnen Geraden gehören — seine Koordinaten dürfen also vom Scharparameter nicht abhängen.",
+        loesungsweg:"Ein gemeinsamer Punkt gehört zu jeder Geraden der Schar, seine Koordinaten dürfen deshalb kein \\(k\\) enthalten. Man schreibt den allgemeinen Punkt hin, sortiert nach \\(k\\) und sucht den Wert von \\(t\\), für den der \\(k\\)-Anteil verschwindet. Ein willkürlich gewähltes \\(k\\) liefert dagegen nur einen Punkt <b>einer</b> Geraden, und einen Mittelwert von Geraden gibt es nicht."
+      },
+      { id:22, level:4, typ:"numerisch",
+        frage:"Ein Mast soll im Punkt \\(F(1|1|5)\\) senkrecht auf der Dachebene \\(E: 2x+2y+z=9\\) stehen. Seine Trägergerade gehört zur Schar \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\1\\\\5\\end{pmatrix}+t\\begin{pmatrix}k\\\\k\\\\1\\end{pmatrix}\\). Welchen Wert hat \\(k\\)?",
+        loesung:2, toleranz:0.01,
+        tipp:"Übersetze „senkrecht auf der Ebene“ in eine Beziehung zwischen Richtungs- und Normalenvektor.",
+        loesungsweg:"Der Fußpunkt liegt tatsächlich auf dem Dach: \\(2+2+5 = 9\\) ✓ Senkrecht auf der Ebene steht die Gerade, wenn ihre Richtung zum Normalenvektor kollinear ist: $$\\begin{pmatrix}k\\\\k\\\\1\\end{pmatrix} = \\lambda\\begin{pmatrix}2\\\\2\\\\1\\end{pmatrix}$$ Die dritte Komponente liefert \\(\\lambda = 1\\), die ersten beiden damit \\(k = 2\\). Der Mast verläuft entlang \\(\\begin{pmatrix}2\\\\2\\\\1\\end{pmatrix}\\)."
+      },
+      { id:23, level:4, typ:"numerisch",
+        frage:"Für welchen Wert von \\(k\\) schneiden sich \\(g_k:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\k\\end{pmatrix}+t\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix}\\) und \\(h:\\vec{x}=\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}+s\\begin{pmatrix}0\\\\1\\\\2\\end{pmatrix}\\)?",
+        loesung:1, toleranz:0.01,
+        tipp:"In einer der drei Zeilen kommt nur eine einzige Unbekannte vor — dort beginnt die Rechnung.",
+        loesungsweg:"Gleichsetzen liefert $$t = 1, \\qquad 2t = 1+s, \\qquad k+t = 2s$$ Die erste Zeile gibt \\(t = 1\\), die zweite \\(s = 1\\). Einsetzen in die dritte: $$k + 1 = 2 \\;\\Rightarrow\\; k = 1$$ Der Schnittpunkt ist \\((1|2|2)\\). Für alle anderen \\(k\\) bleibt die dritte Zeile unerfüllt, die Geraden sind dann windschief."
+      },
+      { id:24, level:4, typ:"mc",
+        frage:"Die Geraden der Schar \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}+t\\begin{pmatrix}0\\\\1\\\\k\\end{pmatrix}\\) liegen alle in einer gemeinsamen Ebene. In welcher?",
+        optionen:["\\(x=1\\)","\\(y=0\\)","\\(z=0\\)","\\(x+y=1\\)"],
+        korrekt:0,
+        tipp:"Schreibe den allgemeinen Punkt der Schargeraden auf und suche die Koordinate, die sich nie ändert.",
+        loesungsweg:"Der allgemeine Punkt lautet \\((1\\,|\\,t\\,|\\,kt)\\). Die erste Koordinate ist unabhängig von \\(t\\) und \\(k\\) stets \\(1\\); alle Geraden der Schar liegen also in der Ebene \\(x = 1\\). Die anderen Ebenen scheiden aus, weil \\(y\\) und \\(z\\) beliebige Werte annehmen und \\(x+y = 1+t\\) nicht konstant ist."
+      },
+      // ===== LEVEL 5 — Zwei Bedingungen, Fehlersuche =====
+      { id:25, level:5, typ:"numerisch",
+        frage:"Die Ebene \\(E: x+ay+2z=c\\) soll die Gerade \\(g:\\vec{x}=\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}2\\\\-1\\\\1\\end{pmatrix}\\) vollständig enthalten. Bestimme \\(c\\).",
+        loesung:5, toleranz:0.01,
+        tipp:"„Vollständig enthalten“ liefert zwei Gleichungen; die eine bestimmt \\(a\\), erst danach lässt sich \\(c\\) berechnen.",
+        loesungsweg:"Erste Bedingung — die Richtung muss parallel zur Ebene liegen: $$\\begin{pmatrix}2\\\\-1\\\\1\\end{pmatrix} \\cdot \\begin{pmatrix}1\\\\a\\\\2\\end{pmatrix} = 2 - a + 2 = 0 \\;\\Rightarrow\\; a = 4$$ Zweite Bedingung — der Aufpunkt \\(A(1|1|0)\\) muss in \\(E\\) liegen: $$1 + 4\\cdot1 + 2\\cdot0 = c \\;\\Rightarrow\\; c = 5$$ Nur \\(E: x+4y+2z=5\\) enthält die ganze Gerade. Wäre \\(c\\) anders, verliefe \\(g\\) echt parallel zur Ebene."
+      },
+      { id:26, level:5, typ:"mc",
+        frage:"Jemand untersucht \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}+t\\begin{pmatrix}1\\\\k\\\\0\\end{pmatrix}\\) und \\(E: x-y+z=2\\) und schreibt: „Für \\(k=1\\) ist \\(\\vec u \\cdot \\vec n = 1-1+0 = 0\\), also ist \\(g_1\\) echt parallel zu \\(E\\).“ Welche Lage hat \\(g_1\\) wirklich?",
+        optionen:["\\(g_1\\) liegt vollständig in \\(E\\)","\\(g_1\\) ist echt parallel zu \\(E\\)","\\(g_1\\) schneidet \\(E\\) in einem Punkt","\\(g_1\\) steht senkrecht auf \\(E\\)"],
+        korrekt:0,
+        tipp:"Das Skalarprodukt entscheidet nur, ob es einen Schnittpunkt geben kann; für die endgültige Lage fehlt eine zweite Prüfung.",
+        loesungsweg:"Die Rechnung selbst stimmt: Für \\(k=1\\) ist \\(\\vec u \\cdot \\vec n = 0\\), ein Schnittpunkt also ausgeschlossen. Offen bleibt aber, ob die Gerade daneben herläuft oder in der Ebene liegt — das entscheidet der Aufpunkt \\(A(1|0|1)\\): $$1 - 0 + 1 = 2 \\ \\checkmark$$ \\(A\\) erfüllt die Ebenengleichung, also liegt \\(g_1\\) vollständig in \\(E\\). Der Schluss auf „echt parallel“ war voreilig; er hätte an dieser Stelle eine <b>Ungleichung</b> gebraucht."
+      },
+      { id:27, level:5, typ:"numerisch",
+        frage:"Für welchen Wert von \\(k\\) schneidet \\(g_k:\\vec{x}=\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\k\\\\1\\end{pmatrix}\\) die Ebene \\(E: x+y+z=3\\) in einem Punkt der \\(xz\\)-Ebene? (3 Dez.)",
+        loesung:-0.667, toleranz:0.02,
+        tipp:"Zwei Forderungen sind zugleich zu erfüllen: der Punkt liegt in \\(E\\), und eine seiner Koordinaten ist null.",
+        loesungsweg:"Der allgemeine Geradenpunkt lautet \\((t\\,|\\,1+kt\\,|\\,t)\\). Erste Bedingung — er liegt in der \\(xz\\)-Ebene, also \\(y = 0\\): $$1 + kt = 0$$ Zweite Bedingung — er liegt in \\(E\\): $$t + (1+kt) + t = 3$$ Wegen der ersten Bedingung ist die Klammer null, es bleibt \\(2t = 3\\), also \\(t = 1{,}5\\). Eingesetzt: $$1 + 1{,}5k = 0 \\;\\Rightarrow\\; k = -\\frac23 \\approx -0{,}667$$ Der gesuchte Punkt ist \\((1{,}5|0|1{,}5)\\)."
+      },
+      { id:28, level:5, typ:"numerisch",
+        frage:"Für welchen Wert von \\(a\\) hat die Gerade \\(g:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix}\\) mit \\(E_a: ax+y-z=1\\) keinen Schnittpunkt?",
+        loesung:-1, toleranz:0.01,
+        tipp:"Schließe zuerst den Schnittpunkt über die Richtung aus und prüfe anschließend, ob die Gerade nicht doch ganz in der Ebene liegt.",
+        loesungsweg:"Kein Schnittpunkt verlangt zunächst $$\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix} \\cdot \\begin{pmatrix}a\\\\1\\\\-1\\end{pmatrix} = a + 2 - 1 = 0 \\;\\Rightarrow\\; a = -1$$ Zweiter Schritt: Der Aufpunkt ist der Ursprung, und \\(-1\\cdot0 + 0 - 0 = 0 \\ne 1\\) — er liegt nicht in \\(E_{-1}\\). Die Gerade verläuft also echt parallel und trifft die Ebene wirklich nirgends. Für jedes andere \\(a\\) gibt es genau einen Schnittpunkt."
+      },
+      { id:29, level:5, typ:"numerisch",
+        frage:"Unter welchem Winkel (in Grad) schneiden sich die Ebene \\(E_2\\) der Schar \\(E_a: ax+y+2z=1\\) und die Ebene \\(F: x-y=0\\)? (2 Dez.)",
+        loesung:76.37, toleranz:0.3,
+        tipp:"Setze zuerst den Scharparameter ein und lies dann beide Normalenvektoren ab.",
+        loesungsweg:"Für \\(a = 2\\) lautet die Ebene \\(E_2: 2x+y+2z=1\\) mit \\(\\vec n_1 = \\begin{pmatrix}2\\\\1\\\\2\\end{pmatrix}\\); für \\(F\\) ist \\(\\vec n_2 = \\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix}\\). $$\\vec n_1 \\cdot \\vec n_2 = 2 - 1 + 0 = 1, \\qquad |\\vec n_1| = 3, \\quad |\\vec n_2| = \\sqrt2$$ $$\\cos\\varphi = \\frac{1}{3\\sqrt2} \\approx 0{,}2357 \\;\\Rightarrow\\; \\varphi \\approx 76{,}37°$$"
+      },
+      { id:30, level:5, typ:"numerisch",
+        frage:"Für welchen positiven Wert von \\(k\\) sind \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}+s\\begin{pmatrix}1\\\\k\\\\0\\end{pmatrix}\\) und \\(h_k:\\vec{x}=\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}k\\\\1\\\\0\\end{pmatrix}\\) zueinander parallel?",
+        loesung:1, toleranz:0.01,
+        tipp:"Parallelität bedeutet kollineare Richtungsvektoren; setze den einen als Vielfaches des anderen an.",
+        loesungsweg:"Kollinearität verlangt \\(\\begin{pmatrix}1\\\\k\\\\0\\end{pmatrix} = \\lambda\\begin{pmatrix}k\\\\1\\\\0\\end{pmatrix}\\), also \\(1 = \\lambda k\\) und \\(k = \\lambda\\). Zusammen: $$k^2 = 1 \\;\\Rightarrow\\; k = 1 \\ \\text{oder}\\ k = -1$$ Beide Werte leisten das: Für \\(k=-1\\) sind die Richtungen \\(\\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix}\\) und \\(\\begin{pmatrix}-1\\\\1\\\\0\\end{pmatrix}\\) entgegengesetzt, beschreiben aber dieselbe Richtung. Gefragt ist \\(k = 1\\). Die Geraden sind dann <b>echt</b> parallel, denn \\((0|1|0)\\) liegt nicht auf \\(g_1\\)."
+      },
+      // ===== LEVEL 6 — Abi-Format (eA) =====
+      { id:31, level:6, typ:"numerisch",
+        frage:"Untersuchen Sie die Lage von \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}+t\\begin{pmatrix}2\\\\k\\\\1\\end{pmatrix}\\) zur Ebene \\(E: x+2y-z=0\\) in Abhängigkeit von \\(k\\). Für welchen Wert von \\(k\\) liegt \\(g_k\\) vollständig in \\(E\\)? (1 Dez.)",
+        loesung:-0.5, toleranz:0.02,
+        tipp:"Prüfen Sie zuerst den Aufpunkt — er hängt nicht von \\(k\\) ab — und übersetzen Sie dann die Richtungsbedingung.",
+        loesungsweg:"Der Aufpunkt \\(A(1|0|1)\\) erfüllt \\(1 + 0 - 1 = 0\\) ✓ und liegt damit für <b>jedes</b> \\(k\\) in \\(E\\). Die Lage entscheidet sich also allein an der Richtung: $$\\begin{pmatrix}2\\\\k\\\\1\\end{pmatrix} \\cdot \\begin{pmatrix}1\\\\2\\\\-1\\end{pmatrix} = 2 + 2k - 1 = 2k + 1$$ Für \\(2k+1 = 0\\), also \\(k = -0{,}5\\), verschwindet das Skalarprodukt; da der Aufpunkt in \\(E\\) liegt, liegt dann die ganze Gerade in \\(E\\). Für jedes andere \\(k\\) schneidet \\(g_k\\) die Ebene in genau einem Punkt — und zwar stets in \\(A\\). Echt parallel kann \\(g_k\\) nie sein."
+      },
+      { id:32, level:6, typ:"numerisch",
+        frage:"Zeigen Sie, dass alle Ebenen der Schar \\(E_a: x+ay+(a-1)z=2\\) eine gemeinsame Gerade enthalten, und bestimmen Sie den Abstand dieser Geraden vom Ursprung. (3 Dez.)",
+        loesung:1.633, toleranz:0.02,
+        tipp:"Sortieren Sie die Gleichung nach Termen mit und ohne \\(a\\); danach ist es eine gewöhnliche Abstandsaufgabe Punkt–Gerade.",
+        loesungsweg:"Umsortieren: $$a(y+z) + (x-z) = 2$$ Damit das für jedes \\(a\\) gilt, muss \\(y+z = 0\\) und \\(x-z = 2\\) sein. Mit \\(z = t\\) ergibt sich die gemeinsame Gerade $$\\vec x = \\begin{pmatrix}2\\\\0\\\\0\\end{pmatrix} + t\\begin{pmatrix}1\\\\-1\\\\1\\end{pmatrix}$$ Abstand vom Ursprung mit \\(A(2|0|0)\\), \\(\\vec{AO} = \\begin{pmatrix}-2\\\\0\\\\0\\end{pmatrix}\\) und \\(|\\vec u| = \\sqrt3\\): $$\\vec{AO} \\times \\vec u = \\begin{pmatrix}0\\\\2\\\\2\\end{pmatrix}, \\qquad d = \\frac{2\\sqrt2}{\\sqrt3} \\approx 1{,}633$$"
+      },
+      { id:33, level:6, typ:"mc",
+        frage:"Untersuchen Sie die Lage von \\(g_k:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+s\\begin{pmatrix}1\\\\1\\\\k\\end{pmatrix}\\) und \\(h:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}+t\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}\\) in Abhängigkeit von \\(k\\).",
+        optionen:["für \\(k=1\\) schneidend, sonst windschief","für \\(k=1\\) windschief, sonst schneidend","für jedes \\(k\\) windschief zueinander","für jedes \\(k\\) schneidend in \\((1|1|1)\\)"],
+        korrekt:0,
+        tipp:"Setzen Sie die Gleichungen gleich; zwei Zeilen legen die Parameter fest, die dritte entscheidet über die Lösbarkeit.",
+        loesungsweg:"Gleichsetzen ergibt \\(s = 1\\), \\(s = t\\) und \\(ks = t\\). Aus den ersten beiden Zeilen folgt \\(s = t = 1\\), die dritte verlangt dann $$k \\cdot 1 = 1 \\;\\Rightarrow\\; k = 1$$ Nur dann ist das System lösbar, die Geraden schneiden sich im Punkt \\((1|1|1)\\). Für jedes andere \\(k\\) bleibt die dritte Zeile unerfüllt. Parallel können die Geraden nie sein, denn \\(\\begin{pmatrix}1\\\\1\\\\k\\end{pmatrix}\\) ist wegen der ersten Komponente nie ein Vielfaches von \\(\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}\\) — also bleibt windschief."
+      },
+      { id:34, level:6, typ:"numerisch",
+        frage:"Ein Dachfirst verläuft entlang \\(f:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\6\\end{pmatrix}+t\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}\\); die möglichen Dachflächen bilden die Schar \\(E_a: ay+z=6\\) mit \\(a \\ne 0\\). Zeigen Sie, dass jede dieser Ebenen den First enthält, und bestimmen Sie den positiven Wert von \\(a\\), für den die Dachfläche gegen den Boden \\(z=0\\) um \\(30°\\) geneigt ist. (3 Dez.)",
+        loesung:0.577, toleranz:0.02,
+        tipp:"Setzen Sie einen allgemeinen Firstpunkt in die Ebenengleichung ein; für den Winkel genügen dann die beiden Normalenvektoren.",
+        loesungsweg:"Erster Teil: Ein Firstpunkt hat die Form \\((t|0|6)\\). Einsetzen: \\(a\\cdot 0 + 6 = 6\\) ✓ für jedes \\(a\\) und jedes \\(t\\) — der First liegt also in jeder Ebene der Schar.<br>Zweiter Teil: Mit \\(\\vec n_1 = \\begin{pmatrix}0\\\\a\\\\1\\end{pmatrix}\\) und \\(\\vec n_2 = \\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}\\) gilt $$\\cos 30° = \\frac{1}{\\sqrt{a^2+1}} = \\frac{\\sqrt3}{2}$$ Quadrieren: \\(a^2+1 = \\tfrac43\\), also \\(a^2 = \\tfrac13\\) und \\(a = \\tfrac{1}{\\sqrt3} \\approx 0{,}577\\). Der negative Wert \\(-\\tfrac{1}{\\sqrt3}\\) gehört zur gegenüberliegenden Dachfläche."
+      },
+      { id:35, level:6, typ:"numerisch",
+        frage:"Für welchen Wert von \\(a\\) sind \\(E_a: ax+y+z=1\\) und \\(F: x+ay+z=1\\) identisch? Begründen Sie, dass es für jedes andere \\(a\\) eine Schnittgerade gibt.",
+        loesung:1, toleranz:0.01,
+        tipp:"Identisch sein können die Ebenen nur bei kollinearen Normalenvektoren; prüfen Sie danach noch die rechten Seiten.",
+        loesungsweg:"Kollinearität der Normalenvektoren: $$\\begin{pmatrix}a\\\\1\\\\1\\end{pmatrix} \\times \\begin{pmatrix}1\\\\a\\\\1\\end{pmatrix} = \\begin{pmatrix}1-a\\\\1-a\\\\a^2-1\\end{pmatrix} = \\vec 0 \\;\\Rightarrow\\; a = 1$$ Für \\(a = 1\\) lauten beide Gleichungen \\(x+y+z=1\\) — die Ebenen sind identisch. Für jedes andere \\(a\\) ist das Kreuzprodukt vom Nullvektor verschieden, die Normalen sind also nicht kollinear; damit sind die Ebenen weder parallel noch identisch und schneiden sich in einer Geraden mit eben diesem Kreuzprodukt als Richtung. Ein echt paralleler Fall tritt hier nie auf."
+      },
+      { id:36, level:6, typ:"numerisch",
+        frage:"Abi eA: Zeigen Sie, dass alle Ebenen der Schar \\(E_a: ax+y+az=1\\) die \\(y\\)-Achse in demselben Punkt treffen, und bestimmen Sie den Schnittwinkel von \\(E_1\\) und \\(E_{-1}\\) in Grad. (2 Dez.)",
+        loesung:70.53, toleranz:0.3,
+        tipp:"Für den ersten Teil genügt es, die Koordinaten eines Achsenpunktes einzusetzen; für den zweiten braucht es die beiden Normalenvektoren.",
+        loesungsweg:"Erster Teil: Auf der \\(y\\)-Achse ist \\(x = z = 0\\). Einsetzen: $$a\\cdot 0 + y + a\\cdot 0 = 1 \\;\\Rightarrow\\; y = 1$$ Der Parameter fällt heraus, jede Ebene der Schar trifft die \\(y\\)-Achse in \\((0|1|0)\\).<br>Zweiter Teil: \\(E_1\\) hat \\(\\vec n_1 = \\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}\\), \\(E_{-1}\\) hat \\(\\vec n_2 = \\begin{pmatrix}-1\\\\1\\\\-1\\end{pmatrix}\\). $$\\vec n_1 \\cdot \\vec n_2 = -1+1-1 = -1, \\qquad |\\vec n_1| = |\\vec n_2| = \\sqrt3$$ $$\\cos\\varphi = \\frac{|-1|}{3} = \\frac13 \\;\\Rightarrow\\; \\varphi \\approx 70{,}53°$$ Der Betrag im Zähler sorgt dafür, dass der spitze der beiden Nebenwinkel herauskommt."
+      }];
     </script>
     <script src="../spirale-engine.js"></script>
 </body>
