@@ -18,6 +18,12 @@ Die drei Bloecke der Welle:
 | B Trigonometrie und Kreis | 5 | Einheitskreis, trig. Gleichungen, Sinusfunktion, Sinus-/Kosinussatz (dort auch L3/L4), Kreissektor |
 | C Stochastik | 2 | bedingte Wahrscheinlichkeit (Vierfeldertafel, Unabhaengigkeit), mehrstufige Zufallsversuche |
 
+
+> **Nachtrag 2026-10-01:** Die in Block C beschriebene Lücke (Verteilung und
+> Erwartungswert fehlen in Klasse 10) ist geschlossen — mit dem neuen Trainer
+> `10-stoch-erwartungswert`, nicht durch eine Änderung an den beiden Trainern hier.
+> Kriterien dort: `2026-10-01-kl10-erwartungswert-kriterien.md`.
+
 ---
 
 # Block A — Analysis
