@@ -73,6 +73,25 @@ def html_frisst_text(a: dict) -> list:
     return [f for f, text in felder if TAG_START.search(ERLAUBTE_TAGS.sub(" ", text))]
 
 
+# Verweis auf eine MC-Option ueber ihren Buchstaben. Die Engine mischt die Reihenfolge,
+# der Buchstabe zeigt im Bild also auf etwas anderes als im Quelltext.
+OPTIONS_VERWEIS = re.compile(
+    r"(?:Option|Antwort|Auswahl|Variante|Wahl|Aussage)\s+[A-D]\b"
+    r"|(?:^|[.;:!?]\s+)[A-D]\)\s")
+
+
+def optionsbuchstabe(a: dict) -> list:
+    """Felder einer MC-Aufgabe, die eine Option ueber ihren Buchstaben ansprechen.
+    Befund 2026-09-30 (Welle Kl. 11): Zwei Renderings derselben Aufgabe zeigten die Optionen
+    in verschiedener Reihenfolge - ein Loesungsweg mit 'Option B' weist damit auf die falsche.
+    Im Quelltext ist der Fehler nicht zu sehen, nur im Bild. Richtig ist, die Option ueber
+    ihren Inhalt zu benennen (den Term, den Wert, die Aussage)."""
+    if a.get("typ") != "mc":
+        return []
+    felder = [(f, str(a.get(f) or "")) for f in ("frage", "tipp", "loesungsweg")]
+    return [f for f, text in felder if OPTIONS_VERWEIS.search(MATHE_UMGEBUNG.sub(" ", text))]
+
+
 def lade_aufgaben(pfad: Path) -> list:
     js = r"""
 const fs=require('fs');const h=fs.readFileSync(process.argv[1],'utf8');
@@ -175,6 +194,9 @@ def pruefe_trainer(pfad: Path, aufgaben: list):
                     hart.append(f"{k}: KaTeX-Befehl ohne Backslash in '{feld}' "
                                 f"(einfacher statt doppelter Backslash im JS-String)")
                     break
+        for feld in optionsbuchstabe(a):
+            hart.append(f"{k}: MC-Option ueber ihren Buchstaben angesprochen in '{feld}' "
+                        f"(die Engine mischt die Reihenfolge; Option ueber den Inhalt benennen)")
         for feld in html_frisst_text(a):
             hart.append(f"{k}: '<' direkt vor Buchstabe in '{feld}' "
                         f"(innerHTML frisst den Text bis '>'; Leerzeichen setzen oder \\lt)")

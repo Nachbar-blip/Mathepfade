@@ -80,6 +80,27 @@ def test_erlaubte_auszeichnung_bleibt_still():
     assert lk.html_frisst_text(_aufgabe(frage="Das ist <b>wichtig</b>.")) == []
 
 
+def test_optionsbuchstabe_im_loesungsweg_ist_hart():
+    """Befund 2026-09-30 (Welle Kl. 11): Die Engine mischt die MC-Optionen. Ein Loesungsweg,
+    der sie mit 'Option A' anspricht, zeigt im Bild auf eine andere Option - zwei Renderings
+    derselben Aufgabe lieferten verschiedene Reihenfolgen. Im Quelltext ist das nicht zu sehen."""
+    a = _aufgabe(typ="mc", optionen=["4", "5", "6", "7"], korrekt=1,
+                 loesungsweg="Option B ist richtig, weil 2+3 = 5 ist.")
+    assert lk.optionsbuchstabe(a) == ["loesungsweg"]
+
+
+def test_mathe_mit_buchstaben_schlaegt_nicht_an():
+    """P(A|B) und aehnliche Terme sind keine Options-Verweise."""
+    a = _aufgabe(typ="mc", optionen=["0,2", "0,3", "0,4", "0,5"], korrekt=0,
+                 loesungsweg="Es gilt \\(P(A \\cap B) = P(A) \\cdot P(B)\\).")
+    assert lk.optionsbuchstabe(a) == []
+
+
+def test_ohne_mc_keine_pruefung():
+    """Numerische Aufgaben haben keine Optionen, die gemischt werden koennten."""
+    assert lk.optionsbuchstabe(_aufgabe(loesungsweg="Variante A des Verfahrens.")) == []
+
+
 def test_gate_meldet_den_befund_als_harten_fehler():
     """Der Check haengt im Gate und landet in der Fehlerliste, nicht in den Warnungen."""
     from pathlib import Path
