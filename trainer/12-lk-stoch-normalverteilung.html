@@ -64,13 +64,13 @@
         frage:"\\(X\\sim B(100; 0{,}5)\\). Berechne \\(\\mu\\).",
         loesung:50, toleranz:0.01,
         tipp:"\\(\\mu=np\\).",
-        loesungsweg:"\\(\\mu=100\\cdot0{,}5=50\\)."
+        loesungsweg:"Der Erwartungswert einer Binomialverteilung ist das Produkt aus Umfang und Trefferwahrscheinlichkeit: $$\\mu = n \\cdot p = 100 \\cdot 0{,}5 = 50$$ Anschaulich: bei 100 Versuchen mit Trefferquote \\(\\tfrac12\\) sind 50 Treffer zu erwarten. \\(\\mu\\) ist zugleich die Stelle, an der die Glockenkurve der Näherung ihr Maximum hat."
       },
       { id:8, level:2, typ:"numerisch",
         frage:"\\(X\\sim B(100;0{,}5)\\). Berechne \\(\\sigma\\).",
         loesung:5, toleranz:0.01,
         tipp:"\\(\\sigma=\\sqrt{npq}\\).",
-        loesungsweg:"\\(\\sigma=\\sqrt{25}=5\\)."
+        loesungsweg:"Die Standardabweichung der Binomialverteilung ist $$\\sigma = \\sqrt{n\\,p\\,(1-p)} = \\sqrt{100 \\cdot 0{,}5 \\cdot 0{,}5}$$ $$= \\sqrt{25} = 5$$ Der Faktor \\(p(1-p)\\) wird bei \\(p = 0{,}5\\) am größten — bei gleichem \\(n\\) streut also keine andere Trefferquote stärker."
       },
       { id:9, level:2, typ:"numerisch",
         frage:"\\(X\\sim B(400;0{,}25)\\). \\(\\mu=?\\)",
@@ -82,7 +82,7 @@
         frage:"\\(X\\sim B(400;0{,}25)\\). \\(\\sigma\\approx?\\)",
         loesung:8.66, toleranz:0.05,
         tipp:"\\(\\sqrt{75}\\).",
-        loesungsweg:"\\(\\sigma=\\sqrt{400\\cdot0{,}25\\cdot0{,}75}=\\sqrt{75}\\approx8{,}66\\)."
+        loesungsweg:"$$\\sigma = \\sqrt{n\\,p\\,(1-p)} = \\sqrt{400 \\cdot 0{,}25 \\cdot 0{,}75}$$ $$= \\sqrt{75} \\approx 8{,}66$$ Die Wurzel geht nicht auf; hier wird gerundet. Zum Vergleich: bei gleichem \\(n\\), aber \\(p = 0{,}5\\) wäre \\(\\sigma = 10\\) — kleinere Trefferquoten streuen weniger."
       },
       { id:11, level:2, typ:"mc",
         frage:"Laplace erfüllt für \\(n=100, p=0{,}5\\)?",
@@ -95,20 +95,20 @@
         frage:"Bestimme \\(\\sigma\\) für \\(n=1000, p=0{,}1\\).",
         loesung:9.49, toleranz:0.05,
         tipp:"\\(\\sqrt{90}\\).",
-        loesungsweg:"\\(\\sigma=\\sqrt{1000\\cdot0{,}1\\cdot0{,}9}=\\sqrt{90}\\approx9{,}49\\)."
+        loesungsweg:"$$\\sigma = \\sqrt{1000 \\cdot 0{,}1 \\cdot 0{,}9} = \\sqrt{90} \\approx 9{,}49$$ Der Erwartungswert ist \\(\\mu = 100\\). Weil \\(\\sigma \\gt 3\\) ist, darf die Binomialverteilung hier durch die Normalverteilung genähert werden — bei \\(n = 1000\\) und \\(p = 0{,}1\\) ist die Verteilung breit genug für eine glatte Kurve."
       },
       // ===== LEVEL 3 — Standardisierung =====
       { id:13, level:3, typ:"numerisch",
         frage:"\\(X\\sim N(50;25)\\). Standardisiere \\(X=55\\) zu \\(z\\).",
         loesung:1, toleranz:0.01,
         tipp:"\\(z=(x-\\mu)/\\sigma\\).",
-        loesungsweg:"\\(z=(55-50)/5=1\\)."
+        loesungsweg:"In der Schreibweise \\(N(\\mu;\\sigma^2)\\) steht an zweiter Stelle die Varianz, also \\(\\sigma = \\sqrt{25} = 5\\). Standardisieren heißt: den Abstand zum Mittelwert in Standardabweichungen messen: $$z = \\frac{x-\\mu}{\\sigma} = \\frac{55-50}{5} = 1$$ Der Wert 55 liegt also genau eine Standardabweichung über dem Mittelwert."
       },
       { id:14, level:3, typ:"numerisch",
         frage:"\\(X\\sim N(100;100)\\). \\(z\\) für \\(x=120\\)?",
         loesung:2, toleranz:0.01,
         tipp:"\\(\\sigma=10\\).",
-        loesungsweg:"\\(z=20/10=2\\)."
+        loesungsweg:"Aus \\(N(100;100)\\) folgt \\(\\sigma = \\sqrt{100} = 10\\) — die zweite Zahl ist die Varianz. Damit: $$z = \\frac{x-\\mu}{\\sigma} = \\frac{120-100}{10} = 2$$ Der Wert 120 liegt zwei Standardabweichungen über dem Mittelwert; nach der zweiten Sigma-Regel liegen rechts davon nur rund \\(2{,}3\\,\\%\\) aller Werte."
       },
       { id:15, level:3, typ:"numerisch",
         frage:"\\(\\Phi(1)\\approx?\\) (Standardnormal-Tabelle)",
@@ -171,79 +171,79 @@
         tipp:"95 %-Quantil.",
         loesungsweg:"$$P(|Z| \\leq 1{,}96) = \\Phi(1{,}96) - \\Phi(-1{,}96) = 2\\Phi(1{,}96) - 1$$ $$\\approx 2 \\cdot 0{,}975 - 1 = 0{,}95$$ Der Wert \\(1{,}96\\) ist deshalb die Standardgröße für \\(95\\,\\%\\)-Intervalle."
       },
-      // ===== LEVEL 5 — Quantile, Umkehraufgaben =====
+      // ===== LEVEL 5 — zwei Verfahren verbinden, Parameter aus zwei Bedingungen, Fehler finden =====
       { id:25, level:5, typ:"numerisch",
-        frage:"\\(X\\sim N(100;100)\\). Gesucht \\(c\\) mit \\(P(X\\le c)=0{,}9\\). \\(z_{0{,}9}\\approx1{,}28\\).",
-        loesung:112.8, toleranz:0.3,
-        tipp:"\\(c=\\mu+z\\sigma\\).",
-        loesungsweg:"\\(c=100+1{,}28\\cdot10=112{,}8\\)."
+        frage:"Für \\(X \\sim N(\\mu;\\sigma^2)\\) ist bekannt: \\(P(X \\le 60) = 0{,}8413\\) und \\(P(X \\le 40) = 0{,}0228\\). Bestimme \\(\\mu\\).",
+        loesung:53.33, toleranz:0.15,
+        tipp:"Übersetze jede der beiden Angaben in eine Gleichung für die standardisierte Stelle; danach bleibt ein Gleichungssystem in \\(\\mu\\) und \\(\\sigma\\).",
+        loesungsweg:"Aus der Tabelle: \\(\\Phi(z) = 0{,}8413\\) gehört zu \\(z = 1\\), und \\(\\Phi(z) = 0{,}0228\\) gehört zu \\(z = -2\\). Das gibt zwei Gleichungen: $$\\frac{60-\\mu}{\\sigma} = 1 \\qquad \\frac{40-\\mu}{\\sigma} = -2$$ also \\(60 - \\mu = \\sigma\\) und \\(40 - \\mu = -2\\sigma\\). Die erste Gleichung nach \\(\\mu\\) aufgelöst und eingesetzt: $$40 - (60 - \\sigma) = -2\\sigma \\;\\Longleftrightarrow\\; \\sigma - 20 = -2\\sigma$$ $$3\\sigma = 20 \\;\\Longleftrightarrow\\; \\sigma = \\frac{20}{3} \\approx 6{,}667$$ $$\\mu = 60 - \\sigma = 60 - \\frac{20}{3} = \\frac{160}{3} \\approx 53{,}33$$ Probe: \\(\\frac{40 - 53{,}33}{6{,}667} \\approx -2\\) — passt. Beide Angaben werden gebraucht; eine allein legt \\(\\mu\\) und \\(\\sigma\\) nicht fest."
       },
       { id:26, level:5, typ:"numerisch",
-        frage:"\\(X\\sim N(50;25)\\). \\(P(X\\le c)=0{,}975\\). \\(c\\)?",
-        loesung:59.8, toleranz:0.3,
-        tipp:"\\(z=1{,}96\\).",
-        loesungsweg:"Zu \\(\\Phi(z) = 0{,}975\\) gehört \\(z = 1{,}96\\). Rücktransformation mit \\(\\sigma = 5\\): $$c = \\mu + z\\sigma = 50 + 1{,}96 \\cdot 5 = 59{,}8$$"
+        frage:"Für \\(X \\sim N(60;64)\\) rechnet jemand \\(P(X \\ge 70) = 1 - \\Phi\\!\\left(\\frac{70-60}{64}\\right) \\approx 0{,}438\\). Finde den Fehler und gib den korrekten Wert an.",
+        loesung:0.1056, toleranz:0.006,
+        tipp:"Sieh genau hin, welche der beiden Größen \\(\\sigma\\) und \\(\\sigma^2\\) in der Schreibweise \\(N(\\mu;\\sigma^2)\\) angegeben ist.",
+        loesungsweg:"Im Nenner der Standardisierung steht die Standardabweichung, nicht die Varianz. Aus \\(N(60;64)\\) folgt $$\\sigma = \\sqrt{64} = 8$$ Damit: $$z = \\frac{70-60}{8} = 1{,}25$$ $$P(X \\ge 70) = 1 - \\Phi(1{,}25) \\approx 1 - 0{,}8944 = 0{,}1056$$ Der falsche Weg teilt durch 64 und erhält \\(z \\approx 0{,}156\\); daraus folgt \\(1 - \\Phi(0{,}156) \\approx 0{,}438\\) — fast das Vierfache. Kontrolle über die Größenordnung: 70 liegt gut eine Standardabweichung über dem Mittelwert, dort sind nach der ersten Sigma-Regel rund \\(16\\,\\%\\) zu erwarten, nicht \\(44\\,\\%\\)."
       },
       { id:27, level:5, typ:"numerisch",
-        frage:"\\(X\\sim N(0;1)\\). Für welches \\(z\\) gilt \\(\\Phi(z)=0{,}5\\)?",
-        loesung:0, toleranz:0.01,
-        tipp:"Symmetrie.",
-        loesungsweg:"Die Standardnormalverteilung ist symmetrisch zu \\(0\\); links und rechts davon liegt je die Hälfte der Fläche: $$\\Phi(0) = 0{,}5 \\;\\Rightarrow\\; z = 0$$"
+        frage:"Es ist \\(X \\sim B(2500;\\,0{,}2)\\). Bestimme mit der Normalnäherung (ohne Stetigkeitskorrektur) die kleinste Zahl \\(k\\) mit \\(P(X \\le k) \\ge 0{,}99\\); es gilt \\(\\Phi(2{,}326) = 0{,}99\\).",
+        loesung:547, toleranz:1,
+        tipp:"Erst \\(\\mu\\) und \\(\\sigma\\) der Binomialverteilung, dann die Bedingung in eine Ungleichung für die standardisierte Grenze übersetzen und zurückrechnen.",
+        loesungsweg:"$$\\mu = n\\,p = 2500 \\cdot 0{,}2 = 500$$ $$\\sigma = \\sqrt{2500 \\cdot 0{,}2 \\cdot 0{,}8} = \\sqrt{400} = 20$$ Die Laplace-Bedingung \\(\\sigma \\gt 3\\) ist klar erfüllt. Die Forderung \\(P(X \\le k) \\ge 0{,}99\\) wird zu $$\\Phi\\!\\left(\\frac{k-500}{20}\\right) \\ge 0{,}99 \\;\\Longleftrightarrow\\; \\frac{k-500}{20} \\ge 2{,}326$$ $$k \\ge 500 + 2{,}326 \\cdot 20 = 546{,}52$$ Weil \\(k\\) eine Anzahl ist und die Ungleichung erst ab dieser Stelle gilt, wird <b>aufgerundet</b>: \\(k = 547\\). Abrunden auf 546 würde die Forderung verletzen — bei Mindestwahrscheinlichkeiten geht die Rundung immer nach oben."
       },
       { id:28, level:5, typ:"numerisch",
-        frage:"\\(X\\sim N(100;100)\\). Zentrale Mindestumgebung \\([100-d;100+d]\\) mit Wahrscheinlichkeit \\(0{,}95\\). \\(d=?\\)",
-        loesung:19.6, toleranz:0.5,
-        tipp:"\\(d=1{,}96\\sigma\\).",
-        loesungsweg:"Aus \\(N(100;100)\\) folgt \\(\\sigma = 10\\). Für eine zentrale \\(95\\,\\%\\)-Umgebung gilt \\(z = 1{,}96\\): $$d = 1{,}96 \\cdot \\sigma = 1{,}96 \\cdot 10 = 19{,}6$$"
+        frage:"Die Dichtefunktion einer Normalverteilung hat ihre Wendestellen bei \\(x = 34\\) und \\(x = 46\\). Bestimme \\(P(X \\le 52)\\).",
+        loesung:0.9772, toleranz:0.006,
+        tipp:"Aus der Lage der beiden Wendestellen lassen sich \\(\\mu\\) und \\(\\sigma\\) ablesen, bevor überhaupt standardisiert wird.",
+        loesungsweg:"Die Wendestellen liegen bei \\(\\mu - \\sigma\\) und \\(\\mu + \\sigma\\). Der Mittelwert ist also ihre Mitte, \\(\\sigma\\) ihr halber Abstand: $$\\mu = \\frac{34+46}{2} = 40 \\qquad \\sigma = \\frac{46-34}{2} = 6$$ Damit standardisieren: $$z = \\frac{52-40}{6} = 2$$ $$P(X \\le 52) = \\Phi(2) \\approx 0{,}9772$$ Die Aufgabe verbindet zwei Schritte: aus der Form der Dichtekurve die Parameter gewinnen und dann die Fläche bestimmen."
       },
       { id:29, level:5, typ:"numerisch",
-        frage:"\\(X\\sim N(\\mu;16)\\), \\(P(X\\le 10)=0{,}5\\). Bestimme \\(\\mu\\).",
-        loesung:10, toleranz:0.01,
-        tipp:"Symmetrie: Median=μ.",
-        loesungsweg:"Bei der Normalverteilung fallen Mittelwert, Median und Modalwert zusammen. \\(P(X \\leq 10) = 0{,}5\\) bedeutet also, dass \\(10\\) der Median ist: $$\\mu = 10$$ Die Varianz \\(16\\) wird dafür nicht gebraucht."
+        frage:"Für \\(X \\sim B(900;\\,0{,}5)\\) soll \\(P(X \\ge 470)\\) mit Stetigkeitskorrektur bestimmt werden. Jemand rechnet mit der Grenze \\(470{,}5\\) und erhält \\(0{,}0859\\). Finde den Fehler und gib den korrekten Wert an.",
+        loesung:0.0968, toleranz:0.004,
+        tipp:"Überlege, ob der Balken über dem Wert 470 zum gesuchten Bereich gehört, und in welche Richtung die Grenze deshalb verschoben werden muss.",
+        loesungsweg:"$$\\mu = 450 \\qquad \\sigma = \\sqrt{900 \\cdot 0{,}5 \\cdot 0{,}5} = \\sqrt{225} = 15$$ Gesucht ist \\(P(X \\ge 470)\\); der Wert 470 gehört <b>dazu</b>. Sein Balken reicht von \\(469{,}5\\) bis \\(470{,}5\\), also muss die Grenze nach außen, auf \\(469{,}5\\), verschoben werden: $$z = \\frac{469{,}5-450}{15} = 1{,}3$$ $$P(X \\ge 470) \\approx 1 - \\Phi(1{,}3) = 1 - 0{,}9032 = 0{,}0968$$ Die Grenze \\(470{,}5\\) schneidet den Balken über 470 gerade weg; sie gehört zu \\(P(X \\ge 471)\\) und liefert die zu kleine Zahl \\(0{,}0859\\). Merkregel: Die Korrektur verschiebt die Grenze stets so, dass der Bereich <b>größer</b> wird."
       },
       { id:30, level:5, typ:"numerisch",
-        frage:"\\(X\\sim N(50;\\sigma^2)\\), \\(P(X\\le 60)=0{,}8413\\). \\(\\sigma=?\\)",
-        loesung:10, toleranz:0.1,
-        tipp:"\\(z=1\\), also \\(10=\\sigma\\).",
-        loesungsweg:"Zu \\(\\Phi(z) = 0{,}8413\\) gehört \\(z = 1\\). Also liegt \\(60\\) genau eine Standardabweichung über dem Mittelwert: $$\\frac{60-50}{\\sigma} = 1 \\;\\Rightarrow\\; \\sigma = 10$$"
+        frage:"Für welches \\(p\\) mit \\(0 \\lt p \\lt 0{,}5\\) hat \\(X \\sim B(400;p)\\) die Standardabweichung \\(\\sigma = 6\\)?",
+        loesung:0.1, toleranz:0.005,
+        tipp:"Die Formel für \\(\\sigma\\) quadrieren; es entsteht eine quadratische Gleichung in \\(p\\), deren beide Lösungen zu prüfen sind.",
+        loesungsweg:"$$\\sigma = \\sqrt{400\\,p(1-p)} = 6 \\;\\Longleftrightarrow\\; 400\\,p(1-p) = 36$$ $$p(1-p) = 0{,}09 \\;\\Longleftrightarrow\\; p^2 - p + 0{,}09 = 0$$ $$p = \\frac{1 \\pm \\sqrt{1-0{,}36}}{2} = \\frac{1 \\pm 0{,}8}{2}$$ Es gibt zwei Lösungen, \\(p = 0{,}1\\) und \\(p = 0{,}9\\). Das liegt an der Symmetrie von \\(p(1-p)\\) um \\(0{,}5\\): eine Trefferquote und ihre Gegenquote streuen gleich stark. Die Bedingung \\(p \\lt 0{,}5\\) wählt \\(p = 0{,}1\\) aus. Kontrolle: \\(\\sqrt{400 \\cdot 0{,}1 \\cdot 0{,}9} = \\sqrt{36} = 6\\)."
       },
-      // ===== LEVEL 6 — Abi =====
+      // ===== LEVEL 6 — Abi-Format eA: mehrschrittig, Begründung, Modellkritik =====
       { id:31, level:6, typ:"numerisch",
-        frage:"Bei einer Produktion sind 4 % Ausschuss. Stichprobe \\(n=2500\\). \\(P(X\\le 110)\\) Näherung? \\(\\mu=100, \\sigma=\\sqrt{96}\\approx9{,}80\\).",
-        loesung:0.8461, toleranz:0.02,
-        tipp:"\\(z=(110-100)/9{,}80\\approx1{,}02\\).",
-        loesungsweg:"$$\\mu = np = 2500 \\cdot 0{,}04 = 100, \\quad \\sigma = \\sqrt{2500 \\cdot 0{,}04 \\cdot 0{,}96} = \\sqrt{96} \\approx 9{,}80$$ $$z = \\frac{110-100}{9{,}80} \\approx 1{,}02 \\;\\Rightarrow\\; \\Phi(1{,}02) \\approx 0{,}8461$$"
+        frage:"Eine Abfüllanlage füllt Flaschen; die Füllmenge ist normalverteilt mit \\(\\sigma = 3\\) ml. Höchstens \\(1\\,\\%\\) der Flaschen dürfen weniger als 500 ml enthalten. Bestimmen Sie den kleinsten zulässigen Mittelwert \\(\\mu\\) und begründen Sie die Rundungsrichtung; es gilt \\(\\Phi(2{,}326) = 0{,}99\\).",
+        loesung:506.98, toleranz:0.12,
+        tipp:"Die Forderung zuerst als Bedingung an die standardisierte Stelle von 500 ml formulieren und dann nach dem Mittelwert auflösen.",
+        loesungsweg:"Gefordert ist \\(P(X \\lt 500) \\le 0{,}01\\), gleichwertig \\(P(X \\ge 500) \\ge 0{,}99\\). Standardisiert: $$\\Phi\\!\\left(\\frac{\\mu-500}{3}\\right) \\ge 0{,}99 \\;\\Longleftrightarrow\\; \\frac{\\mu-500}{3} \\ge 2{,}326$$ $$\\mu \\ge 500 + 2{,}326 \\cdot 3 = 506{,}978$$ Also rund \\(506{,}98\\) ml. <b>Rundungsrichtung:</b> Die Forderung ist eine untere Schranke für \\(\\mu\\); jeder kleinere Mittelwert führt zu mehr als \\(1\\,\\%\\) Unterfüllung. Es wird deshalb <b>aufgerundet</b>, hier etwa auf \\(507\\) ml. <b>Beurteilung:</b> Die Anlage muss also rund 7 ml über dem Nennwert einstellen — Sicherheit kostet Füllmenge. Eine genauere Anlage mit kleinerem \\(\\sigma\\) würde diesen Aufschlag proportional verkleinern."
       },
       { id:32, level:6, typ:"numerisch",
-        frage:"Wahlumfrage: \\(n=1000\\), Anteil \\(p=0{,}4\\). \\(\\sigma\\) der Anzahl?",
-        loesung:15.49, toleranz:0.1,
-        tipp:"\\(\\sqrt{240}\\).",
-        loesungsweg:"Gefragt ist die Streuung der <b>Anzahl</b>, nicht des Anteils: $$\\sigma = \\sqrt{np(1-p)} = \\sqrt{1000 \\cdot 0{,}4 \\cdot 0{,}6} = \\sqrt{240} \\approx 15{,}49$$"
+        frage:"Für \\(X \\sim B(30;\\,0{,}04)\\) soll \\(P(X \\le 2)\\) bestimmt werden. Ein Schüler sagt, die Normalnäherung sei erlaubt, weil \\(n\\) groß genug sei. Berechnen Sie \\(\\sigma\\) und beurteilen Sie seine Begründung.",
+        loesung:1.07, toleranz:0.03,
+        tipp:"Die Faustregel für die Näherung stellt eine Bedingung an die Streuung, nicht allein an den Umfang.",
+        loesungsweg:"$$\\sigma = \\sqrt{n\\,p\\,(1-p)} = \\sqrt{30 \\cdot 0{,}04 \\cdot 0{,}96} = \\sqrt{1{,}152} \\approx 1{,}07$$ <b>Beurteilung:</b> Die Laplace-Bedingung verlangt \\(\\sigma \\gt 3\\); mit \\(\\sigma \\approx 1{,}07\\) ist sie deutlich verletzt. Die Begründung des Schülers greift also zu kurz: Nicht \\(n\\) allein entscheidet, sondern das Produkt \\(n\\,p\\,(1-p)\\). Bei \\(\\mu = n\\,p = 1{,}2\\) erwarteten Treffern kann die Verteilung nur wenige Werte annehmen und ist stark rechtsschief — links von \\(\\mu\\) liegen kaum drei Stufen, rechts viele. Eine symmetrische Glockenkurve kann das nicht abbilden; sie würde sogar nennenswerte Wahrscheinlichkeit auf negative Trefferzahlen legen. \\(P(X \\le 2)\\) ist hier exakt mit der Binomialverteilung zu berechnen."
       },
       { id:33, level:6, typ:"numerisch",
-        frage:"\\(X\\sim B(1000;0{,}4)\\). \\(P(380\\le X\\le 420)\\) mit Stetigkeitskorrektur \\(\\Phi(\\frac{20{,}5}{15{,}49})-\\Phi(\\frac{-20{,}5}{15{,}49})\\).",
-        loesung:0.8132, toleranz:0.02,
-        tipp:"\\(z\\approx\\pm1{,}32\\).",
-        loesungsweg:"Mit \\(\\mu = 400\\) und \\(\\sigma \\approx 15{,}49\\) und der Stetigkeitskorrektur: $$z = \\frac{20{,}5}{15{,}49} \\approx 1{,}32$$ Wegen der Symmetrie des Intervalls um \\(\\mu\\): $$P \\approx 2\\Phi(1{,}32) - 1 \\approx 2 \\cdot 0{,}9066 - 1 = 0{,}8132$$ Der exakte Binomialwert liegt bei rund \\(0{,}8143\\) — die Näherung ist also gut."
+        frage:"Eine Maschine produziert mit einem Ausschussanteil von \\(3\\,\\%\\); geprüft werden 10 000 Teile. Der Hersteller behauptet, mehr als 330 defekte Teile seien „praktisch ausgeschlossen“. Bestimmen Sie \\(P(X \\gt 330)\\) mit der Normalnäherung und beurteilen Sie die Behauptung.",
+        loesung:0.0393, toleranz:0.004,
+        tipp:"Erst \\(\\mu\\) und \\(\\sigma\\) bestimmen und die Zulässigkeit der Näherung prüfen, dann standardisieren; die Beurteilung folgt am Ende aus der Größe des Ergebnisses.",
+        loesungsweg:"$$\\mu = 10\\,000 \\cdot 0{,}03 = 300$$ $$\\sigma = \\sqrt{10\\,000 \\cdot 0{,}03 \\cdot 0{,}97} = \\sqrt{291} \\approx 17{,}06$$ Wegen \\(\\sigma \\gt 3\\) ist die Näherung zulässig. $$z = \\frac{330-300}{17{,}06} \\approx 1{,}759$$ $$P(X \\gt 330) \\approx 1 - \\Phi(1{,}759) \\approx 1 - 0{,}9607 = 0{,}0393$$ <b>Beurteilung:</b> In etwa \\(3{,}9\\,\\%\\) der Prüfungen treten mehr als 330 defekte Teile auf, also ungefähr in jeder 25. Lieferung. Das ist nicht „praktisch ausgeschlossen“, sondern ein Ereignis, das bei laufender Produktion regelmäßig eintritt. Die Behauptung ist damit zurückzuweisen. Erst jenseits von \\(\\mu + 3\\sigma\\), also ab etwa 352 Teilen, wäre die Sprechweise vertretbar."
       },
       { id:34, level:6, typ:"numerisch",
-        frage:"Mindeststichprobe \\(n\\) so, dass \\(\\sigma(X)=\\sqrt{n\\cdot 0{,}25}\\ge 5\\). Gib kleinstes \\(n\\).",
-        loesung:100, toleranz:1,
-        tipp:"\\(n\\ge 100\\).",
-        loesungsweg:"$$\\sqrt{n \\cdot 0{,}25} \\geq 5 \\;\\Rightarrow\\; n \\cdot 0{,}25 \\geq 25 \\;\\Rightarrow\\; n \\geq 100$$ Das kleinste zulässige \\(n\\) ist also \\(100\\)."
+        frage:"Zeigen Sie, dass die Dichtefunktion jeder Normalverteilung an den Stellen \\(\\mu \\pm \\sigma\\) denselben Bruchteil ihres Maximalwertes annimmt, und geben Sie diesen Bruchteil an.",
+        loesung:0.6065, toleranz:0.004,
+        tipp:"Setze beide Stellen in den Funktionsterm der Dichte ein und bilde den Quotienten; die Vorfaktoren sollten sich wegkürzen.",
+        loesungsweg:"Die Dichte ist $$\\varphi(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}}\\,e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$$ Der Exponent ist null genau für \\(x = \\mu\\), sonst negativ; dort liegt also das Maximum: $$\\varphi(\\mu) = \\frac{1}{\\sigma\\sqrt{2\\pi}}$$ An den Stellen \\(x = \\mu \\pm \\sigma\\) ist \\((x-\\mu)^2 = \\sigma^2\\), der Exponent also \\(-\\frac{\\sigma^2}{2\\sigma^2} = -\\frac12\\): $$\\varphi(\\mu \\pm \\sigma) = \\frac{1}{\\sigma\\sqrt{2\\pi}}\\,e^{-\\frac12}$$ Der Quotient ist damit $$\\frac{\\varphi(\\mu \\pm \\sigma)}{\\varphi(\\mu)} = e^{-\\frac12} \\approx 0{,}6065$$ Weder \\(\\mu\\) noch \\(\\sigma\\) kommen darin vor — der Bruchteil ist also für <b>jede</b> Normalverteilung derselbe, rund \\(60{,}7\\,\\%\\). Genau darauf beruht die Vorstellung einer einzigen Kurvenform, die nur verschoben und gestreckt wird."
       },
       { id:35, level:6, typ:"numerisch",
-        frage:"IQ normalverteilt mit \\(\\mu=100,\\sigma=15\\). Anteil der Personen mit IQ>130?",
-        loesung:0.0228, toleranz:0.005,
-        tipp:"\\(z=2\\).",
-        loesungsweg:"$$z = \\frac{130-100}{15} = 2$$ $$P(X > 130) \\approx 1 - \\Phi(2) = 0{,}0228$$ Rund \\(2{,}3\\,\\%\\) der Bevölkerung erreichen also einen IQ über \\(130\\)."
+        frage:"Bei \\(X \\sim N(500;\\sigma^2)\\) soll \\(P(490 \\le X \\le 510) = 0{,}90\\) gelten. Bestimmen Sie \\(\\sigma\\); es gilt \\(\\Phi(1{,}645) = 0{,}95\\).",
+        loesung:6.08, toleranz:0.07,
+        tipp:"Das Intervall liegt symmetrisch um den Mittelwert — überlege zuerst, wie viel Fläche dadurch auf jeden der beiden Ränder fällt.",
+        loesungsweg:"Das Intervall ist symmetrisch um \\(\\mu = 500\\). Mit \\(d = 10\\) gilt $$P(\\mu - d \\le X \\le \\mu + d) = 2\\Phi\\!\\left(\\frac{d}{\\sigma}\\right) - 1 = 0{,}90$$ $$\\Phi\\!\\left(\\frac{d}{\\sigma}\\right) = 0{,}95$$ Hier liegt die häufigste Falle: Nicht \\(0{,}90\\), sondern \\(0{,}95\\) ist der Tabellenwert, weil außerhalb je \\(5\\,\\%\\) auf die beiden Ränder fallen. Damit: $$\\frac{10}{\\sigma} = 1{,}645 \\;\\Longleftrightarrow\\; \\sigma = \\frac{10}{1{,}645} \\approx 6{,}08$$ Probe: \\(\\frac{10}{6{,}08} \\approx 1{,}645\\), und \\(2 \\cdot 0{,}95 - 1 = 0{,}90\\) — passt. Mit dem falschen Tabellenwert \\(z = 1{,}282\\) käme \\(\\sigma \\approx 7{,}80\\) heraus, also eine deutlich zu breite Verteilung."
       },
       { id:36, level:6, typ:"numerisch",
-        frage:"Füllmenge einer Flasche \\(\\sim N(500;4)\\) ml. Welcher Anteil unter 498 ml?",
-        loesung:0.1587, toleranz:0.01,
-        tipp:"\\(\\sigma=2\\), \\(z=-1\\).",
-        loesungsweg:"Aus \\(N(500;4)\\) folgt \\(\\sigma = \\sqrt{4} = 2\\): $$z = \\frac{498-500}{2} = -1$$ $$P(X < 498) \\approx \\Phi(-1) = 0{,}1587$$ Gut ein Sechstel der Flaschen ist also unterfüllt."
+        frage:"Die Körpergröße von Männern (in cm) wird mit \\(N(178;49)\\) modelliert. Bestimmen Sie den Anteil der Männer über 200 cm und beurteilen Sie, wie weit das Modell an den Rändern tragfähig ist.",
+        loesung:0.00084, toleranz:0.0003,
+        tipp:"Zuerst die Standardabweichung aus der zweiten Angabe gewinnen und standardisieren; die Beurteilung betrifft danach den Wertebereich, den das Modell zulässt.",
+        loesungsweg:"Aus \\(N(178;49)\\) folgt \\(\\sigma = \\sqrt{49} = 7\\). Damit: $$z = \\frac{200-178}{7} \\approx 3{,}143$$ $$P(X \\gt 200) \\approx 1 - \\Phi(3{,}143) \\approx 1 - 0{,}99916 = 0{,}00084$$ Das sind etwa \\(0{,}084\\,\\%\\), also rund einer von 1200 Männern. <b>Beurteilung:</b> Im Mittelbereich beschreibt das Modell reale Daten gut. An den Rändern nicht: Die Normalverteilung ist auf ganz \\(\\mathbb{R}\\) definiert und weist deshalb auch Größen unter 0 cm eine — verschwindend kleine, aber positive — Wahrscheinlichkeit zu, hier \\(\\Phi(-25{,}4)\\). Das ist sachlich unmöglich und zeigt, dass die Glockenkurve nur eine Annäherung ist. Für Aussagen über extreme Ränder taugt sie nicht, denn dort entscheidet gerade die Form der Kurve über das Ergebnis, und die ist durch Messdaten kaum abgesichert."
       }];
     </script>
     <script src="../spirale-engine.js"></script>
