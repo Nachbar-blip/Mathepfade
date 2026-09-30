@@ -211,3 +211,35 @@ Geändert wurden außerdem:
   der Plan sieht für Stufe 1–3 nur Entdopplung vor.
 - In `12-lk-geom-schnittwinkel` sind in Stufe 2 noch mehrere Aufgaben, die auf \(90°\) hinauslaufen;
   sie stehen dort bewusst als Einführung der Orthogonalitätsprüfung.
+
+---
+
+## Review-Nachtrag 2026-09-30
+
+Der Pruef-Agent hat Geometrie gA und eA gemeinsam geprueft. **Kein Rechenfehler** in den acht
+Trainern; alle Befunde betrafen Dubletten und Zuschnitt. Behoben wurde:
+
+| Nr. | Befund | Behebung |
+|---|---|---|
+| 1 | `abstaende` #27 (L5) und #35 (L6) waren dieselbe Aufgabe, beide mit Loesung 12 | #35 ersetzt: Scheinwerfer, zwei Pfosten, **Vergleich** zweier Punkt-Gerade-Abstaende (1,795 gegen 4,854) |
+| 2 | `lagebeziehungen` #26 und `lk-dgl` #26 waren identisch (gleiche Fehlersuche, gleicher Optionssatz) | `lk-dgl` #26 auf einen anderen Fehlertyp umgestellt: **Grenzfall des Parameters** — ausgeklammerter Faktor \(k\) macht alle Geraden identisch, \(k=0\) liefert gar keine Gerade |
+| 3 | `lagebeziehungen` #31 war dieselbe Aufgabe wie `12-ebenen` #36 (Satteldach, Firsthoehe 4) | ersetzt: drei Ebenen, dritte mit Parameter; **Fallunterscheidung** \(a \ne 2\) (genau ein Punkt) gegen \(a = 2\) (keiner) |
+| 4 | `abstaende` #31 uebernahm das Zeltdach-Modell aus `12-vektoren-grundlagen` #31 | ersetzt: Tunnelachse, Nachweis "Messpunkt liegt nicht auf der Achse" ueber das Kreuzprodukt, Abstand 24 m |
+| 5 | `schnittwinkel` #13/#14/#15/#17 waren viermal dieselbe arccos-Rechnung (Kollaps L2/L3) | #14 → **Innenwinkel im Dreieck** (ohne Betrag, weil stumpf moeglich), #17 → **Raum- gegen Flaechendiagonale im Quader**; #13 und #15 bleiben als die zwei zulaessigen Standardfaelle |
+| 6 | `schnittwinkel` #19/#20/#23 dreimal Gerade–Ebene ueber \(\sin\alpha\) | #23 ersetzt: Umkehraufgabe **ohne Quadrieren** — aus \(90°\) folgt Kollinearitaet mit \(\vec n\), gesucht \(b+c = 8\) |
+| 7 | `schnittwinkel` #22/#30/#35 dreimal "Parameter aus Winkelbedingung, quadrieren" | #35 ersetzt: **obere Schranke** \(90°\) der Winkel, Begruendung, dass sie Grenzwert und nicht Maximum ist |
+| 8 | `lk-dgl` #21 war reine Methodenwissens-MC auf einer AFB-II-Stufe | ersetzt: das Verfahren **anwenden**, gemeinsamer Punkt einer Schar, \(y = 1\) |
+| 9 | `lk-dgl` #29 war eine gewoehnliche Schnittwinkel-Rechnung (Ueberschneidung mit `schnittwinkel`) | ersetzt: **zwei Bedingungen** an den Scharparameter, eine davon fuer jedes \(a\) erfuellt; \(a = -5\) |
+| 10 | `lk-dgl` #7 und #18 beide "Skalarprodukt null" (Kollaps L2/L3) | #7 ersetzt: **Betrag** des Richtungsvektors, \(k = 1\) |
+| 11 | `lk-dgl` #13 und #17 beide "nach \(a\) sortieren, gemeinsame Gerade" | #17 ersetzt: **Spurpunkt** auf der \(z\)-Achse, \(a = 2\), Grenzfall \(a = 0\) benannt |
+| 12 | `lk-dgl` #19 (L4) und #28 (L5) beide "kein Schnittpunkt" (Kollaps L4/L5) | #28 ersetzt: Parameter in der **Ebene**, Punktprobe fuer jedes \(a\) erfuellt, Parallelitaet liefert \(a = 1{,}5\) |
+| 13 | "Fuer welchen Parameter liegt \(g\) in \(E\)" stand dreifach im Block | Akzente getrennt: `lagebeziehungen` #25 hat den Parameter in der **Geraden**, `lk-dgl` #31 in der **Ebenenschar** und verlangt die vollstaendige Fallunterscheidung |
+| 14 | Sattel-/Pultdach-Kontext fuenfmal im Block; `schnittwinkel` #36 nutzte die Gleichungen von `12-ebenen` #36 | `lagebeziehungen` #31 ohne Dach (drei Ebenen), `schnittwinkel` #31 → **Solarmodul**, #36 → **Flusstal** mit neuen Zahlen (73,7° statt 53,1°), `lk-dgl` #34 → **Drehachse einer Klappe**, `lk-dgl` #22 → **Hangflaeche** statt Dachebene |
+
+Zusaetzlich beim Nachlauf gefunden und behoben: `lagebeziehungen` #24 hatte im Tipp den
+Loesungswert stehen (`k=2`), und der neue Tipp zu #31 nannte `E_2`, was das Gate ebenfalls als
+Loesungswert las — beide Tipps nennen jetzt nur noch den Weg.
+
+Alle geaenderten Werte erneut mit Wolfram nachgerechnet. Gates danach: `level_check --strict`
+Exit 0 ohne Warnung, `lehrplan_check --strict` 0 Befunde, `katex_check` 0 Fehler,
+`pytest tests/test_trainer.py` 28 passed; PNG je geaenderter Aufgabe angesehen.

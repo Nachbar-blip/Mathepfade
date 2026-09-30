@@ -178,7 +178,7 @@
       { id:24, level:4, typ:"numerisch",
         frage:"Welchen Wert muss \\(k\\) in \\(E_2:2x+ky-2z=4\\) annehmen, damit \\(E_1:x+y-z=1\\) und \\(E_2\\) parallel sind?",
         loesung:2, toleranz:0.01,
-        tipp:"\\(\\vec{n}_2=2\\vec{n}_1\\Rightarrow k=2\\).",
+        tipp:"Parallele Ebenen haben kollineare Normalenvektoren; lies den Streckfaktor an einer Komponente ab, in der kein Parameter steht.",
         loesungsweg:"Parallelität verlangt kollineare Normalenvektoren. Aus \\(\\vec n_1 = (1;1;-1)\\) und \\(\\vec n_2 = (2;k;-2)\\) liest man den Faktor \\(2\\) an der ersten und dritten Komponente ab: $$\\vec n_2 = 2\\vec n_1 \\;\\Rightarrow\\; k = 2 \\cdot 1 = 2$$ Die rechten Seiten \\(1\\) und \\(4\\) passen dazu nicht (\\(2 \\cdot 1 \\ne 4\\)) — die Ebenen sind also <b>echt</b> parallel und nicht identisch."
       },
       // ===== LEVEL 5 — Vollständige Lagediskussion =====
@@ -221,10 +221,10 @@
       },
       // ===== LEVEL 6 — Abi-Format (eA) =====
       { id:31, level:6, typ:"numerisch",
-        frage:"Die beiden Flächen eines Satteldachs liegen in den Ebenen \\(E_1: 2x+3z=12\\) und \\(E_2: -2x+3z=12\\) (Angaben in Metern). Begründen Sie, dass sich die Dachflächen in einer Geraden — dem First — schneiden, und bestimmen Sie die Höhe des Firstes über dem Boden \\(z=0\\).",
-        loesung:4, toleranz:0.02,
-        tipp:"Eine Schnittgerade gibt es, wenn die Normalenvektoren nicht kollinear sind; die Höhe findest du, indem du beide Gleichungen geschickt verbindest.",
-        loesungsweg:"Die Normalenvektoren \\(\\begin{pmatrix}2\\\\0\\\\3\\end{pmatrix}\\) und \\(\\begin{pmatrix}-2\\\\0\\\\3\\end{pmatrix}\\) sind keine Vielfachen voneinander — die Ebenen sind also weder parallel noch identisch und schneiden sich in einer Geraden. Addition beider Gleichungen: $$6z = 24 \\;\\Rightarrow\\; z = 4$$ Subtraktion liefert \\(4x = 0\\), also \\(x = 0\\); \\(y\\) bleibt frei. Der First ist die Gerade \\(\\vec x = \\begin{pmatrix}0\\\\0\\\\4\\end{pmatrix} + t\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}\\) und verläuft in \\(4\\,\\mathrm{m}\\) Höhe."
+        frage:"Gegeben sind \\(E_1: x+y+z=3\\), \\(E_2: x-y+z=1\\) und \\(E_{3,a}: 2x+az=6\\). Untersuchen Sie in Abhängigkeit von \\(a\\), ob die drei Ebenen einen gemeinsamen Punkt besitzen, und geben Sie den Wert von \\(a\\) an, für den es keinen gibt.",
+        loesung:2, toleranz:0.01,
+        tipp:"Bestimmen Sie zuerst die Schnittgerade der beiden parameterfreien Ebenen in Parameterform und setzen Sie diese in die dritte Gleichung ein.",
+        loesungsweg:"Subtraktion von \\(E_2\\) von \\(E_1\\) liefert \\(2y = 2\\), also \\(y = 1\\), und damit \\(x + z = 2\\). Mit \\(x = t\\) lautet die Schnittgerade $$\\vec x = \\begin{pmatrix}0\\\\1\\\\2\\end{pmatrix} + t\\begin{pmatrix}1\\\\0\\\\-1\\end{pmatrix}$$ Einsetzen in \\(E_{3,a}\\): $$2t + a(2-t) = 6 \\;\\Longleftrightarrow\\; (2-a)\\,t = 6-2a$$ <b>Fall 1:</b> \\(a \\ne 2\\). Dann ist \\(t = \\frac{6-2a}{2-a}\\) eindeutig bestimmt — es gibt genau einen gemeinsamen Punkt. Für \\(a = 5\\) etwa ergibt sich \\(t = \\tfrac43\\), also \\(S\\left(\\tfrac43\\left|1\\right|\\tfrac23\\right)\\); Probe: \\(\\tfrac83 + \\tfrac{10}{3} = 6\\) ✓<br><b>Fall 2:</b> \\(a = 2\\). Dann steht links \\(0\\) und rechts \\(2\\) — eine unerfüllbare Gleichung. Die Schnittgerade verläuft echt parallel zu \\(E_{3,2}: 2x+2z=6\\), die drei Ebenen haben <b>keinen</b> gemeinsamen Punkt. Der gesuchte Wert ist \\(a = 2\\)."
       },
       { id:32, level:6, typ:"numerisch",
         frage:"Die Punkte \\(A(1|0|0)\\), \\(B(0|2|0)\\) und \\(C(0|0|4)\\) spannen eine Ebene \\(E\\) auf. Zeigen Sie, dass \\(g:\\vec{x}=\\begin{pmatrix}1\\\\2\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\2\\\\4\\end{pmatrix}\\) die Ebene schneidet, und bestimmen Sie den Parameter \\(t\\) des Schnittpunkts. (3 Dez.)",

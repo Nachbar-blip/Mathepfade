@@ -105,10 +105,10 @@
         loesungsweg:"$$\\vec u_1 \\cdot \\vec u_2 = 12+6+18 = 36$$ $$|\\vec u_1| = \\sqrt{4+9+36} = 7, \\qquad |\\vec u_2| = \\sqrt{36+4+9} = 7$$ $$\\cos\\varphi = \\frac{36}{49} \\;\\Rightarrow\\; \\varphi \\approx 42{,}7°$$ Wo die Geraden liegen, ist gleichgültig — auch windschiefe Geraden haben nach dieser Definition einen Winkel."
       },
       { id:14, level:3, typ:"numerisch",
-        frage:"\\(g_1\\) hat den Richtungsvektor \\(\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}\\), \\(g_2\\) den Richtungsvektor \\(\\begin{pmatrix}-1\\\\0\\\\1\\end{pmatrix}\\). Welchen Schnittwinkel schließen die Geraden ein?",
-        loesung:60, toleranz:0.5,
-        tipp:"Das Skalarprodukt ist hier negativ — beim Winkel <b>zweier Geraden</b> wird deshalb der Betrag genommen.",
-        loesungsweg:"$$\\vec u_1 \\cdot \\vec u_2 = -1+0+0 = -1, \\qquad |\\vec u_1| = |\\vec u_2| = \\sqrt2$$ Ohne Betrag käme \\(\\cos\\varphi = -\\tfrac12\\) und damit \\(120°\\) heraus. Eine Gerade hat aber keine Richtung im Sinne eines Pfeils: \\(-\\vec u_2\\) beschreibt dieselbe Gerade. Deshalb $$\\cos\\varphi = \\frac{|-1|}{2} = \\frac12 \\;\\Rightarrow\\; \\varphi = 60°$$ Der Schnittwinkel zweier Geraden ist stets der spitze, also höchstens \\(90°\\)."
+        frage:"Ein Dreieck hat die Ecken \\(A(1|0|0)\\), \\(B(3|2|0)\\) und \\(C(2|0|4)\\). Wie groß ist der Innenwinkel bei \\(A\\) in Grad? (1 Dez.)",
+        loesung:80.1, toleranz:0.5,
+        tipp:"Bilden Sie die beiden Vektoren, die von \\(A\\) ausgehen — beim Innenwinkel eines Dreiecks zeigen beide vom Scheitel weg.",
+        loesungsweg:"Beide Vektoren müssen von \\(A\\) ausgehen: $$\\vec{AB} = \\begin{pmatrix}2\\\\2\\\\0\\end{pmatrix}, \\qquad \\vec{AC} = \\begin{pmatrix}1\\\\0\\\\4\\end{pmatrix}$$ $$\\vec{AB} \\cdot \\vec{AC} = 2, \\qquad |\\vec{AB}| = 2\\sqrt2, \\quad |\\vec{AC}| = \\sqrt{17}$$ $$\\cos\\alpha = \\frac{2}{2\\sqrt2 \\cdot \\sqrt{17}} = \\frac{1}{\\sqrt{34}} \\;\\Rightarrow\\; \\alpha \\approx 80{,}1°$$ Hier wird <b>kein</b> Betrag genommen: Ein Innenwinkel im Dreieck darf stumpf sein, und das Vorzeichen des Skalarprodukts entscheidet darüber. Bei zwei <i>Geraden</i> wäre das anders."
       },
       { id:15, level:3, typ:"numerisch",
         frage:"\\(g_1\\) verläuft durch \\(A(1|1|1)\\) und \\(B(3|2|1)\\), \\(g_2\\) durch \\(C(0|0|0)\\) und \\(D(1|0|2)\\). Schnittwinkel in Grad? (1 Dez.)",
@@ -124,10 +124,10 @@
         loesungsweg:"Der Reihe nach: \\(\\tfrac{1}{\\sqrt2\\sqrt2} = \\tfrac12 \\Rightarrow 60°\\); \\(\\tfrac{1}{1\\cdot\\sqrt2} \\Rightarrow 45°\\); Skalarprodukt \\(0 \\Rightarrow 90°\\); kollineare Vektoren \\(\\Rightarrow 0°\\). Nur das erste Paar liefert $$\\cos\\varphi = \\frac{0+1+0}{\\sqrt2 \\cdot \\sqrt2} = \\frac12 \\;\\Rightarrow\\; \\varphi = 60°$$"
       },
       { id:17, level:3, typ:"numerisch",
-        frage:"\\(\\vec{u}_1=\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}\\), \\(\\vec{u}_2=\\begin{pmatrix}2\\\\2\\\\1\\end{pmatrix}\\). Schnittwinkel in Grad? (1 Dez.)",
-        loesung:27.3, toleranz:0.5,
-        tipp:"Beide Vektoren haben dieselbe Länge — das vereinfacht den Nenner.",
-        loesungsweg:"$$\\vec u_1 \\cdot \\vec u_2 = 2+4+2 = 8$$ $$|\\vec u_1| = \\sqrt{1+4+4} = 3, \\qquad |\\vec u_2| = \\sqrt{4+4+1} = 3$$ $$\\cos\\varphi = \\frac{8}{9} \\approx 0{,}889 \\;\\Rightarrow\\; \\varphi \\approx 27{,}3°$$ Ein Kosinus nahe \\(1\\) bedeutet einen kleinen Winkel: die beiden Richtungen sind fast gleich."
+        frage:"Ein Quader hat die Ecke \\(A(0|0|0)\\); die von \\(A\\) ausgehenden Kanten enden in \\((6|0|0)\\), \\((0|3|0)\\) und \\((0|0|2)\\). Welchen Winkel schließen die Raumdiagonale von \\(A\\) und die Flächendiagonale in der Grundfläche ein? (1 Dez.)",
+        loesung:16.6, toleranz:0.5,
+        tipp:"Stellen Sie zuerst die Endpunkte der beiden Diagonalen auf; die Flächendiagonale bleibt in der Ebene \\(z=0\\).",
+        loesungsweg:"Die Raumdiagonale führt zur gegenüberliegenden Ecke \\(G(6|3|2)\\), die Flächendiagonale der Grundfläche zu \\(C(6|3|0)\\). $$\\vec{AG} = \\begin{pmatrix}6\\\\3\\\\2\\end{pmatrix}, \\qquad \\vec{AC} = \\begin{pmatrix}6\\\\3\\\\0\\end{pmatrix}$$ $$\\vec{AG} \\cdot \\vec{AC} = 36+9+0 = 45, \\qquad |\\vec{AG}| = 7, \\quad |\\vec{AC}| = \\sqrt{45}$$ $$\\cos\\varphi = \\frac{45}{7\\sqrt{45}} = \\frac{\\sqrt{45}}{7} \\approx 0{,}9583 \\;\\Rightarrow\\; \\varphi \\approx 16{,}6°$$ Der Winkel ist klein, weil die Höhe \\(2\\) gegenüber der Grundfläche wenig ausmacht — die Raumdiagonale liegt fast flach."
       },
       { id:18, level:3, typ:"numerisch",
         frage:"Für welchen Wert von \\(a\\) stehen die Geraden mit den Richtungsvektoren \\(\\begin{pmatrix}2\\\\a\\\\1\\end{pmatrix}\\) und \\(\\begin{pmatrix}1\\\\-3\\\\4\\end{pmatrix}\\) senkrecht aufeinander?",
@@ -162,10 +162,10 @@
         loesungsweg:"Mit \\(\\vec n = \\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}\\) ist $$\\sin\\alpha = \\frac{|c|}{\\sqrt{2+c^2}} = \\sin 45° = \\frac{1}{\\sqrt2}$$ Quadrieren beseitigt die Wurzeln: $$\\frac{c^2}{2+c^2} = \\frac12 \\;\\Rightarrow\\; 2c^2 = 2+c^2 \\;\\Rightarrow\\; c^2 = 2$$ Also \\(c = \\sqrt2 \\approx 1{,}414\\) (oder \\(c = -\\sqrt2\\), was dieselbe Gerade in Gegenrichtung beschreibt). Gefragt ist der positive Wert."
       },
       { id:23, level:4, typ:"numerisch",
-        frage:"\\(g:\\vec{x}=\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\-2\\\\2\\end{pmatrix}\\) und \\(E: 2x+y+2z=4\\). Schnittwinkel in Grad? (1 Dez.)",
-        loesung:26.4, toleranz:0.5,
-        tipp:"Achte beim Skalarprodukt auf die negative Komponente — der Zähler wird anschließend als Betrag genommen.",
-        loesungsweg:"$$\\vec u \\cdot \\vec n = 1\\cdot2 + (-2)\\cdot1 + 2\\cdot2 = 2-2+4 = 4$$ $$|\\vec u| = \\sqrt{1+4+4} = 3, \\qquad |\\vec n| = \\sqrt{4+1+4} = 3$$ $$\\sin\\alpha = \\frac{4}{9} \\;\\Rightarrow\\; \\alpha \\approx 26{,}4°$$ Ein kleiner Winkel bedeutet: die Gerade verläuft flach über die Ebene hinweg und durchstößt sie schräg."
+        frage:"Eine Bohrung soll die Ebene \\(E: x+2y+2z=6\\) unter einem Winkel von \\(90°\\) durchstoßen. Ihr Richtungsvektor hat die Form \\(\\begin{pmatrix}2\\\\b\\\\c\\end{pmatrix}\\). Bestimme \\(b+c\\).",
+        loesung:8, toleranz:0.01,
+        tipp:"Überlege zuerst, was ein Winkel von \\(90°\\) zwischen Gerade und Ebene über die Lage des Richtungsvektors zur Normalen aussagt — rechnen musst du dann kaum noch.",
+        loesungsweg:"Aus \\(\\sin\\alpha = 1\\) folgt, dass \\(\\vec u\\) und \\(\\vec n\\) kollinear sind — die Gerade verläuft in Richtung der Normalen: $$\\begin{pmatrix}2\\\\b\\\\c\\end{pmatrix} = \\lambda \\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}$$ Die erste Komponente liefert \\(\\lambda = 2\\), damit \\(b = 4\\) und \\(c = 4\\), also $$b+c = 8$$ Wer stattdessen die Sinusformel ansetzt und quadriert, kommt auf dieselbe Lösung, braucht aber deutlich länger."
       },
       { id:24, level:4, typ:"mc",
         frage:"Eine Gerade schließt mit einer Ebene den Winkel \\(0°\\) ein. Welche Folgerung ist daraus zwingend?",
@@ -214,10 +214,10 @@
       },
       // ===== LEVEL 6 — Abi-Format (eA) =====
       { id:31, level:6, typ:"numerisch",
-        frage:"Ein Pultdach liegt in der Ebene \\(E: 2x+11z=66\\), der Boden in \\(z=0\\) (Angaben in Metern). Bestimmen Sie den Neigungswinkel des Daches in Grad und beurteilen Sie, ob er über \\(15°\\) liegt. (1 Dez.)",
+        frage:"Ein Solarmodul liegt in der Ebene \\(E: 2x+11z=66\\), der Boden in \\(z=0\\) (Angaben in Metern). Bestimmen Sie den Anstellwinkel des Moduls in Grad und beurteilen Sie, ob er über \\(15°\\) liegt. (1 Dez.)",
         loesung:10.3, toleranz:0.3,
-        tipp:"Der Neigungswinkel ist der Schnittwinkel der Dachebene mit der Bodenebene; beide Normalenvektoren lassen sich ablesen.",
-        loesungsweg:"$$\\vec n_1 = \\begin{pmatrix}2\\\\0\\\\11\\end{pmatrix}, \\qquad \\vec n_2 = \\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}$$ $$\\cos\\varphi = \\frac{11}{\\sqrt{4+121}} = \\frac{11}{\\sqrt{125}} \\approx 0{,}9839 \\;\\Rightarrow\\; \\varphi \\approx 10{,}3°$$ Der Wert liegt deutlich <b>unter</b> \\(15°\\) — ein sehr flaches Dach. Anschaulich bestätigt das der Term: auf \\(11\\) Meter waagerecht kommen nur \\(2\\) Meter Höhenunterschied."
+        tipp:"Der Anstellwinkel ist der Schnittwinkel der Modulebene mit der Bodenebene; beide Normalenvektoren lassen sich ablesen.",
+        loesungsweg:"$$\\vec n_1 = \\begin{pmatrix}2\\\\0\\\\11\\end{pmatrix}, \\qquad \\vec n_2 = \\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}$$ $$\\cos\\varphi = \\frac{11}{\\sqrt{4+121}} = \\frac{11}{\\sqrt{125}} \\approx 0{,}9839 \\;\\Rightarrow\\; \\varphi \\approx 10{,}3°$$ Der Wert liegt deutlich <b>unter</b> \\(15°\\) — das Modul ist sehr flach aufgestellt und damit für den Winterbetrieb ungünstig. Anschaulich bestätigt das der Term: auf \\(11\\) Meter waagerecht kommen nur \\(2\\) Meter Höhenunterschied."
       },
       { id:32, level:6, typ:"numerisch",
         frage:"Eine Pyramide hat die quadratische Grundfläche \\(A(0|0|0)\\), \\(B(4|0|0)\\), \\(C(4|4|0)\\), \\(D(0|4|0)\\) und die Spitze \\(S(2|2|6)\\). Bestimmen Sie den Winkel in Grad, unter dem die Seitenfläche \\(ABS\\) gegen die Grundfläche geneigt ist. (1 Dez.)",
@@ -239,16 +239,16 @@
         loesungsweg:"Es gilt stets \\(\\alpha + \\beta = 90°\\), wobei \\(\\alpha\\) den Winkel zur Ebene und \\(\\beta\\) den zur Normalen bezeichnet. Größer ist deshalb mal der eine, mal der andere: Bei \\(\\alpha = 20°\\) ist \\(\\beta = 70°\\) größer, bei \\(\\alpha = 70°\\) ist es umgekehrt, und bei \\(\\alpha = \\beta = 45°\\) sind beide gleich. Die Behauptung gilt also nicht allgemein und ist damit falsch."
       },
       { id:35, level:6, typ:"numerisch",
-        frage:"Für welchen positiven Wert von \\(k\\) schließt die Gerade mit dem Richtungsvektor \\(\\begin{pmatrix}k\\\\1\\\\1\\end{pmatrix}\\) mit der Ebene \\(E: x+y-z=4\\) einen Winkel von \\(30°\\) ein? (3 Dez.)",
-        loesung:2.449, toleranz:0.02,
-        tipp:"Beim Skalarprodukt heben sich zwei Summanden auf; danach bleibt eine Gleichung, die nach dem Quadrieren nur noch \\(k^2\\) enthält.",
-        loesungsweg:"Mit \\(\\vec n = \\begin{pmatrix}1\\\\1\\\\-1\\end{pmatrix}\\) ist \\(\\vec u \\cdot \\vec n = k+1-1 = k\\). $$\\sin 30° = \\frac{|k|}{\\sqrt{k^2+2} \\cdot \\sqrt3} = \\frac12$$ Quadrieren: $$\\frac{k^2}{3(k^2+2)} = \\frac14 \\;\\Rightarrow\\; 4k^2 = 3k^2 + 6 \\;\\Rightarrow\\; k^2 = 6$$ Also \\(k = \\sqrt6 \\approx 2{,}449\\) (der negative Wert \\(-\\sqrt6\\) liefert denselben Winkel, weil nur \\(|k|\\) eingeht). Probe: \\(\\sin\\alpha = \\tfrac{2{,}449}{\\sqrt8 \\cdot \\sqrt3} = 0{,}5\\) ✓"
+        frage:"Untersuchen Sie, welche Winkel eine Gerade mit dem Richtungsvektor \\(\\begin{pmatrix}1\\\\1\\\\k\\end{pmatrix}\\) mit der Ebene \\(z=0\\) einschließen kann. Geben Sie die obere Schranke dieser Winkel in Grad an und begründen Sie, dass sie von keiner solchen Geraden erreicht wird.",
+        loesung:90, toleranz:0.5,
+        tipp:"Stellen Sie den Sinus als Term in \\(k\\) auf und überlegen Sie, welchen Werten dieser Term für sehr große \\(|k|\\) beliebig nahe kommt.",
+        loesungsweg:"Mit \\(\\vec n = \\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}\\) gilt $$\\sin\\alpha(k) = \\frac{|k|}{\\sqrt{2+k^2}}$$ Der Zähler ist stets kleiner als der Nenner, denn \\(k^2 \\lt 2+k^2\\). Also ist \\(\\sin\\alpha \\lt 1\\) und damit \\(\\alpha \\lt 90°\\) für <b>jedes</b> \\(k\\) — der Wert \\(90°\\) wird nie angenommen. Für wachsendes \\(|k|\\) nähert sich der Bruch jedoch beliebig der \\(1\\): $$k = 10:\\ \\sin\\alpha \\approx 0{,}990 \\ (\\alpha \\approx 82{,}0°), \\qquad k = 100:\\ \\alpha \\approx 89{,}2°$$ Die obere Schranke ist somit \\(90°\\); sie ist Grenzwert, nicht Maximum. Anschaulich: Je größer \\(|k|\\), desto steiler die Gerade — senkrecht steht sie aber erst, wenn die beiden ersten Komponenten verschwinden, und das kann in dieser Schar nicht eintreten. Der kleinste Winkel ist übrigens \\(0°\\) bei \\(k = 0\\)."
       },
       { id:36, level:6, typ:"numerisch",
-        frage:"Abi eA: Die beiden Flächen eines Satteldachs liegen in \\(E_1: x+2z=8\\) und \\(E_2: -x+2z=8\\). Bestimmen Sie den Schnittwinkel der beiden Ebenen in Grad und erklären Sie, warum der im Dachinneren sichtbare Firstwinkel ein anderer ist. (1 Dez.)",
-        loesung:53.1, toleranz:0.5,
-        tipp:"Rechne den Schnittwinkel wie gewohnt mit dem Betrag im Zähler; denke anschließend über die beiden Winkel nach, die zwei sich schneidende Ebenen bilden.",
-        loesungsweg:"$$\\vec n_1 = \\begin{pmatrix}1\\\\0\\\\2\\end{pmatrix}, \\quad \\vec n_2 = \\begin{pmatrix}-1\\\\0\\\\2\\end{pmatrix}, \\qquad \\vec n_1 \\cdot \\vec n_2 = -1+0+4 = 3$$ $$|\\vec n_1| = |\\vec n_2| = \\sqrt5 \\;\\Rightarrow\\; \\cos\\varphi = \\frac35 \\;\\Rightarrow\\; \\varphi \\approx 53{,}1°$$ Zwei sich schneidende Ebenen bilden vier Winkel, paarweise gleich und je zwei ergänzen sich zu \\(180°\\). Als <b>Schnittwinkel</b> ist stets der spitze vereinbart, hier \\(53{,}1°\\). Der im Dachinneren sichtbare Winkel zwischen den beiden Dachflächen ist der stumpfe Nebenwinkel \\(180° - 53{,}1° = 126{,}9°\\)."
+        frage:"Abi eA: Ein Flusstal wird von zwei Hängen begrenzt, die in den Ebenen \\(E_1: 3x+4z=24\\) und \\(E_2: -3x+4z=24\\) liegen (Angaben in Metern). Bestimmen Sie den Schnittwinkel der beiden Ebenen in Grad und erklären Sie, warum der im Tal gemessene Öffnungswinkel ein anderer ist. (1 Dez.)",
+        loesung:73.7, toleranz:0.5,
+        tipp:"Rechnen Sie den Schnittwinkel wie gewohnt mit dem Betrag im Zähler und überlegen Sie danach, wie viele Winkel zwei sich schneidende Ebenen überhaupt bilden.",
+        loesungsweg:"$$\\vec n_1 = \\begin{pmatrix}3\\\\0\\\\4\\end{pmatrix}, \\quad \\vec n_2 = \\begin{pmatrix}-3\\\\0\\\\4\\end{pmatrix}, \\qquad \\vec n_1 \\cdot \\vec n_2 = -9+0+16 = 7$$ $$|\\vec n_1| = |\\vec n_2| = 5 \\;\\Rightarrow\\; \\cos\\varphi = \\frac{7}{25} = 0{,}28 \\;\\Rightarrow\\; \\varphi \\approx 73{,}7°$$ Zwei sich schneidende Ebenen bilden vier Winkel; je zwei gegenüberliegende sind gleich groß, benachbarte ergänzen sich zu \\(180°\\). Als <b>Schnittwinkel</b> ist stets der spitze vereinbart, hier \\(73{,}7°\\). Wer im Tal steht, misst den Winkel zwischen den beiden Hängen oberhalb der Talsohle, also den stumpfen Nebenwinkel \\(180° - 73{,}7° = 106{,}3°\\)."
       }];
     </script>
     <script src="../spirale-engine.js"></script>

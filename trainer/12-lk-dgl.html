@@ -59,10 +59,10 @@
       },
       // ===== LEVEL 2 — Erste Bedingungen an den Parameter =====
       { id:7, level:2, typ:"numerisch",
-        frage:"Für welchen Wert von \\(k\\) steht der Richtungsvektor von \\(g_k:\\vec{x}=\\begin{pmatrix}2\\\\1\\\\3\\end{pmatrix}+t\\begin{pmatrix}k\\\\1\\\\2\\end{pmatrix}\\) senkrecht auf \\(\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}\\)?",
-        loesung:-8, toleranz:0.01,
-        tipp:"Senkrechte Vektoren erkennt man am Skalarprodukt; stelle damit eine Gleichung für \\(k\\) auf.",
-        loesungsweg:"$$\\begin{pmatrix}k\\\\1\\\\2\\end{pmatrix} \\cdot \\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix} = k + 2 + 6 = 0 \\;\\Rightarrow\\; k = -8$$ Probe: \\(-8+2+6 = 0\\) ✓ Nur die eine Gerade \\(g_{-8}\\) der Schar erfüllt die Bedingung; der Aufpunkt spielt dabei keine Rolle."
+        frage:"Für welchen positiven Wert von \\(k\\) hat der Richtungsvektor \\(\\begin{pmatrix}k\\\\2\\\\2\\end{pmatrix}\\) der Schar \\(g_k\\) die Länge \\(3\\)?",
+        loesung:1, toleranz:0.01,
+        tipp:"Setze die Betragsformel an und löse die entstehende Gleichung nach \\(k^2\\) auf.",
+        loesungsweg:"$$\\left|\\begin{pmatrix}k\\\\2\\\\2\\end{pmatrix}\\right| = \\sqrt{k^2+4+4} = 3$$ Quadrieren: \\(k^2 + 8 = 9\\), also \\(k^2 = 1\\) und damit \\(k = 1\\) oder \\(k = -1\\). Gefragt ist der positive Wert \\(k = 1\\). Beide Geraden \\(g_1\\) und \\(g_{-1}\\) haben denselben Betrag, aber verschiedene Richtungen — die Länge des Richtungsvektors legt eine Gerade nicht fest."
       },
       { id:8, level:2, typ:"numerisch",
         frage:"Für welchen Wert von \\(a\\) ist \\(E_a: 2x-y+az=6\\) parallel zur Ebene \\(F: 4x-2y+6z=1\\)?",
@@ -122,10 +122,10 @@
         loesungsweg:"Der Normalenvektor von \\(E\\) ist \\(\\vec n = \\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}\\). Kollinearität verlangt $$\\begin{pmatrix}1\\\\0\\\\k\\end{pmatrix} = \\lambda \\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}$$ Die erste Komponente liefert \\(\\lambda = 1\\), die dritte damit \\(k = 1\\). Nur \\(g_1\\) steht senkrecht auf \\(E\\); alle anderen Geraden der Schar treffen die Ebene schräg oder verlaufen parallel dazu."
       },
       { id:17, level:3, typ:"numerisch",
-        frage:"Die Ebenen der Schar \\(E_a: ax+y+(1-a)z=1\\) enthalten für jedes \\(a\\) dieselbe Gerade. Welche \\(z\\)-Koordinate hat deren Punkt mit \\(x=1\\)?",
-        loesung:1, toleranz:0.01,
-        tipp:"Sortiere die Gleichung nach Termen mit und ohne \\(a\\); beide Anteile müssen für sich passen.",
-        loesungsweg:"Umsortieren: $$a(x-z) + (y+z) = 1$$ Damit das für jedes \\(a\\) gilt: $$x - z = 0 \\qquad\\text{und}\\qquad y + z = 1$$ Mit \\(x = t\\) lautet die gemeinsame Gerade \\((t\\,|\\,1-t\\,|\\,t)\\). Für \\(x = 1\\) ist \\(t = 1\\) und damit \\(z = 1\\); der Punkt ist \\((1|0|1)\\). Probe in \\(E_a\\): \\(a\\cdot1 + 0 + (1-a)\\cdot1 = 1\\) ✓ für jedes \\(a\\)."
+        frage:"Die Ebene \\(E_a: 2x+y+az=6\\) schneidet die \\(z\\)-Achse in einem Punkt \\(S_z\\). Für welchen Wert von \\(a\\) hat \\(S_z\\) die \\(z\\)-Koordinate \\(3\\)?",
+        loesung:2, toleranz:0.01,
+        tipp:"Auf der \\(z\\)-Achse sind zwei Koordinaten null; setze sie ein und drücke die \\(z\\)-Koordinate durch \\(a\\) aus.",
+        loesungsweg:"Auf der \\(z\\)-Achse gilt \\(x = 0\\) und \\(y = 0\\). Einsetzen: $$a z = 6 \\;\\Rightarrow\\; z = \\frac{6}{a} \\quad (a \\ne 0)$$ Die Forderung \\(z = 3\\) ergibt \\(\\frac{6}{a} = 3\\), also $$a = 2$$ Der Spurpunkt ist \\(S_z(0|0|3)\\). Der Grenzfall \\(a = 0\\) ist auszuschließen: \\(E_0: 2x+y=6\\) verläuft parallel zur \\(z\\)-Achse und trifft sie überhaupt nicht."
       },
       { id:18, level:3, typ:"numerisch",
         frage:"Für welchen Wert von \\(k\\) steht \\(g_k:\\vec{x}=\\begin{pmatrix}2\\\\0\\\\1\\end{pmatrix}+t\\begin{pmatrix}k\\\\1\\\\2\\end{pmatrix}\\) senkrecht auf \\(h:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+s\\begin{pmatrix}3\\\\-1\\\\1\\end{pmatrix}\\)? (3 Dez.)",
@@ -146,15 +146,14 @@
         tipp:"Ein Punkt liegt auf der Schnittgeraden, wenn er beide Ebenengleichungen erfüllt — eine davon enthält den Parameter gar nicht.",
         loesungsweg:"Zuerst die parameterfreie Ebene prüfen: $$2\\cdot2 - 1 + 3 = 6 \\ \\checkmark$$ \\(P\\) liegt also in \\(F\\). Nun \\(E_a\\): $$2 + a\\cdot1 - 3 = 1 \\;\\Rightarrow\\; a = 2$$ Nur \\(E_2\\) geht durch \\(P\\); dann liegt \\(P\\) auf beiden Ebenen und damit auf ihrer Schnittgeraden."
       },
-      { id:21, level:4, typ:"mc",
-        frage:"Von einer Geradenschar ist bekannt, dass alle Geraden durch einen gemeinsamen Punkt verlaufen. Wie findet man diesen Punkt?",
-        optionen:["Man sucht ein \\(t\\), für das \\(k\\) herausfällt","Man setzt den Parameter \\(k\\) gleich null","Man bildet den Mittelwert zweier Geraden","Man schneidet die Schar mit der \\(z\\)-Achse"],
-        korrekt:0,
-        tipp:"Der gesuchte Punkt muss zu jeder einzelnen Geraden gehören — seine Koordinaten dürfen also vom Scharparameter nicht abhängen.",
-        loesungsweg:"Ein gemeinsamer Punkt gehört zu jeder Geraden der Schar, seine Koordinaten dürfen deshalb kein \\(k\\) enthalten. Man schreibt den allgemeinen Punkt hin, sortiert nach \\(k\\) und sucht den Wert von \\(t\\), für den der \\(k\\)-Anteil verschwindet. Ein willkürlich gewähltes \\(k\\) liefert dagegen nur einen Punkt <b>einer</b> Geraden, und einen Mittelwert von Geraden gibt es nicht."
+      { id:21, level:4, typ:"numerisch",
+        frage:"Alle Geraden der Schar \\(g_k:\\vec{x}=\\begin{pmatrix}2\\\\1+k\\\\1\\end{pmatrix}+t\\begin{pmatrix}1\\\\k\\\\0\\end{pmatrix}\\) verlaufen durch einen gemeinsamen Punkt. Welche \\(y\\)-Koordinate hat er?",
+        loesung:1, toleranz:0.01,
+        tipp:"Schreibe den allgemeinen Punkt der Schargeraden auf und sortiere seine Koordinaten nach \\(k\\); für den gesuchten Punkt darf kein \\(k\\) übrig bleiben.",
+        loesungsweg:"Allgemeiner Punkt: $$X = \\begin{pmatrix}2+t\\\\1+k+kt\\\\1\\end{pmatrix} = \\begin{pmatrix}2+t\\\\1+k(1+t)\\\\1\\end{pmatrix}$$ Der Parameter \\(k\\) steht nur im Faktor \\((1+t)\\). Er fällt genau dann heraus, wenn \\(1+t = 0\\), also \\(t = -1\\) ist. Einsetzen liefert den Punkt $$P(1|1|1)$$ unabhängig von \\(k\\). Die gesuchte \\(y\\)-Koordinate ist \\(1\\). Probe für \\(k = 5\\): \\(\\begin{pmatrix}2\\\\6\\\\1\\end{pmatrix} - \\begin{pmatrix}1\\\\5\\\\0\\end{pmatrix} = \\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}\\) ✓"
       },
       { id:22, level:4, typ:"numerisch",
-        frage:"Ein Mast soll im Punkt \\(F(1|1|5)\\) senkrecht auf der Dachebene \\(E: 2x+2y+z=9\\) stehen. Seine Trägergerade gehört zur Schar \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\1\\\\5\\end{pmatrix}+t\\begin{pmatrix}k\\\\k\\\\1\\end{pmatrix}\\). Welchen Wert hat \\(k\\)?",
+        frage:"Ein Mast soll im Punkt \\(F(1|1|5)\\) senkrecht auf der Hangfläche \\(E: 2x+2y+z=9\\) stehen. Seine Trägergerade gehört zur Schar \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\1\\\\5\\end{pmatrix}+t\\begin{pmatrix}k\\\\k\\\\1\\end{pmatrix}\\). Welchen Wert hat \\(k\\)?",
         loesung:2, toleranz:0.01,
         tipp:"Übersetze „senkrecht auf der Ebene“ in eine Beziehung zwischen Richtungs- und Normalenvektor.",
         loesungsweg:"Der Fußpunkt liegt tatsächlich auf dem Dach: \\(2+2+5 = 9\\) ✓ Senkrecht auf der Ebene steht die Gerade, wenn ihre Richtung zum Normalenvektor kollinear ist: $$\\begin{pmatrix}k\\\\k\\\\1\\end{pmatrix} = \\lambda\\begin{pmatrix}2\\\\2\\\\1\\end{pmatrix}$$ Die dritte Komponente liefert \\(\\lambda = 1\\), die ersten beiden damit \\(k = 2\\). Der Mast verläuft entlang \\(\\begin{pmatrix}2\\\\2\\\\1\\end{pmatrix}\\)."
@@ -180,11 +179,11 @@
         loesungsweg:"Erste Bedingung — die Richtung muss parallel zur Ebene liegen: $$\\begin{pmatrix}2\\\\-1\\\\1\\end{pmatrix} \\cdot \\begin{pmatrix}1\\\\a\\\\2\\end{pmatrix} = 2 - a + 2 = 0 \\;\\Rightarrow\\; a = 4$$ Zweite Bedingung — der Aufpunkt \\(A(1|1|0)\\) muss in \\(E\\) liegen: $$1 + 4\\cdot1 + 2\\cdot0 = c \\;\\Rightarrow\\; c = 5$$ Nur \\(E: x+4y+2z=5\\) enthält die ganze Gerade. Wäre \\(c\\) anders, verliefe \\(g\\) echt parallel zur Ebene."
       },
       { id:26, level:5, typ:"mc",
-        frage:"Jemand untersucht \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}+t\\begin{pmatrix}1\\\\k\\\\0\\end{pmatrix}\\) und \\(E: x-y+z=2\\) und schreibt: „Für \\(k=1\\) ist \\(\\vec u \\cdot \\vec n = 1-1+0 = 0\\), also ist \\(g_1\\) echt parallel zu \\(E\\).“ Welche Lage hat \\(g_1\\) wirklich?",
-        optionen:["\\(g_1\\) liegt vollständig in \\(E\\)","\\(g_1\\) ist echt parallel zu \\(E\\)","\\(g_1\\) schneidet \\(E\\) in einem Punkt","\\(g_1\\) steht senkrecht auf \\(E\\)"],
+        frage:"Jemand behauptet über die Schar \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}+t\\begin{pmatrix}k\\\\2k\\\\2k\\end{pmatrix}\\): „Sie besteht aus unendlich vielen verschiedenen, zueinander parallelen Geraden.“ Welcher Einwand trifft zu?",
+        optionen:["Für \\(k \\ne 0\\) beschreiben alle dieselbe Gerade","Die Richtungsvektoren sind nicht zueinander kollinear","Der Aufpunkt hängt ebenfalls von \\(k\\) ab","Für \\(k \\gt 0\\) ist die Gerade nicht definiert"],
         korrekt:0,
-        tipp:"Das Skalarprodukt entscheidet nur, ob es einen Schnittpunkt geben kann; für die endgültige Lage fehlt eine zweite Prüfung.",
-        loesungsweg:"Die Rechnung selbst stimmt: Für \\(k=1\\) ist \\(\\vec u \\cdot \\vec n = 0\\), ein Schnittpunkt also ausgeschlossen. Offen bleibt aber, ob die Gerade daneben herläuft oder in der Ebene liegt — das entscheidet der Aufpunkt \\(A(1|0|1)\\): $$1 - 0 + 1 = 2 \\ \\checkmark$$ \\(A\\) erfüllt die Ebenengleichung, also liegt \\(g_1\\) vollständig in \\(E\\). Der Schluss auf „echt parallel“ war voreilig; er hätte an dieser Stelle eine <b>Ungleichung</b> gebraucht."
+        tipp:"Klammere den Parameter aus dem Richtungsvektor aus und überlege, was ein Streckfaktor an einer Geraden überhaupt ändert — und was bei \\(k=0\\) geschieht.",
+        loesungsweg:"Ausklammern zeigt den Kern: $$\\begin{pmatrix}k\\\\2k\\\\2k\\end{pmatrix} = k\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}$$ Für jedes \\(k \\ne 0\\) ist das ein Vielfaches ein und desselben Vektors. Ein Streckfaktor ändert an einer Geraden aber nichts — er wird durch den Geradenparameter \\(t\\) einfach mitskaliert. Da auch der Aufpunkt fest ist, beschreiben alle \\(g_k\\) mit \\(k \\ne 0\\) <b>dieselbe</b> Gerade; von „unendlich vielen verschiedenen“ kann keine Rede sein. Der Grenzfall \\(k = 0\\) ist noch schlimmer: Dort ist der Richtungsvektor der Nullvektor, und \\(g_0\\) ist gar keine Gerade, sondern nur der Punkt \\((1|2|3)\\). Eine Schar wird also erst dann interessant, wenn der Parameter die Richtung wirklich verändert und nicht bloß streckt."
       },
       { id:27, level:5, typ:"numerisch",
         frage:"Für welchen Wert von \\(k\\) schneidet \\(g_k:\\vec{x}=\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\k\\\\1\\end{pmatrix}\\) die Ebene \\(E: x+y+z=3\\) in einem Punkt der \\(xz\\)-Ebene? (3 Dez.)",
@@ -193,16 +192,16 @@
         loesungsweg:"Der allgemeine Geradenpunkt lautet \\((t\\,|\\,1+kt\\,|\\,t)\\). Erste Bedingung — er liegt in der \\(xz\\)-Ebene, also \\(y = 0\\): $$1 + kt = 0$$ Zweite Bedingung — er liegt in \\(E\\): $$t + (1+kt) + t = 3$$ Wegen der ersten Bedingung ist die Klammer null, es bleibt \\(2t = 3\\), also \\(t = 1{,}5\\). Eingesetzt: $$1 + 1{,}5k = 0 \\;\\Rightarrow\\; k = -\\frac23 \\approx -0{,}667$$ Der gesuchte Punkt ist \\((1{,}5|0|1{,}5)\\)."
       },
       { id:28, level:5, typ:"numerisch",
-        frage:"Für welchen Wert von \\(a\\) hat die Gerade \\(g:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix}\\) mit \\(E_a: ax+y-z=1\\) keinen Schnittpunkt?",
-        loesung:-1, toleranz:0.01,
-        tipp:"Schließe zuerst den Schnittpunkt über die Richtung aus und prüfe anschließend, ob die Gerade nicht doch ganz in der Ebene liegt.",
-        loesungsweg:"Kein Schnittpunkt verlangt zunächst $$\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix} \\cdot \\begin{pmatrix}a\\\\1\\\\-1\\end{pmatrix} = a + 2 - 1 = 0 \\;\\Rightarrow\\; a = -1$$ Zweiter Schritt: Der Aufpunkt ist der Ursprung, und \\(-1\\cdot0 + 0 - 0 = 0 \\ne 1\\) — er liegt nicht in \\(E_{-1}\\). Die Gerade verläuft also echt parallel und trifft die Ebene wirklich nirgends. Für jedes andere \\(a\\) gibt es genau einen Schnittpunkt."
+        frage:"Die Ebene \\(E_a: ax+(a-1)y+z=1\\) soll den Punkt \\(P(0|0|1)\\) enthalten und zugleich parallel zu \\(g:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\1\\\\-2\\end{pmatrix}\\) verlaufen. Bestimme \\(a\\). (1 Dez.)",
+        loesung:1.5, toleranz:0.02,
+        tipp:"Prüfe beide Bedingungen einzeln — eine von ihnen stellt sich als unabhängig vom Parameter heraus.",
+        loesungsweg:"Erste Bedingung, Punktprobe: $$a\\cdot 0 + (a-1)\\cdot 0 + 1 = 1 \\ \\checkmark$$ Sie ist für <b>jedes</b> \\(a\\) erfüllt und schränkt den Parameter gar nicht ein. Zweite Bedingung, Parallelität zur Geraden: $$\\begin{pmatrix}a\\\\a-1\\\\1\\end{pmatrix} \\cdot \\begin{pmatrix}1\\\\1\\\\-2\\end{pmatrix} = a + a - 1 - 2 = 2a-3 = 0 \\;\\Rightarrow\\; a = 1{,}5$$ Kontrolle, dass \\(g\\) nicht in \\(E_{1{,}5}\\) liegt: Der Ursprung als Aufpunkt von \\(g\\) erfüllt \\(0 \\ne 1\\) — die Gerade verläuft also echt parallel und nicht in der Ebene."
       },
       { id:29, level:5, typ:"numerisch",
-        frage:"Unter welchem Winkel (in Grad) schneiden sich die Ebene \\(E_2\\) der Schar \\(E_a: ax+y+2z=1\\) und die Ebene \\(F: x-y=0\\)? (2 Dez.)",
-        loesung:76.37, toleranz:0.3,
-        tipp:"Setze zuerst den Scharparameter ein und lies dann beide Normalenvektoren ab.",
-        loesungsweg:"Für \\(a = 2\\) lautet die Ebene \\(E_2: 2x+y+2z=1\\) mit \\(\\vec n_1 = \\begin{pmatrix}2\\\\1\\\\2\\end{pmatrix}\\); für \\(F\\) ist \\(\\vec n_2 = \\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix}\\). $$\\vec n_1 \\cdot \\vec n_2 = 2 - 1 + 0 = 1, \\qquad |\\vec n_1| = 3, \\quad |\\vec n_2| = \\sqrt2$$ $$\\cos\\varphi = \\frac{1}{3\\sqrt2} \\approx 0{,}2357 \\;\\Rightarrow\\; \\varphi \\approx 76{,}37°$$"
+        frage:"Die Ebene \\(E_a: ax+y+2z=a+3\\) soll den Punkt \\(P(1|1|1)\\) enthalten und zugleich orthogonal zu \\(F: x-y+3z=0\\) sein. Zeigen Sie, dass genau ein Wert von \\(a\\) beides leistet, und geben Sie ihn an.",
+        loesung:-5, toleranz:0.01,
+        tipp:"Setze zuerst den Punkt ein und schau genau hin, was dabei herauskommt, bevor du die zweite Bedingung aufstellst.",
+        loesungsweg:"Erste Bedingung, Punktprobe: $$a\\cdot1 + 1 + 2\\cdot1 = a+3$$ Links und rechts steht derselbe Term — die Gleichung ist für jedes \\(a\\) richtig. Jede Ebene der Schar geht also durch \\(P\\); die erste Bedingung allein legt nichts fest. Zweite Bedingung, Orthogonalität der Normalenvektoren: $$\\begin{pmatrix}a\\\\1\\\\2\\end{pmatrix} \\cdot \\begin{pmatrix}1\\\\-1\\\\3\\end{pmatrix} = a - 1 + 6 = a+5 = 0 \\;\\Rightarrow\\; a = -5$$ Diese Gleichung ist linear in \\(a\\) und hat daher genau eine Lösung — damit leistet genau ein \\(a\\) beides, nämlich \\(a = -5\\)."
       },
       { id:30, level:5, typ:"numerisch",
         frage:"Für welchen positiven Wert von \\(k\\) sind \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}+s\\begin{pmatrix}1\\\\k\\\\0\\end{pmatrix}\\) und \\(h_k:\\vec{x}=\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}k\\\\1\\\\0\\end{pmatrix}\\) zueinander parallel?",
@@ -212,10 +211,10 @@
       },
       // ===== LEVEL 6 — Abi-Format (eA) =====
       { id:31, level:6, typ:"numerisch",
-        frage:"Untersuchen Sie die Lage von \\(g_k:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}+t\\begin{pmatrix}2\\\\k\\\\1\\end{pmatrix}\\) zur Ebene \\(E: x+2y-z=0\\) in Abhängigkeit von \\(k\\). Für welchen Wert von \\(k\\) liegt \\(g_k\\) vollständig in \\(E\\)? (1 Dez.)",
-        loesung:-0.5, toleranz:0.02,
-        tipp:"Prüfen Sie zuerst den Aufpunkt — er hängt nicht von \\(k\\) ab — und übersetzen Sie dann die Richtungsbedingung.",
-        loesungsweg:"Der Aufpunkt \\(A(1|0|1)\\) erfüllt \\(1 + 0 - 1 = 0\\) ✓ und liegt damit für <b>jedes</b> \\(k\\) in \\(E\\). Die Lage entscheidet sich also allein an der Richtung: $$\\begin{pmatrix}2\\\\k\\\\1\\end{pmatrix} \\cdot \\begin{pmatrix}1\\\\2\\\\-1\\end{pmatrix} = 2 + 2k - 1 = 2k + 1$$ Für \\(2k+1 = 0\\), also \\(k = -0{,}5\\), verschwindet das Skalarprodukt; da der Aufpunkt in \\(E\\) liegt, liegt dann die ganze Gerade in \\(E\\). Für jedes andere \\(k\\) schneidet \\(g_k\\) die Ebene in genau einem Punkt — und zwar stets in \\(A\\). Echt parallel kann \\(g_k\\) nie sein."
+        frage:"Untersuchen Sie die Lage der Geraden \\(g:\\vec{x}=\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}+t\\begin{pmatrix}2\\\\1\\\\3\\end{pmatrix}\\) zur Ebenenschar \\(E_a: ax+y-z=a-1\\) in Abhängigkeit von \\(a\\) und geben Sie den Wert von \\(a\\) an, für den \\(g\\) vollständig in \\(E_a\\) liegt.",
+        loesung:1, toleranz:0.01,
+        tipp:"Prüfen Sie zuerst den Aufpunkt — das Ergebnis schließt bereits einen der drei möglichen Fälle für alle \\(a\\) aus.",
+        loesungsweg:"Aufpunktprobe für \\(A(1|0|1)\\): $$a\\cdot1 + 0 - 1 = a-1 \\ \\checkmark$$ Die Gleichung stimmt für <b>jedes</b> \\(a\\): Der Aufpunkt liegt stets in \\(E_a\\). Damit ist der Fall „echt parallel“ von vornherein ausgeschlossen — es bleiben nur „schneidend“ und „liegt in \\(E_a\\)“. Welcher eintritt, entscheidet die Richtung: $$\\begin{pmatrix}a\\\\1\\\\-1\\end{pmatrix} \\cdot \\begin{pmatrix}2\\\\1\\\\3\\end{pmatrix} = 2a + 1 - 3 = 2a-2$$ <b>Fall 1:</b> \\(a \\ne 1\\). Dann ist \\(2a-2 \\ne 0\\), die Gerade schneidet \\(E_a\\) in genau einem Punkt — und zwar immer in \\(A\\) selbst.<br><b>Fall 2:</b> \\(a = 1\\). Dann verschwindet das Skalarprodukt; zusammen mit dem Aufpunkt in \\(E_1: x+y-z=0\\) liegt \\(g\\) vollständig in dieser Ebene. Der gesuchte Wert ist \\(a = 1\\)."
       },
       { id:32, level:6, typ:"numerisch",
         frage:"Zeigen Sie, dass alle Ebenen der Schar \\(E_a: x+ay+(a-1)z=2\\) eine gemeinsame Gerade enthalten, und bestimmen Sie den Abstand dieser Geraden vom Ursprung. (3 Dez.)",
@@ -231,10 +230,10 @@
         loesungsweg:"Gleichsetzen ergibt \\(s = 1\\), \\(s = t\\) und \\(ks = t\\). Aus den ersten beiden Zeilen folgt \\(s = t = 1\\), die dritte verlangt dann $$k \\cdot 1 = 1 \\;\\Rightarrow\\; k = 1$$ Nur dann ist das System lösbar, die Geraden schneiden sich im Punkt \\((1|1|1)\\). Für jedes andere \\(k\\) bleibt die dritte Zeile unerfüllt. Parallel können die Geraden nie sein, denn \\(\\begin{pmatrix}1\\\\1\\\\k\\end{pmatrix}\\) ist wegen der ersten Komponente nie ein Vielfaches von \\(\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}\\) — also bleibt windschief."
       },
       { id:34, level:6, typ:"numerisch",
-        frage:"Ein Dachfirst verläuft entlang \\(f:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\6\\end{pmatrix}+t\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}\\); die möglichen Dachflächen bilden die Schar \\(E_a: ay+z=6\\) mit \\(a \\ne 0\\). Zeigen Sie, dass jede dieser Ebenen den First enthält, und bestimmen Sie den positiven Wert von \\(a\\), für den die Dachfläche gegen den Boden \\(z=0\\) um \\(30°\\) geneigt ist. (3 Dez.)",
+        frage:"Eine Klappe dreht sich um die feste Achse \\(f:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\6\\end{pmatrix}+t\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}\\); ihre möglichen Lagen bilden die Ebenenschar \\(E_a: ay+z=6\\) mit \\(a \\ne 0\\). Zeigen Sie, dass jede Ebene der Schar die Drehachse enthält, und bestimmen Sie den positiven Wert von \\(a\\), für den die Klappe gegen die Waagerechte \\(z=0\\) um \\(30°\\) geneigt ist. (3 Dez.)",
         loesung:0.577, toleranz:0.02,
-        tipp:"Setzen Sie einen allgemeinen Firstpunkt in die Ebenengleichung ein; für den Winkel genügen dann die beiden Normalenvektoren.",
-        loesungsweg:"Erster Teil: Ein Firstpunkt hat die Form \\((t|0|6)\\). Einsetzen: \\(a\\cdot 0 + 6 = 6\\) ✓ für jedes \\(a\\) und jedes \\(t\\) — der First liegt also in jeder Ebene der Schar.<br>Zweiter Teil: Mit \\(\\vec n_1 = \\begin{pmatrix}0\\\\a\\\\1\\end{pmatrix}\\) und \\(\\vec n_2 = \\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}\\) gilt $$\\cos 30° = \\frac{1}{\\sqrt{a^2+1}} = \\frac{\\sqrt3}{2}$$ Quadrieren: \\(a^2+1 = \\tfrac43\\), also \\(a^2 = \\tfrac13\\) und \\(a = \\tfrac{1}{\\sqrt3} \\approx 0{,}577\\). Der negative Wert \\(-\\tfrac{1}{\\sqrt3}\\) gehört zur gegenüberliegenden Dachfläche."
+        tipp:"Setzen Sie einen allgemeinen Achsenpunkt in die Ebenengleichung ein; für den Winkel genügen danach die beiden Normalenvektoren.",
+        loesungsweg:"Erster Teil: Ein Punkt der Achse hat die Form \\((t|0|6)\\). Einsetzen: \\(a\\cdot 0 + 6 = 6\\) ✓ — richtig für jedes \\(a\\) und jedes \\(t\\), die Achse liegt also in jeder Ebene der Schar.<br>Zweiter Teil: Mit \\(\\vec n_1 = \\begin{pmatrix}0\\\\a\\\\1\\end{pmatrix}\\) und \\(\\vec n_2 = \\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}\\) gilt $$\\cos 30° = \\frac{1}{\\sqrt{a^2+1}} = \\frac{\\sqrt3}{2}$$ Quadrieren: \\(a^2+1 = \\tfrac43\\), also \\(a^2 = \\tfrac13\\) und \\(a = \\tfrac{1}{\\sqrt3} \\approx 0{,}577\\). Der negative Wert \\(-\\tfrac{1}{\\sqrt3}\\) gehört zur spiegelbildlichen Lage auf der anderen Seite der Achse. Für \\(a \\to 0\\) legt sich die Klappe waagerecht, für wachsendes \\(|a|\\) richtet sie sich auf."
       },
       { id:35, level:6, typ:"numerisch",
         frage:"Für welchen Wert von \\(a\\) sind \\(E_a: ax+y+z=1\\) und \\(F: x+ay+z=1\\) identisch? Begründen Sie, dass es für jedes andere \\(a\\) eine Schnittgerade gibt.",
