@@ -45,6 +45,21 @@ def test_normaler_text_bleibt_still():
     assert lk.mathe_markup_ausserhalb(a) == []
 
 
+def test_null_auswertung_greift_in_allen_ableitungs_trainern():
+    """Befund 2026-09-30 (Welle Kl. 11): Die Auswertung bei x = 0 laesst bei Produkt- und
+    Kettenregel je einen Summanden wegfallen und trivialisiert die Regel. Der Check hing an
+    'ableitungsregeln|kettenregel' — ausgerechnet 11-ableitung-ketten-produkt, der Trainer mit
+    14 solchen Aufgaben, fiel durchs Raster."""
+    for name in ("11-ableitung-ketten-produkt.html", "11-ableitungsregeln.html",
+                 "11-e-funktion-ableitung.html"):
+        assert lk.KETTEN_TRAINER.search(name), name
+
+
+def test_null_auswertung_greift_nicht_bei_fremden_trainern():
+    """Kein Fehlalarm, wo 'Produkt' etwas anderes meint."""
+    assert not lk.KETTEN_TRAINER.search("12-skalarprodukt.html")
+
+
 def test_gate_meldet_den_befund_als_harten_fehler():
     """Der Check haengt im Gate und landet in der Fehlerliste, nicht in den Warnungen."""
     from pathlib import Path

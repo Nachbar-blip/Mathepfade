@@ -30,7 +30,10 @@ RECHENART_ANSAGE = re.compile(
 NULL_AUSWERTUNG = re.compile(r"f'\(0\)|f\\'\(0\)|an der Stelle\s*(x\s*=\s*)?0\b", re.I)
 # Die Engine rendert kein Markdown: **fett** erscheint woertlich (Sichtpruefung 2026-09-18).
 MARKDOWN_FETT = re.compile(r"\*\*[^*\r\n]+\*\*")
-KETTEN_TRAINER = re.compile(r"ableitungsregeln|kettenregel")
+# Trainer, in denen die Auswertung bei x = 0 die Regel trivialisiert (je ein Summand faellt weg).
+# Befund 2026-09-30: Das Muster hing an "ableitungsregeln|kettenregel" und verfehlte damit
+# 11-ableitung-ketten-produkt — genau den Trainer mit 14 solchen Aufgaben.
+KETTEN_TRAINER = re.compile(r"ableitung|kettenregel")
 # KaTeX-Befehlswoerter, die nach dem JS-Auswerten ohne Backslash dastehen (=> im Quelltext stand "\cdot").
 KATEX_OHNE_BACKSLASH = re.compile(
     r"(?<![A-Za-z\\])(cdot|frac|tfrac|dfrac|sqrt|times|Rightarrow|implies|approx|neq|leq|geq|"
