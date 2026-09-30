@@ -28,6 +28,10 @@ Randverhalten; 10-graphen-transformationen = Verschiebung/Streckung/Spiegelung, 
 | 10-graphen-transformationen | KEIN_AFB3 L5; KEIN_AFB3 L6; Warnungen #21 (Tipp mit Lösungswert), #31/#34 (MC-Länge) | L5/L6 neu: \(a\) aus Berührung der \(x\)-Achse und Punkt, Fehler „\(f(x-3)\) verschiebt nach links" (MC), Spiegelung und Verschiebung nacheinander, Scheitel-\(y\) aus zwei Nullstellen, größere Nullstelle von \(3(x+2)^2-27\), Scheitelstelle von \(2x^2+8x+5\); Behauptung „Stauchung in \(x\) = Streckung in \(y\)" (MC, gilt nur für \(x^2\)), kleinstes ganzes \(e\) mit zwei Nullstellen (Fallunterscheidung), \(a\) aus Scheitel und Punkt, Behauptung „Reihenfolge egal" (MC), Nullstelle nach drei Transformationen, Anzahl Funktionen mit zwei Nullstellen. #21 (L4) mit Tipp ohne Lösungswert neu formuliert |
 | 10-logarithmus | KEIN_AFB3 L5; KEIN_AFB3 L6; Warnungen #26 (Tipp mit Lösungswert), #29/#34 (MC-Länge) | L5/L6 neu: Fehler „\(\lg(8+2) = \lg 8 + \lg 2\)" (MC), \(\log_2(\sqrt8 \cdot 4)\), Basis \(a\) aus \(f(81) = 4\), \(3 \cdot 2^{x+1} = 96\), \(\log_5(x^3) - 3\log_5 x\) (Wert unabhängig von \(x\)), \(\log_4 32\) über gemeinsame Basis; Behauptung „\(\lg(ab) = \lg a \cdot \lg b\)" (MC, Gegenbeispiel), Anzahl negativer Logarithmuswerte (Fallunterscheidung am Numerus), \(f(32)\) aus \(f(8) = 12\), Wachstumsvergleich mit Potenzfunktionen (MC), kleinste ganze Zahl im Definitionsbereich, Stellenzahl von \(2^{30}\). Die Faustformel-Aufgabe (Verdopplungszeit \(70/p\)) entfällt — sie gehörte thematisch zu 10-exponentialfunktionen und lieferte den Weg im Text mit |
 
+| 10-potenzfunktionen | KEIN_AFB3 L5; KEIN_AFB3 L6; Warnungen #32/#36 (MC-Länge) | L5/L6 neu: \(n\) aus zwei Punkten, Fehler „\(x^4 = 16 \Rightarrow x = 2\)" (MC), \(x\) aus \(3x^{-2} = 12\), \(x\) aus \(x^{2/3} = 16\), Symmetrie und Monotonie von \(x^{-3}\) (MC), \(f(-1)\) nach Punktprobe; Behauptung „\(x^3 > x^2\) für alle \(x > 0\)" (MC), Anzahl punktsymmetrischer Graphen, \(n\) aus \(f(1)\) und \(f(2)\), Behauptung „größerer Exponent, größerer Wert" (MC), Anzahl gemeinsamer Punkte von \(x^2\) und \(x^4\), \(n\) aus einem Punkt mit Wert unter \(1\) |
+| 10-substitution | Audit „ok", aber vier sinngleiche Aufgabenpaare (#21/#22, #26/#27, #31/#32, #35/#36) und Substitution im Aufgabentext ab L4 | L5/L6 neu, dazu L4 #19 und #22: Anzahl Lösungen bei geschachteltem Klammerterm, größere Lösung bei \(3^{2x}\), Anzahl Lösungen der biquadratischen Gleichung, Fehler „Rücksubstitution vergessen" (MC), Parameter \(c\) aus gegebener Lösung, Anzahl Lösungen von \(\sin^2 x - 3\sin x + 2 = 0\) (Wertebereich); Behauptung „vier reelle Lösungen" (MC), Summe der Lösungen bei \(u = x^3\), größtes ganzes \(c\) mit genau zwei Lösungen (Fallunterscheidung), Behauptung „jedes \(u\) liefert zwei \(x\)" (MC), positive Lösung mit ausgeschlossenem \(u\), \(p\) aus vier gegebenen Lösungen. Die Substitution wird ab L4 nicht mehr im Text vorgegeben |
+| 10-polynomdivision (Dateiname historisch) | Ersatz-Trainer: 6 Lehrplan-Gate-Treffer („Polynomdivision" ist in TH Kl. 10 nicht vorgesehen) | **Alle 36 Aufgaben neu: Thema Grenzwerte und Asymptoten** (TH 2.3.2). `<title>`, `THEMA_CONFIG.name = 'Grenzwerte und Asymptoten'`, Index-Zeilentext „Grenzwerte &amp; Asymptoten" und Kommentar in Zeile 2 der Datei geändert. Aufbau nach Plan: L1 Randverhalten von \(x^2\), \(x^3\), \(1/x\) und Wertetabellen; L2 Glied höchsten Grades, senkrechte Asymptote aus der Nennernullstelle; L3 waagerechte Asymptote von \((ax+b)/(cx+d)\) und verschobene Exponentialfunktionen; L4 Funktionstyp aus Tabelle/Modell erschließen, Grenzwert ohne Verfahrensansage; L5 Parameter aus zwei Bedingungen, Fehler in Grenzwert-Argumentation; L6 Behauptungen prüfen und Fallunterscheidung nach Grad. Vorlage: `../DifferenzierungsEngine/trainer/11-analysis-grenzwerte.html` (GK-Teil, ohne hebbare Lücken) |
+
 ### 10-exponentialfunktionen
 
 | id | Level | Kriterium |
@@ -102,3 +106,85 @@ Randverhalten; 10-graphen-transformationen = Verschiebung/Streckung/Spiegelung, 
 | 34 | 6 | L6: Behauptung prüfen — Wachstum gegen Potenzfunktion (MC) |
 | 35 | 6 | L6: Definitionsbereich — kleinste ganze Zahl |
 | 36 | 6 | L6: Größenordnung — Stellenzahl aus dem dekadischen Logarithmus |
+
+### 10-potenzfunktionen
+
+| id | Level | Kriterium |
+|---|---|---|
+| 25 | 5 | L5: Parameter aus zwei Punkten — Quotient kürzt den Vorfaktor |
+| 26 | 5 | L5: Fehler finden — negative Lösung bei geradem Exponenten fehlt (MC) |
+| 27 | 5 | L5: Umkehraufgabe — negativer Exponent als Kehrwert |
+| 28 | 5 | L5: Umkehraufgabe — Bruchexponent durch Potenzieren auflösen |
+| 29 | 5 | L5: zwei Eigenschaften kombinieren — Symmetrie und Monotonie (MC) |
+| 30 | 5 | L5: zweischrittig — Vorfaktor aus Punktprobe, dann Funktionswert |
+| 31 | 6 | L6: Behauptung prüfen — \(x^3 > x^2\) nur für \(x > 1\) (MC) |
+| 32 | 6 | L6: Fallunterscheidung — Parität des Exponenten bei fünf Funktionen |
+| 33 | 6 | L6: Parameter aus zwei Bedingungen — \(f(1)\) und \(f(2)\) |
+| 34 | 6 | L6: Behauptung prüfen — Umkehrung links von \(x = 1\) (MC) |
+| 35 | 6 | L6: gemeinsame Punkte — Faktorisieren statt Kürzen |
+| 36 | 6 | L6: Umkehraufgabe — negativer Exponent aus einem Punkt |
+
+### 10-substitution
+
+| id | Level | Kriterium |
+|---|---|---|
+| 19 | 4 | L4: Substitution selbst finden (nicht mehr im Text genannt) |
+| 22 | 4 | L4: Wurzelsubstitution; ersetzt das sinngleiche Paar mit #21 |
+| 25 | 5 | L5: zwei Schritte — Hilfsvariable und Rückrechnung zählen |
+| 26 | 5 | L5: Exponentialgleichung ohne Nennung der Substitution |
+| 27 | 5 | L5: Anzahl reeller Lösungen nach Rücksubstitution |
+| 28 | 5 | L5: Fehler finden — Rücksubstitution vergessen (MC) |
+| 29 | 5 | L5: Parameter aus gegebener Lösung |
+| 30 | 5 | L5: zwei Verfahren — Substitution und Wertebereich des Sinus |
+| 31 | 6 | L6: Behauptung prüfen — Anzahl reeller Lösungen (MC, Gegenbeispiel) |
+| 32 | 6 | L6: Summe der Lösungen bei ungerader Rückwurzel |
+| 33 | 6 | L6: Fallunterscheidung nach Vorzeichen der Zwischenlösungen |
+| 34 | 6 | L6: Behauptung prüfen — \(u \le 0\) als Ausnahme (MC) |
+| 35 | 6 | L6: Lösung mit ausgeschlossener Zwischenlösung |
+| 36 | 6 | L6: Umkehraufgabe — Parameter aus vier gegebenen Lösungen (Vieta) |
+
+### 10-polynomdivision (Dateiname historisch, Inhalt: Grenzwerte und Asymptoten)
+
+Ersatz-Trainer nach Design 1b: Thema **Grenzwerte und Asymptoten**, TH-Lehrplan Kap. 2.3.2
+(Grenzwertbegriff anschaulich, lim-Schreibweise, waagerechte und senkrechte Asymptoten).
+Der Dateiname bleibt wegen der gedruckten QR-Codes; Zeile 2 der Datei hält das fest.
+Alle 36 Aufgaben sind neu.
+
+| id | Level | Kriterium |
+|---|---|---|
+| 1 | 1 | L1: Randverhalten von \(x^2\) (MC) |
+| 2 | 1 | L1: Randverhalten von \(x^3\) für \(x \to -\infty\) (MC) |
+| 3 | 1 | L1: Randverhalten von \(1/x\) (MC) |
+| 4 | 1 | L1: ein Funktionswert als Beleg für die Annäherung |
+| 5 | 1 | L1: Wertetabelle deuten — Grenzwert ablesen |
+| 6 | 1 | L1: lim-Schreibweise in die Asymptotengleichung übersetzen |
+| 7 | 2 | L2: Glied höchsten Grades entscheidet (MC) |
+| 8 | 2 | L2: negativer Leitkoeffizient bei geradem Grad (MC) |
+| 9 | 2 | L2: senkrechte Asymptote aus der Nennernullstelle |
+| 10 | 2 | L2: Nennernullstelle mit Vorzeichenwechsel |
+| 11 | 2 | L2: Nennernullstelle aus linearer Gleichung |
+| 12 | 2 | L2: waagerechte Asymptote bei additiver Verschiebung |
+| 13 | 3 | L3: waagerechte Asymptote von \((3x+1)/(x-2)\) |
+| 14 | 3 | L3: Verhältnis der Vorfaktoren als Dezimalzahl |
+| 15 | 3 | L3: \(x\) ausklammern und kürzen |
+| 16 | 3 | L3: verschobene Exponentialfunktion, \(x \to -\infty\) |
+| 17 | 3 | L3: Basis unter \(1\), \(x \to \infty\) |
+| 18 | 3 | L3: Zählergrad größer als Nennergrad (MC) |
+| 19 | 4 | L4: aus Wertetabelle auf den Grenzwert schließen |
+| 20 | 4 | L4: Umkehraufgabe — Parameter aus der Asymptotenlage |
+| 21 | 4 | L4: Funktion zu zwei vorgegebenen Asymptoten wählen (MC) |
+| 22 | 4 | L4: Grenzwert ohne Nennung des Verfahrens |
+| 23 | 4 | L4: Nenner zerlegen, Asymptote gegen Definitionslücke prüfen |
+| 24 | 4 | L4: Modell aus Text — Sättigung als waagerechte Asymptote (MC) |
+| 25 | 5 | L5: Parameter aus zwei Bedingungen — Asymptote und Achsenschnittpunkt |
+| 26 | 5 | L5: Fehler in Grenzwert-Argumentation — „beide wachsen" (MC) |
+| 27 | 5 | L5: Parameter aus Punktprobe bei verschobener Hyperbel |
+| 28 | 5 | L5: Parameter aus Asymptote und Funktionswert |
+| 29 | 5 | L5: Fehler finden — Nenner wird nie null (MC) |
+| 30 | 5 | L5: höchste Potenz ausklammern, Grenzwert als Dezimalzahl |
+| 31 | 6 | L6: Behauptung prüfen — Graph schneidet seine Asymptote (MC) |
+| 32 | 6 | L6: Fallunterscheidung nach Gradvergleich bei vier Funktionen |
+| 33 | 6 | L6: Fallunterscheidung nach dem Exponenten \(n\) |
+| 34 | 6 | L6: Behauptung prüfen — Nennernullstelle ohne Asymptote (MC) |
+| 35 | 6 | L6: drei Bedingungen nacheinander auswerten |
+| 36 | 6 | L6: Behauptung prüfen — Exponential- gegen Potenzwachstum (MC) |
