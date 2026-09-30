@@ -71,7 +71,7 @@ Audit: KEIN_AFB3 L5 **und** L6; KOLLAPS L2/L3 **und** L5/L6; KURZ (Stufen 1, 2, 
 DUENNER_WEG (Stufen 1, 2, 3) — der dünnste Trainer des Blocks. Deshalb **alle 36 Aufgaben**
 überarbeitet: Stufe 1 nur sprachlich (volle Fragesätze, Lösungswege), Stufe 2–6 neu.
 
-Der Trainer wertete vorher 14 Aufgaben an der Stelle \(x = 0\) aus (darunter zehn ab Stufe 4);
+Der Trainer wertete vorher 18 Aufgaben an der Stelle \(x = 0\) aus (darunter 11 ab Stufe 4);
 dort fällt bei Produkt- und Kettenregel jeweils ein Summand weg, die Aufgabe prüft die Regel
 also gar nicht. Alle Auswertungsstellen sind jetzt von null verschieden, und ab Stufe 5 wird
 statt eines Funktionswerts die Ableitungsfunktion selbst bzw. die Stelle mit \(f'(x)=0\) verlangt.
@@ -103,10 +103,10 @@ statt eines Funktionswerts die Ableitungsfunktion selbst bzw. die Stelle mit \(f
 ## 11-aenderungsrate
 
 Audit: KEIN_AFB3 L5; DUENNER_WEG (Stufen 4, 5, 6). Stufe 4 wurde mit neu geschrieben, weil
-sie fast vollstaendig aus Tangentenaufgaben bestand — die gehoeren zur Trainer-Abgrenzung nach
-`11-tangenten-normalen`. Der Trainer behandelt jetzt ausschliesslich mittlere und lokale
-Aenderungsrate, Differenzenquotient und die Unterscheidung von Rate und Bestand im Sachkontext.
-Stufe 1-3 (Begriffe, Differenzenquotient, h-Methode) bleiben unveraendert.
+sie fast vollständig aus Tangentenaufgaben bestand — die gehören zur Trainer-Abgrenzung nach
+`11-tangenten-normalen`. Der Trainer behandelt jetzt ausschließlich mittlere und lokale
+Änderungsrate, Differenzenquotient und die Unterscheidung von Rate und Bestand im Sachkontext.
+Stufe 1–3 (Begriffe, Differenzenquotient, h-Methode) bleiben inhaltlich unverändert.
 
 | id | Level | Kriterium |
 |---|---|---|
@@ -132,10 +132,10 @@ Stufe 1-3 (Begriffe, Differenzenquotient, h-Methode) bleiben unveraendert.
 ## 11-tangenten-normalen
 
 Audit: KEIN_AFB3 L5 **und** L6; KOLLAPS L2/L3 **und** L4/L5; DUENNER_WEG (Stufen 3, 4).
-Dazu die beiden Gate-Warnungen `#27` (richtige MC-Option deutlich laenger) und `#34`
-(Tipp nannte den Loesungswert 63) — beide Aufgaben sind neu.
+Dazu die beiden Gate-Warnungen `#27` (richtige MC-Option deutlich länger) und `#34`
+(Tipp nannte den Lösungswert 63) — beide Aufgaben sind neu.
 
-Gegen den Kollaps L2/L3 ist Stufe 3 auf **Normalen** zugespitzt (#13-#17): vorher stand dort
+Gegen den Kollaps L2/L3 ist Stufe 3 auf **Normalen** zugespitzt (#13–#17): vorher stand dort
 dieselbe Aufgabenart wie in Stufe 2 (Tangentensteigung berechnen). Stufe 4 ist neu, weil sie
 sich mit Stufe 5 doppelte.
 
@@ -163,11 +163,69 @@ sich mit Stufe 5 doppelte.
 | 35 | 6 | Normale durch einen vorgegebenen Punkt, allgemeine Stelle, Deutung des konstanten Summanden |
 | 36 | 6 | Grenzfall \(m_t = 0\): Normale ohne Steigung (MC) |
 
+## Review-Nachtrag 2026-09-30
+
+Befunde des Prüf-Agenten, alle behoben. Die Rechenergebnisse waren durchweg bestätigt;
+die Befunde betrafen Abgrenzung, Dubletten, Tipps und Sachkontexte.
+
+**Abgrenzung gegen Nachbartrainer**
+
+- `11-ableitungsregeln #33` war inhaltsgleich mit `11-monotonie-kruemmung #31` (dieselbe
+  Funktion \(x^3+3x^2+3x+7\), dieselbe Einsicht \(f'=3(x+1)^2\)). Jetzt \(x^3-9x^2+27x+4\)
+  mit \(f'=3(x-3)^2\). `#34` ist von „zeigen Sie, dass \(f\) überall steigt“ auf die kleinste
+  vorkommende **Tangentensteigung** umformuliert — Monotonie gehört dem Nachbarn.
+- `11-ableitung-ketten-produkt`: Stufe 3 bestand aus sechs e-Funktions-Kettenregeln, dem
+  Kerngeschäft von `11-e-funktion-ableitung`. Stufe 3 liegt jetzt auf Wurzel, Bruch mit
+  negativem Exponenten, Sinus, Kosinus und quadratischer innerer Funktion; e-Terme bleiben
+  nur dort, wo Produkt- **und** Kettenregel verzahnt sind. Ebenso ersetzt: `#22`
+  (Parameter jetzt in \((ax-1)^2\) statt im Exponenten, mit Fallunterscheidung \(a>0\)) und
+  `#32` (jetzt Fallunterscheidung nach dem Vorzeichen von \(a\) in \((x^2+a)^3\)).
+
+**Lehrplan**
+
+- `11-ableitung-ketten-produkt #34` verlangte \(t = 10\ln 2\); ln ist im Projekt als eA
+  eingestuft. Ersetzt durch zwei Modelle mit gleichem Exponenten und unterschiedlichem
+  Vorfaktor (\(e^{-0,5t}\) gegen \(t\,e^{-0,5t}\)), Lösung \(t = 3\) ohne Logarithmus.
+
+**Dubletten innerhalb des Blocks**
+
+- `11-tangenten-normalen #17` (L3) und `#21` (L4) waren bis auf den Punkt wortgleich;
+  `#17` liegt jetzt auf \(x^2-4x\) im Punkt \((1|-3)\).
+- `#25` und `#26` (beide L5) beschrieben dieselbe Gerade \(y = 4x-4\) mit derselben
+  Berührstelle. `#26` liegt jetzt auf \(y = x+a\) und \(f(x)=\sqrt x\) (Lösung \(a = 0{,}25\));
+  die Wurzelableitung ist durch `#15` auf Stufe 3 vorbereitet.
+
+**Tipps, die die Lösung vorwegnahmen**
+
+- `11-ableitungsregeln #26` nannte den Wortlaut der richtigen MC-Option, `#17` lieferte die
+  fertige Ableitung; `11-tangenten-normalen #8` und `#16` lieferten die Zwischenwerte,
+  `#36` nannte die Begründung der richtigen Option. Alle auf reine Weg-Hinweise umgestellt.
+
+**Sachkontext und Progression**
+
+- `11-aenderungsrate #29`: Vorfaktor von \(0{,}2\) auf \(0{,}05\) gesenkt — vorher ergab das
+  Modell 72 km/h im Mittel und 216 km/h momentan für einen Radfahrer. Ergebnis unverändert.
+- `11-tangenten-normalen`: Auf Stufe 4 ist mit `#20` eine **Vorwärtsaufgabe** zum
+  Steigungswinkel ergänzt (Steigung \(1\) → \(45°\)). Damit ist `#34` auf Stufe 6 eine echte
+  Umkehraufgabe, und ihr Tipp kommt ohne die Formel \(m = \tan\alpha\) aus.
+
+**Form**
+
+- Negative Koordinaten nach dem Trennstrich rendern als „\(1| -3\)“ und lesen sich wie eine
+  Subtraktion. In `#17` und `#25` jetzt `(1\,|\,{-3})` bzw. `P(0\,|\,{-4})`; im Bild geprüft.
+- MC-Längen im Altbestand angeglichen: `11-aenderungsrate #1`, `#6`, `#10`; Punktschreibweise
+  dort auf den Trennstrich vereinheitlicht (`#6`, `#16`).
+
+**Werkzeug-Hinweis für die nächste Welle:** Ein Ersetzen per Bash-Heredoc hat einen doppelten
+Backslash zu einem einfachen gemacht (`\\,` → `\,`), was KaTeX als Komma rendert. Nur im Bild
+zu sehen, kein Gate meldet es. Die Regel „nie Bash-Heredoc für Aufgabentexte“ gilt also auch
+für Python-Skripte, die per Heredoc an die Shell übergeben werden.
+
 ## Offen (bewusst nicht in dieser Welle)
 
 - `11-aenderungsrate` und `11-tangenten-normalen`: KOLLAPS-Reste in Stufe 1/2 werden laut Plan
-  nicht angefasst (Stufe 1-3 nur entdoppelt, nicht neu geschrieben).
+  nicht angefasst (Stufe 1–3 nur entdoppelt, nicht neu geschrieben).
 - `11-ableitungsregeln`: Stufe 2 und 3 unterscheiden sich weiterhin nur durch den negativen
-  Exponenten (Audit-Befund KOLLAPS L2/L3); die Rubrik sieht Stufe 1-3 in dieser Welle nicht vor.
-- Die Aufgaben zum Steigungswinkel (`11-tangenten-normalen` #34) setzen den Tangens als
-  Werkzeug voraus; er kommt in Stufe 1-3 dieses Trainers nicht vor.
+  Exponenten (Audit-Befund KOLLAPS L2/L3); die Rubrik sieht Stufe 1–3 in dieser Welle nicht vor.
+- Punktschreibweise im Altbestand der übrigen Trainer weiterhin uneinheitlich
+  (Komma statt Trennstrich) — außerhalb dieses Blocks nicht angefasst.
