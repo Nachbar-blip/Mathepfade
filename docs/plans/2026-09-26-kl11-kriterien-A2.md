@@ -23,9 +23,35 @@ erzeugt und angesehen.
 | `11-monotonie-kruemmung` | Monotonie- und Kruemmungsintervalle, Vorzeichen von \(f'\) und \(f''\) | Bestimmen einzelner Extrem-/Wendepunkte |
 | `11-extrempunkte-wendepunkte` | Extrem- und Wendestellen bestimmen, notwendige und hinreichende Bedingung, Sattelpunkt | Intervallbeschreibungen der Monotonie |
 
-Abstand gehalten wurde ausserdem zu `11-ableitungsregeln`, `11-ableitung-ketten-produkt`
-(Regeln an ganzrationalen Termen), `11-tangenten-normalen` (Tangentengleichungen als Thema)
-und `11-kurvendiskussion-ganzrational` (vollstaendige Kurvendiskussion).
+Abstand gehalten wurde ausserdem zu `11-ableitungsregeln`, `11-tangenten-normalen`
+(Tangentengleichungen als Thema) und `11-kurvendiskussion-ganzrational`
+(vollstaendige Kurvendiskussion).
+
+### Korrektur 2026-09-30: die Abgrenzung zu `11-ableitung-ketten-produkt` trug zunaechst nicht
+
+Die erste Fassung dieser Datei hat den Nachbartrainer als „Regeln an ganzrationalen Termen"
+beschrieben. Das ist **falsch**: `11-ableitung-ketten-produkt` enthaelt rund 20 Aufgaben mit
+\(e\)-Termen, darunter fuenf vom Typ „Stelle mit waagerechter Tangente an einem \(e\)-Produkt"
+(#25, #26, #28, #33, #35). Damit lagen meine urspruenglichen `#28`, `#30`, `#32` und `#36`
+inhaltlich auf demselben Format, `#24` neben `ketten-produkt #22` (Parameter im Exponenten
+aus einem Ableitungswert) und `#19` neben `ketten-produkt #19` (Produktregel an \(x^2e^{x}\)).
+Der Nachbartrainer ist der aeltere, also sind diese Aufgaben hier getauscht worden — siehe
+Review-Nachtrag. Der tatsaechliche Stand ist jetzt:
+
+| | `11-ableitung-ketten-produkt` (Block A1) | `11-e-funktion-ableitung` (dieser Block) |
+|---|---|---|
+| Gegenstand | die Regeln selbst, an gemischten Funktionstypen (Klammerpotenz, Wurzel, Sinus, \(e\)) | die \(e\)-Funktion als Gegenstand: Tangenten an \(e\)-Graphen, Aenderungsraten in \(e\)-Modellen, Parameter in \(e\)-Termen |
+| „waagerechte Tangente" an \(e\)-Produkten | bleibt dort (5 Aufgaben, aelter) | kommt hier nicht mehr vor |
+| Sachkontext-Modelle (\(a\,t\,e^{-kt}\), Zerfall, Zufluss) | `#24`, `#31`, `#34` liegen weiterhin dort | Schwerpunkt hier |
+
+**Offene Entscheidung fuer die Koordination (Vorschlag).** Der Schnitt ist damit repariert,
+aber noch nicht sauber: Sachkontext-Modelle mit \(e\)-Termen stehen weiterhin in beiden
+Trainern. Vorschlag **A** (bevorzugt): `11-ableitung-ketten-produkt` behaelt die reinen
+Regel- und Verfahrensaufgaben samt „waagerechter Tangente"; seine drei Sachkontext-Aufgaben
+`#24`, `#31`, `#34` wandern hierher oder werden dort durch Regelaufgaben ersetzt. Vorschlag
+**B**: umgekehrter Schnitt — alle \(e\)-Terme verlassen `ketten-produkt`, was dort aber die
+Stufen 3, 5 und 6 fast leerraeumen wuerde. Ich halte A fuer den kleineren Eingriff; die
+Entscheidung gehoert zu Block A1 und ist hier nicht getroffen.
 
 ---
 
@@ -36,6 +62,8 @@ Neu geschrieben: Stufe 5 und 6 vollstaendig (#25–#36). In Stufe 1–4 wurden d
 Aufgaben mit zu duennem Weg (#5, #6, #11, #12, #17, #18, #19, #20, #22, #23) um einen
 vollstaendigen Rechenweg und eine Kontrolle ergaenzt; die Aufgabentexte dieser Nummern
 sind zugleich zu ganzen Fragesaetzen ausgebaut (Befund KURZ).
+Im Review-Nachtrag wurden ausserdem #23 und #24 der Stufe 4 ersetzt (vorher AFB I) sowie
+die Tipps von #21, #23 und #24 auf das Vorgehen umgestellt.
 
 | id | Level | Kriterium |
 |---|---|---|
@@ -48,9 +76,9 @@ sind zugleich zu ganzen Fragesaetzen ausgebaut (Befund KURZ).
 | 31 | 6 | Abi-Format, Sachkontext Medikament: Behauptung ueber Restanteil beurteilen (MC), Vorfaktor kuerzt sich |
 | 32 | 6 | Abi-Format: aus Anteil nach 3 h auf 9 h schliessen ueber \((e^{-3k})^3=0{,}6^3\); Fehlweg lineare Fortschreibung |
 | 33 | 6 | Schar \(f_a(x)=e^x-ax\): Beruehrung der \(x\)-Achse als zwei Bedingungen, \(a=e\approx 2{,}72\); Fallunterscheidung \(a<e\)/\(a>e\) im Weg |
-| 34 | 6 | Behauptung „\(e^{-x}\) wird negativ" begruendet widerlegen (MC), Wertebereich und Asymptote |
+| 34 | 6 | Abi-Format Sachkontext Bauteil: Behauptung „Temperatur faellt unter \(20\) °C" widerlegen (MC); Asymptote, Probe \(T(60)\approx 20{,}15\) |
 | 35 | 6 | Abi-Format Sachkontext: Zeitpunkt der Unterschreitung, Monotonie begruendet das „erstmals" |
-| 36 | 6 | Fallunterscheidung nach \(c\) fuer die Loesbarkeit von \(e^x=c\) (MC), inkl. Fall \(0<c<1\) |
+| 36 | 6 | Abi-Format Sachkontext Algen: Zeitpunkt fuer \(80\,\%\) Bedeckung, \(t=\frac{\ln 160}{0{,}4}\approx 12{,}7\); Modellkritik und Fallunterscheidung nach dem Zielwert im Weg |
 
 ## 11-e-funktion-ableitung
 
@@ -60,30 +88,31 @@ Neu geschrieben: Stufe 4, 5 und 6 vollstaendig (#19–#36). Die alte Stufe 4/5 b
 Extremstellen- und Wendestellen-Aufgaben und gehoerte damit inhaltlich in
 `11-extrempunkte-wendepunkte`; sie wurde durch Ableitungs-, Tangenten- und
 Aenderungsratenaufgaben ersetzt. Die beiden Integral-Aufgaben der alten Stufe 6
-(#34, #35) sind entfallen — Integralrechnung ist TH-Stoff der Klasse 12.
+(#34, #35) sind entfallen — Integralrechnung ist TH-Stoff der Klasse 12; die uebersehene
+Stammfunktions-Aufgabe #2 der Stufe 1 ist im Review-Nachtrag ebenfalls ersetzt worden.
 In Stufe 2/3 wurden #10, #12 und #15 um einen vollstaendigen Weg ergaenzt.
 Die Gate-Warnung zu #36 (MC-Laenge) ist mit der Neufassung erledigt.
 
 | id | Level | Kriterium |
 |---|---|---|
-| 19 | 4 | Verfahren selbst waehlen: Produkt- und Kettenregel ineinander, \(f'(1)=5e^3\approx 100{,}43\) |
+| 19 | 4 | Tangentensteigung an \((3x-2)e^{x}\) bei \(x=2\): Produktregel und Ausklammern, \(7e^2\approx 51{,}72\) |
 | 20 | 4 | Tangentensteigung als Ableitungswert, Vorzeichen der inneren Ableitung; \(-0{,}5e^{-1}\approx -0{,}184\) |
 | 21 | 4 | Umkehraufgabe: Vorfaktor aus geforderter Steigung, \(a=2e^{-2}\approx 0{,}271\) |
 | 22 | 4 | Produkt- und Kettenregel, Zusammenfassen durch Ausklammern (MC); \(4x\,e^{2x}\) |
 | 23 | 4 | Modell aus Text: momentane Aenderungsrate \(N'(10)=48e^{0{,}6}\approx 87{,}5\); Bestand vs. Rate |
-| 24 | 4 | Umkehraufgabe ueber die zweite Ableitung, \(a^2=9\) mit beiden Vorzeichen geprueft, \(a=3\) |
+| 24 | 4 | zweimal Produktregel: \(f''(1)\) von \(x\,e^{2x}\), \(8e^2\approx 59{,}11\) |
 | 25 | 5 | Fehler in vorgelegter Rechnung: Produktregel als Produkt der Ableitungen; richtig \(5e^{5x}\) (MC) |
 | 26 | 5 | Parameter aus zwei Bedingungen \(f(1)=0\), \(f'(1)=2e\); \(a=2\), Auswertung bewusst nicht bei \(x=0\) |
 | 27 | 5 | drei Schritte: Produktregel, Tangentengleichung, Auswertung an der \(y\)-Achse; \(4e^{-2}\approx 0{,}541\) |
-| 28 | 5 | Ausklammern und Argument „\(e\)-Potenz wird nie null"; \(x=\ln 2\approx 0{,}693\) |
-| 29 | 5 | Behauptung ueber gleiche Steigung zweier Graphen widerlegen (MC); \(x=-\ln 2\) |
-| 30 | 5 | Produktregel, Ausklammern, quadratischer Restfaktor; \(x=\sqrt2\approx 1{,}414\), negative Loesung ausgeschlossen |
-| 31 | 6 | Abi-Format Sachkontext: Zu- oder Abnahme aus dem Vorzeichen von \(K'(3)\approx -0{,}56\) beurteilen (MC) |
-| 32 | 6 | Abi-Format, zwei Bedingungen: \(k\) aus der Lage des groessten Wertes, \(a=3e\approx 8{,}15\); Vorzeichenwechsel geprueft |
+| 28 | 5 | Umkehraufgabe: Stelle mit Tangentensteigung \(6\) bei \(e^{2x}\); Vorfaktor vor dem Logarithmieren beseitigen, \(\frac{\ln 3}{2}\approx 0{,}549\) |
+| 29 | 5 | Fehler in vorgelegter Tangentengleichung an \(e^{3x}\): Steigung \(e^3\) statt \(3e^3\) (MC), mit Zahlenprobe |
+| 30 | 5 | Abnahmerate \(3\) an der Stelle \(x=4\), gesucht der Funktionswert; \(f'=-0{,}5\,f\) liefert \(6\) ohne Kenntnis von \(a\) |
+| 31 | 6 | Abi-Format Sachkontext Ausstellung: Zu- oder Abnahme aus dem Vorzeichen von \(B'(7)\approx -11{,}8\) beurteilen (MC) |
+| 32 | 6 | Abi-Format Umkehraufgabe: Vorfaktor aus der Abbaurate \(9\) mg/h nach zwei Stunden, \(a=30e^{0{,}6}\approx 54{,}7\) |
 | 33 | 6 | Tangente vom Ursprung an \(e^x\): Ansatz an unbekannter Beruehrstelle, \(x_0=1\) |
-| 34 | 6 | Behauptung \(f'=k\cdot f\) fuer \(c\,e^{kx}\) allgemein begruenden (MC), Bezug zum Wachstumsmodell |
+| 34 | 6 | Abi-Format Sachkontext: zwei Teilbehauptungen zu \(12e^{-0{,}3t}+3\) getrennt pruefen (MC) — Rate gegen null, Konzentration stets ueber \(3\) |
 | 35 | 6 | Abi-Format Sachkontext Tank: Zuflussrate als Ableitung, \(t=\frac{\ln 2{,}5}{0{,}2}\approx 4{,}58\) |
-| 36 | 6 | Fallunterscheidung nach \(k\) fuer die Existenz einer waagerechten Tangente (MC); nur \(k<0\) |
+| 36 | 6 | Abi-Format Sachkontext: zwei Zerfallsraten gleichsetzen, \(e\)-Potenzen zusammenfassen; \(t=\frac{\ln 4}{0{,}03}\approx 46{,}2\) Jahre |
 
 ## 11-monotonie-kruemmung
 
@@ -124,9 +153,11 @@ Neu geschrieben: Stufe 5 und 6 vollstaendig (#25–#36). Die alte Stufe 5/6 best
 Wiederholungen der Stufe 3 („\(y\)-Wert des Hochpunkts", „Anzahl Wendepunkte") und enthielt
 keine AFB-III-Leistung. In Stufe 1–3 wurden #1, #2, #3, #4, #8, #9, #13, #14, #15, #16 und #17
 um einen vollstaendigen Weg ergaenzt (Befund DUENNER_WEG).
-Die Gate-Warnungen zu #33 und #36 (MC-Laenge) sind mit den neuen Aufgaben erledigt; #36 ist
-weiterhin die Frage nach \(f'(x_0)=f''(x_0)=0\), aber mit vier gleich langen, jeweils
-begruendeten Optionen.
+Die Gate-Warnungen zu #33 und #36 (MC-Laenge) sind mit den neuen Aufgaben erledigt. Im
+Review-Nachtrag wurden ausserdem #34 und #36 in Abi-Format ueberfuehrt und die sechs Tipps
+der Stufe 4 (#19–#24) neu formuliert, weil sie Zwischenloesungen nannten oder blosse
+Stichworte waren; die Loesungswege von #19, #20, #21 und #24 sind dabei von Ergebniszeilen
+zu vollstaendigen Wegen ausgebaut worden.
 KOLLAPS L1/L2 und L2/L3 bleibt offen — Stufe 1–3 werden laut Plan nicht neu geschrieben.
 
 | id | Level | Kriterium |
@@ -140,9 +171,9 @@ KOLLAPS L1/L2 und L2/L3 bleibt offen — Stufe 1–3 werden laut Plan nicht neu 
 | 31 | 6 | Abi-Format Sachkontext Gewinn: Behauptung ueber das Maximum mit Vorzeichenwechsel und Randwert pruefen (MC) |
 | 32 | 6 | Abi-Format mehrschrittig: notwendige Bedingung, hinreichende Bedingung, Randvergleich; \(t=8\) |
 | 33 | 6 | Fallunterscheidung \(c<0\), \(c=0\), \(c>0\); \(3\) ganze Zahlen, Grenzfall \(c=0\) ausdruecklich ausgeschlossen |
-| 34 | 6 | Behauptung „Grad vier \(\Rightarrow\) Wendepunkt" mit Gegenbeispiel \(x^4\) widerlegen (MC) |
+| 34 | 6 | Abi-Format Sachkontext Aufforstung: groesster Zuwachs ueber \(N''\) mit Vorzeichenwechsel, \(t=7\); Bestand \(1736\) gegen Rate \(297\) abgegrenzt |
 | 35 | 6 | Parameter aus zwei Bedingungen (Extremstelle und Funktionswert); \(a=2\), Art des Extremums nachgeprueft |
-| 36 | 6 | notwendige gegen hinreichende Bedingung: \(f'=f''=0\) laesst Extremum und Sattelpunkt zu (MC), zwei Beispiele im Weg |
+| 36 | 6 | Abi-Format Sachkontext Gewinn: aus \(G'(1)=G''(1)=0\) faelschlich auf einen Sattelpunkt geschlossen; ueber \(G'=4(x-1)^3\) als Tiefpunkt widerlegen (MC) |
 
 ---
 
@@ -154,3 +185,63 @@ KOLLAPS L1/L2 und L2/L3 bleibt offen — Stufe 1–3 werden laut Plan nicht neu 
   Potenzgesetzen; inhaltlich richtig, aber eng am Kollaps L2/L3.
 - `11-e-funktion` L3 arbeitet mit \(\ln\); der eigene ln-Trainer entsteht erst im Block 11B
   (Ersatz `11-lk-newton`). Ueberschneidungen dort beim Schreiben pruefen.
+
+---
+
+## Review-Nachtrag 2026-09-30
+
+Behoben nach der Pruefung durch den Review-Agenten. Rechnerisch war nichts zu beanstanden;
+die Befunde betrafen Lehrplanzuordnung, Dubletten mit dem Nachbarblock und die Stufenlogik.
+
+**Lehrplan.** `11-e-funktion-ableitung #2` fragte nach der Stammfunktion von \(e^x\) samt
+Integrationskonstante — Klasse-12-Stoff, uebrig geblieben beim Entfernen der beiden
+Integralaufgaben aus der alten Stufe 6. Ersetzt durch eine Ableitungsaufgabe der Stufe 1
+(Steigung von \(e^x\) an der Stelle \(x=1\), Ergebnis \(e\approx 2{,}72\), mit dem Hinweis,
+dass Steigung und Funktionswert hier ueberall uebereinstimmen).
+
+**Dubletten mit `11-ableitung-ketten-produkt` (Block A1).** Siehe die Korrektur oben. Getauscht
+wurden in `11-e-funktion-ableitung`:
+
+| id | vorher | jetzt |
+|---|---|---|
+| 19 | \(x^2e^{3x}\), \(f'(1)\) — neben `ketten-produkt #19` | Tangentensteigung an \((3x-2)e^{x}\) bei \(x=2\); \(7e^2\approx 51{,}72\) |
+| 24 | \(a\) aus \(f''(0)=9\) bei \(e^{ax}\) — neben `ketten-produkt #22` | \(f''(1)\) von \(x\,e^{2x}\); \(8e^2\approx 59{,}11\), zweimal Produktregel |
+| 28 | waagerechte Tangente an \(e^{2x}-4e^{x}\) | Umkehraufgabe: Stelle mit Tangentensteigung \(6\); \(\tfrac{\ln 3}{2}\approx 0{,}549\) |
+| 30 | waagerechte Tangente an \(e^{-x}(x^2+2x)\) — neben `ketten-produkt #26` | Abnahmerate \(3\) an der Stelle \(x=4\), gesucht der Funktionswert; \(f'=-0{,}5f\) liefert \(6\) |
+| 31 | \(5t\,e^{-0{,}5t}\) mg/l — praktisch identisch mit `ketten-produkt #24` | Besucherzahl \(120\,t\,e^{-0{,}2t}\), Beurteilung am siebten Tag; \(B'(7)\approx -11{,}8\) |
+| 32 | \(a\,t\,e^{-kt}\) mit Maximum bei \(t=2\) — neben `ketten-produkt #31` | \(a\) aus der Abbaurate \(9\) mg/h nach zwei Stunden; \(a=30e^{0{,}6}\approx 54{,}7\) |
+| 36 | Fallunterscheidung waagerechte Tangente bei \(e^{kx}+x\) — Denkfigur von `ketten-produkt #32` | Vergleich zweier Zerfallsraten; \(t=\tfrac{\ln 4}{0{,}03}\approx 46{,}2\) Jahre |
+
+Zusaetzlich wurde `#29` neu gefasst (Fehler in einer vorgelegten **Tangentengleichung** an
+\(e^{3x}\): Steigung \(e^3\) statt \(3e^3\)), damit Stufe 5 nicht zweimal dieselbe Fehlerart
+prueft.
+
+**Stufe 6 ohne Abi-Format.** Fuenf Aufgaben waren reine Begriffs-MC ohne Kontext und ohne
+Mehrschrittigkeit. Sie sind jetzt eingebettet oder ersetzt — der fachliche Kern ist in allen
+Faellen erhalten geblieben:
+
+| Aufgabe | vorher | jetzt |
+|---|---|---|
+| `11-e-funktion #34` | „\(e^{-x}\) wird nie negativ" | Bauteil kuehlt nach \(20+60e^{-0{,}1t}\); Behauptung „faellt unter \(20\) °C" beurteilen, mit Asymptote und Zahlenprobe \(T(60)\approx 20{,}15\) |
+| `11-e-funktion #36` | Loesbarkeit von \(e^x=c\) | Algenbedeckung \(0{,}5e^{0{,}4t}\), Zeitpunkt fuer \(80\,\%\) (\(\approx 12{,}7\) Tage); die Fallunterscheidung nach \(c\) steht jetzt als Modellkritik im Loesungsweg (ab \(13{,}2\) Tagen liefert das Modell ueber \(100\,\%\)) |
+| `11-e-funktion-ableitung #34` | \(f'=k\cdot f\) allgemein | Wirkstoff \(12e^{-0{,}3t}+3\); zwei Teilbehauptungen (Rate geht gegen null, Konzentration bleibt ueber \(3\)) getrennt pruefen |
+| `11-extrempunkte-wendepunkte #34` | „Grad vier \(\Rightarrow\) Wendepunkt" | Aufforstung \(-t^3+21t^2+150t\): Zeitpunkt des groessten Zuwachses, \(t=7\) ueber \(N''\) mit Vorzeichenwechsel; Bestand \(N(7)=1736\) gegen Rate \(N'(7)=297\) abgegrenzt |
+| `11-extrempunkte-wendepunkte #36` | \(f'(x_0)=f''(x_0)=0\), Begriffsfrage | Gewinnmodell \((x-1)^4+3\): ein Praktikant schliesst aus \(G'(1)=G''(1)=0\) auf einen Sattelpunkt; zu widerlegen ueber \(G'(x)=4(x-1)^3\) mit Vorzeichenwechsel — es ist der kleinste Gewinn |
+
+Damit erledigt sich zugleich die Warnung zur MC-Laenge bei `#36`: die richtige Option ist
+nicht mehr die einzige zweizeilige.
+
+**Stufe 4 war teils AFB I.** In `11-e-funktion` waren `#23` (Anfangsbestand ablesen) und `#24`
+(\(N(10)\) einsetzen) Ein-Schritt-Aufgaben. Jetzt: `#23` Umkehraufgabe (Anfangsbestand aus einer
+Messung nach \(20\) Stunden, \(N_0=1478/e^2\approx 200\)), `#24` Modell aus Text (Verdopplungszeit
+\(5\) Stunden, \(k=\tfrac{\ln 2}{5}\approx 0{,}139\)). Die Tipps von `#21`, `#23` und `#24`
+nennen jetzt das Vorgehen statt der fertigen Rechnung.
+
+**Stichwort-Tipps auf Stufe 4.** In `11-extrempunkte-wendepunkte` nannten die Tipps von `#21`
+und `#23` die einzusetzende Stelle, `#19`, `#20`, `#22` und `#24` waren blosse Stichworte
+(„Randwerte pruefen.", „Hinreichend."). Alle sechs neu formuliert; die Loesungswege von
+`#19`–`#21` und `#24` sind zugleich von Ergebniszeilen zu vollstaendigen Wegen ausgebaut.
+
+**Hinweis aus dem Review, der ab jetzt gilt.** Mathe-Ungleichungen im Text immer mit Leerzeichen
+setzen (`\(1 < x < 5\)`), nie `1<x<5` — sonst frisst der Browser den Text ab dem Kleinerzeichen.
+Das Level-Gate prueft das inzwischen hart (`html_frisst_text`).
