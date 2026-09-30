@@ -44,14 +44,26 @@ Review-Nachtrag. Der tatsaechliche Stand ist jetzt:
 | „waagerechte Tangente" an \(e\)-Produkten | bleibt dort (5 Aufgaben, aelter) | kommt hier nicht mehr vor |
 | Sachkontext-Modelle (\(a\,t\,e^{-kt}\), Zerfall, Zufluss) | `#24`, `#31`, `#34` liegen weiterhin dort | Schwerpunkt hier |
 
-**Offene Entscheidung fuer die Koordination (Vorschlag).** Der Schnitt ist damit repariert,
+**Entscheidung der Koordination vom 2026-09-30 (Variante A, geschaerft).**
+`11-ableitung-ketten-produkt` ist der Trainer der **Regeln** an allen Funktionstypen; \(e\)-Terme
+duerfen dort vorkommen, aber als einer von mehreren Typen neben Wurzel, Bruch, Klammer und
+Sinus/Kosinus, nicht als Schwerpunkt — Block A1 hat dessen Stufe 3 dafuer bereits umgestellt.
+`11-e-funktion-ableitung` ist der Trainer der **\(e\)-Funktion in Anwendung und Argumentation**:
+Wachstums- und Zerfallsmodelle, Tangenten, Parameterbestimmung, Vergleich von Raten. Reine
+„Leite ab"-Aufgaben gehoeren damit nicht mehr hierher. Die letzte Restkollision war `#22`
+(lineare Funktion mal \(e\)-Term, wie `ketten-produkt #21`); sie ist zu einer Modellauswahl
+umgestellt worden, deren Leistung nicht das Ableiten, sondern die Entscheidung ist.
+
+Der urspruengliche Vorschlag, der zu dieser Entscheidung gefuehrt hat:
+Der Schnitt war damit repariert,
 aber noch nicht sauber: Sachkontext-Modelle mit \(e\)-Termen stehen weiterhin in beiden
 Trainern. Vorschlag **A** (bevorzugt): `11-ableitung-ketten-produkt` behaelt die reinen
 Regel- und Verfahrensaufgaben samt „waagerechter Tangente"; seine drei Sachkontext-Aufgaben
 `#24`, `#31`, `#34` wandern hierher oder werden dort durch Regelaufgaben ersetzt. Vorschlag
 **B**: umgekehrter Schnitt — alle \(e\)-Terme verlassen `ketten-produkt`, was dort aber die
 Stufen 3, 5 und 6 fast leerraeumen wuerde. Ich halte A fuer den kleineren Eingriff; die
-Entscheidung gehoert zu Block A1 und ist hier nicht getroffen.
+Entscheidung gehoert zu Block A1 und ist hier nicht getroffen. — Entschieden wurde A in der
+oben festgehaltenen, geschaerften Form.
 
 ---
 
@@ -98,7 +110,7 @@ Die Gate-Warnung zu #36 (MC-Laenge) ist mit der Neufassung erledigt.
 | 19 | 4 | Tangentensteigung an \((3x-2)e^{x}\) bei \(x=2\): Produktregel und Ausklammern, \(7e^2\approx 51{,}72\) |
 | 20 | 4 | Tangentensteigung als Ableitungswert, Vorzeichen der inneren Ableitung; \(-0{,}5e^{-1}\approx -0{,}184\) |
 | 21 | 4 | Umkehraufgabe: Vorfaktor aus geforderter Steigung, \(a=2e^{-2}\approx 0{,}271\) |
-| 22 | 4 | Produkt- und Kettenregel, Zusammenfassen durch Ausklammern (MC); \(4x\,e^{2x}\) |
+| 22 | 4 | Modellauswahl: welches von vier Bestandsmodellen hat bei \(t=2\) die Rate null (MC); Fehlweg „Funktionsterm statt Ableitung null setzen" im Weg benannt |
 | 23 | 4 | Modell aus Text: momentane Aenderungsrate \(N'(10)=48e^{0{,}6}\approx 87{,}5\); Bestand vs. Rate |
 | 24 | 4 | zweimal Produktregel: \(f''(1)\) von \(x\,e^{2x}\), \(8e^2\approx 59{,}11\) |
 | 25 | 5 | Fehler in vorgelegter Rechnung: Produktregel als Produkt der Ableitungen; richtig \(5e^{5x}\) (MC) |
