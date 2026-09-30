@@ -99,3 +99,75 @@ statt eines Funktionswerts die Ableitungsfunktion selbst bzw. die Stelle mit \(f
 | 34 | 6 | zwei Modelle vergleichen, Exponentialgleichung, Deutung des Ergebnisses |
 | 35 | 6 | quadratische Gleichung mit zwei reellen Lösungen, kleinere gefragt |
 | 36 | 6 | Behauptung prüfen mit Probe über \(\sin(2x)\) (MC) |
+
+## 11-aenderungsrate
+
+Audit: KEIN_AFB3 L5; DUENNER_WEG (Stufen 4, 5, 6). Stufe 4 wurde mit neu geschrieben, weil
+sie fast vollstaendig aus Tangentenaufgaben bestand — die gehoeren zur Trainer-Abgrenzung nach
+`11-tangenten-normalen`. Der Trainer behandelt jetzt ausschliesslich mittlere und lokale
+Aenderungsrate, Differenzenquotient und die Unterscheidung von Rate und Bestand im Sachkontext.
+Stufe 1-3 (Begriffe, Differenzenquotient, h-Methode) bleiben unveraendert.
+
+| id | Level | Kriterium |
+|---|---|---|
+| 19 | 4 | Umkehraufgabe im Sachkontext: Zeitpunkt zu vorgegebener Momentangeschwindigkeit |
+| 20 | 4 | Modell aus Text: zwei Messwerte, mittlere Rate je Stunde |
+| 21 | 4 | Begriffsvergleich mittlere/lokale Rate mit Gegenbeispiel im Lösungsweg (MC) |
+| 22 | 4 | Umkehraufgabe: Intervallende aus gegebener mittlerer Änderungsrate, Kürzen mit 3. binom. Formel |
+| 23 | 4 | Modell aus Text, Vorzeichen der Abflussrate |
+| 24 | 4 | Verfahren wählen: höchster Punkt über \(h'(t)=0\) |
+| 25 | 5 | zwei Schritte: Anfangsrate bestimmen, dann Bedingung „halb so groß“ |
+| 26 | 5 | Fehler in vorgelegter Rechnung: durch die rechte Grenze statt durch die Intervalllänge geteilt (MC) |
+| 27 | 5 | zwei Schritte im Sachkontext, Rate bleibt positiv |
+| 28 | 5 | Parameter aus zwei Bedingungen, mittlere **und** lokale Rate nebeneinander |
+| 29 | 5 | zwei Verfahren kombiniert: Durchschnitts- und Momentangeschwindigkeit gleichsetzen |
+| 30 | 5 | Folgerung aus mittlerer Rate \(0\) (Mittelwertsatz anschaulich), Gegenbeispiele im Lösungsweg (MC) |
+| 31 | 6 | Abi-Format: „Zeigen Sie … genau einmal“, Vorzeichenwechsel der Rate, Sachkontext Gewässer |
+| 32 | 6 | Abi-Format: stärkster Zuwachs über \(B''=0\), Abgrenzung Rate gegen Bestand |
+| 33 | 6 | Behauptung prüfen: fallende Rate ist nicht dasselbe wie fallender Bestand (MC) |
+| 34 | 6 | allgemeiner Differenzenquotient auf \([-a;a]\), Symmetrie, Anzahl der Lösungen |
+| 35 | 6 | Abi-Format: Übergang Zunahme/Abnahme, zweite Lösung außerhalb des Zeitraums |
+| 36 | 6 | Behauptung prüfen: mittlere Geschwindigkeit ist Weg durch Zeit, nicht Mittelwert der Tempi (MC) |
+
+## 11-tangenten-normalen
+
+Audit: KEIN_AFB3 L5 **und** L6; KOLLAPS L2/L3 **und** L4/L5; DUENNER_WEG (Stufen 3, 4).
+Dazu die beiden Gate-Warnungen `#27` (richtige MC-Option deutlich laenger) und `#34`
+(Tipp nannte den Loesungswert 63) — beide Aufgaben sind neu.
+
+Gegen den Kollaps L2/L3 ist Stufe 3 auf **Normalen** zugespitzt (#13-#17): vorher stand dort
+dieselbe Aufgabenart wie in Stufe 2 (Tangentensteigung berechnen). Stufe 4 ist neu, weil sie
+sich mit Stufe 5 doppelte.
+
+| id | Level | Kriterium |
+|---|---|---|
+| 13, 15, 16 | 3 | DUENNER_WEG behoben: Lösungsweg zeigt Ableitung, Einsetzen und Kehrwertbildung getrennt |
+| 14 | 3 | von Tangenten- auf Normalensteigung umgestellt (Kollaps L2/L3) |
+| 17 | 3 | von Tangenten- auf Normalengleichung umgestellt, Distraktoren sind die typischen Fehler (MC) |
+| 19 | 4 | Tangente aufstellen und auf der \(y\)-Achse auswerten |
+| 20 | 4 | Umkehraufgabe: Stelle zu vorgegebener Steigung, Nebenlösung \(-2\) diskutiert |
+| 21 | 4 | Normale aufstellen, Distraktoren mit falschem Vorzeichen bzw. ohne Kehrwert (MC) |
+| 22 | 4 | Normalensteigung bei fallender Tangente |
+| 23 | 4 | Modell aus Sachtext: Stütze senkrecht zum Hangprofil |
+| 24 | 4 | zwei Tangenten aufstellen und gleichsetzen |
+| 25 | 5 | Tangente durch einen vorgegebenen Punkt, allgemeine Berührstelle, beide Lösungen |
+| 26 | 5 | Berührbedingung als zwei Bedingungen, Probe über die doppelte Nullstelle |
+| 27 | 5 | Berührbedingung als Auswahl; MC-Optionen auf gleiche Länge gebracht (Gate-Warnung) |
+| 28 | 5 | Normale aufstellen **und** mit der Funktion schneiden (zwei Verfahren) |
+| 29 | 5 | Parallelitätsbedingung, beide Lösungen, negative gefragt |
+| 30 | 5 | Parameter aus der Bedingung „Tangente durch den Ursprung“ |
+| 31 | 6 | Abi-Format: Tangente im Sachkontext (Tunnelprofil), Auswertung auf der Achse |
+| 32 | 6 | „Zeigen Sie …“: doppelte Nullstelle, Faktorisierung, allgemeine Aussage \(-2x_0\) |
+| 33 | 6 | Behauptung prüfen: Wendetangente berührt und durchsetzt zugleich (MC) |
+| 34 | 6 | Steigungswinkel rückwärts: \(60°\) vorgegeben, Stelle gesucht (ersetzt die Aufgabe mit dem verratenen Wert 63) |
+| 35 | 6 | Normale durch einen vorgegebenen Punkt, allgemeine Stelle, Deutung des konstanten Summanden |
+| 36 | 6 | Grenzfall \(m_t = 0\): Normale ohne Steigung (MC) |
+
+## Offen (bewusst nicht in dieser Welle)
+
+- `11-aenderungsrate` und `11-tangenten-normalen`: KOLLAPS-Reste in Stufe 1/2 werden laut Plan
+  nicht angefasst (Stufe 1-3 nur entdoppelt, nicht neu geschrieben).
+- `11-ableitungsregeln`: Stufe 2 und 3 unterscheiden sich weiterhin nur durch den negativen
+  Exponenten (Audit-Befund KOLLAPS L2/L3); die Rubrik sieht Stufe 1-3 in dieser Welle nicht vor.
+- Die Aufgaben zum Steigungswinkel (`11-tangenten-normalen` #34) setzen den Tangens als
+  Werkzeug voraus; er kommt in Stufe 1-3 dieses Trainers nicht vor.
