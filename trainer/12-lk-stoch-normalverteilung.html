@@ -54,7 +54,7 @@
       },
       { id:6, level:1, typ:"mc",
         frage:"Laplace-Bedingung für Näherung Binomial→Normal:",
-        optionen:["\\(\\sigma>3\\)","\\(n>30\\)","\\(np>5\\)","\\(p<0{,}5\\)"],
+        optionen:["\\(\\sigma>3\\)","\\(n>30\\)","\\(np>5\\)","\\(p \\lt 0{,}5\\)"],
         korrekt:0,
         tipp:"Faustregel.",
         loesungsweg:"Die Näherung der Binomial- durch die Normalverteilung ist brauchbar, wenn die Verteilung breit genug ist. Als Faustregel gilt $$\\sigma = \\sqrt{np(1-p)} > 3$$ Bei kleinerem \\(\\sigma\\) ist die Binomialverteilung zu grobstufig, als dass eine glatte Kurve sie gut wiedergäbe."
@@ -228,7 +228,7 @@
         loesungsweg:"$$\\mu = 10\\,000 \\cdot 0{,}03 = 300$$ $$\\sigma = \\sqrt{10\\,000 \\cdot 0{,}03 \\cdot 0{,}97} = \\sqrt{291} \\approx 17{,}06$$ Wegen \\(\\sigma \\gt 3\\) ist die Näherung zulässig. $$z = \\frac{330-300}{17{,}06} \\approx 1{,}759$$ $$P(X \\gt 330) \\approx 1 - \\Phi(1{,}759) \\approx 1 - 0{,}9607 = 0{,}0393$$ <b>Beurteilung:</b> In etwa \\(3{,}9\\,\\%\\) der Prüfungen treten mehr als 330 defekte Teile auf, also ungefähr in jeder 25. Lieferung. Das ist nicht „praktisch ausgeschlossen“, sondern ein Ereignis, das bei laufender Produktion regelmäßig eintritt. Die Behauptung ist damit zurückzuweisen. Erst jenseits von \\(\\mu + 3\\sigma\\), also ab etwa 352 Teilen, wäre die Sprechweise vertretbar."
       },
       { id:34, level:6, typ:"numerisch",
-        frage:"Zeigen Sie, dass die Dichtefunktion jeder Normalverteilung an den Stellen \\(\\mu \\pm \\sigma\\) denselben Bruchteil ihres Maximalwertes annimmt, und geben Sie diesen Bruchteil an.",
+        frage:"Zeigen Sie, dass die Dichtefunktion jeder Normalverteilung an den Stellen \\(\\mu \\pm \\sigma\\) denselben Bruchteil ihres Maximalwertes annimmt, und geben Sie diesen Bruchteil als Dezimalzahl auf vier Nachkommastellen an.",
         loesung:0.6065, toleranz:0.004,
         tipp:"Setze beide Stellen in den Funktionsterm der Dichte ein und bilde den Quotienten; die Vorfaktoren sollten sich wegkürzen.",
         loesungsweg:"Die Dichte ist $$\\varphi(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}}\\,e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$$ Der Exponent ist null genau für \\(x = \\mu\\), sonst negativ; dort liegt also das Maximum: $$\\varphi(\\mu) = \\frac{1}{\\sigma\\sqrt{2\\pi}}$$ An den Stellen \\(x = \\mu \\pm \\sigma\\) ist \\((x-\\mu)^2 = \\sigma^2\\), der Exponent also \\(-\\frac{\\sigma^2}{2\\sigma^2} = -\\frac12\\): $$\\varphi(\\mu \\pm \\sigma) = \\frac{1}{\\sigma\\sqrt{2\\pi}}\\,e^{-\\frac12}$$ Der Quotient ist damit $$\\frac{\\varphi(\\mu \\pm \\sigma)}{\\varphi(\\mu)} = e^{-\\frac12} \\approx 0{,}6065$$ Weder \\(\\mu\\) noch \\(\\sigma\\) kommen darin vor — der Bruchteil ist also für <b>jede</b> Normalverteilung derselbe, rund \\(60{,}7\\,\\%\\). Genau darauf beruht die Vorstellung einer einzigen Kurvenform, die nur verschoben und gestreckt wird."

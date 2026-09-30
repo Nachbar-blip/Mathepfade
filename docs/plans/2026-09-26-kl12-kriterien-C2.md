@@ -76,46 +76,50 @@ Aufgerundet wird bei jeder Mindestforderung an \(n\), und im Lösungsweg steht w
 | 7 | 2 | Standardverfahren: \(\sigma_h\), Radius, untere Grenze |
 | 8 | 2 | dasselbe zur oberen Grenze, andere Zahlen |
 | 9 | 2 | zwei Schritte: \(h\) aus Anzahl und Umfang, dann Breite \(4\sigma_h\) |
-| 10 | 2 | obere Grenze, Zahlen so gewählt, dass die Wurzel aufgeht |
+| 10 | 2 | von der unteren auf die obere Grenze: Radius aus \(\sigma_h\), zwei Radien Abstand |
 | 11 | 2 | Abhängigkeit von \(n\) (MC): vierfaches \(n\) halbiert die Breite — \(n\) steht unter der Wurzel |
 | 12 | 2 | Radius in Prozentpunkten; Bezug zur üblichen Angabe „\(\pm 2{,}5\) Prozentpunkte“ |
 | 13 | 3 | Klassenarbeits-Standard mit Zwischenergebnis: \(h\) aus 520/1000, dann untere Grenze |
-| 14 | 3 | Umkehr-Lesart: Mitte und Radius aus einem gegebenen Intervall |
+| 14 | 3 | Umrechnung Anteil → Anzahl: obere Intervallgrenze mal Grundgesamtheit; Lösungsweg mahnt die Reihenfolge an |
 | 15 | 3 | Rechnung mit dem Faktor \(1{,}96\); Lösungsweg begründet die Wahl gegen den Faktor \(2\) |
 | 16 | 3 | Breite in Prozentpunkten, Ergebnis zusätzlich als Prozentintervall gedeutet |
 | 17 | 3 | kleine relative Häufigkeit (Ausschussquote), vier Dezimalstellen nötig |
 | 18 | 3 | Laplace-Bedingung: \(\sigma(X)\) der Trefferanzahl berechnen und gegen die Faustregel \(\sigma \gt 3\) stellen |
-| 19 | 4 | Umkehr: \(n\) aus geforderter Breite, schlechtester Fall \(h = 0{,}5\); **Aufrunden begründet** |
+| 19 | 4 | Umkehr: \(n\) aus geforderter Breite bei \(h = 0{,}4\) (→ 2400); Probe an \(n\) und \(n-1\), **Aufrunden begründet** |
 | 20 | 4 | Verfahren wählen + Entscheidung: behauptetes \(p = 0{,}30\) liegt außerhalb von \([0{,}3171;\,0{,}4029]\) |
-| 21 | 4 | \(n\) aus geforderter Genauigkeit bei \(h = 0{,}2\); Lösungsweg zeigt, warum ein kleineres \(n\) genügt |
+| 21 | 4 | zwei veröffentlichte Intervalle mit gleicher Mitte: aus dem Verhältnis der Radien auf das Verhältnis der Umfänge schließen (Faktor 4) |
 | 22 | 4 | Umkehraufgabe mit zwei Lösungen: \(h(1-h) = 0{,}16\) liefert \(0{,}2\) und \(0{,}8\), Symmetrie erklärt |
-| 23 | 4 | Modell aus Text: halbe Breite ⇒ vierfaches \(n\) (900 → 3600) |
+| 23 | 4 | Meldung in Prozent: Intervall bilden, in Prozent zurückrechnen, den Schluss „unter 45 %“ entkräften |
 | 24 | 4 | Maßnahmen beurteilen (MC); die höhere Sicherheit verbreitert das Intervall, sie verschmälert es nicht |
 | 25 | 5 | **Fehlersuche „Konfidenzintervall = Prognoseintervall“** — siehe Abschnitt oben; Intervalle überlappen sich nicht |
 | 26 | 5 | zwei Verfahren: beide Breiten getrennt, Vergleich in Prozentpunkten; Faktor \(\sqrt{400/900} = \tfrac23\) |
 | 27 | 5 | **zwei Bedingungen**: Breite \(\le\) 3 Prozentpunkte **und** \(\sigma(X) \gt 3\); die schärfere gewinnt, Probe im Weg |
 | 28 | 5 | Fehlersuche: \(n\) statt \(\sqrt{n}\) im Nenner; falscher Radius 25-mal zu klein, Plausibilitätskontrolle ergänzt |
 | 29 | 5 | zwei Intervalle, Breite der Überlappung; Deutung: 6 Prozentpunkte Unterschied sind Stichprobenschwankung |
-| 30 | 5 | Umkehr aus Mitte und Breite auf \(n\); hier wird **nicht** gerundet — begründet |
+| 30 | 5 | zwei Befragungen zusammenfassen (Treffer und Umfänge addieren) und Intervall bilden; der Mittelwert der Einzelquoten wäre falsch |
 | 31 | 6 | Abi eA: KI mit \(1{,}96\), Beurteilung einer Zeitungsaussage; Grenzfall — mit Faktor \(2\) kippt die Entscheidung |
 | 32 | 6 | Abi eA, Modellkritik: die Näherung liefert eine **negative** untere Grenze; \(\sigma(X) \approx 1{,}72 \lt 3\), Verteilung rechtsschief |
-| 33 | 6 | mehrschrittig: \(h\) aus 96/1200, dann Faktor 9 für ein Drittel der Breite, mit Begründung über \(1/\sqrt{n}\) |
+| 33 | 6 | Abi eA: dasselbe \(h\) für 95 % und 99 % (Faktoren \(1{,}96\) und \(2{,}58\)); Beurteilung, was die höhere Sicherheit kostet |
 | 34 | 6 | **Beweisanteil**: \(h(1-h)\) maximal bei \(h = 0{,}5\) über \(g'\) und \(g''\); daraus der sichere Umfang \(49^2\) |
 | 35 | 6 | Begründung (MC): warum \(h\) und nicht \(p\) in der Streuung steht — der Unterschied zum Prognoseintervall |
 | 36 | 6 | Abi eA, Modellkritik: Selbstselektion bei einer Online-Umfrage; ein schmales Intervall misst nur die Zufallsschwankung |
 
 ### Formen je Stufe (gegen die Befunde an den Ersatz-Trainern der Kl. 10 und 11)
 
-Innerhalb keiner Stufe steht dieselbe Aufgabenform dreimal. In L1 wechseln Begriff,
-\(\sigma_h\), Radius, Breite, Grenze und Zugehörigkeit; in L4 stehen zwei Umfangsaufgaben
-neben Entscheidung, quadratischer Umkehraufgabe, Textmodell und MC; in L5 je zwei
-Fehlersuch-, Vergleichs- und Umkehraufgaben.
+Nach dem Review (siehe unten) steht in keiner Stufe dieselbe Aufgabenform mehr als zweimal:
+L1 Begriff, \(\sigma_h\), Radius, Breite, Grenze, Zugehörigkeit; L2 zwei Grenzenaufgaben
+neben Breite-aus-Anzahl, Grenze-aus-Grenze, MC und Prozentpunkten; L3 zwei Grenzenaufgaben
+neben Umrechnung auf Anzahl, Faktor-1,96-Einführung, Breite und Laplace-Prüfung; L4 je einmal
+Umfangsplanung, Behauptungsprüfung, Intervallvergleich, quadratische Umkehr, Prozentmeldung
+und MC; L5 je zweimal Fehlersuche und Stichprobenvergleich, dazu Zusammenfassen und die
+Zwei-Bedingungen-Aufgabe; L6 zwei Modellkritiken, Beurteilung, Sicherheitsvergleich,
+Beweisaufgabe und MC.
 
-Über die Stufen hinweg kehrt der Stichprobenumfang wieder — das ist das Thema des Trainers —,
-aber **nicht als dasselbe Verfahren mit größeren Zahlen**: L4 löst die Ungleichung,
-L5 verbindet sie mit einer zweiten Bedingung bzw. rechnet aus Mitte und Breite zurück,
-L6 begründet erst den schlechtesten Fall über eine Extremwertbetrachtung bzw. leitet den
-Skalierungsfaktor her.
+Der **Stichprobenumfang** steht nur noch in vier von 36 Aufgaben (`#19`, `#21` indirekt,
+`#27`, `#34`) — vorher waren es sieben. Und nicht als dasselbe Verfahren mit größeren Zahlen:
+`#19` löst die Ungleichung, `#21` schließt aus zwei Intervallen auf das Verhältnis der Umfänge,
+`#27` verbindet die Forderung mit der Laplace-Bedingung, `#34` begründet zuerst über eine
+Extremwertbetrachtung, welcher Fall der schlechteste ist.
 
 ---
 
@@ -179,3 +183,33 @@ Konfidenzintervalle
   ausdrücklich, wo dieses Verfahren versagt.
 - Der Name „Stochastische Prozesse“ verschwindet mit der Index-Zeile; der Dateiname bleibt
   wegen der QR-Links historisch.
+
+---
+
+## Review-Nachtrag (Prüf-Agent, 2026-09-30)
+
+Bestätigt hat der Prüfer: die Trennung von Prognose- und Konfidenzintervall ist durchgehend
+korrekt (die Streuung wird nie vertauscht), keine Fehlersuchaufgabe führt über den falschen
+Weg zur richtigen Lösung, die Faktoren \(1{,}96\) und \(2\) werden sauber benannt, Stufe 6 ist
+durchgehend Abi-Format.
+
+Behoben wurden:
+
+| Befund | Behebung |
+|---|---|
+| **Rechenfehler `#21`**: `loesung: 1024` bei gefordertem Radius \(0{,}0125\) und \(h = 0{,}2\); richtig wäre \(0{,}16/0{,}0000390625 = 4096\) gewesen (mit \(n = 1024\) ist der Radius \(0{,}025\), also doppelt so groß wie gefordert). Der Lösungsweg stellte die Ungleichung korrekt auf und schrieb dann die falsche Zahl hin | Aufgabe **ersetzt** statt nur korrigiert — sie war zugleich die dritte Umfangsaufgabe der Stufe. `#21` fragt jetzt nach dem Verhältnis zweier Stichprobenumfänge aus zwei veröffentlichten Intervallen. Gegenprobe mit Wolfram: \(n = 4096\) wäre tatsächlich das kleinste gewesen (\(n = 4095\) gibt \(0{,}0125015\)) |
+| **Kollision mit dem Parallelblock**: `#19` war numerisch identisch mit `12-stoch-hypothesentests #25` (beide \(n = 2500\)); weil für \(p = h = 0{,}5\) beide Formeln zusammenfallen, unterlief ausgerechnet dieses Paar die Trennung der Trainer | `#19` rechnet jetzt mit \(h = 0{,}4\) (→ 2400). Der Fall \(h = 0{,}5\) bleibt `#34` vorbehalten, wo er als schlechtester Fall **begründet** wird |
+| **Drei bis vier gleichartige Aufgaben je Stufe**: L2 `#7, #8, #10` dreimal „Grenze“, L4 `#19, #21, #23` dreimal „Stichprobenumfang“, insgesamt 7 von 36 Umfangsaufgaben | `#10`, `#21`, `#23`, `#30` und `#33` durch andere Formen ersetzt (siehe Tabelle oben); Umfangsaufgaben jetzt 4 von 36 |
+| **Rückfall `#14`** (L3): Mitte zweier Zahlen bilden und subtrahieren — einschrittig und leichter als `#7` auf L2 | ersetzt durch die Umrechnung des Intervalls auf die Anzahl in der Grundgesamtheit (zwei Schritte, eigene Fehlerquelle in der Reihenfolge) |
+| **Toleranz zu weit**: `toleranz: 1` bei ganzzahligen „kleinstes \(n\)“-Aufgaben ließ den Nachbarwert durch — und der ist dort die typische Fehlantwort | alle ganzzahligen Antworten des Trainers auf `toleranz: 0` (`#14`, `#19`, `#21`, `#27`, `#34`) |
+| `12-lk-stoch-normalverteilung #34` nannte die erwartete Form nicht („geben Sie diesen Bruchteil an“); plausibel wären auch \(e^{-1/2}\) oder \(60{,}65\) gewesen | „als Dezimalzahl auf vier Nachkommastellen“ ergänzt |
+| `12-lk-stoch-normalverteilung #6` nutzte `p<0{,}5` statt des sonst durchgehaltenen `\lt` | auf `\lt` umgestellt |
+
+Nicht geändert: der Zeilenumbruch von \(\mu \pm \sigma\) in `normalverteilung #34` (im Bild
+geprüft, bleibt lesbar). Gerade Schlusszeichen `"` gibt es in beiden Dateien nicht.
+
+Gates nach dem Review: `level_check --strict` und `lehrplan_check --strict` je Exit 0 ohne
+Warnung, `katex_check` 0 Renderfehler, `pytest -k "normalverteilung or stoch-prozesse"`
+14 passed, Duplikat-Lauf über alle 90 Trainer ohne Befund. Alle geänderten Zahlen mit Wolfram
+nachgerechnet, die geänderten Aufgaben `#14`, `#19`, `#21`, `#30`, `#33` und
+`normalverteilung #34` als PNG angesehen — Aufgabenseite und aufgedeckter Lösungsweg.

@@ -76,10 +76,10 @@
         loesungsweg:"$$h = \\frac{360}{900} = 0{,}4$$ $$\\sigma_h = \\sqrt{\\frac{0{,}4 \\cdot 0{,}6}{900}} = \\sqrt{0{,}000267} \\approx 0{,}01633$$ Die Breite ist doppelt so groß wie der Radius \\(2\\sigma_h\\): $$b = 4 \\cdot 0{,}01633 \\approx 0{,}0653$$"
       },
       { id:10, level:2, typ:"numerisch",
-        frage:"Bei \\(n = 625\\) wird \\(h = 0{,}2\\) beobachtet. Gib die obere Grenze des 95-%-Konfidenzintervalls in der \\(2\\sigma\\)-Näherung an.",
-        loesung:0.232, toleranz:0.003,
-        tipp:"Die Zahlen sind so gewählt, dass die Wurzel aufgeht.",
-        loesungsweg:"$$\\sigma_h = \\sqrt{\\frac{0{,}2 \\cdot 0{,}8}{625}} = \\sqrt{0{,}000256} = 0{,}016$$ $$r = 2 \\cdot 0{,}016 = 0{,}032$$ $$h + r = 0{,}2 + 0{,}032 = 0{,}232$$"
+        frage:"Ein 95-%-Konfidenzintervall wurde in der \\(2\\sigma\\)-Näherung mit \\(\\sigma_h = 0{,}018\\) gebildet; seine untere Grenze ist \\(0{,}324\\). Bestimme die obere Grenze.",
+        loesung:0.396, toleranz:0.002,
+        tipp:"Aus \\(\\sigma_h\\) folgt der Radius; von der unteren Grenze aus ist die obere zwei Radien entfernt.",
+        loesungsweg:"Der Radius ist $$r = 2\\sigma_h = 2 \\cdot 0{,}018 = 0{,}036$$ Die Mitte liegt einen Radius über der unteren Grenze: $$h = 0{,}324 + 0{,}036 = 0{,}36$$ Die obere Grenze liegt einen weiteren Radius höher: $$h + r = 0{,}36 + 0{,}036 = 0{,}396$$ Kürzer: von der unteren zur oberen Grenze sind es genau zwei Radien, also \\(0{,}324 + 0{,}072\\)."
       },
       { id:11, level:2, typ:"mc",
         frage:"Der Stichprobenumfang wird vervierfacht, \\(h\\) bleibt gleich. Wie ändert sich die Breite des Konfidenzintervalls?",
@@ -102,10 +102,10 @@
         loesungsweg:"$$h = \\frac{520}{1000} = 0{,}52$$ $$\\sigma_h = \\sqrt{\\frac{0{,}52 \\cdot 0{,}48}{1000}} = \\sqrt{0{,}0002496} \\approx 0{,}0158$$ $$r = 2 \\cdot 0{,}0158 \\approx 0{,}0316$$ $$h - r \\approx 0{,}52 - 0{,}0316 = 0{,}4884$$ Das ganze Intervall reicht von \\(0{,}4884\\) bis \\(0{,}5516\\) — es enthält also auch Werte unter der Hälfte."
       },
       { id:14, level:3, typ:"numerisch",
-        frage:"Ein 95-%-Konfidenzintervall lautet \\([0{,}36;\\,0{,}44]\\). Gib den Radius an, mit dem es gebildet wurde.",
-        loesung:0.04, toleranz:0.002,
-        tipp:"Das Intervall ist symmetrisch um die beobachtete relative Häufigkeit — bestimme zuerst diese Mitte.",
-        loesungsweg:"Die Mitte ist die beobachtete relative Häufigkeit: $$h = \\frac{0{,}36 + 0{,}44}{2} = 0{,}40$$ Der Radius ist der Abstand von der Mitte zu einer Grenze: $$r = 0{,}44 - 0{,}40 = 0{,}04$$ Gleichwertig: die halbe Breite, also \\(\\frac{0{,}08}{2}\\)."
+        frage:"Eine Umfrage unter 2000 Personen liefert für den Anteil der Zustimmenden das 95-%-Konfidenzintervall \\([0{,}41;\\,0{,}47]\\). Die Grundgesamtheit umfasst 50 000 Personen. Bis zu welcher Anzahl Zustimmender reicht das Intervall danach?",
+        loesung:23500, toleranz:0,
+        tipp:"Ein Konfidenzintervall gilt für den Anteil; auf Personen kommt man erst durch Umrechnung auf die Grundgesamtheit.",
+        loesungsweg:"Gefragt ist die obere Schranke, also gehört die obere Intervallgrenze \\(0{,}47\\) in die Rechnung: $$0{,}47 \\cdot 50\\,000 = 23\\,500$$ Zur unteren Grenze gehören \\(0{,}41 \\cdot 50\\,000 = 20\\,500\\) Personen. Das Intervall für die Anzahl lautet damit \\([20\\,500;\\,23\\,500]\\) — eine Spanne von \\(3000\\) Personen. Wichtig ist die Reihenfolge: Erst wird das Intervall für den Anteil gebildet, dann umgerechnet. Wer zuerst umrechnet und dann ein Intervall um die Anzahl legt, muss die Streuung der Anzahl benutzen und nicht die des Anteils."
       },
       { id:15, level:3, typ:"numerisch",
         frage:"Bei \\(n = 400\\) wird \\(h = 0{,}25\\) beobachtet. Gib die untere Grenze des 95-%-Konfidenzintervalls an, wenn nicht mit dem Faktor \\(2\\), sondern mit dem genaueren Faktor \\(1{,}96\\) gerechnet wird.",
@@ -133,10 +133,10 @@
       },
       // ===== LEVEL 4 — Verfahren wählen, Modell aus Text, Umkehraufgabe =====
       { id:19, level:4, typ:"numerisch",
-        frage:"Eine Umfrage soll so geplant werden, dass das 95-%-Konfidenzintervall (\\(2\\sigma\\)-Näherung) höchstens 4 Prozentpunkte breit wird. Im schlechtesten Fall ist \\(h = 0{,}5\\) zu erwarten. Wie viele Personen müssen mindestens befragt werden?",
-        loesung:2500, toleranz:1,
+        frage:"Eine Umfrage soll so geplant werden, dass das 95-%-Konfidenzintervall (\\(2\\sigma\\)-Näherung) höchstens 4 Prozentpunkte breit wird. Aus früheren Erhebungen ist ein Anteil von etwa \\(0{,}4\\) zu erwarten. Wie viele Personen müssen mindestens befragt werden?",
+        loesung:2400, toleranz:0,
         tipp:"Aus der Forderung an die Breite zuerst den Radius bestimmen und dann die Ungleichung nach \\(n\\) auflösen.",
-        loesungsweg:"Breite höchstens \\(0{,}04\\) bedeutet Radius höchstens \\(0{,}02\\): $$2\\sqrt{\\frac{0{,}25}{n}} \\le 0{,}02 \\;\\Longleftrightarrow\\; \\sqrt{\\frac{0{,}25}{n}} \\le 0{,}01$$ $$\\frac{0{,}25}{n} \\le 0{,}0001 \\;\\Longleftrightarrow\\; n \\ge \\frac{0{,}25}{0{,}0001}$$ Damit ist \\(n \\ge 2500\\). Weil die Forderung für jedes kleinere \\(n\\) verletzt wäre, wird immer <b>aufgerundet</b>: ein Bruchteil einer Person ist nicht befragbar, und Abrunden würde das Intervall zu breit machen."
+        loesungsweg:"Breite höchstens \\(0{,}04\\) bedeutet Radius höchstens \\(0{,}02\\). Mit \\(h = 0{,}4\\) ist \\(h(1-h) = 0{,}24\\): $$2\\sqrt{\\frac{0{,}24}{n}} \\le 0{,}02 \\;\\Longleftrightarrow\\; \\sqrt{\\frac{0{,}24}{n}} \\le 0{,}01$$ $$\\frac{0{,}24}{n} \\le 0{,}0001 \\;\\Longleftrightarrow\\; n \\ge \\frac{0{,}24}{0{,}0001} = 2400$$ Probe: für \\(n = 2400\\) ist \\(2\\sqrt{\\frac{0{,}24}{2400}} = 2\\sqrt{0{,}0001} = 0{,}02\\) — die Forderung ist genau erfüllt; für \\(n = 2399\\) wäre der Radius bereits \\(0{,}02001\\) und damit zu groß. Weil die Forderung für jedes kleinere \\(n\\) verletzt ist, wird immer <b>aufgerundet</b>: ein Bruchteil einer Person ist nicht befragbar, und Abrunden würde das Intervall zu breit machen."
       },
       { id:20, level:4, typ:"numerisch",
         frage:"Ein Hersteller behauptet, 30 % der Kunden kennen seine Marke. Eine Stichprobe von 500 Personen ergibt 180 Kenner. Gib die untere Grenze des 95-%-Konfidenzintervalls (\\(2\\sigma\\)-Näherung) an und entscheide damit über die Behauptung.",
@@ -145,10 +145,10 @@
         loesungsweg:"$$h = \\frac{180}{500} = 0{,}36$$ $$\\sigma_h = \\sqrt{\\frac{0{,}36 \\cdot 0{,}64}{500}} = \\sqrt{0{,}0004608} \\approx 0{,}021466$$ $$r = 2 \\cdot 0{,}021466 \\approx 0{,}042933$$ $$h - r \\approx 0{,}36 - 0{,}042933 = 0{,}317067$$ Das Intervall \\([0{,}3171;\\,0{,}4029]\\) enthält den behaupteten Wert \\(0{,}30\\) <b>nicht</b>. Die Stichprobe spricht also gegen die Behauptung; der wahre Anteil liegt nach dieser Rechnung höher."
       },
       { id:21, level:4, typ:"numerisch",
-        frage:"Für einen Anteil, der erfahrungsgemäß bei etwa 20 % liegt, soll das 95-%-Konfidenzintervall (\\(2\\sigma\\)-Näherung) einen Radius von höchstens \\(0{,}0125\\) haben. Wie groß muss der Stichprobenumfang mindestens sein?",
-        loesung:1024, toleranz:1,
-        tipp:"Die Ungleichung für den Radius nach \\(n\\) auflösen; \\(h(1-h)\\) ist hier kleiner als im schlechtesten Fall.",
-        loesungsweg:"Mit \\(h = 0{,}2\\) ist \\(h(1-h) = 0{,}16\\): $$2\\sqrt{\\frac{0{,}16}{n}} \\le 0{,}0125 \\;\\Longleftrightarrow\\; \\sqrt{\\frac{0{,}16}{n}} \\le 0{,}00625$$ $$\\frac{0{,}16}{n} \\le 0{,}0000390625 \\;\\Longleftrightarrow\\; n \\ge \\frac{0{,}16}{0{,}0000390625}$$ Das ergibt \\(n \\ge 1024\\); aufgerundet wird wie immer nach oben. Weil \\(h(1-h)\\) hier kleiner ist als bei \\(h = 0{,}5\\), genügt ein deutlich kleinerer Umfang als im schlechtesten Fall."
+        frage:"Zwei Institute berichten über denselben Sachverhalt und haben dieselbe relative Häufigkeit erhalten. Institut A gibt das 95-%-Konfidenzintervall \\([0{,}41;\\,0{,}49]\\) an, Institut B das Intervall \\([0{,}43;\\,0{,}47]\\); beide haben mit der \\(2\\sigma\\)-Näherung gerechnet. Um welchen Faktor war die Stichprobe von B größer?",
+        loesung:4, toleranz:0,
+        tipp:"Bestimme aus beiden Intervallen die Radien und überlege, wie der Radius vom Umfang abhängt.",
+        loesungsweg:"Beide Intervalle haben dieselbe Mitte \\(0{,}45\\), also dasselbe \\(h\\). Die Radien sind $$r_A = 0{,}49 - 0{,}45 = 0{,}04 \\qquad r_B = 0{,}47 - 0{,}45 = 0{,}02$$ Der Radius ist \\(r = 2\\sqrt{\\frac{h(1-h)}{n}}\\), bei festem \\(h\\) also proportional zu \\(\\frac{1}{\\sqrt{n}}\\). Aus $$\\frac{r_A}{r_B} = \\frac{\\sqrt{n_B}}{\\sqrt{n_A}} = 2$$ folgt \\(\\sqrt{n_B} = 2\\sqrt{n_A}\\) und damit \\(n_B = 4\\,n_A\\). Institut B hat also viermal so viele Personen befragt. Der halbe Radius kostet den vierfachen Aufwand — das Verhältnis der Umfänge ist stets das Quadrat des Verhältnisses der Radien."
       },
       { id:22, level:4, typ:"numerisch",
         frage:"Aus einer Stichprobe mit \\(n = 400\\) wurde ein Konfidenzintervall mit Radius \\(0{,}04\\) in der \\(2\\sigma\\)-Näherung gebildet. Welche relative Häufigkeit ist beobachtet worden? Gib den kleineren der beiden möglichen Werte an.",
@@ -157,10 +157,10 @@
         loesungsweg:"$$2\\sqrt{\\frac{h(1-h)}{400}} = 0{,}04 \\;\\Longleftrightarrow\\; \\frac{\\sqrt{h(1-h)}}{20} = 0{,}02$$ $$\\sqrt{h(1-h)} = 0{,}4 \\;\\Longleftrightarrow\\; h(1-h) = 0{,}16$$ $$h^2 - h + 0{,}16 = 0 \\;\\Longrightarrow\\; h = \\frac{1 \\pm \\sqrt{1 - 0{,}64}}{2} = \\frac{1 \\pm 0{,}6}{2}$$ Es gibt also zwei Lösungen: \\(h = 0{,}2\\) und \\(h = 0{,}8\\). Das ist kein Rechenfehler, sondern liegt an der Symmetrie von \\(h(1-h)\\) um \\(0{,}5\\): beide Häufigkeiten führen auf dieselbe Streuung. Der kleinere Wert ist \\(0{,}2\\)."
       },
       { id:23, level:4, typ:"numerisch",
-        frage:"Ein Institut hat 900 Personen befragt und daraus ein Konfidenzintervall bestimmt. Für eine zweite Befragung soll das Intervall bei gleicher relativer Häufigkeit nur noch halb so breit sein. Wie viele Personen sind dafür zu befragen?",
-        loesung:3600, toleranz:1,
-        tipp:"Überlege, mit welchem Faktor \\(n\\) wachsen muss, damit \\(\\sqrt{n}\\) doppelt so groß wird.",
-        loesungsweg:"Die Breite ist proportional zu \\(\\frac{1}{\\sqrt{n}}\\). Halbe Breite heißt doppeltes \\(\\sqrt{n}\\), also vierfaches \\(n\\): $$\\frac{1}{\\sqrt{4n}} = \\frac{1}{2\\sqrt{n}}$$ Aus \\(900\\) wird damit \\(4 \\cdot 900\\), also \\(3600\\) Personen. Für den nächsten Halbierungsschritt wären es schon über \\(14\\,000\\) — die Genauigkeit wird immer teurer."
+        frage:"Eine Meldung nennt 1200 Befragte und 43 Prozent Zustimmung und schließt daraus, die Zustimmung liege unter 45 Prozent. Gib die obere Grenze des 95-%-Konfidenzintervalls (\\(2\\sigma\\)-Näherung) in Prozent an und entscheide damit über diesen Schluss.",
+        loesung:45.86, toleranz:0.15,
+        tipp:"Die Prozentangabe zuerst als Anteil schreiben, das Intervall wie gewohnt bilden und erst am Ende zurück in Prozent umrechnen.",
+        loesungsweg:"Mit \\(h = 0{,}43\\): $$\\sigma_h = \\sqrt{\\frac{0{,}43 \\cdot 0{,}57}{1200}} = \\sqrt{0{,}00020425} \\approx 0{,}014292$$ $$r = 2 \\cdot 0{,}014292 \\approx 0{,}028583$$ $$h + r \\approx 0{,}43 + 0{,}028583 = 0{,}458583$$ In Prozent: rund \\(45{,}86\\,\\%\\). <b>Entscheidung:</b> Die obere Grenze liegt über \\(45\\,\\%\\), das Intervall reicht also von etwa \\(40{,}1\\,\\%\\) bis \\(45{,}9\\,\\%\\). Der Schluss der Meldung ist damit nicht gedeckt: Ein Wert von \\(45\\,\\%\\) ist mit dieser Umfrage durchaus vereinbar. Die gemessenen \\(43\\,\\%\\) sind eine Schätzung, kein Nachweis."
       },
       { id:24, level:4, typ:"mc",
         frage:"Ein Institut will das Konfidenzintervall schmaler machen. Welche Maßnahme wirkt?",
@@ -184,7 +184,7 @@
       },
       { id:27, level:5, typ:"numerisch",
         frage:"Für einen Anteil von etwa 10 % soll das 95-%-Konfidenzintervall (\\(2\\sigma\\)-Näherung) höchstens 3 Prozentpunkte breit sein; zugleich muss die Laplace-Bedingung \\(\\sigma(X) \\gt 3\\) erfüllt sein. Gib den kleinsten Stichprobenumfang an, der beide Forderungen erfüllt.",
-        loesung:1600, toleranz:1,
+        loesung:1600, toleranz:0,
         tipp:"Beide Forderungen getrennt in eine Ungleichung für \\(n\\) übersetzen und am Ende die schärfere nehmen.",
         loesungsweg:"Erste Forderung, Radius höchstens \\(0{,}015\\): $$2\\sqrt{\\frac{0{,}09}{n}} \\le 0{,}015 \\;\\Longleftrightarrow\\; \\frac{0{,}09}{n} \\le 0{,}00005625 \\;\\Longleftrightarrow\\; n \\ge \\frac{0{,}09}{0{,}00005625}$$ Das ergibt \\(n \\ge 1600\\). Zweite Forderung: $$\\sigma(X) = \\sqrt{n \\cdot 0{,}1 \\cdot 0{,}9} = \\sqrt{0{,}09\\,n} \\gt 3 \\;\\Longleftrightarrow\\; n \\gt 100$$ Die erste Forderung ist die schärfere. Probe für \\(n = 1600\\): \\(\\sigma(X) = \\sqrt{144} = 12 \\gt 3\\) — die Näherung ist dort also zulässig. Antwort: \\(1600\\)."
       },
@@ -201,10 +201,10 @@
         loesungsweg:"Erste Befragung: $$\\sigma_h = \\sqrt{\\frac{0{,}52 \\cdot 0{,}48}{500}} \\approx 0{,}022343 \\;\\Longrightarrow\\; r_1 \\approx 0{,}044686$$ $$I_1 \\approx [0{,}4753;\\,0{,}5647]$$ Zweite Befragung: $$\\sigma_h = \\sqrt{\\frac{0{,}46 \\cdot 0{,}54}{500}} \\approx 0{,}022289 \\;\\Longrightarrow\\; r_2 \\approx 0{,}044578$$ $$I_2 \\approx [0{,}4154;\\,0{,}5046]$$ Der gemeinsame Bereich reicht von der größeren unteren Grenze \\(0{,}4753\\) bis zur kleineren oberen Grenze \\(0{,}5046\\): $$0{,}5046 - 0{,}4753 \\approx 0{,}0293 \\;\\widehat{=}\\; 2{,}93 \\text{ Prozentpunkte}$$ Die Intervalle überlappen sich also. Der Unterschied von 6 Prozentpunkten zwischen den beiden Befragungen lässt sich damit allein durch die Stichprobenschwankung erklären."
       },
       { id:30, level:5, typ:"numerisch",
-        frage:"Ein 95-%-Konfidenzintervall (\\(2\\sigma\\)-Näherung) hat die Mitte \\(0{,}30\\) und die Breite \\(0{,}08\\). Bestimme den Stichprobenumfang, aus dem es gebildet wurde.",
-        loesung:525, toleranz:1,
-        tipp:"Aus Mitte und Breite ergeben sich \\(h\\) und der Radius; dann die Radiusformel nach \\(n\\) auflösen.",
-        loesungsweg:"Die Mitte ist die relative Häufigkeit, also \\(h = 0{,}30\\); der Radius ist die halbe Breite, also \\(r = 0{,}04\\). Einsetzen: $$2\\sqrt{\\frac{0{,}30 \\cdot 0{,}70}{n}} = 0{,}04 \\;\\Longleftrightarrow\\; \\sqrt{\\frac{0{,}21}{n}} = 0{,}02$$ $$\\frac{0{,}21}{n} = 0{,}0004 \\;\\Longleftrightarrow\\; n = \\frac{0{,}21}{0{,}0004}$$ Der Umfang war also \\(525\\). Probe: \\(\\sigma_h = \\sqrt{\\frac{0{,}21}{525}} = \\sqrt{0{,}0004} = 0{,}02\\), Radius \\(0{,}04\\) — passt. Hier wird nicht aufgerundet, weil kein „mindestens“ gefordert ist, sondern der tatsächlich benutzte Umfang gesucht war."
+        frage:"Zum selben Sachverhalt liegen zwei unabhängige Befragungen vor: 300 Personen mit 120 Zustimmungen und 700 Personen mit 300 Zustimmungen. Fasse beide zu einer Stichprobe zusammen und gib die obere Grenze des 95-%-Konfidenzintervalls (\\(2\\sigma\\)-Näherung) an.",
+        loesung:0.4512, toleranz:0.002,
+        tipp:"Zusammenfassen heißt: Treffer und Umfänge jeweils addieren, nicht die beiden relativen Häufigkeiten mitteln.",
+        loesungsweg:"Zusammengefasst sind es \\(120 + 300 = 420\\) Zustimmungen bei \\(300 + 700 = 1000\\) Befragten: $$h = \\frac{420}{1000} = 0{,}42$$ $$\\sigma_h = \\sqrt{\\frac{0{,}42 \\cdot 0{,}58}{1000}} = \\sqrt{0{,}0002436} \\approx 0{,}015608$$ $$r = 2 \\cdot 0{,}015608 \\approx 0{,}031215$$ $$h + r \\approx 0{,}42 + 0{,}031215 = 0{,}451215$$ Der Mittelwert der beiden Einzelquoten wäre \\(\\frac{0{,}4 + 0{,}4286}{2} \\approx 0{,}4143\\) und damit falsch: Die größere Befragung muss stärker zählen. Das Zusammenfassen lohnt sich — das Intervall der ersten Befragung allein wäre mit \\(4\\sigma_h \\approx 0{,}113\\) fast doppelt so breit wie das gemeinsame."
       },
       // ===== LEVEL 6 — Abi-Format eA: mehrschrittig, Begründung, Modellkritik =====
       { id:31, level:6, typ:"numerisch",
@@ -220,14 +220,14 @@
         loesungsweg:"$$h = \\frac{3}{200} = 0{,}015$$ $$\\sigma_h = \\sqrt{\\frac{0{,}015 \\cdot 0{,}985}{200}} = \\sqrt{0{,}000073875} \\approx 0{,}0085951$$ $$r = 2 \\cdot 0{,}0085951 \\approx 0{,}0171902$$ $$h - r \\approx 0{,}015 - 0{,}0171902 = -0{,}0022$$ <b>Beurteilung:</b> Eine Wahrscheinlichkeit kann nicht negativ sein. Das Ergebnis zeigt also nicht, dass \\(p\\) negativ sein könnte, sondern dass das Verfahren hier versagt. Der Grund: Die Näherung setzt eine annähernd glockenförmige, symmetrische Verteilung voraus. Die Kontrolle liefert $$\\sigma(X) = \\sqrt{200 \\cdot 0{,}015 \\cdot 0{,}985} = \\sqrt{2{,}955} \\approx 1{,}72$$ also weit unter \\(3\\). Bei nur drei Treffern ist die Verteilung stark rechtsschief; die symmetrische Näherung ist unbrauchbar. Man müsste exakt mit der Binomialverteilung rechnen oder die Stichprobe vergrößern."
       },
       { id:33, level:6, typ:"numerisch",
-        frage:"Aus einer Lieferung werden 1200 Teile geprüft, 96 sind fehlerhaft. Die Breite des 95-%-Konfidenzintervalls soll bei gleicher relativer Häufigkeit auf ein Drittel sinken. Bestimmen Sie den dafür nötigen Prüfumfang und begründen Sie Ihren Faktor.",
-        loesung:10800, toleranz:1,
-        tipp:"Die relative Häufigkeit bleibt gleich; entscheidend ist allein, wie die Breite von \\(n\\) abhängt.",
-        loesungsweg:"Zunächst \\(h = \\frac{96}{1200} = 0{,}08\\); dieser Wert bleibt nach Voraussetzung gleich. Für die Breite gilt $$b = 4\\sqrt{\\frac{h(1-h)}{n}} = \\frac{4\\sqrt{h(1-h)}}{\\sqrt{n}}$$ Bei festem \\(h\\) ist \\(b\\) also proportional zu \\(\\frac{1}{\\sqrt{n}}\\). Soll \\(b\\) auf ein Drittel sinken, muss \\(\\sqrt{n}\\) das Dreifache werden, \\(n\\) selbst also das <b>Neunfache</b>: $$n_{\\text{neu}} = 9 \\cdot 1200 = 10\\,800$$ Probe: \\(\\sqrt{9n} = 3\\sqrt{n}\\) — der Faktor \\(3\\) im Nenner erzeugt genau das Drittel. Bemerkenswert ist der Preis: für dreifache Genauigkeit ist der neunfache Aufwand nötig."
+        frage:"Eine Umfrage unter 1000 Personen ergibt \\(h = 0{,}47\\). Bestimmen Sie die obere Grenze des Konfidenzintervalls einmal für eine Sicherheit von 95 % (Faktor \\(1{,}96\\)) und einmal für 99 % (Faktor \\(2{,}58\\)). Geben Sie die obere Grenze für 99 % an und beurteilen Sie, was die höhere Sicherheit kostet.",
+        loesung:0.5107, toleranz:0.002,
+        tipp:"Beide Rechnungen unterscheiden sich nur im Faktor vor \\(\\sigma_h\\); die Streuung ist in beiden Fällen dieselbe.",
+        loesungsweg:"$$\\sigma_h = \\sqrt{\\frac{0{,}47 \\cdot 0{,}53}{1000}} = \\sqrt{0{,}0002491} \\approx 0{,}015783$$ Für 95 %: $$r = 1{,}96 \\cdot 0{,}015783 \\approx 0{,}030935 \\;\\Longrightarrow\\; h + r \\approx 0{,}5009$$ Für 99 %: $$r = 2{,}58 \\cdot 0{,}015783 \\approx 0{,}040720 \\;\\Longrightarrow\\; h + r \\approx 0{,}5107$$ <b>Beurteilung:</b> Mehr Sicherheit gibt es nur gegen ein breiteres Intervall — die Breite wächst hier um rund ein Drittel. Beide Intervalle enthalten \\(0{,}50\\), eine Mehrheit ist also in keinem Fall gesichert; beim 95-%-Intervall aber nur um \\(0{,}0009\\), beim 99-%-Intervall mit klarem Abstand. Wer eine Aussage „mit 99 % Sicherheit&ldquo; treffen will, muss also deutlich mehr Unschärfe hinnehmen oder deutlich mehr Personen befragen. Sicherheit und Genauigkeit sind gegenläufig; das Niveau gehört deshalb zu jeder veröffentlichten Angabe dazu."
       },
       { id:34, level:6, typ:"numerisch",
         frage:"Eine Behörde schreibt vor: Der Radius des 95-%-Konfidenzintervalls mit dem Faktor \\(1{,}96\\) darf \\(0{,}02\\) nicht überschreiten, und zwar unabhängig davon, welche relative Häufigkeit sich ergibt. Zeigen Sie, welcher Fall der schlechteste ist, und geben Sie den kleinsten sicheren Stichprobenumfang an.",
-        loesung:2401, toleranz:1,
+        loesung:2401, toleranz:0,
         tipp:"Untersuche zuerst, für welches \\(h\\) der Term \\(h(1-h)\\) am größten wird; erst danach die Ungleichung auflösen.",
         loesungsweg:"Der Radius ist am größten, wenn \\(h(1-h)\\) am größten ist. Für \\(g(h) = h - h^2\\) gilt \\(g'(h) = 1 - 2h\\) und \\(g''(h) = -2 \\lt 0\\); die einzige Nullstelle der Ableitung liegt bei \\(h = 0{,}5\\) und ist wegen der negativen zweiten Ableitung ein Maximum mit $$g(0{,}5) = 0{,}25$$ Der schlechteste Fall ist also \\(h = 0{,}5\\). Damit: $$1{,}96\\sqrt{\\frac{0{,}25}{n}} \\le 0{,}02 \\;\\Longleftrightarrow\\; \\frac{1{,}96 \\cdot 0{,}5}{\\sqrt{n}} \\le 0{,}02$$ $$\\sqrt{n} \\ge \\frac{0{,}98}{0{,}02} = 49 \\;\\Longleftrightarrow\\; n \\ge 49^2$$ Der kleinste sichere Umfang ist \\(49^2\\), also \\(2401\\). Aufgerundet wird nach oben, weil die Vorschrift für jedes kleinere \\(n\\) verletzt sein könnte. Weil \\(h = 0{,}5\\) angesetzt wurde, ist die Vorschrift dann für <b>jedes</b> tatsächlich beobachtete \\(h\\) erfüllt."
       },
