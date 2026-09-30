@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zufallsgrößen &amp; Erwartungswert - Mathepfade</title>
+    <title>Erwartungswert &amp; Streuung - Mathepfade</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-stoch-erwartungswert';
-    const THEMA_CONFIG = { name: 'Zufallsgrößen & Erwartungswert', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Erwartungswert & Streuung', bereich: 'stochastik' };
     const AUFGABEN = [
       // ========== LEVEL 1 — Zufallsgröße, Verteilung, Summe 1, Σ-Schreibweise ==========
       { id:1, level:1, typ:"mc", frage:"Zwei Münzen werden geworfen. Die Zufallsgröße \\(X\\) zählt die Anzahl der Wappen. Welche Werte kann \\(X\\) annehmen?", optionen:["\\(0\\), \\(1\\) und \\(2\\)","nur \\(1\\) und \\(2\\)","\\(0\\), \\(1\\), \\(2\\) und \\(3\\)","nur \\(1\\), \\(2\\) und \\(3\\)"], korrekt:0, tipp:"Zähle die Wappen in den möglichen Ausgängen ab: kein Wappen, ein Wappen, zwei Wappen — und prüfe, welche dieser Fälle überhaupt auftreten können.", loesungsweg:"Bei zwei Münzen sind vier Ausgänge möglich: WW, WZ, ZW und ZZ. Die Zufallsgröße \\(X\\) ordnet jedem Ausgang die Anzahl der Wappen zu: <br>ZZ \\(\\to 0\\), WZ \\(\\to 1\\), ZW \\(\\to 1\\), WW \\(\\to 2\\). <br>Mehr als zwei Wappen können bei zwei Münzen nicht fallen, und null Wappen sind möglich (ZZ). Der Wertebereich ist also \\(\\{0;\\,1;\\,2\\}\\). Wichtig: Nicht die Anzahl der Ausgänge (vier) ist gefragt, sondern die Zahlen, die \\(X\\) annimmt (drei)." },
