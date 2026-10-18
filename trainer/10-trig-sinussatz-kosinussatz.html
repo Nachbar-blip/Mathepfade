@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-trig-sinussatz-kosinussatz';
-    const THEMA_CONFIG = { name: 'Sinussatz & Kosinussatz', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Sinussatz & Kosinussatz', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Sätze erkennen ==========
       { id: 1, level: 1, typ: "mc", frage: "Wie lautet der Sinussatz?", optionen: ["\\(a^2 = b^2 + c^2\\)", "\\(\\tfrac{a}{\\sin\\alpha} = \\tfrac{b}{\\sin\\beta} = \\tfrac{c}{\\sin\\gamma}\\)", "\\(a^2 = b^2 + c^2 - 2bc\\cos\\alpha\\)", "\\(a \\sin\\alpha = b \\sin\\beta\\)"], korrekt: 1, tipp: "Der Sinussatz verknüpft Seiten und ihre gegenüberliegenden Winkel.", loesungsweg: "\\(\\tfrac{a}{\\sin\\alpha} = \\tfrac{b}{\\sin\\beta} = \\tfrac{c}{\\sin\\gamma}\\): Jede Seite steht im gleichen Verhältnis zum Sinus des gegenüberliegenden Winkels." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Von einem Dreieck sind \\(a = 4\\), \\(b = 6\\) und der Winkel bei \\(A\\) mit \\(50°\\) bekannt. Bestimme die Anzahl der Dreiecke, die zu diesen Angaben passen.", loesung: 0, toleranz: 0, tipp: "Berechne den Sinuswert des Winkels bei \\(B\\) und prüfe, ob ein solcher Wert für einen Sinus überhaupt auftreten kann.", loesungsweg: "Sinussatz: $$\\sin\\beta = \\frac{6 \\cdot \\sin 50°}{4} \\approx \\frac{6 \\cdot 0{,}7660}{4} \\approx 1{,}149$$ Ein Sinuswert größer als 1 ist unmöglich — es gibt <b>kein</b> passendes Dreieck. Anschaulich: Die Seite \\(a = 4\\) ist kürzer als der Abstand \\(b \\cdot \\sin\\alpha \\approx 4{,}60\\) und erreicht die gegenüberliegende Seite gar nicht." },
       { id: 36, level: 6, typ: "mc", frage: "Behauptung: „Liefert der Kosinussatz für einen Winkel eines Dreiecks einen negativen Kosinuswert, so ist dieses Dreieck stumpfwinklig.“ Wie ist das zu bewerten?", optionen: ["ja, der Winkel ist dann stumpf", "nein, das Dreieck ist spitzwinklig", "nein, so etwas kommt nie vor", "ja, aber nur bei gleichschenkligen"], korrekt: 0, tipp: "Überlege, für welche Winkel zwischen \\(0°\\) und \\(180°\\) der Kosinus negative Werte annimmt.", loesungsweg: "Der Kosinus ist im Bereich \\(90° < \\varphi < 180°\\) negativ und im Bereich \\(0° < \\varphi < 90°\\) positiv. Ein negativer Kosinuswert gehört also zu einem stumpfen Winkel, und ein Dreieck mit einem stumpfen Winkel heißt stumpfwinklig. Der Fall kommt durchaus vor, etwa bei \\(a = 8\\), \\(b = 6\\), \\(c = 13\\): $$\\cos\\gamma = \\frac{64 + 36 - 169}{96} < 0$$ Mehr als einen stumpfen Winkel kann ein Dreieck wegen der Winkelsumme nicht haben." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

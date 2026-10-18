@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '7-vierecke';
-    const THEMA_CONFIG = { name: 'Vierecke', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Vierecke', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht: Viereckarten ==========
       {
@@ -383,6 +383,7 @@
         loesungsweg: "<b>Schluss:</b> Zwei Paare paralleler Seiten → Parallelogramm. Ein Parallelogramm, dessen Diagonalen senkrecht aufeinander stehen, ist eine <b>Raute</b> (die Diagonalen halbieren sich, und mit dem rechten Winkel sind alle vier Teildreiecke kongruent, also alle Seiten gleich lang). Ein Quadrat wäre es nur, wenn zusätzlich die Diagonalen gleich lang oder die Winkel rechte wären — das ist nicht gegeben. Ein Rechteck hat im Allgemeinen keine senkrechten Diagonalen. Jede Raute ist zwar ein Drachenviereck, aber „Raute“ ist die genauere Bezeichnung."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

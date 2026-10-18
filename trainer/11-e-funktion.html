@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-e-funktion';
-    const THEMA_CONFIG = { name: 'e-Funktion', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'e-Funktion', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1 -- Grundlagen
       { id:1, level:1, typ:"mc", frage:"Die Eulersche Zahl \\(e\\) ist ungefähr:", optionen:["\\(2{,}71\\)","\\(3{,}14\\)","\\(1{,}41\\)","\\(1{,}73\\)"], korrekt:0, tipp:"Basis des natürlichen Log.", loesungsweg:"Die Eulersche Zahl ist \\(e \\approx 2{,}71828\\). Sie ist genau die Basis, für die \\(e^x\\) ihre eigene Ableitung ist — daraus folgt ihre Sonderstellung in der Analysis. Nicht zu verwechseln mit \\(\\pi \\approx 3{,}14\\) oder \\(\\sqrt2 \\approx 1{,}41\\)." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"numerisch", frage:"Eine Photovoltaikanlage liefert eine nach \\(P(t)=50\\cdot e^{-0{,}05t}\\) abnehmende Leistung (in kW, \\(t\\) in Jahren). Eine Ersatzanlage liefert konstant \\(20\\) kW. Nach wie vielen Jahren fällt die alte Anlage erstmals unter die Ersatzanlage? Runde auf eine Nachkommastelle.", loesung:18.3, toleranz:0.3, tipp:"Bestimme zuerst den Zeitpunkt der Gleichheit; wegen der Monotonie entscheidet er darüber, ab wann die Leistung darunter liegt.", loesungsweg:"Der Grenzzeitpunkt ist die Lösung von \\(P(t)=20\\): $$50 e^{-0{,}05t} = 20 \\;\\Rightarrow\\; e^{-0{,}05t} = 0{,}4 \\;\\Rightarrow\\; -0{,}05t = \\ln 0{,}4$$ also $$t = \\frac{-\\ln 0{,}4}{0{,}05} = \\frac{\\ln 2{,}5}{0{,}05} \\approx \\frac{0{,}9163}{0{,}05} \\approx 18{,}3 \\text{ Jahre}$$ Weil \\(P\\) streng monoton fällt, liegt die Leistung für alle \\(t>18{,}3\\) unter \\(20\\) kW und davor darüber — der berechnete Zeitpunkt ist also tatsächlich der erste. Kontrolle: \\(P(18{,}3)\\approx 20{,}0\\) und \\(P(19)\\approx 19{,}3\\)." },
       { id:36, level:6, typ:"numerisch", frage:"Eine Algenart bedeckt einen See nach \\(A(t)=0{,}5\\cdot e^{0{,}4t}\\) (in Prozent der Seefläche, \\(t\\) in Tagen). Der See gilt als gekippt, sobald \\(80\\,\\%\\) der Fläche bedeckt sind. Nach wie vielen Tagen ist das erreicht? Runde auf eine Nachkommastelle.", loesung:12.7, toleranz:0.2, tipp:"Stelle die Gleichung für den Zielwert auf; achte darauf, den Vorfaktor vor dem Logarithmieren zu beseitigen.", loesungsweg:"Die Bedingung lautet \\(A(t)=80\\): $$0{,}5\\,e^{0{,}4t} = 80 \\;\\Rightarrow\\; e^{0{,}4t} = 160$$ Erst jetzt logarithmieren: $$0{,}4t = \\ln 160 \\;\\Rightarrow\\; t = \\frac{\\ln 160}{0{,}4} \\approx \\frac{5{,}0752}{0{,}4} \\approx 12{,}7 \\text{ Tage}$$ Kontrolle: \\(0{,}5\\,e^{0{,}4\\cdot 12{,}7} \\approx 80{,}4\\). <b>Grenzen des Modells.</b> Die Gleichung \\(0{,}5e^{0{,}4t}=c\\) ist für jedes \\(c\\) größer als null lösbar, für \\(c\\) kleiner oder gleich null dagegen nie — die \\(e\\)-Funktion nimmt nur positive Werte an. Sinnvoll sind hier aber nur Zielwerte bis \\(100\\,\\%\\): rechnerisch liefert das Modell nach rund \\(13{,}2\\) Tagen bereits volle Bedeckung und danach unmögliche Werte über \\(100\\,\\%\\). Das exponentielle Modell trägt also nur für die ersten knapp zwei Wochen." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

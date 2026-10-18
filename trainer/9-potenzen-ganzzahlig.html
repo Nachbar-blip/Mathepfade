@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-potenzen-ganzzahlig';
-    const THEMA_CONFIG = { name: 'Potenzen mit ganzzahligen Exponenten', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Potenzen mit ganzzahligen Exponenten', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 ==========
       { id: 1, level: 1, typ: "numerisch", frage: "Berechne \\(2^3\\).", loesung: 8, toleranz: 0, tipp: "\\(2 \\cdot 2 \\cdot 2\\).", loesungsweg: "Der Exponent gibt an, wie oft die Basis als Faktor auftritt: $$2^3 = 2 \\cdot 2 \\cdot 2 = 8$$ Nicht zu verwechseln mit \\(2 \\cdot 3 = 6\\) — potenzieren heißt multiplizieren, nicht malnehmen des Exponenten." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Ein Medikament halbiert die Anzahl der Bakterien in einer Kultur jede Stunde. Nach \\(5\\) Stunden sind noch \\(250\\) Bakterien vorhanden. Wie viele waren es zu Beginn?", loesung: 8000, toleranz: 0, tipp: "Rückwärts rechnen: Jede Stunde zurück verdoppelt die Anzahl.", loesungsweg: "Nach \\(t\\) Stunden ist die Anzahl \\(N_0 \\cdot 2^{-t}\\). Aus \\(N_0 \\cdot 2^{-5} = 250\\) folgt $$N_0 = 250 \\cdot 2^{5} = 250 \\cdot 32 = 8000$$ Der negative Exponent beschreibt das Halbieren; die Umkehrung — Division durch \\(2^{-5}\\) — ist die Multiplikation mit \\(2^5\\). Aus \\(8000\\) Bakterien werden in fünf Halbierungen \\(4000, 2000, 1000, 500, 250\\) ✓" },
       { id: 36, level: 6, typ: "numerisch", frage: "Wie viele der fünf Zahlen \\(2^{-3}\\), \\(3^{-2}\\), \\(4^{-1}\\), \\(\\left(\\frac{1}{5}\\right)^{-1}\\) und \\(0{,}1^{-2}\\) sind größer als \\(0{,}2\\)?", loesung: 3, toleranz: 0, tipp: "Bestimme jeden Wert einzeln als Bruch oder Dezimalzahl.", loesungsweg: "Alle fünf Werte ausrechnen: $$2^{-3} = 0{,}125, \\quad 3^{-2} = \\tfrac19 \\approx 0{,}111, \\quad 4^{-1} = 0{,}25, \\quad \\left(\\tfrac15\\right)^{-1} = 5, \\quad 0{,}1^{-2} = 100$$ Größer als \\(0{,}2\\) sind \\(4^{-1}\\), \\(\\left(\\tfrac15\\right)^{-1}\\) und \\(0{,}1^{-2}\\) — also \\(3\\) Zahlen. Auffällig: Negative Exponenten bei Basen kleiner als \\(1\\) liefern große Werte, bei Basen größer als \\(1\\) kleine Werte." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

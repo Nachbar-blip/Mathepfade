@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-quadratische-funktionen';
-    const THEMA_CONFIG = { name: 'Quadratische Funktionen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Quadratische Funktionen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 ==========
       { id: 1, level: 1, typ: "mc", frage: "Welche Funktion ist quadratisch?", optionen: ["\\(f(x) = 3x + 2\\)", "\\(f(x) = x^2 - 4\\)", "\\(f(x) = \\frac{1}{x}\\)", "\\(f(x) = 2^x\\)"], korrekt: 1, tipp: "Quadratisch bedeutet: höchste Potenz ist \\(x^2\\).", loesungsweg: "\\(f(x) = x^2 - 4\\) ist quadratisch (höchste Potenz 2)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Gegeben ist die Parabelschar \\(f_t(x) = x^2 - 2tx + 5\\) mit \\(t > 0\\). Für welches \\(t\\) liegt der Scheitel auf der Geraden \\(y = -4\\)?", loesung: 3, toleranz: 0, tipp: "Beide Scheitelkoordinaten in Abhängigkeit von \\(t\\) aufstellen.", loesungsweg: "Scheitelstelle \\(x_S = -\\frac{-2t}{2} = t\\), Scheitelwert $$f_t(t) = t^2 - 2t^2 + 5 = 5 - t^2$$ Bedingung: \\(5 - t^2 = -4 \\Rightarrow t^2 = 9 \\Rightarrow t = 3\\) (wegen \\(t > 0\\)). Probe: \\(f_3(x) = x^2 - 6x + 5 = (x-3)^2 - 4\\), Scheitel \\(S(3|{-4})\\) ✓ Alle Scheitel der Schar liegen auf der Parabel \\(y = 5 - x^2\\)." },
       { id: 36, level: 6, typ: "numerisch", frage: "Für welches \\(k\\) haben die Parabel \\(f(x) = x^2 + 2x + k\\) und die Gerade \\(g(x) = 2x + 5\\) genau einen gemeinsamen Punkt?", loesung: 5, toleranz: 0, tipp: "Gleichsetzen; genau ein gemeinsamer Punkt heißt genau eine Lösung.", loesungsweg: "Gleichsetzen: $$x^2 + 2x + k = 2x + 5 \\;\\Rightarrow\\; x^2 = 5 - k$$ Fallunterscheidung: \\(5 - k > 0\\) zwei Lösungen, \\(5 - k < 0\\) keine, \\(5 - k = 0\\) genau eine (\\(x = 0\\)). Also \\(k = 5\\); die Gerade berührt die Parabel im Punkt \\((0|5)\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

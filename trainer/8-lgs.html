@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-lgs';
-    const THEMA_CONFIG = { name: 'Lineare Gleichungssysteme', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Lineare Gleichungssysteme', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "mc", frage: "Ein LGS mit 2 Unbekannten besteht aus …", optionen: ["einer Gleichung", "zwei Gleichungen mit je 2 Unbekannten", "drei Gleichungen", "Ungleichungen"], korrekt: 1, tipp: "Schnittpunkt zweier Geraden.", loesungsweg: "Ein 2×2-LGS hat <b>zwei lineare Gleichungen mit den Unbekannten \\(x\\) und \\(y\\)</b>." },
@@ -60,6 +60,7 @@
       { id: 36, level: 6, typ: "numerisch", frage: "Für wie viele ganzzahlige Werte \\(a\\) mit \\(-3 \\le a \\le 3\\) hat das LGS \\(ax + y = 1\\), \\(x + ay = 1\\) genau eine Lösung?", loesung: 5, toleranz: 0, tipp: "Wann sind die beiden Geraden parallel oder identisch? Untersuche diese Werte gesondert.", loesungsweg: "Parallel oder identisch, wenn die linken Seiten Vielfache sind: \\(a \\cdot a = 1 \\cdot 1\\), also \\(a = \\pm 1\\). Fallunterscheidung: $$a = 1: \\; x + y = 1 \\text{ zweimal} \\;\\Rightarrow\\; \\text{unendlich viele Lösungen}$$ $$a = -1: \\; -x + y = 1,\\; x - y = 1 \\;\\Rightarrow\\; 0 = 2 \\;\\Rightarrow\\; \\text{keine Lösung}$$ Für die übrigen \\(a \\in \\{-3, -2, 0, 2, 3\\}\\) schneiden sich die Geraden: \\(5\\) Werte." }
     ];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

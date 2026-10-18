@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-ableitungsregeln';
-    const THEMA_CONFIG = { name: 'Ableitungsregeln', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Ableitungsregeln', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1 — Potenzregel
       { id: 1, level: 1, typ: "numerisch", frage: "Gegeben ist \\(f(x) = x^3\\). Berechne \\(f'(2)\\).", loesung: 12, toleranz: 0, tipp: "Potenzregel: \\((x^n)' = n \\cdot x^{n-1}\\).", loesungsweg: "Die Potenzregel zieht den Exponenten als Faktor nach vorn und verringert ihn um eins: $$f'(x) = 3x^{3-1} = 3x^2$$ Einsetzen der Stelle: $$f'(2) = 3 \\cdot 2^2 = 12$$ Das ist die Steigung der Tangente im Punkt \\((2|8)\\), nicht der Funktionswert \\(8\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Der Umsatz eines Betriebs wird durch \\(U(x) = -0{,}1x^3 + 3x^2\\) (in Tausend Euro) bei \\(x\\) Beratern beschrieben, \\(0 \\le x \\le 20\\). Bei welcher Anzahl Berater wächst der Umsatz am stärksten?", loesung: 10, toleranz: 0, tipp: "Gesucht ist die größte Änderungsrate — untersuchen Sie also die Ableitung auf ihren Höchstwert.", loesungsweg: "Die Wachstumsgeschwindigkeit ist $$U'(x) = -0{,}3x^2 + 6x$$ Sie ist selbst eine nach unten geöffnete Parabel und am größten, wo ihre Ableitung null wird: $$U''(x) = -0{,}6x + 6 = 0 \\;\\Rightarrow\\; x = 10$$ Weil \\(U''\\) dort von \\(+\\) nach \\(-\\) wechselt, ist das tatsächlich das Maximum von \\(U'\\) und nicht ein Minimum. Der Umsatz wächst bei \\(10\\) Beratern am schnellsten, nämlich um \\(U'(10) = 30\\) Tausend Euro je zusätzlichem Berater." },
       { id: 36, level: 6, typ: "mc", frage: "Ein Bestand wird durch \\(N(t) = 100 + 20t - t^2\\) beschrieben (\\(0 \\le t \\le 12\\)). Beurteilen Sie: <b>Der Bestand wächst im gesamten Zeitraum.</b>", optionen: ["Falsch: ab \\(t = 10\\) ist die Änderungsrate negativ, der Bestand nimmt ab", "Richtig: der Bestand bleibt im ganzen Zeitraum über dem Anfangswert \\(100\\)", "Falsch: der Bestand nimmt von Beginn an ab, weil \\(-t^2\\) stärker wirkt", "Richtig: die Änderungsrate ist überall positiv, denn \\(20 > 2t\\) gilt stets"], korrekt: 0, tipp: "Untersuchen Sie das Vorzeichen der Änderungsrate über dem gesamten Zeitraum.", loesungsweg: "Die Änderungsrate ist $$N'(t) = 20 - 2t$$ Sie ist positiv für \\(t < 10\\), null bei \\(t = 10\\) und negativ für \\(t > 10\\). Da der Zeitraum bis \\(t = 12\\) reicht, fällt der Bestand am Ende wieder: die Behauptung ist falsch. Dass \\(N(12) = 196\\) noch über dem Anfangswert \\(N(0) = 100\\) liegt, ändert nichts — <b>Wachstum</b> ist eine Aussage über die Rate, nicht über den Vergleich zweier Werte. Und \\(20 > 2t\\) gilt gerade nicht für alle \\(t\\) des Zeitraums." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

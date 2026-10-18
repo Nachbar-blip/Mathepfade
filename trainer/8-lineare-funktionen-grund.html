@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-lineare-funktionen-grund';
-    const THEMA_CONFIG = { name: 'Lineare Funktionen - Grundlagen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Lineare Funktionen - Grundlagen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "mc", frage: "Die allgemeine Form einer linearen Funktion lautet …", optionen: ["\\(y = mx^2 + n\\)", "\\(y = mx + n\\)", "\\(y = \\frac{m}{x}\\)", "\\(y = m \\cdot n\\)"], korrekt: 1, tipp: "Geradengleichung.", loesungsweg: "Lineare Funktion: \\(y = mx + n\\) mit Anstieg \\(m\\) und absolutem Glied \\(n\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Für welchen Wert von \\(c\\) hat die Gerade \\(y = (c - 2)x + 8\\) keine Nullstelle?", loesung: 2, toleranz: 0, tipp: "Wann liegt eine Gerade waagerecht?", loesungsweg: "Fallunterscheidung: Für \\(c \\neq 2\\) ist der Anstieg von null verschieden, und \\((c - 2)x + 8 = 0\\) hat die Lösung \\(x = -\\frac{8}{c - 2}\\). Für \\(c = 2\\) lautet die Gleichung \\(y = 8\\): eine waagerechte Gerade oberhalb der \\(x\\)-Achse, die sie nie schneidet. Also $$c = 2$$" },
       { id: 36, level: 6, typ: "numerisch", frage: "Die Geraden \\(g\\!: y = 2x + 1\\) und \\(h\\!: y = mx + 7\\) sollen sich an der Stelle \\(x = 2\\) schneiden. Bestimme \\(m\\).", loesung: -1, toleranz: 0, tipp: "Der Schnittpunkt liegt auf \\(g\\) — berechne zuerst seine \\(y\\)-Koordinate.", loesungsweg: "Schnittpunkt auf \\(g\\): \\(g(2) = 5\\), also \\(S(2|5)\\). \\(S\\) muss auch auf \\(h\\) liegen: $$5 = 2m + 7 \\;\\Rightarrow\\; 2m = -2 \\;\\Rightarrow\\; m = -1$$ Probe: \\(h(2) = -2 + 7 = 5\\) ✓ Die Gerade \\(h\\) fällt, \\(g\\) steigt — sie kreuzen sich tatsächlich." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

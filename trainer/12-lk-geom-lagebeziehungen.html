@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-lk-geom-lagebeziehungen';
-    const THEMA_CONFIG = { name: 'Lagebeziehungen Ebene-Ebene (eA)', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Lagebeziehungen Ebene-Ebene (eA)', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ===== LEVEL 1 — Grundbegriffe =====
       { id:1, level:1, typ:"mc",
@@ -259,6 +259,7 @@
         loesungsweg:"Nachweis: $$\\begin{pmatrix}3\\\\4\\\\-2\\end{pmatrix}\\cdot\\begin{pmatrix}2\\\\-1\\\\2\\end{pmatrix} = 6-4-4 = -2 \\ne 0$$ Der Strahl verläuft also nicht parallel zur Spiegelfläche und trifft sie in genau einem Punkt. Einsetzen der Geradengleichung: $$2\\cdot 3t - 4t + 2(20-2t) = 30 \\;\\Rightarrow\\; -2t + 40 = 30 \\;\\Rightarrow\\; t = 5$$ Der Auftreffpunkt ist \\(P(15|20|10)\\); er liegt \\(10\\,\\mathrm{m}\\) über dem Boden. Der Wert \\(t = 5\\) ist positiv, der Treffer liegt also in Ausbreitungsrichtung des Strahls und nicht hinter der Quelle."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

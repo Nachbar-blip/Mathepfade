@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-wurzelgleichungen';
-    const THEMA_CONFIG = { name: 'Wurzelgleichungen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Wurzelgleichungen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 ==========
       { id: 1, level: 1, typ: "numerisch", frage: "Löse \\(\\sqrt{x} = 5\\).", loesung: 25, toleranz: 0, tipp: "Quadriere beide Seiten.", loesungsweg: "$$x = 5^2 = 25$$" },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Für welche Zahl \\(b\\) ist \\(x = 2\\) eine Scheinlösung der Gleichung \\(\\sqrt{x + b} = x - 5\\), also eine Lösung der quadrierten, aber nicht der ursprünglichen Gleichung?", loesung: 7, toleranz: 0, tipp: "Stelle die quadrierte Gleichung auf und setze den Kandidaten dort ein.", loesungsweg: "Die quadrierte Gleichung lautet \\(x + b = (x - 5)^2\\). Einsetzen von \\(x = 2\\): $$2 + b = (2 - 5)^2 = 9 \\;\\Rightarrow\\; b = 7$$ Kontrolle in der ursprünglichen Gleichung: \\(\\sqrt{2 + 7} = 3\\), aber \\(2 - 5 = -3\\) — die Werte stimmen nur bis auf das Vorzeichen überein. Genau das kennzeichnet eine Scheinlösung: Sie erfüllt die quadrierte Gleichung, weil \\(3^2 = (-3)^2\\) ist. Die echte Lösung von \\(\\sqrt{x+7} = x - 5\\) ist übrigens \\(x = 9\\): \\(\\sqrt{16} = 4 = 9 - 5\\) ✓" },
       { id: 36, level: 6, typ: "mc", frage: "Ein Schüler behauptet: „Wenn für einen Kandidaten nach dem Quadrieren der Radikand positiv ist, dann ist er automatisch eine Lösung der Wurzelgleichung.\" Was ist dazu zu sagen?", optionen: ["Richtig — Scheinlösungen entstehen nur durch negative Radikanden", "Richtig, sofern die quadrierte Gleichung richtig gelöst wurde", "Falsch — bei \\(\\sqrt{x + 5} = x - 1\\) hat \\(x = -1\\) den Radikanden \\(4\\), ist aber keine Lösung", "Falsch — ein positiver Radikand beweist im Gegenteil, dass es eine Scheinlösung ist"], korrekt: 2, tipp: "Welche Bedingung muss die Seite ohne Wurzel erfüllen?", loesungsweg: "Ein positiver Radikand sorgt nur dafür, dass die Wurzel <b>definiert</b> ist. Scheinlösungen entstehen anders: Die Seite ohne Wurzel wird negativ, und beim Quadrieren geht dieses Vorzeichen verloren. Beispiel \\(\\sqrt{x+5} = x - 1\\): Quadrieren liefert \\(x^2 - 3x - 4 = 0\\) mit den Kandidaten \\(x = 4\\) und \\(x = -1\\). $$x = -1: \\quad \\sqrt{4} = 2, \\ \\text{aber } -1 - 1 = -2$$ Der Radikand ist \\(4 > 0\\), die Gleichung trotzdem falsch; nur \\(x = 4\\) besteht die Probe (\\(\\sqrt9 = 3 = 4 - 1\\)). Die Probe muss also immer in der <b>ursprünglichen</b> Gleichung erfolgen — der Blick auf den Radikanden allein genügt nicht." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

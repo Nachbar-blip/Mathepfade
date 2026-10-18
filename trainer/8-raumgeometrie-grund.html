@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-raumgeometrie-grund';
-    const THEMA_CONFIG = { name: 'Raumgeometrie - Prismen & Zylinder', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Raumgeometrie - Prismen & Zylinder', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "mc", frage: "Ein Prisma hat ...", optionen: ["eine runde Grundfläche", "zwei kongruente, parallele Grundflächen", "nur eine Spitze", "keine Ecken"], korrekt: 1, tipp: "Boden und Deckel sind gleich.", loesungsweg: "Ein Prisma hat zwei <b>kongruente, parallele</b> Grundflächen." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Aus einem Würfel mit der Kantenlänge \\(6\\,\\text{cm}\\) wird der größtmögliche Zylinder herausgedreht. Wie viel Prozent des Würfels sind Abfall (\\(\\pi = 3{,}14\\), 1 Nachkommastelle)?", loesung: 21.5, toleranz: 0.2, tipp: "Der Zylinder berührt alle vier Seitenflächen sowie Boden und Deckel.", loesungsweg: "Der größte Zylinder hat den Durchmesser \\(6\\,\\text{cm}\\) (also \\(r = 3\\)) und die Höhe \\(6\\,\\text{cm}\\): $$V_Z = 3{,}14 \\cdot 3^2 \\cdot 6 = 169{,}56\\,\\text{cm}^3, \\qquad V_W = 6^3 = 216\\,\\text{cm}^3$$ $$\\frac{216 - 169{,}56}{216} \\approx 0{,}215 = 21{,}5\\,\\%$$ Der Anteil ist für jede Kantenlänge gleich: \\(1 - \\frac{\\pi}{4}\\)." },
       { id: 36, level: 6, typ: "numerisch", frage: "Ein Dachboden hat die Form eines Dreiecksprismas: Das Haus ist \\(10\\,\\text{m}\\) lang und \\(8\\,\\text{m}\\) breit, der Dachraum fasst \\(120\\,\\text{m}^3\\). Wie hoch liegt der Dachfirst über dem Dachboden (in m)?", loesung: 3, toleranz: 0, tipp: "Vom Volumen zur Dreiecksfläche, von der Dreiecksfläche zur Höhe.", loesungsweg: "Die Grundfläche des Prismas ist der Dreiecksquerschnitt: $$G = \\frac{V}{l} = \\frac{120}{10} = 12\\,\\text{m}^2$$ Für das Dreieck mit der Basis \\(8\\,\\text{m}\\) gilt \\(\\tfrac12 \\cdot 8 \\cdot h = 12\\), also $$h = 3\\,\\text{m}$$" }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

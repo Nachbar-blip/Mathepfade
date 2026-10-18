@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-extremwertaufgaben';
-    const THEMA_CONFIG = { name: 'Extremwertaufgaben', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Extremwertaufgaben', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1 -- Grundlagen
       { id:1, level:1, typ:"mc", frage:"Notwendige Bedingung für eine Extremstelle?", optionen:["\\(f(x_0)=0\\)","\\(f'(x_0)=0\\)","\\(f''(x_0)=0\\)","\\(f'''(x_0)=0\\)"], korrekt:1, tipp:"Erste Ableitung.", loesungsweg:"An einer Extremstelle verläuft die Tangente waagerecht: $$f'(x_0) = 0$$ Die Bedingung ist notwendig, aber nicht hinreichend — auch der Sattelpunkt von \\(f(x) = x^3\\) bei \\(x_0 = 0\\) erfüllt sie, ohne ein Extremum zu sein." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"mc", frage:"Bei gegebenem Umfang \\(U\\) wird der Flächeninhalt eines Rechtecks maximal. Behauptung: „Verdoppelt man \\(U\\), so verdoppelt sich auch der größtmögliche Flächeninhalt.\" Trifft das zu?", optionen:["Ja, die Fläche wächst proportional zum Umfang","Nein, die Fläche vervierfacht sich","Nein, die Fläche verdreifacht sich","Ja, aber nur beim Quadrat"], korrekt:1, tipp:"Den größtmöglichen Flächeninhalt allgemein durch \\(U\\) ausdrücken.", loesungsweg:"Bei gegebenem Umfang ist das Quadrat optimal; seine Seite beträgt \\(\\tfrac U4\\), also $$A_{\\max}(U) = \\left(\\frac U4\\right)^2 = \\frac{U^2}{16}$$ Der Zusammenhang ist <b>quadratisch</b>, nicht proportional: $$A_{\\max}(2U) = \\frac{(2U)^2}{16} = \\frac{4U^2}{16} = 4 \\cdot A_{\\max}(U)$$ Die Fläche vervierfacht sich also. Beispiel: \\(U = 20\\) liefert \\(25\\), \\(U = 40\\) liefert \\(100\\)." },
       { id:36, level:6, typ:"numerisch", frage:"Eine geschlossene Konservendose soll \\(500\\,\\text{cm}^3\\) fassen. Deckel und Boden kosten \\(2\\,\\text{Cent}\\) je \\(\\text{cm}^2\\), der Mantel nur \\(1\\,\\text{Cent}\\) je \\(\\text{cm}^2\\). Bei welchem Radius in cm sind die Materialkosten minimal? Runde auf zwei Dezimalstellen.", loesung:3.41, toleranz:0.05, tipp:"Die Kosten als Summe zweier Flächenanteile mit verschiedenen Preisen ansetzen.", loesungsweg:"Deckel und Boden haben zusammen die Fläche \\(2\\pi r^2\\), der Mantel \\(2\\pi r h\\) mit \\(h = \\tfrac{500}{\\pi r^2}\\). Die Kostenfunktion in Cent lautet $$K(r) = 2 \\cdot 2\\pi r^2 + 1 \\cdot 2\\pi r h = 4\\pi r^2 + \\frac{1000}{r}$$ $$K'(r) = 8\\pi r - \\frac{1000}{r^2} = 0 \\;\\Rightarrow\\; r^3 = \\frac{125}{\\pi} \\;\\Rightarrow\\; r = \\frac{5}{\\sqrt[3]{\\pi}} \\approx 3{,}41$$ Wegen \\(K''(r) > 0\\) ist das ein Minimum. Die Höhe beträgt \\(h \\approx 13{,}7\\,\\text{cm}\\), also etwa \\(4r\\): weil Deckel und Boden doppelt so teuer sind, wird die Dose <b>schlanker</b> als bei reiner Materialminimierung, wo \\(h = 2r\\) gilt." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

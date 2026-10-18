@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-lk-integral-rotationskoerper';
-    const THEMA_CONFIG = { name: 'Rotationskörper (eA)', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Rotationskörper (eA)', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Formel & Grundverständnis ==========
       { id:1, level:1, typ:"mc", frage:"Welche Formel beschreibt das Volumen eines Rotationskörpers um die x-Achse?", optionen:["\\(V=\\pi\\int_a^b f(x)\\,dx\\)","\\(V=\\pi\\int_a^b (f(x))^2\\,dx\\)","\\(V=\\int_a^b f(x)\\,dx\\)","\\(V=2\\pi\\int_a^b f(x)\\,dx\\)"], korrekt:1, tipp:"Kreisscheibenmethode.", loesungsweg:"Man zerlegt den Körper in dünne Kreisscheiben senkrecht zur Drehachse. Eine Scheibe an der Stelle \\(x\\) hat den Radius \\(f(x)\\), also die Fläche \\(\\pi f(x)^2\\) und das Volumen \\(\\pi f(x)^2\\,dx\\). Aufsummiert: $$V = \\pi\\int_a^b \\left[f(x)\\right]^2 dx$$ Das Quadrat ist entscheidend — es stammt aus der Kreisflächenformel und darf nicht fehlen." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"numerisch", frage:"Gegeben ist die Schar \\(f_a(x)=a\\cdot e^{-x}\\) mit \\(a>0\\). Der Graph rotiert über \\([0;1]\\) um die \\(x\\)-Achse. Zeigen Sie, dass \\(\\frac{V}{\\pi}=\\frac{a^2}{2}\\left(1-e^{-2}\\right)\\) gilt, und bestimmen Sie \\(a\\) so, dass \\(V/\\pi = 8\\) wird (auf zwei Nachkommastellen).", loesung:4.3, toleranz:0.05, tipp:"Quadrieren Sie den Term zuerst — beim Quadrieren einer e-Funktion verdoppelt sich der Exponent, und der Parameter wird zum konstanten Faktor.", loesungsweg:"<b>Nachweis:</b> Quadrieren ergibt \\(\\left(ae^{-x}\\right)^2 = a^2 e^{-2x}\\), der Parameter darf vorgezogen werden: $$\\frac{V}{\\pi} = a^2\\int_0^1 e^{-2x}dx = a^2\\left[-\\tfrac12 e^{-2x}\\right]_0^1 = \\frac{a^2}{2}\\left(1-e^{-2}\\right)$$ <b>Parameter:</b> mit \\(1-e^{-2}\\approx 0{,}8647\\) folgt $$\\frac{a^2}{2}\\cdot 0{,}8647 = 8 \\;\\Longrightarrow\\; a^2 \\approx 18{,}50 \\;\\Longrightarrow\\; a \\approx 4{,}30$$ Der Exponent verdoppelt sich beim Quadrieren — wer \\(e^{-x}\\) stehen lässt, erhält einen deutlich zu großen Wert." },
       { id:36, level:6, typ:"numerisch", frage:"Ein Kegel entsteht durch Rotation von \\(f(x)=x\\) über \\([0;h]\\), eine Halbkugel vom Radius \\(h\\) durch Rotation von \\(g(x)=\\sqrt{h^2-x^2}\\) über \\([0;h]\\). Zeigen Sie, dass die Halbkugel für jedes \\(h>0\\) das doppelte Volumen des Kegels hat, und geben Sie für \\(h=3\\) das Volumen der Halbkugel als \\(V/\\pi\\) an.", loesung:18, toleranz:0.1, tipp:"Berechnen Sie beide Volumina allgemein mit \\(h\\) und vergleichen Sie erst danach; für den Zahlenwert wird nur eines der beiden Ergebnisse gebraucht.", loesungsweg:"<b>Kegel:</b> $$\\frac{V_1}{\\pi} = \\int_0^h x^2\\,dx = \\frac{h^3}{3}$$ <b>Halbkugel:</b> das Quadrat der Wurzel vereinfacht den Integranden sofort: $$\\frac{V_2}{\\pi} = \\int_0^h \\left(h^2-x^2\\right)dx = h^3 - \\frac{h^3}{3} = \\frac{2h^3}{3}$$ <b>Vergleich:</b> \\(V_2 = 2V_1\\) für jedes \\(h>0\\) — das Verhältnis hängt nicht von \\(h\\) ab. <b>Zahlenwert:</b> für \\(h=3\\) ist $$\\frac{V_2}{\\pi} = \\frac{2\\cdot 27}{3} = 18$$" }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-lk-geom-abstaende';
-    const THEMA_CONFIG = { name: 'Abstände (eA)', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Abstände (eA)', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ===== LEVEL 1 — Grundlagen =====
       { id:1, level:1, typ:"mc",
@@ -22,7 +22,7 @@
         optionen:["\\(|\\vec{AB}|\\)","\\(\\vec{AB}\\cdot\\vec{AB}\\)","\\(\\vec{OA}+\\vec{OB}\\)","\\(\\frac{1}{2}|\\vec{AB}|\\)"],
         korrekt:0,
         tipp:"Der Abstand ist der Betrag des Verbindungsvektors.",
-        loesungsweg:"Abstand = \\(|\\vec{AB}|=\\sqrt{(b_1-a_1)^2+(b_2-a_2)^2+(b_3-a_3)^2}\\)."
+        loesungsweg:"Abstand: $$|\\vec{AB}|=\\sqrt{(b_1-a_1)^2+(b_2-a_2)^2+(b_3-a_3)^2}$$"
       },
       { id:2, level:1, typ:"mc",
         frage:"Die Hesse'sche Normalenform einer Ebene lautet:",
@@ -191,7 +191,7 @@
         frage:"Ein Punkt \\(P\\) liegt auf der Geraden \\(h:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+r\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}\\) und hat von der Ebene \\(E: 2x-y+2z=6\\) den Abstand \\(2\\). Welche \\(x\\)-Koordinate hat der weiter vom Ursprung entfernte der beiden möglichen Punkte?",
         loesung:12, toleranz:0.01,
         tipp:"Setze den Punkt mit einem Parameter an und übersetze die Abstandsforderung in eine Betragsgleichung.",
-        loesungsweg:"Auf \\(h\\) gilt \\(P(r|r|0)\\). Damit $$d = \\frac{|2r-r+0-6|}{\\sqrt{4+1+4}} = \\frac{|r-6|}{3} = 2 \\;\\Rightarrow\\; |r-6| = 6$$ Also \\(r = 12\\) oder \\(r = 0\\). Beide Punkte sind zulässig: \\(P_1(12|12|0)\\) und \\(P_2(0|0|0)\\) — auch der Ursprung hat den Abstand \\(\\tfrac{6}{3} = 2\\). Der weiter entfernte ist \\(P_1\\) mit \\(x = 12\\)."
+        loesungsweg:"Auf \\(h\\) gilt \\(P(r|r|0)\\). Damit $$d = \\frac{|2r-r+0-6|}{\\sqrt{4+1+4}} = \\frac{|r-6|}{3} = 2 \\;\\Rightarrow\\; {|r-6|} = 6$$ Also \\(r = 12\\) oder \\(r = 0\\). Beide Punkte sind zulässig: \\(P_1(12|12|0)\\) und \\(P_2(0|0|0)\\) — auch der Ursprung hat den Abstand \\(\\tfrac{6}{3} = 2\\). Der weiter entfernte ist \\(P_1\\) mit \\(x = 12\\)."
       },
       { id:28, level:5, typ:"numerisch",
         frage:"Zeige, dass \\(g:\\vec{x}=\\begin{pmatrix}1\\\\2\\\\0\\end{pmatrix}+t\\begin{pmatrix}2\\\\-2\\\\1\\end{pmatrix}\\) und \\(E: x+2y+2z=10\\) keinen gemeinsamen Punkt haben, und bestimme den Abstand von \\(g\\) zu \\(E\\). (3 Dez.)",
@@ -203,7 +203,7 @@
         frage:"Die Gerade \\(g\\) verläuft durch \\(A(1|1|1)\\) und \\(B(3|1|2)\\). Wie groß ist der Abstand des Punktes \\(P(5|4|3)\\) von \\(g\\)?",
         loesung:3, toleranz:0.02,
         tipp:"Die Gerade ist nicht in Parameterform gegeben — den Richtungsvektor musst du selbst aus den beiden Punkten gewinnen.",
-        loesungsweg:"Richtungsvektor: \\(\\vec u = \\vec{AB} = \\begin{pmatrix}2\\\\0\\\\1\\end{pmatrix}\\), \\(|\\vec u| = \\sqrt5\\). Weiter \\(\\vec{AP} = \\begin{pmatrix}4\\\\3\\\\2\\end{pmatrix}\\): $$\\vec{AP}\\times\\vec u = \\begin{pmatrix}3\\\\0\\\\-6\\end{pmatrix}, \\quad |\\vec{AP}\\times\\vec u| = \\sqrt{9+36} = 3\\sqrt5$$ $$d = \\frac{3\\sqrt5}{\\sqrt5} = 3$$ Dass sich die Wurzel heraushebt, ist Zufall der Zahlen — verlassen darf man sich darauf nicht."
+        loesungsweg:"Richtungsvektor: \\(\\vec u = \\vec{AB} = \\begin{pmatrix}2\\\\0\\\\1\\end{pmatrix}\\), \\(|\\vec u| = \\sqrt5\\). Weiter \\(\\vec{AP} = \\begin{pmatrix}4\\\\3\\\\2\\end{pmatrix}\\): $$\\vec{AP}\\times\\vec u = \\begin{pmatrix}3\\\\0\\\\-6\\end{pmatrix}, \\quad {|\\vec{AP}\\times\\vec u|} = \\sqrt{9+36} = 3\\sqrt5$$ $$d = \\frac{3\\sqrt5}{\\sqrt5} = 3$$ Dass sich die Wurzel heraushebt, ist Zufall der Zahlen — verlassen darf man sich darauf nicht."
       },
       { id:30, level:5, typ:"numerisch",
         frage:"\\(g_1:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+s\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}\\) und \\(g_2:\\vec{x}=\\begin{pmatrix}0\\\\0\\\\c\\end{pmatrix}+t\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}\\). Für welches \\(c>0\\) beträgt der Abstand der beiden Geraden genau \\(3\\)? (3 Dez.)",
@@ -250,6 +250,7 @@
         loesungsweg:"Einsetzen in die Abstandsformel: $$d(t) = \\frac{|t+t-2t-6|}{\\sqrt{1+1+4}} = \\frac{|-6|}{\\sqrt6} = \\frac{6}{\\sqrt6} = \\sqrt6 \\approx 2{,}449$$ Der Parameter \\(t\\) fällt vollständig heraus — der Abstand ist für <b>jeden</b> Punkt der Diagonalen derselbe. Der Grund steht im Richtungsvektor: \\(\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}\\cdot\\begin{pmatrix}1\\\\1\\\\-2\\end{pmatrix} = 0\\), die Diagonale verläuft also parallel zur Ebene. Ein kleinster Abstand wird damit überall angenommen, er beträgt \\(\\sqrt6\\)."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

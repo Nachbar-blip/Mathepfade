@@ -15,7 +15,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-lk-newton';
-    const THEMA_CONFIG = { name: 'ln-Funktion (eA)', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'ln-Funktion (eA)', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // L1 -- Definitionsbereich, Verlauf, Vorzeichen: was nur zur ln-Funktion gehört
       { id:1, level:1, typ:"mc", frage:"Der Definitionsbereich von \\(f(x) = \\ln x\\) ist:", optionen:["\\(x > 0\\)","\\(x \\geq 0\\)","alle reellen Zahlen","\\(x \\neq 0\\)"], korrekt:0, tipp:"Überlege, welche Werte die Funktion \\(e^{x}\\) überhaupt annimmt.", loesungsweg:"Die Exponentialfunktion \\(e^{x}\\) nimmt ausschließlich <b>positive</b> Werte an. Weil \\(\\ln\\) ihre Umkehrfunktion ist, können auch nur positive Zahlen in den Logarithmus eingesetzt werden: $$D = \\{x \\in \\mathbb{R} \\mid x > 0\\}$$ Für \\(x = 0\\) gibt es keinen Exponenten mit \\(e^{x} = 0\\); der Graph hat dort eine senkrechte Asymptote und fällt links davon ins Bodenlose." },
@@ -60,6 +60,7 @@
       { id:35, level:6, typ:"numerisch", frage:"Der Graph von \\(f(x) = \\frac{1}{x}\\), die \\(x\\)-Achse und die Geraden \\(x = 1\\) und \\(x = b\\) mit \\(b > 1\\) begrenzen ein Flächenstück. Gib die größte ganze Zahl \\(b\\) an, für die dessen Inhalt noch kleiner als \\(1\\) ist.", loesung:2, toleranz:0, tipp:"Beschreibe den Inhalt als Funktion der rechten Grenze, formuliere die Bedingung als Ungleichung und prüfe dann die ganzzahligen Kandidaten am Grenzfall.", loesungsweg:"Inhalt in Abhängigkeit von \\(b\\): $$A(b) = \\int_{1}^{b} \\frac{1}{x}\\,dx = \\ln b$$ Bedingung: $$\\ln b < 1 \\;\\Leftrightarrow\\; b < e \\approx 2{,}7183$$ Weil \\(A\\) streng monoton wächst, entscheidet allein dieser Grenzfall. Ganzzahlige Kandidaten: \\(b = 2\\) liefert \\(\\ln 2 \\approx 0{,}693 < 1\\), \\(b = 3\\) liefert \\(\\ln 3 \\approx 1{,}099 > 1\\). Größte passende ganze Zahl ist damit \\(2\\). Der Grenzfall \\(b = e\\) selbst ist ausgeschlossen, weil dort der Inhalt genau \\(1\\) ist und nicht kleiner." },
       { id:36, level:6, typ:"numerisch", frage:"Die Tangente an den Graphen von \\(g(x) = e^{x}\\) an der Stelle \\(x = 1\\) und die Tangente an den Graphen von \\(f(x) = \\ln x\\) an der Stelle \\(x = 1\\) schneiden sich. Bestimmen Sie die \\(x\\)-Koordinate des Schnittpunktes gerundet.", loesung:-0.582, toleranz:0.01, tipp:"Stelle beide Tangenten getrennt auf und setze anschließend ihre Funktionsterme gleich.", loesungsweg:"Erste Tangente, an \\(g(x) = e^{x}\\) bei \\(x = 1\\): Berührpunkt \\((1 \\mid e)\\), Steigung \\(g'(1) = e\\). $$y = e + e(x-1) = ex$$ Zweite Tangente, an \\(f(x) = \\ln x\\) bei \\(x = 1\\): Berührpunkt \\((1 \\mid 0)\\), Steigung \\(f'(1) = 1\\). $$y = x - 1$$ Gleichsetzen: $$ex = x - 1 \\;\\Rightarrow\\; x(e-1) = -1 \\;\\Rightarrow\\; x = -\\frac{1}{e-1} \\approx -0{,}5820$$ Beide Tangenten treffen sich also links der \\(y\\)-Achse. Der Vergleich zeigt zugleich, wie unterschiedlich steil die beiden Umkehrfunktionen an derselben Stelle verlaufen: \\(e \\approx 2{,}72\\) gegen \\(1\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

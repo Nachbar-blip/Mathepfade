@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-ebenen';
-    const THEMA_CONFIG = { name: 'Ebenen im Raum', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Ebenen im Raum', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "mc", frage: "Parameterform einer Ebene \\(E\\):", optionen: ["\\(\\vec x = \\vec a + t\\vec u\\)", "\\(\\vec x = \\vec a + t\\vec u + s\\vec v\\)", "\\(\\vec x = t\\vec u \\cdot s\\vec v\\)", "\\(\\vec x = \\vec u + \\vec v\\)"], korrekt: 1, tipp: "Aufpunkt + zwei Richtungsvektoren.", loesungsweg: "Eine Ebene ist zweidimensional, man braucht also einen Aufpunkt und <b>zwei</b> linear unabhängige Richtungsvektoren: $$E: \\vec x = \\vec a + t\\vec u + s\\vec v$$ Mit nur einem Richtungsvektor entstünde eine Gerade; die beiden Parameter \\(t\\) und \\(s\\) durchlaufen unabhängig voneinander ganz \\(\\mathbb{R}\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Ein Solarpanel liegt in \\(E: 2x+3y+6z = 42\\). Ein Mast hat die Spitze \\(M(3|4|10)\\); die Sonnenstrahlen fallen senkrecht nach unten, also in Richtung \\(\\begin{pmatrix}0\\\\0\\\\-1\\end{pmatrix}\\) (Angaben in Metern). In welcher Höhe \\(z\\) trifft der Schatten der Mastspitze das Panel?", loesung: 4, toleranz: 0, tipp: "Der Strahl durch die Mastspitze ist eine Gerade; ihr Schnitt mit der Panelebene liefert den Schattenpunkt.", loesungsweg: "Strahl: \\(\\vec x = \\begin{pmatrix}3\\\\4\\\\10\\end{pmatrix}+t\\begin{pmatrix}0\\\\0\\\\-1\\end{pmatrix}\\). Einsetzen: \\(6+12+6(10-t) = 78-6t\\). Aus \\(78-6t = 42\\) folgt \\(t = 6\\), also der Schattenpunkt \\((3|4|4)\\) und die Höhe \\(z = 4\\) m. Probe: \\(6+12+24 = 42\\)." },
       { id: 36, level: 6, typ: "numerisch", frage: "Die beiden Böschungen eines Entwässerungsgrabens liegen in \\(E_1: 2x+z = 14\\) und \\(E_2: -2x+z = 2\\) (Angaben in Metern). Die Sohle des Grabens ist die Schnittgerade. In welcher Höhe \\(z\\) verläuft sie?", loesung: 8, toleranz: 0, tipp: "Die Punkte der Schnittgeraden erfüllen beide Gleichungen — addiere oder subtrahiere sie geschickt.", loesungsweg: "Addition beider Gleichungen: \\(2z = 16\\), also \\(z = 8\\). Subtraktion: \\(4x = 12\\), also \\(x = 3\\). Die \\(y\\)-Koordinate bleibt frei, die Sohle ist demnach \\(\\vec x = \\begin{pmatrix}3\\\\0\\\\8\\end{pmatrix}+t\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}\\) und verläuft in der Höhe \\(z = 8\\) m. Dass die Lösung eine Gerade und kein einzelner Punkt ist, liegt an den nicht kollinearen Normalenvektoren." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

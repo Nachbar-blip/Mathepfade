@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '7-winkel-winkelsumme';
-    const THEMA_CONFIG = { name: 'Winkel und Winkelsumme', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Winkel und Winkelsumme', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht: Winkelarten ==========
       {
@@ -383,6 +383,7 @@
         loesungsweg: "<b>Schritt 1:</b> $$3x + (2x + 10°) + (x + 20°) = 180° \\implies 6x + 30° = 180° \\implies x = 25°$$ <b>Schritt 2:</b> \\(\\alpha = 75°\\), \\(\\beta = 60°\\), \\(\\gamma = 45°\\); Probe: Summe \\(180°\\) ✓. Der größte Winkel ist \\(\\alpha = 75°\\). <b>Typischer Fehler:</b> \\(x = 25°\\) als Antwort angeben."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

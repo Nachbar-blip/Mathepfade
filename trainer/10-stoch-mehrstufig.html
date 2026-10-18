@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-stoch-mehrstufig';
-    const THEMA_CONFIG = { name: 'Mehrstufige Zufallsversuche', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Mehrstufige Zufallsversuche', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Baumdiagramm-Grundlagen ==========
       { id: 1, level: 1, typ: "mc", frage: "Was ist ein mehrstufiger Zufallsversuch?", optionen: ["Ein einmaliger Wurf", "Ein Zufallsexperiment aus mehreren hintereinander ausgeführten Teilexperimenten", "Ein gewichteter Würfel", "Ein Test auf Unabhängigkeit"], korrekt: 1, tipp: "„Mehrstufig\" heißt mehrere Stufen hintereinander.", loesungsweg: "Ein mehrstufiger Zufallsversuch besteht aus zwei oder mehr Teilexperimenten, die nacheinander ausgeführt werden." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Aus einer Urne mit 3 roten und 5 blauen Kugeln wird zweimal ohne Zurücklegen gezogen. Für „die erste oder die zweite Kugel ist rot“ rechnet jemand \\(\\tfrac38 + \\tfrac38 = 0{,}75\\). Wie groß ist der richtige Wert? (3 Dezimalen)", loesung: 0.643, toleranz: 0.005, tipp: "Der Ansatz zählt einen Fall doppelt; suche das Gegenereignis, das aus einem einzigen Pfad besteht.", loesungsweg: "Gefragt ist „mindestens eine rote“. Der vorgelegte Ansatz addiert zwei Fälle, die sich überschneiden: Bei zwei roten Kugeln wird doppelt gezählt. Das Gegenereignis „beide blau“ ist ein einziger Pfad: $$P(\\text{beide blau}) = \\frac58 \\cdot \\frac47 = \\frac{20}{56} \\approx 0{,}357$$ und damit $$P(\\text{mindestens eine rot}) = 1 - \\frac{20}{56} = \\frac{36}{56} \\approx 0{,}643$$ Die Doppelzählung erklärt die Differenz zu \\(0{,}75\\) genau: \\(P(\\text{beide rot}) = \\tfrac38 \\cdot \\tfrac27 = \\tfrac{6}{56} \\approx 0{,}107\\), und \\(0{,}75 - 0{,}107 = 0{,}643\\)." },
       { id: 36, level: 6, typ: "numerisch", frage: "Ein Test besteht aus drei Fragen mit je vier Antworten, von denen genau eine richtig ist. Wer mindestens zwei Fragen richtig hat, besteht. Wie wahrscheinlich ist es, den Test durch reines Raten zu bestehen? (4 Dezimalen)", loesung: 0.1563, toleranz: 0.002, tipp: "„Mindestens zwei von drei“ zerfällt in zwei Fälle; zähle bei jedem die Pfade des Baumdiagramms.", loesungsweg: "Jede Frage wird mit \\(p = \\tfrac14\\) richtig geraten. Genau zwei richtig — drei Pfade, je nachdem welche Frage falsch ist: $$3 \\cdot \\left(\\frac14\\right)^2 \\cdot \\frac34 = \\frac{9}{64} = 0{,}140625$$ Alle drei richtig — ein Pfad: \\(\\left(\\tfrac14\\right)^3 = \\tfrac{1}{64} = 0{,}015625\\). Zusammen $$\\frac{9}{64} + \\frac{1}{64} = \\frac{10}{64} = 0{,}15625 \\approx 0{,}1563$$ Rund \\(16\\,\\%\\) also: Raten lohnt sich bei dieser Hürde nicht. Bei vier Fragen und „mindestens drei richtig“ wäre es noch weniger." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

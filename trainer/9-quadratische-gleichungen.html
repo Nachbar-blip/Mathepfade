@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-quadratische-gleichungen';
-    const THEMA_CONFIG = { name: 'Quadratische Gleichungen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Quadratische Gleichungen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 ==========
       { id: 1, level: 1, typ: "numerisch", frage: "Löse \\(x^2 = 25\\). Positive Lösung?", loesung: 5, toleranz: 0, tipp: "Wurzel ziehen.", loesungsweg: "$$x = \\pm\\sqrt{25} = \\pm 5$$" },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "mc", frage: "Vergleiche die Gleichungen \\(x^2 + 6x + 9 = 0\\) und \\(x^2 + 6x + 9 = 1\\). Was gilt?", optionen: ["Beide haben genau eine Lösung, nämlich \\(x = -3\\)", "Die erste hat eine Lösung, die zweite hat zwei", "Die erste hat zwei Lösungen, die zweite nur eine", "Beide haben zwei Lösungen mit dem Abstand \\(2\\)"], korrekt: 1, tipp: "Die linke Seite ist ein Binom.", loesungsweg: "Linke Seite: \\((x+3)^2\\). Erste Gleichung: \\((x+3)^2 = 0 \\Rightarrow x = -3\\), eine (doppelte) Lösung. Zweite Gleichung: $$(x+3)^2 = 1 \\;\\Rightarrow\\; x + 3 = \\pm 1 \\;\\Rightarrow\\; x = -2 \\text{ oder } x = -4$$ zwei Lösungen. Anschaulich: Die Parabel berührt die Gerade \\(y = 0\\) und schneidet die Gerade \\(y = 1\\)." },
       { id: 36, level: 6, typ: "numerisch", frage: "Für welches \\(m > 0\\) hat die Gleichung \\(x^2 - 2mx + m + 6 = 0\\) genau eine Lösung?", loesung: 3, toleranz: 0, tipp: "Genau eine Lösung heißt: Der Ausdruck unter der Wurzel ist null — das ergibt eine Gleichung für \\(m\\).", loesungsweg: "Mit \\(p = -2m\\), \\(q = m + 6\\) steht unter der Wurzel \\(m^2 - (m + 6)\\). Genau eine Lösung bei $$m^2 - m - 6 = 0 \\;\\Rightarrow\\; m = 0{,}5 \\pm 2{,}5 \\;\\Rightarrow\\; m = 3 \\text{ (oder } m = -2\\text{)}$$ Für \\(m = 3\\): \\(x^2 - 6x + 9 = (x-3)^2 = 0\\), Lösung \\(x = 3\\) ✓" }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

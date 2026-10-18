@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-extrempunkte-wendepunkte';
-    const THEMA_CONFIG = { name: 'Extrem- & Wendepunkte', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Extrem- & Wendepunkte', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "numerisch", frage: "\\(f(x)=x^2-6x+5\\). An welcher Stelle gilt \\(f'(x)=0\\)?", loesung: 3, toleranz: 0, tipp: "Zuerst ableiten, dann den Ableitungsterm null setzen.", loesungsweg: "Gliedweise ableiten: $$f'(x) = 2x-6$$ Null setzen und nach \\(x\\) auflösen: $$2x-6 = 0 \\;\\Rightarrow\\; 2x = 6 \\;\\Rightarrow\\; x = 3$$ An dieser Stelle verläuft die Tangente waagerecht; bei der nach oben geöffneten Parabel ist das der Scheitel und damit ein Tiefpunkt." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Der Graph von \\(f(x)=ax^4+bx^2\\) hat an der Stelle \\(x=1\\) einen Extrempunkt mit dem Funktionswert \\(-2\\). Bestimme \\(a\\).", loesung: 2, toleranz: 0, tipp: "Die Lage des Extrempunkts ist eine Bedingung an die Ableitung, der Funktionswert eine an \\(f\\) selbst.", loesungsweg: "<b>Schritt 1.</b> Aus \\(f'(x) = 4ax^3+2bx\\) und \\(f'(1)=0\\) folgt $$4a+2b = 0 \\;\\Rightarrow\\; b = -2a$$ <b>Schritt 2.</b> Aus \\(f(1) = a+b = -2\\) wird damit $$a - 2a = -2 \\;\\Rightarrow\\; -a = -2 \\;\\Rightarrow\\; a = 2$$ und folglich \\(b = -4\\). <b>Kontrolle.</b> Mit \\(f(x) = 2x^4-4x^2\\) ist \\(f'(x) = 8x^3-8x = 8x(x-1)(x+1)\\), die Stelle \\(x=1\\) ist also wirklich Nullstelle der Ableitung. Wegen \\(f''(x) = 24x^2-8\\) und \\(f''(1) = 16 > 0\\) liegt dort ein Tiefpunkt, und \\(f(1) = 2-4 = -2\\) stimmt mit der Vorgabe überein." },
       { id: 36, level: 6, typ: "mc", frage: "Ein Gewinnmodell lautet \\(G(x)=x^4-4x^3+6x^2-4x+4\\). Ein Praktikant rechnet \\(G'(1)=0\\) und \\(G''(1)=0\\) aus und schließt: „Bei \\(x=1\\) liegt ein Sattelpunkt, dort gibt es also weder den größten noch den kleinsten Gewinn.“ Beurteile das.", optionen: ["Falsch: \\(G(x)=(x-1)^4+3\\), und \\(G'\\) wechselt bei \\(x=1\\) von minus nach plus — es ist ein Tiefpunkt.", "Richtig: sobald erste und zweite Ableitung zugleich null sind, liegt stets ein Sattelpunkt vor.", "Falsch: der Praktikant hat sich verrechnet, denn \\(G'(1)=4\\) ist gar nicht null und es gibt kein Extremum.", "Richtig, aber nur weil der Grad gerade ist; bei ungeradem Grad wäre es ein lokales Maximum gewesen."], korrekt: 0, tipp: "Wenn die zweite Ableitung null ist, sagt sie nichts aus — entscheide über den Vorzeichenwechsel der ersten Ableitung.", loesungsweg: "Die Rechnung des Praktikanten stimmt, sein Schluss nicht. Aus \\(G''(x_0)=0\\) folgt <b>weder</b> ein Sattelpunkt noch ein Extremum — das Kriterium versagt in diesem Fall einfach. Entscheidend ist der Vorzeichenwechsel von \\(G'\\): $$G'(x) = 4x^3-12x^2+12x-4 = 4(x-1)^3$$ Für \\(x\\) kleiner als \\(1\\) ist \\((x-1)^3\\) negativ, für \\(x\\) größer als \\(1\\) positiv — also Wechsel von minus nach plus und damit ein <b>Tiefpunkt</b>. Kontrolle: \\(G'(0) = -4\\) und \\(G'(2) = 4\\). Der Term lässt sich als \\(G(x) = (x-1)^4+3\\) schreiben, woraus der kleinste Gewinn \\(G(1)=3\\) unmittelbar abzulesen ist. Bei \\(x=1\\) liegt also gerade der kleinste Gewinn — das Gegenteil der Behauptung." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

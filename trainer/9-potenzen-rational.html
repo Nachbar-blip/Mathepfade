@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-potenzen-rational';
-    const THEMA_CONFIG = { name: 'Potenzen mit rationalen Exponenten', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Potenzen mit rationalen Exponenten', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 ==========
       { id: 1, level: 1, typ: "mc", frage: "Was bedeutet \\(a^{1/2}\\)?", optionen: ["\\(a \\cdot \\frac{1}{2}\\)", "\\(\\sqrt{a}\\)", "\\(\\frac{1}{a^2}\\)", "\\(a^2\\)"], korrekt: 1, tipp: "Hoch \\(\\frac{1}{2}\\) = Quadratwurzel.", loesungsweg: "Ein Bruch im Exponenten steht für eine Wurzel. Der Grund ist das Potenzgesetz: $$\\left(a^{1/2}\\right)^2 = a^{\\frac12 \\cdot 2} = a^1 = a$$ Gesucht ist also die Zahl, die quadriert \\(a\\) ergibt — die Quadratwurzel: \\(a^{1/2} = \\sqrt a\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "mc", frage: "Für welche positiven Zahlen \\(x\\) gilt \\(x^{1/2} > x\\)?", optionen: ["Genau für \\(0 < x < 1\\), etwa \\(\\sqrt{0{,}25} = 0{,}5 > 0{,}25\\)", "Für alle \\(x > 0\\), weil die Wurzel immer größer als die Zahl ist", "Für alle \\(x > 1\\), weil dort die Wurzel schneller wächst", "Für kein \\(x\\), weil \\(\\frac12 < 1\\) ist"], korrekt: 0, tipp: "Vergleiche \\(x = 4\\) und \\(x = 0{,}25\\).", loesungsweg: "Fallunterscheidung nach der Basis: Für \\(x > 1\\) ist \\(\\sqrt x < x\\), zum Beispiel \\(\\sqrt4 = 2 < 4\\). Für \\(x = 1\\) sind beide gleich. Für \\(0 < x < 1\\) kehrt sich die Beziehung um: $$\\sqrt{0{,}25} = 0{,}5 > 0{,}25, \\qquad \\sqrt{0{,}01} = 0{,}1 > 0{,}01$$ Denn ein Bruch zwischen \\(0\\) und \\(1\\) wird beim Quadrieren kleiner — also ist seine Wurzel größer als er selbst. Die Regel „kleinerer Exponent, kleinere Potenz\" gilt nur für Basen über \\(1\\)." },
       { id: 36, level: 6, typ: "numerisch", frage: "Ein Würfel wird so vergrößert, dass sein Volumen auf das \\(27\\)-Fache wächst. Ein Schüler meint, die Oberfläche wachse dann ebenfalls auf das \\(27\\)-Fache. Auf das Wievielfache wächst die Oberfläche tatsächlich?", loesung: 9, toleranz: 0, tipp: "Vom Volumen zur Kante ist der Exponent \\(\\frac13\\), von der Kante zur Oberfläche der Exponent \\(2\\).", loesungsweg: "Kante und Volumen hängen über \\(V = a^3\\) zusammen, also \\(a = V^{1/3}\\). Wächst das Volumen auf das \\(27\\)-Fache, wächst die Kante auf das $$27^{1/3} = 3\\text{-Fache}$$ Die Oberfläche \\(O = 6a^2\\) wächst mit dem Quadrat der Kante, also auf das \\(3^2 = 9\\)-Fache. In einem Schritt: $$27^{2/3} = \\left(27^{1/3}\\right)^2 = 9$$ Die Behauptung ist falsch — Volumen, Oberfläche und Kante wachsen mit verschiedenen Exponenten (\\(3\\), \\(2\\), \\(1\\))." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

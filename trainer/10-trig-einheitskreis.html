@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-trig-einheitskreis';
-    const THEMA_CONFIG = { name: 'Einheitskreis & Bogenmaß', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Einheitskreis & Bogenmaß', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Einheitskreis-Grundlagen (6 Aufgaben) ==========
       {
@@ -378,7 +378,7 @@
         loesung: 0.8,
         toleranz: 0.01,
         tipp: "Quadriere einmal die Summe und einmal die Differenz der beiden Werte; in beiden Fällen lässt sich die Grundbeziehung einsetzen.",
-        loesungsweg: "Quadrat der Summe: $$(\\sin\\alpha + \\cos\\alpha)^2 = 1 + 2 \\cdot 0{,}48 = 1{,}96 \\;\\Rightarrow\\; \\sin\\alpha + \\cos\\alpha = 1{,}4$$ Quadrat der Differenz: $$(\\sin\\alpha - \\cos\\alpha)^2 = 1 - 2 \\cdot 0{,}48 = 0{,}04 \\;\\Rightarrow\\; |\\sin\\alpha - \\cos\\alpha| = 0{,}2$$ Aus Summe \\(1{,}4\\) und Differenz \\(0{,}2\\) ergeben sich die Werte \\(0{,}8\\) und \\(0{,}6\\). Der größere ist \\(0{,}8\\); Probe: \\(0{,}8 \\cdot 0{,}6 = 0{,}48\\) ✓"
+        loesungsweg: "Quadrat der Summe: $$(\\sin\\alpha + \\cos\\alpha)^2 = 1 + 2 \\cdot 0{,}48 = 1{,}96 \\;\\Rightarrow\\; \\sin\\alpha + \\cos\\alpha = 1{,}4$$ Quadrat der Differenz: $$(\\sin\\alpha - \\cos\\alpha)^2 = 1 - 2 \\cdot 0{,}48 = 0{,}04 \\;\\Rightarrow\\; {|\\sin\\alpha - \\cos\\alpha|} = 0{,}2$$ Aus Summe \\(1{,}4\\) und Differenz \\(0{,}2\\) ergeben sich die Werte \\(0{,}8\\) und \\(0{,}6\\). Der größere ist \\(0{,}8\\); Probe: \\(0{,}8 \\cdot 0{,}6 = 0{,}48\\) ✓"
       },
       {
         id: 28,
@@ -488,6 +488,7 @@
         loesungsweg: "Die Spiegelung an der \\(y\\)-Achse liefert zwar zu jedem \\(\\alpha\\) den Partner \\(180° - \\alpha\\) mit gleichem Sinuswert, aber nicht nur diesen. Für \\(\\alpha = 0°\\) und \\(\\beta = 360°\\) gilt \\(\\sin\\alpha = \\sin\\beta = 0\\), obwohl \\(180° - 0° = 180°\\) ist und nicht \\(360°\\). Die Behauptung ist damit <b>falsch</b>: sie erfasst nur die Partner innerhalb eines Umlaufs, nicht die durch die Periode \\(360°\\) hinzukommenden."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

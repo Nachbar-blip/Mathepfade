@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-stoch-erwartungswert';
-    const THEMA_CONFIG = { name: 'Erwartungswert & Streuung', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Erwartungswert & Streuung', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Zufallsgröße, Verteilung, Summe 1, Σ-Schreibweise ==========
       { id:1, level:1, typ:"mc", frage:"Zwei Münzen werden geworfen. Die Zufallsgröße \\(X\\) zählt die Anzahl der Wappen. Welche Werte kann \\(X\\) annehmen?", optionen:["\\(0\\), \\(1\\) und \\(2\\)","nur \\(1\\) und \\(2\\)","\\(0\\), \\(1\\), \\(2\\) und \\(3\\)","nur \\(1\\), \\(2\\) und \\(3\\)"], korrekt:0, tipp:"Zähle die Wappen in den möglichen Ausgängen ab: kein Wappen, ein Wappen, zwei Wappen — und prüfe, welche dieser Fälle überhaupt auftreten können.", loesungsweg:"Bei zwei Münzen sind vier Ausgänge möglich: WW, WZ, ZW und ZZ. Die Zufallsgröße \\(X\\) ordnet jedem Ausgang die Anzahl der Wappen zu: <br>ZZ \\(\\to 0\\), WZ \\(\\to 1\\), ZW \\(\\to 1\\), WW \\(\\to 2\\). <br>Mehr als zwei Wappen können bei zwei Münzen nicht fallen, und null Wappen sind möglich (ZZ). Der Wertebereich ist also \\(\\{0;\\,1;\\,2\\}\\). Wichtig: Nicht die Anzahl der Ausgänge (vier) ist gefragt, sondern die Zahlen, die \\(X\\) annimmt (drei)." },
@@ -65,6 +65,7 @@
       { id:36, level:6, typ:"numerisch", frage:"Jemand behauptet, bei einem Spiel mit erwartetem Nettogewinn null gewinne man in der Hälfte aller Spiele. Prüfen Sie das an folgendem Spiel: Der Einsatz beträgt \\(1\\,€\\), mit der Wahrscheinlichkeit \\(p\\) werden \\(100\\,€\\) ausgezahlt, sonst nichts, und der erwartete Nettogewinn ist null. In wie vielen von \\(100\\) Spielen wird dabei im Mittel gewonnen?", loesung:1, toleranz:0, tipp:"Stellen Sie die Verteilung des Nettogewinns mit der unbekannten Wahrscheinlichkeit auf und nutzen Sie die Angabe über den erwarteten Nettogewinn als Gleichung.", loesungsweg:"Der Nettogewinn \\(X\\) beträgt im Gewinnfall \\(100 - 1 = 99\\,€\\) und sonst \\(-1\\,€\\), denn der Einsatz ist in jedem Fall fällig: $$E(X) = 99 \\cdot p + (-1) \\cdot (1-p) = 99p - 1 + p = 100p - 1$$ Aus der Bedingung \\(E(X) = 0\\) folgt $$100p = 1 \\;\\Rightarrow\\; p = \\tfrac{1}{100}$$ In \\(100\\) Spielen wird also im Mittel genau <b>einmal</b> gewonnen — nicht fünfzigmal. Die Behauptung ist damit widerlegt. <br>Der Grund: Der Erwartungswert wiegt Gewinnhöhe und Wahrscheinlichkeit gegeneinander auf. Ein seltener, aber hoher Gewinn gleicht viele kleine Verluste aus. Ebenso gut ließe sich ein faires Spiel bauen, bei dem man in \\(99\\) von \\(100\\) Spielen einen kleinen Betrag gewinnt und sehr selten viel verliert — dann läge die Gewinnhäufigkeit weit über der Hälfte. Die Richtung der Abweichung ist also nicht einmal festgelegt: Aus dem Erwartungswert allein folgt über die Gewinnhäufigkeit gar nichts, dafür muss die Verteilung selbst angesehen werden." }
     ];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

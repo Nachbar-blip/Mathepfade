@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-stoch-bedingte-wsk';
-    const THEMA_CONFIG = { name: 'Bedingte Wahrscheinlichkeit', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Bedingte Wahrscheinlichkeit', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Grundlagen ==========
       { id: 1, level: 1, typ: "mc", frage: "Wie liest man \\(P(A|B)\\)?", optionen: ["A und B", "A oder B", "A unter der Bedingung B", "A ohne B"], korrekt: 2, tipp: "Der senkrechte Strich bedeutet „unter der Bedingung\".", loesungsweg: "\\(P(A|B)\\) = Wahrscheinlichkeit von A unter der Bedingung, dass B bereits eingetreten ist." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Für zwei Ereignisse gilt \\(P(A) = 0{,}4\\), \\(P(B \\mid A) = 0{,}25\\) und \\(P(B \\mid \\overline{A}) = 0{,}4\\). Wie groß ist \\(P(A \\mid \\overline{B})\\)? (3 Dezimalen)", loesung: 0.455, toleranz: 0.005, tipp: "Rechne die drei Angaben zuerst in die vier Zellen einer Vierfeldertafel um; die gesuchte Größe steht dann in einer Spalte.", loesungsweg: "Die vier Zellen: \\(P(A \\cap B) = 0{,}4 \\cdot 0{,}25 = 0{,}1\\) und \\(P(A \\cap \\overline{B}) = 0{,}4 - 0{,}1 = 0{,}3\\); ferner \\(P(\\overline{A} \\cap B) = 0{,}6 \\cdot 0{,}4 = 0{,}24\\) und \\(P(\\overline{A} \\cap \\overline{B}) = 0{,}6 - 0{,}24 = 0{,}36\\). Die Spalte \\(\\overline{B}\\) hat die Summe \\(0{,}3 + 0{,}36 = 0{,}66\\), also $$P(A \\mid \\overline{B}) = \\frac{0{,}3}{0{,}66} \\approx 0{,}455$$ Der Weg führt zwingend über die Tafel: Die gegebenen Größen sind entlang der Zeilen bedingt, gefragt ist eine Bedingung entlang einer Spalte. Wegen \\(P(B \\mid A) \\neq P(B \\mid \\overline{A})\\) sind die Merkmale abhängig, deshalb ist \\(P(A \\mid \\overline{B}) = 0{,}455\\) auch größer als \\(P(A) = 0{,}4\\)." },
       { id: 36, level: 6, typ: "mc", frage: "„Sind \\(A\\) und \\(B\\) stochastisch unabhängig, so sind auch \\(A\\) und \\(\\overline{B}\\) stochastisch unabhängig.“ Trifft das zu?", optionen: ["Ja, das folgt aus \\(P(A \\cap \\overline{B}) = P(A) - P(A \\cap B)\\)", "Ja, jedoch ausschließlich im Sonderfall \\(P(B) = 0{,}5\\)", "Nein, ein Ereignis und sein Gegenereignis sind immer abhängig", "Nein, denn \\(P(A \\cap \\overline{B})\\) ist in diesem Fall gleich Null"], korrekt: 0, tipp: "Zerlege \\(A\\) in den Teil, der in \\(B\\) liegt, und den Rest, und setze dann die Unabhängigkeit ein.", loesungsweg: "Das Ereignis \\(A\\) zerfällt in \\(A \\cap B\\) und \\(A \\cap \\overline{B}\\), also $$P(A \\cap \\overline{B}) = P(A) - P(A \\cap B) = P(A) - P(A) \\cdot P(B) = P(A) \\cdot (1 - P(B))$$ und \\(1 - P(B)\\) ist gerade \\(P(\\overline{B})\\). Damit ist die Unabhängigkeitsbedingung für \\(A\\) und \\(\\overline{B}\\) erfüllt, die Behauptung trifft zu — ohne Sonderfall. Der dritte Vorschlag verwechselt „unabhängig“ mit „ausschließend“: \\(B\\) und \\(\\overline{B}\\) schließen sich aus, aber hier stehen \\(A\\) und \\(\\overline{B}\\) nebeneinander. Ebenso lässt sich zeigen, dass dann auch \\(\\overline{A}\\) und \\(\\overline{B}\\) unabhängig sind." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-ganzrationale-funktionen';
-    const THEMA_CONFIG = { name: 'Ganzrationale Funktionen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Ganzrationale Funktionen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht: Grundbegriffe ==========
       { id: 1, level: 1, typ: "mc", frage: "Was ist eine ganzrationale Funktion?", optionen: ["Eine Funktion mit Bruch im Nenner mit x", "Eine Summe von Potenzen von x mit ganzzahligen, nicht-negativen Exponenten", "Eine Wurzelfunktion", "Eine trigonometrische Funktion"], korrekt: 1, tipp: "Stichwort: Polynom.", loesungsweg: "Eine <b>ganzrationale Funktion</b> (Polynomfunktion) hat die Form \\(f(x) = a_n x^n + \\dots + a_1 x + a_0\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "mc", frage: "Behauptung: „Eine ganzrationale Funktion geraden Grades hat stets eine gerade Anzahl verschiedener reeller Nullstellen.“ Prüfe die Behauptung.", optionen: ["Richtig, das folgt aus dem Randverhalten", "Falsch, \\(f(x) = x^4\\) hat genau eine", "Richtig, Nullstellen treten immer paarweise auf", "Falsch, \\(f(x) = x^4 + 1\\) hat genau drei"], korrekt: 1, tipp: "Suche ein Gegenbeispiel mit einer Nullstelle hoher Vielfachheit.", loesungsweg: "Gegenbeispiel: \\(f(x) = x^4\\) hat nur die <b>eine</b> Stelle \\(x = 0\\) als Nullstelle (allerdings mit Vielfachheit 4). Die Anzahl der <i>verschiedenen</i> Nullstellen ist also ungerade, die Behauptung damit falsch. Zählt man die Vielfachheiten mit, stimmt die Aussage über Vorzeichenwechsel wieder; \\(x^4 + 1\\) hat übrigens gar keine reelle Nullstelle." },
       { id: 36, level: 6, typ: "numerisch", frage: "Eine ganzrationale Funktion dritten Grades hat die Nullstellen \\(-2\\), \\(0\\) und \\(3\\); ihr Graph verläuft durch den Punkt \\(P(1 \\mid 12)\\). Bestimme den Leitkoeffizienten \\(a\\).", loesung: -2, toleranz: 0, tipp: "Setze zuerst die Produktform mit unbekanntem Vorfaktor an und nutze den Punkt als zweite Bedingung.", loesungsweg: "Ansatz aus den Nullstellen: $$f(x) = a \\cdot x(x+2)(x-3)$$ Punktprobe mit \\(P(1 \\mid 12)\\): $$a \\cdot 1 \\cdot 3 \\cdot (-2) = -6a = 12 \\;\\Longrightarrow\\; a = -2$$ Die Funktion lautet \\(f(x) = -2x^3 + 2x^2 + 12x\\). Ohne den Punkt wäre die Funktion nur bis auf den Streckfaktor bestimmt." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

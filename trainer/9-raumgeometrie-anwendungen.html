@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-raumgeometrie-anwendungen';
-    const THEMA_CONFIG = { name: 'Raumgeometrie: Anwendungen', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Raumgeometrie: Anwendungen', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       { id:1, level:1, typ:"mc", frage:"1 Liter entspricht wie viel cm³?", optionen:["10","100","1000","10000"], korrekt:2, tipp:"Einheit.", loesungsweg:"Ein Liter ist als das Volumen eines Würfels mit \\(10\\,\\text{cm}\\) Kantenlänge festgelegt: $$10 \\cdot 10 \\cdot 10 = 1000\\,\\text{cm}^3$$ Daraus folgt auch \\(1\\,\\text{ml} = 1\\,\\text{cm}^3\\)." },
       { id:2, level:1, typ:"mc", frage:"1 m³ entspricht wie viel Liter?", optionen:["100","1000","10000","100000"], korrekt:1, tipp:"Volumeneinheit.", loesungsweg:"Ein Kubikmeter ist ein Würfel mit \\(100\\,\\text{cm}\\) Kantenlänge: $$100^3 = 1\\,000\\,000\\,\\text{cm}^3 = 1000\\,\\text{l}$$ Bei Volumen ist der Umrechnungsfaktor also \\(1000\\), nicht \\(100\\) wie bei Flächen." },
@@ -53,6 +53,7 @@
       { id:35, level:6, typ:"mc", frage:"Ein Kegel und eine quadratische Pyramide haben dieselbe Höhe und gleich große Grundflächen. Behauptung: „Der Kegel hat das größere Volumen, weil er rund ist.“ Stimmt das?", optionen:["Nein, beide Volumen sind genau gleich groß", "Ja, runde Körper fassen bei gleicher Höhe mehr", "Nein, die Pyramide hat das größere Volumen", "Nur bei gleichem Umfang der Grundfläche gleich"], korrekt:0, tipp:"Vergleiche die Volumenformeln der beiden Spitzkörper: Welche Größen gehen ein?", loesungsweg:"Für jeden Spitzkörper gilt \\(V = \\tfrac13 \\cdot G \\cdot h\\), unabhängig von der Form der Grundfläche. Stimmen \\(G\\) und \\(h\\) überein, sind die Volumen gleich: $$V_{Kegel} = \\tfrac13 G h = V_{Pyramide}$$ Die Form der Grundfläche spielt für das Volumen keine Rolle, wohl aber für die Oberfläche." },
       { id:36, level:6, typ:"numerisch", frage:"Zwei Kegel sind zueinander ähnlich. Der kleine ist \\(5\\,\\text{cm}\\) hoch und hat das Volumen \\(40\\,\\text{cm}^3\\); der große ist \\(7{,}5\\,\\text{cm}\\) hoch. Wie groß ist das Volumen des großen Kegels in \\(\\text{cm}^3\\)?", loesung:135, toleranz:0.1, tipp:"Bestimme zuerst den Streckfaktor aus den Höhen; Volumen wachsen nicht mit demselben Faktor.", loesungsweg:"Streckfaktor \\(k = \\frac{7{,}5}{5} = 1{,}5\\). Volumen wachsen mit \\(k^3\\): $$V = 40 \\cdot 1{,}5^3 = 40 \\cdot 3{,}375 = 135\\,\\text{cm}^3$$ Mit \\(k\\) oder \\(k^2\\) käme man auf \\(60\\) bzw. \\(90\\), beides falsch." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

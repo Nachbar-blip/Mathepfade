@@ -15,7 +15,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-flaechenberechnung-determinante';
-    const THEMA_CONFIG = { name: 'Flächen im Koordinatensystem', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Flächen im Koordinatensystem', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       { id:1, level:1, typ:"numerisch", frage:"Ein Rechteck hat die Ecken \\(A(1|1)\\), \\(B(5|1)\\), \\(C(5|4)\\) und \\(D(1|4)\\). Wie groß ist sein Flächeninhalt?", loesung:12, toleranz:0, tipp:"Lies Länge und Breite aus den Koordinaten ab.", loesungsweg:"Länge \\(5 - 1 = 4\\), Breite \\(4 - 1 = 3\\): $$A = 4 \\cdot 3 = 12$$" },
       { id:2, level:1, typ:"numerisch", frage:"Ein Dreieck hat die Ecken \\(A(0|0)\\), \\(B(6|0)\\) und \\(C(0|4)\\). Wie groß ist sein Flächeninhalt?", loesung:12, toleranz:0, tipp:"Bei \\(A\\) liegt ein rechter Winkel; die beiden Katheten liegen auf den Achsen.", loesungsweg:"Katheten \\(6\\) und \\(4\\): $$A = \\frac{6 \\cdot 4}{2} = 12$$" },
@@ -54,6 +54,7 @@
       { id:35, level:6, typ:"numerisch", frage:"Ein gleichschenkliges Dreieck hat zwei Schenkel von je \\(6\\,\\text{cm}\\) und den Flächeninhalt \\(9\\,\\text{cm}^2\\). Wie groß ist der Winkel zwischen den Schenkeln, wenn er spitz ist? Gib ihn in Grad an.", loesung:30, toleranz:0.1, tipp:"Die Fläche hängt von den beiden Schenkeln und dem Sinus des eingeschlossenen Winkels ab; der Sinus lässt sich isolieren.", loesungsweg:"$$9 = \\frac{1}{2} \\cdot 6 \\cdot 6 \\cdot \\sin\\gamma \\quad\\Rightarrow\\quad \\sin\\gamma = \\frac{9}{18} = 0{,}5$$ Spitzer Winkel: \\(\\gamma = 30°\\). Auch \\(\\gamma = 150°\\) hätte den Sinus \\(0{,}5\\) und dieselbe Fläche; deshalb war „spitz“ vorgegeben." },
       { id:36, level:6, typ:"numerisch", frage:"Ein Viereck hat die Ecken \\(A(0|0)\\), \\(B(6|0)\\), \\(C(6|4)\\) und \\(D(2|k)\\) mit \\(k > 4\\). Sein Flächeninhalt beträgt \\(23\\). Bestimme \\(k\\).", loesung:5, toleranz:0, tipp:"Die Diagonale \\(AC\\) zerlegt das Viereck in ein festes und ein von \\(k\\) abhängiges Dreieck.", loesungsweg:"Dreieck \\(ABC\\): rechtwinklig, \\(\\frac{6 \\cdot 4}{2} = 12\\). Dreieck \\(ACD\\): mit dem umgebenden Rechteck \\(6 \\cdot k\\) minus \\(\\frac{6 \\cdot 4}{2}\\) minus \\(\\frac{4 \\cdot (k-4)}{2}\\) minus \\(\\frac{2 \\cdot k}{2}\\) ergibt \\(3k - 4\\). $$12 + 3k - 4 = 23 \\quad\\Rightarrow\\quad k = 5$$ Probe mit \\(D(2|5)\\): Rechteck \\(30\\), Abzüge \\(12\\), \\(2\\), \\(5\\), bleibt \\(11 = 3 \\cdot 5 - 4\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-lk-gebrochen-rational';
-    const THEMA_CONFIG = { name: 'eA: Gebrochen-rationale Funktionen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'eA: Gebrochen-rationale Funktionen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // L1
       { id:1, level:1, typ:"mc", frage:"Eine gebrochen-rationale Funktion ist:", optionen:["ein Quotient zweier Polynome","ein Quotient zweier Wurzelterme","eine Summe aus zwei Polynomen","ein Produkt aus Sinus und Polynom"], korrekt:0, tipp:"Achte darauf, welche beiden Bausteine im Zähler und im Nenner stehen müssen.", loesungsweg:"Eine gebrochen-rationale Funktion ist der Quotient zweier Polynome: $$f(x) = \\frac{p(x)}{q(x)}$$ Wurzel-, Sinus- und Exponentialfunktionen gehören nicht dazu — sie lassen sich nicht als Bruch von Polynomen schreiben." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"numerisch", frage:"Wie viele Polstellen hat der Graph von \\(f(x)=\\frac{1}{x^2-4x+5}\\)?", loesung:0, toleranz:0, tipp:"Untersuche den Nenner auf reelle Nullstellen; eine quadratische Ergänzung macht sein Vorzeichen sichtbar.", loesungsweg:"Polstellen können nur dort liegen, wo der Nenner null wird: $$x^2 - 4x + 5 = 0$$ Die Diskriminante ist $$D = (-4)^2 - 4 \\cdot 1 \\cdot 5 = 16 - 20 = -4 < 0$$ Es gibt also keine reelle Nullstelle. Deutlicher noch zeigt es die quadratische Ergänzung: $$x^2 - 4x + 5 = (x-2)^2 + 1 \\geq 1$$ Der Nenner ist stets mindestens \\(1\\), die Funktion damit auf ganz \\(\\mathbb{R}\\) definiert und ohne Polstelle. Ihr größter Wert ist \\(1\\) bei \\(x = 2\\); für große \\(|x|\\) strebt sie gegen \\(0\\)." },
       { id:36, level:6, typ:"numerisch", frage:"Gegeben ist die Schar \\(f_a(x)=\\frac{ax+1}{x-a}\\) mit \\(a>0\\). Zeigen Sie, dass jeder Graph eine senkrechte und eine waagerechte Asymptote besitzt, und bestimmen Sie \\(a\\) so, dass sich beide Asymptoten im Punkt \\((2 \\mid 2)\\) schneiden.", loesung:2, toleranz:0, tipp:"Bestimme beide Asymptoten allgemein in Abhängigkeit vom Parameter und vergleiche ihre Lage mit den Koordinaten des vorgegebenen Punktes.", loesungsweg:"Senkrechte Asymptote: Der Nenner wird null bei \\(x = a\\); der Zähler hat dort den Wert \\(a^2+1 > 0\\), es ist also eine echte Polstelle. $$x = a$$ Waagerechte Asymptote: Zähler und Nenner haben denselben Grad, es entscheidet das Verhältnis der Leitkoeffizienten. $$\\lim_{x \\to \\pm\\infty} \\frac{ax+1}{x-a} = a \\;\\Rightarrow\\; y = a$$ Beide Asymptoten gibt es demnach für jedes \\(a > 0\\), und sie schneiden einander stets im Punkt \\((a \\mid a)\\). Gefordert ist \\((2 \\mid 2)\\), also $$a = 2$$ Die Schnittpunkte aller Asymptotenpaare liegen auf der Geraden \\(y = x\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

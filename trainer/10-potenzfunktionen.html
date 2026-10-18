@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-potenzfunktionen';
-    const THEMA_CONFIG = { name: 'Potenzfunktionen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Potenzfunktionen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht ==========
       { id: 1, level: 1, typ: "mc", frage: "Was ist eine Potenzfunktion?", optionen: ["\\(f(x) = a^x\\)", "\\(f(x) = x^n\\) mit festem Exponenten", "\\(f(x) = \\log x\\)", "\\(f(x) = \\sin x\\)"], korrekt: 1, tipp: "Basis ist die Variable, Exponent fest.", loesungsweg: "Eine <b>Potenzfunktion</b> hat die Form \\(f(x) = x^n\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Wie viele gemeinsame Punkte haben die Graphen von \\(f(x) = x^2\\) und \\(g(x) = x^4\\)?", loesung: 3, toleranz: 0, tipp: "Setze die Terme gleich und bringe alles auf eine Seite; achte darauf, nicht durch einen Term zu teilen, der null werden kann.", loesungsweg: "Gleichsetzen und faktorisieren: $$x^4 - x^2 = x^2(x^2-1) = x^2(x-1)(x+1) = 0$$ Lösungen sind \\(x = 0\\), \\(x = 1\\) und \\(x = -1\\), also <b>3</b> gemeinsame Punkte. Wer durch \\(x^2\\) teilt, verliert den Ursprung und käme fälschlich auf zwei." },
       { id: 36, level: 6, typ: "numerisch", frage: "Der Graph von \\(f(x) = x^n\\) mit ganzzahligem \\(n\\) verläuft durch den Punkt \\(P(2 \\mid 0{,}125)\\). Bestimme \\(n\\).", loesung: -3, toleranz: 0, tipp: "Schreibe die Dezimalzahl zuerst als Bruch und diesen als Zweierpotenz.", loesungsweg: "Als Bruch und Potenz: $$0{,}125 = \\frac18 = \\frac{1}{2^3} = 2^{-3}$$ Aus \\(2^n = 2^{-3}\\) folgt \\(n = -3\\). Der Funktionswert kleiner als \\(1\\) bei \\(x = 2\\) zeigt schon vorab, dass der Exponent negativ sein muss." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

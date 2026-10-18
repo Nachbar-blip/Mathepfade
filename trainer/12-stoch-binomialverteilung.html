@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-stoch-binomialverteilung';
-    const THEMA_CONFIG = { name: 'Binomialverteilung', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Binomialverteilung', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Bernoulli-Kette erkennen ==========
       { id:1, level:1, typ:"mc", frage:"Welches Experiment ist eine Bernoulli-Kette?", optionen:["Ziehen ohne Zurücklegen aus einer Urne","10-maliges Würfeln mit Erfolg = 6","Lottoziehung 6 aus 49","Temperatur an 7 Tagen"], korrekt:1, tipp:"Gleiche Erfolgswahrscheinlichkeit in jedem Versuch, Unabhängigkeit.", loesungsweg:"Bei 10-maligem Würfeln ist \\(p = \\tfrac{1}{6}\\) konstant und die Würfe sind unabhängig." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"numerisch", frage:"Eine Prüfung besteht aus \\(12\\) Aufgaben mit je vier Antworten, von denen genau eine richtig ist. Bestanden hat, wer mindestens \\(6\\) Aufgaben richtig beantwortet. Berechnen Sie die Wahrscheinlichkeit, allein durch Raten zu bestehen (4 Nachkommastellen), und beurteilen Sie die Bestehensgrenze.", loesung:0.0544, toleranz:0.004, tipp:"Aus der Zahl der Antworten folgt die Trefferwahrscheinlichkeit; dann das Gegenereignis zur Bestehensgrenze bilden.", loesungsweg:"Raten bedeutet \\(p = \\tfrac14\\), also \\(n = 12\\) und \\(\\mu = 3\\). $$P(X \\ge 6) = 1 - P(X \\le 5) \\approx 1 - 0{,}9456 = 0{,}0544$$ <b>Beurteilung:</b> Etwa jeder zwanzigste Ratende besteht — für eine Prüfung, die Wissen belegen soll, ist das zu viel. Eine Grenze von \\(7\\) richtigen Antworten senkt den Wert auf rund \\(1{,}4\\,\\%\\), eine Verlängerung auf mehr Aufgaben wirkt in dieselbe Richtung, weil die relative Schwankung mit wachsendem \\(n\\) abnimmt." },
       { id:36, level:6, typ:"numerisch", frage:"In einer Bernoulli-Kette der Länge \\(10\\) tritt der Fall „kein Treffer“ mit der Wahrscheinlichkeit \\(0{,}5\\) ein. Bestimmen Sie \\(p\\) (3 Nachkommastellen) und begründen Sie ohne Taschenrechner, ob \\(p\\) über oder unter \\(0{,}1\\) liegen muss.", loesung:0.067, toleranz:0.003, tipp:"Zu „kein Treffer“ führt nur ein einziger Pfad; die entstehende Gleichung wird durch Wurzelziehen gelöst.", loesungsweg:"Ein einziger Pfad, also \\(\\binom{10}{0} = 1\\): $$(1-p)^{10} = 0{,}5 \\;\\Rightarrow\\; 1 - p = \\sqrt[10]{0{,}5} \\approx 0{,}9330 \\;\\Rightarrow\\; p \\approx 0{,}067$$ <b>Begründung ohne Rechner:</b> Bei \\(p = 0{,}1\\) wäre \\(P(X = 0) = 0{,}9^{10} \\approx 0{,}349\\), also deutlich kleiner als \\(0{,}5\\). Da \\(P(X = 0) = (1-p)^{10}\\) mit wachsendem \\(p\\) fällt, gehört zum größeren Wert \\(0{,}5\\) ein kleineres \\(p\\) — es muss unter \\(0{,}1\\) liegen." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

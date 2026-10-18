@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-tangenten-normalen';
-    const THEMA_CONFIG = { name: 'Tangenten & Normalen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Tangenten & Normalen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1 -- Grundbegriffe
       { id:1, level:1, typ:"mc", frage:"Was ist die Steigung einer Tangente an \\(f\\) im Punkt \\(x_0\\)?", optionen:["\\(f(x_0)\\)","\\(f'(x_0)\\)","\\(\\frac{1}{f'(x_0)}\\)","\\(-f'(x_0)\\)"], korrekt:1, tipp:"Die Ableitung liefert die Steigung.", loesungsweg:"Die Tangente schmiegt sich im Punkt \\((x_0|f(x_0))\\) an den Graphen an und hat deshalb genau dessen Steigung dort: $$m_t = f'(x_0)$$ Der Funktionswert \\(f(x_0)\\) liefert dagegen nur den Berührpunkt, nicht die Steigung — beides wird leicht verwechselt." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"numerisch", frage:"Die Normale an \\(f(x) = x^2\\) an einer Stelle \\(x_0 > 0\\) verläuft durch den Punkt \\((0|3)\\). Bestimmen Sie \\(x_0\\). (3 Dezimalen)", loesung:1.581, toleranz:0.005, tipp:"Stellen Sie die Normale an einer allgemeinen Stelle auf und setzen Sie die Bedingung für den Punkt ein.", loesungsweg:"Normalensteigung an der Stelle \\(x_0\\): \\(m_n = -\\frac{1}{2x_0}\\), also $$n(x) = x_0^2 - \\frac{1}{2x_0}(x - x_0)$$ Bedingung \\(n(0) = 3\\): $$x_0^2 + \\frac12 = 3 \\;\\Rightarrow\\; x_0^2 = 2{,}5 \\;\\Rightarrow\\; x_0 = \\sqrt{2{,}5} \\approx 1{,}581$$ Bemerkenswert ist, dass sich \\(x_0\\) herauskürzt und nur der feste Summand \\(\\frac12\\) bleibt: jede Normale der Normalparabel trifft die \\(y\\)-Achse genau \\(0{,}5\\) über dem Berührpunkt. Die negative Lösung scheidet wegen \\(x_0 > 0\\) aus." },
       { id:36, level:6, typ:"mc", frage:"Beurteilen Sie: <b>An einer Stelle mit waagerechter Tangente ist die Normale eine senkrechte Gerade.</b>", optionen:["Richtig: zu \\(m_t = 0\\) gibt es keinen negativen Kehrwert","Falsch: die Normale verläuft dann ebenfalls waagerecht","Falsch: die Normale hat dann die Steigung \\(-1\\)","Richtig, aber nur in Extrempunkten, nicht in Sattelpunkten"], korrekt:0, tipp:"Zeichnen Sie sich die Lage von Tangente und Normale im Scheitel einer Parabel auf.", loesungsweg:"Die Normalensteigung ist \\(m_n = -\\frac{1}{m_t}\\). Für \\(m_t = 0\\) ist dieser Bruch nicht definiert — es gibt also keine Steigung, und genau das kennzeichnet eine <b>senkrechte</b> Gerade der Form \\(x = x_0\\). Anschaulich: steht die Tangente waagerecht, so steht die dazu senkrechte Gerade lotrecht. Ob an der Stelle ein Extrem- oder ein Sattelpunkt liegt, spielt dabei keine Rolle." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

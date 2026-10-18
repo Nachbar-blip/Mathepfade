@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-trig-sinusfunktion';
-    const THEMA_CONFIG = { name: 'Sinusfunktion', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Sinusfunktion', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Grundeigenschaften (6 Aufgaben) ==========
       {
@@ -493,6 +493,7 @@
         loesungsweg: "Vom Aufsteigen durch die Mittellage bis zum nächsten Hochpunkt vergeht genau ein <b>Viertel</b> der Periode. Dieses Viertel ist hier \\(4 - 1 = 3\\) lang, also $$T = 4 \\cdot 3 = 12$$ Probe: Der nächste Tiefpunkt läge bei \\(4 + 6 = 10\\), die nächste steigende Stelle bei \\(1 + 12 = 13\\)."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

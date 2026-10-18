@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '7-dreiecke-kongruenz';
-    const THEMA_CONFIG = { name: 'Dreiecke und Kongruenz', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Dreiecke und Kongruenz', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht: Dreiecksarten ==========
       {
@@ -383,6 +383,7 @@
         loesungsweg: "<b>Satz des Thales.</b> Begründung: \\(MC\\) ist ein Radius wie \\(MA\\) und \\(MB\\). Im gleichschenkligen Dreieck \\(AMC\\) ist der Winkel bei \\(C\\) gleich \\(\\alpha\\), im gleichschenkligen Dreieck \\(BMC\\) gleich \\(\\beta\\). Also \\(\\gamma = \\alpha + \\beta\\). Winkelsumme: $$\\alpha + \\beta + \\gamma = 2\\gamma = 180° \\implies \\gamma = 90°$$ Das gilt für <b>jeden</b> Punkt \\(C\\) auf dem Kreis (außer \\(A\\) und \\(B\\) selbst), nicht nur für den Punkt über \\(M\\)."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

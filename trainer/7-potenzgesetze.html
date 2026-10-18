@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '7-potenzgesetze';
-    const THEMA_CONFIG = { name: 'Potenzgesetze', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Potenzgesetze', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht: Potenzen verstehen ==========
       {
@@ -221,6 +221,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Wie viele Ziffern hat die Zahl \\(2^{10} \\cdot 5^8\\)? Bestimme die Anzahl ohne Taschenrechner.", loesung: 9, toleranz: 0, tipp: "Zerlege \\(2^{10}\\) so, dass ein Faktor denselben Exponenten wie \\(5^8\\) hat.", loesungsweg: "Gleiche Exponenten erlauben das Zusammenfassen der Basen: $$2^{10} \\cdot 5^8 = 2^2 \\cdot 2^8 \\cdot 5^8 = 4 \\cdot (2 \\cdot 5)^8 = 4 \\cdot 10^8$$ Das ist eine \\(4\\) mit acht Nullen: \\(400\\,000\\,000\\), also \\(9\\) Ziffern. Die Aufgabe steht und fällt mit der Idee, aus \\(2^{10}\\) den Anteil \\(2^8\\) abzuspalten." },
       { id: 36, level: 6, typ: "numerisch", frage: "Ein Bakterium teilt sich alle \\(20\\) Minuten in zwei. Nach wie vielen Stunden sind aus einem Bakterium \\(2^{12}\\) Bakterien geworden?", loesung: 4, toleranz: 0, tipp: "Wie viele Teilungen sind nötig, und wie lange dauern sie zusammen?", loesungsweg: "Nach \\(k\\) Teilungen gibt es \\(2^k\\) Bakterien. Für \\(2^{12}\\) sind also \\(12\\) Teilungen nötig — hier wird der Exponent gesucht, nicht der Wert. $$12 \\cdot 20\\,\\text{min} = 240\\,\\text{min} = 4\\,\\text{h}$$ Zur Einordnung: \\(2^{12} = 4096\\) Bakterien nach nur vier Stunden; nach acht Stunden wären es bereits \\(2^{24}\\), über \\(16\\) Millionen." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-lineare-funktionen-anwendungen';
-    const THEMA_CONFIG = { name: 'Lineare Funktionen - Anwendungen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Lineare Funktionen - Anwendungen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "mc", frage: "Ein Taxi kostet 3 € Grundgebühr + 2 €/km. Welche Funktion beschreibt die Kosten?", optionen: ["\\(K(x) = 2x\\)", "\\(K(x) = 3x + 2\\)", "\\(K(x) = 2x + 3\\)", "\\(K(x) = 5x\\)"], korrekt: 2, tipp: "Fix + variabel.", loesungsweg: "Grundgebühr: \\(n = 3\\). Pro km: \\(m = 2\\). \\(K(x) = 2x + 3\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Kerze A ist \\(24\\,\\text{cm}\\) lang und wird pro Stunde \\(3\\,\\text{cm}\\) kürzer. Kerze B ist \\(18\\,\\text{cm}\\) lang und wird pro Stunde \\(1{,}5\\,\\text{cm}\\) kürzer. Beide werden gleichzeitig angezündet. Nach wie vielen Stunden sind sie gleich lang?", loesung: 4, toleranz: 0, tipp: "A hat \\(6\\,\\text{cm}\\) Vorsprung, verliert aber pro Stunde \\(1{,}5\\,\\text{cm}\\) mehr.", loesungsweg: "Gleichsetzen: $$24 - 3t = 18 - 1{,}5t \\;\\Rightarrow\\; 6 = 1{,}5t \\;\\Rightarrow\\; t = 4$$ Beide sind dann \\(12\\,\\text{cm}\\) lang. Danach ist A die kürzere Kerze — bis zu diesem Zeitpunkt war sie die längere. Die Geraden sind nicht parallel, weil die Abbrandraten verschieden sind." },
       { id: 36, level: 6, typ: "mc", frage: "Ein Handwerker verlangt \\(40\\,€\\) Anfahrt und \\(35\\,€\\) pro Arbeitsstunde. Behauptung: „Für die doppelte Arbeitszeit zahlt man das Doppelte.“", optionen: ["Falsch — die Anfahrt verdoppelt sich nicht: \\(2\\,\\text{h}\\) kosten \\(110\\,€\\), \\(4\\,\\text{h}\\) kosten \\(180\\,€\\)", "Richtig — die Kosten sind linear, also wächst der Preis im gleichen Verhältnis wie die Arbeitszeit", "Richtig, aber nur bei ganzen Stunden — bei halben Stunden stimmt das Verhältnis nicht mehr", "Falsch — man zahlt mehr als das Doppelte: \\(2\\,\\text{h}\\) kosten \\(110\\,€\\), \\(4\\,\\text{h}\\) kosten \\(220\\,€\\)"], korrekt: 0, tipp: "Rechne ein Beispiel mit \\(2\\) und \\(4\\) Stunden.", loesungsweg: "Kosten: \\(K(t) = 35t + 40\\). $$K(2) = 110\\,€, \\qquad K(4) = 180\\,€ \\neq 220\\,€$$ Linear heißt nicht proportional: „Doppelte Zeit, doppelter Preis“ gilt nur, wenn der Graph durch den Ursprung geht, also ohne Anfahrtspauschale." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

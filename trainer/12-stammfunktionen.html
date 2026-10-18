@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-stammfunktionen';
-    const THEMA_CONFIG = { name: 'Stammfunktionen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Stammfunktionen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1 -- Grundbegriffe
       { id: 1, level: 1, typ: "mc", frage: "Was ist eine Stammfunktion \\(F(x)\\) von \\(f(x)\\)?", optionen: ["\\(F'(x) = f(x)\\)", "\\(F(x) = f'(x)\\)", "\\(F(x) \\cdot f(x) = 1\\)", "\\(F(x) = \\frac{1}{f(x)}\\)"], korrekt: 0, tipp: "Stammfunktion ist die Umkehrung der Ableitung.", loesungsweg: "\\(F\\) ist Stammfunktion von \\(f\\), wenn \\(F'(x) = f(x)\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "mc", frage: "Beurteilen Sie: „Ist \\(F\\) eine Stammfunktion von \\(f\\), so ist \\(F^2\\) eine Stammfunktion von \\(f^2\\).“", optionen: ["Zutreffend, das Quadrieren bleibt erhalten.", "Widerlegt schon durch \\(f(x) = 1\\).", "Nur bei linearen Funktionen zutreffend.", "Zutreffend, sofern \\(F(0) = 0\\) gilt."], korrekt: 1, tipp: "Prüfen Sie die Behauptung an einer möglichst einfachen Funktion und leiten Sie das Quadrat mit der Produktregel ab.", loesungsweg: "Die Aussage ist falsch; ein Gegenbeispiel genügt. Für \\(f(x) = 1\\) ist \\(F(x) = x\\) eine Stammfunktion. Dann wäre zu prüfen, ob \\(F^2(x) = x^2\\) eine Stammfunktion von \\(f^2(x) = 1\\) ist: $$\\left(x^2\\right)' = 2x \\ne 1$$ Das ist nicht der Fall. Allgemein liefert die Produktregel $$\\left(F^2\\right)' = 2F \\cdot F' = 2F \\cdot f$$ und das ist nur in Sonderfällen gleich \\(f^2\\). Für Produkte und Potenzen von Funktionen gibt es keine einfache Regel zum Aufleiten." },
       { id: 36, level: 6, typ: "numerisch", frage: "Von einer Funktion \\(f\\) ist bekannt: \\(f'(x) = 6x - 4\\) und \\(f(1) = 3\\). Zeigen Sie, dass \\(f\\) eine quadratische Funktion ist, und berechnen Sie \\(f(4)\\).", loesung: 36, toleranz: 0.01, tipp: "Aus der Ableitung gewinnt man die Funktion durch Aufleiten; die Wertangabe legt die Integrationskonstante fest.", loesungsweg: "<b>Form:</b> Aufleiten von \\(f'\\) ergibt $$f(x) = 3x^2 - 4x + C$$ Der höchste Exponent ist \\(2\\) und der Vorfaktor \\(3 \\ne 0\\), also ist \\(f\\) für jede Konstante eine quadratische Funktion. <b>Konstante:</b> $$f(1) = 3 - 4 + C = 3 \\;\\Longrightarrow\\; C = 4$$ <b>Wert:</b> $$f(4) = 3 \\cdot 16 - 16 + 4 = 48 - 16 + 4 = 36$$ Die Konstante muss vor dem Einsetzen bestimmt werden — ohne sie ist der Wert an der Stelle \\(4\\) nicht festgelegt." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

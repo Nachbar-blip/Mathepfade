@@ -15,7 +15,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-vektoren-2d';
-    const THEMA_CONFIG = { name: 'Prozent- und Zinsrechnung', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Prozent- und Zinsrechnung', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "numerisch", frage: "Berechne \\(25\\,\\%\\) von \\(160\\).", loesung: 40, toleranz: 0, tipp: "\\(25\\,\\%\\) ist ein Viertel.", loesungsweg: "$$25\\,\\% \\text{ von } 160 = \\frac{1}{4} \\cdot 160 = 40$$ Oder: \\(1\\,\\%\\) sind \\(1{,}6\\), also \\(25 \\cdot 1{,}6 = 40\\) ✓" },
@@ -60,6 +60,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Ein Preis wird um \\(p\\,\\%\\) erhöht und anschließend um \\(25\\,\\%\\) gesenkt. Danach ist er genauso hoch wie vorher. Bestimme \\(p\\) (auf zwei Dezimalen).", loesung: 33.33, toleranz: 0.05, tipp: "Welcher Faktor macht die Multiplikation mit \\(0{,}75\\) rückgängig?", loesungsweg: "Die Senkung multipliziert mit \\(0{,}75\\). Damit am Ende der alte Preis steht, muss die Erhöhung mit \\(\\frac{1}{0{,}75} = \\frac{4}{3}\\) multiplizieren: $$\\frac{4}{3} \\approx 1{,}3333 \\;\\Rightarrow\\; p \\approx 33{,}33$$ Probe mit \\(300\\,€\\): \\(300 \\cdot \\frac{4}{3} = 400\\), \\(400 \\cdot 0{,}75 = 300\\) ✓ Eine Erhöhung um \\(25\\,\\%\\) würde nicht reichen." },
       { id: 36, level: 6, typ: "mc", frage: "Für einen Kredit über \\(6000\\,€\\) für ein Jahr verlangt Bank A \\(5\\,\\%\\) Zinsen. Bank B verlangt \\(4\\,\\%\\) Zinsen und zusätzlich \\(90\\,€\\) Bearbeitungsgebühr. Behauptung: „B ist billiger.“", optionen: ["Falsch — A kostet \\(300\\,€\\), B kostet \\(330\\,€\\); B wäre erst über \\(9000\\,€\\) günstiger", "Richtig — \\(4\\,\\%\\) sind weniger als \\(5\\,\\%\\), die Gebühr ändert daran nichts", "Richtig — B kostet \\(240\\,€\\) Zinsen, A kostet \\(300\\,€\\), also \\(60\\,€\\) weniger", "Falsch — beide kosten gleich viel, weil die Gebühr den Zinsunterschied genau ausgleicht"], korrekt: 0, tipp: "Rechne beide Gesamtkosten aus und überlege, wann die Gebühr durch den niedrigeren Zinssatz ausgeglichen wird.", loesungsweg: "A: \\(5\\,\\%\\) von \\(6000\\,€\\) sind \\(300\\,€\\). B: \\(240\\,€\\) Zinsen plus \\(90\\,€\\) Gebühr sind \\(330\\,€\\). Fallunterscheidung: Der Zinsvorteil von B beträgt \\(1\\,\\%\\) der Kreditsumme; er gleicht die Gebühr aus, wenn $$0{,}01 \\cdot K = 90 \\;\\Rightarrow\\; K = 9000\\,€$$ Erst darüber ist B günstiger." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

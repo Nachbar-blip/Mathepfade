@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-lk-geom-schnittwinkel';
-    const THEMA_CONFIG = { name: 'Schnittwinkel (eA)', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Schnittwinkel (eA)', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ===== LEVEL 1 — Formeln =====
       { id:1, level:1, typ:"mc",
@@ -251,6 +251,7 @@
         loesungsweg:"$$\\vec n_1 = \\begin{pmatrix}3\\\\0\\\\4\\end{pmatrix}, \\quad \\vec n_2 = \\begin{pmatrix}-3\\\\0\\\\4\\end{pmatrix}, \\qquad \\vec n_1 \\cdot \\vec n_2 = -9+0+16 = 7$$ $$|\\vec n_1| = |\\vec n_2| = 5 \\;\\Rightarrow\\; \\cos\\varphi = \\frac{7}{25} = 0{,}28 \\;\\Rightarrow\\; \\varphi \\approx 73{,}7°$$ Zwei sich schneidende Ebenen bilden vier Winkel; je zwei gegenüberliegende sind gleich groß, benachbarte ergänzen sich zu \\(180°\\). Als <b>Schnittwinkel</b> ist stets der spitze vereinbart, hier \\(73{,}7°\\). Wer im Tal steht, misst den Winkel zwischen den beiden Hängen oberhalb der Talsohle, also den stumpfen Nebenwinkel \\(180° - 73{,}7° = 106{,}3°\\)."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

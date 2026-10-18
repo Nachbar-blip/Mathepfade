@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-stoch-haeufigkeiten';
-    const THEMA_CONFIG = { name: 'Häufigkeitsverteilungen', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Häufigkeitsverteilungen', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       { id:1, level:1, typ:"mc", frage:"Was ist die absolute Häufigkeit?", optionen:["Anteil","Anzahl des Auftretens","Prozentsatz","Mittelwert"], korrekt:1, tipp:"Reine Anzahl.", loesungsweg:"Die absolute Häufigkeit zählt schlicht, wie oft ein Merkmalswert vorkommt — ohne Bezug zur Gesamtzahl. Kommt eine Note in einer Klasse siebenmal vor, ist ihre absolute Häufigkeit \\(7\\), gleichgültig ob die Klasse aus \\(20\\) oder \\(30\\) Schülern besteht. Erst die <b>relative</b> Häufigkeit setzt diese Zahl ins Verhältnis." },
       { id:2, level:1, typ:"mc", frage:"Relative Häufigkeit?", optionen:["abs. Häufigkeit / Stichprobenumfang","Summe aller","Maximum","Mittelwert"], korrekt:0, tipp:"Anteil.", loesungsweg:"Die relative Häufigkeit gibt den Anteil an der Gesamtzahl an: $$h = \\frac{H}{n}$$ mit der absoluten Häufigkeit \\(H\\) und dem Stichprobenumfang \\(n\\). Sie liegt stets zwischen \\(0\\) und \\(1\\) und erlaubt den Vergleich unterschiedlich großer Stichproben." },
@@ -53,6 +53,7 @@
       { id:35, level:6, typ:"numerisch", frage:"Die Datenreihe \\(3,\\ 8,\\ 10,\\ x\\) hat den Median \\(9\\). Für wie viele ganze Zahlen \\(x\\) mit \\(0 \\le x \\le 20\\) ist das der Fall?", loesung:11, toleranz:0, tipp:"Bei vier Werten liegt der Median zwischen den beiden mittleren; unterscheide danach, an welcher Stelle \\(x\\) in der geordneten Reihe steht.", loesungsweg:"Bei vier Werten ist der Median das Mittel der beiden mittleren Werte. Steht \\(x\\) hinten (\\(x \\ge 10\\)), lautet die geordnete Reihe \\(3,\\ 8,\\ 10,\\ x\\): $$\\frac{8 + 10}{2} = 9$$ und zwar für jedes solche \\(x\\). Steht \\(x\\) weiter vorn, ergibt sich \\(\\frac{3 + 8}{2} = 5{,}5\\) (für \\(x \\le 3\\)) oder \\(\\frac{x + 8}{2}\\) (für \\(3 \\le x \\le 10\\)); im zweiten Fall wäre \\(x = 10\\) nötig, was schon zum ersten Fall gehört. Es bleiben \\(10,\\ 11,\\ \\ldots,\\ 20\\), also \\(11\\) Zahlen." },
       { id:36, level:6, typ:"numerisch", frage:"In einer Klasse mit \\(25\\) Schülern hat die Note 3 die relative Häufigkeit \\(0{,}32\\). Die Note 2 kommt doppelt so oft vor wie die Note 1; die Noten 4, 5 und 6 haben zusammen \\(8\\) Schüler. Wie viele Schüler haben die Note 1?", loesung:3, toleranz:0, tipp:"Bestimme zuerst die Anzahl der Dreien; die restlichen Schüler verteilen sich auf Einsen und Zweien in einem festen Verhältnis.", loesungsweg:"Dreien: \\(0{,}32 \\cdot 25 = 8\\). Einsen und Zweien zusammen: \\(25 - 8 - 8 = 9\\). Mit \\(x\\) Einsen und \\(2x\\) Zweien: $$3x = 9 \\quad\\Rightarrow\\quad x = 3$$ Also \\(3\\) Einsen und \\(6\\) Zweien." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-potenzen-negativ';
-    const THEMA_CONFIG = { name: 'Potenzen mit negativen Exponenten', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Potenzen mit negativen Exponenten', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "mc", frage: "Was bedeutet \\(a^{-1}\\)?", optionen: ["\\(-a\\)", "\\(\\frac{1}{a}\\)", "\\(0\\)", "\\(a\\)"], korrekt: 1, tipp: "Kehrwert.", loesungsweg: "Ein negativer Exponent steht für den Kehrwert: $$a^{-1} = \\frac1a \\qquad (a \\ne 0)$$ Begründung über das Potenzgesetz: \\(a^1 \\cdot a^{-1} = a^{1-1} = a^0 = 1\\) — die beiden Faktoren ergeben zusammen \\(1\\), sind also Kehrwerte. Das Minus macht die Zahl <b>nicht</b> negativ." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Ein Atom hat etwa den Durchmesser \\(10^{-10}\\,\\text{m}\\), sein Kern etwa \\(10^{-15}\\,\\text{m}\\). In einem Modell hat das Atom \\(100\\,\\text{m}\\) Durchmesser. Wie groß ist der Kern in diesem Modell in Millimetern?", loesung: 1, toleranz: 0, tipp: "Der Kern ist um wie viele Zehnerpotenzen kleiner als das Atom?", loesungsweg: "Das Größenverhältnis von Kern zu Atom ist $$\\frac{10^{-15}}{10^{-10}} = 10^{-15-(-10)} = 10^{-5}$$ Im Modell gilt dasselbe Verhältnis: $$100\\,\\text{m} \\cdot 10^{-5} = 10^{2} \\cdot 10^{-5}\\,\\text{m} = 10^{-3}\\,\\text{m} = 1\\,\\text{mm}$$ Ein Atom in der Größe eines Fußballstadions hätte einen Kern von der Größe eines Reiskorns — der Rest ist leer." },
       { id: 36, level: 6, typ: "mc", frage: "Behauptung: „Je kleiner der Exponent, desto kleiner die Potenz. Deshalb ist \\(0{,}5^{-3}\\) kleiner als \\(0{,}5^{-2}\\).\" Stimmt das?", optionen: ["Nein — für Basen zwischen \\(0\\) und \\(1\\) gilt das Gegenteil: \\(0{,}5^{-3} = 8 > 4 = 0{,}5^{-2}\\)", "Ja — die Regel gilt für jede Basis, also auch hier", "Ja — beide Potenzen sind negativ, und \\(-3 < -2\\)", "Nein — beide Potenzen sind gleich groß, weil die Basis kleiner als \\(1\\) ist"], korrekt: 0, tipp: "Berechne beide Potenzen über den Kehrwert der Basis.", loesungsweg: "Mit \\(0{,}5 = \\tfrac12\\) wird der negative Exponent zum Umkehren des Bruchs: $$0{,}5^{-3} = 2^3 = 8, \\qquad 0{,}5^{-2} = 2^2 = 4$$ Die Potenz mit dem kleineren Exponenten ist hier die <b>größere</b>. Die Regel „kleinerer Exponent, kleinere Potenz\" gilt nur für Basen größer als \\(1\\); für Basen zwischen \\(0\\) und \\(1\\) kehrt sie sich um. Eine Behauptung, die die Basis nicht beachtet, ist unvollständig." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

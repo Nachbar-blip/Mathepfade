@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-lk-stoch-normalverteilung';
-    const THEMA_CONFIG = { name: 'Normalverteilung (eA)', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Normalverteilung (eA)', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       // ===== LEVEL 1 — Grundbegriffe =====
       { id:1, level:1, typ:"mc",
@@ -246,6 +246,7 @@
         loesungsweg:"Aus \\(N(178;49)\\) folgt \\(\\sigma = \\sqrt{49} = 7\\). Damit: $$z = \\frac{200-178}{7} \\approx 3{,}143$$ $$P(X \\gt 200) \\approx 1 - \\Phi(3{,}143) \\approx 1 - 0{,}99916 = 0{,}00084$$ Das sind etwa \\(0{,}084\\,\\%\\), also rund einer von 1200 Männern. <b>Beurteilung:</b> Im Mittelbereich beschreibt das Modell reale Daten gut. An den Rändern nicht: Die Normalverteilung ist auf ganz \\(\\mathbb{R}\\) definiert und weist deshalb auch Größen unter 0 cm eine — verschwindend kleine, aber positive — Wahrscheinlichkeit zu, hier \\(\\Phi(-25{,}4)\\). Das ist sachlich unmöglich und zeigt, dass die Glockenkurve nur eine Annäherung ist. Für Aussagen über extreme Ränder taugt sie nicht, denn dort entscheidet gerade die Form der Kurve über das Ergebnis, und die ist durch Messdaten kaum abgesichert."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-polynomdivision';
-    const THEMA_CONFIG = { name: 'Grenzwerte und Asymptoten', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Grenzwerte und Asymptoten', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht: Grundidee ==========
       { id: 1, level: 1, typ: "mc", frage: "Wie verhält sich \\(f(x) = x^2\\) für \\(x \\to \\infty\\)?", optionen: ["\\(f(x) \\to \\infty\\)", "\\(f(x) \\to -\\infty\\)", "\\(f(x) \\to 0\\)", "\\(f(x) \\to 1\\)"], korrekt: 0, tipp: "Setze einige große Zahlen ein und beobachte die Werte.", loesungsweg: "Für wachsendes \\(x\\) wächst das Quadrat noch schneller: \\(10^2 = 100\\), \\(100^2 = 10\\,000\\). Man schreibt $$\\lim_{x \\to \\infty} x^2 = \\infty$$" },
@@ -60,6 +60,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Der Graph von \\(f(x) = \\frac{ax+b}{x-c}\\) hat die senkrechte Asymptote \\(x = 1\\) und die waagerechte Asymptote \\(y = -2\\); außerdem gilt \\(f(3) = -5{,}5\\). Bestimme \\(b\\).", loesung: -5, toleranz: 0, tipp: "Werte die drei Angaben nacheinander aus; jede legt einen der Parameter fest.", loesungsweg: "Die senkrechte Asymptote liefert \\(c = 1\\), die waagerechte \\(a = -2\\). Aus dem Funktionswert: $$f(3) = \\frac{-6+b}{2} = -5{,}5 \\;\\Longrightarrow\\; -6 + b = -11 \\;\\Longrightarrow\\; b = -5$$ Die Funktion lautet \\(f(x) = \\frac{-2x-5}{x-1}\\). Probe: \\(f(3) = \\frac{-11}{2} = -5{,}5\\) ✓" },
       { id: 36, level: 6, typ: "mc", frage: "Behauptung: „Für \\(x \\to \\infty\\) nähert sich \\(2^x - x^5\\) dem Wert null, weil beide Teile über alle Grenzen wachsen.“ Prüfe die Behauptung.", optionen: ["Richtig, die Teile heben sich auf", "Falsch, der Term wächst über alle Grenzen", "Falsch, der Term strebt gegen \\(-\\infty\\)", "Richtig, aber erst ab sehr großen \\(x\\)"], korrekt: 1, tipp: "Vergleiche an zwei weit auseinanderliegenden Stellen, welcher der beiden Teile den anderen überholt.", loesungsweg: "Bei \\(x = 10\\) ist \\(2^{10} = 1024\\) noch viel kleiner als \\(10^5 = 100\\,000\\). Bei \\(x = 100\\) dagegen: $$2^{100} \\approx 1{,}27 \\cdot 10^{30} \\quad\\text{gegen}\\quad 100^5 = 10^{10}$$ Exponentielles Wachstum überholt jede Potenzfunktion, also strebt der Term über alle Grenzen. Dass beide Teile wachsen, sagt für sich genommen nichts über die Differenz — die Behauptung ist falsch." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

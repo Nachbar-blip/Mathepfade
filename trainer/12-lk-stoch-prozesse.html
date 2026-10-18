@@ -15,7 +15,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-lk-stoch-prozesse';
-    const THEMA_CONFIG = { name: 'Konfidenzintervalle (eA)', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Konfidenzintervalle (eA)', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       // ===== LEVEL 1 — Grundbegriffe und ein Rechenschritt =====
       { id:1, level:1, typ:"mc",
@@ -245,6 +245,7 @@
         loesungsweg:"$$h = \\frac{3100}{5000} = 0{,}62$$ $$\\sigma_h = \\sqrt{\\frac{0{,}62 \\cdot 0{,}38}{5000}} = \\sqrt{0{,}00004712} \\approx 0{,}0068644$$ $$r = 2 \\cdot 0{,}0068644 \\approx 0{,}0137288 \\;\\widehat{=}\\; 1{,}37 \\text{ Prozentpunkte}$$ <b>Beurteilung:</b> Rechnerisch ist das Intervall sehr schmal, und die Laplace-Bedingung ist mit \\(\\sigma(X) = \\sqrt{5000 \\cdot 0{,}62 \\cdot 0{,}38} \\approx 34{,}3\\) klar erfüllt. Über die Stadtbevölkerung folgt daraus aber nichts. Die Formel setzt voraus, dass die Teilnehmer zufällig und unabhängig aus der Grundgesamtheit gezogen wurden. Hier haben sie selbst entschieden, mitzumachen — beteiligt haben sich vor allem Menschen mit starker Meinung zum Thema, und nur Leser dieser Zeitung. Ein schmales Intervall macht eine verzerrte Stichprobe nicht repräsentativ: Es beschreibt allein die Zufallsschwankung, nicht den systematischen Fehler bei der Auswahl. Der geschätzte Anteil bezieht sich also nur auf die Teilnehmenden."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

@@ -21,7 +21,14 @@
     6: 'wagnerisch'
   };
 
-  const STORAGE_KEY = 'spirale-' + THEMA_KEY;
+  // Alle Sammlungen liegen unter nachbar-blip.github.io und teilen sich einen localStorage.
+  // Gleichnamige Trainer (DiffEngine und Ref4OHG) teilten sich so Level und beantwortete
+  // Aufgaben. Mit data-sammlung am <script>-Tag bekommt eine Sammlung eigene Keys
+  // ("spirale-ref4ohg-<THEMA_KEY>"); ohne Attribut bleibt es bei "spirale-<THEMA_KEY>".
+  const skript = document.currentScript;
+  const SAMMLUNG = skript && skript.dataset.sammlung ? skript.dataset.sammlung : '';
+  const ALTER_KEY = 'spirale-' + THEMA_KEY;
+  const STORAGE_KEY = SAMMLUNG ? 'spirale-' + SAMMLUNG + '-' + THEMA_KEY : ALTER_KEY;
 
   const DEFAULT_STATE = {
     level: 3,
@@ -43,7 +50,11 @@
 
   function loadState() {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      // Umzug: Stand unter dem alten Key einmalig uebernehmen. Der alte Key bleibt stehen,
+      // er kann einer anderen Sammlung gehoeren.
+      let raw = localStorage.getItem(STORAGE_KEY);
+      const umzug = !raw && STORAGE_KEY !== ALTER_KEY;
+      if (umzug) raw = localStorage.getItem(ALTER_KEY);
       if (raw) {
         state = JSON.parse(raw);
         // Sicherstellen, dass alle Felder vorhanden sind
@@ -52,6 +63,7 @@
             state[key] = DEFAULT_STATE[key];
           }
         }
+        if (umzug) saveState();
       } else {
         state = JSON.parse(JSON.stringify(DEFAULT_STATE));
       }
@@ -162,7 +174,49 @@
         ],
         throwOnError: false
       });
+      haltFormelnZusammen(container);
     }
+  }
+
+  // Inline-Formel und angeklebte Zeichen ("\(x\)?", "(\(a\))", "\(y\)-Achse") gehoeren
+  // zusammen. Fuer den Browser ist die Formel ein Kasten, vor und hinter dem er umbrechen
+  // darf - das "?" stand dann allein in der naechsten Zeile. auto-render legt um jede
+  // Formel ein eigenes <span>: Es bekommt die Klasse .formel (spirale.css haelt es in
+  // einer Zeile) und nimmt die Zeichen ohne Leerraum davor und dahinter mit auf.
+  // Ein reines Satzzeichen dahinter bekommt die Breite 0 (.formel-zeichen) und haengt an der
+  // Formel; den Platz dahinter haelt ein gleich breiter Aussenabstand frei. Sonst stuende
+  // es wieder allein, sobald die Formel den Kasten genau fuellt.
+  function haltFormelnZusammen(container) {
+    container.querySelectorAll('.katex').forEach(function (formel) {
+      const huelle = formel.parentNode;
+      if (huelle.childNodes.length !== 1 || huelle.classList.contains('katex-display')) return;
+      huelle.classList.add('formel');
+      const vor = huelle.previousSibling;
+      const nach = huelle.nextSibling;
+      const davor = vor && vor.nodeType === 3 && /\S+$/.exec(vor.nodeValue);
+      const danach = nach && nach.nodeType === 3 && /^\S+/.exec(nach.nodeValue);
+      if (davor) huelle.insertBefore(vor.splitText(davor.index), formel);
+      // Passt die Formel auch umbrochen nicht in den Kasten (ein langer Bruch, eine grosse
+      // Klammer), scrollt sie in sich (.formel-breit), statt herauszuragen.
+      const rand = huelle.getBoundingClientRect().right + 1;
+      const ragt = function (teil) { return teil.getBoundingClientRect().right > rand; };
+      if (Array.prototype.some.call(formel.querySelectorAll('.katex-html > .base'), ragt)) {
+        huelle.classList.add('formel-breit');
+      }
+      if (danach) {
+        nach.splitText(danach[0].length);
+        const bereich = document.createRange();
+        bereich.selectNodeContents(nach);
+        const breite = /^[.,;:!?)\]]+$/.test(danach[0]) && bereich.getBoundingClientRect().width;
+        let ziel = huelle;
+        if (breite) {
+          ziel = huelle.appendChild(document.createElement('span'));
+          ziel.className = 'formel-zeichen';
+          huelle.style.marginRight = breite / parseFloat(getComputedStyle(huelle).fontSize) + 'em';
+        }
+        ziel.appendChild(nach);
+      }
+    });
   }
 
   // ── UI-Bausteine ────────────────────────────────────────────
@@ -424,6 +478,21 @@
 
     // Stats aktualisieren
     renderStats();
+
+    // P3-Hook: Antwort registrieren (nur wenn P3 aktiv). level = Stufe der Aufgabe.
+    if (window.P3 && typeof window.P3.onAnswered === 'function') {
+      window.P3.onAnswered({
+        aufgabeId: currentAufgabe.id,
+        correct: correct,
+        level: currentAufgabe.level,
+        levelVor: spiralResult.prevLevel,
+        levelNach: spiralResult.newLevel
+      });
+      // Knopf erst jetzt: showFeedback lief vor dem Hook, das Level-6-Flag kann eben erst gesetzt sein
+      if (typeof window.P3.renderSessionEndButton === 'function') {
+        window.P3.renderSessionEndButton(document.getElementById('feedback'));
+      }
+    }
   }
 
   function disableEingabe(correct, mcIndex) {
@@ -595,6 +664,10 @@
     localStorage.removeItem(STORAGE_KEY);
     state = JSON.parse(JSON.stringify(DEFAULT_STATE));
     saveState();
+    // P3 gehoert zum Fortschritt (Runde, Einordnungen, Level-6-Flag)
+    if (window.P3 && typeof window.P3.reset === 'function') {
+      window.P3.reset();
+    }
 
     const aufgabe = getNextAufgabe();
     if (aufgabe) renderAufgabe(aufgabe);
@@ -609,6 +682,11 @@
         (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA');
 
       if (inInput) return;
+
+      // P3-Rueckblick offen oder Fokus auf seinem Knopf: Die Tasten gehoeren nicht der
+      // (versteckten) Aufgabe - sonst schaltet Enter dahinter weiter, statt den Knopf zu druecken
+      if (document.getElementById('p3Rueckblick') ||
+          (e.target && e.target.id === 'btnSessionEnden')) return;
 
       // Enter → Prüfen oder Weiter
       if (e.key === 'Enter') {
@@ -677,6 +755,8 @@
   window.naechsteAufgabe = naechsteAufgabe;
   window.zeigeTipp = zeigeTipp;
   window.resetFortschritt = resetFortschritt;
+  // Formelsatz wie in der Aufgabenkarte (p3-reflexion.js setzt damit den Rueckblick)
+  window.spiraleRenderMath = renderMath;
   // Lese-Hook fuer die E2E-Suite (gemischte Optionsreihenfolge sichtbar machen)
   window.spiraleAktuelleAufgabe = function () { return currentAufgabe; };
 

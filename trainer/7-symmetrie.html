@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '7-symmetrie';
-    const THEMA_CONFIG = { name: 'Symmetrie', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Symmetrie', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht: Achsensymmetrie erkennen ==========
       {
@@ -383,6 +383,7 @@
         loesungsweg: "<b>Umkehraufgabe:</b> \\(PP'\\) verläuft senkrecht (gleiche \\(x\\)-Koordinate), die Achse steht senkrecht darauf, ist also parallel zur \\(x\\)-Achse: \\(y = \\text{const}\\). Sie halbiert \\(PP'\\): $$y = \\frac{2 + (-6)}{2} = -2$$ Probe: \\(P\\) liegt \\(4\\) über der Achse \\(y = -2\\), \\(P'\\) liegt \\(4\\) darunter ✓. <b>Typischer Fehler:</b> die \\(x\\)-Achse (\\(y = 0\\)) als Achse annehmen — sie würde \\(P\\) auf \\((5|{-2})\\) abbilden."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

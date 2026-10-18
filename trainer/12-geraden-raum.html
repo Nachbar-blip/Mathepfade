@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-geraden-raum';
-    const THEMA_CONFIG = { name: 'Geraden im Raum', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Geraden im Raum', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "mc", frage: "Parameterform einer Geraden \\(g\\):", optionen: ["\\(\\vec x = \\vec a \\cdot \\vec u\\)", "\\(\\vec x = \\vec a + t \\cdot \\vec u\\)", "\\(\\vec x = t\\vec a\\)", "\\(\\vec x = \\vec a - \\vec u\\)"], korrekt: 1, tipp: "Aufpunkt + t · Richtungsvektor.", loesungsweg: "Eine Gerade ist festgelegt durch einen Punkt, an dem sie vorbeikommt, und eine Richtung: $$g: \\vec x = \\vec a + t \\cdot \\vec u, \\quad t \\in \\mathbb{R}$$ Der Parameter \\(t\\) durchläuft alle reellen Zahlen; jeder Wert liefert genau einen Punkt der Geraden. Ein <b>Produkt</b> zweier Vektoren ergäbe dagegen gar keinen Punkt." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Zwei Straßen verlaufen in der Ebene \\(z = 0\\): die eine durch \\(A(0|0|0)\\) und \\(B(10|5|0)\\), die andere durch \\(C(0|9|0)\\) und \\(D(12|3|0)\\) (Angaben in Hektometern). Bestimmen Sie die zweite Koordinate der Kreuzung:", loesung: 4.5, toleranz: 0.05, tipp: "Beide Straßen als Geraden ansetzen und gleichsetzen; die dritte Zeile ist hier von selbst erfüllt.", loesungsweg: "\\(g: \\vec x = t\\begin{pmatrix}10\\\\5\\\\0\\end{pmatrix}\\) und \\(h: \\vec x = \\begin{pmatrix}0\\\\9\\\\0\\end{pmatrix}+s\\begin{pmatrix}12\\\\-6\\\\0\\end{pmatrix}\\). Gleichsetzen: \\(10t = 12s\\) und \\(5t = 9-6s\\). Aus der ersten Zeile \\(t = 1{,}2s\\); eingesetzt: \\(6s = 9-6s\\), also \\(s = 0{,}75\\) und \\(t = 0{,}9\\). Die Kreuzung liegt in \\((9|4{,}5|0)\\), die zweite Koordinate ist \\(4{,}5\\)." },
       { id: 36, level: 6, typ: "mc", frage: "Beurteilen Sie die Behauptung: Zu ein und derselben Geraden gibt es unendlich viele verschiedene Parametergleichungen.", optionen: ["Richtig, Aufpunkt und Länge der Richtung sind frei", "Falsch, die Parameterform einer Geraden ist eindeutig", "Richtig, aber nur bei Geraden durch den Ursprung", "Falsch, nur der Aufpunkt darf gewechselt werden"], korrekt: 0, tipp: "Überlege, welche Punkte als Aufpunkt taugen und welche Vektoren dieselbe Richtung beschreiben.", loesungsweg: "Als Aufpunkt taugt jeder Punkt der Geraden, und als Richtungsvektor jedes Vielfache \\(r\\vec u\\) mit \\(r \\neq 0\\). Beides ist unendlich oft wählbar, etwa \\(\\vec x = t\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}\\) und \\(\\vec x = \\begin{pmatrix}2\\\\2\\\\2\\end{pmatrix}+s\\begin{pmatrix}3\\\\3\\\\3\\end{pmatrix}\\) — dieselbe Gerade. Deshalb beweist man Gleichheit zweier Geraden nie durch Vergleich der Gleichungen, sondern über Richtung und Punktprobe." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

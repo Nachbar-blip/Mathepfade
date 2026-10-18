@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-kreissektor';
-    const THEMA_CONFIG = { name: 'Kreissektor & Bogenlänge', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Kreissektor & Bogenlänge', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Grundlagen Kreis ==========
       { id: 1, level: 1, typ: "mc", frage: "Wie heißt der Teil einer Kreisfläche, der von zwei Radien und einem Bogen begrenzt wird?", optionen: ["Kreissehne", "Kreissegment", "Kreissektor", "Kreisbogen"], korrekt: 2, tipp: "„Sektor\" kommt von lat. „Schneider\" — wie ein Tortenstück.", loesungsweg: "Ein Kreissektor wird von zwei Radien und einem Kreisbogen begrenzt — wie ein Tortenstück." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "mc", frage: "Behauptung: „Der Flächeninhalt eines Kreissegments beträgt stets die Hälfte des Inhalts des zugehörigen Sektors.“ Wie ist das zu bewerten?", optionen: ["richtig, die Sehne halbiert ihn stets", "falsch, der Anteil hängt vom Winkel ab", "richtig, weil genau ein Dreieck fehlt", "falsch, das Segment ist stets größer"], korrekt: 1, tipp: "Vergleiche für einen sehr kleinen und einen sehr großen Mittelpunktswinkel, wie viel das abgezogene Dreieck vom Sektor ausmacht.", loesungsweg: "Das Segment ist der Sektor ohne das Dreieck aus den beiden Radien und der Sehne. Bei \\(60°\\) und \\(r = 10\\) ergibt sich \\(52{,}36 - 43{,}30 \\approx 9{,}06\\), also nur etwa \\(17\\,\\%\\) des Sektors. Bei \\(180°\\) fällt das Dreieck ganz weg, das Segment ist dann der gesamte Halbkreis, also \\(100\\,\\%\\). Der Anteil wächst mit dem Winkel; die Behauptung ist <b>falsch</b>." },
       { id: 36, level: 6, typ: "numerisch", frage: "Ein Kreissektor mit dem Mittelpunktswinkel \\(40°\\) hat denselben Flächeninhalt wie ein Quadrat mit der Seitenlänge \\(6\\,\\text{cm}\\). Berechne den Radius des Sektors in cm auf zwei Dezimalen.", loesung: 10.16, toleranz: 0.05, tipp: "Bestimme zuerst den Flächeninhalt der Vergleichsfigur und stelle die Sektorbeziehung danach nach dem Radius um.", loesungsweg: "Das Quadrat hat den Inhalt \\(6^2 = 36\\,\\text{cm}^2\\). Für den Sektor gilt $$\\frac{40°}{360°} \\cdot \\pi r^2 = 36 \\;\\Rightarrow\\; \\frac{\\pi r^2}{9} = 36 \\;\\Rightarrow\\; r^2 = \\frac{324}{\\pi} \\approx 103{,}13$$ Wurzel ziehen: \\(r \\approx 10{,}16\\,\\text{cm}\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

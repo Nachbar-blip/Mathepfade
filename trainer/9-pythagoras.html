@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-pythagoras';
-    const THEMA_CONFIG = { name: 'Satz des Pythagoras', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Satz des Pythagoras', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id:1, level:1, typ:"mc", frage:"Wie heißt die längste Seite im rechtwinkligen Dreieck?", optionen:["Kathete","Hypotenuse","Ankathete","Gegenkathete"], korrekt:1, tipp:"Sie liegt dem rechten Winkel gegenüber.", loesungsweg:"Die <b>Hypotenuse</b> ist die längste Seite und liegt dem rechten Winkel gegenüber." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"numerisch", frage:"Ein Quader ist \\(12\\,\\text{cm}\\) lang und \\(4\\,\\text{cm}\\) breit. Seine Raumdiagonale — die längste Strecke von Ecke zu Ecke durch das Innere — ist \\(13\\,\\text{cm}\\) lang. Wie hoch ist der Quader in cm?", loesung:3, toleranz:0.01, tipp:"Zweimal Pythagoras: erst die Bodendiagonale, dann die Raumdiagonale.", loesungsweg:"Bodendiagonale: $$d^2 = 12^2 + 4^2 = 144 + 16 = 160$$ Die Raumdiagonale ist Hypotenuse über Bodendiagonale und Höhe: $$h^2 = 13^2 - d^2 = 169 - 160 = 9 \\implies h = 3\\,\\text{cm}$$ Die Bodendiagonale selbst (\\(\\sqrt{160}\\)) muss dabei gar nicht ausgerechnet werden — ihr Quadrat genügt." },
       { id:36, level:6, typ:"numerisch", frage:"Ein gleichseitiges Dreieck hat die Höhe \\(6\\,\\text{cm}\\). Wie lang ist seine Seite in cm (2 Nachkommastellen)?", loesung:6.93, toleranz:0.02, tipp:"Die Höhe halbiert die Seite — beide Katheten hängen von derselben Unbekannten ab.", loesungsweg:"Die Höhe teilt das Dreieck in zwei rechtwinklige Dreiecke mit Hypotenuse \\(a\\) und Katheten \\(\\tfrac a2\\) und \\(6\\): $$a^2 = \\left(\\tfrac{a}{2}\\right)^2 + 6^2 \\implies a^2 - \\tfrac{a^2}{4} = 36 \\implies \\tfrac34 a^2 = 36$$ $$a^2 = 48 \\implies a = \\sqrt{48} \\approx 6{,}93\\,\\text{cm}$$ Probe: \\(\\sqrt{6{,}93^2 - 3{,}46^2} \\approx 6\\) ✓" }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

@@ -21,6 +21,15 @@ body {
 .spirale-container {
     max-width: 800px;
     margin: 0 auto;
+    /* Ein einzelnes Wort, das breiter ist als sein Kasten ("Wahrscheinlichkeitsverteilungen"
+       im Titel, "dreihundertzwanzigtausendvierhundertsechsundfuenfzig" in einer Option),
+       machte auf dem Handy die ganze Seite waagerecht verschiebbar. Lange Woerter werden
+       darum nach Silben getrennt (lang="de"); kurze bleiben ganz (hyphenate-limit-chars:
+       erst ab 12 Zeichen, je Teil mindestens 5). Nur was sich so nicht trennen laesst,
+       bricht break-word im Wort um - sonst aendert es nichts. */
+    hyphens: auto;
+    hyphenate-limit-chars: 12 5 5;
+    overflow-wrap: break-word;
 }
 
 /* ===== Header ===== */
@@ -70,10 +79,14 @@ header p {
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.25);
     transition: background 0.4s, box-shadow 0.4s;
+    /* Die Ziffer im Segment ist nur fuer Screenreader; sichtbar quoll sie schwarz unter
+       dem 8 px hohen Balken heraus. Das Level steht daneben in .level-label. */
+    font-size: 0;
 }
 
 .level-segment.completed {
-    background: rgba(34, 197, 94, 0.6);
+    /* deckend: das halbdurchsichtige Gruen verschwand auf dem gruenen Verlauf der Mathepfade */
+    background: #86efac;
 }
 
 .level-segment.active {
@@ -289,7 +302,7 @@ header p {
 
 /* KaTeX in MC options */
 .mc-option .katex {
-    font-size: 1.05em;
+    font-size: 1.15em;
 }
 
 /* ===== Feedback ===== */
@@ -336,7 +349,7 @@ header p {
 }
 
 .loesungsweg .katex {
-    font-size: 1.1em;
+    font-size: 1.15em;
 }
 
 .loesungsweg .katex-display {
@@ -405,7 +418,72 @@ header p {
 }
 
 .tipp-box .katex {
-    font-size: 1.05em;
+    font-size: 1.15em;
+}
+
+/* ===== Formelsatz (gilt in allen Kaesten: Frage, Optionen, Tipp, Loesungsweg) ===== */
+
+/* Formelgroesse in Optionen, Tipp und Loesungsweg: 1.15em (vorher 1.05 / 1.1) - Hochzahlen
+   lagen bei rund 11px, ein Minus im Exponenten war kaum zu erkennen. Nicht 1.21em (KaTeX-
+   Vorgabe): Das machte bei 360px ein Drittel mehr Formeln breiter als ihren Kasten. */
+
+/* Abgesetzte Formel, die breiter ist als der Kasten (Handy): zuerst an Relations- und
+   Rechenzeichen umbrechen (KaTeX verbietet das mit nowrap); was dann noch zu breit ist
+   (ein einzelner Bruch, eine Klammer), scrollt in sich, statt aus dem Kasten zu ragen.
+   overflow-y:hidden schneidet an der Kante ab, und die Formelzeile ist genau so hoch wie
+   ihr Inhalt - Nenner und Hochzahlen verloeren am Rand ein Pixel. Darum 4px Luft per
+   padding, durch negativen margin ausgeglichen; flow-root verhindert, dass dieser margin
+   mit dem Aussenabstand der Formel verschmilzt. Die Hoehe bleibt so unveraendert. */
+.katex-display {
+    display: flow-root;
+}
+
+.katex-display > .katex {
+    white-space: normal;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 0;
+    margin: -4px 0;
+}
+
+/* Umbrochene abgesetzte Formel: KaTeX-Bausteine (.base) sind genau so hoch wie ihr Inhalt,
+   hohe Teile (Brueche) bestimmen die Zeilenhoehe - die Zeilen stiessen aneinander, der
+   Nenner der einen beruehrte den Zaehler der naechsten. 0.15em Abstand oben und unten.
+   Niedrige Bausteine bleiben innerhalb der normalen Zeilenhoehe, aendern also nichts. */
+.katex-display > .katex > .katex-html > .base {
+    margin-block: 0.15em;
+}
+
+/* Inline-Formel samt angeklebter Zeichen (spirale-engine.js: haltFormelnZusammen) bleibt
+   in einer Zeile - KaTeX erlaubt sonst hinter jedem Relations- und Rechenzeichen einen
+   Umbruch ("k <" am Zeilenende, "0" in der naechsten). inline-block statt nowrap: Ist die
+   Formel breiter als der Kasten, bricht sie weiter an diesen Stellen um, statt ihn zu
+   sprengen. width:max-content, damit der margin-right fuer das haengende Satzzeichen
+   (s. u.) nicht von der verfuegbaren Breite abgeht. */
+.formel {
+    display: inline-block;
+    width: max-content;
+    max-width: 100%;
+}
+
+/* Satzzeichen direkt hinter der Formel: ohne eigene Breite, damit es nie allein umbricht
+   (den Platz dahinter gibt die Engine der Formel als margin-right mit). */
+.formel-zeichen {
+    display: inline-block;
+    width: 0;
+    white-space: nowrap;
+}
+
+/* Inline-Formel, die auch umbrochen breiter ist als der Kasten (ein langer Bruch, eine
+   grosse Klammer - die Engine erkennt das beim Setzen): eigene Zeile, scrollt in sich.
+   Luft oben/unten wie bei der abgesetzten Formel. */
+.formel-breit {
+    display: block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 0;
+    margin-top: -4px;
+    margin-bottom: -4px;
 }
 
 /* ===== Level-Nachrichten (Toast) ===== */
@@ -779,4 +857,212 @@ header p {
     .level-nachricht.fade-out {
         transition: none;
     }
+}
+
+/* ==================== P3: Fehlertyp-Reflexion (p3-reflexion.js) ==================== */
+/* Gleicher Block wie in der DifferenzierungsEngine; Aenderungen in beiden nachziehen. */
+
+.btn-session-ende {
+  margin-left: 0.75rem;
+  margin-top: 16px;
+  padding: 0.4rem 0.8rem;
+  min-height: 44px;
+  font-size: 0.9rem;
+  background: transparent;
+  color: var(--spirale-primary);
+  border: 1px solid var(--spirale-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  vertical-align: bottom;
+}
+
+.btn-session-ende:hover,
+.btn-session-ende:focus-visible {
+  background: var(--spirale-primary);
+  color: #fff;
+}
+
+.p3-rueckblick {
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.p3-rueckblick h2 {
+  margin-top: 0;
+  color: var(--spirale-primary);
+}
+
+.p3-nobr {
+  white-space: nowrap;
+}
+
+.p3-rueckblick h2:focus {
+  outline: none;
+}
+
+.p3-anleitung {
+  margin: 0.2rem 0 0;
+  color: #555;
+}
+
+.p3-kacheln {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.p3-kachel {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 0.8rem;
+  background: #fafafa;
+  min-width: 0;
+}
+
+.p3-kachel-kopf {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.p3-badge.ok { color: #2e7d32; margin-left: 0.5rem; }
+.p3-badge.fehler { color: #c62828; margin-left: 0.5rem; }
+
+.p3-kachel-frage {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
+  color: #333;
+}
+
+.p3-kachel-frage .katex {
+  font-size: 1.15em;
+}
+
+.p3-loesungsweg {
+  margin: 0 0 0.6rem;
+  font-size: 0.92rem;
+  color: #444;
+}
+
+.p3-loesungsweg summary {
+  cursor: pointer;
+  color: var(--spirale-primary);
+  font-weight: 600;
+  padding: 0.2rem 0;
+}
+
+.p3-loesungsweg-text {
+  margin-top: 0.4rem;
+  padding: 0.6rem 0.8rem;
+  background: #fff;
+  border-left: 3px solid var(--spirale-primary);
+  border-radius: 4px;
+  line-height: 1.6;
+}
+
+.p3-loesungsweg-text .katex {
+  font-size: 1.15em;
+}
+
+.p3-kachel-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.p3-ft-btn {
+  padding: 0.3rem 0.7rem;
+  min-height: 36px;
+  font-size: 0.85rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+}
+
+.p3-ft-btn:hover:not(:disabled) {
+  border-color: var(--spirale-primary);
+}
+
+.p3-ft-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.p3-ft-btn.p3-ft-gewaehlt {
+  background: var(--spirale-primary);
+  color: #fff;
+  border-color: var(--spirale-primary);
+  opacity: 1 !important;
+}
+
+.p3-sammler {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 6px;
+}
+
+.p3-sammler h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.p3-balken {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+  margin: 0.6rem 0;
+}
+
+.p3-segment {
+  text-align: center;
+  padding: 0.5rem 0.3rem;
+  background: #fff;
+  border-left: 4px solid var(--spirale-primary);
+  border-radius: 4px;
+}
+
+.p3-segment .p3-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.p3-segment .p3-zahl {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.p3-empfehlung {
+  margin-top: 0.8rem;
+  font-style: italic;
+  color: #555;
+}
+
+.p3-empfehlung:empty {
+  display: none;
+}
+
+.p3-leer-hinweis {
+  color: #666;
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+@media (max-width: 480px) {
+  /* Drei Kaesten ineinander kosten auf dem Handy Breite: abgesetzte Formeln im Loesungsweg
+     brachen sonst mitten im Term um ("3|k -" / "1|"), obwohl sie im Feedback passen. */
+  .p3-rueckblick { padding: 0.75rem; }
+  .p3-kachel { padding: 0.6rem 0.5rem; }
+  .p3-loesungsweg-text { padding: 0.5rem 0.4rem; border-left-width: 2px; }
+  .p3-balken { grid-template-columns: repeat(1, 1fr); }
+  .p3-kachel-buttons { flex-direction: column; }
+  .p3-ft-btn { width: 100%; min-height: 44px; }
+  .btn-session-ende { margin-left: 0; width: 100%; }
 }

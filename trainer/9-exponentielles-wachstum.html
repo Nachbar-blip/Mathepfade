@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-exponentielles-wachstum';
-    const THEMA_CONFIG = { name: 'Exponentielles Wachstum', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Exponentielles Wachstum', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 ==========
       { id: 1, level: 1, typ: "mc", frage: "Welche Funktion beschreibt exponentielles Wachstum?", optionen: ["\\(f(x) = 2x\\)", "\\(f(x) = 2^x\\)", "\\(f(x) = x^2\\)", "\\(f(x) = x + 2\\)"], korrekt: 1, tipp: "Die Variable steht im Exponenten.", loesungsweg: "Entscheidend ist, wo die Variable steht. Bei \\(2^x\\) steht sie im <b>Exponenten</b> — der Wert verdoppelt sich mit jedem Schritt, das Wachstum ist exponentiell. Bei \\(x^2\\) steht sie in der Basis (Potenzfunktion), bei \\(2x\\) und \\(x+2\\) wächst sie linear." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Ein Bestand wächst exponentiell. Nach 2 Jahren beträgt er 450, nach 5 Jahren 3600. Wie groß ist er nach 7 Jahren?", loesung: 14400, toleranz: 0, tipp: "Von Jahr 2 bis Jahr 5 sind es drei Schritte — daraus folgt der Jahresfaktor.", loesungsweg: "Drei Schritte von 450 auf 3600: $$q^3 = \\frac{3600}{450} = 8 \\;\\Rightarrow\\; q = 2$$ Von Jahr 5 bis Jahr 7 sind es zwei weitere Schritte: $$N(7) = 3600 \\cdot 2^2 = 14\\,400$$ Der Anfangswert wird dafür nicht gebraucht (er wäre \\(450 : 4 = 112{,}5\\))." },
       { id: 36, level: 6, typ: "numerisch", frage: "Ein Bestand \\(N(t) = 64 \\cdot q^t\\) mit \\(0 < q < 1\\) hat zum Zeitpunkt \\(t = 3\\) den Wert 27. Zu welchem ganzzahligen Zeitpunkt \\(t\\) liegt der Wert erstmals unter 20?", loesung: 5, toleranz: 0, tipp: "Erst \\(q\\) bestimmen, dann eine Tabelle fortsetzen.", loesungsweg: "$$64 \\cdot q^3 = 27 \\;\\Rightarrow\\; q^3 = \\frac{27}{64} \\;\\Rightarrow\\; q = \\frac{3}{4}$$ Weiter: \\(N(4) = 27 \\cdot 0{,}75 = 20{,}25\\), \\(N(5) = 20{,}25 \\cdot 0{,}75 = 15{,}19\\). Erstmals unter \\(20\\) bei \\(t = 5\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

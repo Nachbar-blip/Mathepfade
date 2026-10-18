@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-kurvendiskussion-ganzrational';
-    const THEMA_CONFIG = { name: 'Kurvendiskussion ganzrationaler Funktionen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Kurvendiskussion ganzrationaler Funktionen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1 — Grundbegriffe
       { id: 1, level: 1, typ: "mc", frage: "Symmetrie von \\(f(x)=x^3\\)?", optionen: ["Achsensymm. zur y-Achse", "Punktsymm. zum Ursprung", "weder noch", "beides"], korrekt: 1, tipp: "\\(-x\\) einsetzen und mit \\(f(x)\\) vergleichen.", loesungsweg: "Einsetzen von \\(-x\\): $$f(-x) = (-x)^3 = -x^3 = -f(x)$$ Das ist genau die Bedingung \\(f(-x) = -f(x)\\) für <b>Punktsymmetrie zum Ursprung</b>. Für Achsensymmetrie müsste dagegen \\(f(-x) = f(x)\\) herauskommen — das gelingt nur bei lauter geraden Exponenten." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Für welchen Wert \\(a>0\\) besitzt \\(f(x)=x^3+ax^2+3x\\) genau eine Stelle mit waagerechter Tangente?", loesung: 3, toleranz: 0, tipp: "Die Anzahl der Lösungen einer quadratischen Gleichung lässt sich über die Diskriminante steuern.", loesungsweg: "$$f'(x) = 3x^2 + 2ax + 3$$ Die Stellen mit waagerechter Tangente sind die Nullstellen dieser quadratischen Funktion. Genau eine Nullstelle bedeutet Diskriminante null: $$(2a)^2 - 4 \\cdot 3 \\cdot 3 = 4a^2 - 36 = 0 \\;\\Rightarrow\\; a^2 = 9 \\;\\Rightarrow\\; a = 3 \\quad (a>0)$$ Die Fallunterscheidung: für \\(0 < a < 3\\) gibt es keine solche Stelle, für \\(a > 3\\) zwei. Im Grenzfall \\(a = 3\\) ist \\(f'(x) = 3(x+1)^2 \\ge 0\\) — die Tangente ist bei \\(x = -1\\) waagerecht, ein <b>Extrempunkt</b> liegt dort aber nicht vor, sondern ein Sattelpunkt." },
       { id: 36, level: 6, typ: "numerisch", frage: "Gegeben ist \\(f(x)=x^3-3x^2-9x+5\\). Bestimme die \\(y\\)-Werte von Hoch- und Tiefpunkt und begründe damit, wie viele verschiedene Nullstellen der Graph hat. Gib die Anzahl der Nullstellen an.", loesung: 3, toleranz: 0, tipp: "Entscheidend ist, ob Hoch- und Tiefpunkt auf derselben Seite der \\(x\\)-Achse liegen.", loesungsweg: "$$f'(x) = 3x^2 - 6x - 9 = 3(x-3)(x+1) = 0 \\;\\Rightarrow\\; x = -1 \\text{ oder } x = 3$$ Mit \\(f''(x) = 6x - 6\\) ist \\(f''(-1) = -12 < 0\\) (Hochpunkt) und \\(f''(3) = 12 > 0\\) (Tiefpunkt). Die Werte: $$f(-1) = -1 - 3 + 9 + 5 = 10, \\qquad f(3) = 27 - 27 - 27 + 5 = -22$$ Begründung: Der Hochpunkt liegt <b>oberhalb</b>, der Tiefpunkt <b>unterhalb</b> der \\(x\\)-Achse. Links vom Hochpunkt kommt der Graph aus \\(-\\infty\\) und steigt, zwischen den Extrempunkten fällt er von \\(10\\) auf \\(-22\\), danach steigt er nach \\(+\\infty\\). In jedem dieser drei Abschnitte wird die Achse genau einmal gekreuzt — es gibt also <b>drei</b> verschiedene Nullstellen. Läge der Tiefpunkt oberhalb der Achse, bliebe nur eine." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

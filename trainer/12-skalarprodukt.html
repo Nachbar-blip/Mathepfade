@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-skalarprodukt';
-    const THEMA_CONFIG = { name: 'Skalarprodukt', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Skalarprodukt', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "mc", frage: "Das Skalarprodukt \\(\\vec a \\cdot \\vec b\\) liefert …", optionen: ["einen Vektor", "eine Zahl (Skalar)", "eine Matrix", "einen Winkel"], korrekt: 1, tipp: "Skalar = Zahl.", loesungsweg: "\\(\\vec a \\cdot \\vec b\\) ist eine reelle Zahl." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Ein Schlitten wird mit der Kraft \\(\\vec F = \\begin{pmatrix}60\\\\0\\\\45\\end{pmatrix}\\) (in Newton) längs des Weges \\(\\vec s = \\begin{pmatrix}8\\\\0\\\\0\\end{pmatrix}\\) (in Metern) gezogen. Berechnen Sie die verrichtete Arbeit (in Joule) und beurteilen Sie, welcher Kraftanteil dabei nichts beiträgt:", loesung: 480, toleranz: 0, tipp: "Arbeit ist das Skalarprodukt aus Kraft und Weg; nur der Kraftanteil in Wegrichtung trägt bei.", loesungsweg: "\\(W = \\vec F \\cdot \\vec s = 60 \\cdot 8 + 0 \\cdot 0 + 45 \\cdot 0 = 480\\) Joule. Der senkrechte Anteil von 45 N zeigt nach oben, steht also orthogonal zum Weg und liefert den Beitrag \\(45 \\cdot 0 = 0\\). Er würde erst zählen, wenn der Weg eine Höhenkomponente hätte." },
       { id: 36, level: 6, typ: "numerisch", frage: "Drei Messpunkte eines Geländes liegen in \\(A(2|1|0)\\), \\(B(6|4|0)\\) und \\(C(2|4|4)\\) (Angaben in Metern). Beurteilen Sie, ob das Dreieck bei \\(A\\) rechtwinklig ist, und geben Sie den Winkel bei \\(A\\) an (in Grad, auf 1 NK):", loesung: 68.9, toleranz: 0.2, tipp: "Bilde die beiden von \\(A\\) ausgehenden Verbindungsvektoren; ihr Skalarprodukt entscheidet über die Rechtwinkligkeit.", loesungsweg: "\\(\\vec{AB} = \\begin{pmatrix}4\\\\3\\\\0\\end{pmatrix}\\) und \\(\\vec{AC} = \\begin{pmatrix}0\\\\3\\\\4\\end{pmatrix}\\), beide mit dem Betrag 5. Das Skalarprodukt ist \\(0+9+0 = 9 \\neq 0\\): bei \\(A\\) ist das Dreieck <b>nicht</b> rechtwinklig. \\(\\cos\\alpha = \\frac{9}{25} = 0{,}36\\) liefert \\(\\alpha \\approx 68{,}9^\\circ\\). Wegen gleicher Beträge ist das Dreieck gleichschenklig." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

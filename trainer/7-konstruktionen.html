@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '7-konstruktionen';
-    const THEMA_CONFIG = { name: 'Geometrische Konstruktionen', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Geometrische Konstruktionen', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht: Werkzeuge und Grundbegriffe ==========
       {
@@ -383,6 +383,7 @@
         loesungsweg: "<b>Ansatz:</b> Die Winkelhalbierende teilt \\(\\gamma\\) in zwei Winkel zu je \\(40°\\). Im Teildreieck \\(ADC\\) sind die Winkel bei \\(A\\) gleich \\(\\alpha = 50°\\) und bei \\(C\\) gleich \\(40°\\): $$\\angle ADC = 180° - 50° - 40° = 90°$$ Die Winkelhalbierende steht hier also senkrecht auf \\(AB\\) — das liegt daran, dass das Dreieck gleichschenklig ist (\\(\\beta = 180° - 50° - 80° = 50° = \\alpha\\)): In einem gleichschenkligen Dreieck ist die Winkelhalbierende der Spitze zugleich Höhe und Mittelsenkrechte der Basis."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

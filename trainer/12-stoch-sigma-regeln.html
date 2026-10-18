@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-stoch-sigma-regeln';
-    const THEMA_CONFIG = { name: 'Sigma-Regeln', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Sigma-Regeln', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Grundbegriffe ==========
       { id:1, level:1, typ:"mc", frage:"Was besagt die 1\\(\\sigma\\)-Regel (näherungsweise)?", optionen:["\\(P(\\mu-\\sigma \\le X \\le \\mu+\\sigma)\\approx 68{,}3\\%\\)","\\(\\approx 50\\%\\)","\\(\\approx 95\\%\\)","\\(\\approx 99{,}7\\%\\)"], korrekt:0, tipp:"Ein Drittel liegt außerhalb.", loesungsweg:"Bei einer hinreichend breiten Binomialverteilung liegen rund zwei Drittel aller Werte im Abstand einer Standardabweichung um den Erwartungswert: $$P(\\mu-\\sigma \\leq X \\leq \\mu+\\sigma) \\approx 68{,}3\\,\\%$$ Außerhalb liegen also gut \\(31\\,\\%\\) — je Seite knapp \\(16\\,\\%\\). Eine Abweichung um ein Sigma ist damit noch nichts Besonderes." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"mc", frage:"„Liegt ein Beobachtungswert innerhalb der 2\\(\\sigma\\)-Umgebung, so ist die Annahme über \\(p\\) bestätigt.“ Beurteilen Sie diese Behauptung.", optionen:["Richtig, denn \\(95{,}4\\,\\%\\) der Werte sprechen dafür","Falsch, der Wert passt auch zu vielen anderen Annahmen","Falsch, innerhalb liegende Werte sagen überhaupt nichts aus","Richtig, sofern die Laplace-Bedingung eingehalten ist"], korrekt:1, tipp:"Überlege, ob derselbe Beobachtungswert auch zu einem benachbarten \\(p\\) passen könnte.", loesungsweg:"Ein Wert innerhalb der Umgebung <b>widerspricht</b> der Annahme nicht — bestätigt ist sie damit nicht. Beispiel \\(n = 400\\): der Wert \\(205\\) liegt in der 2\\(\\sigma\\)-Umgebung von \\(p = 0{,}5\\) (also \\([180;220]\\)), aber ebenso in der von \\(p = 0{,}52\\) (etwa \\([188;228]\\)) und in der von \\(p = 0{,}48\\). Verträglichkeit ist keine Bestätigung. Die Aussage, innerhalb liegende Werte sagten überhaupt nichts aus, geht dagegen zu weit: unverträgliche Annahmen kann man durchaus ausschließen." },
       { id:36, level:6, typ:"numerisch", frage:"Ein Losverkäufer hat \\(1200\\) Lose verkauft, von denen \\(25\\,\\%\\) Gewinnlose sind. Wie viele Gewinne muss er bereithalten, damit er mit einer Wahrscheinlichkeit von etwa \\(99{,}85\\,\\%\\) nicht zu wenige hat? Begründen Sie, warum hier nur eine Seite der Umgebung zählt.", loesung:345, toleranz:0, tipp:"Von den drei Sigma-Regeln die passende auswählen und überlegen, welcher Anteil auf eine einzelne Seite entfällt.", loesungsweg:"$$\\mu = 1200 \\cdot 0{,}25 = 300, \\quad \\sigma = \\sqrt{1200 \\cdot 0{,}25 \\cdot 0{,}75} = \\sqrt{225} = 15$$ <b>Einseitige Betrachtung:</b> Zu wenige Gewinne hat er nur, wenn die Gewinnzahl <b>zu groß</b> wird; der untere Rand ist für ihn unkritisch. Von den \\(0{,}3\\,\\%\\) außerhalb der 3\\(\\sigma\\)-Umgebung entfallen \\(0{,}15\\,\\%\\) auf die obere Seite, also bleiben nach oben \\(99{,}85\\,\\%\\) abgedeckt: $$\\mu + 3\\sigma = 300 + 45 = 345$$ Er sollte \\(345\\) Gewinne bereithalten. Für eine zweiseitige Aussage mit \\(99{,}85\\,\\%\\) bräuchte man eine größere Zahl von Standardabweichungen." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

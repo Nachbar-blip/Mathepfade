@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-bruchterme-grundlagen';
-    const THEMA_CONFIG = { name: 'Bruchterme - Grundlagen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Bruchterme - Grundlagen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 ==========
       { id: 1, level: 1, typ: "mc", frage: "Was ist ein Bruchterm?", optionen: ["Ein Term ohne Variable", "Ein Term, in dessen Nenner eine Variable vorkommt", "Eine Gleichung mit Bruch", "Ein Dezimalbruch"], korrekt: 1, tipp: "Entscheidend ist, wo die Variable steht.", loesungsweg: "Ein <b>Bruchterm</b> ist ein Term, bei dem im Nenner (mindestens) eine Variable vorkommt, z. B. \\(\\frac{3}{x}\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Kürzt man \\(\\frac{x^2 - 9}{x - 3}\\), erhält man \\(x + 3\\). Für genau eine Zahl \\(x\\) hat der gekürzte Term einen Wert, obwohl der ursprüngliche Bruchterm dort nicht definiert ist. Welche Zahl ist das?", loesung: 3, toleranz: 0, tipp: "Für welche Zahl wird der Nenner des ursprünglichen Terms null?", loesungsweg: "Kürzen ist nur erlaubt, wo der Nenner nicht null ist: \\(x - 3 = 0 \\Rightarrow x = 3\\). $$\\frac{x^2 - 9}{x - 3} = \\frac{(x + 3)(x - 3)}{x - 3} = x + 3 \\quad (x \\neq 3)$$ Für \\(x = 3\\) liefert \\(x + 3\\) den Wert \\(6\\), der Bruchterm aber \\(\\frac{0}{0}\\) — nicht definiert. Die Definitionsmenge bleibt beim Kürzen erhalten; die beiden Terme sind nur für \\(x \\neq 3\\) gleich." },
       { id: 36, level: 6, typ: "mc", frage: "Welche Aussage über \\(\\frac{4}{x^2 + 1}\\) ist richtig?", optionen: ["Der Term ist für jede Zahl \\(x\\) definiert, weil \\(x^2 + 1\\) nie null wird", "Der Term ist für \\(x = -1\\) nicht definiert, weil \\((-1)^2 + 1\\) dann null wird", "Der Term ist für \\(x = 1\\) und \\(x = -1\\) nicht definiert, weil \\(x^2 = 1\\) ist", "Der Term ist für \\(x = 0\\) nicht definiert, weil der Nenner dann nur \\(1\\) ist"], korrekt: 0, tipp: "Kann \\(x^2\\) negativ werden?", loesungsweg: "Nenner null setzen: \\(x^2 + 1 = 0 \\Rightarrow x^2 = -1\\). Ein Quadrat ist nie negativ, diese Gleichung hat keine Lösung: $$x^2 + 1 \\geq 1 > 0 \\text{ für alle } x$$ Sonderfall: ein Bruchterm ohne Definitionslücke, \\(D = \\mathbb{Q}\\). Für \\(x = \\pm 1\\) ist der Nenner \\(2\\), für \\(x = 0\\) ist er \\(1\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

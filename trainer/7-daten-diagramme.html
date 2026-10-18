@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '7-daten-diagramme';
-    const THEMA_CONFIG = { name: 'Daten und Diagramme', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Daten und Diagramme', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht: Grundbegriffe ==========
       {
@@ -383,6 +383,7 @@
         loesungsweg: "<b>Mittelwert:</b> $$\\frac{5 \\cdot 2\\,200 + 14\\,000}{6} = \\frac{25\\,000}{6} \\approx 4\\,167\\,€$$ — kein einziger Mitarbeiter verdient auch nur annähernd so viel.<br><b>Median:</b> geordnet \\(2\\,200\\) (fünfmal), \\(14\\,000\\); die beiden mittleren Werte sind \\(2\\,200\\) und \\(2\\,200\\), Median \\(2\\,200\\,€\\) — das Gehalt, das tatsächlich fast alle bekommen.<br>Bei einem <b>Ausreißer</b> ist der Median die robustere Kenngröße; die Spannweite beschreibt die Streuung, nicht den typischen Wert."
       }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-e-funktion-ableitung';
-    const THEMA_CONFIG = { name: 'e-Funktion ableiten', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'e-Funktion ableiten', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // L1 -- Grundregel
       { id:1, level:1, typ:"mc", frage:"Ableitung von \\(e^x\\):", optionen:["\\(x\\cdot e^{x-1}\\)","\\(e^x\\)","\\(e^{x+1}\\)","\\(\\ln x\\)"], korrekt:1, tipp:"Die e-Funktion ist ihre eigene Ableitung.", loesungsweg:"Die \\(e\\)-Funktion ist die einzige Funktion, die sich beim Ableiten nicht verändert: $$(e^x)' = e^x$$ Genau deshalb ist sie in der Analysis so zentral. Die Potenzregel \\((x^n)' = nx^{n-1}\\) gilt hier <b>nicht</b> — bei \\(e^x\\) steht das \\(x\\) im Exponenten, nicht in der Basis." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"numerisch", frage:"Ein Tank füllt sich nach \\(V(t)=500\\left(1-e^{-0{,}2t}\\right)\\) (in Litern, \\(t\\) in Minuten). Zu welchem Zeitpunkt beträgt die Zuflussrate genau \\(40\\) Liter pro Minute? Runde auf zwei Nachkommastellen.", loesung:4.58, toleranz:0.06, tipp:"Die Zuflussrate ist die Ableitung des Volumens; setze sie gleich dem geforderten Wert.", loesungsweg:"Ableiten: die Konstante \\(500\\) fällt weg, und \\(-e^{-0{,}2t}\\) liefert wegen der inneren Ableitung \\(-0{,}2\\) ein positives Ergebnis: $$V'(t) = 500 \\cdot 0{,}2\\,e^{-0{,}2t} = 100\\,e^{-0{,}2t}$$ Gleichsetzen mit \\(40\\): $$100\\,e^{-0{,}2t} = 40 \\;\\Rightarrow\\; e^{-0{,}2t} = 0{,}4 \\;\\Rightarrow\\; t = \\frac{\\ln 2{,}5}{0{,}2} \\approx 4{,}58$$ Nach rund \\(4{,}6\\) Minuten fließen also noch \\(40\\) Liter pro Minute zu. Die Rate fällt monoton von anfangs \\(100\\) auf null, der Tank nähert sich \\(500\\) Litern." },
       { id:36, level:6, typ:"numerisch", frage:"Zwei Lagerbestände zerfallen nach \\(A(t)=800\\,e^{-0{,}05t}\\) und \\(B(t)=500\\,e^{-0{,}02t}\\) (in Gramm, \\(t\\) in Jahren). Zu welchem Zeitpunkt sind die Beträge ihrer momentanen Abnahmeraten gleich groß? Runde auf eine Nachkommastelle.", loesung:46.2, toleranz:0.5, tipp:"Leite beide Modelle ab, setze die Beträge gleich und fasse die \\(e\\)-Potenzen zu einer einzigen zusammen.", loesungsweg:"Beide Modelle ableiten: $$A'(t) = -40\\,e^{-0{,}05t}, \\qquad B'(t) = -10\\,e^{-0{,}02t}$$ Gleichsetzen der Beträge: $$40\\,e^{-0{,}05t} = 10\\,e^{-0{,}02t} \\;\\Rightarrow\\; \\frac{e^{-0{,}05t}}{e^{-0{,}02t}} = \\frac{10}{40}$$ Mit \\(\\frac{e^{a}}{e^{b}}=e^{a-b}\\) wird daraus \\(e^{-0{,}03t}=0{,}25\\), also $$t = \\frac{\\ln 4}{0{,}03} \\approx \\frac{1{,}3863}{0{,}03} \\approx 46{,}2 \\text{ Jahre}$$ Kontrolle: \\(A'(46{,}2)\\approx -3{,}97\\) und \\(B'(46{,}2)\\approx -3{,}97\\). Bestand \\(A\\) ist anfangs viermal so schnell im Abbau; weil sein Exponent aber stärker negativ ist, holt \\(B\\) auf — nach rund \\(46\\) Jahren sind beide Raten gleich, danach baut \\(B\\) schneller ab." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-stoch-zufallsgroessen';
-    const THEMA_CONFIG = { name: 'Zufallsgrößen', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Zufallsgrößen', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Grundbegriffe ==========
       { id:1, level:1, typ:"mc", frage:"Was ist eine Zufallsgröße?", optionen:["eine Zuordnung von jedem Ergebnis zu einer Zahl","eine Zuordnung von jedem Ergebnis zu einem Wort","eine Zuordnung von jeder Zahl zu einem Ergebnis","eine Zuordnung von jeder Zahl zu einem Diagramm"], korrekt:0, tipp:"Achte auf die Richtung der Zuordnung und darauf, was am Ende herauskommt.", loesungsweg:"Eine Zufallsgröße \\(X\\) ordnet <b>jedem Ergebnis</b> eines Zufallsexperiments eine reelle <b>Zahl</b> zu. Beim Wurf zweier Würfel kann das etwa die Augensumme sein. Die Richtung ist wesentlich: Eingabe ist das Ergebnis, Ausgabe die Zahl — umgekehrt wäre es keine Zufallsgröße. Erst durch diese Zuordnung lässt sich mit dem Ausgang eines Zufallsversuchs rechnen." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"mc", frage:"„Bei einem fairen Spiel ist die Standardabweichung des Nettogewinns gleich null.“ Beurteilen Sie diese Behauptung.", optionen:["Richtig, denn der erwartete Gewinn ist ja null","Falsch, die einzelnen Ausgänge weichen weiterhin ab","Falsch, bei fairen Spielen ist \\(\\sigma\\) stets sehr groß","Richtig, sofern Einsatz und Auszahlung übereinstimmen"], korrekt:1, tipp:"Überlege, welche Zufallsgrößen überhaupt die Standardabweichung null haben.", loesungsweg:"\\(\\sigma = 0\\) gilt genau dann, wenn die Zufallsgröße konstant ist — ein Spiel ohne jedes Risiko. Fairness betrifft dagegen nur die <b>Lage</b>: \\(E(X) = 0\\). Beispiel: Einsatz \\(2\\,€\\), Auszahlung \\(10\\,€\\) mit \\(p = 0{,}2\\). Dann ist \\(E(X) = 0\\), aber $$E(X^2) = 0{,}2 \\cdot 64 + 0{,}8 \\cdot 4 = 16 \\;\\Rightarrow\\; \\sigma = 4$$ Faire Spiele können also beliebig riskant sein. Umgekehrt ist \\(\\sigma\\) auch nicht grundsätzlich groß — sie hängt allein von den Auszahlungen ab." },
       { id:36, level:6, typ:"numerisch", frage:"Zwei unabhängige Zufallsgrößen haben \\(V(X)=9\\) und \\(V(Y)=16\\). Berechnen Sie \\(\\sigma(X+Y)\\) und begründen Sie, warum \\(\\sigma(X)+\\sigma(Y)\\) ein falsches Ergebnis liefert.", loesung:5, toleranz:0.01, tipp:"Erst überlegen, welche der beiden Kenngrößen sich bei unabhängigen Summanden addiert — und welche nicht.", loesungsweg:"Bei <b>unabhängigen</b> Zufallsgrößen addieren sich die Varianzen, nicht die Standardabweichungen: $$V(X+Y) = 9 + 16 = 25 \\;\\Rightarrow\\; \\sigma(X+Y) = \\sqrt{25} = 5$$ <b>Begründung:</b> \\(\\sigma(X) + \\sigma(Y) = 3 + 4 = 7\\) wäre zu groß. Das Wurzelziehen lässt sich nicht auf eine Summe verteilen: \\(\\sqrt{9+16} \\ne \\sqrt9 + \\sqrt{16}\\). Sachlich steckt dahinter, dass sich unabhängige Abweichungen teilweise ausgleichen — mal nach oben, mal nach unten. Nur wenn \\(Y\\) vollständig von \\(X\\) abhinge, etwa \\(Y = \\tfrac43 X\\), addierten sich die Standardabweichungen tatsächlich." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

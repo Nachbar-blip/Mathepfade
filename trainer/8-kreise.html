@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-kreise';
-    const THEMA_CONFIG = { name: 'Kreise - Umfang & Fläche', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Kreise - Umfang & Fläche', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 ==========
       { id: 1, level: 1, typ: "mc", frage: "Der Durchmesser \\(d\\) eines Kreises ist ...", optionen: ["halb so groß wie der Radius", "doppelt so groß wie der Radius", "gleich dem Radius", "Pi mal Radius"], korrekt: 1, tipp: "Radius = halber Durchmesser.", loesungsweg: "Der Durchmesser verläuft durch den Mittelpunkt von Rand zu Rand und besteht damit aus zwei Radien: $$d = 2r$$ Umgekehrt ist der Radius der halbe Durchmesser. Diese Unterscheidung entscheidet in fast jeder Kreisaufgabe über das richtige Ergebnis." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Ein Seil liegt straff um den Äquator der Erde (Umfang etwa \\(40\\,000\\,\\text{km}\\)). Es wird um \\(6{,}28\\,\\text{m}\\) verlängert und überall gleich weit vom Boden abgehoben. Wie viele Meter ist es dann überall vom Boden entfernt (\\(\\pi = 3{,}14\\))?", loesung: 1, toleranz: 0.01, tipp: "Nur die Änderung des Umfangs zählt, nicht der Umfang selbst.", loesungsweg: "Wächst der Radius um \\(x\\), so wächst der Umfang um $$2\\pi (r + x) - 2\\pi r = 2\\pi x$$ Der Erdradius kürzt sich heraus. Mit \\(2\\pi x = 6{,}28\\,\\text{m}\\): $$x = \\frac{6{,}28}{6{,}28} = 1\\,\\text{m}$$ Das Ergebnis ist unabhängig von der Größe der Kugel — bei einem Fußball wäre es dasselbe." },
       { id: 36, level: 6, typ: "mc", frage: "Eine Pizzeria bietet eine Pizza mit \\(24\\,\\text{cm}\\) Durchmesser für \\(6\\,€\\) und eine mit \\(32\\,\\text{cm}\\) für \\(10\\,€\\) an. Welche Pizza ist pro cm\\(^2\\) günstiger?", optionen: ["Die kleine — sie kostet mit \\(6\\,€\\) insgesamt weniger als die große Pizza.", "Die große — sie hat rund \\(1{,}8\\)-mal so viel Fläche, kostet aber nur \\(1{,}67\\)-mal so viel.", "Beide gleich — der Preis wächst im gleichen Verhältnis wie der Durchmesser.", "Die kleine — \\(24 : 6 = 4\\) ist größer als \\(32 : 10 = 3{,}2\\), also mehr cm pro Euro."], korrekt: 1, tipp: "Vergleiche die Flächen, nicht die Durchmesser.", loesungsweg: "Flächen (\\(\\pi = 3{,}14\\)): $$A_{24} = 3{,}14 \\cdot 12^2 \\approx 452\\,\\text{cm}^2, \\quad A_{32} = 3{,}14 \\cdot 16^2 \\approx 804\\,\\text{cm}^2$$ Die große hat \\(804 : 452 \\approx 1{,}8\\)-mal so viel Fläche, kostet aber nur \\(10 : 6 \\approx 1{,}67\\)-mal so viel. Pro cm\\(^2\\): kleine \\(\\approx 1{,}33\\,\\text{ct}\\), große \\(\\approx 1{,}24\\,\\text{ct}\\). Wer nur Durchmesser vergleicht, übersieht, dass die Fläche quadratisch wächst." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

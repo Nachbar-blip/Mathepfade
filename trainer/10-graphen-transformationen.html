@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-graphen-transformationen';
-    const THEMA_CONFIG = { name: 'Graphen-Transformationen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Graphen-Transformationen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht ==========
       { id: 1, level: 1, typ: "mc", frage: "\\(f(x) = x^2\\). Was bewirkt \\(g(x) = f(x) + 3\\)?", optionen: ["Verschiebung um 3 nach oben", "Verschiebung um 3 nach rechts", "Streckung", "Spiegelung"], korrekt: 0, tipp: "\\(+3\\) am Ende: vertikale Verschiebung.", loesungsweg: "\\(f(x) + c\\) verschiebt den Graphen um \\(c\\) nach oben (hier \\(+3\\))." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Der Graph von \\(f(x) = x^2\\) wird an der \\(x\\)-Achse gespiegelt, dann um 3 Einheiten nach rechts und um 4 Einheiten nach oben verschoben. An welcher Stelle \\(x > 3\\) hat die entstandene Funktion eine Nullstelle?", loesung: 5, toleranz: 0, tipp: "Stelle den Term nach allen drei Schritten auf und löse dann die Nullstellengleichung.", loesungsweg: "Nach den drei Schritten: $$g(x) = -(x-3)^2 + 4$$ Nullstellen: \\((x-3)^2 = 4\\), also \\(x-3 = \\pm 2\\) und damit \\(x = 5\\) oder \\(x = 1\\). Gesucht war die Stelle rechts von \\(3\\): <b>\\(x = 5\\)</b>." },
       { id: 36, level: 6, typ: "numerisch", frage: "Gegeben sind \\(x^2 + 1\\), \\(-(x-2)^2\\), \\(2(x+1)^2 - 8\\) und \\(-x^2 - 3\\). Bei wie vielen dieser Funktionen hat der Graph genau zwei Nullstellen?", loesung: 1, toleranz: 0, tipp: "Vergleiche je Funktion die Öffnungsrichtung mit der Lage des Scheitels.", loesungsweg: "Fallweise: \\(x^2+1\\) ist nach oben geöffnet mit Scheitel über der Achse — keine Nullstelle. \\(-(x-2)^2\\) berührt die Achse im Scheitel — eine Nullstelle. \\(2(x+1)^2-8\\) ist nach oben geöffnet mit Scheitel unter der Achse — $$x = 1 \\text{ und } x = -3$$ also zwei Nullstellen. \\(-x^2-3\\) liegt ganz unter der Achse — keine. Genau <b>1</b> Funktion erfüllt die Bedingung." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

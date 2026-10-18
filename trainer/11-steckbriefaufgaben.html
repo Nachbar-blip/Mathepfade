@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-steckbriefaufgaben';
-    const THEMA_CONFIG = { name: 'Steckbriefaufgaben', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Steckbriefaufgaben', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // L1
       { id:1, level:1, typ:"mc", frage:"Eine ganzrationale Funktion \\(n\\)-ten Grades hat wie viele Parameter?", optionen:["\\(n\\)","\\(n+1\\)","\\(n-1\\)","\\(2n\\)"], korrekt:1, tipp:"Auch der konstante Term zählt.", loesungsweg:"Eine Funktion \\(n\\)-ten Grades hat die Koeffizienten \\(a_n, a_{n-1}, \\ldots, a_1, a_0\\). Gezählt wird von \\(n\\) hinunter bis \\(0\\) — das sind \\(n+1\\) Stück. Der konstante Term \\(a_0\\) wird dabei leicht vergessen. Deshalb braucht eine Steckbriefaufgabe vom Grad \\(n\\) genau \\(n+1\\) Bedingungen." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"mc", frage:"Gesucht ist eine ganzrationale Funktion dritten Grades, deren Graph durch \\((0\\mid0)\\) und \\((2\\mid0)\\) verläuft und bei \\(x=1\\) einen Hochpunkt mit dem Wert \\(4\\) hat. Was ergibt die Rechnung?", optionen:["Genau eine Funktion erfüllt alle Bedingungen","Die Bedingungen erzwingen \\(a=0\\) — kein Grad drei","Die Bedingungen widersprechen sich vollständig","Unendlich viele Funktionen erfüllen sie"], korrekt:1, tipp:"Das Gleichungssystem aufstellen und besonders auf den Leitkoeffizienten achten.", loesungsweg:"Mit \\(f(x) = ax^3+bx^2+cx+d\\) lauten die vier Bedingungen $$f(0) = d = 0, \\qquad f(2) = 8a+4b+2c+d = 0$$ $$f(1) = a+b+c+d = 4, \\qquad f'(1) = 3a+2b+c = 0$$ Aus der zweiten Gleichung folgt mit \\(d = 0\\): \\(4a+2b+c = 0\\). Zieht man davon \\(f'(1) = 3a+2b+c = 0\\) ab, bleibt $$a = 0$$ Das System ist also <b>lösbar</b>, aber seine Lösung \\(b = -4\\), \\(c = 8\\) gehört zu \\(f(x) = -4x^2+8x\\) — einer Funktion zweiten Grades. Eine Funktion dritten Grades mit diesen Eigenschaften gibt es nicht: Die Bedingungen sind in sich stimmig, passen aber nicht zum geforderten Grad. Die Probe bestätigt es: \\(-4x^2+8x\\) hat die Nullstellen \\(0\\) und \\(2\\) und den Scheitel \\((1\\mid4)\\)." },
       { id:36, level:6, typ:"mc", frage:"Behauptung: „Ein Sattelpunkt \\((2\\mid5)\\) liefert für eine Steckbriefaufgabe genau zwei Bedingungen.\" Trifft das zu?", optionen:["Ja: \\(f'(2)=0\\) und \\(f''(2)=0\\)","Nein, es sind drei mit \\(f(2)=5\\)","Nein, es ist nur \\(f''(2)=0\\)","Ja, denn \\(f(2)=5\\) folgt schon daraus"], korrekt:1, tipp:"Unterscheiden, was die Stelle liefert und was der angegebene Punkt.", loesungsweg:"Ein Sattelpunkt ist ein Wendepunkt mit waagerechter Tangente. Die <b>Stelle</b> \\(x = 2\\) liefert zwei Gleichungen: $$f'(2) = 0 \\qquad \\text{und} \\qquad f''(2) = 0$$ Weil zusätzlich die Koordinaten genannt sind, kommt $$f(2) = 5$$ hinzu — insgesamt <b>drei</b> Bedingungen. Wäre nur von einer Sattelstelle bei \\(x = 2\\) die Rede, wären es zwei. Dieselbe Unterscheidung gilt für Extrem- und Wendepunkte." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

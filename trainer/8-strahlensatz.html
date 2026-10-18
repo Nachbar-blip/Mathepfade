@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-strahlensatz';
-    const THEMA_CONFIG = { name: 'Strahlensatz', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Strahlensatz', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht ==========
       { id: 1, level: 1, typ: "mc", frage: "Voraussetzung für den Strahlensatz ist ...", optionen: ["zwei senkrechte Geraden", "zwei Strahlen mit gemeinsamem Anfang und zwei parallele Schnittgeraden", "ein Kreis mit zwei Sehnen", "ein Rechteck"], korrekt: 1, tipp: "Zwei Strahlen aus einem Zentrum, geschnitten von Parallelen.", loesungsweg: "Zwei Strahlen mit gemeinsamem Anfangspunkt und zwei <b>parallele Schnittgeraden</b>." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Eine \\(5\\,\\text{m}\\) hohe Laterne wirft den Schatten einer \\(1{,}6\\,\\text{m}\\) großen Person; der Schatten ist \\(2\\,\\text{m}\\) lang. Wie weit steht die Person vom Fuß der Laterne entfernt (in m)?", loesung: 4.25, toleranz: 0.01, tipp: "Der Scheitel liegt an der Schattenspitze; die gesuchte Entfernung ist ein Teil des großen Scheitelabschnitts.", loesungsweg: "Mit Abstand \\(d\\) zur Laterne: Vom Scheitel bis zur Person \\(2\\), bis zur Laterne \\(2 + d\\). $$\\frac{1{,}6}{5} = \\frac{2}{2+d} \\quad\\Rightarrow\\quad 1{,}6(2+d) = 10 \\quad\\Rightarrow\\quad d = \\frac{10 - 3{,}2}{1{,}6} = 4{,}25\\,\\text{m}$$" },
       { id: 36, level: 6, typ: "numerisch", frage: "Von \\(S\\) gehen zwei Strahlen aus. Auf dem ersten liegen \\(A\\) und \\(A'\\) mit \\(SA = 3\\) und \\(SA' = x\\), auf dem zweiten \\(B\\) und \\(B'\\) mit \\(SB = 4\\) und \\(SB' = 10\\). Für welchen Wert von \\(x\\) sind \\(AB\\) und \\(A'B'\\) parallel?", loesung: 7.5, toleranz: 0.01, tipp: "Die Umkehrung des Strahlensatzes: Stimmen die Verhältnisse der Scheitelabschnitte überein, sind die Verbindungsstrecken parallel.", loesungsweg: "Parallelität liegt genau dann vor, wenn $$\\frac{SA}{SA'} = \\frac{SB}{SB'} \\quad\\Rightarrow\\quad \\frac{3}{x} = \\frac{4}{10} \\quad\\Rightarrow\\quad x = 7{,}5$$ Für jeden anderen Wert von \\(x\\) sind \\(AB\\) und \\(A'B'\\) nicht parallel." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

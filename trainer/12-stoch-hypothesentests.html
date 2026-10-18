@@ -15,7 +15,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '12-stoch-hypothesentests';
-    const THEMA_CONFIG = { name: 'Prognoseintervalle', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Prognoseintervalle', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 — Intervall ablesen und anwenden ==========
       { id:1, level:1, typ:"numerisch", frage:"Für eine Bernoulli-Kette ist \\(\\mu=200\\) und \\(\\sigma=10\\). Gib die untere Grenze des \\(95\\,\\%\\)-Prognoseintervalls an.", loesung:180, toleranz:0, tipp:"Das Intervall reicht zwei Standardabweichungen nach jeder Seite.", loesungsweg:"$$\\mu - 2\\sigma = 200 - 2 \\cdot 10 = 180$$" },
@@ -60,6 +60,7 @@
       { id:35, level:6, typ:"numerisch", frage:"In einer Stichprobe von \\(80\\) Personen wird ein Merkmal erwartet, das \\(3\\,\\%\\) der Bevölkerung tragen. Berechnen Sie \\(\\sigma\\) (2 Nachkommastellen) und beurteilen Sie, ob hier mit der \\(2\\sigma\\)-Näherung gearbeitet werden darf.", loesung:1.53, toleranz:0.03, tipp:"Standardabweichung berechnen und mit der Bedingung für die Anwendbarkeit der Näherung vergleichen.", loesungsweg:"$$\\sigma = \\sqrt{80 \\cdot 0{,}03 \\cdot 0{,}97} = \\sqrt{2{,}328} \\approx 1{,}53$$ <b>Beurteilung:</b> Die Laplace-Bedingung \\(\\sigma \\gt 3\\) ist klar verletzt, die Näherung darf <b>nicht</b> benutzt werden. Man sieht den Grund auch unmittelbar: \\(\\mu = 2{,}4\\), und \\(\\mu - 2\\sigma \\approx -0{,}65\\) wäre eine negative Anzahl. Die Verteilung ist hier stark linkssteil und von einer symmetrischen Glockenform weit entfernt; gefragt ist stattdessen die exakte Rechnung mit der Binomialverteilung." },
       { id:36, level:6, typ:"numerisch", frage:"Ein Losverkäufer gibt an, dass \\(25\\,\\%\\) der Lose gewinnen; \\(1200\\) Lose sind verkauft. Bei welcher Zahl gemeldeter Gewinne liegt das Ergebnis erstmals außerhalb des \\(95\\,\\%\\)-Prognoseintervalls? Begründen Sie, warum der Grenzfall hier eindeutig entschieden werden kann.", loesung:331, toleranz:0, tipp:"Das Intervall bestimmen und überlegen, welche ganze Zahl die obere Grenze zuerst überschreitet.", loesungsweg:"$$\\mu = 1200 \\cdot 0{,}25 = 300, \\quad \\sigma = \\sqrt{1200 \\cdot 0{,}25 \\cdot 0{,}75} = \\sqrt{225} = 15$$ $$\\mu + 2\\sigma = 300 + 30 = 330$$ <b>Grenzfall:</b> Die Grenze ist hier ausnahmsweise ganzzahlig, eine Rundung entfällt. Der Wert \\(330\\) gehört noch zum Intervall \\([270;\\,330]\\), die erste Zahl außerhalb ist also \\(331\\). Wären die Grenzen gebrochen, müsste man die Rundungsregel angeben, um denselben Fall eindeutig zu entscheiden. Die Meldung von genau \\(330\\) Gewinnen wäre demnach noch mit der Angabe verträglich, \\(331\\) nicht mehr." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

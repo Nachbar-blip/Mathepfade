@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-proportionalitaet';
-    const THEMA_CONFIG = { name: 'Direkte und indirekte Proportionalität', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Direkte und indirekte Proportionalität', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "mc", frage: "Zwei Größen sind direkt proportional, wenn …", optionen: ["ihre Summe konstant ist", "ihr Quotient konstant ist", "ihr Produkt konstant ist", "nichts davon"], korrekt: 1, tipp: "\\(\\frac{y}{x} = k\\).", loesungsweg: "Direkt proportional: \\(\\frac{y}{x} = k\\) ist konstant (Proportionalitätsfaktor)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "\\(8\\) Arbeiter würden eine Baustelle in \\(12\\) Tagen fertigstellen. Nach \\(3\\) Tagen fallen einige Arbeiter aus; die übrigen brauchen für den Rest noch \\(18\\) Tage. Wie viele Arbeiter sind ausgefallen?", loesung: 4, toleranz: 0, tipp: "Wie viele Arbeiter-Tage sind nach \\(3\\) Tagen noch übrig?", loesungsweg: "Gesamtarbeit: \\(8 \\cdot 12 = 96\\) Arbeiter-Tage. Nach \\(3\\) Tagen sind \\(24\\) erledigt, \\(72\\) bleiben. Für \\(18\\) Tage: $$\\frac{72}{18} = 4 \\text{ Arbeiter bleiben}$$ Also sind \\(8 - 4 = 4\\) ausgefallen. Probe: \\(4 \\cdot 18 = 72\\) ✓" },
       { id: 36, level: 6, typ: "mc", frage: "Behauptung: „Bei einer proportionalen Zuordnung gehört zu \\(x = 0\\) immer \\(y = 0\\).“", optionen: ["Richtig — \\(y = k \\cdot x\\) ergibt für \\(x = 0\\) stets \\(0\\); der Graph geht durch den Ursprung", "Falsch — bei \\(y = 2x + 1\\) gehört zu \\(x = 0\\) der Wert \\(1\\)", "Falsch — bei umgekehrt proportionalen Zuordnungen gehört zu \\(x = 0\\) ein unendlich großer Wert, also gilt es nie", "Richtig, aber nur für positive Proportionalitätsfaktoren"], korrekt: 0, tipp: "Welche Gleichung haben alle proportionalen Zuordnungen?", loesungsweg: "Jede proportionale Zuordnung hat die Form \\(y = k \\cdot x\\): $$y(0) = k \\cdot 0 = 0$$ unabhängig vom Vorzeichen von \\(k\\). \\(y = 2x + 1\\) ist zwar linear, aber nicht proportional — kein Gegenbeispiel. Umgekehrt proportionale Zuordnungen sind für \\(x = 0\\) gar nicht definiert; sie sind aber auch nicht proportional." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-exponentialfunktionen';
-    const THEMA_CONFIG = { name: 'Exponentialfunktionen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Exponentialfunktionen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht ==========
       { id: 1, level: 1, typ: "mc", frage: "Wie sieht eine Exponentialfunktion aus?", optionen: ["\\(f(x) = x^a\\)", "\\(f(x) = a^x\\) mit \\(a > 0\\)", "\\(f(x) = a + x\\)", "\\(f(x) = \\log x\\)"], korrekt: 1, tipp: "Variable im Exponenten.", loesungsweg: "Eine <b>Exponentialfunktion</b> hat die Form \\(f(x) = a^x\\) mit \\(a > 0\\), \\(a \\neq 1\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Angebot A: 1000 € Startkapital mit 8 % Zinsen pro Jahr. Angebot B: 1200 € Startkapital mit 3 % Zinsen pro Jahr. Nach wie vielen ganzen Jahren ist A erstmals mehr wert als B?", loesung: 4, toleranz: 0, tipp: "Vergleiche die beiden Kapitalverläufe Jahr für Jahr, bis sich die Reihenfolge umkehrt.", loesungsweg: "Jahresweiser Vergleich von \\(1000 \\cdot 1{,}08^t\\) und \\(1200 \\cdot 1{,}03^t\\): $$t = 3:\\; 1259{,}71 < 1311{,}27 \\qquad t = 4:\\; 1360{,}49 > 1350{,}61$$ Nach <b>4 Jahren</b> liegt A erstmals vorn. Der kleinere Startwert wird durch den höheren Zinssatz aufgeholt, weil das Verhältnis \\(1{,}08 : 1{,}03\\) jedes Jahr zugunsten von A wirkt." },
       { id: 36, level: 6, typ: "mc", frage: "Ein Bestand verdoppelt sich in 10 Jahren. Behauptung: „Dann hat er sich in 30 Jahren versechsfacht.“ Prüfe die Behauptung.", optionen: ["Richtig, dreimal zwei ergibt sechs", "Falsch, er hat sich verachtfacht", "Falsch, er hat sich vervierfacht", "Richtig, aber nur bei linearem Wachstum"], korrekt: 1, tipp: "Zerlege die 30 Jahre in gleiche Abschnitte und überlege, wie die Faktoren dieser Abschnitte verknüpft werden.", loesungsweg: "30 Jahre bestehen aus drei Verdopplungszeiten. Die Faktoren werden multipliziert: $$2 \\cdot 2 \\cdot 2 = 2^3 = 8$$ Der Bestand hat sich also <b>verachtfacht</b>, nicht versechsfacht. Die Behauptung überträgt fälschlich das Addieren von linearem Wachstum auf einen multiplikativen Vorgang." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

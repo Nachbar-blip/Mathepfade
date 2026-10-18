@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-stoch-laplace';
-    const THEMA_CONFIG = { name: 'Laplace-Wahrscheinlichkeit', bereich: 'stochastik' };
+    const THEMA_CONFIG = { name: 'Laplace-Wahrscheinlichkeit', bereich: 'stochastik', p3Enabled: true };
     const AUFGABEN = [
       // ===== LEVEL 1 - babyleicht: Grundbegriffe =====
       { id:1, level:1, typ:"mc", frage:"Was ist ein Laplace-Experiment?", optionen:["alle Ergebnisse gleich wahrscheinlich","nur zwei Ergebnisse","unendlich viele Ergebnisse","abhängige Ergebnisse"], korrekt:0, tipp:"Gleiche Chancen.", loesungsweg:"Ein Laplace-Experiment ist ein Zufallsexperiment, bei dem alle Ergebnisse <b>gleich wahrscheinlich</b> sind — Würfel, Münze, Glücksrad mit gleich großen Feldern. Nur dann darf man Wahrscheinlichkeiten durch Abzählen bestimmen." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"numerisch", frage:"In einer Urne liegen 6 rote und einige blaue Kugeln. Wie viele blaue müssen es sein, damit die Wahrscheinlichkeit für rot genau \\(\\frac14\\) beträgt?", loesung:18, toleranz:0, tipp:"Die roten sind ein Viertel — was ist dann der Rest?", loesungsweg:"Mit \\(x\\) blauen Kugeln: $$\\frac{6}{6 + x} = \\frac14 \\implies 24 = 6 + x \\implies x = 18$$ Die \\(6\\) roten sind ein Viertel von \\(24\\), die \\(18\\) blauen die übrigen drei Viertel." },
       { id:36, level:6, typ:"numerisch", frage:"Zwei Würfel werden geworfen. \\(A\\): „Augensumme 7\", \\(B\\): „Pasch\". Wie groß ist \\(P(A \\cap B)\\), also die Wahrscheinlichkeit, dass <b>beides</b> zugleich eintritt? (Dezimalzahl)", loesung:0, toleranz:0, tipp:"Kann ein Pasch die Summe 7 haben?", loesungsweg:"Ein Pasch \\((k, k)\\) hat die Summe \\(2k\\), also immer eine <b>gerade</b> Zahl. Die \\(7\\) ist ungerade — kein Paar liegt in beiden Mengen: $$A \\cap B = \\{\\} \\implies P(A \\cap B) = 0$$ Die Ereignisse sind unvereinbar, obwohl beide einzeln die Wahrscheinlichkeit \\(\\frac{6}{36}\\) haben." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

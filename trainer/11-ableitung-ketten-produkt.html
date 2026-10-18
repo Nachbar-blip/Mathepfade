@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-ableitung-ketten-produkt';
-    const THEMA_CONFIG = { name: 'Ketten- & Produktregel', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Ketten- & Produktregel', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1 — innere und äußere Funktion erkennen
       { id: 1, level: 1, typ: "mc", frage: "Gegeben ist \\(f(x) = (2x+1)^3\\). Welcher Term ist die innere Funktion?", optionen: ["\\(2x+1\\)", "\\(x^3\\)", "\\(2x\\)", "\\((2x+1)^3\\)"], korrekt: 0, tipp: "Frage dich, welcher Rechenschritt zuerst auf \\(x\\) angewendet wird.", loesungsweg: "Bei einer Verkettung wird die innere Funktion zuerst ausgeführt. Hier rechnet man erst \\(2x+1\\) aus und potenziert das Ergebnis danach: $$u(x) = 2x+1, \\qquad v(u) = u^3$$ Die innere Funktion ist also \\(2x+1\\); ihre Ableitung \\(u' = 2\\) tritt später als Faktor auf." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Der Graph von \\(f(x) = (x^2 - 4) \\cdot e^{x}\\) hat zwei Stellen mit waagerechter Tangente. Geben Sie die kleinere an. (3 Dezimalen)", loesung: -3.236, toleranz: 0.005, tipp: "Klammern Sie die e-Funktion aus und lösen Sie die quadratische Gleichung vollständig.", loesungsweg: "Produktregel und Ausklammern: $$f'(x) = 2xe^x + (x^2-4)e^x = e^x(x^2 + 2x - 4)$$ Die e-Funktion wird nie null, also $$x^2 + 2x - 4 = 0 \\;\\Rightarrow\\; x = -1 \\pm \\sqrt{1+4} = -1 \\pm \\sqrt5$$ Beide Lösungen sind reell: \\(x_1 \\approx -3{,}236\\) und \\(x_2 \\approx 1{,}236\\). Gefragt ist die kleinere, also \\(-1-\\sqrt5 \\approx -3{,}236\\); dort liegt der Hochpunkt, an der zweiten Stelle der Tiefpunkt." },
       { id: 36, level: 6, typ: "mc", frage: "Beurteilen Sie die Behauptung: <b>Die Ableitung von \\(f(x) = \\sin^2(x)\\) ist \\(f'(x) = 2\\sin(x)\\cos(x)\\).</b>", optionen: ["Richtig: äußere Ableitung \\(2\\sin x\\), innere Ableitung \\(\\cos x\\)", "Falsch: richtig wäre \\(2\\sin(x)\\), die innere Ableitung entfällt", "Falsch: auf ein Quadrat lässt sich die Kettenregel nicht anwenden", "Richtig, aber nur im Bereich \\(0 < x < \\pi\\), sonst kippt das Vorzeichen"], korrekt: 0, tipp: "Schreiben Sie den Term als \\((\\sin x)^2\\) und bestimmen Sie innere und äußere Funktion.", loesungsweg: "Es handelt sich um die Verkettung \\(u(x) = \\sin x\\) mit \\(v(u) = u^2\\). Die Kettenregel liefert $$f'(x) = 2\\sin x \\cdot \\cos x$$ Die Behauptung stimmt also. Eine Probe bestätigt es: wegen \\(2\\sin x\\cos x = \\sin(2x)\\) müsste \\(f(x) = \\sin^2 x\\) dieselbe Ableitung haben wie \\(-\\tfrac12\\cos(2x)\\) — und tatsächlich unterscheiden sich beide Funktionen nur um die Konstante \\(\\tfrac12\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

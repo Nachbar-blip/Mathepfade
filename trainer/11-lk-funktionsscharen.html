@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-lk-funktionsscharen';
-    const THEMA_CONFIG = { name: 'eA: Funktionsscharen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'eA: Funktionsscharen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // L1
       { id:1, level:1, typ:"mc", frage:"Was ist eine Funktionsschar?", optionen:["eine Menge von Funktionen mit einem Parameter","eine einzelne Funktion mit einem festen Term","eine Folge von Zahlen mit einem Index","eine Gleichung mit zwei Unbekannten"], korrekt:0, tipp:"Achte darauf, ob der Buchstabe im Term eine Zahl vertritt oder die Stelle auf der \\(x\\)-Achse.", loesungsweg:"Eine Funktionsschar ist eine ganze <b>Familie</b> von Funktionen, die sich in einem Buchstaben unterscheiden — dem Parameter. Setzt man für ihn eine feste Zahl ein, erhält man eine einzelne Funktion der Schar: $$f_a(x) = x^2 + a \\;\\longrightarrow\\; f_1(x) = x^2+1,\\quad f_2(x) = x^2+2$$ Alle diese Graphen zusammen bilden die Schar. Eine Folge ist etwas anderes: Sie ordnet natürlichen Zahlen einzelne Werte zu, keine ganzen Funktionen." },
@@ -59,6 +59,7 @@
       { id:35, level:6, typ:"numerisch", frage:"Gegeben ist die Schar \\(f_t(x) = x^2 - 2tx + t^2 + t\\) mit \\(t \\in \\mathbb{R}\\). Zeigen Sie, dass jeder Graph genau einen Tiefpunkt besitzt, und geben Sie die kleinste ganze Zahl \\(t\\) an, für die dieser Tiefpunkt oberhalb der \\(x\\)-Achse liegt.", loesung:1, toleranz:0, tipp:"Bestimme den Tiefpunkt allgemein in \\(t\\), formuliere die Lage über der Achse als Ungleichung und prüfe den Grenzfall gesondert.", loesungsweg:"Nachweis für beliebiges \\(t\\): $$f_t'(x) = 2x - 2t = 0 \\;\\Rightarrow\\; x = t$$ Das ist die einzige Lösung, und wegen \\(f_t''(x) = 2 > 0\\) liegt dort stets ein Tiefpunkt. Sein \\(y\\)-Wert: $$f_t(t) = t^2 - 2t^2 + t^2 + t = t$$ Der Tiefpunkt ist also \\(T(t \\mid t)\\) — alle Tiefpunkte liegen auf der Geraden \\(y = x\\). Oberhalb der \\(x\\)-Achse heißt \\(t > 0\\). Der Grenzfall \\(t = 0\\) scheidet aus, weil der Tiefpunkt dann im Ursprung <b>auf</b> der Achse liegt. Kleinste passende ganze Zahl: \\(t = 1\\)." },
       { id:36, level:6, typ:"numerisch", frage:"Gegeben ist die Schar \\(f_k(x) = x^3 - 3k^2x + 2k^3\\) mit \\(k > 0\\). Zeigen Sie, dass jeder Graph die \\(x\\)-Achse an der Stelle \\(x = k\\) berührt, und bestimmen Sie für \\(k = 3\\) die davon verschiedene Nullstelle.", loesung:-6, toleranz:0, tipp:"Berührung verlangt zwei Nachweise an derselben Stelle; für die weitere Nullstelle hilft eine Zerlegung des Terms in Faktoren.", loesungsweg:"Erster Nachweis — die Stelle ist eine Nullstelle: $$f_k(k) = k^3 - 3k^3 + 2k^3 = 0$$ Zweiter Nachweis — dort ist die Tangente waagerecht: $$f_k'(x) = 3x^2 - 3k^2 \\;\\Rightarrow\\; f_k'(k) = 3k^2 - 3k^2 = 0$$ Beides zusammen ist eine Berührung der \\(x\\)-Achse, also eine doppelte Nullstelle. Der Term zerfällt deshalb in $$f_k(x) = (x-k)^2(x+2k)$$ Die dritte Nullstelle ist \\(x = -2k\\). Für \\(k = 3\\): $$x = -6$$ Probe: \\((-6)^3 - 27 \\cdot (-6) + 54 = -216 + 162 + 54 = 0\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

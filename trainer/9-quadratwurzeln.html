@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-quadratwurzeln';
-    const THEMA_CONFIG = { name: 'Quadratwurzeln', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Quadratwurzeln', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht: Grundbegriffe ==========
       { id: 1, level: 1, typ: "mc", frage: "Was ist \\(\\sqrt{9}\\)?", optionen: ["\\(3\\)", "\\(4{,}5\\)", "\\(81\\)", "\\(-3\\)"], korrekt: 0, tipp: "Welche Zahl mal sich selbst ergibt 9?", loesungsweg: "\\(3 \\cdot 3 = 9\\), also \\(\\sqrt{9} = 3\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Schreibe \\(\\frac{1}{\\sqrt{5} - 2}\\) ohne Wurzel im Nenner. Das Ergebnis hat die Form \\(a + b\\sqrt{5}\\). Gib \\(a\\) an.", loesung: 2, toleranz: 0, tipp: "Mit welchem Term muss man erweitern, damit im Nenner eine binomische Formel entsteht?", loesungsweg: "Erweitern mit \\(\\sqrt5\\) allein hilft nicht, weil der Nenner eine Differenz ist. Erweitern mit \\(\\sqrt5 + 2\\) erzeugt im Nenner die dritte binomische Formel: $$\\frac{1}{\\sqrt5 - 2} = \\frac{\\sqrt5 + 2}{(\\sqrt5 - 2)(\\sqrt5 + 2)} = \\frac{\\sqrt5 + 2}{5 - 4} = 2 + \\sqrt5$$ Also \\(a = 2\\) und \\(b = 1\\). Probe: \\(\\sqrt5 - 2 \\approx 0{,}236\\), Kehrwert \\(\\approx 4{,}236 = 2 + 2{,}236\\) ✓" },
       { id: 36, level: 6, typ: "numerisch", frage: "Ein Quadrat wird durch ein Quadrat mit doppeltem Flächeninhalt ersetzt. Ein Schüler behauptet, die Seitenlänge verdopple sich dann ebenfalls. Um wie viel Prozent wächst die Seitenlänge tatsächlich? Runde auf ganze Prozent.", loesung: 41, toleranz: 0.5, tipp: "Wähle eine konkrete Seitenlänge und vergleiche die Wurzeln.", loesungsweg: "Hat das alte Quadrat die Seite \\(a\\), so ist die neue Fläche \\(2a^2\\) und die neue Seite $$a_{\\text{neu}} = \\sqrt{2a^2} = \\sqrt2 \\cdot a \\approx 1{,}414\\,a$$ Die Seite wächst also nur um etwa \\(41\\,\\%\\), nicht um \\(100\\,\\%\\). Die Behauptung ist falsch: Bei doppelter Seitenlänge würde sich die Fläche vervierfachen, denn \\((2a)^2 = 4a^2\\). Flächen wachsen quadratisch mit der Seite, Seiten wachsen mit der Wurzel der Fläche." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

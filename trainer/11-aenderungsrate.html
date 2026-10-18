@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '11-aenderungsrate';
-    const THEMA_CONFIG = { name: 'Änderungsrate & Ableitungsbegriff', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Änderungsrate & Ableitungsbegriff', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1 — mittlere Änderungsrate, Begriffe
       { id: 1, level: 1, typ: "mc", frage: "Was beschreibt die mittlere Änderungsrate von \\(f\\) auf \\([a; b]\\)?", optionen: ["Steigung der Tangente an der Stelle \\(a\\)", "Steigung der Sekante durch die beiden Randpunkte", "Differenz der Funktionswerte \\(f(b) - f(a)\\)", "Fläche zwischen dem Graphen und der \\(x\\)-Achse"], korrekt: 1, tipp: "Mittlere Änderung heißt: Differenzenquotient.", loesungsweg: "Die mittlere Änderungsrate ist der Differenzenquotient $$\\frac{f(b)-f(a)}{b-a}$$ also die Steigung der Sekante durch \\((a|f(a))\\) und \\((b|f(b))\\). Die Tangentensteigung gehört dagegen zur <b>lokalen</b> Änderungsrate, und die bloße Differenz \\(f(b)-f(a)\\) wäre nicht durch die Intervallbreite geteilt." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Die Wirkstoffmenge im Blut wird für \\(0 \\le t \\le 6\\) durch \\(m(t) = 12t - 0{,}3t^3\\) (in mg, \\(t\\) in Stunden) beschrieben. Zeigen Sie, dass die Menge genau einmal von Zunahme in Abnahme übergeht, und geben Sie den Zeitpunkt an. (2 Dezimalen)", loesung: 3.65, toleranz: 0.02, tipp: "Der Übergang liegt beim Vorzeichenwechsel der Änderungsrate.", loesungsweg: "Die Änderungsrate ist $$m'(t) = 12 - 0{,}9t^2$$ Nullsetzen: $$0{,}9t^2 = 12 \\;\\Rightarrow\\; t^2 = \\frac{40}{3} \\;\\Rightarrow\\; t \\approx 3{,}65$$ Die zweite Lösung \\(-3{,}65\\) liegt außerhalb des Zeitraums, es bleibt genau ein Zeitpunkt. Davor ist \\(m'(t) > 0\\), danach \\(m'(t) < 0\\) — die Menge steigt also bis rund \\(3{,}65\\) Stunden und fällt danach." },
       { id: 36, level: 6, typ: "mc", frage: "Ein Auto fährt die erste Hälfte einer Strecke mit \\(40\\) km/h und die zweite Hälfte mit \\(60\\) km/h. Beurteilen Sie: <b>Die mittlere Geschwindigkeit beträgt \\(50\\) km/h.</b>", optionen: ["Falsch: sie beträgt \\(48\\) km/h, denn die langsame Hälfte dauert länger", "Richtig: maßgeblich ist der Mittelwert der beiden Geschwindigkeiten", "Falsch: sie beträgt \\(52\\) km/h, denn die schnelle Hälfte zählt stärker", "Richtig, weil beide Teilstrecken genau gleich lang zurückgelegt werden"], korrekt: 0, tipp: "Die mittlere Geschwindigkeit ist Gesamtweg durch Gesamtzeit — berechnen Sie beide Zeiten.", loesungsweg: "Für eine Gesamtstrecke von \\(2s\\) braucht das Auto $$t = \\frac{s}{40} + \\frac{s}{60} = \\frac{3s + 2s}{120} = \\frac{5s}{120} = \\frac{s}{24}$$ Die mittlere Geschwindigkeit ist Gesamtweg durch Gesamtzeit: $$\\bar v = \\frac{2s}{\\frac{s}{24}} = 48 \\;\\text{km/h}$$ Die Behauptung ist also falsch. Der Grund: Auf der langsamen Hälfte verbringt das Auto <b>mehr Zeit</b>, deshalb zieht sie den Mittelwert stärker nach unten. Der einfache Mittelwert \\(50\\) wäre nur richtig, wenn beide Geschwindigkeiten gleich lange gefahren würden." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

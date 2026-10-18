@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '8-bruchgleichungen';
-    const THEMA_CONFIG = { name: 'Bruchgleichungen', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Bruchgleichungen', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // LEVEL 1
       { id: 1, level: 1, typ: "mc", frage: "Was ist eine Bruchgleichung?", optionen: ["Eine Gleichung mit Dezimalbrüchen", "Eine Gleichung, bei der die Variable im Nenner steht", "Ein Bruchterm", "Eine Ungleichung"], korrekt: 1, tipp: "Variable im Nenner.", loesungsweg: "Eine <b>Bruchgleichung</b> ist eine Gleichung, bei der mindestens eine Variable im Nenner steht, z. B. \\(\\frac{2}{x} = 4\\)." },
@@ -60,6 +60,7 @@
       { id: 36, level: 6, typ: "numerisch", frage: "Die Gleichung \\(\\frac{a}{x} + \\frac{b}{2x} = 1\\) hat die Lösung \\(x = 4\\); außerdem gilt \\(a + b = 6\\). Bestimme \\(a\\).", loesung: 2, toleranz: 0, tipp: "Die Lösung einsetzen liefert eine zweite Gleichung für \\(a\\) und \\(b\\).", loesungsweg: "\\(x = 4\\) einsetzen: \\(\\frac{a}{4} + \\frac{b}{8} = 1\\), mal 8: \\(2a + b = 8\\). Mit \\(a + b = 6\\): $$2a + b - (a + b) = 8 - 6 \\implies a = 2,\\; b = 4$$ Probe: \\(\\frac{2}{4} + \\frac{4}{8} = 1\\) ✓" }
     ];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

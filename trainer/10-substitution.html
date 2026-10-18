@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-substitution';
-    const THEMA_CONFIG = { name: 'Substitution', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Substitution', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht ==========
       { id: 1, level: 1, typ: "mc", frage: "Was bedeutet Substitution in der Mathematik?", optionen: ["Rechnen mit Brüchen", "Einen Ausdruck durch eine neue Variable ersetzen", "Gleichung verdoppeln", "Wurzel ziehen"], korrekt: 1, tipp: "„sub-stituere\" = ersetzen.", loesungsweg: "<b>Substitution</b>: Ein komplizierter Ausdruck wird durch eine neue Variable (z. B. \\(u\\)) ersetzt, um die Gleichung zu vereinfachen." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Löse \\(x^4 + 2x^2 - 15 = 0\\) und gib die positive Lösung als Dezimalzahl auf drei Stellen an.", loesung: 1.732, toleranz: 0.01, tipp: "Nach dem Zurückführen auf eine quadratische Gleichung ist zu prüfen, welche Zwischenlösung überhaupt reelle Werte zulässt.", loesungsweg: "Mit \\(u = x^2\\): $$u^2 + 2u - 15 = (u-3)(u+5) = 0 \\;\\Longrightarrow\\; u = 3 \\text{ oder } u = -5$$ Der Wert \\(u = -5\\) entfällt, da \\(x^2\\) nicht negativ wird. Aus \\(x^2 = 3\\) folgt \\(x = \\pm\\sqrt3\\); die positive Lösung ist \\(\\sqrt3 \\approx 1{,}732\\)." },
       { id: 36, level: 6, typ: "numerisch", frage: "Die Gleichung \\(x^4 + p x^2 + q = 0\\) hat genau die Lösungen \\(x = \\pm 1\\) und \\(x = \\pm 3\\). Bestimme \\(p\\).", loesung: -10, toleranz: 0, tipp: "Übersetze die gegebenen Lösungen zuerst in die Werte der Hilfsvariablen und nutze dann den Satz von Vieta.", loesungsweg: "Mit \\(u = x^2\\) gehören zu den Lösungen die Werte \\(u = 1\\) und \\(u = 9\\). Die zugehörige quadratische Gleichung lautet $$(u-1)(u-9) = u^2 - 10u + 9 = 0$$ Koeffizientenvergleich mit \\(u^2 + pu + q\\) liefert \\(p = -10\\) (und \\(q = 9\\)). Nach Vieta ist \\(p\\) das negative Summenglied: \\(-(1+9) = -10\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

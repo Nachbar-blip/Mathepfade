@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '10-logarithmus';
-    const THEMA_CONFIG = { name: 'Logarithmus', bereich: 'analysis' };
+    const THEMA_CONFIG = { name: 'Logarithmus', bereich: 'analysis', p3Enabled: true };
     const AUFGABEN = [
       // ========== LEVEL 1 -- babyleicht ==========
       { id: 1, level: 1, typ: "mc", frage: "Was bedeutet \\(\\log_2 8 = 3\\)?", optionen: ["\\(2 \\cdot 8 = 3\\)", "\\(2^3 = 8\\)", "\\(3^2 = 8\\)", "\\(\\frac{8}{2} = 3\\)"], korrekt: 1, tipp: "Logarithmus = gesuchter Exponent.", loesungsweg: "\\(\\log_2 8 = 3\\) bedeutet: Mit welchem Exponenten muss man \\(2\\) potenzieren, um \\(8\\) zu erhalten? Antwort: \\(3\\), weil \\(2^3 = 8\\)." },
@@ -59,6 +59,7 @@
       { id: 35, level: 6, typ: "numerisch", frage: "Für welche kleinste ganze Zahl \\(x\\) ist der Term \\(\\log_3(x - 4)\\) definiert?", loesung: 5, toleranz: 0, tipp: "Überlege, welche Werte der Numerus eines Logarithmus annehmen darf.", loesungsweg: "Der Numerus muss echt positiv sein: $$x - 4 > 0 \\;\\Longrightarrow\\; x > 4$$ Die kleinste ganze Zahl darüber ist <b>5</b>; \\(x = 4\\) scheidet aus, weil \\(\\log_3 0\\) nicht existiert — keine Potenz von \\(3\\) ergibt null." },
       { id: 36, level: 6, typ: "numerisch", frage: "Wie viele Stellen hat die Zahl \\(2^{30}\\) im Dezimalsystem? Bekannt ist \\(\\lg 2 \\approx 0{,}301\\).", loesung: 10, toleranz: 0, tipp: "Der dekadische Logarithmus einer Zahl sagt, zwischen welchen Zehnerpotenzen sie liegt.", loesungsweg: "Mit dem Potenzgesetz: $$\\lg 2^{30} = 30 \\cdot 0{,}301 = 9{,}03$$ Die Zahl liegt also zwischen \\(10^9\\) und \\(10^{10}\\) und hat damit <b>10</b> Stellen (Stellenzahl = Exponent der unteren Zehnerpotenz plus eins). Probe: \\(2^{30} = 1\\,073\\,741\\,824\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

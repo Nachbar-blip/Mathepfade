@@ -14,7 +14,7 @@
     <div class="spirale-container" id="app"></div>
     <script>
     const THEMA_KEY = '9-trig-rechtwinkliges-dreieck';
-    const THEMA_CONFIG = { name: 'Trigonometrie am rechtwinkligen Dreieck', bereich: 'geometrie' };
+    const THEMA_CONFIG = { name: 'Trigonometrie am rechtwinkligen Dreieck', bereich: 'geometrie', p3Enabled: true };
     const AUFGABEN = [
       { id:1, level:1, typ:"mc", frage:"Wie lautet die Definition von \\(\\sin\\alpha\\) im rechtwinkligen Dreieck?", optionen:["Ankathete/Hypotenuse","Gegenkathete/Hypotenuse","Gegenkathete/Ankathete","Hypotenuse/Gegenkathete"], korrekt:1, tipp:"Merkspruch: GAGA-HH.", loesungsweg:"$$\\sin\\alpha = \\frac{\\text{Gegenkathete}}{\\text{Hypotenuse}}$$ Die Gegenkathete liegt dem Winkel \\(\\alpha\\) gegenüber, die Hypotenuse dem rechten Winkel. Weil die Hypotenuse stets die längste Seite ist, liegt \\(\\sin\\alpha\\) immer zwischen \\(0\\) und \\(1\\)." },
       { id:2, level:1, typ:"mc", frage:"Wie ist \\(\\cos\\alpha\\) definiert?", optionen:["Gegenkathete/Hypotenuse","Ankathete/Hypotenuse","Gegenkathete/Ankathete","1"], korrekt:1, tipp:"Ankathete oben.", loesungsweg:"$$\\cos\\alpha = \\frac{\\text{Ankathete}}{\\text{Hypotenuse}}$$ Die Ankathete <b>anliegt</b> dem Winkel. Welche Kathete An- und welche Gegenkathete ist, hängt davon ab, von welchem der beiden spitzen Winkel aus man schaut." },
@@ -53,6 +53,7 @@
       { id:35, level:6, typ:"mc", frage:"Jemand behauptet, in einem bestimmten rechtwinkligen Dreieck gelte \\(\\sin\\alpha = 1{,}2\\). Was ist dazu zu sagen?", optionen:["Unmöglich, die Gegenkathete ist immer kürzer als die Hypotenuse", "Möglich, sobald \\(\\alpha\\) größer als \\(45°\\) ist", "Möglich, wenn die Gegenkathete länger als die Ankathete ist", "Unmöglich für den Sinus, aber \\(\\cos\\alpha = 1{,}2\\) kann vorkommen"], korrekt:0, tipp:"Der Sinus ist ein Verhältnis zweier Seiten; welche davon ist die längste im Dreieck?", loesungsweg:"\\(\\sin\\alpha = \\frac{\\text{Gegenkathete}}{\\text{Hypotenuse}}\\). Die Hypotenuse ist die längste Seite, daher ist der Bruch stets kleiner als \\(1\\): $$0 < \\sin\\alpha < 1 \\quad\\text{für } 0° < \\alpha < 90°$$ Dasselbe gilt für den Kosinus. Nur der Tangens (Kathete durch Kathete) kann größer als \\(1\\) werden." },
       { id:36, level:6, typ:"numerisch", frage:"Ein Drachen hängt an einer straff gespannten, geraden \\(50\\,\\text{m}\\) langen Schnur, die mit der Horizontalen einen Winkel von \\(55°\\) bildet. Die Hand, die die Schnur hält, ist \\(1{,}2\\,\\text{m}\\) über dem Boden. Wie hoch über dem Boden fliegt der Drachen in m? Runde auf eine Dezimale.", loesung:42.2, toleranz:0.1, tipp:"Die Schnur ist die Hypotenuse; die gesuchte Höhe setzt sich aus zwei Teilen zusammen.", loesungsweg:"Höhe des Drachens über der Hand: $$50 \\cdot \\sin 55° \\approx 40{,}96\\,\\text{m}$$ Dazu die Handhöhe: \\(40{,}96 + 1{,}2 \\approx 42{,}2\\,\\text{m}\\)." }];
     </script>
-    <script src="../spirale-engine.js"></script>
+    <script src="../p3-reflexion.js" data-sammlung="mathepfade"></script>
+    <script src="../spirale-engine.js" data-sammlung="mathepfade"></script>
 </body>
 </html>

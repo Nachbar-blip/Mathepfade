@@ -1128,7 +1128,10 @@
 
       let data = null;
       try {
-        const raw = localStorage.getItem(key);
+        // Eigener Key der Sammlung (siehe spirale-engine.js); Trainer, die seit dem Umzug
+        // nicht geoeffnet wurden, stehen noch unter dem alten
+        const raw = localStorage.getItem(key.replace(/^spirale-/, 'spirale-mathepfade-')) ||
+                    localStorage.getItem(key);
         if (raw) data = JSON.parse(raw);
       } catch (e) { /* ignorieren */ }
 
