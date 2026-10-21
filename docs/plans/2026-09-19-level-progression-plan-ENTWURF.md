@@ -1,5 +1,7 @@
 # Änderungsplan Level-Progression Mathepfade — ENTWURF zur Absprache (2026-09-19)
 
+> **Status (Vermerk 2026-10-21): umgesetzt.** Der Level-Durchgang ist für alle Trainer dieser Sammlung fertig und live; „ENTWURF“ im Dateinamen ist historisch. Offene Fragen an den Autor stehen weiter unten bzw. im STAND-Dokument.
+
 Status: **Schritte 1, 2 und 4 umgesetzt (2026-09-19).** Das Rubrik-Gate meldet für alle 90 Trainer
 keinen harten Fehler mehr: **72 ohne Beanstandung, 18 Warnungen, 0 Fehler** (Ausgangslage
 55 / 17 / 18). `katex_check` ist für alle geänderten Trainer grün.
